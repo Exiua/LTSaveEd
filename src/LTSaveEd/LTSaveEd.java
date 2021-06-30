@@ -10,8 +10,8 @@ public class LTSaveEd extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        Parent root = (Parent) loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LTSaveEd.fxml"));
+        Parent root = loader.load();
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
         primaryStage.setTitle("LTSaveEd v1.0.0");
