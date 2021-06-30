@@ -4,7 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -12,7 +17,9 @@ import java.util.Properties;
 public class Controller {
 
     private Stage stage;
-    private Properties prop;
+    private final Properties prop;
+    private File workingFile;
+    private Document xml;
 
     /**
      * Creates a new Controller object and parses config.ini
@@ -26,7 +33,7 @@ public class Controller {
             in = new FileInputStream("config.ini");
         }
         catch (FileNotFoundException e){
-            prop.setProperty("defaultFilePath", Paths.get(".").toAbsolutePath().normalize().toString());
+            prop.setProperty("defaultFilePath", Paths.get(".").toAbsolutePath().normalize().toString()); //Uses working directory as default file path
             prop.store(new FileOutputStream("config.ini"), null);
             in = new FileInputStream("config.ini");
         }
@@ -52,6 +59,7 @@ public class Controller {
     @FXML
     private void loadFile(ActionEvent event) throws IOException {
         event.consume();
+        //Get file
         FileChooser fc = new FileChooser();
         FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         fc.getExtensionFilters().add(fileExtensions);
@@ -61,7 +69,22 @@ public class Controller {
         if(f != null) {
             prop.setProperty("defaultFilePath", f.getParent());
             prop.store(new FileOutputStream("config.ini"), null);
+            workingFile = f;
+            //Load XML
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            try (InputStream is = new FileInputStream(f)){
+                DocumentBuilder db = dbf.newDocumentBuilder();
+                xml = db.parse(is);
+                System.out.println("Working?");
+            }
+            catch(ParserConfigurationException | SAXException e){
+                e.printStackTrace();
+            }
         }
-        System.out.println(f);
+    }
+
+    @FXML
+    private void saveFile(ActionEvent event){
+        //TODO: Write saveFile method
     }
 }
