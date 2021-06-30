@@ -2,3 +2,4 @@ out
 .idea
 *.iml
 *.ini
+src/LTSaveEd/Debug.java
