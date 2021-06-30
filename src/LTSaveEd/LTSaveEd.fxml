@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LTSaveEd.Controller">
    <children>
@@ -13,7 +18,79 @@
 		<tabs>
 		  <Tab text="Core">
 			<content>
-			  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+			  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="14.0" layoutY="44.0" spacing="10.0">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label text="Name (A, F, M): " />
+                                    <TextField />
+                                    <TextField layoutX="95.0" layoutY="10.0">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField layoutX="244.0" layoutY="10.0" />
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Label text="Surname: " />
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Label text="Level: " />
+                                    <TextField prefWidth="40.0" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="45.0">
+                                 <children>
+                                    <Label text="Date of Birth: " />
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="115.0">
+                                 <children>
+                                    <Label text="Orientation: " />
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="150.0">
+                                 <children>
+                                    <Label text="Gender Identity: " />
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="80.0">
+                                 <children>
+                                    <Label text="Experience: " />
+                                    <TextField prefWidth="40.0" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="220.0">
+                                 <children>
+                                    <Label text="Perk Points: " />
+                                    <TextField prefWidth="40.0" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="255.0">
+                                 <children>
+                                    <Label text="Health: " />
+                                    <TextField prefWidth="40.0" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="290.0">
+                                 <children>
+                                    <Label text="Mana: " />
+                                    <TextField prefWidth="40.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
 			</content>
 		  </Tab>
 		  <Tab text="Body">
