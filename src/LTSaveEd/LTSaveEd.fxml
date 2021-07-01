@@ -26,67 +26,73 @@
                               <HBox>
                                  <children>
                                     <Label text="Name (A, F, M): " />
-                                    <TextField />
-                                    <TextField layoutX="95.0" layoutY="10.0">
+                                    <TextField fx:id="nameAndrogynous" />
+                                    <TextField fx:id="nameFeminine" layoutX="95.0" layoutY="10.0">
                                        <HBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <TextField layoutX="244.0" layoutY="10.0" />
+                                    <TextField fx:id="nameMasculine" layoutX="244.0" layoutY="10.0" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
                                     <Label text="Surname: " />
-                                    <TextField fx:id="core3" />
+                                    <TextField fx:id="core7" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
                                     <Label text="Level: " />
-                                    <TextField prefWidth="40.0" />
+                                    <TextField fx:id="core19" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="45.0">
                                  <children>
                                     <Label text="Date of Birth: " />
-                                    <TextField />
+                                    <TextField fx:id="core23" />
+                                    <TextField fx:id="core25" layoutX="83.0" layoutY="10.0">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="core27" layoutX="232.0" layoutY="10.0" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="115.0">
                                  <children>
                                     <Label text="Orientation: " />
-                                    <TextField />
+                                    <TextField fx:id="core49" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="150.0">
                                  <children>
                                     <Label text="Gender Identity: " />
-                                    <TextField />
+                                    <TextField fx:id="core53" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="80.0">
                                  <children>
                                     <Label text="Experience: " />
-                                    <TextField prefWidth="40.0" />
+                                    <TextField fx:id="core61" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="220.0">
                                  <children>
                                     <Label text="Perk Points: " />
-                                    <TextField prefWidth="40.0" />
+                                    <TextField fx:id="core63" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="255.0">
                                  <children>
                                     <Label text="Health: " />
-                                    <TextField prefWidth="40.0" />
+                                    <TextField fx:id="core67" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="290.0">
                                  <children>
                                     <Label text="Mana: " />
-                                    <TextField prefWidth="40.0" />
+                                    <TextField fx:id="core69" />
                                  </children>
                               </HBox>
                            </children>
