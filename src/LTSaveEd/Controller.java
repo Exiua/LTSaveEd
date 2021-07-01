@@ -6,10 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -116,23 +113,23 @@ public class Controller {
      */
     private void setFields(String id){
         if(fileLoaded) {
-            id = "PlayerCharacter"; //Placeholder; will change to take input from combobox to select character
+            id = "PlayerCharacter"; //Placeholder; will change to take input from a combobox to select character
             Node idNode = getElementByIdValue(id);
             Node characterNode = idNode.getParentNode().getParentNode();
             //System.out.println(characterNode.getNodeName());
             NodeList attributeNodes = characterNode.getChildNodes();
             //System.out.println(attributeNodes.item(3).getNodeName());
             //Debug.printList(attributeNodes);
-            for(int i = 3; i < attributeNodes.getLength() - 1; i+=2){
-                if(attributeNodes.item(i).getNodeType() != Node.TEXT_NODE) {
+            for(int i = 3; i < attributeNodes.getLength() - 1; i+=2){ //Every other node in the NodeList is a TextNode (so can be skipped)
+                if(attributeNodes.item(i).getNodeType() != Node.TEXT_NODE) { //Probably a redundant check since the TextNodes should already be skipped
                     NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                     String attributeName = attributeNodes.item(i).getNodeName();
                     //System.out.println(attributeName);
                     //Debug.printList(attributeElements);
-                    for(int j = 1; j < attributeElements.getLength() - 1; j+=2){
+                    for(int j = 1; j < attributeElements.getLength() - 1; j+=2){ //Every other node in the NodeList is a TextNode (so can be skipped)
                         Node currNode = attributeElements.item(j);
                         String elementName = currNode.getNodeName();
-                        if(attributeName.equals("core") && elementName.equals("name")){
+                        if(attributeName.equals("core") && elementName.equals("name")){ //Only the name field has different fx:id; all the other fields follow the format of "#core" + (index in NodeList)
                             NamedNodeMap attributes = currNode.getAttributes();
                             TextField andName = (TextField) root.lookup("#nameAndrogynous");
                             TextField femName = (TextField) root.lookup("#nameFeminine");
@@ -140,6 +137,17 @@ public class Controller {
                             andName.setText(attributes.getNamedItem("nameAndrogynous").getTextContent());
                             femName.setText(attributes.getNamedItem("nameFeminine").getTextContent());
                             masName.setText(attributes.getNamedItem("nameMasculine").getTextContent());
+                        }
+                        else if(attributeName.equals("body")){ //Nodes under body have multiple attributes to be edited; fx:id in the form of "#" + (name of child node) + (name of attribute of child node)
+                            NamedNodeMap attributes = currNode.getAttributes();
+                            for(int k = 0; k < attributes.getLength(); k++){
+                                Node bodyNode = attributes.item(k);
+                                String bodyNodeName = bodyNode.getNodeName();
+                                TextField tf = (TextField) root.lookup("#" + elementName + bodyNodeName);
+                                if(tf != null){
+                                    tf.setText(bodyNode.getTextContent());
+                                }
+                            }
                         }
                         else{
                             Node valueNode = currNode.getAttributes().getNamedItem("value");
