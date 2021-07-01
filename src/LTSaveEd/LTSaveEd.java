@@ -19,6 +19,7 @@ public class LTSaveEd extends Application {
         controller.setRoot(loader.getRoot());
         primaryStage.setTitle("LTSaveEd v1.0.0");
         primaryStage.setScene(new Scene(root, 1024, 700));
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
 
