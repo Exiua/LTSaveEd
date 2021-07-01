@@ -36,33 +36,33 @@
                                  </children>
                               </HBox>
                               <HBox>
-                                 <children>
-                                    <Label text="Surname: " />
-                                    <TextField fx:id="core7" />
-                                 </children>
+                                  <Label text="Surname: " />
+                                  <TextField fx:id="core7" />
                               </HBox>
-                              <HBox>
-                                 <children>
-                                    <Label text="Level: " />
-                                    <TextField fx:id="core19" />
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="10.0" layoutY="45.0">
-                                 <children>
-                                    <Label text="Date of Birth: " />
-                                    <TextField fx:id="core23" />
-                                    <TextField fx:id="core25" layoutX="83.0" layoutY="10.0">
-                                       <HBox.margin>
+                               <HBox>
+                                   <Label text="Level: " />
+                                   <TextField fx:id="core19" />
+                               </HBox>
+                               <HBox layoutX="10.0" layoutY="45.0">
+                                   <Label text="Date of Birth: " />
+                                   <TextField fx:id="core23" />
+                                   <TextField fx:id="core25" layoutX="83.0" layoutY="10.0">
+                                      <HBox.margin>
                                           <Insets left="5.0" right="5.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <TextField fx:id="core27" layoutX="232.0" layoutY="10.0" />
-                                 </children>
-                              </HBox>
+                                      </HBox.margin>
+                                   </TextField>
+                                   <TextField fx:id="core27" layoutX="232.0" layoutY="10.0" />
+                               </HBox>
                               <HBox layoutX="10.0" layoutY="115.0">
                                  <children>
                                     <Label text="Orientation: " />
                                     <TextField fx:id="core49" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="185.0">
+                                 <children>
+                                    <Label text="Obedience: " />
+                                    <TextField fx:id="core51" />
                                  </children>
                               </HBox>
                               <HBox layoutX="10.0" layoutY="150.0">
@@ -97,13 +97,165 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <Button layoutX="593.0" layoutY="271.0" mnemonicParsing="false" onAction="#selectCharacter" text="Button" />
+                        <Button layoutX="615.0" layoutY="367.0" mnemonicParsing="false" onAction="#selectCharacter" text="Button" />
                      </children></AnchorPane>
 			</content>
 		  </Tab>
 		  <Tab text="Body">
 			<content>
-			  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+			  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane layoutX="8.0" layoutY="7.0" prefHeight="671.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="Body Core">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TextField layoutX="14.0" layoutY="33.0" />
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Antennae">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </Tab>
+                              <Tab text="Arm">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Ass">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Anus">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Breast">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Nipples">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Milk">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Breast Crotch">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Nipples Crotch">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Milk Crotch">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Ear">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </Tab>
+                              <Tab text="Eye">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Face">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Mouth">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Tongue">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Hair">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Horn">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Leg">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Penis">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Testicles">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Cum">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Spinneret">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Torso">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Tail">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Tentacle">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Vagina">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Girlcum">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                              <Tab text="Wing">
+                                  <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                  </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children></AnchorPane>
 			</content>
 		  </Tab>
 		  <Tab text="Inventory">
@@ -133,7 +285,7 @@
 		</Tab>
 		</tabs>
 	  </TabPane>
-	  <MenuBar layoutX="810.0" layoutY="2.0">
+	  <MenuBar layoutX="810.0" layoutY="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
 		<menus>
 		  <Menu mnemonicParsing="false" text="Open ⏷">
 			<items>
