@@ -11,8 +11,12 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LTSaveEd.Controller">
    <children>
@@ -183,310 +187,645 @@
                                        </children></AnchorPane>
                               </content>
                             </Tab>
-                            <Tab text="Antennae">
+                            <Tab text="Head">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0">
+                                          <GridPane layoutX="275.0" layoutY="144.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
-                                                <HBox>
+                                                <VBox prefHeight="318.0" prefWidth="369.0" spacing="10.0" GridPane.columnSpan="2147483647">
                                                    <children>
-                                                      <Label text="Anntennae per row: " />
-                                                      <TextField fx:id="antennaeAntennaePerRow" />
+                                                      <Label alignment="CENTER" text="Anntennae" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Anntennae per row: " />
+                                                            <TextField fx:id="antennaeAntennaePerRow" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Length: " />
+                                                            <TextField fx:id="antennaeLength" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="35.0">
+                                                         <children>
+                                                            <Label text="Rows: " />
+                                                            <TextField fx:id="antennaeRows" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="60.0">
+                                                         <children>
+                                                            <Label text="Type: " />
+                                                            <TextField fx:id="antennaeType" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="10.0">
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <Label text="Length: " />
-                                                      <TextField fx:id="antennaeLength" />
+                                                      <Label alignment="CENTER" text="Ear" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <CheckBox fx:id="earPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Type: " />
+                                                            <TextField fx:id="earType" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="35.0">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.rowIndex="1">
                                                    <children>
-                                                      <Label text="Rows: " />
-                                                      <TextField fx:id="antennaeRows" />
+                                                      <Label alignment="CENTER" text="Eye" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Eye Pairs: " />
+                                                            <TextField fx:id="eyeEyePairs" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Iris Shape: " />
+                                                            <TextField fx:id="eyeIrisShape" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="35.0">
+                                                         <children>
+                                                            <Label text="Pupil Shape: " />
+                                                            <TextField fx:id="eyePupilShape" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="60.0">
+                                                         <children>
+                                                            <Label text="Type: " />
+                                                            <TextField fx:id="eyeType" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="60.0">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" top="20.0" />
+                                                   </GridPane.margin>
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="3">
                                                    <children>
-                                                      <Label text="Type: " />
-                                                      <TextField fx:id="antennaeType" />
+                                                      <Label alignment="CENTER" text="Face" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Facial Hair: " />
+                                                            <TextField fx:id="faceFacialHair" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <CheckBox fx:id="facePiercedNose" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Nose: " />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="35.0">
+                                                         <children>
+                                                            <Label text="Type: " />
+                                                            <TextField fx:id="faceType" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2">
+                                                   <children>
+                                                      <Label alignment="CENTER" text="Mouth" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Capacity: " />
+                                                            <TextField fx:id="mouthCapacity" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Depth: " />
+                                                            <TextField fx:id="mouthDepth" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="35.0">
+                                                         <children>
+                                                            <Label text="Elasticity: " />
+                                                            <TextField fx:id="mouthElasticity" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="60.0">
+                                                         <children>
+                                                            <Label text="Lip Size: " />
+                                                            <TextField fx:id="mouthLipSize" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="85.0">
+                                                         <children>
+                                                            <CheckBox fx:id="mouthPiercedLip" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Lip: " />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="110.0">
+                                                         <children>
+                                                            <Label text="Plasticity: " />
+                                                            <TextField fx:id="mouthPlasticity" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="135.0">
+                                                         <children>
+                                                            <Label text="Stretched Capacity: " />
+                                                            <TextField fx:id="mouthStretchedCapacity" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="160.0">
+                                                         <children>
+                                                            <CheckBox fx:id="mouthVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="185.0">
+                                                         <children>
+                                                            <Label text="Wetness: " />
+                                                            <TextField fx:id="mouthWetness" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <Label alignment="CENTER" text="Tongue" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <CheckBox fx:id="tonguePiercedTongue" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Tongue: " />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Tongue Length: " />
+                                                            <TextField fx:id="tongueTongueLength" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" top="20.0" />
+                                                   </GridPane.margin>
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <Label alignment="CENTER" text="Hair" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Hair Style: " />
+                                                            <TextField fx:id="hairHairStyle" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Length: " />
+                                                            <TextField fx:id="hairLength" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="35.0">
+                                                         <children>
+                                                            <Label text="Type: " />
+                                                            <TextField fx:id="hairType" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" top="20.0" />
+                                                   </GridPane.margin>
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <Label alignment="CENTER" text="Horn" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Horns per Row: " />
+                                                            <TextField fx:id="hornHornsPerRow" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Length: " />
+                                                            <TextField fx:id="hornLength" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="35.0">
+                                                         <children>
+                                                            <Label text="Rows: " />
+                                                            <TextField fx:id="hornRows" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="60.0">
+                                                         <children>
+                                                            <Label text="Type: " />
+                                                            <TextField fx:id="hornType" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <GridPane.margin>
+                                                      <Insets top="20.0" />
+                                                   </GridPane.margin>
+                                                </VBox>
                                              </children>
-                                          </VBox>
+                                             <padding>
+                                                <Insets left="14.0" top="28.0" />
+                                             </padding>
+                                          </GridPane>
                                        </children></AnchorPane>
                               </content>
                             </Tab>
-                              <Tab text="Arm">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Rows: " />
-                                                          <TextField fx:id="armRows" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="armType" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Underarm Hair: " />
-                                                          <TextField fx:id="armUnderarmHair" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
                               <Tab text="Ass">
                                   <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
+                                       <GridPane layoutX="488.0" layoutY="173.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                         <columnConstraints>
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                          <children>
+                                                <VBox prefHeight="322.0" prefWidth="353.0" spacing="10.0" GridPane.columnIndex="1">
+                                                    <children>
+                                                   <Label alignment="CENTER" text="Ass" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                        <HBox>
+                                                            <children>
+                                                                <Label text="Ass Size: " />
+                                                                <TextField fx:id="assAssSize" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="10.0">
+                                                            <children>
+                                                                <Label text="Hip Size: " />
+                                                                <TextField fx:id="assHipSize" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="35.0">
+                                                            <children>
+                                                                <Label text="Type: " />
+                                                                <TextField fx:id="assType" />
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                             <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Anus" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
                                                       <children>
-                                                          <Label text="Ass Size: " />
-                                                          <TextField fx:id="assAssSize" />
+                                                         <Label text="Ass Hair: " />
+                                                         <TextField fx:id="anusAssHair" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Hip Size: " />
-                                                          <TextField fx:id="assHipSize" />
+                                                         <CheckBox fx:id="anusBleached" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Bleached: " />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="assType" />
+                                                         <Label text="Capacity: " />
+                                                         <TextField fx:id="anusCapacity" />
                                                       </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Anus">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Ass Hair: " />
-                                                          <TextField fx:id="anusAssHair" />
+                                                         <Label text="Depth: " />
+                                                         <TextField fx:id="anusDepth" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
-                                                   <CheckBox fx:id="anusBleached" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Bleached: " />
+                                                         <Label text="Elasticity: " />
+                                                         <TextField fx:id="anusElasticity" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
-                                                          <Label text="Capacity: " />
-                                                          <TextField fx:id="anusCapacity" />
+                                                         <Label text="Plasticity: " />
+                                                         <TextField fx:id="anusPlasticity" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
-                                                          <Label text="Depth: " />
-                                                          <TextField fx:id="anusDepth" />
+                                                         <Label text="Stretched Capacity: " />
+                                                         <TextField fx:id="anusStretchedCapacity" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="160.0">
                                                       <children>
-                                                          <Label text="Elasticity: " />
-                                                          <TextField fx:id="anusElasticity" />
+                                                         <CheckBox fx:id="anusVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="185.0">
                                                       <children>
-                                                          <Label text="Plasticity: " />
-                                                          <TextField fx:id="anusPlasticity" />
+                                                         <Label text="Wetness: " />
+                                                         <TextField fx:id="anusWetness" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                             <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Leg" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
                                                       <children>
-                                                          <Label text="Stretched Capacity: " />
-                                                          <TextField fx:id="anusStretchedCapacity" />
+                                                         <Label text="Configuration: " />
+                                                         <TextField fx:id="legConfiguration" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                   <CheckBox fx:id="anusVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                         <Label text="Foot Structure: " />
+                                                         <TextField fx:id="legFootStructure" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Wetness: " />
-                                                          <TextField fx:id="anusWetness" />
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="legType" />
                                                       </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                          <padding>
+                                             <Insets left="14.0" top="28.0" />
+                                          </padding>
+                                       </GridPane>
                                       </AnchorPane>
                                   </content>
                               </Tab>
                               <Tab text="Breasts">
                                   <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Milk Regeneration: " />
-                                                          <TextField fx:id="breastsMilkRegeneration" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Milk Storage: " />
-                                                          <TextField fx:id="breastsMilkStorage" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Nipple Count per Breast: " />
-                                                          <TextField fx:id="breastsNippleCountPerBreast" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Rows: " />
-                                                          <TextField fx:id="breastsRows" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Shape: " />
-                                                          <TextField fx:id="breastsShape" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Size: " />
-                                                          <TextField fx:id="breastsSize" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Stored Milk: " />
-                                                          <TextField fx:id="breastsStoredMilk" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="breastsType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Nipples">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Areolae Shape: " />
-                                                          <TextField fx:id="nipplesAreolaeShape" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Areolae Size: " />
-                                                          <TextField fx:id="nipplesAreolaeSize" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Capacity: " />
-                                                          <TextField fx:id="nipplesCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Depth: " />
-                                                          <TextField fx:id="nipplesDepth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Elasticity: " />
-                                                          <TextField fx:id="nipplesElasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Nipple Shape: " />
-                                                          <TextField fx:id="nipplesNippleShape" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Nipple Size: " />
-                                                          <TextField fx:id="nipplesNippleSize" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                   <CheckBox fx:id="nipplesPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Plasticity: " />
-                                                          <TextField fx:id="nipplesPlasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Stretched Capacity: " />
-                                                          <TextField fx:id="nipplesStretchedCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
+                                       <GridPane layoutX="29.0" layoutY="27.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                         <columnConstraints>
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                          <children>
+                                                <VBox prefHeight="317.0" prefWidth="308.0" spacing="10.0">
+                                                    <children>
+                                                   <Label alignment="CENTER" text="Breasts" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                        <HBox>
+                                                            <children>
+                                                                <Label text="Milk Regeneration: " />
+                                                                <TextField fx:id="breastsMilkRegeneration" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="10.0">
+                                                            <children>
+                                                                <Label text="Milk Storage: " />
+                                                                <TextField fx:id="breastsMilkStorage" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="35.0">
+                                                            <children>
+                                                                <Label text="Nipple Count per Breast: " />
+                                                                <TextField fx:id="breastsNippleCountPerBreast" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="60.0">
+                                                            <children>
+                                                                <Label text="Rows: " />
+                                                                <TextField fx:id="breastsRows" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="85.0">
+                                                            <children>
+                                                                <Label text="Shape: " />
+                                                                <TextField fx:id="breastsShape" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="110.0">
+                                                            <children>
+                                                                <Label text="Size: " />
+                                                                <TextField fx:id="breastsSize" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="135.0">
+                                                            <children>
+                                                                <Label text="Stored Milk: " />
+                                                                <TextField fx:id="breastsStoredMilk" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="160.0">
+                                                            <children>
+                                                                <Label text="Type: " />
+                                                                <TextField fx:id="breastsType" />
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                             <VBox prefHeight="379.0" prefWidth="325.0" spacing="10.0" GridPane.columnIndex="1">
                                                 <children>
-                                                   <CheckBox fx:id="nipplesVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                   <Label alignment="CENTER" text="Nipples" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Areolae Shape: " />
+                                                         <TextField fx:id="nipplesAreolaeShape" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Areolae Size: " />
+                                                         <TextField fx:id="nipplesAreolaeSize" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
+                                                      <children>
+                                                         <Label text="Capacity: " />
+                                                         <TextField fx:id="nipplesCapacity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="60.0">
+                                                      <children>
+                                                         <Label text="Depth: " />
+                                                         <TextField fx:id="nipplesDepth" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="85.0">
+                                                      <children>
+                                                         <Label text="Elasticity: " />
+                                                         <TextField fx:id="nipplesElasticity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="110.0">
+                                                      <children>
+                                                         <Label text="Nipple Shape: " />
+                                                         <TextField fx:id="nipplesNippleShape" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="135.0">
+                                                      <children>
+                                                         <Label text="Nipple Size: " />
+                                                         <TextField fx:id="nipplesNippleSize" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="160.0">
+                                                      <children>
+                                                         <CheckBox fx:id="nipplesPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="185.0">
+                                                      <children>
+                                                         <Label text="Plasticity: " />
+                                                         <TextField fx:id="nipplesPlasticity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="210.0">
+                                                      <children>
+                                                         <Label text="Stretched Capacity: " />
+                                                         <TextField fx:id="nipplesStretchedCapacity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="235.0">
+                                                      <children>
+                                                         <CheckBox fx:id="nipplesVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                      </children>
+                                                   </HBox>
                                                 </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Milk">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
+                                             </VBox>
+                                             <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Milk" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
                                                       <children>
-                                                          <Label text="Flavour: " />
-                                                          <TextField fx:id="milkFlavour" />
+                                                         <Label text="Flavour: " />
+                                                         <TextField fx:id="milkFlavour" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="milkType" />
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="milkType" />
                                                       </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                          <padding>
+                                             <Insets left="14.0" top="28.0" />
+                                          </padding>
+                                       </GridPane>
                                       </AnchorPane>
                                   </content>
                               </Tab>
@@ -494,819 +833,693 @@
                                   <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0">
+                                          <GridPane layoutX="358.0" layoutY="48.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
-                                                <HBox>
+                                                <VBox prefHeight="387.0" prefWidth="344.0" spacing="10.0">
                                                    <children>
-                                                      <Label text="Milk Regeneration: " />
-                                                      <TextField fx:id="breastsCrotchMilkRegeneration" />
+                                                      <Label alignment="CENTER" text="Breasts Crotch" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Milk Regeneration: " />
+                                                            <TextField fx:id="breastsCrotchMilkRegeneration" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Milk Storage: " />
+                                                            <TextField fx:id="breastsCrotchMilkStorage" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="35.0">
+                                                         <children>
+                                                            <Label text="Nipple Count per Breast: " />
+                                                            <TextField fx:id="breastsCrotchNippleCountPerBreast" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="60.0">
+                                                         <children>
+                                                            <Label text="Rows: " />
+                                                            <TextField fx:id="breastsCrotchRows" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="85.0">
+                                                         <children>
+                                                            <Label text="Shape: " />
+                                                            <TextField fx:id="breastsCrotchShape" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="110.0">
+                                                         <children>
+                                                            <Label text="Size: " />
+                                                            <TextField fx:id="breastsCrotchSize" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="135.0">
+                                                         <children>
+                                                            <Label text="Stored Milk: " />
+                                                            <TextField fx:id="breastsCrotchStoredMilk" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="160.0">
+                                                         <children>
+                                                            <Label text="Type: " />
+                                                            <TextField fx:id="breastsCrotchType" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="10.0">
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <Label text="Milk Storage: " />
-                                                      <TextField fx:id="breastsCrotchMilkStorage" />
+                                                      <Label alignment="CENTER" text="Nipples Crotch" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Areolae Shape: " />
+                                                            <TextField fx:id="nipplesCrotchAreolaeShape" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Areolae Size: " />
+                                                            <TextField fx:id="nipplesCrotchAreolaeSize" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="35.0">
+                                                         <children>
+                                                            <Label text="Capacity: " />
+                                                            <TextField fx:id="nipplesCrotchCapacity" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="60.0">
+                                                         <children>
+                                                            <Label text="Depth: " />
+                                                            <TextField fx:id="nipplesCrotchDepth" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="85.0">
+                                                         <children>
+                                                            <Label text="Elasticity: " />
+                                                            <TextField fx:id="nipplesCrotchElasticity" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="110.0">
+                                                         <children>
+                                                            <Label text="Nipple Shape: " />
+                                                            <TextField fx:id="nipplesCrotchNippleShape" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="135.0">
+                                                         <children>
+                                                            <Label text="Nipple Size: " />
+                                                            <TextField fx:id="nipplesCrotchNippleSize" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="160.0">
+                                                         <children>
+                                                            <CheckBox fx:id="nipplesCrotchPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="185.0">
+                                                         <children>
+                                                            <Label text="Plasticity: " />
+                                                            <TextField fx:id="nipplesCrotchPlasticity" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="210.0">
+                                                         <children>
+                                                            <Label text="Stretched Capacity: " />
+                                                            <TextField fx:id="nipplesCrotchStretchedCapacity" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="235.0">
+                                                         <children>
+                                                            <CheckBox fx:id="nipplesCrotchVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="35.0">
+                                                </VBox>
+                                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2">
                                                    <children>
-                                                      <Label text="Nipple Count per Breast: " />
-                                                      <TextField fx:id="breastsCrotchNippleCountPerBreast" />
+                                                      <Label alignment="CENTER" text="Milk Crotch" underline="true">
+                                                         <padding>
+                                                            <Insets left="90.0" />
+                                                         </padding>
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox>
+                                                         <children>
+                                                            <Label text="Flavour: " />
+                                                            <TextField fx:id="milkCrotchFlavour" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label text="Type: " />
+                                                            <TextField fx:id="milkCrotchType" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="60.0">
-                                                   <children>
-                                                      <Label text="Rows: " />
-                                                      <TextField fx:id="breastsCrotchRows" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="85.0">
-                                                   <children>
-                                                      <Label text="Shape: " />
-                                                      <TextField fx:id="breastsCrotchShape" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="110.0">
-                                                   <children>
-                                                      <Label text="Size: " />
-                                                      <TextField fx:id="breastsCrotchSize" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="135.0">
-                                                   <children>
-                                                      <Label text="Stored Milk: " />
-                                                      <TextField fx:id="breastsCrotchStoredMilk" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="160.0">
-                                                   <children>
-                                                      <Label text="Type: " />
-                                                      <TextField fx:id="breastsCrotchType" />
-                                                   </children>
-                                                </HBox>
+                                                </VBox>
                                              </children>
-                                          </VBox>
+                                             <padding>
+                                                <Insets left="14.0" top="28.0" />
+                                             </padding>
+                                          </GridPane>
                                        </children>
                                       </AnchorPane>
                                   </content>
                               </Tab>
-                              <Tab text="Nipples Crotch">
+                              <Tab text="Genitals">
                                   <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0">
-                                             <children>
-                                                <HBox>
-                                                   <children>
-                                                      <Label text="Areolae Shape: " />
-                                                      <TextField fx:id="nipplesCrotchAreolaeShape" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="10.0">
-                                                   <children>
-                                                      <Label text="Areolae Size: " />
-                                                      <TextField fx:id="nipplesCrotchAreolaeSize" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="35.0">
-                                                   <children>
-                                                      <Label text="Capacity: " />
-                                                      <TextField fx:id="nipplesCrotchCapacity" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="60.0">
-                                                   <children>
-                                                      <Label text="Depth: " />
-                                                      <TextField fx:id="nipplesCrotchDepth" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="85.0">
-                                                   <children>
-                                                      <Label text="Elasticity: " />
-                                                      <TextField fx:id="nipplesCrotchElasticity" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="110.0">
-                                                   <children>
-                                                      <Label text="Nipple Shape: " />
-                                                      <TextField fx:id="nipplesCrotchNippleShape" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="135.0">
-                                                   <children>
-                                                      <Label text="Nipple Size: " />
-                                                      <TextField fx:id="nipplesCrotchNippleSize" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="160.0">
-                                                   <children>
-                                                      <CheckBox fx:id="nipplesCrotchPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="185.0">
-                                                   <children>
-                                                      <Label text="Plasticity: " />
-                                                      <TextField fx:id="nipplesCrotchPlasticity" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="210.0">
-                                                   <children>
-                                                      <Label text="Stretched Capacity: " />
-                                                      <TextField fx:id="nipplesCrotchStretchedCapacity" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="235.0">
-                                                   <children>
-                                                      <CheckBox fx:id="nipplesCrotchVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Milk Crotch">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Flavour: " />
-                                                          <TextField fx:id="milkCrotchFlavour" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="milkCrotchType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Ear">
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                      <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
+                                       <GridPane layoutX="581.0" layoutY="243.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                         <columnConstraints>
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
                                           <children>
-                                              <HBox>
-                                                  <children>
-                                                <CheckBox fx:id="earPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="10.0">
-                                                  <children>
-                                                      <Label text="Type: " />
-                                                      <TextField fx:id="earType" />
-                                                  </children>
-                                              </HBox>
+                                                <VBox prefHeight="385.0" prefWidth="372.0" spacing="10.0" GridPane.rowSpan="2">
+                                                    <children>
+                                                   <Label alignment="CENTER" text="Penis" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                        <HBox>
+                                                            <children>
+                                                                <Label text="Capacity: " />
+                                                                <TextField fx:id="penisCapacity" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="10.0">
+                                                            <children>
+                                                                <Label text="Depth: " />
+                                                                <TextField fx:id="penisDepth" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="35.0">
+                                                            <children>
+                                                                <Label text="Elasticity: " />
+                                                                <TextField fx:id="penisElasticity" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="60.0">
+                                                            <children>
+                                                                <Label text="Girth: " />
+                                                                <TextField fx:id="penisGirth" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="85.0">
+                                                            <children>
+                                                         <CheckBox fx:id="penisPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="110.0">
+                                                            <children>
+                                                                <Label text="Plasticity: " />
+                                                                <TextField fx:id="penisPlasticity" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="135.0">
+                                                            <children>
+                                                                <Label text="Size: " />
+                                                                <TextField fx:id="penisSize" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="160.0">
+                                                            <children>
+                                                                <Label text="Stretched Capacity: " />
+                                                                <TextField fx:id="penisStretchedCapacity" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="185.0">
+                                                            <children>
+                                                                <Label text="Type: " />
+                                                                <TextField fx:id="penisType" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="210.0">
+                                                            <children>
+                                                         <CheckBox fx:id="penisUrethraVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Urethra Virgin: " />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox layoutX="10.0" layoutY="235.0">
+                                                            <children>
+                                                         <CheckBox fx:id="penisVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                             <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.rowIndex="1">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Cum" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Flavour: " />
+                                                         <TextField fx:id="cumFlavour" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="cumType" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                             <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Testicles" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Cum Expulsion: " />
+                                                         <TextField fx:id="testiclesCumExpulsion" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Cum Regeneration: " />
+                                                         <TextField fx:id="testiclesCumRegeneration" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
+                                                      <children>
+                                                         <Label text="Cum Storage: " />
+                                                         <TextField fx:id="testiclesCumStorage" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="60.0">
+                                                      <children>
+                                                         <CheckBox fx:id="testiclesInternal" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Internal: " />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="85.0">
+                                                      <children>
+                                                         <Label text="Number of Testicles: " />
+                                                         <TextField fx:id="testiclesNumberOfTesticles" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="110.0">
+                                                      <children>
+                                                         <Label text="Stored Cum: " />
+                                                         <TextField fx:id="testiclesStoredCum" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="135.0">
+                                                      <children>
+                                                         <Label text="Testicle Size: " />
+                                                         <TextField fx:id="testiclesTesticleSize" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                             <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Vagina" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Capacity: " />
+                                                         <TextField fx:id="vaginaCapacity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Clit Girth: " />
+                                                         <TextField fx:id="vaginaClitGirth" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
+                                                      <children>
+                                                         <Label text="Clit Size: " />
+                                                         <TextField fx:id="vaginaClitSize" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="60.0">
+                                                      <children>
+                                                         <Label text="Depth: " />
+                                                         <TextField fx:id="vaginaDepth" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="85.0">
+                                                      <children>
+                                                         <CheckBox fx:id="vaginaEggLayer" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Egg Layer: " />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="110.0">
+                                                      <children>
+                                                         <Label text="Elasticity: " />
+                                                         <TextField fx:id="vaginaElasticity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="135.0">
+                                                      <children>
+                                                         <CheckBox fx:id="vaginaHymen" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Hymen: " />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="160.0">
+                                                      <children>
+                                                         <Label text="Labia Size: " />
+                                                         <TextField fx:id="vaginaLabiaSize" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="185.0">
+                                                      <children>
+                                                         <CheckBox fx:id="vaginaPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="210.0">
+                                                      <children>
+                                                         <Label text="Plasticity: " />
+                                                         <TextField fx:id="vaginaPlasticity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="235.0">
+                                                      <children>
+                                                         <CheckBox fx:id="vaginaSquirter" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Squirter: " />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="336.0">
+                                                      <children>
+                                                         <Label text="Stretched Capacity: " />
+                                                         <TextField fx:id="vaginaStretchedCapacity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="371.0">
+                                                      <children>
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="vaginaType" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                             <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Girlcum" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Flavour: " />
+                                                         <TextField fx:id="girlcumFlavour" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="girlcumType" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                                <padding>
+                                                   <Insets top="60.0" />
+                                                </padding>
+                                             </VBox>
                                           </children>
-                                      </VBox>
-                                  </AnchorPane>
-                              </Tab>
-                              <Tab text="Eye">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Eye Pairs: " />
-                                                          <TextField fx:id="eyeEyePairs" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Iris Shape: " />
-                                                          <TextField fx:id="eyeIrisShape" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Pupil Shape: " />
-                                                          <TextField fx:id="eyePupilShape" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="eyeType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Face">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Facial Hair: " />
-                                                          <TextField fx:id="faceFacialHair" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                   <CheckBox fx:id="facePiercedNose" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Nose: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="faceType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Mouth">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Capacity: " />
-                                                          <TextField fx:id="mouthCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Depth: " />
-                                                          <TextField fx:id="mouthDepth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Elasticity: " />
-                                                          <TextField fx:id="mouthElasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Lip Size: " />
-                                                          <TextField fx:id="mouthLipSize" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                   <CheckBox fx:id="mouthPiercedLip" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Lip: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Plasticity: " />
-                                                          <TextField fx:id="mouthPlasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Stretched Capacity: " />
-                                                          <TextField fx:id="mouthStretchedCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                   <CheckBox fx:id="mouthVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Wetness: " />
-                                                          <TextField fx:id="mouthWetness" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Tongue">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                   <CheckBox fx:id="tonguePiercedTongue" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Tongue: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Tongue Length: " />
-                                                          <TextField fx:id="tongueTongueLength" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Hair">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Hair Style: " />
-                                                          <TextField fx:id="hairHairStyle" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Length: " />
-                                                          <TextField fx:id="hairLength" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="hairType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Horn">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Horns per Row: " />
-                                                          <TextField fx:id="hornHornsPerRow" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Length: " />
-                                                          <TextField fx:id="hornLength" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Rows: " />
-                                                          <TextField fx:id="hornRows" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="hornType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Leg">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Configuration: " />
-                                                          <TextField fx:id="legConfiguration" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Foot Structure: " />
-                                                          <TextField fx:id="legFootStructure" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="legType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Penis">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Capacity: " />
-                                                          <TextField fx:id="penisCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Depth: " />
-                                                          <TextField fx:id="penisDepth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Elasticity: " />
-                                                          <TextField fx:id="penisElasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Girth: " />
-                                                          <TextField fx:id="penisGirth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                   <CheckBox fx:id="penisPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Plasticity: " />
-                                                          <TextField fx:id="penisPlasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Size: " />
-                                                          <TextField fx:id="penisSize" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Stretched Capacity: " />
-                                                          <TextField fx:id="penisStretchedCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="penisType" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                   <CheckBox fx:id="penisUrethraVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Urethra Virgin: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                   <CheckBox fx:id="penisVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Testicles">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Cum Expulsion: " />
-                                                          <TextField fx:id="testiclesCumExpulsion" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Cum Regeneration: " />
-                                                          <TextField fx:id="testiclesCumRegeneration" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Cum Storage: " />
-                                                          <TextField fx:id="testiclesCumStorage" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                   <CheckBox fx:id="testiclesInternal" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Internal: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Number of Testicles: " />
-                                                          <TextField fx:id="testiclesNumberOfTesticles" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Stored Cum: " />
-                                                          <TextField fx:id="testiclesStoredCum" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Testicle Size: " />
-                                                          <TextField fx:id="testiclesTesticleSize" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Cum">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Flavour: " />
-                                                          <TextField fx:id="cumFlavour" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="cumType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Spinneret">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Capacity: " />
-                                                          <TextField fx:id="spinneretCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Depth: " />
-                                                          <TextField fx:id="spinneretDepth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Elasticity: " />
-                                                          <TextField fx:id="spinneretElasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Plasticity: " />
-                                                          <TextField fx:id="spinneretPlasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Stretched Capacity: " />
-                                                          <TextField fx:id="spinneretStretchedCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                   <CheckBox fx:id="spinneretVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Wetness: " />
-                                                          <TextField fx:id="spinneretWetness" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
+                                          <padding>
+                                             <Insets left="14.0" top="28.0" />
+                                          </padding>
+                                       </GridPane>
                                       </AnchorPane>
                                   </content>
                               </Tab>
                               <Tab text="Torso">
                                   <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="torsoType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Tail">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Count: " />
-                                                          <TextField fx:id="tailCount" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Girth: " />
-                                                          <TextField fx:id="tailGirth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Length: " />
-                                                          <TextField fx:id="tailLength" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="tailType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Tentacle">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Count: " />
-                                                          <TextField fx:id="tentacleCount" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Girth: " />
-                                                          <TextField fx:id="tentacleGirth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Length: " />
-                                                          <TextField fx:id="tentacleLength" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="tentacleType" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Vagina">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Capacity: " />
-                                                          <TextField fx:id="vaginaCapacity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Clit Girth: " />
-                                                          <TextField fx:id="vaginaClitGirth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Clit Size: " />
-                                                          <TextField fx:id="vaginaClitSize" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Depth: " />
-                                                          <TextField fx:id="vaginaDepth" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                   <CheckBox fx:id="vaginaEggLayer" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Egg Layer: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Elasticity: " />
-                                                          <TextField fx:id="vaginaElasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                   <CheckBox fx:id="vaginaHymen" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Hymen: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Labia Size: " />
-                                                          <TextField fx:id="vaginaLabiaSize" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                   <CheckBox fx:id="vaginaPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Plasticity: " />
-                                                          <TextField fx:id="vaginaPlasticity" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                   <CheckBox fx:id="vaginaSquirter" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Squirter: " />
-                                                      </children>
-                                                  </HBox>
-                                             <HBox layoutX="10.0" layoutY="336.0">
+                                       <HBox fillHeight="false" layoutX="186.0" layoutY="153.0" prefHeight="542.0" prefWidth="838.0" AnchorPane.bottomAnchor="-53.0" AnchorPane.leftAnchor="186.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="153.0">
+                                          <padding>
+                                             <Insets left="14.0" right="14.0" top="28.0" />
+                                          </padding>
+                                       </HBox>
+                                       <GridPane layoutX="30.0" layoutY="35.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                         <columnConstraints>
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                          <children>
+                                             <VBox prefHeight="46.0" prefWidth="205.0" spacing="10.0">
                                                 <children>
-                                                   <Label text="Stretched Capacity: " />
-                                                   <TextField fx:id="vaginaStretchedCapacity" />
+                                                   <Label alignment="CENTER" text="Torso" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="torsoType" />
+                                                      </children>
+                                                   </HBox>
                                                 </children>
-                                             </HBox>
-                                             <HBox layoutX="10.0" layoutY="371.0">
+                                             </VBox>
+                                             <VBox prefHeight="155.0" prefWidth="214.0" spacing="10.0" GridPane.columnIndex="1">
                                                 <children>
-                                                   <Label text="Type: " />
-                                                   <TextField fx:id="vaginaType" />
+                                                   <Label alignment="CENTER" text="Tail" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Count: " />
+                                                         <TextField fx:id="tailCount" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Girth: " />
+                                                         <TextField fx:id="tailGirth" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
+                                                      <children>
+                                                         <Label text="Length: " />
+                                                         <TextField fx:id="tailLength" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="60.0">
+                                                      <children>
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="tailType" />
+                                                      </children>
+                                                   </HBox>
                                                 </children>
-                                             </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Girlcum">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
+                                             </VBox>
+                                             <VBox prefHeight="278.0" prefWidth="336.0" spacing="10.0" GridPane.columnIndex="2">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Tentacle" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
                                                       <children>
-                                                          <Label text="Flavour: " />
-                                                          <TextField fx:id="girlcumFlavour" />
+                                                         <Label text="Count: " />
+                                                         <TextField fx:id="tentacleCount" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="girlcumType" />
+                                                         <Label text="Girth: " />
+                                                         <TextField fx:id="tentacleGirth" />
                                                       </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
-                                      </AnchorPane>
-                                  </content>
-                              </Tab>
-                              <Tab text="Wing">
-                                  <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Size: " />
-                                                          <TextField fx:id="wingSize" />
+                                                         <Label text="Length: " />
+                                                         <TextField fx:id="tentacleLength" />
                                                       </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Type: " />
-                                                          <TextField fx:id="wingType" />
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="tentacleType" />
                                                       </children>
-                                                  </HBox>
-                                              </children>
-                                          </VBox>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                             <VBox prefHeight="144.0" prefWidth="196.0" spacing="10.0" GridPane.rowIndex="1">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Wing" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Size: " />
+                                                         <TextField fx:id="wingSize" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="wingType" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                             <VBox prefHeight="171.0" prefWidth="188.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Spinneret" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Capacity: " />
+                                                         <TextField fx:id="spinneretCapacity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Depth: " />
+                                                         <TextField fx:id="spinneretDepth" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
+                                                      <children>
+                                                         <Label text="Elasticity: " />
+                                                         <TextField fx:id="spinneretElasticity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="60.0">
+                                                      <children>
+                                                         <Label text="Plasticity: " />
+                                                         <TextField fx:id="spinneretPlasticity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="85.0">
+                                                      <children>
+                                                         <Label text="Stretched Capacity: " />
+                                                         <TextField fx:id="spinneretStretchedCapacity" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="110.0">
+                                                      <children>
+                                                         <CheckBox fx:id="spinneretVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="135.0">
+                                                      <children>
+                                                         <Label text="Wetness: " />
+                                                         <TextField fx:id="spinneretWetness" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                             <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                <children>
+                                                   <Label alignment="CENTER" text="Arm" underline="true">
+                                                      <padding>
+                                                         <Insets left="90.0" />
+                                                      </padding>
+                                                      <font>
+                                                         <Font name="System Bold" size="12.0" />
+                                                      </font>
+                                                   </Label>
+                                                   <HBox>
+                                                      <children>
+                                                         <Label text="Rows: " />
+                                                         <TextField fx:id="armRows" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="10.0">
+                                                      <children>
+                                                         <Label text="Type: " />
+                                                         <TextField fx:id="armType" />
+                                                      </children>
+                                                   </HBox>
+                                                   <HBox layoutX="10.0" layoutY="35.0">
+                                                      <children>
+                                                         <Label text="Underarm Hair: " />
+                                                         <TextField fx:id="armUnderarmHair" />
+                                                      </children>
+                                                   </HBox>
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                          <padding>
+                                             <Insets left="14.0" top="28.0" />
+                                          </padding>
+                                       </GridPane>
                                       </AnchorPane>
                                   </content>
                               </Tab>
