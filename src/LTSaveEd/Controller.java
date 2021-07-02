@@ -2,6 +2,7 @@ package LTSaveEd;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -143,9 +144,17 @@ public class Controller {
                             for(int k = 0; k < attributes.getLength(); k++){
                                 Node bodyNode = attributes.item(k);
                                 String bodyNodeName = bodyNode.getNodeName();
-                                TextField tf = (TextField) root.lookup("#" + elementName + bodyNodeName);
-                                if(tf != null){
-                                    tf.setText(bodyNode.getTextContent());
+                                try { //Using TextFields for numerical and string values
+                                    TextField tf = (TextField) root.lookup("#" + elementName + capitalize(bodyNodeName));
+                                    if (tf != null) {
+                                        tf.setText(bodyNode.getTextContent());
+                                    }
+                                }
+                                catch(ClassCastException e){ //Using CheckBox for boolean values
+                                    CheckBox cb = (CheckBox) root.lookup("#" + elementName + capitalize(bodyNodeName));
+                                    if (cb != null){
+                                        cb.setSelected(Boolean.parseBoolean(bodyNode.getTextContent()));
+                                    }
                                 }
                             }
                         }
@@ -164,6 +173,13 @@ public class Controller {
                 }
             }
         }
+    }
+
+    private String capitalize(String str){
+        if(str == null) {
+            return null;
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     /**
