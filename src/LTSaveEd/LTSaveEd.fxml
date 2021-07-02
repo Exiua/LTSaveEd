@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -116,67 +117,65 @@
                                                 <HBox>
                                                    <children>
                                                       <Label text="Body Material: " />
-                                                      <TextField fx:id="bodyCorebodyMaterial" />
+                                                      <TextField fx:id="bodyCoreBodyMaterial" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="10.0">
                                                    <children>
                                                       <Label text="Body Size: " />
-                                                      <TextField fx:id="bodyCorebodySize" />
+                                                      <TextField fx:id="bodyCoreBodySize" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="35.0">
                                                    <children>
                                                       <Label text="Femininity: " />
-                                                      <TextField fx:id="bodyCorefemininity" />
+                                                      <TextField fx:id="bodyCoreFemininity" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="60.0">
                                                    <children>
                                                       <Label text="Feral: " />
-                                                      <TextField fx:id="bodyCoreferal" />
+                                                      <TextField fx:id="bodyCoreFeral" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="85.0">
                                                    <children>
                                                       <Label text="Genital Arrangement: " />
-                                                      <TextField fx:id="bodyCoregenitalArrangement" />
+                                                      <TextField fx:id="bodyCoreGenitalArrangement" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="110.0">
                                                    <children>
                                                       <Label text="Height: " />
-                                                      <TextField fx:id="bodyCoreheight" />
+                                                      <TextField fx:id="bodyCoreHeight" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="135.0">
                                                    <children>
                                                       <Label text="Muscle: " />
-                                                      <TextField fx:id="bodyCoremuscle" />
+                                                      <TextField fx:id="bodyCoreMuscle" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="160.0">
                                                    <children>
-                                                      <Label text="Pierced Stomach: " />
-                                                      <TextField fx:id="bodyCorepiercedStomach" />
+                                                      <CheckBox fx:id="bodyCorePiercedStomach" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Stomach: " />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="185.0">
                                                    <children>
                                                       <Label text="Pubic Hair: " />
-                                                      <TextField fx:id="bodyCorepubicHair" />
+                                                      <TextField fx:id="bodyCorePubicHair" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="210.0">
                                                    <children>
                                                       <Label text="Subspecies Override: " />
-                                                      <TextField fx:id="bodyCoresubspeciesOverride" />
+                                                      <TextField fx:id="bodyCoreSubspeciesOverride" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="235.0">
                                                    <children>
-                                                      <Label text="Takes After Mother: " />
-                                                      <TextField fx:id="bodyCoretakesAfterMother" />
+                                                      <CheckBox fx:id="bodyCoreTakesAfterMother" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Takes After Mother: " />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -193,25 +192,25 @@
                                                 <HBox>
                                                    <children>
                                                       <Label text="Anntennae per row: " />
-                                                      <TextField fx:id="antennaeantennaePerRow" />
+                                                      <TextField fx:id="antennaeAntennaePerRow" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="10.0">
                                                    <children>
                                                       <Label text="Length: " />
-                                                      <TextField fx:id="antennaelength" />
+                                                      <TextField fx:id="antennaeLength" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="35.0">
                                                    <children>
                                                       <Label text="Rows: " />
-                                                      <TextField fx:id="antennaerows" />
+                                                      <TextField fx:id="antennaeRows" />
                                                    </children>
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="60.0">
                                                    <children>
                                                       <Label text="Type: " />
-                                                      <TextField fx:id="antennaetype" />
+                                                      <TextField fx:id="antennaeType" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -227,19 +226,19 @@
                                                   <HBox>
                                                       <children>
                                                           <Label text="Rows: " />
-                                                          <TextField fx:id="armrows" />
+                                                          <TextField fx:id="armRows" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
                                                           <Label text="Type: " />
-                                                          <TextField fx:id="armtype" />
+                                                          <TextField fx:id="armType" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
                                                           <Label text="Underarm Hair: " />
-                                                          <TextField fx:id="armunderarmHair" />
+                                                          <TextField fx:id="armUnderarmHair" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -255,19 +254,19 @@
                                                   <HBox>
                                                       <children>
                                                           <Label text="Ass Size: " />
-                                                          <TextField fx:id="assassSize" />
+                                                          <TextField fx:id="assAssSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
                                                           <Label text="Hip Size: " />
-                                                          <TextField fx:id="asshipSize" />
+                                                          <TextField fx:id="assHipSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
                                                           <Label text="Type: " />
-                                                          <TextField fx:id="asstype" />
+                                                          <TextField fx:id="assType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -283,55 +282,53 @@
                                                   <HBox>
                                                       <children>
                                                           <Label text="Ass Hair: " />
-                                                          <TextField fx:id="anusassHair" />
+                                                          <TextField fx:id="anusAssHair" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Bleached: " />
-                                                          <TextField fx:id="anusbleached" />
+                                                   <CheckBox fx:id="anusBleached" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Bleached: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
                                                           <Label text="Capacity: " />
-                                                          <TextField fx:id="anuscapacity" />
+                                                          <TextField fx:id="anusCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
                                                           <Label text="Depth: " />
-                                                          <TextField fx:id="anusdepth" />
+                                                          <TextField fx:id="anusDepth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
                                                           <Label text="Elasticity: " />
-                                                          <TextField fx:id="anuselasticity" />
+                                                          <TextField fx:id="anusElasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
                                                           <Label text="Plasticity: " />
-                                                          <TextField fx:id="anusplasticity" />
+                                                          <TextField fx:id="anusPlasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
                                                           <Label text="Stretched Capacity: " />
-                                                          <TextField fx:id="anusstretchedCapacity" />
+                                                          <TextField fx:id="anusStretchedCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="160.0">
                                                       <children>
-                                                          <Label text="Virgin: " />
-                                                          <TextField fx:id="anusvirgin" />
+                                                   <CheckBox fx:id="anusVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="185.0">
                                                       <children>
                                                           <Label text="Wetness: " />
-                                                          <TextField fx:id="anuswetness" />
+                                                          <TextField fx:id="anusWetness" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -339,75 +336,57 @@
                                       </AnchorPane>
                                   </content>
                               </Tab>
-                              <Tab text="Breast">
+                              <Tab text="Breasts">
                                   <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Milk Regeneration: " />
+                                                          <TextField fx:id="breastsMilkRegeneration" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Milk Storage: " />
+                                                          <TextField fx:id="breastsMilkStorage" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Nipple Count per Breast: " />
+                                                          <TextField fx:id="breastsNippleCountPerBreast" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Rows: " />
+                                                          <TextField fx:id="breastsRows" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Shape: " />
+                                                          <TextField fx:id="breastsShape" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Size: " />
+                                                          <TextField fx:id="breastsSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Stored Milk: " />
+                                                          <TextField fx:id="breastsStoredMilk" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="160.0">
                                                       <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="breastsType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -422,69 +401,67 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Areolae Shape: " />
+                                                          <TextField fx:id="nipplesAreolaeShape" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Areolae Size: " />
+                                                          <TextField fx:id="nipplesAreolaeSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Capacity: " />
+                                                          <TextField fx:id="nipplesCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Depth: " />
+                                                          <TextField fx:id="nipplesDepth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Elasticity: " />
+                                                          <TextField fx:id="nipplesElasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Nipple Shape: " />
+                                                          <TextField fx:id="nipplesNippleShape" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Nipple Size: " />
+                                                          <TextField fx:id="nipplesNippleSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="160.0">
                                                       <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="nipplesPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="185.0">
                                                       <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Plasticity: " />
+                                                          <TextField fx:id="nipplesPlasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="210.0">
                                                       <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Stretched Capacity: " />
+                                                          <TextField fx:id="nipplesStretchedCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
+                                                <children>
+                                                   <CheckBox fx:id="nipplesVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                </children>
                                                   </HBox>
                                               </children>
                                           </VBox>
@@ -498,68 +475,14 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Flavour: " />
+                                                          <TextField fx:id="milkFlavour" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="milkType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -567,155 +490,139 @@
                                       </AnchorPane>
                                   </content>
                               </Tab>
-                              <Tab text="Breast Crotch">
+                              <Tab text="Breasts Crotch">
                                   <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
+                                       <children>
+                                          <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0">
+                                             <children>
+                                                <HBox>
+                                                   <children>
+                                                      <Label text="Milk Regeneration: " />
+                                                      <TextField fx:id="breastsCrotchMilkRegeneration" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="10.0">
+                                                   <children>
+                                                      <Label text="Milk Storage: " />
+                                                      <TextField fx:id="breastsCrotchMilkStorage" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="35.0">
+                                                   <children>
+                                                      <Label text="Nipple Count per Breast: " />
+                                                      <TextField fx:id="breastsCrotchNippleCountPerBreast" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="60.0">
+                                                   <children>
+                                                      <Label text="Rows: " />
+                                                      <TextField fx:id="breastsCrotchRows" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="85.0">
+                                                   <children>
+                                                      <Label text="Shape: " />
+                                                      <TextField fx:id="breastsCrotchShape" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="110.0">
+                                                   <children>
+                                                      <Label text="Size: " />
+                                                      <TextField fx:id="breastsCrotchSize" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="135.0">
+                                                   <children>
+                                                      <Label text="Stored Milk: " />
+                                                      <TextField fx:id="breastsCrotchStoredMilk" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="160.0">
+                                                   <children>
+                                                      <Label text="Type: " />
+                                                      <TextField fx:id="breastsCrotchType" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
                                           </VBox>
+                                       </children>
                                       </AnchorPane>
                                   </content>
                               </Tab>
                               <Tab text="Nipples Crotch">
                                   <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                          <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-                                              <children>
-                                                  <HBox>
-                                                      <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                              </children>
+                                       <children>
+                                          <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0">
+                                             <children>
+                                                <HBox>
+                                                   <children>
+                                                      <Label text="Areolae Shape: " />
+                                                      <TextField fx:id="nipplesCrotchAreolaeShape" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="10.0">
+                                                   <children>
+                                                      <Label text="Areolae Size: " />
+                                                      <TextField fx:id="nipplesCrotchAreolaeSize" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="35.0">
+                                                   <children>
+                                                      <Label text="Capacity: " />
+                                                      <TextField fx:id="nipplesCrotchCapacity" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="60.0">
+                                                   <children>
+                                                      <Label text="Depth: " />
+                                                      <TextField fx:id="nipplesCrotchDepth" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="85.0">
+                                                   <children>
+                                                      <Label text="Elasticity: " />
+                                                      <TextField fx:id="nipplesCrotchElasticity" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="110.0">
+                                                   <children>
+                                                      <Label text="Nipple Shape: " />
+                                                      <TextField fx:id="nipplesCrotchNippleShape" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="135.0">
+                                                   <children>
+                                                      <Label text="Nipple Size: " />
+                                                      <TextField fx:id="nipplesCrotchNippleSize" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="160.0">
+                                                   <children>
+                                                      <CheckBox fx:id="nipplesCrotchPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="185.0">
+                                                   <children>
+                                                      <Label text="Plasticity: " />
+                                                      <TextField fx:id="nipplesCrotchPlasticity" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="210.0">
+                                                   <children>
+                                                      <Label text="Stretched Capacity: " />
+                                                      <TextField fx:id="nipplesCrotchStretchedCapacity" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="235.0">
+                                                   <children>
+                                                      <CheckBox fx:id="nipplesCrotchVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                                   </children>
+                                                </HBox>
+                                             </children>
                                           </VBox>
+                                       </children>
                                       </AnchorPane>
                                   </content>
                               </Tab>
@@ -726,68 +633,14 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Flavour: " />
+                                                          <TextField fx:id="milkCrotchFlavour" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="milkCrotchType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -801,68 +654,13 @@
                                           <children>
                                               <HBox>
                                                   <children>
-                                                      <Label text="Body Material: " />
-                                                      <TextField fx:id="" />
+                                                <CheckBox fx:id="earPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
                                                   </children>
                                               </HBox>
                                               <HBox layoutX="10.0" layoutY="10.0">
                                                   <children>
-                                                      <Label text="Body Size: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="35.0">
-                                                  <children>
-                                                      <Label text="Femininity: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="60.0">
-                                                  <children>
-                                                      <Label text="Feral: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="85.0">
-                                                  <children>
-                                                      <Label text="Genital Arrangement: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="110.0">
-                                                  <children>
-                                                      <Label text="Height: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="135.0">
-                                                  <children>
-                                                      <Label text="Muscle: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="160.0">
-                                                  <children>
-                                                      <Label text="Pierced Stomach: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="185.0">
-                                                  <children>
-                                                      <Label text="Pubic Hair: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="210.0">
-                                                  <children>
-                                                      <Label text="Subspecies Override: " />
-                                                      <TextField fx:id="" />
-                                                  </children>
-                                              </HBox>
-                                              <HBox layoutX="10.0" layoutY="235.0">
-                                                  <children>
-                                                      <Label text="Takes After Mother: " />
-                                                      <TextField fx:id="" />
+                                                      <Label text="Type: " />
+                                                      <TextField fx:id="earType" />
                                                   </children>
                                               </HBox>
                                           </children>
@@ -876,68 +674,26 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Eye Pairs: " />
+                                                          <TextField fx:id="eyeEyePairs" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Iris Shape: " />
+                                                          <TextField fx:id="eyeIrisShape" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Pupil Shape: " />
+                                                          <TextField fx:id="eyePupilShape" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="eyeType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -952,68 +708,19 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Facial Hair: " />
+                                                          <TextField fx:id="faceFacialHair" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="facePiercedNose" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Nose: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="faceType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1028,68 +735,54 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Capacity: " />
+                                                          <TextField fx:id="mouthCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Depth: " />
+                                                          <TextField fx:id="mouthDepth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Elasticity: " />
+                                                          <TextField fx:id="mouthElasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Lip Size: " />
+                                                          <TextField fx:id="mouthLipSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="mouthPiercedLip" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Lip: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Plasticity: " />
+                                                          <TextField fx:id="mouthPlasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Stretched Capacity: " />
+                                                          <TextField fx:id="mouthStretchedCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="160.0">
                                                       <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="mouthVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="185.0">
                                                       <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Wetness: " />
+                                                          <TextField fx:id="mouthWetness" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1104,68 +797,13 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="tonguePiercedTongue" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Tongue: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Tongue Length: " />
+                                                          <TextField fx:id="tongueTongueLength" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1180,68 +818,20 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Hair Style: " />
+                                                          <TextField fx:id="hairHairStyle" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Length: " />
+                                                          <TextField fx:id="hairLength" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="hairType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1256,68 +846,26 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Horns per Row: " />
+                                                          <TextField fx:id="hornHornsPerRow" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Length: " />
+                                                          <TextField fx:id="hornLength" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Rows: " />
+                                                          <TextField fx:id="hornRows" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="hornType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1332,68 +880,20 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Configuration: " />
+                                                          <TextField fx:id="legConfiguration" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Foot Structure: " />
+                                                          <TextField fx:id="legFootStructure" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="legType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1408,68 +908,65 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Capacity: " />
+                                                          <TextField fx:id="penisCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Depth: " />
+                                                          <TextField fx:id="penisDepth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Elasticity: " />
+                                                          <TextField fx:id="penisElasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Girth: " />
+                                                          <TextField fx:id="penisGirth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="penisPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Plasticity: " />
+                                                          <TextField fx:id="penisPlasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Size: " />
+                                                          <TextField fx:id="penisSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="160.0">
                                                       <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Stretched Capacity: " />
+                                                          <TextField fx:id="penisStretchedCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="185.0">
                                                       <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="penisType" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="210.0">
                                                       <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="penisUrethraVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Urethra Virgin: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="235.0">
                                                       <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="penisVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1484,68 +981,43 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Cum Expulsion: " />
+                                                          <TextField fx:id="testiclesCumExpulsion" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Cum Regeneration: " />
+                                                          <TextField fx:id="testiclesCumRegeneration" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Cum Storage: " />
+                                                          <TextField fx:id="testiclesCumStorage" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="testiclesInternal" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Internal: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Number of Testicles: " />
+                                                          <TextField fx:id="testiclesNumberOfTesticles" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Stored Cum: " />
+                                                          <TextField fx:id="testiclesStoredCum" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Testicle Size: " />
+                                                          <TextField fx:id="testiclesTesticleSize" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1560,68 +1032,14 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Flavour: " />
+                                                          <TextField fx:id="cumFlavour" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="cumType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1636,68 +1054,43 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Capacity: " />
+                                                          <TextField fx:id="spinneretCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Depth: " />
+                                                          <TextField fx:id="spinneretDepth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Elasticity: " />
+                                                          <TextField fx:id="spinneretElasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Plasticity: " />
+                                                          <TextField fx:id="spinneretPlasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Stretched Capacity: " />
+                                                          <TextField fx:id="spinneretStretchedCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="spinneretVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Wetness: " />
+                                                          <TextField fx:id="spinneretWetness" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1712,68 +1105,8 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="10.0">
-                                                      <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="torsoType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1788,68 +1121,26 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Count: " />
+                                                          <TextField fx:id="tailCount" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Girth: " />
+                                                          <TextField fx:id="tailGirth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Length: " />
+                                                          <TextField fx:id="tailLength" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="tailType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1864,68 +1155,26 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Count: " />
+                                                          <TextField fx:id="tentacleCount" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Girth: " />
+                                                          <TextField fx:id="tentacleGirth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Length: " />
+                                                          <TextField fx:id="tentacleLength" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="tentacleType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -1940,70 +1189,78 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Capacity: " />
+                                                          <TextField fx:id="vaginaCapacity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Clit Girth: " />
+                                                          <TextField fx:id="vaginaClitGirth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="35.0">
                                                       <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Clit Size: " />
+                                                          <TextField fx:id="vaginaClitSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="60.0">
                                                       <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Depth: " />
+                                                          <TextField fx:id="vaginaDepth" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="85.0">
                                                       <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="vaginaEggLayer" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Egg Layer: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="110.0">
                                                       <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Elasticity: " />
+                                                          <TextField fx:id="vaginaElasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="135.0">
                                                       <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="vaginaHymen" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Hymen: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="160.0">
                                                       <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Labia Size: " />
+                                                          <TextField fx:id="vaginaLabiaSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="185.0">
                                                       <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="vaginaPierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="210.0">
                                                       <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Plasticity: " />
+                                                          <TextField fx:id="vaginaPlasticity" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="235.0">
                                                       <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                   <CheckBox fx:id="vaginaSquirter" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Squirter: " />
                                                       </children>
                                                   </HBox>
+                                             <HBox layoutX="10.0" layoutY="336.0">
+                                                <children>
+                                                   <Label text="Stretched Capacity: " />
+                                                   <TextField fx:id="vaginaStretchedCapacity" />
+                                                </children>
+                                             </HBox>
+                                             <HBox layoutX="10.0" layoutY="371.0">
+                                                <children>
+                                                   <Label text="Type: " />
+                                                   <TextField fx:id="vaginaType" />
+                                                </children>
+                                             </HBox>
                                               </children>
                                           </VBox>
                                       </AnchorPane>
@@ -2016,68 +1273,14 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Flavour: " />
+                                                          <TextField fx:id="girlcumFlavour" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="girlcumType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -2092,68 +1295,14 @@
                                               <children>
                                                   <HBox>
                                                       <children>
-                                                          <Label text="Body Material: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Size: " />
+                                                          <TextField fx:id="wingSize" />
                                                       </children>
                                                   </HBox>
                                                   <HBox layoutX="10.0" layoutY="10.0">
                                                       <children>
-                                                          <Label text="Body Size: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="35.0">
-                                                      <children>
-                                                          <Label text="Femininity: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="60.0">
-                                                      <children>
-                                                          <Label text="Feral: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="85.0">
-                                                      <children>
-                                                          <Label text="Genital Arrangement: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="110.0">
-                                                      <children>
-                                                          <Label text="Height: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="135.0">
-                                                      <children>
-                                                          <Label text="Muscle: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="160.0">
-                                                      <children>
-                                                          <Label text="Pierced Stomach: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="185.0">
-                                                      <children>
-                                                          <Label text="Pubic Hair: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="210.0">
-                                                      <children>
-                                                          <Label text="Subspecies Override: " />
-                                                          <TextField fx:id="" />
-                                                      </children>
-                                                  </HBox>
-                                                  <HBox layoutX="10.0" layoutY="235.0">
-                                                      <children>
-                                                          <Label text="Takes After Mother: " />
-                                                          <TextField fx:id="" />
+                                                          <Label text="Type: " />
+                                                          <TextField fx:id="wingType" />
                                                       </children>
                                                   </HBox>
                                               </children>
@@ -2163,7 +1312,8 @@
                               </Tab>
                           </tabs>
                         </TabPane>
-                     </children></AnchorPane>
+                     </children>
+              </AnchorPane>
 			</content>
 		  </Tab>
 		  <Tab text="Inventory">
