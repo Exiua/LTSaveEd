@@ -25,6 +25,7 @@ public class Controller {
     private File workingFile;
     private Document saveFile;
     private boolean fileLoaded = false;
+    private String charId;
 
     /**
      * Creates a new Controller object and parses config.ini
@@ -104,68 +105,60 @@ public class Controller {
     @FXML
     private void selectCharacter(ActionEvent event){
         event.consume();
-        setFields("");
+        charId = "PlayerCharacter"; //Placeholder; will change to take input from a combobox to select character
+        setFields();
+    }
+
+    /**
+     * Helper method to get fx:id of the object that was interacted with
+     * @param event
+     *   ActionEvent from the object that was interacted with
+     * @return
+     *   String of the id (without '#') of the object that was interacted with
+     */
+    private String getId(ActionEvent event){
+        return ((javafx.scene.Node) event.getSource()).getId();
+    }
+
+    /**
+     * Gets the list of immediate child Nodes of the selected character's characterNode
+     * @return
+     *   NodeList of immediate child Nodes (eg. core, body, attributes, etc.)
+     */
+    private NodeList getAttributeNodes(){
+        Node idNode = getElementByIdValue(charId);
+        Node characterNode = idNode.getParentNode().getParentNode(); //idNode > coreNode > characterNode
+        return characterNode.getChildNodes();
     }
 
     /**
      * Reads data from xml save file and sSets all fields with the selected character data
-     * @param id
-     *   Id value of the character to read data for
+     *
      */
-    private void setFields(String id){
+    private void setFields(){
         if(fileLoaded) {
-            id = "PlayerCharacter"; //Placeholder; will change to take input from a combobox to select character
-            Node idNode = getElementByIdValue(id);
-            Node characterNode = idNode.getParentNode().getParentNode();
-            //System.out.println(characterNode.getNodeName());
-            NodeList attributeNodes = characterNode.getChildNodes();
-            //System.out.println(attributeNodes.item(3).getNodeName());
-            //Debug.printList(attributeNodes);
+            NodeList attributeNodes = getAttributeNodes();
             for(int i = 3; i < attributeNodes.getLength() - 1; i+=2){ //Every other node in the NodeList is a TextNode (so can be skipped)
                 if(attributeNodes.item(i).getNodeType() != Node.TEXT_NODE) { //Probably a redundant check since the TextNodes should already be skipped
                     NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                     String attributeName = attributeNodes.item(i).getNodeName();
-                    //System.out.println(attributeName);
-                    //Debug.printList(attributeElements);
                     for(int j = 1; j < attributeElements.getLength() - 1; j+=2){ //Every other node in the NodeList is a TextNode (so can be skipped)
                         Node currNode = attributeElements.item(j);
                         String elementName = currNode.getNodeName();
-                        if(attributeName.equals("core") && elementName.equals("name")){ //Only the name field has different fx:id; all the other fields follow the format of "#core" + (index in NodeList)
-                            NamedNodeMap attributes = currNode.getAttributes();
-                            TextField andName = (TextField) root.lookup("#nameAndrogynous");
-                            TextField femName = (TextField) root.lookup("#nameFeminine");
-                            TextField masName = (TextField) root.lookup("#nameMasculine");
-                            andName.setText(attributes.getNamedItem("nameAndrogynous").getTextContent());
-                            femName.setText(attributes.getNamedItem("nameFeminine").getTextContent());
-                            masName.setText(attributes.getNamedItem("nameMasculine").getTextContent());
-                        }
-                        else if(attributeName.equals("body")){ //Nodes under body have multiple attributes to be edited; fx:id in the form of "#" + (name of child node) + (name of attribute of child node)
-                            NamedNodeMap attributes = currNode.getAttributes();
-                            for(int k = 0; k < attributes.getLength(); k++){
-                                Node bodyNode = attributes.item(k);
-                                String bodyNodeName = bodyNode.getNodeName();
-                                try { //Using TextFields for numerical and string values
-                                    TextField tf = (TextField) root.lookup("#" + elementName + capitalize(bodyNodeName));
-                                    if (tf != null) {
-                                        tf.setText(bodyNode.getTextContent());
-                                    }
-                                }
-                                catch(ClassCastException e){ //Using CheckBox for boolean values
-                                    CheckBox cb = (CheckBox) root.lookup("#" + elementName + capitalize(bodyNodeName));
-                                    if (cb != null){
-                                        cb.setSelected(Boolean.parseBoolean(bodyNode.getTextContent()));
-                                    }
+                        NamedNodeMap attributes = currNode.getAttributes();
+                        for(int k = 0; k < attributes.getLength(); k++){
+                            Node valueNode = attributes.item(k);
+                            String bodyNodeName = valueNode.getNodeName();
+                            try { //Using TextFields for numerical and string values
+                                TextField tf = (TextField) root.lookup("#" + attributeName + "$" + elementName + "$" + bodyNodeName);
+                                if (tf != null) {
+                                    tf.setText(valueNode.getTextContent());
                                 }
                             }
-                        }
-                        else{
-                            Node valueNode = currNode.getAttributes().getNamedItem("value");
-                            if(valueNode != null) {
-                                String value = valueNode.getTextContent();
-                                //System.out.println("#" + attributeName + j);
-                                TextField tf = (TextField) root.lookup("#" + attributeName + j);
-                                if(tf != null) {
-                                    tf.setText(value);
+                            catch(ClassCastException e){ //Using CheckBox for boolean values
+                                CheckBox cb = (CheckBox) root.lookup("#" + attributeName + "$" + elementName + "$" + bodyNodeName);
+                                if (cb != null){
+                                    cb.setSelected(Boolean.parseBoolean(valueNode.getTextContent()));
                                 }
                             }
                         }
@@ -173,13 +166,6 @@ public class Controller {
                 }
             }
         }
-    }
-
-    private String capitalize(String str){
-        if(str == null) {
-            return null;
-        }
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     /**
