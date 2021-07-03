@@ -135,7 +135,7 @@
 
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="160.0">
-                                    <CheckBox fx:id="body$bodyCore$piercedStomach" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Stomach: " />
+                                    <CheckBox fx:id="body$bodyCore$piercedStomach" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Stomach: " />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="185.0">
                                     <Label text="Pubic Hair: " />
@@ -146,7 +146,7 @@
                                     <TextField fx:id="body$bodyCore$subspeciesOverride" />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="235.0">
-                                    <CheckBox fx:id="body$bodyCore$takesAfterMother" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Takes After Mother: " />
+                                    <CheckBox fx:id="body$bodyCore$takesAfterMother" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Takes After Mother: " />
                                 </HBox>
 
                             </VBox>
@@ -218,7 +218,7 @@
                                     </Label>
                                     <HBox>
 
-                                        <CheckBox fx:id="body$ear$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                        <CheckBox fx:id="body$ear$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
@@ -289,7 +289,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
 
-                                        <CheckBox fx:id="body$face$piercedNose" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Nose: " />
+                                        <CheckBox fx:id="body$face$piercedNose" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Nose: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -336,7 +336,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="85.0">
 
-                                        <CheckBox fx:id="body$mouth$piercedLip" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Lip: " />
+                                        <CheckBox fx:id="body$mouth$piercedLip" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Lip: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -353,7 +353,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="160.0">
 
-                                        <CheckBox fx:id="body$mouth$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                        <CheckBox fx:id="body$mouth$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="185.0">
@@ -376,7 +376,7 @@
                                     </Label>
                                     <HBox>
 
-                                        <CheckBox fx:id="body$tongue$piercedTongue" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced Tongue: " />
+                                        <CheckBox fx:id="body$tongue$piercedTongue" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Tongue: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
@@ -525,7 +525,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
 
-                                        <CheckBox fx:id="body$anus$bleached" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Bleached: " />
+                                        <CheckBox fx:id="body$anus$bleached" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Bleached: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -560,7 +560,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="160.0">
 
-                                        <CheckBox fx:id="body$anus$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                        <CheckBox fx:id="body$anus$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="185.0">
@@ -735,7 +735,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="160.0">
 
-                                        <CheckBox fx:id="body$nipples$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                        <CheckBox fx:id="body$nipples$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="185.0">
@@ -752,7 +752,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="235.0">
 
-                                        <CheckBox fx:id="body$nipples$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                        <CheckBox fx:id="body$nipples$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
 
@@ -917,7 +917,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="160.0">
 
-                                        <CheckBox fx:id="body$nipplesCrotch$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                        <CheckBox fx:id="body$nipplesCrotch$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="185.0">
@@ -934,7 +934,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="235.0">
 
-                                        <CheckBox fx:id="body$nipplesCrotch$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                        <CheckBox fx:id="body$nipplesCrotch$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
 
@@ -1022,7 +1022,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="85.0">
 
-                                        <CheckBox fx:id="body$penis$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                        <CheckBox fx:id="body$penis$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -1051,12 +1051,12 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="210.0">
 
-                                        <CheckBox fx:id="body$penisUrethra$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Urethra Virgin: " />
+                                        <CheckBox fx:id="body$penisUrethra$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Urethra Virgin: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="235.0">
 
-                                        <CheckBox fx:id="body$penis$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                        <CheckBox fx:id="body$penis$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
 
@@ -1115,7 +1115,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="60.0">
 
-                                        <CheckBox fx:id="body$testicles$internal" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Internal: " />
+                                        <CheckBox fx:id="body$testicles$internal" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internal: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="85.0">
@@ -1174,7 +1174,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="85.0">
 
-                                        <CheckBox fx:id="body$vagina$eggLayer" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Egg Layer: " />
+                                        <CheckBox fx:id="body$vagina$eggLayer" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Egg Layer: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -1185,7 +1185,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
 
-                                        <CheckBox fx:id="body$vagina$hymen" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Hymen: " />
+                                        <CheckBox fx:id="body$vagina$hymen" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Hymen: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="160.0">
@@ -1196,7 +1196,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="185.0">
 
-                                        <CheckBox fx:id="body$vagina$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Pierced: " />
+                                        <CheckBox fx:id="body$vagina$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="210.0">
@@ -1207,7 +1207,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="235.0">
 
-                                        <CheckBox fx:id="body$vagina$squirter" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Squirter: " />
+                                        <CheckBox fx:id="body$vagina$squirter" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Squirter: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="336.0">
@@ -1434,7 +1434,7 @@
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
 
-                                        <CheckBox fx:id="body$spinneret$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Virgin: " />
+                                        <CheckBox fx:id="body$spinneret$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
