@@ -9,10 +9,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -131,6 +135,18 @@ public class Controller {
         return characterNode.getChildNodes();
     }
 
+    @FXML
+    private void updateXmlBoolean(ActionEvent event){
+        String[] id = getId(event).split("\\$");
+        String fxId = "#" + String.join("$", id);
+        CheckBox cb = (CheckBox) root.lookup(fxId);
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
+        attr = (Element) attr.getElementsByTagName(id[1]).item(0);
+        Node value = attr.getAttributes().getNamedItem(id[2]);
+        value.setTextContent("" + cb.isSelected());
+    }
+
     /**
      * Reads data from xml save file and sSets all fields with the selected character data
      *
@@ -189,14 +205,40 @@ public class Controller {
     }
 
     @FXML
-    private void saveFile(ActionEvent event){
-        //TODO: Write saveFile method
+    private void saveFileOverwrite(ActionEvent event){
+        event.consume();
+        if(fileLoaded) {
+            saveToFile(workingFile);
+        }
     }
 
-    /*@FXML
-    private void lookupTest(ActionEvent event){
+    @FXML
+    private void saveFileExport(ActionEvent event){
         event.consume();
-        TextField tf = (TextField) root.lookup("#core3");
-        tf.setText("25.234");
-    }*/
+        if(fileLoaded) {
+            FileChooser fc = new FileChooser();
+            FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+            fc.getExtensionFilters().add(fileExtensions);
+            String currentPath = prop.getProperty("defaultFilePath");
+            fc.setInitialDirectory(new File(currentPath));
+            fc.setInitialFileName(workingFile.getName());
+            File f = fc.showSaveDialog(stage);
+            if (f != null) {
+                saveToFile(f);
+            }
+        }
+    }
+
+    private void saveToFile(File f){
+        TransformerFactory tff = TransformerFactory.newInstance();
+        try {
+            Transformer tf = tff.newTransformer();
+            DOMSource source = new DOMSource(saveFile);
+            StreamResult sr = new StreamResult(f);
+            tf.transform(source, sr);
+        }
+        catch(TransformerException e){
+            e.printStackTrace();
+        }
+    }
 }
