@@ -8,13 +8,11 @@ import javafx.stage.Stage;
 
 public class LTSaveEd extends Application {
 
-    private Controller controller;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LTSaveEd.fxml"));
         Parent root = loader.load();
-        controller = loader.getController();
+        Controller controller = loader.getController();
         controller.setStage(primaryStage);
         controller.setRoot(loader.getRoot());
         primaryStage.setTitle("LTSaveEd v1.0.0");
