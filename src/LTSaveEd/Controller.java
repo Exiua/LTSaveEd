@@ -1,5 +1,7 @@
 package LTSaveEd;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -25,18 +27,20 @@ public class Controller {
 
     private Stage stage;
     private AnchorPane root;
-    private final Properties prop;
+    private Properties prop;
     private File workingFile;
     private Document saveFile;
     private boolean fileLoaded = false;
     private String charId;
+    private String[] intTextFieldIds = {"#core$level$value", "#core$experience$value", "#core$perkPoints$value"};
+    private String[] doubleTextFieldIds = {"#core$obedience$value", "#core$health$value", "#core$mana$value"};
 
     /**
      * Creates a new Controller object and parses config.ini
      * @throws IOException
      *   If config.ini cannot be properly read
      */
-    public Controller() throws IOException {
+    public void initialize() throws IOException {
         prop = new Properties();
         FileInputStream in;
         try {
@@ -48,6 +52,71 @@ public class Controller {
             in = new FileInputStream("config.ini");
         }
         prop.load(in);
+    }
+
+    public class TextFieldListener implements ChangeListener<Boolean> {
+
+        private final TextField tf ;
+        private TextFieldType tfType;
+
+        public TextFieldListener(TextField textField, TextFieldType textFieldType) {
+            tf = textField;
+            tfType = textFieldType;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if(!newValue) {  // check if focus gained or lost
+                tf.setText(getFormattedText(tf.getText()));
+            }
+        }
+
+        private String getFormattedText(String newValue) {
+            Node value = getValueNode();
+            String oldValue = value.getTextContent();
+            switch(tfType) {
+                case INT:
+                    try {
+                        int nv = Integer.parseInt(newValue);
+                        if(nv < 0){
+                            return oldValue;
+                        }
+                        value.setTextContent(newValue);
+                        return newValue;
+                    }
+                    catch (NumberFormatException e) {
+                        return oldValue;
+                    }
+                case DOUBLE:
+                    try {
+                        double nv = Double.parseDouble(newValue);
+                        if(nv < 0){
+                            return oldValue;
+                        }
+                        if(newValue.indexOf('.') == -1){
+                            newValue += ".0";
+                        }
+                        else if(newValue.indexOf('.') == newValue.length() - 1){
+                            newValue += "0";
+                        }
+                        value.setTextContent(newValue);
+                        return newValue;
+                    }
+                    catch (NumberFormatException e) {
+                        return oldValue;
+                    }
+                default:
+                    return null;
+            }
+        }
+
+        protected Node getValueNode(){
+            String[] id = tf.getId().split("\\$");
+            NodeList attributeNodes = getAttributeNodes();
+            Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
+            attr = (Element) attr.getElementsByTagName(id[1]).item(0);
+            return attr.getAttributes().getNamedItem(id[2]);
+        }
     }
 
     /**
@@ -131,20 +200,26 @@ public class Controller {
      */
     private NodeList getAttributeNodes(){
         Node idNode = getElementByIdValue(charId);
+        assert idNode != null;
         Node characterNode = idNode.getParentNode().getParentNode(); //idNode > coreNode > characterNode
         return characterNode.getChildNodes();
     }
 
-    @FXML
-    private void updateXmlBoolean(ActionEvent event){
+    private Node getValueNode(ActionEvent event){
         String[] id = getId(event).split("\\$");
-        String fxId = "#" + String.join("$", id);
-        CheckBox cb = (CheckBox) root.lookup(fxId);
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
         attr = (Element) attr.getElementsByTagName(id[1]).item(0);
-        Node value = attr.getAttributes().getNamedItem(id[2]);
+        return attr.getAttributes().getNamedItem(id[2]);
+    }
+
+    @FXML
+    private void updateXmlBoolean(ActionEvent event){
+        String fxId = "#" + getId(event);
+        CheckBox cb = (CheckBox) root.lookup(fxId);
+        Node value = getValueNode(event);
         value.setTextContent("" + cb.isSelected());
+        event.consume();
     }
 
     /**
@@ -181,6 +256,18 @@ public class Controller {
                     }
                 }
             }
+            attachListeners();
+        }
+    }
+
+    private void attachListeners(){
+        for(String intTextFieldId : intTextFieldIds) {
+            TextField tf = (TextField) root.lookup(intTextFieldId);
+            tf.focusedProperty().addListener(new TextFieldListener(tf, TextFieldType.INT));
+        }
+        for(String doubleTextFieldId : doubleTextFieldIds){
+            TextField tf = (TextField) root.lookup(doubleTextFieldId);
+            tf.focusedProperty().addListener(new TextFieldListener(tf, TextFieldType.DOUBLE));
         }
     }
 
