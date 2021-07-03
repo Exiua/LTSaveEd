@@ -1517,8 +1517,8 @@
             <MenuItem mnemonicParsing="false" onAction="#loadFile" text="Import..." />
         </Menu>
         <Menu mnemonicParsing="false" text="Save As ⏷">
-            <MenuItem mnemonicParsing="false" text="Overwrite" />
-            <MenuItem mnemonicParsing="false" text="Export..." />
+            <MenuItem mnemonicParsing="false" onAction="#saveFileOverwrite" text="Overwrite" />
+            <MenuItem mnemonicParsing="false" onAction="#saveFileExport" text="Export..." />
         </Menu>
         <Menu mnemonicParsing="false" text="Update?">
             <MenuItem mnemonicParsing="false" text="About" />
