@@ -32,8 +32,29 @@ public class Controller {
     private Document saveFile;
     private boolean fileLoaded = false;
     private String charId;
-    private String[] intTextFieldIds = {"#core$level$value", "#core$experience$value", "#core$perkPoints$value"};
-    private String[] doubleTextFieldIds = {"#core$obedience$value", "#core$health$value", "#core$mana$value"};
+    private final String[] intTextFieldIds = {"#core$level$value", "#core$experience$value", "#core$perkPoints$value", "#body$bodyCore$bodySize",
+            "#body$bodyCore$femininity", "#body$bodyCore$height", "#body$bodyCore$muscle", "#body$antennae$antennaePerRow",
+            "#body$antennae$length", "#body$antennae$rows", "#body$mouth$depth", "#body$mouth$elasticity", "#body$mouth$lipSize",
+            "#body$mouth$plasticity", "#body$mouth$wetness", "#body$eye$eyePairs", "#body$tongue$tongueLength", "#body$hair$length",
+            "#body$horn$hornsPerRow", "#body$horn$length", "#body$horn$rows", "#body$ass$assSize", "#body$ass$hipSize", "#body$anus$depth",
+            "#body$anus$elasticity", "#body$anus$plasticity", "#body$anus$wetness", "#body$breasts$milkRegeneration", "#body$breasts$milkStorage",
+            "#body$breasts$nippleCountPerBreast", "#body$breasts$rows", "#body$breasts$size", "#body$nipples$areolaeSize", "#body$nipples$depth",
+            "#body$nipples$elasticity", "#body$nipples$nippleSize", "#body$nipples$plasticity", "#body$breastsCrotch$milkRegeneration",
+            "#body$breastsCrotch$milkStorage", "#body$breastsCrotch$nippleCountPerBreast", "#body$breastsCrotch$rows", "#body$breastsCrotch$size",
+            "#body$nipplesCrotch$areolaeSize", "#body$nipplesCrotch$depth", "#body$nipplesCrotch$elasticity", "#body$nipplesCrotch$nippleSize",
+            "#body$nipplesCrotch$plasticity", "#body$penis$depth", "#body$penis$elasticity", "#body$penis$girth", "#body$penis$plasticity",
+            "#body$penis$size", "#body$testicles$cumExpulsion", "#body$testicles$cumRegeneration", "#body$testicles$cumStorage",
+            "#body$testicles$numberOfTesticles", "#body$testicles$testicleSize", "#body$vagina$clitGirth", "#body$vagina$clitSize",
+            "#body$vagina$depth", "#body$vagina$elasticity", "#body$vagina$labiaSize", "#body$vagina$plasticity", "#body$tail$count",
+            "#body$tail$girth", "#body$tentacle$count", "#body$tentacle$girth", "#body$wing$size", "#body$spinneret$depth", "#body$spinneret$elasticity",
+            "#body$spinneret$plasticity", "#body$spinneret$wetness", "#body$arm$rows"};
+    private final String[] doubleTextFieldIds = {"#core$obedience$value", "#core$health$value", "#core$mana$value", "#body$mouth$capacity",
+            "#body$mouth$stretchedCapacity", "#body$anus$capacity", "#body$anus$stretchedCapacity", "#body$breasts$storedMilk",
+            "#body$nipples$capacity", "#body$nipples$stretchedCapacity", "#body$breastsCrotch$storedMilk", "#body$nipplesCrotch$capacity",
+            "#body$nipplesCrotch$stretchedCapacity", "#body$penis$capacity", "#body$penis$stretchedCapacity", "#body$testicles$storedCum",
+            "#body$vagina$capacity", "#body$vagina$stretchedCapacity", "#body$tail$length", "#body$tentacle$length", "#body$spinneret$capacity",
+            "#body$spinneret$stretchedCapacity"};
+    private final String[] stringTextFieldIds = {"#core$name$nameAndrogynous", "#core$name$nameFeminine", "#core$name$nameMasculine"};
 
     /**
      * Creates a new Controller object and parses config.ini
@@ -78,6 +99,7 @@ public class Controller {
                 case INT:
                     try {
                         int nv = Integer.parseInt(newValue);
+                        newValue = "" + nv; //Removes leading zeroes
                         if(nv < 0){
                             return oldValue;
                         }
@@ -90,6 +112,7 @@ public class Controller {
                 case DOUBLE:
                     try {
                         double nv = Double.parseDouble(newValue);
+                        newValue = "" + nv; //Removes leading zeroes
                         if(nv < 0){
                             return oldValue;
                         }
@@ -105,6 +128,8 @@ public class Controller {
                     catch (NumberFormatException e) {
                         return oldValue;
                     }
+                case STRING:
+                    return newValue;
                 default:
                     return null;
             }
@@ -268,6 +293,10 @@ public class Controller {
         for(String doubleTextFieldId : doubleTextFieldIds){
             TextField tf = (TextField) root.lookup(doubleTextFieldId);
             tf.focusedProperty().addListener(new TextFieldListener(tf, TextFieldType.DOUBLE));
+        }
+        for(String stringTextFieldId: stringTextFieldIds){
+            TextField tf = (TextField) root.lookup(stringTextFieldId);
+            tf.focusedProperty().addListener(new TextFieldListener(tf, TextFieldType.STRING));
         }
     }
 
