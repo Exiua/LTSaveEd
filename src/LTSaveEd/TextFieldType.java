@@ -2,5 +2,6 @@ package LTSaveEd;
 
 public enum TextFieldType {
     INT,
-    DOUBLE
+    DOUBLE,
+    STRING
 }
