@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -1289,7 +1290,7 @@
                                     <HBox>
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$torso$type" />
+                              <ComboBox fx:id="body$torso$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1361,7 +1362,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$tentacle$type" />
+                              <ComboBox fx:id="body$tentacle$type" prefWidth="150.0" />
 
                                     </HBox>
 
