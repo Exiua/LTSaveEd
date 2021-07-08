@@ -15,6 +15,7 @@ public class LTSaveEd extends Application {
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
         controller.setRoot(loader.getRoot());
+        controller.initializeComboBoxes();
         primaryStage.setTitle("LTSaveEd v1.0.0");
         primaryStage.setScene(new Scene(root, 1024, 700));
         //primaryStage.setMaximized(true);
