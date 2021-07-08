@@ -2,9 +2,12 @@ package LTSaveEd;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -54,10 +57,50 @@ public class Controller {
             "#body$nipplesCrotch$stretchedCapacity", "#body$penis$capacity", "#body$penis$stretchedCapacity", "#body$testicles$storedCum",
             "#body$vagina$capacity", "#body$vagina$stretchedCapacity", "#body$tail$length", "#body$tentacle$length", "#body$spinneret$capacity",
             "#body$spinneret$stretchedCapacity"};
-    private final String[] stringTextFieldIds = {"#core$name$nameAndrogynous", "#core$name$nameFeminine", "#core$name$nameMasculine"};
+    private final String[] stringTextFieldIds = {"#core$name$nameAndrogynous", "#core$name$nameFeminine", "#core$name$nameMasculine",
+            "#core$surname$value"};
+    private final String[] ComboBoxIds = {"#body$torso$type"};
+    private final ObservableList<String> sexualOrientations = FXCollections.observableArrayList("Androphilia", "Ambiphilia", "Gynephilia");
+    private final ObservableList<String> antennaeTypes = FXCollections.observableArrayList("NONE");
+    private final ObservableList<String> earTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> faceTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_face", "BAT_MORPH", "dsg_bear_face",
+            "NoStepOnSnek_capybara_face", "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_faceCoatl", "dsg_dragon_faceRyu", "dsg_dragon_face", "dsg_ferret_face", "FOX_MORPH",
+            "innoxia_goat_face", "dsg_gryphon_face", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_face", "NoStepOnSnek_octopus_face", "dsg_otter_face",
+            "innoxia_panther_face", "innoxia_pig_face", "RABBIT_MORPH", "dsg_raccoon_face", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_face", "innoxia_sheep_torso",
+            "NoStepOnSnek_snake_face", "NoStepOnSnek_snake_face_h", "charisma_spider_faceFluffy", "charisma_spider_face", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<String> eyeTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> hairTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> hornTypes = FXCollections.observableArrayList("NONE");
+    private final ObservableList<String> legTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso",
+            "NoStepOnSnek_capybara_torso", "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DEMON_HOOFED"); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
+    private final ObservableList<String> assTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> breastsTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> milkTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> penisTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> cumTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> vaginaTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> girlcumTypes = FXCollections.observableArrayList();
+    private final ObservableList<String> torsoTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso",
+            "NoStepOnSnek_capybara_torso", "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_torsoRyu", "dsg_dragon_torso", "dsg_ferret_torso", "FOX_MORPH",
+            "innoxia_goat_torso", "dsg_gryphon_torso", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_torso", "NoStepOnSnek_octopus_torso", "dsg_otter_torso",
+            "innoxia_panther_torso", "innoxia_pig_torso", "RABBIT_MORPH", "dsg_raccoon_torso", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_torso", "dsg_shark_torsoDorsalFin",
+            "innoxia_sheep_torso", "NoStepOnSnek_snake_torso", "charisma_spider_torsoFluffy", "charisma_spider_torso", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<String> tailTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH", "innoxia_badger_tail", "BAT_MORPH", "dsg_bear_tail",
+            "NoStepOnSnek_capybara_arm", "CAT_MORPH", "CAT_MORPH_SHORT", "CAT_MORPH_TUFTED", "COW_MORPH", "DEMON_COMMON", "DEMON_HAIR_TIP", "DEMON_TAPERED", "DEMON_HORSE",
+            "DOG_MORPH", "DOG_MORPH_STUBBY", "dsg_dragon_tailTufted", "dsg_dragon_tail", "dsg_dragon_tailFeathered", "dsg_dragon_tailSpaded", "dsg_ferret_tail", "FOX_MORPH",
+            "innoxia_goat_tail", "dsg_gryphon_tailFeathers", "dsg_gryphon_tail", "HARPY", "HORSE_MORPH", "HORSE_MORPH_ZEBRA", "innoxia_hyena_tail", "dsg_otter_tail",
+            "innoxia_panther_tail", "innoxia_pig_tail", "RABBIT_MORPH", "dsg_raccoon_tail", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_tail", "innoxia_sheep_tail",
+            "NoStepOnSnek_snake_tail", "charisma_spider_tailFluffy", "charisma_spider_tail", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<String> tentacleTypes = FXCollections.observableArrayList("NONE");
+    private final ObservableList<String> wingTypes = FXCollections.observableArrayList("NONE");
+    private final ObservableList<String> armTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_arm", "BAT_MORPH", "dsg_bear_arm",
+            "NoStepOnSnek_capybara_arm", "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_arm", "dsg_dragon_armWings", "dsg_ferret_arm", "FOX_MORPH",
+            "innoxia_goat_arm", "dsg_gryphon_arm", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_arm", "NoStepOnSnek_octopus_arm", "dsg_otter_arm",
+            "innoxia_panther_arm", "innoxia_pig_arm", "RABBIT_MORPH", "dsg_raccoon_arm", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_arm", "dsg_shark_armFin",
+            "innoxia_sheep_arm", "NoStepOnSnek_snake_arm", "charisma_spider_armFluffy", "charisma_spider_arm", "SQUIRREL_MORPH", "WOLF_MORPH");
 
     /**
-     * Creates a new Controller object and parses config.ini
+     * Initializes the Controller object and parses config.ini
      * @throws IOException
      *   If config.ini cannot be properly read
      */
@@ -78,7 +121,7 @@ public class Controller {
     public class TextFieldListener implements ChangeListener<Boolean> {
 
         private final TextField tf ;
-        private TextFieldType tfType;
+        private final TextFieldType tfType;
 
         public TextFieldListener(TextField textField, TextFieldType textFieldType) {
             tf = textField;
@@ -160,6 +203,14 @@ public class Controller {
      */
     public void setRoot(AnchorPane r){
         root = r;
+    }
+
+    public void initializeComboBoxes(){
+        //TODO:
+        for(String ComboBoxId : ComboBoxIds) {
+            ComboBox<String> cb = (ComboBox<String>) root.lookup(ComboBoxId);
+            cb.setItems(torsoTypes);
+        }
     }
 
     /**
