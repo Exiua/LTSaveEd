@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 public class LTSaveEd extends Application {
 
+    private final String version = "v0.1.0";
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LTSaveEd.fxml"));
@@ -16,7 +18,7 @@ public class LTSaveEd extends Application {
         controller.setStage(primaryStage);
         controller.setRoot(loader.getRoot());
         controller.initializeComboBoxes();
-        primaryStage.setTitle("LTSaveEd v1.0.0");
+        primaryStage.setTitle("LTSaveEd " + version);
         primaryStage.setScene(new Scene(root, 1024, 700));
         //primaryStage.setMaximized(true);
         primaryStage.show();
