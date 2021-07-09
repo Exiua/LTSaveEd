@@ -92,7 +92,8 @@ public class Controller {
             "innoxia_panther_tail", "innoxia_pig_tail", "RABBIT_MORPH", "dsg_raccoon_tail", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_tail", "innoxia_sheep_tail",
             "NoStepOnSnek_snake_tail", "charisma_spider_tailFluffy", "charisma_spider_tail", "SQUIRREL_MORPH", "WOLF_MORPH");
     private final ObservableList<String> tentacleTypes = FXCollections.observableArrayList("NONE");
-    private final ObservableList<String> wingTypes = FXCollections.observableArrayList("NONE");
+    private final ObservableList<String> wingTypes = FXCollections.observableArrayList("NONE", "ANGEL", "DEMON_FEATHERED", "DEMON_COMMON", "dsg_dragon_wing",
+            "dsg_dragon_wingFeathered", "dsg_gryphon_wing", "FEATHERED", "INSECT", "LEATHERY");
     private final ObservableList<String> armTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_arm", "BAT_MORPH", "dsg_bear_arm",
             "NoStepOnSnek_capybara_arm", "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_arm", "dsg_dragon_armWings", "dsg_ferret_arm", "FOX_MORPH",
             "innoxia_goat_arm", "dsg_gryphon_arm", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_arm", "NoStepOnSnek_octopus_arm", "dsg_otter_arm",
