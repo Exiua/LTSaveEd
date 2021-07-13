@@ -61,14 +61,23 @@ public class Controller {
             "#core$surname$value"};
     private final String[] ComboBoxIds = {"#body$torso$type"};
     private final ObservableList<String> sexualOrientations = FXCollections.observableArrayList("Androphilia", "Ambiphilia", "Gynephilia");
-    private final ObservableList<String> antennaeTypes = FXCollections.observableArrayList("NONE"); //TODO
-    private final ObservableList<String> earTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<String> antennaeTypes = FXCollections.observableArrayList("NONE"); //TODO: Find antennae types
+    private final ObservableList<String> earTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_ear", "BAT_MORPH", "dsg_bear_ear",
+            "NoStepOnSnek_capybara_ear", "CAT_MORPH", "CAT_MORPH_TUFTED", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "DOG_MORPH_POINTED", "DOG_MORPH_FOLDED", "dsg_dragon_ear",
+            "dsg_dragon_earExternal", "dsg_ferret_ear", "FOX_MORPH", "FOX_MORPH_BIG", "innoxia_goat_ear", "dsg_gryphon_ear", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_ear",
+            "NoStepOnSnek_octopus_ear", "dsg_otter_ear", "innoxia_panther_ear", "innoxia_pig_ear", "RABBIT_MORPH", "RABBIT_MORPH_FLOPPY", "dsg_raccoon_ear", "RAT_MORPH",
+            "REINDEER_MORPH", "dsg_shark_ear", "dsg_shark_earFin", "innoxia_sheep_ear", "NoStepOnSnek_snake_ear_1", "NoStepOnSnek_snake_ear", "charisma_spider_ear",
+            "SQUIRREL_MORPH", "WOLF_MORPH");
     private final ObservableList<String> faceTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_face", "BAT_MORPH", "dsg_bear_face",
-            "NoStepOnSnek_capybara_face", "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_faceCoatl", "dsg_dragon_faceRyu", "dsg_dragon_face", "dsg_ferret_face", "FOX_MORPH",
-            "innoxia_goat_face", "dsg_gryphon_face", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_face", "NoStepOnSnek_octopus_face", "dsg_otter_face",
-            "innoxia_panther_face", "innoxia_pig_face", "RABBIT_MORPH", "dsg_raccoon_face", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_face", "innoxia_sheep_torso",
+            "NoStepOnSnek_capybara_face", "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_faceCoatl", "dsg_dragon_faceRyu", "dsg_dragon_face", "dsg_ferret_face",
+            "FOX_MORPH", "innoxia_goat_face", "dsg_gryphon_face", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_face", "NoStepOnSnek_octopus_face", "dsg_otter_face",
+            "innoxia_panther_face", "innoxia_pig_face", "RABBIT_MORPH", "dsg_raccoon_face", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_face", "innoxia_sheep_face",
             "NoStepOnSnek_snake_face", "NoStepOnSnek_snake_face_h", "charisma_spider_faceFluffy", "charisma_spider_face", "SQUIRREL_MORPH", "WOLF_MORPH");
-    private final ObservableList<String> eyeTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<String> eyeTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_eye", "BAT_MORPH", "dsg_bear_eye",
+            "NoStepOnSnek_capybara_eye", "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_eye", "dsg_ferret_eye", "FOX_MORPH", "innoxia_goat_eye",
+            "dsg_gryphon_eye", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_eye", "NoStepOnSnek_octopus_eye", "dsg_otter_eye", "innoxia_panther_eye",
+            "innoxia_pig_eye", "RABBIT_MORPH", "dsg_raccoon_eye", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_eye", "innoxia_sheep_eye", "NoStepOnSnek_snake_eye",
+            "charisma_spider_eye", "SQUIRREL_MORPH", "WOLF_MORPH");
     private final ObservableList<String> hairTypes = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> hornTypes = FXCollections.observableArrayList("NONE"); //TODO
     private final ObservableList<String> legTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso",
@@ -91,7 +100,7 @@ public class Controller {
             "innoxia_goat_tail", "dsg_gryphon_tailFeathers", "dsg_gryphon_tail", "HARPY", "HORSE_MORPH", "HORSE_MORPH_ZEBRA", "innoxia_hyena_tail", "dsg_otter_tail",
             "innoxia_panther_tail", "innoxia_pig_tail", "RABBIT_MORPH", "dsg_raccoon_tail", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_tail", "innoxia_sheep_tail",
             "NoStepOnSnek_snake_tail", "charisma_spider_tailFluffy", "charisma_spider_tail", "SQUIRREL_MORPH", "WOLF_MORPH");
-    private final ObservableList<String> tentacleTypes = FXCollections.observableArrayList("NONE"); //TODO
+    private final ObservableList<String> tentacleTypes = FXCollections.observableArrayList("NONE"); //TODO: Find tentacle types
     private final ObservableList<String> wingTypes = FXCollections.observableArrayList("NONE", "ANGEL", "DEMON_FEATHERED", "DEMON_COMMON", "dsg_dragon_wing",
             "dsg_dragon_wingFeathered", "dsg_gryphon_wing", "FEATHERED", "INSECT", "LEATHERY");
     private final ObservableList<String> armTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_arm", "BAT_MORPH", "dsg_bear_arm",
@@ -179,7 +188,7 @@ public class Controller {
             }
         }
 
-        protected Node getValueNode(){
+        private Node getValueNode(){
             String[] id = tf.getId().split("\\$");
             NodeList attributeNodes = getAttributeNodes();
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
@@ -290,6 +299,11 @@ public class Controller {
         return attr.getAttributes().getNamedItem(id[2]);
     }
 
+    /**
+     * Updates xml boolean values changed by CheckBoxes
+     * @param event
+     *   ActionEvent from the CheckBox that was changed
+     */
     @FXML
     private void updateXmlBoolean(ActionEvent event){
         String fxId = "#" + getId(event);
@@ -301,7 +315,6 @@ public class Controller {
 
     /**
      * Reads data from xml save file and sSets all fields with the selected character data
-     *
      */
     private void setFields(){
         if(fileLoaded) {
@@ -316,17 +329,27 @@ public class Controller {
                         NamedNodeMap attributes = currNode.getAttributes();
                         for(int k = 0; k < attributes.getLength(); k++){
                             Node valueNode = attributes.item(k);
+                            String value = valueNode.getTextContent();
                             String bodyNodeName = valueNode.getNodeName();
+                            String nodeId = "#" + attributeName + "$" + elementName + "$" + bodyNodeName;
                             try { //Using TextFields for numerical and string values
-                                TextField tf = (TextField) root.lookup("#" + attributeName + "$" + elementName + "$" + bodyNodeName);
+                                TextField tf = (TextField) root.lookup(nodeId);
                                 if (tf != null) {
-                                    tf.setText(valueNode.getTextContent());
+                                    tf.setText(value);
                                 }
                             }
                             catch(ClassCastException e){ //Using CheckBox for boolean values
-                                CheckBox cb = (CheckBox) root.lookup("#" + attributeName + "$" + elementName + "$" + bodyNodeName);
-                                if (cb != null){
-                                    cb.setSelected(Boolean.parseBoolean(valueNode.getTextContent()));
+                                try {
+                                    CheckBox cb = (CheckBox) root.lookup(nodeId);
+                                    if (cb != null) {
+                                        cb.setSelected(Boolean.parseBoolean(value));
+                                    }
+                                }
+                                catch(ClassCastException e2){ //Using ComboBoxes for fixed values
+                                    ComboBox<String> cb = (ComboBox<String>) root.lookup(nodeId);
+                                    if (cb != null){
+                                        cb.setValue(value);
+                                    }
                                 }
                             }
                         }
@@ -337,6 +360,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Method to attach listeners to TextFields to properly detect and record changes to the xml data
+     */
     private void attachListeners(){
         for(String intTextFieldId : intTextFieldIds) {
             TextField tf = (TextField) root.lookup(intTextFieldId);
@@ -372,6 +398,11 @@ public class Controller {
         return null;
     }
 
+    /**
+     * Overwrites the file that was used to load in the xml data
+     * @param event
+     *   ActionEvent triggering the save call
+     */
     @FXML
     private void saveFileOverwrite(ActionEvent event){
         event.consume();
@@ -380,6 +411,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Writes xml data to a new file
+     * @param event
+     *   ActionEvent triggering the save call
+     */
     @FXML
     private void saveFileExport(ActionEvent event){
         event.consume();
@@ -397,6 +433,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Saves xml data to the given file
+     * @param f
+     *   File to save the xml data to
+     */
     private void saveToFile(File f){
         TransformerFactory tff = TransformerFactory.newInstance();
         try {
