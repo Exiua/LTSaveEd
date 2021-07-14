@@ -24,6 +24,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class Controller {
@@ -59,8 +60,10 @@ public class Controller {
             "#body$spinneret$stretchedCapacity"};
     private final String[] stringTextFieldIds = {"#core$name$nameAndrogynous", "#core$name$nameFeminine", "#core$name$nameMasculine",
             "#core$surname$value"};
-    private final String[] ComboBoxIds = {"#body$torso$type"};
-    private final ObservableList<String> sexualOrientations = FXCollections.observableArrayList("Androphilia", "Ambiphilia", "Gynephilia");
+    private final String[] ComboBoxIds = {"#core$sexualOrientation$value", "#body$antennae$type", "#body$ear$type", "#body$face$type", "#body$eye$type", "#body$hair$type",
+            "#body$horn$type", "#body$leg$type", "#body$ass$type", "#body$breasts$type", "#body$milk$type", "#body$breastsCrotch$type", "#body$milkCrotch$type", "#body$penis$type",
+            "#body$cum$type", "#body$vagina$type", "#body$girlcum$type", "#body$torso$type", "#body$tail$type", "#body$tentacle$type", "#body$wing$type", "#body$arm$type"};
+    private final ObservableList<String> sexualOrientations = FXCollections.observableArrayList("ANDROPHILIC", "AMBIPHILIC", "GYNEPHILIC");
     private final ObservableList<String> antennaeTypes = FXCollections.observableArrayList("NONE"); //TODO: Find antennae types
     private final ObservableList<String> earTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL", "innoxia_badger_ear", "BAT_MORPH", "dsg_bear_ear",
             "NoStepOnSnek_capybara_ear", "CAT_MORPH", "CAT_MORPH_TUFTED", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "DOG_MORPH_POINTED", "DOG_MORPH_FOLDED", "dsg_dragon_ear",
@@ -85,6 +88,8 @@ public class Controller {
     private final ObservableList<String> assTypes = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> breastsTypes = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> milkTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<String> breastCrotchTypes = breastsTypes;
+    private final ObservableList<String> milkCrotchTypes = milkTypes;
     private final ObservableList<String> penisTypes = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> cumTypes = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> vaginaTypes = FXCollections.observableArrayList(); //TODO
@@ -108,6 +113,7 @@ public class Controller {
             "innoxia_goat_arm", "dsg_gryphon_arm", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_arm", "NoStepOnSnek_octopus_arm", "dsg_otter_arm",
             "innoxia_panther_arm", "innoxia_pig_arm", "RABBIT_MORPH", "dsg_raccoon_arm", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_arm", "dsg_shark_armFin",
             "innoxia_sheep_arm", "NoStepOnSnek_snake_arm", "charisma_spider_armFluffy", "charisma_spider_arm", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ArrayList<ObservableList<String>> comboBoxValues = new ArrayList<ObservableList<String>>();
 
     /**
      * Initializes the Controller object and parses config.ini
@@ -126,6 +132,32 @@ public class Controller {
             in = new FileInputStream("config.ini");
         }
         prop.load(in);
+        initializeComboBoxValues();
+    }
+
+    private void initializeComboBoxValues(){
+        comboBoxValues.add(sexualOrientations);
+        comboBoxValues.add(antennaeTypes);
+        comboBoxValues.add(earTypes);
+        comboBoxValues.add(faceTypes);
+        comboBoxValues.add(eyeTypes);
+        comboBoxValues.add(hairTypes);
+        comboBoxValues.add(hornTypes);
+        comboBoxValues.add(legTypes);
+        comboBoxValues.add(assTypes);
+        comboBoxValues.add(breastsTypes);
+        comboBoxValues.add(milkTypes);
+        comboBoxValues.add(breastCrotchTypes);
+        comboBoxValues.add(milkCrotchTypes);
+        comboBoxValues.add(penisTypes);
+        comboBoxValues.add(cumTypes);
+        comboBoxValues.add(vaginaTypes);
+        comboBoxValues.add(girlcumTypes);
+        comboBoxValues.add(torsoTypes);
+        comboBoxValues.add(tailTypes);
+        comboBoxValues.add(tentacleTypes);
+        comboBoxValues.add(wingTypes);
+        comboBoxValues.add(armTypes);
     }
 
     public class TextFieldListener implements ChangeListener<Boolean> {
@@ -217,9 +249,9 @@ public class Controller {
 
     public void initializeComboBoxes(){
         //TODO:
-        for(String ComboBoxId : ComboBoxIds) {
-            ComboBox<String> cb = (ComboBox<String>) root.lookup(ComboBoxId);
-            cb.setItems(torsoTypes);
+        for(int i = 0; i < ComboBoxIds.length; i++) {
+            ComboBox<String> cb = (ComboBox<String>) root.lookup(ComboBoxIds[i]);
+            cb.setItems(comboBoxValues.get(i));
         }
     }
 
