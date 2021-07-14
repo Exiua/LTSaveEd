@@ -67,8 +67,8 @@ public class Controller {
             "#core$name$nameMasculine", "#core$surname$value"};
     private final String[] ComboBoxIds = {"#core$sexualOrientation$value", "#body$antennae$type", "#body$ear$type",
             "#body$face$type", "#body$eye$type", "#body$hair$type", "#body$horn$type", "#body$leg$type",
-            "#body$ass$type", "#body$breasts$type", "#body$milk$type", "#body$breastsCrotch$type",
-            "#body$milkCrotch$type", "#body$penis$type", "#body$cum$type", "#body$vagina$type", "#body$girlcum$type",
+            "#body$ass$type", "#body$breasts$type", "#body$milk$flavour", "#body$breastsCrotch$type",
+            "#body$milkCrotch$flavour", "#body$penis$type", "#body$cum$type", "#body$vagina$type", "#body$girlcum$type",
             "#body$torso$type", "#body$tail$type", "#body$tentacle$type", "#body$wing$type", "#body$arm$type"};
     private final ObservableList<String> sexualOrientations = FXCollections.observableArrayList("ANDROPHILIC",
             "AMBIPHILIC", "GYNEPHILIC");
@@ -125,9 +125,9 @@ public class Controller {
             "dsg_otter_breast", "innoxia_panther_breast", "innoxia_pig_breast", "RABBIT_MORPH", "dsg_raccoon_breast",
             "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_breast", "innoxia_sheep_breast", "NoStepOnSnek_snake_breast",
             "charisma_spider_breast", "SQUIRREL_MORPH", "WOLF_MORPH");
-    private final ObservableList<String> milkTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<String> milkFlavours = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> breastCrotchTypes = breastsTypes;
-    private final ObservableList<String> milkCrotchTypes = milkTypes;
+    private final ObservableList<String> milkCrotchFlavours = milkFlavours;
     private final ObservableList<String> penisTypes = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> cumTypes = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> vaginaTypes = FXCollections.observableArrayList(); //TODO
@@ -195,9 +195,9 @@ public class Controller {
         comboBoxValues.add(legTypes);
         comboBoxValues.add(assTypes);
         comboBoxValues.add(breastsTypes);
-        comboBoxValues.add(milkTypes);
+        comboBoxValues.add(milkFlavours);
         comboBoxValues.add(breastCrotchTypes);
-        comboBoxValues.add(milkCrotchTypes);
+        comboBoxValues.add(milkCrotchFlavours);
         comboBoxValues.add(penisTypes);
         comboBoxValues.add(cumTypes);
         comboBoxValues.add(vaginaTypes);
