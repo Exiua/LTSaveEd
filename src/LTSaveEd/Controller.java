@@ -111,8 +111,20 @@ public class Controller {
     private final ObservableList<String> legTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso", "NoStepOnSnek_capybara_torso", "CAT_MORPH",
             "COW_MORPH", "DEMON_COMMON", "DEMON_HOOFED"); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
-    private final ObservableList<String> assTypes = FXCollections.observableArrayList(); //TODO
-    private final ObservableList<String> breastsTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<String> assTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
+            "innoxia_badger_ass", "BAT_MORPH", "dsg_bear_ass", "NoStepOnSnek_capybara_ass", "CAT_MORPH", "COW_MORPH",
+            "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_ass", "dsg_ferret_ass", "FOX_MORPH", "innoxia_goat_ass",
+            "dsg_gryphon_ass", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_ass", "NoStepOnSnek_octopus_ass",
+            "dsg_otter_ass", "innoxia_panther_ass", "innoxia_pig_ass", "RABBIT_MORPH", "dsg_raccoon_ass", "RAT_MORPH",
+            "REINDEER_MORPH", "dsg_shark_ass", "innoxia_sheep_ass", "NoStepOnSnek_snake_ass", "charisma_spider_ass",
+            "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<String> breastsTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
+            "innoxia_badger_breast", "BAT_MORPH", "dsg_bear_breast", "NoStepOnSnek_capybara_breast", "CAT_MORPH", "COW_MORPH",
+            "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_breast", "dsg_ferret_breast", "FOX_MORPH", "innoxia_goat_breast",
+            "dsg_gryphon_breast", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_breast", "NoStepOnSnek_octopus_breast",
+            "dsg_otter_breast", "innoxia_panther_breast", "innoxia_pig_breast", "RABBIT_MORPH", "dsg_raccoon_breast",
+            "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_breast", "innoxia_sheep_breast", "NoStepOnSnek_snake_breast",
+            "charisma_spider_breast", "SQUIRREL_MORPH", "WOLF_MORPH");
     private final ObservableList<String> milkTypes = FXCollections.observableArrayList(); //TODO
     private final ObservableList<String> breastCrotchTypes = breastsTypes;
     private final ObservableList<String> milkCrotchTypes = milkTypes;
