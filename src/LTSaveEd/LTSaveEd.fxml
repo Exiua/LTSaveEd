@@ -55,7 +55,7 @@
                     </HBox>
                     <HBox layoutX="10.0" layoutY="115.0">
                         <Label text="Orientation: " />
-                        <TextField fx:id="core$sexualOrientation$value" />
+                  <ComboBox fx:id="core$sexualOrientation$value" prefWidth="150.0" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="185.0">
                         <Label text="Obedience: " />
@@ -201,7 +201,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$antennae$type" />
+                              <ComboBox fx:id="body$antennae$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -224,7 +224,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$ear$type" />
+                              <ComboBox fx:id="body$ear$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -263,7 +263,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$eye$type" />
+                              <ComboBox fx:id="body$eye$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -295,7 +295,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$face$type" />
+                              <ComboBox fx:id="body$face$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -415,7 +415,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$hair$type" />
+                              <ComboBox fx:id="body$hair$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -454,7 +454,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$horn$type" />
+                              <ComboBox fx:id="body$horn$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -502,7 +502,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$ass$type" />
+                              <ComboBox fx:id="body$ass$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -596,7 +596,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$leg$type" />
+                              <ComboBox fx:id="body$leg$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -676,7 +676,7 @@
                                     <HBox layoutX="10.0" layoutY="160.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$breasts$type" />
+                              <ComboBox fx:id="body$breasts$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -776,7 +776,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$milk$type" />
+                              <ComboBox fx:id="body$milk$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -858,7 +858,7 @@
                                     <HBox layoutX="10.0" layoutY="160.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$breastsCrotch$type" />
+                              <ComboBox fx:id="body$breastsCrotch$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -958,7 +958,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$milkCrotch$type" />
+                              <ComboBox fx:id="body$milkCrotch$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1046,7 +1046,7 @@
                                     <HBox layoutX="10.0" layoutY="185.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$penis$type" />
+                              <ComboBox fx:id="body$penis$type" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="210.0">
@@ -1080,7 +1080,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$cum$type" />
+                              <ComboBox fx:id="body$cum$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1219,7 +1219,7 @@
                                     <HBox layoutX="10.0" layoutY="371.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$vagina$type" />
+                              <ComboBox fx:id="body$vagina$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1243,7 +1243,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$girlcum$type" />
+                              <ComboBox fx:id="body$girlcum$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1330,7 +1330,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$tail$type" />
+                              <ComboBox fx:id="body$tail$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1390,7 +1390,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$wing$type" />
+                              <ComboBox fx:id="body$wing$type" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1467,7 +1467,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                                        <TextField fx:id="body$arm$type" />
+                              <ComboBox fx:id="body$arm$type" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
