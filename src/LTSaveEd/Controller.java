@@ -97,8 +97,17 @@ public class Controller {
             "dsg_otter_eye", "innoxia_panther_eye", "innoxia_pig_eye", "RABBIT_MORPH", "dsg_raccoon_eye", "RAT_MORPH",
             "REINDEER_MORPH", "dsg_shark_eye", "innoxia_sheep_eye", "NoStepOnSnek_snake_eye", "charisma_spider_eye",
             "SQUIRREL_MORPH", "WOLF_MORPH");
-    private final ObservableList<String> hairTypes = FXCollections.observableArrayList(); //TODO
-    private final ObservableList<String> hornTypes = FXCollections.observableArrayList("NONE"); //TODO
+    private final ObservableList<String> hairTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
+            "innoxia_badger_hair", "BAT_MORPH", "dsg_bear_hair", "NoStepOnSnek_capybara_hair", "CAT_MORPH",
+            "CAT_MORPH_SIDEFLUFF", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_hairFeathers",
+            "dsg_dragon_hairMane", "dsg_dragon_hair", "dsg_ferret_hair", "FOX_MORPH", "innoxia_goat_hair",
+            "dsg_gryphon_hair", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_hair", "NoStepOnSnek_octopus_hair",
+            "dsg_otter_hair", "innoxia_panther_hair", "innoxia_pig_hair", "RABBIT_MORPH", "dsg_raccoon_hair",
+            "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_hair", "innoxia_sheep_hair", "NoStepOnSnek_snake_hair",
+            "charisma_spider_hair", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<String> hornTypes = FXCollections.observableArrayList("NONE", "dsg_dragon_horn",
+            "dsg_dragon_hornAntlers", "dsg_dragon_hornCurled", "dsg_dragon_hornCurved", "HORSE_STRAIGHT", "CURLED",
+            "CURVED", "SPIRAL", "STRAIGHT", "SWEPT_BACK", "REINDEER_RACK");
     private final ObservableList<String> legTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso", "NoStepOnSnek_capybara_torso", "CAT_MORPH",
             "COW_MORPH", "DEMON_COMMON", "DEMON_HOOFED"); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
