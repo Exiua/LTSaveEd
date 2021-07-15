@@ -131,9 +131,22 @@ public class Controller {
             "TEA", "MAPLE", "CINNAMON", "LEMON", "ORANGE", "GRAPE", "MELON", "COCONUT", "BLUEBERRY");
     private final ObservableList<String> breastCrotchTypes = breastsTypes; //Reusing object to simplify the code
     private final ObservableList<String> milkCrotchFlavours = milkFlavours;
-    private final ObservableList<String> penisTypes = FXCollections.observableArrayList(); //TODO
-    private final ObservableList<String> cumFlavours = milkFlavours; //Reusing object as the items are the same
-    private final ObservableList<String> vaginaTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<String> penisTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH",
+            "ANGEL", "innoxia_badger_penis", "BAT_MORPH", "dsg_bear_penis", "NoStepOnSnek_capybara_penis", "CAT_MORPH",
+            "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_penis", "dsg_ferret_penis", "FOX_MORPH",
+            "innoxia_goat_penis", "dsg_gryphon_penis", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_penis",
+            "NoStepOnSnek_octopus_penis", "dsg_otter_penis", "innoxia_panther_penis", "innoxia_pig_penis",
+            "RABBIT_MORPH", "dsg_raccoon_penis", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_penis", "innoxia_sheep_penis",
+            "NoStepOnSnek_snake_penis", "charisma_spider_penis", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<String> cumFlavours = milkFlavours;
+    private final ObservableList<String> vaginaTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH",
+            "ANGEL", "innoxia_badger_vagina", "BAT_MORPH", "dsg_bear_vagina", "NoStepOnSnek_capybara_vagina",
+            "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_vagina", "dsg_ferret_vagina", "FOX_MORPH",
+            "innoxia_goat_vagina", "dsg_gryphon_vagina", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_vagina",
+            "NoStepOnSnek_octopus_vagina", "dsg_otter_vagina", "innoxia_panther_vagina", "innoxia_pig_vagina",
+            "RABBIT_MORPH", "dsg_raccoon_vagina", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_vagina",
+            "innoxia_sheep_vagina", "NoStepOnSnek_snake_vagina", "charisma_spider_vagina", "SQUIRREL_MORPH",
+            "WOLF_MORPH");
     private final ObservableList<String> girlcumFlavours = milkFlavours;
     private final ObservableList<String> torsoTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso", "NoStepOnSnek_capybara_torso", "CAT_MORPH",
