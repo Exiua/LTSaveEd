@@ -68,8 +68,9 @@ public class Controller {
     private final String[] ComboBoxIds = {"#core$sexualOrientation$value", "#body$antennae$type", "#body$ear$type",
             "#body$face$type", "#body$eye$type", "#body$hair$type", "#body$horn$type", "#body$leg$type",
             "#body$ass$type", "#body$breasts$type", "#body$milk$flavour", "#body$breastsCrotch$type",
-            "#body$milkCrotch$flavour", "#body$penis$type", "#body$cum$type", "#body$vagina$type", "#body$girlcum$type",
-            "#body$torso$type", "#body$tail$type", "#body$tentacle$type", "#body$wing$type", "#body$arm$type"};
+            "#body$milkCrotch$flavour", "#body$penis$type", "#body$cum$flavour", "#body$vagina$type",
+            "#body$girlcum$flavour", "#body$torso$type", "#body$tail$type", "#body$tentacle$type", "#body$wing$type",
+            "#body$arm$type"};
     private final ObservableList<String> sexualOrientations = FXCollections.observableArrayList("ANDROPHILIC",
             "AMBIPHILIC", "GYNEPHILIC");
     private final ObservableList<String> antennaeTypes = FXCollections.observableArrayList("NONE"); //TODO: Find antennae types
@@ -125,13 +126,15 @@ public class Controller {
             "dsg_otter_breast", "innoxia_panther_breast", "innoxia_pig_breast", "RABBIT_MORPH", "dsg_raccoon_breast",
             "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_breast", "innoxia_sheep_breast", "NoStepOnSnek_snake_breast",
             "charisma_spider_breast", "SQUIRREL_MORPH", "WOLF_MORPH");
-    private final ObservableList<String> milkFlavours = FXCollections.observableArrayList(); //TODO
-    private final ObservableList<String> breastCrotchTypes = breastsTypes;
+    private final ObservableList<String> milkFlavours = FXCollections.observableArrayList("CUM", "MILK", "GIRL_CUM",
+            "BUBBLEGUM", "BEER", "VANILLA", "STRAWBERRY", "CHOCOLATE", "PINEAPPLE", "HONEY", "MINT", "CHERRY", "COFFEE",
+            "TEA", "MAPLE", "CINNAMON", "LEMON", "ORANGE", "GRAPE", "MELON", "COCONUT", "BLUEBERRY");
+    private final ObservableList<String> breastCrotchTypes = breastsTypes; //Reusing object to simplify the code
     private final ObservableList<String> milkCrotchFlavours = milkFlavours;
     private final ObservableList<String> penisTypes = FXCollections.observableArrayList(); //TODO
-    private final ObservableList<String> cumTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<String> cumFlavours = milkFlavours; //Reusing object as the items are the same
     private final ObservableList<String> vaginaTypes = FXCollections.observableArrayList(); //TODO
-    private final ObservableList<String> girlcumTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<String> girlcumFlavours = milkFlavours;
     private final ObservableList<String> torsoTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso", "NoStepOnSnek_capybara_torso", "CAT_MORPH",
             "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_torsoRyu", "dsg_dragon_torso", "dsg_ferret_torso",
@@ -199,9 +202,9 @@ public class Controller {
         comboBoxValues.add(breastCrotchTypes);
         comboBoxValues.add(milkCrotchFlavours);
         comboBoxValues.add(penisTypes);
-        comboBoxValues.add(cumTypes);
+        comboBoxValues.add(cumFlavours);
         comboBoxValues.add(vaginaTypes);
-        comboBoxValues.add(girlcumTypes);
+        comboBoxValues.add(girlcumFlavours);
         comboBoxValues.add(torsoTypes);
         comboBoxValues.add(tailTypes);
         comboBoxValues.add(tentacleTypes);
