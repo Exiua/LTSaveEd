@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -25,6 +24,12 @@
         <Tab text="Core">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <VBox layoutX="14.0" layoutY="44.0" spacing="10.0">
+               <HBox alignment="TOP_RIGHT">
+                  <children>
+                     <Label text="Character: " />
+                     <ComboBox fx:id="characterSelector" onAction="#selectCharacter" prefWidth="150.0" />
+                  </children>
+               </HBox>
                     <HBox>
                         <Label text="Name (A, F, M): " />
                         <TextField fx:id="core$name$nameAndrogynous" />
@@ -55,7 +60,7 @@
                     </HBox>
                     <HBox layoutX="10.0" layoutY="115.0">
                         <Label text="Orientation: " />
-                  <ComboBox fx:id="core$sexualOrientation$value" prefWidth="150.0" />
+                  <ComboBox fx:id="core$sexualOrientation$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="185.0">
                         <Label text="Obedience: " />
@@ -82,7 +87,6 @@
                         <TextField fx:id="core$mana$value" />
                     </HBox>
                 </VBox>
-                <Button fx:id="testingButton" layoutX="615.0" layoutY="367.0" mnemonicParsing="false" onAction="#selectCharacter" text="Button" />
             </AnchorPane>
         </Tab>
         <Tab text="Body">
@@ -201,7 +205,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$antennae$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$antennae$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -224,7 +228,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$ear$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$ear$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -263,7 +267,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$eye$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$eye$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -295,7 +299,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$face$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$face$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -415,7 +419,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$hair$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$hair$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -454,7 +458,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$horn$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$horn$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -502,7 +506,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$ass$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$ass$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -596,7 +600,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$leg$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$leg$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -676,7 +680,7 @@
                                     <HBox layoutX="10.0" layoutY="160.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$breasts$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$breasts$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -770,7 +774,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                              <ComboBox fx:id="body$milk$flavour" prefWidth="150.0" />
+                              <ComboBox fx:id="body$milk$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -852,7 +856,7 @@
                                     <HBox layoutX="10.0" layoutY="160.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$breastsCrotch$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$breastsCrotch$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -946,7 +950,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                              <ComboBox fx:id="body$milkCrotch$flavour" prefWidth="150.0" />
+                              <ComboBox fx:id="body$milkCrotch$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -970,8 +974,8 @@
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="453.0" minHeight="10.0" prefHeight="453.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="161.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
 
                                 <VBox prefHeight="385.0" prefWidth="372.0" spacing="10.0" GridPane.rowSpan="2">
@@ -1034,7 +1038,7 @@
                                     <HBox layoutX="10.0" layoutY="185.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$penis$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$penis$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="210.0">
@@ -1062,7 +1066,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                              <ComboBox fx:id="body$cum$flavour" prefWidth="150.0" />
+                              <ComboBox fx:id="body$cum$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1201,7 +1205,7 @@
                                     <HBox layoutX="10.0" layoutY="371.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$vagina$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$vagina$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1219,13 +1223,9 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                              <ComboBox fx:id="body$girlcum$flavour" prefWidth="150.0" />
+                              <ComboBox fx:id="body$girlcum$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
-
-                                    <padding>
-                                        <Insets top="60.0" />
-                                    </padding>
                                 </VBox>
 
                                 <padding>
@@ -1267,7 +1267,7 @@
                                     <HBox>
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$torso$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$torso$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1306,7 +1306,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$tail$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$tail$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1342,7 +1342,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$tentacle$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$tentacle$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1366,7 +1366,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$wing$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$wing$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1443,7 +1443,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$arm$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$arm$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
