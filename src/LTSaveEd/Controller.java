@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
@@ -331,6 +332,7 @@ public class Controller {
     public void initializeComboBoxes(){
         //TODO:
         for(int i = 0; i < ComboBoxIds.length; i++) {
+            @SuppressWarnings("unchecked")
             ComboBox<String> cb = (ComboBox<String>) root.lookup(ComboBoxIds[i]);
             cb.setItems(comboBoxValues.get(i));
         }
@@ -372,13 +374,41 @@ public class Controller {
                 e.printStackTrace();
             }
         }
+        loadCharacterSelector();
+    }
+
+    public void loadCharacterSelector(){
+        @SuppressWarnings("unchecked")
+        ComboBox<NpcCharacter> characterSelector = (ComboBox<NpcCharacter>) root.lookup("#characterSelector");
+        NpcCharacter player = new NpcCharacter("PlayerCharacter");
+        ObservableList<NpcCharacter> characterList = FXCollections.observableArrayList(player);
+        NodeList npcList = saveFile.getElementsByTagName("NPC");
+        for(int i = 0; i < npcList.getLength(); i++){
+            characterList.add(new NpcCharacter(npcList.item(i)));
+        }
+        characterSelector.setItems(characterList);
+        characterSelector.setValue(player);
+        charId = "PlayerCharacter";
+        characterSelector.setConverter(new StringConverter<NpcCharacter>() {
+            @Override
+            public String toString(NpcCharacter npcCharacter) {
+                return npcCharacter.getName();
+            }
+
+            @Override
+            public NpcCharacter fromString(String s) {
+                return null;
+            }
+        });
+        setFields();
     }
 
     @FXML
     private void selectCharacter(ActionEvent event){
-        //TODO:
         event.consume();
-        charId = "PlayerCharacter"; //Placeholder; will change to take input from a combobox to select character
+        @SuppressWarnings("unchecked")
+        ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) root.lookup("#characterSelector");
+        charId = cb.getValue().getId(); //Placeholder; will change to take input from a combobox to select character
         setFields();
     }
 
