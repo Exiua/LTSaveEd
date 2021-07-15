@@ -415,9 +415,11 @@ public class Controller {
     private Node getValueNode(ActionEvent event){
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
-        Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
-        attr = (Element) attr.getElementsByTagName(id[1]).item(0);
-        return attr.getAttributes().getNamedItem(id[2]);
+        Element attr = (Element) attributeNodes;
+        for(int i = 0; i < id.length - 1; i++){
+            attr = (Element) attr.getElementsByTagName(id[i]).item(0);
+        }
+        return attr.getAttributes().getNamedItem(id[id.length-1]);
     }
 
     /**
@@ -431,6 +433,20 @@ public class Controller {
         CheckBox cb = (CheckBox) root.lookup(fxId);
         Node value = getValueNode(event);
         value.setTextContent("" + cb.isSelected());
+        event.consume();
+    }
+
+    /**
+     * Updates xml values changed by ComboBoxes
+     * @param event
+     *   ActionEvent from the ComboBox that was changed
+     */
+    @FXML
+    private void updateXmlComboBox(ActionEvent event){
+        String fxId = "#" + getId(event);
+        ComboBox<String> cb = (ComboBox<String>) root.lookup(fxId);
+        Node value = getValueNode(event);
+        value.setTextContent(cb.getValue());
         event.consume();
     }
 
