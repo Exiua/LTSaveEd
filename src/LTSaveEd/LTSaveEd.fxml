@@ -770,13 +770,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                                        <TextField fx:id="body$milk$flavour" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <Label text="Type: " />
-                              <ComboBox fx:id="body$milk$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$milk$flavour" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -952,13 +946,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                                        <TextField fx:id="body$milkCrotch$flavour" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <Label text="Type: " />
-                              <ComboBox fx:id="body$milkCrotch$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$milkCrotch$flavour" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1074,13 +1062,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                                        <TextField fx:id="body$cum$flavour" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <Label text="Type: " />
-                              <ComboBox fx:id="body$cum$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$cum$flavour" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1237,13 +1219,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                                        <TextField fx:id="body$girlcum$flavour" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <Label text="Type: " />
-                              <ComboBox fx:id="body$girlcum$type" prefWidth="150.0" />
+                              <ComboBox fx:id="body$girlcum$flavour" prefWidth="150.0" />
 
                                     </HBox>
 
