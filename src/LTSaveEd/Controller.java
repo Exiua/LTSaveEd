@@ -28,15 +28,51 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * Controller class that handles events and interactions of the GUI
+ * @author Exiua
+ * @version 0.1.0
+ */
 public class Controller {
 
+    /**
+     * Gui's stage object
+     */
     private Stage stage;
+
+    /**
+     * Root node of the fxml
+     */
     private AnchorPane root;
+
+    /**
+     * Properties object of the config.ini file
+     */
     private Properties prop;
+
+    /**
+     * File that was loaded in
+     */
     private File workingFile;
+
+    /**
+     * Parsed xml object
+     */
     private Document saveFile;
+
+    /**
+     * Boolean of whether a valid file has been loaded
+     */
     private boolean fileLoaded = false;
+
+    /**
+     * Id of the character to edit
+     */
     private String charId;
+
+    /**
+     * String array of all TextField ids using an int data type
+     */
     private final String[] intTextFieldIds = {"#core$level$value", "#core$experience$value", "#core$perkPoints$value",
             "#body$bodyCore$bodySize", "#body$bodyCore$femininity", "#body$bodyCore$height", "#body$bodyCore$muscle",
             "#body$antennae$antennaePerRow", "#body$antennae$length", "#body$antennae$rows", "#body$mouth$depth",
@@ -57,6 +93,10 @@ public class Controller {
             "#body$vagina$labiaSize", "#body$vagina$plasticity", "#body$tail$count", "#body$tail$girth",
             "#body$tentacle$count", "#body$tentacle$girth", "#body$wing$size", "#body$spinneret$depth",
             "#body$spinneret$elasticity", "#body$spinneret$plasticity", "#body$spinneret$wetness", "#body$arm$rows"};
+
+    /**
+     * String array of all TextField ids using a double data type
+     */
     private final String[] doubleTextFieldIds = {"#core$obedience$value", "#core$health$value", "#core$mana$value",
             "#body$mouth$capacity", "#body$mouth$stretchedCapacity", "#body$anus$capacity",
             "#body$anus$stretchedCapacity", "#body$breasts$storedMilk", "#body$nipples$capacity",
@@ -64,17 +104,37 @@ public class Controller {
             "#body$nipplesCrotch$stretchedCapacity", "#body$penis$capacity", "#body$penis$stretchedCapacity",
             "#body$testicles$storedCum", "#body$vagina$capacity", "#body$vagina$stretchedCapacity", "#body$tail$length",
             "#body$tentacle$length", "#body$spinneret$capacity", "#body$spinneret$stretchedCapacity"};
+
+    /**
+     * String array of all TextField ids using a String data type
+     */
     private final String[] stringTextFieldIds = {"#core$name$nameAndrogynous", "#core$name$nameFeminine",
             "#core$name$nameMasculine", "#core$surname$value"};
+
+    /**
+     * String array of all ComboBox ids
+     */
     private final String[] ComboBoxIds = {"#core$sexualOrientation$value", "#body$antennae$type", "#body$ear$type",
             "#body$face$type", "#body$eye$type", "#body$hair$type", "#body$horn$type", "#body$leg$type",
             "#body$ass$type", "#body$breasts$type", "#body$milk$flavour", "#body$breastsCrotch$type",
             "#body$milkCrotch$flavour", "#body$penis$type", "#body$cum$flavour", "#body$vagina$type",
             "#body$girlcum$flavour", "#body$torso$type", "#body$tail$type", "#body$tentacle$type", "#body$wing$type",
             "#body$arm$type"};
+
+    /**
+     * ObservableList of all sexual orientations in the game
+     */
     private final ObservableList<String> sexualOrientations = FXCollections.observableArrayList("ANDROPHILIC",
             "AMBIPHILIC", "GYNEPHILIC");
+
+    /**
+     * ObservableList of all antennae types in the game
+     */
     private final ObservableList<String> antennaeTypes = FXCollections.observableArrayList("NONE"); //TODO: Find antennae types
+
+    /**
+     * ObservableList of all ear types in the game
+     */
     private final ObservableList<String> earTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_ear", "BAT_MORPH", "dsg_bear_ear", "NoStepOnSnek_capybara_ear", "CAT_MORPH",
             "CAT_MORPH_TUFTED", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "DOG_MORPH_POINTED", "DOG_MORPH_FOLDED",
@@ -84,6 +144,10 @@ public class Controller {
             "RABBIT_MORPH_FLOPPY", "dsg_raccoon_ear", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_ear", "dsg_shark_earFin",
             "innoxia_sheep_ear", "NoStepOnSnek_snake_ear_1", "NoStepOnSnek_snake_ear", "charisma_spider_ear",
             "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ObservableList of all face types in the game
+     */
     private final ObservableList<String> faceTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_face", "BAT_MORPH", "dsg_bear_face", "NoStepOnSnek_capybara_face", "CAT_MORPH", "COW_MORPH",
             "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_faceCoatl", "dsg_dragon_faceRyu", "dsg_dragon_face",
@@ -92,6 +156,10 @@ public class Controller {
             "innoxia_pig_face", "RABBIT_MORPH", "dsg_raccoon_face", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_face",
             "innoxia_sheep_face", "NoStepOnSnek_snake_face", "NoStepOnSnek_snake_face_h", "charisma_spider_faceFluffy",
             "charisma_spider_face", "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ObservableList of all eye types in the game
+     */
     private final ObservableList<String> eyeTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_eye", "BAT_MORPH", "dsg_bear_eye", "NoStepOnSnek_capybara_eye", "CAT_MORPH", "COW_MORPH",
             "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_eye", "dsg_ferret_eye", "FOX_MORPH", "innoxia_goat_eye",
@@ -99,6 +167,10 @@ public class Controller {
             "dsg_otter_eye", "innoxia_panther_eye", "innoxia_pig_eye", "RABBIT_MORPH", "dsg_raccoon_eye", "RAT_MORPH",
             "REINDEER_MORPH", "dsg_shark_eye", "innoxia_sheep_eye", "NoStepOnSnek_snake_eye", "charisma_spider_eye",
             "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ObservableList of all hair types in the game
+     */
     private final ObservableList<String> hairTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_hair", "BAT_MORPH", "dsg_bear_hair", "NoStepOnSnek_capybara_hair", "CAT_MORPH",
             "CAT_MORPH_SIDEFLUFF", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_hairFeathers",
@@ -107,12 +179,24 @@ public class Controller {
             "dsg_otter_hair", "innoxia_panther_hair", "innoxia_pig_hair", "RABBIT_MORPH", "dsg_raccoon_hair",
             "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_hair", "innoxia_sheep_hair", "NoStepOnSnek_snake_hair",
             "charisma_spider_hair", "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ObservableList of all horn types in the game
+     */
     private final ObservableList<String> hornTypes = FXCollections.observableArrayList("NONE", "dsg_dragon_horn",
             "dsg_dragon_hornAntlers", "dsg_dragon_hornCurled", "dsg_dragon_hornCurved", "HORSE_STRAIGHT", "CURLED",
             "CURVED", "SPIRAL", "STRAIGHT", "SWEPT_BACK", "REINDEER_RACK");
+
+    /**
+     * ObservableList of all leg types in the game
+     */
     private final ObservableList<String> legTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso", "NoStepOnSnek_capybara_torso", "CAT_MORPH",
             "COW_MORPH", "DEMON_COMMON", "DEMON_HOOFED"); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
+
+    /**
+     * ObservableList of all ass types in the game
+     */
     private final ObservableList<String> assTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_ass", "BAT_MORPH", "dsg_bear_ass", "NoStepOnSnek_capybara_ass", "CAT_MORPH", "COW_MORPH",
             "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_ass", "dsg_ferret_ass", "FOX_MORPH", "innoxia_goat_ass",
@@ -120,6 +204,10 @@ public class Controller {
             "dsg_otter_ass", "innoxia_panther_ass", "innoxia_pig_ass", "RABBIT_MORPH", "dsg_raccoon_ass", "RAT_MORPH",
             "REINDEER_MORPH", "dsg_shark_ass", "innoxia_sheep_ass", "NoStepOnSnek_snake_ass", "charisma_spider_ass",
             "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ObservableList of all breast types in the game
+     */
     private final ObservableList<String> breastsTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_breast", "BAT_MORPH", "dsg_bear_breast", "NoStepOnSnek_capybara_breast", "CAT_MORPH", "COW_MORPH",
             "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_breast", "dsg_ferret_breast", "FOX_MORPH", "innoxia_goat_breast",
@@ -127,11 +215,27 @@ public class Controller {
             "dsg_otter_breast", "innoxia_panther_breast", "innoxia_pig_breast", "RABBIT_MORPH", "dsg_raccoon_breast",
             "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_breast", "innoxia_sheep_breast", "NoStepOnSnek_snake_breast",
             "charisma_spider_breast", "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ObservableList of all milk flavours in the game
+     */
     private final ObservableList<String> milkFlavours = FXCollections.observableArrayList("CUM", "MILK", "GIRL_CUM",
             "BUBBLEGUM", "BEER", "VANILLA", "STRAWBERRY", "CHOCOLATE", "PINEAPPLE", "HONEY", "MINT", "CHERRY", "COFFEE",
             "TEA", "MAPLE", "CINNAMON", "LEMON", "ORANGE", "GRAPE", "MELON", "COCONUT", "BLUEBERRY");
+
+    /**
+     * ObservableList of all breastCrotch types in the game (same as breastTypes)
+     */
     private final ObservableList<String> breastCrotchTypes = breastsTypes; //Reusing object to simplify the code
+
+    /**
+     * ObservableList of all milkCrotch flavours in the game (same as milkFlavours)
+     */
     private final ObservableList<String> milkCrotchFlavours = milkFlavours;
+
+    /**
+     * ObservableList of all penis types in the game
+     */
     private final ObservableList<String> penisTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH",
             "ANGEL", "innoxia_badger_penis", "BAT_MORPH", "dsg_bear_penis", "NoStepOnSnek_capybara_penis", "CAT_MORPH",
             "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_penis", "dsg_ferret_penis", "FOX_MORPH",
@@ -139,7 +243,15 @@ public class Controller {
             "NoStepOnSnek_octopus_penis", "dsg_otter_penis", "innoxia_panther_penis", "innoxia_pig_penis",
             "RABBIT_MORPH", "dsg_raccoon_penis", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_penis", "innoxia_sheep_penis",
             "NoStepOnSnek_snake_penis", "charisma_spider_penis", "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ObservableList of all cum flavours in the game (same as milkFlavours)
+     */
     private final ObservableList<String> cumFlavours = milkFlavours;
+
+    /**
+     * ObservableList of all vagina types in the game
+     */
     private final ObservableList<String> vaginaTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH",
             "ANGEL", "innoxia_badger_vagina", "BAT_MORPH", "dsg_bear_vagina", "NoStepOnSnek_capybara_vagina",
             "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_vagina", "dsg_ferret_vagina", "FOX_MORPH",
@@ -148,7 +260,15 @@ public class Controller {
             "RABBIT_MORPH", "dsg_raccoon_vagina", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_vagina",
             "innoxia_sheep_vagina", "NoStepOnSnek_snake_vagina", "charisma_spider_vagina", "SQUIRREL_MORPH",
             "WOLF_MORPH");
+
+    /**
+     * ObservableList of all girlcum flavours in the game (same as milkFlavours)
+     */
     private final ObservableList<String> girlcumFlavours = milkFlavours;
+
+    /**
+     * ObservableList of all torso types in the game
+     */
     private final ObservableList<String> torsoTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso", "NoStepOnSnek_capybara_torso", "CAT_MORPH",
             "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_torsoRyu", "dsg_dragon_torso", "dsg_ferret_torso",
@@ -157,6 +277,10 @@ public class Controller {
             "innoxia_pig_torso", "RABBIT_MORPH", "dsg_raccoon_torso", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_torso",
             "dsg_shark_torsoDorsalFin","innoxia_sheep_torso", "NoStepOnSnek_snake_torso", "charisma_spider_torsoFluffy",
             "charisma_spider_torso", "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ObservableList of all tail types in the game
+     */
     private final ObservableList<String> tailTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH",
             "innoxia_badger_tail", "BAT_MORPH", "dsg_bear_tail", "NoStepOnSnek_capybara_arm", "CAT_MORPH",
             "CAT_MORPH_SHORT", "CAT_MORPH_TUFTED", "COW_MORPH", "DEMON_COMMON", "DEMON_HAIR_TIP", "DEMON_TAPERED",
@@ -167,10 +291,22 @@ public class Controller {
             "dsg_raccoon_tail", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_tail", "innoxia_sheep_tail",
             "NoStepOnSnek_snake_tail", "charisma_spider_tailFluffy", "charisma_spider_tail", "SQUIRREL_MORPH",
             "WOLF_MORPH");
+
+    /**
+     * ObservableList of all tentacle types in the game
+     */
     private final ObservableList<String> tentacleTypes = FXCollections.observableArrayList("NONE"); //TODO: Find tentacle types
+
+    /**
+     * ObservableList of all wing types in the game
+     */
     private final ObservableList<String> wingTypes = FXCollections.observableArrayList("NONE", "ANGEL",
             "DEMON_FEATHERED", "DEMON_COMMON", "dsg_dragon_wing", "dsg_dragon_wingFeathered", "dsg_gryphon_wing",
             "FEATHERED", "INSECT", "LEATHERY");
+
+    /**
+     * ObservableList of all arm types in the game
+     */
     private final ObservableList<String> armTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
             "innoxia_badger_arm", "BAT_MORPH", "dsg_bear_arm", "NoStepOnSnek_capybara_arm", "CAT_MORPH", "COW_MORPH",
             "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_arm", "dsg_dragon_armWings", "dsg_ferret_arm", "FOX_MORPH",
@@ -178,6 +314,10 @@ public class Controller {
             "NoStepOnSnek_octopus_arm", "dsg_otter_arm", "innoxia_panther_arm", "innoxia_pig_arm", "RABBIT_MORPH",
             "dsg_raccoon_arm", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_arm", "dsg_shark_armFin", "innoxia_sheep_arm",
             "NoStepOnSnek_snake_arm", "charisma_spider_armFluffy", "charisma_spider_arm", "SQUIRREL_MORPH", "WOLF_MORPH");
+
+    /**
+     * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
+     */
     private final ArrayList<ObservableList<String>> comboBoxValues = new ArrayList<ObservableList<String>>();
 
     /**
@@ -201,6 +341,9 @@ public class Controller {
         initializeComboBoxValues();
     }
 
+    /**
+     * Adds various ObservableLists to an ArrayList to make it easier to initialize the various ComboBoxes
+     */
     private void initializeComboBoxValues(){
         comboBoxValues.add(sexualOrientations);
         comboBoxValues.add(antennaeTypes);
@@ -226,16 +369,41 @@ public class Controller {
         comboBoxValues.add(armTypes);
     }
 
+    /**
+     * Class that detects focus loss for TextFields
+     */
     public class TextFieldListener implements ChangeListener<Boolean> {
 
+        /**
+         * TextField to monitor
+         */
         private final TextField tf ;
+        /**
+         * Data type of the TextField (e.g. int, double, string, etc.)
+         */
         private final TextFieldType tfType;
 
+        /**
+         * Constructor for a new TextFieldListener
+         * @param textField
+         *   TextField to monitor
+         * @param textFieldType
+         *   Data type of the TextField
+         */
         public TextFieldListener(TextField textField, TextFieldType textFieldType) {
             tf = textField;
             tfType = textFieldType;
         }
 
+        /**
+         * Detects when the TextField has lost focus
+         * @param observable
+         *   (Taken from StackOverflow, so I'm not too sure what each parameter is for lol)
+         * @param oldValue
+         *   (Same)
+         * @param newValue
+         *   (Same)
+         */
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
             if(!newValue) {  // check if focus gained or lost
@@ -377,6 +545,9 @@ public class Controller {
         loadCharacterSelector();
     }
 
+    /**
+     * Parses the xml file for NPCs and adds them to the character selector ComboBox along with the Player Character
+     */
     public void loadCharacterSelector(){
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> characterSelector = (ComboBox<NpcCharacter>) root.lookup("#characterSelector");
@@ -403,6 +574,11 @@ public class Controller {
         setFields();
     }
 
+    /**
+     * Changes the current character to be edited to the character selected by the character selector
+     * @param event
+     *   ActionEvent from the character selector ComboBox
+     */
     @FXML
     private void selectCharacter(ActionEvent event){
         event.consume();
@@ -474,6 +650,7 @@ public class Controller {
     @FXML
     private void updateXmlComboBox(ActionEvent event){
         String fxId = "#" + getId(event);
+        @SuppressWarnings("unchecked")
         ComboBox<String> cb = (ComboBox<String>) root.lookup(fxId);
         Node value = getValueNode(event);
         value.setTextContent(cb.getValue());
@@ -513,6 +690,7 @@ public class Controller {
                                     }
                                 }
                                 catch(ClassCastException e2){ //Using ComboBoxes for fixed values
+                                    @SuppressWarnings("unchecked")
                                     ComboBox<String> cb = (ComboBox<String>) root.lookup(nodeId);
                                     if (cb != null){
                                         cb.setValue(value);
