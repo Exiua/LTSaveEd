@@ -124,201 +124,455 @@ public class Controller {
     /**
      * ObservableList of all sexual orientations in the game
      */
-    private final ObservableList<String> sexualOrientations = FXCollections.observableArrayList("ANDROPHILIC",
-            "AMBIPHILIC", "GYNEPHILIC");
+    private final ObservableList<Attribute> sexualOrientations = FXCollections.observableArrayList(
+            new Attribute("Androphilic", "ANDROPHILIC"), new Attribute("Ambiphilic", "AMBIPHILIC"),
+            new Attribute("Gynephilic", "GYNEPHILIC"));
 
     /**
      * ObservableList of all antennae types in the game
      */
-    private final ObservableList<String> antennaeTypes = FXCollections.observableArrayList("NONE"); //TODO: Find antennae types
+    private final ObservableList<Attribute> antennaeTypes = FXCollections.observableArrayList(
+            new Attribute("None", "NONE")); //TODO: Find antennae types
 
     /**
      * ObservableList of all ear types in the game
      */
-    private final ObservableList<String> earTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_ear", "BAT_MORPH", "dsg_bear_ear", "NoStepOnSnek_capybara_ear", "CAT_MORPH",
-            "CAT_MORPH_TUFTED", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "DOG_MORPH_POINTED", "DOG_MORPH_FOLDED",
-            "dsg_dragon_ear", "dsg_dragon_earExternal", "dsg_ferret_ear", "FOX_MORPH", "FOX_MORPH_BIG",
-            "innoxia_goat_ear", "dsg_gryphon_ear", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_ear",
-            "NoStepOnSnek_octopus_ear", "dsg_otter_ear", "innoxia_panther_ear", "innoxia_pig_ear", "RABBIT_MORPH",
-            "RABBIT_MORPH_FLOPPY", "dsg_raccoon_ear", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_ear", "dsg_shark_earFin",
-            "innoxia_sheep_ear", "NoStepOnSnek_snake_ear_1", "NoStepOnSnek_snake_ear", "charisma_spider_ear",
-            "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> earTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_ear"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_ear"), new Attribute("Capybara", "NoStepOnSnek_capybara_ear"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Tufted Cat", "CAT_MORPH_TUFTED"),
+            new Attribute("Cow", "COW_MORPH"), new Attribute("Demonic", "DEMON_COMMON"),
+            new Attribute("Floppy Dog", "DOG_MORPH"),
+            new Attribute("Pointed Dog", "DOG_MORPH_POINTED"),
+            new Attribute("Folded Dog", "DOG_MORPH_FOLDED"),
+            new Attribute("Dragon", "dsg_dragon_ear"),
+            new Attribute("Dragon external", "dsg_dragon_earExternal"),
+            new Attribute("Ferret", "dsg_ferret_ear"), new Attribute("Fox", "FOX_MORPH"),
+            new Attribute("Fennec Fox", "FOX_MORPH_BIG"), new Attribute("Goat", "innoxia_goat_ear"),
+            new Attribute("Gryphon", "dsg_gryphon_ear"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_ear"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_ear"),
+            new Attribute("Otter", "dsg_otter_ear"),
+            new Attribute("Panther", "innoxia_panther_ear"), new Attribute("Pig", "innoxia_pig_ear"),
+            new Attribute("Upright Rabbit", "RABBIT_MORPH"),
+            new Attribute("Floppy Rabbit", "RABBIT_MORPH_FLOPPY"),
+            new Attribute("Racoon", "dsg_raccoon_ear"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_ear"),
+            new Attribute("Shark finned", "dsg_shark_earFin"),
+            new Attribute("Sheep", "innoxia_sheep_ear"),
+            new Attribute("Pointed Snake", "NoStepOnSnek_snake_ear_1"),
+            new Attribute("Snake", "NoStepOnSnek_snake_ear"),
+            new Attribute("Spider", "charisma_spider_ear"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all face types in the game
      */
-    private final ObservableList<String> faceTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_face", "BAT_MORPH", "dsg_bear_face", "NoStepOnSnek_capybara_face", "CAT_MORPH", "COW_MORPH",
-            "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_faceCoatl", "dsg_dragon_faceRyu", "dsg_dragon_face",
-            "dsg_ferret_face", "FOX_MORPH", "innoxia_goat_face", "dsg_gryphon_face", "HARPY", "HORSE_MORPH", "HUMAN",
-            "innoxia_hyena_face", "NoStepOnSnek_octopus_face", "dsg_otter_face", "innoxia_panther_face",
-            "innoxia_pig_face", "RABBIT_MORPH", "dsg_raccoon_face", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_face",
-            "innoxia_sheep_face", "NoStepOnSnek_snake_face", "NoStepOnSnek_snake_face_h", "charisma_spider_faceFluffy",
-            "charisma_spider_face", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> faceTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_face"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_face"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_face"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Coatl", "dsg_dragon_faceCoatl"),
+            new Attribute("Ryu", "dsg_dragon_faceRyu"), new Attribute("Dragon", "dsg_dragon_face"),
+            new Attribute("Ferret", "dsg_ferret_face"), new Attribute("Fox", "FOX_MORPH"),
+            new Attribute("Goat", "innoxia_goat_face"), new Attribute("Gryphon", "dsg_gryphon_face"),
+            new Attribute("Harpy", "HARPY"), new Attribute("Horse", "HORSE_MORPH"),
+            new Attribute("Human", "HUMAN"), new Attribute("Hyena", "innoxia_hyena_face"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_face"),
+            new Attribute("Otter", "dsg_otter_face"),
+            new Attribute("Panther", "innoxia_panther_face"),
+            new Attribute("Pig", "innoxia_pig_face"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_face"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_face"),
+            new Attribute("Sheep", "innoxia_sheep_face"),
+            new Attribute("Snake", "NoStepOnSnek_snake_face"),
+            new Attribute("Hooded Snake", "NoStepOnSnek_snake_face_h"),
+            new Attribute("Spider", "charisma_spider_face"),
+            new Attribute("Furred Spider", "charisma_spider_faceFluffy"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all eye types in the game
      */
-    private final ObservableList<String> eyeTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_eye", "BAT_MORPH", "dsg_bear_eye", "NoStepOnSnek_capybara_eye", "CAT_MORPH", "COW_MORPH",
-            "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_eye", "dsg_ferret_eye", "FOX_MORPH", "innoxia_goat_eye",
-            "dsg_gryphon_eye", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_eye", "NoStepOnSnek_octopus_eye",
-            "dsg_otter_eye", "innoxia_panther_eye", "innoxia_pig_eye", "RABBIT_MORPH", "dsg_raccoon_eye", "RAT_MORPH",
-            "REINDEER_MORPH", "dsg_shark_eye", "innoxia_sheep_eye", "NoStepOnSnek_snake_eye", "charisma_spider_eye",
-            "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> eyeTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_eye"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_eye"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_eye"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_eye"), new Attribute("Ferret", "dsg_ferret_eye"),
+            new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_eye"),
+            new Attribute("Gryphon", "dsg_gryphon_eye"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_eye"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_eye"),
+            new Attribute("Otter", "dsg_otter_eye"), new Attribute("Panther", "innoxia_panther_eye"),
+            new Attribute("Pig", "innoxia_pig_eye"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_eye"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_eye"),
+            new Attribute("Sheep", "innoxia_sheep_eye"),
+            new Attribute("Snake", "NoStepOnSnek_snake_eye"),
+            new Attribute("Spider", "charisma_spider_eye"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all hair types in the game
      */
-    private final ObservableList<String> hairTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_hair", "BAT_MORPH", "dsg_bear_hair", "NoStepOnSnek_capybara_hair", "CAT_MORPH",
-            "CAT_MORPH_SIDEFLUFF", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_hairFeathers",
-            "dsg_dragon_hairMane", "dsg_dragon_hair", "dsg_ferret_hair", "FOX_MORPH", "innoxia_goat_hair",
-            "dsg_gryphon_hair", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_hair", "NoStepOnSnek_octopus_hair",
-            "dsg_otter_hair", "innoxia_panther_hair", "innoxia_pig_hair", "RABBIT_MORPH", "dsg_raccoon_hair",
-            "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_hair", "innoxia_sheep_hair", "NoStepOnSnek_snake_hair",
-            "charisma_spider_hair", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> hairTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_hair"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_hair"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_hair"),
+            new Attribute("Cat", "CAT_MORPH"),
+            new Attribute("Cat (sidefluff)", "CAT_MORPH_SIDEFLUFF"),
+            new Attribute("Cow", "COW_MORPH"), new Attribute("Demonic", "DEMON"),
+            new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon head feathers", "dsg_dragon_hairFeathers"),
+            new Attribute("Dragon mane", "dsg_dragon_hairMane"),
+            new Attribute("Dragon", "dsg_dragon_hair"), new Attribute("Ferret", "dsg_ferret_hair"),
+            new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_hair"),
+            new Attribute("Gryphon", "dsg_gryphon_hair"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_hair"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_hair"),
+            new Attribute("Otter", "dsg_otter_hair"),
+            new Attribute("Panther", "innoxia_panther_hair"),
+            new Attribute("Pig", "innoxia_pig_hair"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_hair"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_hair"),
+            new Attribute("Sheep", "innoxia_sheep_hair"),
+            new Attribute("Snake", "NoStepOnSnek_snake_hair"),
+            new Attribute("Spider", "charisma_spider_hair"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all horn types in the game
      */
-    private final ObservableList<String> hornTypes = FXCollections.observableArrayList("NONE", "dsg_dragon_horn",
-            "dsg_dragon_hornAntlers", "dsg_dragon_hornCurled", "dsg_dragon_hornCurved", "HORSE_STRAIGHT", "CURLED",
-            "CURVED", "SPIRAL", "STRAIGHT", "SWEPT_BACK", "REINDEER_RACK");
+    private final ObservableList<Attribute> hornTypes = FXCollections.observableArrayList(
+            new Attribute("None", "NONE"), new Attribute("Dragon", "dsg_dragon_horn"),
+            new Attribute("Dragon antler", "dsg_dragon_hornAntlers"),
+            new Attribute("Dragon curled", "dsg_dragon_hornCurled"),
+            new Attribute("Dragon curved", "dsg_dragon_hornCurved"),
+            new Attribute("Unicorn", "HORSE_STRAIGHT"), new Attribute("Curled", "CURLED"),
+            new Attribute("Curved", "CURVED"), new Attribute("Spiral", "SPIRAL"),
+            new Attribute("Straight", "STRAIGHT"), new Attribute("Swept-back", "SWEPT_BACK"),
+            new Attribute("Multi-branched", "REINDEER_RACK"));
 
     /**
      * ObservableList of all leg types in the game
      */
-    private final ObservableList<String> legTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso", "NoStepOnSnek_capybara_torso", "CAT_MORPH",
-            "COW_MORPH", "DEMON_COMMON", "DEMON_HOOFED"); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
+    private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_leg"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_leg"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_leg"), new Attribute("Cat", "CAT_MORPH"),
+            new Attribute("Cow", "COW_MORPH"), new Attribute("Demonic", "DEMON_COMMON"),
+            new Attribute("Demonic-hoofed", "DEMON_HOOFED"),
+            new Attribute("Demonic-horse", "DEMON_HORSE"),
+            new Attribute("Demonic-snake", "DEMON_SNAKE"),
+            new Attribute("Demonic-spider", "DEMON_SPIDER"),
+            new Attribute("Demonic-octopus", "DEMON_OCTOPUS"),
+            new Attribute("Demonic-fish", "DEMON_FISH"),
+            new Attribute("Demonic-eagle", "DEMON_EAGLE"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_leg"), new Attribute("Ferret", "dsg_ferret_leg"),
+            new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_leg"),
+            new Attribute("Gryphon", "dsg_gryphon_leg"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_leg"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_leg"),
+            new Attribute("Otter", "dsg_otter_leg"), new Attribute("Panther", "innoxia_panther_leg"),
+            new Attribute("Pig", "innoxia_pig_leg"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_racoon_leg"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_leg"),
+            new Attribute("Sheep", "innoxia_sheep_leg"),
+            new Attribute("Snake", "NoStepOnSnek_snake_leg"),
+            new Attribute("Furred Spider", "charisma_spider_legFluffy"),
+            new Attribute("Spider", "charisma_spider_leg"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH")); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
 
     /**
      * ObservableList of all ass types in the game
      */
-    private final ObservableList<String> assTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_ass", "BAT_MORPH", "dsg_bear_ass", "NoStepOnSnek_capybara_ass", "CAT_MORPH", "COW_MORPH",
-            "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_ass", "dsg_ferret_ass", "FOX_MORPH", "innoxia_goat_ass",
-            "dsg_gryphon_ass", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_ass", "NoStepOnSnek_octopus_ass",
-            "dsg_otter_ass", "innoxia_panther_ass", "innoxia_pig_ass", "RABBIT_MORPH", "dsg_raccoon_ass", "RAT_MORPH",
-            "REINDEER_MORPH", "dsg_shark_ass", "innoxia_sheep_ass", "NoStepOnSnek_snake_ass", "charisma_spider_ass",
-            "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> assTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_ass"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_ass"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_ass"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_ass"), new Attribute("Ferret", "dsg_ferret_ass"),
+            new Attribute("Fox", "FOX_MORPH"), new Attribute("", "innoxia_goat_ass"),
+            new Attribute("Gryphon", "dsg_gryphon_ass"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_ass"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_ass"),
+            new Attribute("Otter", "dsg_otter_ass"), new Attribute("Panther", "innoxia_panther_ass"),
+            new Attribute("Pig", "innoxia_pig_ass"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_ass"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_ass"),
+            new Attribute("Sheep", "innoxia_sheep_ass"),
+            new Attribute("Snake", "NoStepOnSnek_snake_ass"),
+            new Attribute("Spider", "charisma_spider_ass"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all breast types in the game
      */
-    private final ObservableList<String> breastsTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_breast", "BAT_MORPH", "dsg_bear_breast", "NoStepOnSnek_capybara_breast", "CAT_MORPH", "COW_MORPH",
-            "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_breast", "dsg_ferret_breast", "FOX_MORPH", "innoxia_goat_breast",
-            "dsg_gryphon_breast", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_breast", "NoStepOnSnek_octopus_breast",
-            "dsg_otter_breast", "innoxia_panther_breast", "innoxia_pig_breast", "RABBIT_MORPH", "dsg_raccoon_breast",
-            "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_breast", "innoxia_sheep_breast", "NoStepOnSnek_snake_breast",
-            "charisma_spider_breast", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> breastsTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_breast"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_breast"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_breast"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_breast"),
+            new Attribute("Ferret", "dsg_ferret_breast"), new Attribute("Fox", "FOX_MORPH"),
+            new Attribute("Goat", "innoxia_goat_breast"),
+            new Attribute("Gryphon", "dsg_gryphon_breast"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_breast"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_breast"),
+            new Attribute("Otter", "dsg_otter_breast"),
+            new Attribute("Panther", "innoxia_panther_breast"),
+            new Attribute("Pig", "innoxia_pig_breast"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_breast"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_breast"),
+            new Attribute("Sheep", "innoxia_sheep_breast"),
+            new Attribute("Snake", "NoStepOnSnek_snake_breast"),
+            new Attribute("Spider", "charisma_spider_breast"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all milk flavours in the game
      */
-    private final ObservableList<String> milkFlavours = FXCollections.observableArrayList("CUM", "MILK", "GIRL_CUM",
-            "BUBBLEGUM", "BEER", "VANILLA", "STRAWBERRY", "CHOCOLATE", "PINEAPPLE", "HONEY", "MINT", "CHERRY", "COFFEE",
-            "TEA", "MAPLE", "CINNAMON", "LEMON", "ORANGE", "GRAPE", "MELON", "COCONUT", "BLUEBERRY");
+    private final ObservableList<Attribute> milkFlavours = FXCollections.observableArrayList(
+            new Attribute("Cum", "CUM"), new Attribute("Milk", "MILK"),
+            new Attribute("Girlcum", "GIRL_CUM"), new Attribute("Bubblegum", "BUBBLEGUM"),
+            new Attribute("Beer", "BEER"), new Attribute("Vanilla", "VANILLA"),
+            new Attribute("Strawberry", "STRAWBERRY"), new Attribute("Chocolate", "CHOCOLATE"),
+            new Attribute("Pineapple", "PINEAPPLE"), new Attribute("Honey", "HONEY"),
+            new Attribute("Mint", "MINT"), new Attribute("Cherry", "CHERRY"),
+            new Attribute("Coffee", "COFFEE"), new Attribute("Tea", "TEA"),
+            new Attribute("Maple", "MAPLE"), new Attribute("Cinnamon", "CINNAMON"),
+            new Attribute("Lemon", "LEMON"), new Attribute("Orange", "ORANGE"),
+            new Attribute("Grape", "GRAPE"), new Attribute("Melon", "MELON"),
+            new Attribute("Coconut", "COCONUT"), new Attribute("Blueberry", "BLUEBERRY"));
 
     /**
-     * ObservableList of all breastCrotch types in the game (same as breastTypes)
+     * ObservableList of all breastCrotch types in the game
      */
-    private final ObservableList<String> breastCrotchTypes = breastsTypes; //Reusing object to simplify the code
+    private final ObservableList<Attribute> breastCrotchTypes = FXCollections.observableArrayList(
+            new Attribute("None", "NONE"), new Attribute("Alligator", "ALLIGATOR_MORPH"),
+            new Attribute("Angel", "ANGEL"), new Attribute("Badger", "innoxia_badger_breast"),
+            new Attribute("Bat", "BAT_MORPH"), new Attribute("Bear", "dsg_bear_breast"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_breast"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_breast"),
+            new Attribute("Ferret", "dsg_ferret_breast"), new Attribute("Fox", "FOX_MORPH"),
+            new Attribute("Goat", "innoxia_goat_breast"),
+            new Attribute("Gryphon", "dsg_gryphon_breast"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_breast"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_breast"),
+            new Attribute("Otter", "dsg_otter_breast"),
+            new Attribute("Panther", "innoxia_panther_breast"),
+            new Attribute("Pig", "innoxia_pig_breast"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_breast"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_breast"),
+            new Attribute("Sheep", "innoxia_sheep_breast"),
+            new Attribute("Snake", "NoStepOnSnek_snake_breast"),
+            new Attribute("Spider", "charisma_spider_breast"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH")
+    );
 
     /**
      * ObservableList of all milkCrotch flavours in the game (same as milkFlavours)
      */
-    private final ObservableList<String> milkCrotchFlavours = milkFlavours;
+    private final ObservableList<Attribute> milkCrotchFlavours = milkFlavours; //Reusing object to simplify the code
 
     /**
      * ObservableList of all penis types in the game
      */
-    private final ObservableList<String> penisTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH",
-            "ANGEL", "innoxia_badger_penis", "BAT_MORPH", "dsg_bear_penis", "NoStepOnSnek_capybara_penis", "CAT_MORPH",
-            "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_penis", "dsg_ferret_penis", "FOX_MORPH",
-            "innoxia_goat_penis", "dsg_gryphon_penis", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_penis",
-            "NoStepOnSnek_octopus_penis", "dsg_otter_penis", "innoxia_panther_penis", "innoxia_pig_penis",
-            "RABBIT_MORPH", "dsg_raccoon_penis", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_penis", "innoxia_sheep_penis",
-            "NoStepOnSnek_snake_penis", "charisma_spider_penis", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> penisTypes = FXCollections.observableArrayList(
+            new Attribute("None", "NONE"), new Attribute("Alligator", "ALLIGATOR_MORPH"),
+            new Attribute("Angel", "ANGEL"), new Attribute("Badger", "innoxia_badger_penis"),
+            new Attribute("Bat", "BAT_MORPH"), new Attribute("Bear", "dsg_bear_penis"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_penis"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_penis"), new Attribute("Ferret", "dsg_ferret_penis"),
+            new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_penis"),
+            new Attribute("Gryphon", "dsg_gryphon_penis"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "EQUINE"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_penis"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_penis"),
+            new Attribute("Otter", "dsg_otter_penis"),
+            new Attribute("Panther", "innoxia_panther_penis"),
+            new Attribute("Pig", "innoxia_pig_penis"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_penis"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_penis"),
+            new Attribute("Sheep", "innoxia_sheep_penis"),
+            new Attribute("Snake", "NoStepOnSnek_snake_penis"),
+            new Attribute("Spider", "charisma_spider_penis"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all cum flavours in the game (same as milkFlavours)
      */
-    private final ObservableList<String> cumFlavours = milkFlavours;
+    private final ObservableList<Attribute> cumFlavours = milkFlavours;
 
     /**
      * ObservableList of all vagina types in the game
      */
-    private final ObservableList<String> vaginaTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH",
-            "ANGEL", "innoxia_badger_vagina", "BAT_MORPH", "dsg_bear_vagina", "NoStepOnSnek_capybara_vagina",
-            "CAT_MORPH", "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_vagina", "dsg_ferret_vagina", "FOX_MORPH",
-            "innoxia_goat_vagina", "dsg_gryphon_vagina", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_vagina",
-            "NoStepOnSnek_octopus_vagina", "dsg_otter_vagina", "innoxia_panther_vagina", "innoxia_pig_vagina",
-            "RABBIT_MORPH", "dsg_raccoon_vagina", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_vagina",
-            "innoxia_sheep_vagina", "NoStepOnSnek_snake_vagina", "charisma_spider_vagina", "SQUIRREL_MORPH",
-            "WOLF_MORPH");
+    private final ObservableList<Attribute> vaginaTypes = FXCollections.observableArrayList(
+            new Attribute("None", "NONE"), new Attribute("Alligator", "ALLIGATOR_MORPH"),
+            new Attribute("Angel", "ANGEL"), new Attribute("Badger", "innoxia_badger_vagina"),
+            new Attribute("Bat", "BAT_MORPH"), new Attribute("Bear", "dsg_bear_vagina"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_vagina"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_vagina"),
+            new Attribute("Ferret", "dsg_ferret_vagina"), new Attribute("Fox", "FOX_MORPH"),
+            new Attribute("Goat", "innoxia_goat_vagina"),
+            new Attribute("Gryphon", "dsg_gryphon_vagina"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_vagina"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_vagina"),
+            new Attribute("Otter", "dsg_otter_vagina"),
+            new Attribute("Panther", "innoxia_panther_vagina"),
+            new Attribute("Pig", "innoxia_pig_vagina"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_vagina"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_vagina"),
+            new Attribute("Sheep", "innoxia_sheep_vagina"),
+            new Attribute("Snake", "NoStepOnSnek_snake_vagina"),
+            new Attribute("Spider", "charisma_spider_vagina"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all girlcum flavours in the game (same as milkFlavours)
      */
-    private final ObservableList<String> girlcumFlavours = milkFlavours;
+    private final ObservableList<Attribute> girlcumFlavours = milkFlavours;
 
     /**
      * ObservableList of all torso types in the game
      */
-    private final ObservableList<String> torsoTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_torso", "BAT_MORPH", "dsg_bear_torso", "NoStepOnSnek_capybara_torso", "CAT_MORPH",
-            "COW_MORPH", "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_torsoRyu", "dsg_dragon_torso", "dsg_ferret_torso",
-            "FOX_MORPH", "innoxia_goat_torso", "dsg_gryphon_torso", "HARPY", "HORSE_MORPH", "HUMAN",
-            "innoxia_hyena_torso", "NoStepOnSnek_octopus_torso", "dsg_otter_torso", "innoxia_panther_torso",
-            "innoxia_pig_torso", "RABBIT_MORPH", "dsg_raccoon_torso", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_torso",
-            "dsg_shark_torsoDorsalFin","innoxia_sheep_torso", "NoStepOnSnek_snake_torso", "charisma_spider_torsoFluffy",
-            "charisma_spider_torso", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> torsoTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_torso"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_torso"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_torso"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Ryu", "dsg_dragon_torsoRyu"), new Attribute("Dragon", "dsg_dragon_torso"),
+            new Attribute("Ferret", "dsg_ferret_torso"), new Attribute("Fox", "FOX_MORPH"),
+            new Attribute("Goat", "innoxia_goat_torso"),
+            new Attribute("Gryphon", "dsg_gryphon_torso"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_torso"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_torso"),
+            new Attribute("Otter", "dsg_otter_torso"),
+            new Attribute("Panther", "innoxia_panther_torso"),
+            new Attribute("Pig", "innoxia_pig_torso"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_torso"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_torso"),
+            new Attribute("Shark finned", "dsg_shark_torsoDorsalFin"),
+            new Attribute("Sheep", "innoxia_sheep_torso"),
+            new Attribute("Snake", "NoStepOnSnek_snake_torso"),
+            new Attribute("Furred Spider", "charisma_spider_torsoFluffy"),
+            new Attribute("Spider", "charisma_spider_torso"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all tail types in the game
      */
-    private final ObservableList<String> tailTypes = FXCollections.observableArrayList("NONE", "ALLIGATOR_MORPH",
-            "innoxia_badger_tail", "BAT_MORPH", "dsg_bear_tail", "NoStepOnSnek_capybara_arm", "CAT_MORPH",
-            "CAT_MORPH_SHORT", "CAT_MORPH_TUFTED", "COW_MORPH", "DEMON_COMMON", "DEMON_HAIR_TIP", "DEMON_TAPERED",
-            "DEMON_HORSE", "DOG_MORPH", "DOG_MORPH_STUBBY", "dsg_dragon_tailTufted", "dsg_dragon_tail",
-            "dsg_dragon_tailFeathered", "dsg_dragon_tailSpaded", "dsg_ferret_tail", "FOX_MORPH", "innoxia_goat_tail",
-            "dsg_gryphon_tailFeathers", "dsg_gryphon_tail", "HARPY", "HORSE_MORPH", "HORSE_MORPH_ZEBRA",
-            "innoxia_hyena_tail", "dsg_otter_tail", "innoxia_panther_tail", "innoxia_pig_tail", "RABBIT_MORPH",
-            "dsg_raccoon_tail", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_tail", "innoxia_sheep_tail",
-            "NoStepOnSnek_snake_tail", "charisma_spider_tailFluffy", "charisma_spider_tail", "SQUIRREL_MORPH",
-            "WOLF_MORPH");
+    private final ObservableList<Attribute> tailTypes = FXCollections.observableArrayList(
+            new Attribute("None", "NONE"), new Attribute("Alligator", "ALLIGATOR_MORPH"),
+            new Attribute("Badger", "innoxia_badger_tail"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_tail"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_arm"),
+            new Attribute("Feline", "CAT_MORPH"), new Attribute("Short Feline", "CAT_MORPH_SHORT"),
+            new Attribute("Tufted Feline", "CAT_MORPH_TUFTED"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic spaded", "DEMON_COMMON"),
+            new Attribute("Demonic hair-tipped", "DEMON_HAIR_TIP"),
+            new Attribute("Demonic tapered", "DEMON_TAPERED"),
+            new Attribute("Demonic horse", "DEMON_HORSE"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Stubby Dog", "DOG_MORPH_STUBBY"),
+            new Attribute("Dragon tufted", "dsg_dragon_tailTufted"),
+            new Attribute("Dragon", "dsg_dragon_tail"),
+            new Attribute("Dragon feathered", "dsg_dragon_tailFeathered"),
+            new Attribute("Dragon spaded", "dsg_dragon_tailSpaded"),
+            new Attribute("Ferret", "dsg_ferret_tail"), new Attribute("Fox", "FOX_MORPH"),
+            new Attribute("Goat", "innoxia_goat_tail"),
+            new Attribute("Gryphon feathered", "dsg_gryphon_tailFeathers"),
+            new Attribute("Gryphon", "dsg_gryphon_tail"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Zebra", "HORSE_MORPH_ZEBRA"),
+            new Attribute("Hyena", "innoxia_hyena_tail"), new Attribute("Otter", "dsg_otter_tail"),
+            new Attribute("Panther", "innoxia_panther_tail"),
+            new Attribute("Pig", "innoxia_pig_tail"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_tail"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_tail"),
+            new Attribute("Sheep", "innoxia_sheep_tail"),
+            new Attribute("Snake", "NoStepOnSnek_snake_tail"),
+            new Attribute("Furred Spider", "charisma_spider_tailFluffy"),
+            new Attribute("Spider", "charisma_spider_tail"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ObservableList of all tentacle types in the game
      */
-    private final ObservableList<String> tentacleTypes = FXCollections.observableArrayList("NONE"); //TODO: Find tentacle types
+    private final ObservableList<Attribute> tentacleTypes = FXCollections.observableArrayList(
+            new Attribute("None", "NONE")); //TODO: Find tentacle types
 
     /**
      * ObservableList of all wing types in the game
      */
-    private final ObservableList<String> wingTypes = FXCollections.observableArrayList("NONE", "ANGEL",
-            "DEMON_FEATHERED", "DEMON_COMMON", "dsg_dragon_wing", "dsg_dragon_wingFeathered", "dsg_gryphon_wing",
-            "FEATHERED", "INSECT", "LEATHERY");
+    private final ObservableList<Attribute> wingTypes = FXCollections.observableArrayList(
+            new Attribute("None", "NONE"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Demonic feathered", "DEMON_FEATHERED"), new Attribute("Demonic leathery", "DEMON_COMMON"),
+            new Attribute("Dragon", "dsg_dragon_wing"), new Attribute("Dragon feathered", "dsg_dragon_wingFeathered"),
+            new Attribute("Gryphon", "dsg_gryphon_wing"),
+            new Attribute("Feathered", "FEATHERED"), new Attribute("Insect", "INSECT"),
+            new Attribute("Leathery", "LEATHERY"));
 
     /**
      * ObservableList of all arm types in the game
      */
-    private final ObservableList<String> armTypes = FXCollections.observableArrayList("ALLIGATOR_MORPH", "ANGEL",
-            "innoxia_badger_arm", "BAT_MORPH", "dsg_bear_arm", "NoStepOnSnek_capybara_arm", "CAT_MORPH", "COW_MORPH",
-            "DEMON_COMMON", "DOG_MORPH", "dsg_dragon_arm", "dsg_dragon_armWings", "dsg_ferret_arm", "FOX_MORPH",
-            "innoxia_goat_arm", "dsg_gryphon_arm", "HARPY", "HORSE_MORPH", "HUMAN", "innoxia_hyena_arm",
-            "NoStepOnSnek_octopus_arm", "dsg_otter_arm", "innoxia_panther_arm", "innoxia_pig_arm", "RABBIT_MORPH",
-            "dsg_raccoon_arm", "RAT_MORPH", "REINDEER_MORPH", "dsg_shark_arm", "dsg_shark_armFin", "innoxia_sheep_arm",
-            "NoStepOnSnek_snake_arm", "charisma_spider_armFluffy", "charisma_spider_arm", "SQUIRREL_MORPH", "WOLF_MORPH");
+    private final ObservableList<Attribute> armTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_arm"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_arm"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_arm"),
+            new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_arm"),
+            new Attribute("Dragon winged", "dsg_dragon_armWings"),
+            new Attribute("Ferret", "dsg_ferret_arm"), new Attribute("Fox", "FOX_MORPH"),
+            new Attribute("Goat", "innoxia_goat_arm"), new Attribute("Gryphon", "dsg_gryphon_arm"),
+            new Attribute("Harpy", "HARPY"), new Attribute("Horse", "HORSE_MORPH"),
+            new Attribute("Human", "HUMAN"), new Attribute("Hyena", "innoxia_hyena_arm"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_arm"),
+            new Attribute("Otter", "dsg_otter_arm"), new Attribute("Panther", "innoxia_panther_arm"),
+            new Attribute("Pig", "innoxia_pig_arm"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_raccoon_arm"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_arm"),
+            new Attribute("Shark finned", "dsg_shark_armFin"),
+            new Attribute("Sheep", "innoxia_sheep_arm"),
+            new Attribute("Snake", "NoStepOnSnek_snake_arm"),
+            new Attribute("Spider", "charisma_spider_arm"),
+            new Attribute("Furred Spider", "charisma_spider_armFluffy"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
     /**
      * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
      */
-    private final ArrayList<ObservableList<String>> comboBoxValues = new ArrayList<ObservableList<String>>();
+    private final ArrayList<ObservableList<Attribute>> comboBoxValues = new ArrayList<>();
 
     /**
      * Initializes the Controller object and parses config.ini
@@ -501,8 +755,20 @@ public class Controller {
         //TODO:
         for(int i = 0; i < ComboBoxIds.length; i++) {
             @SuppressWarnings("unchecked")
-            ComboBox<String> cb = (ComboBox<String>) root.lookup(ComboBoxIds[i]);
+            ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup(ComboBoxIds[i]);
             cb.setItems(comboBoxValues.get(i));
+            cb.setValue(cb.getItems().get(0));
+            cb.setConverter(new StringConverter<>() {
+                @Override
+                public String toString(Attribute attribute) {
+                    return attribute.getName();
+                }
+
+                @Override
+                public Attribute fromString(String s) {
+                    return null;
+                }
+            });
         }
     }
 
@@ -560,7 +826,7 @@ public class Controller {
         characterSelector.setItems(characterList);
         characterSelector.setValue(player);
         charId = "PlayerCharacter";
-        characterSelector.setConverter(new StringConverter<NpcCharacter>() {
+        characterSelector.setConverter(new StringConverter<>() {
             @Override
             public String toString(NpcCharacter npcCharacter) {
                 return npcCharacter.getName();
@@ -651,9 +917,9 @@ public class Controller {
     private void updateXmlComboBox(ActionEvent event){
         String fxId = "#" + getId(event);
         @SuppressWarnings("unchecked")
-        ComboBox<String> cb = (ComboBox<String>) root.lookup(fxId);
+        ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup(fxId);
         Node value = getValueNode(event);
-        value.setTextContent(cb.getValue());
+        value.setTextContent(cb.getValue().getValue());
         event.consume();
     }
 
@@ -691,9 +957,10 @@ public class Controller {
                                 }
                                 catch(ClassCastException e2){ //Using ComboBoxes for fixed values
                                     @SuppressWarnings("unchecked")
-                                    ComboBox<String> cb = (ComboBox<String>) root.lookup(nodeId);
+                                    ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup(nodeId);
                                     if (cb != null){
-                                        cb.setValue(value);
+                                        ObservableList<Attribute> itemList = cb.getItems();
+                                        cb.setValue(matchComboBoxItem(itemList, value));
                                     }
                                 }
                             }
@@ -703,6 +970,15 @@ public class Controller {
             }
             attachListeners();
         }
+    }
+
+    private Attribute matchComboBoxItem(ObservableList<Attribute> list, String value){
+        for (Attribute attribute : list) {
+            if (attribute.equals(value)) {
+                return attribute;
+            }
+        }
+        return null;
     }
 
     /**
