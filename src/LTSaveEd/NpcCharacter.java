@@ -47,9 +47,7 @@ public class NpcCharacter {
                         names[j] = nnm.item(j).getTextContent();
                     }
                 }
-                case "genderIdentity" -> {
-                    genderId = n.getAttributes().getNamedItem("value").getTextContent();
-                }
+                case "genderIdentity" -> genderId = n.getAttributes().getNamedItem("value").getTextContent();
             }
         }
     }
