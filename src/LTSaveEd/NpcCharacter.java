@@ -6,12 +6,32 @@ import org.w3c.dom.NodeList;
 
 import java.util.Arrays;
 
+/**
+ * Class that stores Npc ids and name for easy lookup
+ * @author Exiua
+ */
 public class NpcCharacter {
 
+    /**
+     * Id of the Npc
+     */
     private String id;
-    private String[] names = new String[3];
+
+    /**
+     * Androgynous, Feminine, and Masculine names of the Npc
+     */
+    private final String[] names = new String[3];
+
+    /**
+     * Gender identification of the Npc
+     */
     private String genderId;
 
+    /**
+     * Constructor that uses the NPC Node to find the id, names, and gender identification
+     * @param npcNode
+     *   NPC Node of the Npc
+     */
     public NpcCharacter(Node npcNode){
         if(!npcNode.getNodeName().equals("NPC")){
             throw new RuntimeException("Node is not NPC");
@@ -34,18 +54,33 @@ public class NpcCharacter {
         }
     }
 
+    /**
+     * Constructor for the Player Character
+     * @param player
+     *   String to indicate the creation of a player NpcCharacter object
+     */
     public NpcCharacter(String player){
         if(player.equals("PlayerCharacter")){
             id = player;
             Arrays.fill(names, "Player");
-            genderId = "N_Player"; //Doesn't really matter, just need the first character to match the switch
+            genderId = "N_Player"; //Doesn't really matter, just need the first character to match in the switch
         }
     }
 
+    /**
+     * Get the Npc's id
+     * @return
+     *   Npc's id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Get the name based on the npc's gender identity
+     * @return
+     *   Name that corresponds with the npc's gender identity
+     */
     public String getName(){
         return switch (genderId.charAt(0)) {
             case 'N' -> names[0];
