@@ -9,6 +9,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,6 +31,12 @@
                      <ComboBox fx:id="characterSelector" onAction="#selectCharacter" prefWidth="150.0" />
                   </children>
                </HBox>
+               <HBox>
+                  <children>
+                     <Label text="Id: " />
+                     <TextField fx:id="core$id$value" editable="false" prefHeight="25.0" prefWidth="250.0" />
+                  </children>
+               </HBox>
                     <HBox>
                         <Label text="Name (A, F, M): " />
                         <TextField fx:id="core$name$nameAndrogynous" />
@@ -44,6 +51,12 @@
                         <Label text="Surname: " />
                         <TextField fx:id="core$surname$value" />
                     </HBox>
+               <HBox>
+                  <children>
+                     <Label text="Description: " />
+                     <TextArea fx:id="core$description$value" prefHeight="78.0" prefWidth="475.0" wrapText="true" />
+                  </children>
+               </HBox>
                     <HBox>
                         <Label text="Level: " />
                         <TextField fx:id="core$level$value" />
