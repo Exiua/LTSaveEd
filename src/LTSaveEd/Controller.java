@@ -6,9 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -626,12 +624,13 @@ public class Controller {
     /**
      * Class that detects focus loss for TextFields
      */
-    public class TextFieldListener implements ChangeListener<Boolean> {
+    public class TextObjectListener implements ChangeListener<Boolean> {
 
         /**
-         * TextField to monitor
+         * TextInputControl descendant to monitor
          */
-        private final TextField tf ;
+        private final TextInputControl textInputControl;
+
         /**
          * Data type of the TextField (e.g. int, double, string, etc.)
          */
@@ -639,13 +638,13 @@ public class Controller {
 
         /**
          * Constructor for a new TextFieldListener
-         * @param textField
-         *   TextField to monitor
+         * @param textControl
+         *   TextInputControl descendant to monitor
          * @param textFieldType
          *   Data type of the TextField
          */
-        public TextFieldListener(TextField textField, TextFieldType textFieldType) {
-            tf = textField;
+        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType) {
+            textInputControl = textControl;
             tfType = textFieldType;
         }
 
@@ -661,7 +660,7 @@ public class Controller {
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
             if(!newValue) {  // check if focus gained or lost
-                tf.setText(getFormattedText(tf.getText()));
+                textInputControl.setText(getFormattedText(textInputControl.getText()));
             }
         }
 
@@ -710,6 +709,7 @@ public class Controller {
                         return oldValue;
                     }
                 case STRING:
+                    value.setTextContent(newValue);
                     return newValue;
                 default:
                     return null;
@@ -722,7 +722,7 @@ public class Controller {
          *   Node containing the attribute value
          */
         private Node getValueNode(){
-            String[] id = tf.getId().split("\\$");
+            String[] id = textInputControl.getId().split("\\$");
             NodeList attributeNodes = getAttributeNodes();
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
@@ -807,8 +807,8 @@ public class Controller {
             catch(ParserConfigurationException | SAXException e){
                 e.printStackTrace();
             }
+            loadCharacterSelector();
         }
-        loadCharacterSelector();
     }
 
     /**
@@ -942,6 +942,11 @@ public class Controller {
                             String value = valueNode.getTextContent();
                             String bodyNodeName = valueNode.getNodeName();
                             String nodeId = "#" + attributeName + "$" + elementName + "$" + bodyNodeName;
+                            if(nodeId.equals("#core$description$value")){
+                                TextArea ta = (TextArea) root.lookup(nodeId);
+                                ta.setText(value);
+                                continue;
+                            }
                             try { //Using TextFields for numerical and string values
                                 TextField tf = (TextField) root.lookup(nodeId);
                                 if (tf != null) {
@@ -985,17 +990,19 @@ public class Controller {
      * Method to attach listeners to TextFields to properly detect and record changes to the xml data
      */
     private void attachListeners(){
+        TextArea ta = (TextArea) root.lookup("#core$description$value");
+        ta.focusedProperty().addListener(new TextObjectListener(ta, TextFieldType.STRING));
         for(String intTextFieldId : intTextFieldIds) {
             TextField tf = (TextField) root.lookup(intTextFieldId);
-            tf.focusedProperty().addListener(new TextFieldListener(tf, TextFieldType.INT));
+            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT));
         }
         for(String doubleTextFieldId : doubleTextFieldIds){
             TextField tf = (TextField) root.lookup(doubleTextFieldId);
-            tf.focusedProperty().addListener(new TextFieldListener(tf, TextFieldType.DOUBLE));
+            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DOUBLE));
         }
         for(String stringTextFieldId: stringTextFieldIds){
             TextField tf = (TextField) root.lookup(stringTextFieldId);
-            tf.focusedProperty().addListener(new TextFieldListener(tf, TextFieldType.STRING));
+            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.STRING));
         }
     }
 
