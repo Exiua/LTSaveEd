@@ -112,12 +112,12 @@ public class Controller {
     /**
      * String array of all ComboBox ids
      */
-    private final String[] ComboBoxIds = {"#core$sexualOrientation$value", "#body$antennae$type", "#body$ear$type",
-            "#body$face$type", "#body$eye$type", "#body$hair$type", "#body$horn$type", "#body$leg$type",
-            "#body$ass$type", "#body$breasts$type", "#body$milk$flavour", "#body$breastsCrotch$type",
-            "#body$milkCrotch$flavour", "#body$penis$type", "#body$cum$flavour", "#body$vagina$type",
-            "#body$girlcum$flavour", "#body$torso$type", "#body$tail$type", "#body$tentacle$type", "#body$wing$type",
-            "#body$arm$type", "#body$eye$irisShape", "#body$eye$pupilShape", "#body$breasts$shape",
+    private final String[] ComboBoxIds = {"#core$sexualOrientation$value", "#core$genderIdentity$value",
+            "#body$antennae$type", "#body$ear$type", "#body$face$type", "#body$eye$type", "#body$hair$type",
+            "#body$horn$type", "#body$leg$type", "#body$ass$type", "#body$breasts$type", "#body$milk$flavour",
+            "#body$breastsCrotch$type", "#body$milkCrotch$flavour", "#body$penis$type", "#body$cum$flavour",
+            "#body$vagina$type", "#body$girlcum$flavour", "#body$torso$type", "#body$tail$type", "#body$tentacle$type",
+            "#body$wing$type", "#body$arm$type", "#body$eye$irisShape", "#body$eye$pupilShape", "#body$breasts$shape",
             "#body$nipples$areolaeShape", "#body$nipples$nippleShape", "#body$breastsCrotch$shape",
             "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape"};
 
@@ -128,6 +128,10 @@ public class Controller {
             new Attribute("Androphilic", "ANDROPHILIC"), new Attribute("Ambiphilic", "AMBIPHILIC"),
             new Attribute("Gynephilic", "GYNEPHILIC"));
 
+    /**
+     * ObservableList of all gender identities in the game based on Masculinity/Femininity (M/N/F) and the presence
+     * (or lack of) of a penis (P), vagina (V), and breasts (B)
+     */
     private final ObservableList<Attribute> genderIdentities = FXCollections.observableArrayList(
             new Attribute("M_P_V_B_HERMAPHRODITE", "M_P_V_B_HERMAPHRODITE"),
             new Attribute("M_P_V_HERMAPHRODITE", "M_P_V_HERMAPHRODITE"),
@@ -588,45 +592,78 @@ public class Controller {
             new Attribute("Furred Spider", "charisma_spider_armFluffy"),
             new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
+    /**
+     * ObservableList of all iris shapes in the game
+     */
     private final ObservableList<Attribute> irisShapes = FXCollections.observableArrayList(
             new Attribute("Round", "ROUND"), new Attribute("Horizontal", "HORIZONTAL"),
             new Attribute("Vertical", "VERTICAL"), new Attribute("Heart-shaped", "HEART"),
             new Attribute("Star-shaped", "STAR"));
 
+    /**
+     * ObservableList of all pupil shapes in the game (same as irisShapes)
+     */
     private final ObservableList<Attribute> pupilShapes = irisShapes;
 
+    /**
+     * ObservableList of all breast shapes in the game
+     */
     private final ObservableList<Attribute> breastShapes = FXCollections.observableArrayList(
             new Attribute("Round", "ROUND"), new Attribute("Pointy", "POINTY"),
             new Attribute("Perky", "PERKY"), new Attribute("Side-set", "SIDE_SET"),
             new Attribute("Wide", "WIDE"), new Attribute("Narrow", "NARROW"));
 
+    /**
+     * ObservableList of all areolae shapes in the game
+     */
     private final ObservableList<Attribute> areolaeShapes = FXCollections.observableArrayList(
             new Attribute("Normal", "NORMAL"), new Attribute("Heart-shaped", "HEART"),
             new Attribute("Star-shaped", "STAR"));
 
+    /**
+     * ObservableList of all nipple shapes in the game
+     */
     private final ObservableList<Attribute> nippleShapes = FXCollections.observableArrayList(
             new Attribute("Normal", "NORMAL"), new Attribute("Inverted", "INVERTED"),
             new Attribute("Nipple-cunts", "VAGINA"), new Attribute("Lipples", "LIPS"));
 
+    /**
+     * ObservableList of all breastCrotch shapes in the game
+     */
     private final ObservableList<Attribute> breastCrotchShapes = FXCollections.observableArrayList(
             new Attribute("Udders", "UDDERS"), new Attribute("Round", "ROUND"),
             new Attribute("Pointy", "POINTY"), new Attribute("Perky", "PERKY"),
             new Attribute("Side-set", "SIDE_SET"), new Attribute("Wide", "WIDE"),
             new Attribute("Narrow", "NARROW"));
 
+    /**
+     * ObservableList of all areolaeCrotch shapes in the game (same as areolaeShapes)
+     */
     private final ObservableList<Attribute> areolaeCrotchShapes = areolaeShapes;
 
+    /**
+     * ObservableList of all nippleCrotch shapes in the game (same as areolaeShapes)
+     */
     private final ObservableList<Attribute> nippleCrotchShapes = nippleShapes;
 
+    /**
+     * ObservableList of hairstyles for bald hair length
+     */
     private final ObservableList<Attribute> hairStylesB = FXCollections.observableArrayList(
             new Attribute("Natural", "NONE"));
 
+    /**
+     * ObservableList of hairstyles for very short hair length
+     */
     private final ObservableList<Attribute> hairStylesVS = FXCollections.observableArrayList(
             new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
             new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
             new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
             new Attribute("Afro", "AFRO"));
 
+    /**
+     * ObservableList of hairstyles for short hair length
+     */
     private final ObservableList<Attribute> hairStylesS = FXCollections.observableArrayList(
             new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
             new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
@@ -635,6 +672,9 @@ public class Controller {
             new Attribute("Dreadlocks", "DREADLOCKS"), new Attribute("Afro", "AFRO"),
             new Attribute("Pixie-cut", "PIXIE_CUT"));
 
+    /**
+     * ObservableList of hairstyles for shoulder-length hair length
+     */
     private final ObservableList<Attribute> hairStylesSL = FXCollections.observableArrayList(
             new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
             new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
@@ -647,6 +687,9 @@ public class Controller {
             new Attribute("Ponytail", "PONYTAIL"), new Attribute("Low ponytail", "LOW_PONYTAIL"),
             new Attribute("Twintails", "TWINTAILS"));
 
+    /**
+     * ObservableList of hairstyles for long+ hair length
+     */
     private final ObservableList<Attribute> hairStylesL = FXCollections.observableArrayList(
             new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
             new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
@@ -662,6 +705,9 @@ public class Controller {
             new Attribute("Crown braid", "CROWN_BRAID"), new Attribute("Drill hair", "DRILL_HAIR"),
             new Attribute("Hime-cut", "HIME_CUT"));
 
+    /**
+     * ObservableList of hairstyles for floor-length hair length (all the hairstyles in the game)
+     */
     private final ObservableList<Attribute> hairStylesFL = FXCollections.observableArrayList(
             new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
             new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
@@ -712,6 +758,7 @@ public class Controller {
      */
     private void initializeComboBoxValues(){
         comboBoxValues.add(sexualOrientations);
+        comboBoxValues.add(genderIdentities);
         comboBoxValues.add(antennaeTypes);
         comboBoxValues.add(earTypes);
         comboBoxValues.add(faceTypes);
