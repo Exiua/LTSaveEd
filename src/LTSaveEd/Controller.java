@@ -567,6 +567,42 @@ public class Controller {
             new Attribute("Furred Spider", "charisma_spider_armFluffy"),
             new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH"));
 
+    private final ObservableList<Attribute> irisShapes = FXCollections.observableArrayList(
+            new Attribute("Round", "ROUND"), new Attribute("Horizontal", "HORIZONTAL"),
+            new Attribute("Vertical", "VERTICAL"), new Attribute("Heart-shaped", "HEART"),
+            new Attribute("Star-shaped", "STAR"));
+
+    private final ObservableList<Attribute> pupilShapes = irisShapes;
+
+    private final ObservableList<Attribute> breastShapes = FXCollections.observableArrayList(
+            new Attribute("Round", "ROUND"), new Attribute("Pointy", "POINTY"),
+            new Attribute("Perky", "PERKY"), new Attribute("Side-set", "SIDE_SET"),
+            new Attribute("Wide", "WIDE"), new Attribute("Narrow", "NARROW"));
+
+    private final ObservableList<Attribute> areolaeShapes = FXCollections.observableArrayList(
+            new Attribute("Normal", "NORMAL"), new Attribute("Heart-shaped", "HEART"),
+            new Attribute("Star-shaped", "STAR"));
+
+    private final ObservableList<Attribute> nippleShapes = FXCollections.observableArrayList(
+            new Attribute("Normal", "NORMAL"), new Attribute("Inverted", "INVERTED"),
+            new Attribute("Nipple-cunts", "VAGINA"), new Attribute("Lipples", "LIPS"));
+
+    private final ObservableList<Attribute> breastCrotchShapes = FXCollections.observableArrayList(
+            new Attribute("Udders", "UDDERS"), new Attribute("Round", "ROUND"),
+            new Attribute("Pointy", "POINTY"), new Attribute("Perky", "PERKY"),
+            new Attribute("Side-set", "SIDE_SET"), new Attribute("Wide", "WIDE"),
+            new Attribute("Narrow", "NARROW"));
+
+    private final ObservableList<Attribute> areolaeCrotchShapes = areolaeShapes;
+
+    private final ObservableList<Attribute> nippleCrotchShapes = nippleShapes;
+
+    private final ObservableList<Attribute> hairStyles = FXCollections.observableArrayList(); //TODO
+
+    private final ObservableList<Attribute> legConfigurations = FXCollections.observableArrayList(); //TODO
+
+    private final ObservableList<Attribute> footStructures = FXCollections.observableArrayList(); //TODO
+
     /**
      * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
      */
