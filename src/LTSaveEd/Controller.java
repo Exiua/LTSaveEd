@@ -871,7 +871,6 @@ public class Controller {
                         Attribute attr;
                         if(nv < 4){
                             attr = hairStylesB.get(0);
-                            hairStyles.setValue(attr);
                             hairStyles.setItems(hairStylesB);
                             hairStyles.setValue(attr);
                         }
@@ -880,7 +879,6 @@ public class Controller {
                             if(!hairStylesVS.contains(attr)){
                                 attr = hairStylesVS.get(0);
                             }
-                            hairStyles.setValue(attr);
                             hairStyles.setItems(hairStylesVS);
                             hairStyles.setValue(attr);
                         }
@@ -889,7 +887,6 @@ public class Controller {
                             if(!hairStylesS.contains(attr)){
                                 attr = hairStylesS.get(0);
                             }
-                            hairStyles.setValue(attr);
                             hairStyles.setItems(hairStylesS);
                             hairStyles.setValue(attr);
                         }
@@ -898,7 +895,6 @@ public class Controller {
                             if(!hairStylesSL.contains(attr)){
                                 attr = hairStylesSL.get(0);
                             }
-                            hairStyles.setValue(attr);
                             hairStyles.setItems(hairStylesSL);
                             hairStyles.setValue(attr);
                         }
@@ -907,7 +903,6 @@ public class Controller {
                             if(!hairStylesL.contains(attr)){
                                 attr = hairStylesL.get(0);
                             }
-                            hairStyles.setValue(attr);
                             hairStyles.setItems(hairStylesL);
                             hairStyles.setValue(attr);
                         }
@@ -935,15 +930,6 @@ public class Controller {
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return attr.getAttributes().getNamedItem(id[2]);
-        }
-
-        private boolean objectInList(Attribute attr, ObservableList<Attribute> list){
-            for (Attribute attribute : list) {
-                if (attribute.equals(attr)) {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 
@@ -1154,6 +1140,28 @@ public class Controller {
                         Node currNode = attributeElements.item(j);
                         String elementName = currNode.getNodeName();
                         NamedNodeMap attributes = currNode.getAttributes();
+                        NodeList childNodes = currNode.getChildNodes();
+                        if(childNodes.getLength() != 0){
+                            for(int k = 0; k < childNodes.getLength(); k++){
+                                Node modifiers = childNodes.item(k);
+                                if(modifiers.getNodeType() == Node.TEXT_NODE) {
+                                    continue;
+                                }
+                                String modifierName = modifiers.getNodeName();
+                                if(modifierName.contains("Modifiers")){
+                                    NamedNodeMap mods = modifiers.getAttributes();
+                                    for(int l = 0; l < mods.getLength(); l++){
+                                        Node mod = mods.item(l);
+                                        String value = mod.getTextContent();
+                                        String modId = "#" + attributeName + "$" + elementName + "$" + modifierName + "$" + mod.getNodeName();
+                                        CheckBox cb = (CheckBox) root.lookup(modId);
+                                        if (cb != null) {
+                                            cb.setSelected(Boolean.parseBoolean(value));
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         for(int k = 0; k < attributes.getLength(); k++){
                             Node valueNode = attributes.item(k);
                             String value = valueNode.getTextContent();
@@ -1172,6 +1180,7 @@ public class Controller {
                                         int v = Integer.parseInt(value);
                                         @SuppressWarnings("unchecked")
                                         ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) root.lookup("#body$hair$hairStyle");
+                                        Attribute attr = hairStyles.getValue();
                                         if(v >= 0 && v < 4){
                                             hairStyles.setItems(hairStylesB);
                                         }
@@ -1211,6 +1220,9 @@ public class Controller {
                             }
                         }
                     }
+                if(attributeName.equals("body")){ //Ends the loop early as all the needed data has been parsed
+                    break;
+                }
                 }
             }
             addListeners();
