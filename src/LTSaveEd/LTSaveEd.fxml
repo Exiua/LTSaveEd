@@ -420,7 +420,7 @@
                                     <HBox>
 
                                         <Label text="Hair Style: " />
-                                        <TextField fx:id="body$hair$hairStyle" />
+                              <ComboBox fx:id="body$hair$hairStyle" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
