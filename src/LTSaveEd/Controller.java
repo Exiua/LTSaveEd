@@ -597,7 +597,64 @@ public class Controller {
 
     private final ObservableList<Attribute> nippleCrotchShapes = nippleShapes;
 
-    private final ObservableList<Attribute> hairStyles = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<Attribute> hairStylesB = FXCollections.observableArrayList(
+            new Attribute("Natural", "NONE"));
+
+    private final ObservableList<Attribute> hairStylesVS = FXCollections.observableArrayList(
+            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
+            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
+            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
+            new Attribute("Afro", "AFRO"));
+
+    private final ObservableList<Attribute> hairStylesS = FXCollections.observableArrayList(
+            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
+            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
+            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
+            new Attribute("Sidecut", "SIDECUT"), new Attribute("Mohawk", "MOHAWK"),
+            new Attribute("Dreadlocks", "DREADLOCKS"), new Attribute("Afro", "AFRO"),
+            new Attribute("Pixie-cut", "PIXIE_CUT"));
+
+    private final ObservableList<Attribute> hairStylesSL = FXCollections.observableArrayList(
+            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
+            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
+            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
+            new Attribute("Sidecut", "SIDECUT"), new Attribute("Mohawk", "MOHAWK"),
+            new Attribute("Dreadlocks", "DREADLOCKS"), new Attribute("Afro", "AFRO"),
+            new Attribute("Topknot", "TOPKNOT"), new Attribute("Pixie-cut", "PIXIE_CUT"),
+            new Attribute("Bun", "BUN"), new Attribute("Bob-cut", "BOB_CUT"),
+            new Attribute("Chonmage", "CHONMAGE"), new Attribute("Wavy", "WAVY"),
+            new Attribute("Ponytail", "PONYTAIL"), new Attribute("Low ponytail", "LOW_PONYTAIL"),
+            new Attribute("Twintails", "TWINTAILS"));
+
+    private final ObservableList<Attribute> hairStylesL = FXCollections.observableArrayList(
+            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
+            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
+            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
+            new Attribute("Sidecut", "SIDECUT"), new Attribute("Mohawk", "MOHAWK"),
+            new Attribute("Dreadlocks", "DREADLOCKS"), new Attribute("Afro", "AFRO"),
+            new Attribute("Topknot", "TOPKNOT"), new Attribute("Pixie-cut", "PIXIE_CUT"),
+            new Attribute("Bun", "BUN"), new Attribute("Bob-cut", "BOB_CUT"),
+            new Attribute("Chonmage", "CHONMAGE"), new Attribute("Wavy", "WAVY"),
+            new Attribute("Ponytail", "PONYTAIL"), new Attribute("Low ponytail", "LOW_PONYTAIL"),
+            new Attribute("Twintails", "TWINTAILS"), new Attribute("Chignon", "CHIGNON"),
+            new Attribute("Braided", "BRAIDED"), new Attribute("Twin braids", "TWIN_BRAIDS"),
+            new Attribute("Crown braid", "CROWN_BRAID"), new Attribute("Drill hair", "DRILL_HAIR"),
+            new Attribute("Hime-cut", "HIME_CUT"));
+
+    private final ObservableList<Attribute> hairStylesFL = FXCollections.observableArrayList(
+            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
+            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
+            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
+            new Attribute("Sidecut", "SIDECUT"), new Attribute("Mohawk", "MOHAWK"),
+            new Attribute("Dreadlocks", "DREADLOCKS"), new Attribute("Afro", "AFRO"),
+            new Attribute("Topknot", "TOPKNOT"), new Attribute("Pixie-cut", "PIXIE_CUT"),
+            new Attribute("Bun", "BUN"), new Attribute("Bob-cut", "BOB_CUT"),
+            new Attribute("Chonmage", "CHONMAGE"), new Attribute("Wavy", "WAVY"),
+            new Attribute("Ponytail", "PONYTAIL"), new Attribute("Low ponytail", "LOW_PONYTAIL"),
+            new Attribute("Twintails", "TWINTAILS"), new Attribute("Chignon", "CHIGNON"),
+            new Attribute("Braided", "BRAIDED"), new Attribute("Twin braids", "TWIN_BRAIDS"),
+            new Attribute("Crown braid", "CROWN_BRAID"), new Attribute("Drill hair", "DRILL_HAIR"),
+            new Attribute("Hime-cut", "HIME_CUT"), new Attribute("Bird cage", "BIRD_CAGE"));
 
     private final ObservableList<Attribute> legConfigurations = FXCollections.observableArrayList(); //TODO
 
