@@ -25,18 +25,18 @@
         <Tab text="Core">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <VBox layoutX="14.0" layoutY="44.0" spacing="10.0">
-               <HBox alignment="TOP_RIGHT">
-                  <children>
-                     <Label text="Character: " />
-                     <ComboBox fx:id="characterSelector" onAction="#selectCharacter" prefWidth="150.0" />
-                  </children>
-               </HBox>
-               <HBox>
-                  <children>
-                     <Label text="Id: " />
-                     <TextField fx:id="core$id$value" editable="false" prefHeight="25.0" prefWidth="250.0" />
-                  </children>
-               </HBox>
+                    <HBox alignment="TOP_RIGHT">
+                        <children>
+                            <Label text="Character: " />
+                            <ComboBox fx:id="characterSelector" onAction="#selectCharacter" prefWidth="150.0" />
+                        </children>
+                    </HBox>
+                    <HBox>
+                        <children>
+                            <Label text="Id: " />
+                            <TextField fx:id="core$id$value" editable="false" prefHeight="25.0" prefWidth="250.0" />
+                        </children>
+                    </HBox>
                     <HBox>
                         <Label text="Name (A, F, M): " />
                         <TextField fx:id="core$name$nameAndrogynous" />
@@ -51,12 +51,12 @@
                         <Label text="Surname: " />
                         <TextField fx:id="core$surname$value" />
                     </HBox>
-               <HBox>
-                  <children>
-                     <Label text="Description: " />
-                     <TextArea fx:id="core$description$value" prefHeight="78.0" prefWidth="475.0" wrapText="true" />
-                  </children>
-               </HBox>
+                    <HBox>
+                        <children>
+                            <Label text="Description: " />
+                            <TextArea fx:id="core$description$value" prefHeight="78.0" prefWidth="475.0" wrapText="true" />
+                        </children>
+                    </HBox>
                     <HBox>
                         <Label text="Level: " />
                         <TextField fx:id="core$level$value" />
@@ -73,7 +73,7 @@
                     </HBox>
                     <HBox layoutX="10.0" layoutY="115.0">
                         <Label text="Orientation: " />
-                  <ComboBox fx:id="core$sexualOrientation$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                        <ComboBox fx:id="core$sexualOrientation$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="185.0">
                         <Label text="Obedience: " />
@@ -81,7 +81,7 @@
                     </HBox>
                     <HBox layoutX="10.0" layoutY="150.0">
                         <Label text="Gender Identity: " />
-                  <ComboBox fx:id="core$genderIdentity$value" onAction="#updateXmlComboBox" prefHeight="25.0" prefWidth="200.0" />
+                        <ComboBox fx:id="core$genderIdentity$value" onAction="#updateXmlComboBox" prefHeight="25.0" prefWidth="200.0" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="80.0">
                         <Label text="Experience: " />
@@ -106,50 +106,36 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <TabPane layoutX="8.0" layoutY="7.0" prefHeight="671.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <Tab text="Body Core">
-
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-
                             <VBox layoutX="14.0" layoutY="28.0" prefHeight="587.0" prefWidth="938.0" spacing="10.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="28.0">
-
                                 <HBox>
-
                                     <Label text="Body Material: " />
                                     <TextField fx:id="body$bodyCore$bodyMaterial" />
-
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="10.0">
 
                                     <Label text="Body Size: " />
                                     <TextField fx:id="body$bodyCore$bodySize" />
-
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="35.0">
 
                                     <Label text="Femininity: " />
                                     <TextField fx:id="body$bodyCore$femininity" />
-
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="60.0">
-                           <CheckBox fx:id="body$bodyCore$feral" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Feral: " />
-
+                                    <CheckBox fx:id="body$bodyCore$feral" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Feral: " />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="85.0">
-
                                     <Label text="Genital Arrangement: " />
                                     <TextField fx:id="body$bodyCore$genitalArrangement" />
-
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="110.0">
-
                                     <Label text="Height: " />
                                     <TextField fx:id="body$bodyCore$height" />
-
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="135.0">
-
                                     <Label text="Muscle: " />
                                     <TextField fx:id="body$bodyCore$muscle" />
-
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="160.0">
                                     <CheckBox fx:id="body$bodyCore$piercedStomach" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Stomach: " />
@@ -165,18 +151,13 @@
                                 <HBox layoutX="10.0" layoutY="235.0">
                                     <CheckBox fx:id="body$bodyCore$takesAfterMother" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Takes After Mother: " />
                                 </HBox>
-
                             </VBox>
-
                         </AnchorPane>
-
                     </Tab>
                     <Tab text="Head">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <GridPane layoutX="275.0" layoutY="144.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
@@ -187,8 +168,7 @@
                                 <padding>
                                     <Insets left="14.0" top="28.0" />
                                 </padding>
-                                <VBox prefHeight="318.0" prefWidth="369.0" spacing="10.0" GridPane.columnSpan="2147483647">
-
+                                <VBox prefHeight="318.0" prefWidth="369.0" spacing="10.0">
                                     <Label alignment="CENTER" text="Antennae" underline="true">
                                         <padding>
                                             <Insets left="90.0" />
@@ -198,30 +178,21 @@
                                         </font>
                                     </Label>
                                     <HBox>
-
                                         <Label text="Antennae per row: " />
                                         <TextField fx:id="body$antennae$antennaePerRow" />
-
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
-
                                         <Label text="Length: " />
                                         <TextField fx:id="body$antennae$length" />
-
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
-
                                         <Label text="Rows: " />
                                         <TextField fx:id="body$antennae$rows" />
-
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="60.0">
-
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$antennae$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
+                                        <ComboBox fx:id="body$antennae$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                     </HBox>
-
                                 </VBox>
                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1">
 
@@ -241,7 +212,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$ear$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$ear$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -250,164 +221,6 @@
                                     </GridPane.margin>
                                 </VBox>
                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.rowIndex="1">
-
-                                    <Label alignment="CENTER" text="Eye" underline="true">
-                                        <padding>
-                                            <Insets left="90.0" />
-                                        </padding>
-                                        <font>
-                                            <Font name="System Bold" size="12.0" />
-                                        </font>
-                                    </Label>
-                                    <HBox>
-
-                                        <Label text="Eye Pairs: " />
-                                        <TextField fx:id="body$eye$eyePairs" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <Label text="Iris Shape: " />
-                              <ComboBox fx:id="body$eye$irisShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="35.0">
-
-                                        <Label text="Pupil Shape: " />
-                              <ComboBox fx:id="body$eye$pupilShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="60.0">
-
-                                        <Label text="Type: " />
-                              <ComboBox fx:id="body$eye$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
-
-                                    <GridPane.margin>
-                                        <Insets left="20.0" top="20.0" />
-                                    </GridPane.margin>
-                                </VBox>
-                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="3">
-
-                                    <Label alignment="CENTER" text="Face" underline="true">
-                                        <padding>
-                                            <Insets left="90.0" />
-                                        </padding>
-                                        <font>
-                                            <Font name="System Bold" size="12.0" />
-                                        </font>
-                                    </Label>
-                                    <HBox>
-
-                                        <Label text="Facial Hair: " />
-                                        <TextField fx:id="body$face$facialHair" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <CheckBox fx:id="body$face$piercedNose" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Nose: " />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="35.0">
-
-                                        <Label text="Type: " />
-                              <ComboBox fx:id="body$face$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
-
-                                </VBox>
-                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2">
-
-                                    <Label alignment="CENTER" text="Mouth" underline="true">
-                                        <padding>
-                                            <Insets left="90.0" />
-                                        </padding>
-                                        <font>
-                                            <Font name="System Bold" size="12.0" />
-                                        </font>
-                                    </Label>
-                                    <HBox>
-
-                                        <Label text="Capacity: " />
-                                        <TextField fx:id="body$mouth$capacity" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <Label text="Depth: " />
-                                        <TextField fx:id="body$mouth$depth" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="35.0">
-
-                                        <Label text="Elasticity: " />
-                                        <TextField fx:id="body$mouth$elasticity" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="60.0">
-
-                                        <Label text="Lip Size: " />
-                                        <TextField fx:id="body$mouth$lipSize" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="85.0">
-
-                                        <CheckBox fx:id="body$mouth$piercedLip" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Lip: " />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="110.0">
-
-                                        <Label text="Plasticity: " />
-                                        <TextField fx:id="body$mouth$plasticity" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="135.0">
-
-                                        <Label text="Stretched Capacity: " />
-                                        <TextField fx:id="body$mouth$stretchedCapacity" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="160.0">
-
-                                        <CheckBox fx:id="body$mouth$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="185.0">
-
-                                        <Label text="Wetness: " />
-                                        <TextField fx:id="body$mouth$wetness" />
-
-                                    </HBox>
-
-                                </VBox>
-                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
-
-                                    <Label alignment="CENTER" text="Tongue" underline="true">
-                                        <padding>
-                                            <Insets left="90.0" />
-                                        </padding>
-                                        <font>
-                                            <Font name="System Bold" size="12.0" />
-                                        </font>
-                                    </Label>
-                                    <HBox>
-
-                                        <CheckBox fx:id="body$tongue$piercedTongue" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Tongue: " />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <Label text="Tongue Length: " />
-                                        <TextField fx:id="body$tongue$tongueLength" />
-
-                                    </HBox>
-
-                                    <GridPane.margin>
-                                        <Insets left="20.0" top="20.0" />
-                                    </GridPane.margin>
-                                </VBox>
-                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
 
                                     <Label alignment="CENTER" text="Hair" underline="true">
                                         <padding>
@@ -420,7 +233,7 @@
                                     <HBox>
 
                                         <Label text="Hair Style: " />
-                              <ComboBox fx:id="body$hair$hairStyle" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$hair$hairStyle" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
@@ -432,7 +245,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$hair$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$hair$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -440,7 +253,7 @@
                                         <Insets left="20.0" top="20.0" />
                                     </GridPane.margin>
                                 </VBox>
-                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
 
                                     <Label alignment="CENTER" text="Horn" underline="true">
                                         <padding>
@@ -471,7 +284,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$horn$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$horn$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -481,6 +294,258 @@
                                 </VBox>
                             </GridPane>
                         </AnchorPane>
+                    </Tab>
+                    <Tab text="Face">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="168.0" layoutY="157.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="324.0" minHeight="10.0" prefHeight="324.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="290.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <padding>
+                              <Insets left="14.0" top="28.0" />
+                           </padding>
+                           <children>
+                              <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER" text="Face" underline="true">
+                                       <padding>
+                                          <Insets left="90.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox>
+                                       <children>
+                                          <Label text="Facial Hair: " />
+                                          <TextField fx:id="body$face$facialHair" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0">
+                                       <children>
+                                          <CheckBox fx:id="body$face$piercedNose" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Nose: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="35.0">
+                                       <children>
+                                          <Label text="Type: " />
+                                          <ComboBox fx:id="body$face$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label alignment="CENTER" text="Eye" underline="true">
+                                       <padding>
+                                          <Insets left="90.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox>
+                                       <children>
+                                          <Label text="Eye Pairs: " />
+                                          <TextField fx:id="body$eye$eyePairs" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0">
+                                       <children>
+                                          <Label text="Iris Shape: " />
+                                          <ComboBox fx:id="body$eye$irisShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="35.0">
+                                       <children>
+                                          <Label text="Pupil Shape: " />
+                                          <ComboBox fx:id="body$eye$pupilShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="60.0">
+                                       <children>
+                                          <Label text="Type: " />
+                                          <ComboBox fx:id="body$eye$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <Label alignment="CENTER" text="Tongue" underline="true">
+                                       <padding>
+                                          <Insets left="90.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$tongue$piercedTongue" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Tongue: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0">
+                                       <children>
+                                          <Label text="Tongue Length: " />
+                                          <TextField fx:id="body$tongue$tongueLength" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label alignment="CENTER" text="Mouth" underline="true">
+                                       <padding>
+                                          <Insets left="90.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox>
+                                       <children>
+                                          <Label text="Capacity: " />
+                                          <TextField fx:id="body$mouth$capacity" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0">
+                                       <children>
+                                          <Label text="Depth: " />
+                                          <TextField fx:id="body$mouth$depth" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="35.0">
+                                       <children>
+                                          <Label text="Elasticity: " />
+                                          <TextField fx:id="body$mouth$elasticity" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="60.0">
+                                       <children>
+                                          <Label text="Lip Size: " />
+                                          <TextField fx:id="body$mouth$lipSize" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="85.0">
+                                       <children>
+                                          <CheckBox fx:id="body$mouth$piercedLip" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Lip: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="110.0">
+                                       <children>
+                                          <Label text="Plasticity: " />
+                                          <TextField fx:id="body$mouth$plasticity" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="135.0">
+                                       <children>
+                                          <Label text="Stretched Capacity: " />
+                                          <TextField fx:id="body$mouth$stretchedCapacity" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="160.0">
+                                       <children>
+                                          <CheckBox fx:id="body$mouth$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="185.0">
+                                       <children>
+                                          <Label text="Wetness: " />
+                                          <TextField fx:id="body$mouth$wetness" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label alignment="CENTER" text="Lip &amp; Throat Modifiers" underline="true">
+                                       <padding>
+                                          <Insets left="90.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$mouth$mouthModifiers$PUFFY" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Puffy: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$mouth$mouthModifiers$TENTACLED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Tentacled: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$mouth$mouthModifiers$RIBBED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internally-ribbed: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$mouth$mouthModifiers$MUSCLE_CONTROL" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internally-muscled: " />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label alignment="CENTER" text="Tongue Modifiers" underline="true">
+                                       <padding>
+                                          <Insets left="90.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$tongue$tongueModifiers$RIBBED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Ribbed: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$tongue$tongueModifiers$TENTACLED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Tentacled: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$tongue$tongueModifiers$BIFURCATED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Bifurcated: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$tongue$tongueModifiers$WIDE" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Wide: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$tongue$tongueModifiers$FLAT" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Flat: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$tongue$tongueModifiers$STRONG" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Strong: " />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <CheckBox fx:id="body$tongue$tongueModifiers$TAPERED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Tapered: " />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
                     </Tab>
                     <Tab text="Ass">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -519,7 +584,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$ass$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$ass$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -613,7 +678,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$leg$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$leg$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -675,7 +740,7 @@
                                     <HBox layoutX="10.0" layoutY="85.0">
 
                                         <Label text="Shape: " />
-                              <ComboBox fx:id="body$breasts$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$breasts$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -693,7 +758,7 @@
                                     <HBox layoutX="10.0" layoutY="160.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$breasts$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$breasts$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -711,7 +776,7 @@
                                     <HBox>
 
                                         <Label text="Areolae Shape: " />
-                              <ComboBox fx:id="body$nipples$areolaeShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$nipples$areolaeShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
@@ -741,7 +806,7 @@
                                     <HBox layoutX="10.0" layoutY="110.0">
 
                                         <Label text="Nipple Shape: " />
-                              <ComboBox fx:id="body$nipples$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$nipples$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
@@ -787,7 +852,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                              <ComboBox fx:id="body$milk$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$milk$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -851,7 +916,7 @@
                                     <HBox layoutX="10.0" layoutY="85.0">
 
                                         <Label text="Shape: " />
-                              <ComboBox fx:id="body$breastsCrotch$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$breastsCrotch$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -869,7 +934,7 @@
                                     <HBox layoutX="10.0" layoutY="160.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$breastsCrotch$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$breastsCrotch$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -887,7 +952,7 @@
                                     <HBox>
 
                                         <Label text="Areolae Shape: " />
-                              <ComboBox fx:id="body$nipplesCrotch$areolaeShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$nipplesCrotch$areolaeShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
@@ -917,7 +982,7 @@
                                     <HBox layoutX="10.0" layoutY="110.0">
 
                                         <Label text="Nipple Shape: " />
-                              <ComboBox fx:id="body$nipplesCrotch$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$nipplesCrotch$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
@@ -963,7 +1028,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                              <ComboBox fx:id="body$milkCrotch$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$milkCrotch$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1051,7 +1116,7 @@
                                     <HBox layoutX="10.0" layoutY="185.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$penis$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$penis$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="210.0">
@@ -1079,7 +1144,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                              <ComboBox fx:id="body$cum$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$cum$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1218,7 +1283,7 @@
                                     <HBox layoutX="10.0" layoutY="371.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$vagina$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$vagina$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1236,7 +1301,7 @@
                                     <HBox>
 
                                         <Label text="Flavour: " />
-                              <ComboBox fx:id="body$girlcum$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$girlcum$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                 </VBox>
@@ -1280,7 +1345,7 @@
                                     <HBox>
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$torso$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$torso$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1305,9 +1370,10 @@
 
                                         <Label text="Girth: " />
                                         <TextField fx:id="body$tail$girth">
-                                 <tooltip>
-                                    <Tooltip text="Enter a value between 1 and 8" />
-                                 </tooltip></TextField>
+                                            <tooltip>
+                                                <Tooltip text="Enter a value between 1 and 8" />
+                                            </tooltip>
+                                        </TextField>
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -1319,7 +1385,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$tail$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$tail$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1355,7 +1421,7 @@
                                     <HBox layoutX="10.0" layoutY="60.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$tentacle$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$tentacle$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1379,7 +1445,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$wing$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$wing$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1456,7 +1522,7 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Type: " />
-                              <ComboBox fx:id="body$arm$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        <ComboBox fx:id="body$arm$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
