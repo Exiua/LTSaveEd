@@ -81,7 +81,7 @@
                     </HBox>
                     <HBox layoutX="10.0" layoutY="150.0">
                         <Label text="Gender Identity: " />
-                        <TextField fx:id="core$genderIdentity$value" />
+                  <ComboBox fx:id="core$genderIdentity$value" onAction="#updateXmlComboBox" prefHeight="25.0" prefWidth="200.0" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="80.0">
                         <Label text="Experience: " />
@@ -268,13 +268,13 @@
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Iris Shape: " />
-                                        <TextField fx:id="body$eye$irisShape" />
+                              <ComboBox fx:id="body$eye$irisShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Pupil Shape: " />
-                                        <TextField fx:id="body$eye$pupilShape" />
+                              <ComboBox fx:id="body$eye$pupilShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="60.0">
@@ -675,7 +675,7 @@
                                     <HBox layoutX="10.0" layoutY="85.0">
 
                                         <Label text="Shape: " />
-                                        <TextField fx:id="body$breasts$shape" />
+                              <ComboBox fx:id="body$breasts$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -711,7 +711,7 @@
                                     <HBox>
 
                                         <Label text="Areolae Shape: " />
-                                        <TextField fx:id="body$nipples$areolaeShape" />
+                              <ComboBox fx:id="body$nipples$areolaeShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
@@ -741,7 +741,7 @@
                                     <HBox layoutX="10.0" layoutY="110.0">
 
                                         <Label text="Nipple Shape: " />
-                                        <TextField fx:id="body$nipples$nippleShape" />
+                              <ComboBox fx:id="body$nipples$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
@@ -851,7 +851,7 @@
                                     <HBox layoutX="10.0" layoutY="85.0">
 
                                         <Label text="Shape: " />
-                                        <TextField fx:id="body$breastsCrotch$shape" />
+                              <ComboBox fx:id="body$breastsCrotch$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -887,7 +887,7 @@
                                     <HBox>
 
                                         <Label text="Areolae Shape: " />
-                                        <TextField fx:id="body$nipplesCrotch$areolaeShape" />
+                              <ComboBox fx:id="body$nipplesCrotch$areolaeShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
@@ -917,7 +917,7 @@
                                     <HBox layoutX="10.0" layoutY="110.0">
 
                                         <Label text="Nipple Shape: " />
-                                        <TextField fx:id="body$nipplesCrotch$nippleShape" />
+                              <ComboBox fx:id="body$nipplesCrotch$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
