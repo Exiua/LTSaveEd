@@ -47,7 +47,7 @@ public class Attribute {
     }
 
     /**
-     * Checks if the supplied value is equal to the value of the object
+     * Checks if the supplied value is equal to the value of this object
      * @param value
      *   Supplied value to check against
      * @return
@@ -55,5 +55,21 @@ public class Attribute {
      */
     public boolean equals(String value){
         return this.value.equals(value);
+    }
+
+    /**
+     * Checks if the supplied Attribute object is equal to the value of this object
+     * @param other
+     *   Supplied Attribute object to be checked against
+     * @return
+     *   Boolean of whether the supplied Attribute object values matches the value of this object
+     */
+    public boolean equals(Attribute other){
+        return value.equals(other.getValue());
+    }
+
+    @Override
+    public String toString(){
+        return value;
     }
 }
