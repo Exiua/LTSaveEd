@@ -978,7 +978,7 @@ public class Controller {
             cb.setConverter(new StringConverter<>() {
                 @Override
                 public String toString(Attribute attribute) {
-                    return attribute.getName();
+                    return attribute.getName(); //TODO: Fix this method throwing exceptions whenever hairStyles ComboBox values are updated
                 }
 
                 @Override
