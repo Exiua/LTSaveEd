@@ -75,22 +75,22 @@ public class Controller {
             "#body$bodyCore$bodySize", "#body$bodyCore$femininity", "#body$bodyCore$height", "#body$bodyCore$muscle",
             "#body$antennae$antennaePerRow", "#body$antennae$length", "#body$antennae$rows", "#body$mouth$depth",
             "#body$mouth$elasticity", "#body$mouth$lipSize", "#body$mouth$plasticity", "#body$mouth$wetness",
-            "#body$eye$eyePairs", "#body$tongue$tongueLength", "#body$hair$length", "#body$horn$hornsPerRow",
-            "#body$horn$length", "#body$horn$rows", "#body$ass$assSize", "#body$ass$hipSize", "#body$anus$depth",
-            "#body$anus$elasticity", "#body$anus$plasticity", "#body$anus$wetness", "#body$breasts$milkRegeneration",
-            "#body$breasts$milkStorage", "#body$breasts$nippleCountPerBreast", "#body$breasts$rows",
-            "#body$breasts$size", "#body$nipples$areolaeSize", "#body$nipples$depth", "#body$nipples$elasticity",
-            "#body$nipples$nippleSize", "#body$nipples$plasticity", "#body$breastsCrotch$milkRegeneration",
-            "#body$breastsCrotch$milkStorage", "#body$breastsCrotch$nippleCountPerBreast", "#body$breastsCrotch$rows",
-            "#body$breastsCrotch$size", "#body$nipplesCrotch$areolaeSize", "#body$nipplesCrotch$depth",
-            "#body$nipplesCrotch$elasticity", "#body$nipplesCrotch$nippleSize", "#body$nipplesCrotch$plasticity",
-            "#body$penis$depth", "#body$penis$elasticity", "#body$penis$girth", "#body$penis$plasticity",
-            "#body$penis$size", "#body$testicles$cumExpulsion", "#body$testicles$cumRegeneration",
-            "#body$testicles$cumStorage", "#body$testicles$numberOfTesticles", "#body$testicles$testicleSize",
-            "#body$vagina$clitGirth", "#body$vagina$clitSize", "#body$vagina$depth", "#body$vagina$elasticity",
-            "#body$vagina$labiaSize", "#body$vagina$plasticity", "#body$tail$count", "#body$tail$girth",
-            "#body$tentacle$count", "#body$tentacle$girth", "#body$wing$size", "#body$spinneret$depth",
-            "#body$spinneret$elasticity", "#body$spinneret$plasticity", "#body$spinneret$wetness", "#body$arm$rows"};
+            "#body$eye$eyePairs", "#body$tongue$tongueLength", "#body$horn$hornsPerRow", "#body$horn$length",
+            "#body$horn$rows", "#body$ass$assSize", "#body$ass$hipSize", "#body$anus$depth", "#body$anus$elasticity",
+            "#body$anus$plasticity", "#body$anus$wetness", "#body$breasts$milkRegeneration", "#body$breasts$milkStorage",
+            "#body$breasts$nippleCountPerBreast", "#body$breasts$rows", "#body$breasts$size", "#body$nipples$areolaeSize",
+            "#body$nipples$depth", "#body$nipples$elasticity", "#body$nipples$nippleSize", "#body$nipples$plasticity",
+            "#body$breastsCrotch$milkRegeneration", "#body$breastsCrotch$milkStorage",
+            "#body$breastsCrotch$nippleCountPerBreast", "#body$breastsCrotch$rows", "#body$breastsCrotch$size",
+            "#body$nipplesCrotch$areolaeSize", "#body$nipplesCrotch$depth", "#body$nipplesCrotch$elasticity",
+            "#body$nipplesCrotch$nippleSize", "#body$nipplesCrotch$plasticity", "#body$penis$depth",
+            "#body$penis$elasticity", "#body$penis$girth", "#body$penis$plasticity", "#body$penis$size",
+            "#body$testicles$cumExpulsion", "#body$testicles$cumRegeneration", "#body$testicles$cumStorage",
+            "#body$testicles$numberOfTesticles", "#body$testicles$testicleSize", "#body$vagina$clitGirth",
+            "#body$vagina$clitSize", "#body$vagina$depth", "#body$vagina$elasticity", "#body$vagina$labiaSize",
+            "#body$vagina$plasticity", "#body$tail$count", "#body$tail$girth", "#body$tentacle$count",
+            "#body$tentacle$girth", "#body$wing$size", "#body$spinneret$depth", "#body$spinneret$elasticity",
+            "#body$spinneret$plasticity", "#body$spinneret$wetness", "#body$arm$rows"};
 
     /**
      * String array of all TextField ids using a double data type
@@ -119,7 +119,7 @@ public class Controller {
             "#body$vagina$type", "#body$girlcum$flavour", "#body$torso$type", "#body$tail$type", "#body$tentacle$type",
             "#body$wing$type", "#body$arm$type", "#body$eye$irisShape", "#body$eye$pupilShape", "#body$breasts$shape",
             "#body$nipples$areolaeShape", "#body$nipples$nippleShape", "#body$breastsCrotch$shape",
-            "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape"};
+            "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape", "#body$hair$hairStyle"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -649,61 +649,27 @@ public class Controller {
     /**
      * ObservableList of hairstyles for bald hair length
      */
-    private final ObservableList<Attribute> hairStylesB = FXCollections.observableArrayList(
-            new Attribute("Natural", "NONE"));
+    private final ObservableList<Attribute> hairStylesB = FXCollections.observableArrayList();
 
     /**
      * ObservableList of hairstyles for very short hair length
      */
-    private final ObservableList<Attribute> hairStylesVS = FXCollections.observableArrayList(
-            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
-            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
-            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
-            new Attribute("Afro", "AFRO"));
+    private final ObservableList<Attribute> hairStylesVS = FXCollections.observableArrayList();
 
     /**
      * ObservableList of hairstyles for short hair length
      */
-    private final ObservableList<Attribute> hairStylesS = FXCollections.observableArrayList(
-            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
-            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
-            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
-            new Attribute("Sidecut", "SIDECUT"), new Attribute("Mohawk", "MOHAWK"),
-            new Attribute("Dreadlocks", "DREADLOCKS"), new Attribute("Afro", "AFRO"),
-            new Attribute("Pixie-cut", "PIXIE_CUT"));
+    private final ObservableList<Attribute> hairStylesS = FXCollections.observableArrayList();
 
     /**
      * ObservableList of hairstyles for shoulder-length hair length
      */
-    private final ObservableList<Attribute> hairStylesSL = FXCollections.observableArrayList(
-            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
-            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
-            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
-            new Attribute("Sidecut", "SIDECUT"), new Attribute("Mohawk", "MOHAWK"),
-            new Attribute("Dreadlocks", "DREADLOCKS"), new Attribute("Afro", "AFRO"),
-            new Attribute("Topknot", "TOPKNOT"), new Attribute("Pixie-cut", "PIXIE_CUT"),
-            new Attribute("Bun", "BUN"), new Attribute("Bob-cut", "BOB_CUT"),
-            new Attribute("Chonmage", "CHONMAGE"), new Attribute("Wavy", "WAVY"),
-            new Attribute("Ponytail", "PONYTAIL"), new Attribute("Low ponytail", "LOW_PONYTAIL"),
-            new Attribute("Twintails", "TWINTAILS"));
+    private final ObservableList<Attribute> hairStylesSL = FXCollections.observableArrayList();
 
     /**
      * ObservableList of hairstyles for long+ hair length
      */
-    private final ObservableList<Attribute> hairStylesL = FXCollections.observableArrayList(
-            new Attribute("Natural", "NONE"), new Attribute("Messy", "MESSY"),
-            new Attribute("Loose", "LOOSE"), new Attribute("Curly", "CURLY"),
-            new Attribute("Straight", "STRAIGHT"), new Attribute("Slicked-back", "SLICKED_BACK"),
-            new Attribute("Sidecut", "SIDECUT"), new Attribute("Mohawk", "MOHAWK"),
-            new Attribute("Dreadlocks", "DREADLOCKS"), new Attribute("Afro", "AFRO"),
-            new Attribute("Topknot", "TOPKNOT"), new Attribute("Pixie-cut", "PIXIE_CUT"),
-            new Attribute("Bun", "BUN"), new Attribute("Bob-cut", "BOB_CUT"),
-            new Attribute("Chonmage", "CHONMAGE"), new Attribute("Wavy", "WAVY"),
-            new Attribute("Ponytail", "PONYTAIL"), new Attribute("Low ponytail", "LOW_PONYTAIL"),
-            new Attribute("Twintails", "TWINTAILS"), new Attribute("Chignon", "CHIGNON"),
-            new Attribute("Braided", "BRAIDED"), new Attribute("Twin braids", "TWIN_BRAIDS"),
-            new Attribute("Crown braid", "CROWN_BRAID"), new Attribute("Drill hair", "DRILL_HAIR"),
-            new Attribute("Hime-cut", "HIME_CUT"));
+    private final ObservableList<Attribute> hairStylesL = FXCollections.observableArrayList();
 
     /**
      * ObservableList of hairstyles for floor-length hair length (all the hairstyles in the game)
@@ -788,6 +754,18 @@ public class Controller {
         comboBoxValues.add(breastCrotchShapes);
         comboBoxValues.add(areolaeCrotchShapes);
         comboBoxValues.add(nippleCrotchShapes);
+        comboBoxValues.add(hairStylesFL);
+        initializeHairStyles();
+    }
+
+    private void initializeHairStyles(){
+        hairStylesL.addAll(hairStylesFL.subList(0, 25));
+        hairStylesSL.addAll(hairStylesFL.subList(0, 19));
+        hairStylesS.addAll(hairStylesFL.subList(0, 10));
+        hairStylesS.addAll(hairStylesFL.subList(11, 12));
+        hairStylesVS.addAll(hairStylesFL.subList(0, 6));
+        hairStylesVS.addAll(hairStylesFL.subList(9, 10));
+        hairStylesB.addAll(hairStylesFL.subList(0, 1));
     }
 
     /**
@@ -880,6 +858,67 @@ public class Controller {
                 case STRING:
                     value.setTextContent(newValue);
                     return newValue;
+                case HAIR:
+                    try {
+                        int nv = Integer.parseInt(newValue);
+                        newValue = "" + nv; //Removes leading zeroes
+                        if(nv < 0){
+                            return oldValue;
+                        }
+                        value.setTextContent(newValue);
+                        @SuppressWarnings("unchecked")
+                        ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) root.lookup("#body$hair$hairStyle");
+                        Attribute attr;
+                        if(nv < 4){
+                            attr = hairStylesB.get(0);
+                            hairStyles.setValue(attr);
+                            hairStyles.setItems(hairStylesB);
+                            hairStyles.setValue(attr);
+                        }
+                        else if(nv < 11){
+                            attr = hairStyles.getValue();
+                            if(!hairStylesVS.contains(attr)){
+                                attr = hairStylesVS.get(0);
+                            }
+                            hairStyles.setValue(attr);
+                            hairStyles.setItems(hairStylesVS);
+                            hairStyles.setValue(attr);
+                        }
+                        else if(nv < 22){
+                            attr = hairStyles.getValue();
+                            if(!hairStylesS.contains(attr)){
+                                attr = hairStylesS.get(0);
+                            }
+                            hairStyles.setValue(attr);
+                            hairStyles.setItems(hairStylesS);
+                            hairStyles.setValue(attr);
+                        }
+                        else if(nv < 45){
+                            attr = hairStyles.getValue();
+                            if(!hairStylesSL.contains(attr)){
+                                attr = hairStylesSL.get(0);
+                            }
+                            hairStyles.setValue(attr);
+                            hairStyles.setItems(hairStylesSL);
+                            hairStyles.setValue(attr);
+                        }
+                        else if(nv < 265){
+                            attr = hairStyles.getValue();
+                            if(!hairStylesL.contains(attr)){
+                                attr = hairStylesL.get(0);
+                            }
+                            hairStyles.setValue(attr);
+                            hairStyles.setItems(hairStylesL);
+                            hairStyles.setValue(attr);
+                        }
+                        else{
+                            hairStyles.setItems(hairStylesFL);
+                        }
+                        return newValue;
+                    }
+                    catch (NumberFormatException e) {
+                        return oldValue;
+                    }
                 default:
                     return null;
             }
@@ -896,6 +935,15 @@ public class Controller {
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return attr.getAttributes().getNamedItem(id[2]);
+        }
+
+        private boolean objectInList(Attribute attr, ObservableList<Attribute> list){
+            for (Attribute attribute : list) {
+                if (attribute.equals(attr)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -1120,6 +1168,29 @@ public class Controller {
                                 TextField tf = (TextField) root.lookup(nodeId);
                                 if (tf != null) {
                                     tf.setText(value);
+                                    if(nodeId.equals("#body$hair$length")){
+                                        int v = Integer.parseInt(value);
+                                        @SuppressWarnings("unchecked")
+                                        ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) root.lookup("#body$hair$hairStyle");
+                                        if(v >= 0 && v < 4){
+                                            hairStyles.setItems(hairStylesB);
+                                        }
+                                        else if(v < 11){
+                                            hairStyles.setItems(hairStylesVS);
+                                        }
+                                        else if(v < 22){
+                                            hairStyles.setItems(hairStylesS);
+                                        }
+                                        else if(v < 45){
+                                            hairStyles.setItems(hairStylesSL);
+                                        }
+                                        else if(v < 265){
+                                            hairStyles.setItems(hairStylesL);
+                                        }
+                                        else{
+                                            hairStyles.setItems(hairStylesFL);
+                                        }
+                                    }
                                 }
                             }
                             catch(ClassCastException e){ //Using CheckBox for boolean values
@@ -1142,7 +1213,7 @@ public class Controller {
                     }
                 }
             }
-            attachListeners();
+            addListeners();
         }
     }
 
@@ -1158,9 +1229,11 @@ public class Controller {
     /**
      * Method to attach listeners to TextFields to properly detect and record changes to the xml data
      */
-    private void attachListeners(){
+    private void addListeners(){
         TextArea ta = (TextArea) root.lookup("#core$description$value");
         ta.focusedProperty().addListener(new TextObjectListener(ta, TextFieldType.STRING));
+        TextField hairStyles = (TextField) root.lookup("#body$hair$length");
+        hairStyles.focusedProperty().addListener(new TextObjectListener(hairStyles, TextFieldType.HAIR));
         for(String intTextFieldId : intTextFieldIds) {
             TextField tf = (TextField) root.lookup(intTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT));
