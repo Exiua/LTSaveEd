@@ -117,7 +117,9 @@ public class Controller {
             "#body$ass$type", "#body$breasts$type", "#body$milk$flavour", "#body$breastsCrotch$type",
             "#body$milkCrotch$flavour", "#body$penis$type", "#body$cum$flavour", "#body$vagina$type",
             "#body$girlcum$flavour", "#body$torso$type", "#body$tail$type", "#body$tentacle$type", "#body$wing$type",
-            "#body$arm$type"};
+            "#body$arm$type", "#body$eye$irisShape", "#body$eye$pupilShape", "#body$breasts$shape",
+            "#body$nipples$areolaeShape", "#body$nipples$nippleShape", "#body$breastsCrotch$shape",
+            "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -125,6 +127,25 @@ public class Controller {
     private final ObservableList<Attribute> sexualOrientations = FXCollections.observableArrayList(
             new Attribute("Androphilic", "ANDROPHILIC"), new Attribute("Ambiphilic", "AMBIPHILIC"),
             new Attribute("Gynephilic", "GYNEPHILIC"));
+
+    private final ObservableList<Attribute> genderIdentities = FXCollections.observableArrayList(
+            new Attribute("M_P_V_B_HERMAPHRODITE", "M_P_V_B_HERMAPHRODITE"),
+            new Attribute("M_P_V_HERMAPHRODITE", "M_P_V_HERMAPHRODITE"),
+            new Attribute("M_P_B_BUSTYBOY", "M_P_B_BUSTYBOY"), new Attribute("M_P_MALE", "M_P_MALE"),
+            new Attribute("M_V_B_BUTCH", "M_V_B_BUTCH"), new Attribute("M_V_CUNTBOY", "M_V_CUNTBOY"),
+            new Attribute("M_B_MANNEQUIN", "M_B_MANNEQUIN"),
+            new Attribute("M_MANNEQUIN", "M_MANNEQUIN"),
+            new Attribute("F_P_V_B_FUTANARI", "F_P_V_B_FUTANARI"),
+            new Attribute("F_P_V_FUTANARI", "F_P_V_FUTANARI"),
+            new Attribute("F_P_B_SHEMALE", "F_P_B_SHEMALE"),
+            new Attribute("F_P_TRAP", "F_P_TRAP"),
+            new Attribute("F_V_B_FEMALE", "F_V_B_FEMALE"), new Attribute("F_V_FEMALE", "F_V_FEMALE"),
+            new Attribute("F_B_DOLL", "F_B_DOLL"), new Attribute("F_DOLL", "F_DOLL"),
+            new Attribute("N_P_V_B_HERMAPHRODITE", "N_P_V_B_HERMAPHRODITE"),
+            new Attribute("N_P_V_HERMAPHRODITE", "N_P_V_HERMAPHRODITE"),
+            new Attribute("N_P_B_SHEMALE", "N_P_B_SHEMALE"), new Attribute("N_P_TRAP", "N_P_TRAP"),
+            new Attribute("N_V_B_TOMBOY", "N_V_B_TOMBOY"), new Attribute("N_V_TOMBOY", "N_V_TOMBOY"),
+            new Attribute("N_B_DOLL", "N_B_DOLL"), new Attribute("N_NEUTER", "N_NEUTER"));
 
     /**
      * ObservableList of all antennae types in the game
@@ -712,6 +733,14 @@ public class Controller {
         comboBoxValues.add(tentacleTypes);
         comboBoxValues.add(wingTypes);
         comboBoxValues.add(armTypes);
+        comboBoxValues.add(irisShapes);
+        comboBoxValues.add(pupilShapes);
+        comboBoxValues.add(breastShapes);
+        comboBoxValues.add(areolaeShapes);
+        comboBoxValues.add(nippleShapes);
+        comboBoxValues.add(breastCrotchShapes);
+        comboBoxValues.add(areolaeCrotchShapes);
+        comboBoxValues.add(nippleCrotchShapes);
     }
 
     /**
