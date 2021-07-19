@@ -119,7 +119,8 @@ public class Controller {
             "#body$vagina$type", "#body$girlcum$flavour", "#body$torso$type", "#body$tail$type", "#body$tentacle$type",
             "#body$wing$type", "#body$arm$type", "#body$eye$irisShape", "#body$eye$pupilShape", "#body$breasts$shape",
             "#body$nipples$areolaeShape", "#body$nipples$nippleShape", "#body$breastsCrotch$shape",
-            "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape", "#body$hair$hairStyle"};
+            "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape", "#body$hair$hairStyle",
+            "body$bodyCore$bodyMaterial"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -689,6 +690,13 @@ public class Controller {
             new Attribute("Crown braid", "CROWN_BRAID"), new Attribute("Drill hair", "DRILL_HAIR"),
             new Attribute("Hime-cut", "HIME_CUT"), new Attribute("Bird cage", "BIRD_CAGE"));
 
+    private final ObservableList<Attribute> bodyMaterials = FXCollections.observableArrayList(
+            new Attribute("Flesh", "FLESH"), new Attribute("Slime", "SLIME"),
+            new Attribute("Fire", "FIRE"), new Attribute("Water", "WATER"),
+            new Attribute("Ice", "ICE"), new Attribute("Storm-clouds", "AIR"),
+            new Attribute("Stone", "STONE"), new Attribute("Rubber", "RUBBER"),
+            new Attribute("Energy", "ENERGY"));
+
     private final ObservableList<Attribute> legConfigurations = FXCollections.observableArrayList(); //TODO
 
     private final ObservableList<Attribute> footStructures = FXCollections.observableArrayList(); //TODO
@@ -755,6 +763,7 @@ public class Controller {
         comboBoxValues.add(areolaeCrotchShapes);
         comboBoxValues.add(nippleCrotchShapes);
         comboBoxValues.add(hairStylesFL);
+        comboBoxValues.add(bodyMaterials);
         initializeHairStyles();
     }
 
@@ -1054,6 +1063,8 @@ public class Controller {
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) root.lookup("#characterSelector");
         charId = cb.getValue().getId(); //Placeholder; will change to take input from a combobox to select character
+        Button btn = (Button) root.lookup("#deleteCharacter");
+        btn.setVisible(!charId.equals("PlayerCharacter") && !charId.startsWith("-1"));
         setFields();
     }
 
@@ -1172,6 +1183,7 @@ public class Controller {
                                 ta.setText(value);
                                 continue;
                             }
+                            //TODO: Instead of using nested try-catch, parse the value's data type and assign the value to the correct container
                             try { //Using TextFields for numerical and string values
                                 TextField tf = (TextField) root.lookup(nodeId);
                                 if (tf != null) {
@@ -1229,6 +1241,10 @@ public class Controller {
         }
     }
 
+    private void setFieldsRec(){
+        //TODO: Recursive setFields method
+    }
+
     private Attribute matchComboBoxItem(ObservableList<Attribute> list, String value){
         for (Attribute attribute : list) {
             if (attribute.equals(value)) {
@@ -1278,6 +1294,24 @@ public class Controller {
             }
         }
         return null;
+    }
+
+    /**
+     *
+     */
+    @FXML
+    private void deleteCharacter(){
+        Node idNode = getElementByIdValue(charId);
+        assert idNode != null;
+        Node characterNode = idNode.getParentNode().getParentNode().getParentNode(); //idNode > coreNode > characterNode > npcNode
+        @SuppressWarnings("unchecked")
+        ComboBox<NpcCharacter> charSelect = (ComboBox<NpcCharacter>) root.lookup("#characterSelector");
+        ObservableList<NpcCharacter> charList = charSelect.getItems();
+        NpcCharacter deletedChar = charSelect.getValue();
+        NpcCharacter prevChar = charList.get(charList.indexOf(deletedChar) - 1);
+        charSelect.setValue(prevChar);
+        charList.remove(deletedChar);
+        characterNode.getParentNode().removeChild(characterNode);
     }
 
     /**
