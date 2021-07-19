@@ -120,7 +120,7 @@ public class Controller {
             "#body$wing$type", "#body$arm$type", "#body$eye$irisShape", "#body$eye$pupilShape", "#body$breasts$shape",
             "#body$nipples$areolaeShape", "#body$nipples$nippleShape", "#body$breastsCrotch$shape",
             "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape", "#body$hair$hairStyle",
-            "body$bodyCore$bodyMaterial"};
+            "#body$bodyCore$bodyMaterial"}; //33 items
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -697,9 +697,20 @@ public class Controller {
             new Attribute("Stone", "STONE"), new Attribute("Rubber", "RUBBER"),
             new Attribute("Energy", "ENERGY"));
 
+    private final ObservableList<Attribute> subspeciesOverrides = FXCollections.observableArrayList(); //TODO
+
+    private final ObservableList<Attribute> pubicHairTypes = FXCollections.observableArrayList(); //TODO
+
+    private final ObservableList<Attribute> facialHairTypes = FXCollections.observableArrayList(); //TODO
+
+    private final ObservableList<Attribute> assHairTypes = FXCollections.observableArrayList(); //TODO
+
+    private final ObservableList<Attribute> underarmHairTypes = FXCollections.observableArrayList(); //TODO
+
     private final ObservableList<Attribute> legConfigurations = FXCollections.observableArrayList(); //TODO
 
     private final ObservableList<Attribute> footStructures = FXCollections.observableArrayList(); //TODO
+
 
     /**
      * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
@@ -763,7 +774,7 @@ public class Controller {
         comboBoxValues.add(areolaeCrotchShapes);
         comboBoxValues.add(nippleCrotchShapes);
         comboBoxValues.add(hairStylesFL);
-        comboBoxValues.add(bodyMaterials);
+        comboBoxValues.add(bodyMaterials); //33 items
         initializeHairStyles();
     }
 
