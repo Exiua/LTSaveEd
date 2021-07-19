@@ -4,3 +4,4 @@ out
 *.ini
 *.txt
 src/LTSaveEd/Debug.java
+src/META-INF
