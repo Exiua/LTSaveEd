@@ -711,7 +711,6 @@ public class Controller {
 
     private final ObservableList<Attribute> footStructures = FXCollections.observableArrayList(); //TODO
 
-
     /**
      * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
      */
@@ -1119,6 +1118,36 @@ public class Controller {
         return attr.getAttributes().getNamedItem(id[id.length-1]);
     }
 
+    private Node getValueNode(String objId){
+        String[] id = objId.split("\\$");
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        for(int i = 0; i < id.length - 1; i++){
+            attr = (Element) attr.getElementsByTagName(id[i]).item(0);
+        }
+        return attr.getAttributes().getNamedItem(id[id.length-1]);
+    }
+
+    private Node getValueNodeParent(ActionEvent event){
+        String[] id = getId(event).split("\\$");
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        for(int i = 0; i < id.length - 1; i++){
+            attr = (Element) attr.getElementsByTagName(id[i]).item(0);
+        }
+        return attr;
+    }
+
+    private Node getValueNodeParent(String objId){
+        String[] id = objId.split("\\$");
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        for(int i = 0; i < id.length - 1; i++){
+            attr = (Element) attr.getElementsByTagName(id[i]).item(0);
+        }
+        return attr;
+    }
+
     /**
      * Updates xml boolean values changed by CheckBoxes
      * @param event
@@ -1129,8 +1158,44 @@ public class Controller {
         String fxId = "#" + getId(event);
         CheckBox cb = (CheckBox) root.lookup(fxId);
         Node value = getValueNode(event);
-        value.setTextContent("" + cb.isSelected());
+        try {
+            value.setTextContent("" + cb.isSelected());
+        }
+        catch(NullPointerException e){
+            value = getValueNodeParent(event);
+            ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
+        }
+        String[] idParts = fxId.split("\\$");
+        if(idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")){
+            checkboxFlaredTaperedToggle(fxId);
+        }
         event.consume();
+    }
+
+
+    private void checkboxFlaredTaperedToggle(String id){
+        boolean flared = id.split("\\$")[3].equals("FLARED");
+        String targetId;
+        CheckBox src = (CheckBox) root.lookup(id);
+        CheckBox target;
+        if(flared){
+            targetId = id.replace("FLARED", "TAPERED");
+        }
+        else{
+            targetId = id.replace("TAPERED", "FLARED");
+        }
+        target = (CheckBox) root.lookup(targetId);
+        boolean srcVal = src.isSelected();
+        target.setSelected(!srcVal);
+        Node value = getValueNode(targetId.replace("#", ""));
+        try {
+            value.setTextContent("" + target.isSelected());
+        }
+        catch(NullPointerException e){
+            value = getValueNodeParent(id.replace("#", ""));
+            ((Element) value).setAttribute(id.split("\\$")[3], "" + target.isSelected());
+        }
+
     }
 
     /**
