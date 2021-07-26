@@ -1176,7 +1176,6 @@ public class Controller {
     private void checkboxFlaredTaperedToggle(String id){
         boolean flared = id.split("\\$")[3].equals("FLARED");
         String targetId;
-        CheckBox src = (CheckBox) root.lookup(id);
         CheckBox target;
         if(flared){
             targetId = id.replace("FLARED", "TAPERED");
@@ -1185,8 +1184,7 @@ public class Controller {
             targetId = id.replace("TAPERED", "FLARED");
         }
         target = (CheckBox) root.lookup(targetId);
-        boolean srcVal = src.isSelected();
-        target.setSelected(!srcVal);
+        target.setSelected(false);
         Node value = getValueNode(targetId.replace("#", ""));
         try {
             value.setTextContent("" + target.isSelected());
