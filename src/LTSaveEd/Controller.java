@@ -24,6 +24,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -1128,6 +1129,10 @@ public class Controller {
         return attr.getAttributes().getNamedItem(id[id.length-1]);
     }
 
+    private Node getValueNode(Node node){
+        return node.getAttributes().getNamedItem("value");
+    }
+
     private Node getValueNodeParent(ActionEvent event){
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
@@ -1146,6 +1151,17 @@ public class Controller {
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
         }
         return attr;
+    }
+
+    private Node getChildNode(Node node, String targetNode){
+        NodeList children = node.getChildNodes();
+        for(int i = 0; i < children.getLength(); i++){
+            if(children.item(i).getNodeName().equals(targetNode)){
+                return children.item(i);
+            }
+        }
+        System.out.println("No Match (null node): " + node + " " + targetNode); //Debugging
+        return null;
     }
 
     /**
@@ -1370,6 +1386,10 @@ public class Controller {
         return null;
     }
 
+    private void removeNode(Node node){
+        node.getParentNode().removeChild(node);
+    }
+
     /**
      *
      */
@@ -1385,7 +1405,36 @@ public class Controller {
         NpcCharacter prevChar = charList.get(charList.indexOf(deletedChar) - 1);
         charSelect.setValue(prevChar);
         charList.remove(deletedChar);
-        characterNode.getParentNode().removeChild(characterNode);
+        removeNode(characterNode);
+    }
+
+    @FXML
+    private void deleteOffsprings(){
+        NodeList npcList = saveFile.getElementsByTagName("NPC");
+        ArrayList<String> offspringList = new ArrayList<>();
+        for(int i = 0; i < npcList.getLength(); i++){
+            Node character = getChildNode(npcList.item(i), "character");
+            assert character != null;
+            Node core = getChildNode(character, "core");
+            assert core != null;
+            Node pathname = getChildNode(core, "pathName");
+            assert pathname != null;
+            Node locationInfo = getChildNode(character, "locationInformation");
+            assert locationInfo != null;
+            Node worldLoc = getChildNode(locationInfo, "worldLocation");
+            if(getValueNode(pathname).getTextContent().equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")) {
+                assert worldLoc != null;
+                if (getValueNode(worldLoc).getTextContent().equals("EMPTY")) {
+                    Node id = getChildNode(core, "id");
+                    assert id != null;
+                    offspringList.add(getValueNode(id).getTextContent());
+                }
+            }
+        }
+        for (String s : offspringList) {
+            Node npc = Objects.requireNonNull(getElementByIdValue(s)).getParentNode().getParentNode().getParentNode();
+            removeNode(npc);
+        }
     }
 
     /**
