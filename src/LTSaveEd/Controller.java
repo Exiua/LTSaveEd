@@ -290,38 +290,6 @@ public class Controller {
             new Attribute("Multi-branched", "REINDEER_RACK"));
 
     /**
-     * ObservableList of all leg types in the game
-     */
-    private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
-            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
-            new Attribute("Badger", "innoxia_badger_leg"), new Attribute("Bat", "BAT_MORPH"),
-            new Attribute("Bear", "dsg_bear_leg"),
-            new Attribute("Capybara", "NoStepOnSnek_capybara_leg"), new Attribute("Cat", "CAT_MORPH"),
-            new Attribute("Cow", "COW_MORPH"), new Attribute("Demonic", "DEMON_COMMON"),
-            new Attribute("Demonic-hoofed", "DEMON_HOOFED"),
-            new Attribute("Demonic-horse", "DEMON_HORSE"),
-            new Attribute("Demonic-snake", "DEMON_SNAKE"),
-            new Attribute("Demonic-spider", "DEMON_SPIDER"),
-            new Attribute("Demonic-octopus", "DEMON_OCTOPUS"),
-            new Attribute("Demonic-fish", "DEMON_FISH"),
-            new Attribute("Demonic-eagle", "DEMON_EAGLE"), new Attribute("Dog", "DOG_MORPH"),
-            new Attribute("Dragon", "dsg_dragon_leg"), new Attribute("Ferret", "dsg_ferret_leg"),
-            new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_leg"),
-            new Attribute("Gryphon", "dsg_gryphon_leg"), new Attribute("Harpy", "HARPY"),
-            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
-            new Attribute("Hyena", "innoxia_hyena_leg"),
-            new Attribute("Octopus", "NoStepOnSnek_octopus_leg"),
-            new Attribute("Otter", "dsg_otter_leg"), new Attribute("Panther", "innoxia_panther_leg"),
-            new Attribute("Pig", "innoxia_pig_leg"), new Attribute("Rabbit", "RABBIT_MORPH"),
-            new Attribute("Racoon", "dsg_racoon_leg"), new Attribute("Rat", "RAT_MORPH"),
-            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_leg"),
-            new Attribute("Sheep", "innoxia_sheep_leg"),
-            new Attribute("Snake", "NoStepOnSnek_snake_leg"),
-            new Attribute("Furred Spider", "charisma_spider_legFluffy"),
-            new Attribute("Spider", "charisma_spider_leg"),
-            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH")); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
-
-    /**
      * ObservableList of all ass types in the game
      */
     private final ObservableList<Attribute> assTypes = FXCollections.observableArrayList(
@@ -757,9 +725,50 @@ public class Controller {
 
     private final ObservableList<Attribute> footStructuresD = FXCollections.observableArrayList();
 
-    private final ObservableList<Attribute> genitalArrangementsMaster = FXCollections.observableArrayList(
+    private final ObservableList<Attribute> genitalArrangementsNCR = FXCollections.observableArrayList(
             new Attribute("Normal", "NORMAL"), new Attribute("Cloaca", "CLOACA"),
-            new Attribute("Rear-facing cloaca", "CLOACA_BEHIND")); //TODO
+            new Attribute("Rear-facing cloaca", "CLOACA_BEHIND"));
+
+    private final ObservableList<Attribute> genitalArrangementsCR = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> genitalArrangementsN = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> genitalArrangementsC = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> genitalArrangementsR = FXCollections.observableArrayList();
+
+    /**
+     * ObservableList of all leg types in the game
+     */
+    private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
+            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Badger", "innoxia_badger_leg"), new Attribute("Bat", "BAT_MORPH"),
+            new Attribute("Bear", "dsg_bear_leg"),
+            new Attribute("Capybara", "NoStepOnSnek_capybara_leg"), new Attribute("Cat", "CAT_MORPH"),
+            new Attribute("Cow", "COW_MORPH"), new Attribute("Demonic", "DEMON_COMMON"),
+            new Attribute("Demonic-hoofed", "DEMON_HOOFED"),
+            new Attribute("Demonic-horse", "DEMON_HORSE"),
+            new Attribute("Demonic-snake", "DEMON_SNAKE"),
+            new Attribute("Demonic-spider", "DEMON_SPIDER"),
+            new Attribute("Demonic-octopus", "DEMON_OCTOPUS"),
+            new Attribute("Demonic-fish", "DEMON_FISH"),
+            new Attribute("Demonic-eagle", "DEMON_EAGLE"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Dragon", "dsg_dragon_leg"), new Attribute("Ferret", "dsg_ferret_leg"),
+            new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_leg"),
+            new Attribute("Gryphon", "dsg_gryphon_leg"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
+            new Attribute("Hyena", "innoxia_hyena_leg"),
+            new Attribute("Octopus", "NoStepOnSnek_octopus_leg"),
+            new Attribute("Otter", "dsg_otter_leg"), new Attribute("Panther", "innoxia_panther_leg"),
+            new Attribute("Pig", "innoxia_pig_leg"), new Attribute("Rabbit", "RABBIT_MORPH"),
+            new Attribute("Racoon", "dsg_racoon_leg"), new Attribute("Rat", "RAT_MORPH"),
+            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_leg"),
+            new Attribute("Sheep", "innoxia_sheep_leg"),
+            new Attribute("Snake", "NoStepOnSnek_snake_leg"),
+            new Attribute("Furred Spider", "charisma_spider_legFluffy"),
+            new Attribute("Spider", "charisma_spider_leg"),
+            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH")); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
+
 
     private final ArrayList<PerkNode> perks = new ArrayList<>();
 
