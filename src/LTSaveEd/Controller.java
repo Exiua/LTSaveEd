@@ -708,9 +708,60 @@ public class Controller {
 
     private final ObservableList<Attribute> underarmHairTypes = FXCollections.observableArrayList(); //TODO
 
-    private final ObservableList<Attribute> legConfigurations = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<Attribute> legConfigurationsMaster = FXCollections.observableArrayList(
+            new Attribute("Bipedal", "BIPEDAL"), new Attribute("Quadrupedal", "QUADRUPEDAL"),
+            new Attribute("Serpent-tailed", "TAIL_LONG"), new Attribute("Arachnid", "ARACHNID"),
+            new Attribute("Cephalopod", "CEPHALOPOD"), new Attribute("Mer-tailed", "TAIL"),
+            new Attribute("Avian", "AVIAN"));
 
-    private final ObservableList<Attribute> footStructures = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<Attribute> legConfigurationsBQ = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsB = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsS = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsAr = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsC = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsM = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsAv = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsBQSM = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsBAv = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsBM = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsBS = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsBAr = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> footStructuresMaster = FXCollections.observableArrayList(
+            new Attribute("None", "NONE"), new Attribute("Plantigrade", "PLANTIGRADE"),
+            new Attribute("Unguligrade", "UNGULIGRADE"), new Attribute("Digitigrade", "DIGITIGRADE"),
+            new Attribute("Arachnoid", "ARACHNOID"), new Attribute("Tentacled", "TENTACLED"));
+
+    private final ObservableList<Attribute> footStructuresP = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> footStructuresU = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> footStructuresN = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> footStructuresA = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> footStructuresT = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> footStructuresPD = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> footStructuresD = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> genitalArrangementsMaster = FXCollections.observableArrayList(
+            new Attribute("Normal", "NORMAL"), new Attribute("Cloaca", "CLOACA"),
+            new Attribute("Rear-facing cloaca", "CLOACA_BEHIND")); //TODO
+
+    private final ArrayList<PerkNode> perks = new ArrayList<>();
 
     /**
      * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
@@ -776,8 +827,13 @@ public class Controller {
         comboBoxValues.add(hairStylesFL);
         comboBoxValues.add(bodyMaterials); //33 items
         initializeHairStyles();
+        initializeLegConfigurations();
+        initializeFootStructures();
     }
 
+    /**
+     * Initializes all the hairStyle sublists
+     */
     private void initializeHairStyles(){
         hairStylesL.addAll(hairStylesFL.subList(0, 25));
         hairStylesSL.addAll(hairStylesFL.subList(0, 19));
@@ -787,6 +843,167 @@ public class Controller {
         hairStylesVS.addAll(hairStylesFL.subList(9, 10));
         hairStylesB.addAll(hairStylesFL.subList(0, 1));
     }
+
+    /**
+     * Initializes all the legConfiguration sublists
+     */
+    private void initializeLegConfigurations(){
+        legConfigurationsBQ.addAll(legConfigurationsMaster.subList(0, 2));
+        legConfigurationsB.add(legConfigurationsMaster.get(0));
+        legConfigurationsS.add(legConfigurationsMaster.get(2));
+        legConfigurationsAr.add(legConfigurationsMaster.get(3));
+        legConfigurationsC.add(legConfigurationsMaster.get(4));
+        legConfigurationsM.add(legConfigurationsMaster.get(5));
+        legConfigurationsAv.add(legConfigurationsMaster.get(6));
+        legConfigurationsBQSM.addAll(legConfigurationsMaster.subList(0, 3));
+        legConfigurationsBQSM.add(legConfigurationsMaster.get(5));
+        legConfigurationsBAv.add(legConfigurationsMaster.get(0));
+        legConfigurationsBAv.add(legConfigurationsMaster.get(6));
+        legConfigurationsBM.add(legConfigurationsMaster.get(0));
+        legConfigurationsBM.add(legConfigurationsMaster.get(5));
+        legConfigurationsBS.add(legConfigurationsMaster.get(0));
+        legConfigurationsBS.add(legConfigurationsMaster.get(2));
+        legConfigurationsBAr.add(legConfigurationsMaster.get(0));
+        legConfigurationsBAr.add(legConfigurationsMaster.get(3));
+    }
+
+    /**
+     * Initializes all the footStructure sublists
+     */
+    private void initializeFootStructures(){
+        footStructuresP.add(footStructuresMaster.get(1));
+        footStructuresU.add(footStructuresMaster.get(2));
+        footStructuresN.add(footStructuresMaster.get(0));
+        footStructuresA.add(footStructuresMaster.get(4));
+        footStructuresT.add(footStructuresMaster.get(5));
+        footStructuresPD.add(footStructuresMaster.get(1));
+        footStructuresPD.add(footStructuresMaster.get(3));
+        footStructuresD.add(footStructuresMaster.get(3));
+    }
+
+    //TODO
+    private void initializePerks(){
+       PerkNode p1 = new PerkNode(null, "1", "PHYSICAL_BASE", "Natural Fitness");
+       PerkNode p2 = new PerkNode(null, "1", "ARCANE_BASE", "Natural Arcane Power");
+       PerkNode p3 = new PerkNode(null, "1", "LEWD_KNOWLEDGE", "Lewd Knowledge");
+
+       PerkNode p4 = new PerkNode(p2, "2", "ARCANE_BOOST", "Arcane Training");
+       PerkNode p5 = new PerkNode(p2, "2", "ARCANE_CRITICALS", "Arcane Precision");
+       PerkNode p6 = new PerkNode(p1, "2", "OBSERVANT", "Observant");
+       PerkNode p7 = new PerkNode(p3, "2", "SEDUCTION_BOOST", "Seductive");
+       PerkNode p8 = new PerkNode(p3, "2", "FERTILITY_BOOST", "Fertile");
+       PerkNode p9 = new PerkNode(p1, "2", "PHYSIQUE_BOOST", "Physically Fit");
+       PerkNode p10 = new PerkNode(p3, "2", "FIRING_BLANKS", "Sterile");
+       PerkNode p11 = new PerkNode(p3, "2", "VIRILITY_BOOST", "Virile");
+       PerkNode p12 = new PerkNode(p3, "2", "BARREN", "Barren");
+       PerkNode p13 = new PerkNode(p1, "2", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
+       PerkNode p14 = new PerkNode(p2, "2", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
+
+       PerkNode p15 = new PerkNode(p9, "3", "PHYSICAL_DAMAGE", "Striker");
+       PerkNode p16 = new PerkNode(p4, "3", "SPELL_DAMAGE", "Spell Power");
+       PerkNode p17 = new PerkNode(p7, "3", "ORGASMIC_LEVEL_DRAIN", "Orgasmic Level Drain");
+       PerkNode p18 = new PerkNode(p4, "3", "AURA_BOOST", "Aura Reserves");
+       PerkNode p19 = new PerkNode(p11, "3", "VIRILITY_MAJOR_BOOST", "Virile");
+       PerkNode p20 = new PerkNode(p7, "3", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+       PerkNode p21 = new PerkNode(p4, "3", "SPELL_EFFICIENCY", "Spell Efficiency");
+       PerkNode p22 = new PerkNode(p9, "3", "PHYSICAL_DEFENCE", "Defender");
+       PerkNode p23 = new PerkNode(p7, "3", "SEDUCTION_BOOST", "Seductive");
+       PerkNode p24 = new PerkNode(p9, "3", "ENERGY_BOOST", "Energy Reserves");
+       PerkNode p25 = new PerkNode(p8, "3", "FERTILITY_MAJOR_BOOST", "Fertile");
+       PerkNode p26 = new PerkNode(p13, "3", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
+       PerkNode p27 = new PerkNode(p14, "3", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
+
+       PerkNode p28 = new PerkNode(p15, "4", "PHYSICAL_DAMAGE", "Striker");
+       PerkNode p29 = new PerkNode(p22, "4", "PHYSICAL_DEFENCE", "Defender");
+       PerkNode p30 = new PerkNode(p16, "4", "SPELL_DAMAGE", "Spell Power");
+       PerkNode p31 = new PerkNode(p23, "4", "SEDUCTION_BOOST", "Seductive");
+       PerkNode p32 = new PerkNode(p26, "4", "WEAPON_ENCHANTER", "Arcane Smith");
+       PerkNode p33 = new PerkNode(p25, "4", "FETISH_BROODMOTHER", "Broodmother");
+       PerkNode p34 = new PerkNode(p18, "4", "AURA_BOOST", "Aura Reserves");
+       PerkNode p35 = new PerkNode(p24, "4", "ENERGY_BOOST", "Energy Reserves");
+       PerkNode p36 = new PerkNode(p27, "4", "CLOTHING_ENCHANTER", "Arcane Weaver");
+       PerkNode p37 = new PerkNode(p19, "4", "FETISH_SEEDER", "Seeder");
+       PerkNode p38 = new PerkNode(p20, "4", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+       PerkNode p39 = new PerkNode(p21, "4", "SPELL_EFFICIENCY", "Spell Efficiency");
+
+       PerkNode p40 = new PerkNode(p34, p39, "5", "ARCANE_COMBATANT", "Arcane Combatant");
+       PerkNode p41 = new PerkNode(p33, "5", "FERTILITY_BOOST", "Fertile");
+       PerkNode p42 = new PerkNode(p28, "5", "UNARMED_DAMAGE", "Hand-to-Hand");
+       PerkNode p51 = new PerkNode(p30, "5", "ELEMENTAL_BOOST", "Elemental Striker");
+       PerkNode p46 = new PerkNode(p42, "5", "CRITICAL_BOOST", "Critical Power"); //Physical
+       PerkNode p47 = new PerkNode(p31, p38, "5", "CRITICAL_BOOST_ALT", "Critical Power"); //Seductive
+       PerkNode p48 = new PerkNode(p51, "5", "CRITICAL_BOOST_ALT_2", "Critical Power"); //Arcane
+       PerkNode p44 = new PerkNode(p48, "5", "CHUUNI", "Chuuni");
+       PerkNode p45 = new PerkNode(p46, "5", "UNARMED_TRAINING", "Martial Artist");
+       PerkNode p49 = new PerkNode(p29, p35, "5", "RUNNER_2", "Cardio King");
+       PerkNode p50 = new PerkNode(p37, "5", "VIRILITY_BOOST", "Virile");
+       PerkNode p43 = new PerkNode(p50, "5", "VIRILITY_MAJOR_BOOST", "Virile");
+       PerkNode p52 = new PerkNode(p41, "5", "FERTILITY_MAJOR_BOOST", "Fertile");
+
+       PerkNode p53 = new PerkNode(p49, p42, "6", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
+       PerkNode p57 = new PerkNode(p47, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
+       PerkNode p54 = new PerkNode(p57, "6", "MALE_ATTRACTION", "Minx");
+       PerkNode p55 = new PerkNode(p57, "6", "FEMALE_ATTRACTION", "Ladykiller");
+       PerkNode p56 = new PerkNode(p51, p40, "6", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
+
+       PerkNode p59 = new PerkNode(p53, "7", "PHYSICAL_DAMAGE", "Striker");
+       PerkNode p61 = new PerkNode(p57, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
+       PerkNode p62 = new PerkNode(p57, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
+       PerkNode p63 = new PerkNode(p59, "7", "UNARMED_DAMAGE", "Hand-to-Hand");
+       PerkNode p64 = new PerkNode(p56, "7", "AURA_BOOST", "Aura Reserves");
+       PerkNode p65 = new PerkNode(p53, "7", "ENERGY_BOOST", "Energy Reserves");
+       PerkNode p58 = new PerkNode(p65, "7", "ENERGY_BOOST_DRAIN_DAMAGE", "Aura Shielding");
+       PerkNode p66 = new PerkNode(p57, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+       PerkNode p67 = new PerkNode(p56, "7", "SPELL_EFFICIENCY", "Spell Efficiency");
+       PerkNode p60 = new PerkNode(p67, "7", "SPELL_DAMAGE", "Spell Power");
+
+       PerkNode p69 = new PerkNode(p59, "8", "PHYSICAL_DAMAGE", "Striker");
+       PerkNode p70 = new PerkNode(p65, "8", "PHYSICAL_DEFENCE", "Defender");
+       PerkNode p71 = new PerkNode(p60, "8", "SPELL_DAMAGE", "Spell Power");
+       PerkNode p72 = new PerkNode(p62, "8", "SEDUCTION_BOOST", "Seductive");
+       PerkNode p74 = new PerkNode(p64, "8", "AURA_BOOST", "Aura Reserves");
+       PerkNode p75 = new PerkNode(p65, "8", "ENERGY_BOOST", "Energy Reserves");
+       PerkNode p76 = new PerkNode(p69, "8", "MELEE_DAMAGE", "Melee Weapons Expert");
+       PerkNode p77 = new PerkNode(p61, "8", "SEDUCTION_BOOST_MAJOR", "Seductive");
+       PerkNode p73 = new PerkNode(p77, "8", "CONVINCING_REQUESTS", "Irresistible Appeals");
+       PerkNode p68 = new PerkNode(p77, "8", "OBJECT_OF_DESIRE", "Object of Desire");
+       PerkNode p78 = new PerkNode(p66, "8", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+       PerkNode p79 = new PerkNode(p67, "8", "SPELL_EFFICIENCY", "Spell Efficiency");
+
+       PerkNode p80 = new PerkNode(p69, "9", "PHYSICAL_DAMAGE", "Striker");
+       PerkNode p81 = new PerkNode(p70, "9", "PHYSICAL_DEFENCE", "Defender");
+       PerkNode p82 = new PerkNode(p77, "9", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
+       PerkNode p83 = new PerkNode(p72, "9", "SEDUCTION_BOOST", "Seductive"); //Left Branch
+       PerkNode p85 = new PerkNode(p75, "9", "ENERGY_BOOST", "Energy Reserves");
+       PerkNode p86 = new PerkNode(p80, "9", "RANGED_DAMAGE", "Sharp-shooter");
+       PerkNode p87 = new PerkNode(p71, "9", "SPELL_DAMAGE_MAJOR", "Spell Mastery");
+       PerkNode p88 = new PerkNode(p78, "9", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+       PerkNode p89 = new PerkNode(p79, "9", "SPELL_EFFICIENCY", "Spell Efficiency");
+       PerkNode p84 = new PerkNode(p89, "9", "AURA_BOOST", "Aura Reserves");
+
+       PerkNode p90 = new PerkNode(p82, "10", "NYMPHOMANIAC", "Nymphomaniac");
+       PerkNode p91 = new PerkNode(p84, "10", "SACRIFICIAL_SHIELDING", "Sacrificial Shielding");
+       PerkNode p92 = new PerkNode(p81, p85, "10", "COMBAT_REGENERATION", "Combat Regeneration");
+       PerkNode p93 = new PerkNode(p80, "10", "FEROCIOUS_WARRIOR", "Ferocious Warrior");
+       PerkNode p94 = new PerkNode(p88, "10", "PURE_MIND", "Pure Thoughts");
+       PerkNode p95 = new PerkNode(p83, "10", "LUSTPYRE", "Lustpyre");
+       PerkNode p96 = new PerkNode(p93, "10", "BESERK", "Berserk");
+       PerkNode p97 = new PerkNode(p89, "10", "SPELL_EFFICIENCY", "Spell Efficiency");
+       PerkNode p98 = new PerkNode(p87, "10", "ARCANE_VAMPYRISM", "Arcane Vampyrism");
+
+       PerkNode p99 = new PerkNode(p93, p92, "11", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
+       PerkNode p101 = new PerkNode(p97, "11", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
+       PerkNode p100 = new PerkNode(p101, "11", "ELEMENTAL_DEFENCE_BOOST", "Elemental Defender");
+       PerkNode p102 = new PerkNode(p99, "11", "MELEE_DAMAGE", "Melee Weapons Expert");
+       PerkNode p103 = new PerkNode(p95, p94, "11", "SEDUCTION_BOOST_MAJOR", "Seductive");
+       PerkNode p104 = new PerkNode(p99, "11", "RANGED_DAMAGE", "Sharp-shooter");
+       PerkNode p105 = new PerkNode(p101, "11", "ELEMENTAL_BOOST", "Elemental Striker");
+
+       PerkNode p106 = new PerkNode(p99, "12", "ELEMENTAL_BOOST", "Elemental Striker"); //Physical
+       PerkNode p107 = new PerkNode(p103, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker"); //Seductive
+       PerkNode p108 = new PerkNode(p101, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker"); //Arcane
+    } //This is suffering
+    //I'm probably dumb and there was an easier way to do this
 
     /**
      * Class that detects focus loss for TextFields
