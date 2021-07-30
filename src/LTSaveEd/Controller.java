@@ -757,7 +757,7 @@ public class Controller {
      * @throws IOException
      *   If config.ini cannot be properly read
      */
-    public Controller() throws IOException {
+    public void initialize() throws IOException {
         prop = new Properties();
         FileInputStream in;
         try {
