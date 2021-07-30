@@ -12,7 +12,7 @@ public class LTSaveEd extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LTSaveEd.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/LTSaveEd.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
