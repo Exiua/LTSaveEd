@@ -121,7 +121,8 @@ public class Controller {
             "#body$wing$type", "#body$arm$type", "#body$eye$irisShape", "#body$eye$pupilShape", "#body$breasts$shape",
             "#body$nipples$areolaeShape", "#body$nipples$nippleShape", "#body$breastsCrotch$shape",
             "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape", "#body$hair$hairStyle",
-            "#body$bodyCore$bodyMaterial"}; //33 items
+            "#body$bodyCore$bodyMaterial", "#body$bodyCore$genitalArrangement", "#body$leg$configuration",
+            "#body$leg$footStructure"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -741,33 +742,7 @@ public class Controller {
      * ObservableList of all leg types in the game
      */
     private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
-            new Attribute("Alligator", "ALLIGATOR_MORPH"), new Attribute("Angel", "ANGEL"),
-            new Attribute("Badger", "innoxia_badger_leg"), new Attribute("Bat", "BAT_MORPH"),
-            new Attribute("Bear", "dsg_bear_leg"),
-            new Attribute("Capybara", "NoStepOnSnek_capybara_leg"), new Attribute("Cat", "CAT_MORPH"),
-            new Attribute("Cow", "COW_MORPH"), new Attribute("Demonic", "DEMON_COMMON"),
-            new Attribute("Demonic-hoofed", "DEMON_HOOFED"),
-            new Attribute("Demonic-horse", "DEMON_HORSE"),
-            new Attribute("Demonic-snake", "DEMON_SNAKE"),
-            new Attribute("Demonic-spider", "DEMON_SPIDER"),
-            new Attribute("Demonic-octopus", "DEMON_OCTOPUS"),
-            new Attribute("Demonic-fish", "DEMON_FISH"),
-            new Attribute("Demonic-eagle", "DEMON_EAGLE"), new Attribute("Dog", "DOG_MORPH"),
-            new Attribute("Dragon", "dsg_dragon_leg"), new Attribute("Ferret", "dsg_ferret_leg"),
-            new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_leg"),
-            new Attribute("Gryphon", "dsg_gryphon_leg"), new Attribute("Harpy", "HARPY"),
-            new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
-            new Attribute("Hyena", "innoxia_hyena_leg"),
-            new Attribute("Octopus", "NoStepOnSnek_octopus_leg"),
-            new Attribute("Otter", "dsg_otter_leg"), new Attribute("Panther", "innoxia_panther_leg"),
-            new Attribute("Pig", "innoxia_pig_leg"), new Attribute("Rabbit", "RABBIT_MORPH"),
-            new Attribute("Racoon", "dsg_racoon_leg"), new Attribute("Rat", "RAT_MORPH"),
-            new Attribute("Reindeer", "REINDEER_MORPH"), new Attribute("Shark", "dsg_shark_leg"),
-            new Attribute("Sheep", "innoxia_sheep_leg"),
-            new Attribute("Snake", "NoStepOnSnek_snake_leg"),
-            new Attribute("Furred Spider", "charisma_spider_legFluffy"),
-            new Attribute("Spider", "charisma_spider_leg"),
-            new Attribute("Squirrel", "SQUIRREL_MORPH"), new Attribute("Wolf", "WOLF_MORPH")); //TODO: Add Foot Structure, Leg Configuration, and Genital Arrangement Dependence
+            new LegTypeAttr("Placeholder", "Placeholder", legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR));
 
 
     private final ArrayList<PerkNode> perks = new ArrayList<>();
@@ -782,7 +757,7 @@ public class Controller {
      * @throws IOException
      *   If config.ini cannot be properly read
      */
-    public void initialize() throws IOException {
+    public Controller() throws IOException {
         prop = new Properties();
         FileInputStream in;
         try {
@@ -834,10 +809,15 @@ public class Controller {
         comboBoxValues.add(areolaeCrotchShapes);
         comboBoxValues.add(nippleCrotchShapes);
         comboBoxValues.add(hairStylesFL);
-        comboBoxValues.add(bodyMaterials); //33 items
+        comboBoxValues.add(bodyMaterials);
+        comboBoxValues.add(legConfigurationsMaster);
+        comboBoxValues.add(footStructuresMaster);
+        comboBoxValues.add(genitalArrangementsNCR);
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
+        initializeGenitalArrangements();
+        initializeLegTypes();
     }
 
     /**
@@ -888,6 +868,67 @@ public class Controller {
         footStructuresPD.add(footStructuresMaster.get(1));
         footStructuresPD.add(footStructuresMaster.get(3));
         footStructuresD.add(footStructuresMaster.get(3));
+    }
+
+    /**
+     * Initializes all the genitalArrangements sublists
+     */
+    private void initializeGenitalArrangements(){
+        genitalArrangementsCR.addAll(genitalArrangementsNCR.subList(1,3));
+        genitalArrangementsN.add(genitalArrangementsNCR.get(0));
+        genitalArrangementsC.add(genitalArrangementsNCR.get(1));
+        genitalArrangementsR.add(genitalArrangementsNCR.get(2));
+    }
+
+    /**
+     * Initializes the legType list
+     * Has to be done after the above three initializations as the LegTypeAttr class depends
+     *   on those lists not being empty
+     */
+    private void initializeLegTypes(){
+        legTypes.remove(0);
+        legTypes.addAll(FXCollections.observableArrayList(
+                new LegTypeAttr("Alligator", "ALLIGATOR_MORPH", legConfigurationsBQ, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttr("Angel", "ANGEL", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttr("Badger", "innoxia_badger_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Bat", "BAT_MORPH", legConfigurationsB, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttr("Bear", "dsg_bear_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Capybara", "NoStepOnSnek_capybara_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Cat", "CAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttr("Cow", "COW_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Demonic", "DEMON_COMMON", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttr("Demonic-hoofed", "DEMON_HOOFED", legConfigurationsB, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Demonic-horse", "DEMON_HORSE", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Demonic-snake", "DEMON_SNAKE", legConfigurationsS, footStructuresN, genitalArrangementsCR),
+                new LegTypeAttr("Demonic-spider", "DEMON_SPIDER", legConfigurationsAr, footStructuresA, genitalArrangementsN),
+                new LegTypeAttr("Demonic-octopus", "DEMON_OCTOPUS", legConfigurationsC, footStructuresT, genitalArrangementsC),
+                new LegTypeAttr("Demonic-fish", "DEMON_FISH", legConfigurationsM, footStructuresN, genitalArrangementsCR),
+                new LegTypeAttr("Demonic-eagle", "DEMON_EAGLE", legConfigurationsAv, footStructuresD, genitalArrangementsR),
+                new LegTypeAttr("Dog", "DOG_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttr("Dragon", "dsg_dragon_leg", legConfigurationsBQSM, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttr("Ferret", "dsg_ferret_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Fox", "FOX_MORPH", legConfigurationsBQ, legConfigurationsBQ, footStructuresPD, "DIGITIGRADE"),
+                new LegTypeAttr("Goat", "innoxia_goat_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Gryphon", "dsg_gryphon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttr("Harpy", "HARPY", legConfigurationsBAv, footStructuresD, genitalArrangementsNCR),
+                new LegTypeAttr("Horse", "HORSE_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Human", "HUMAN", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttr("Hyena", "innoxia_hyena_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttr("Octopus", "NoStepOnSnek_octopus_leg", legConfigurationsC, footStructuresT, genitalArrangementsC),
+                new LegTypeAttr("Otter", "dsg_otter_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttr("Panther", "innoxia_panther_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttr("Pig", "innoxia_pig_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Rabbit", "RABBIT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Racoon", "dsg_racoon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Rat", "RAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Reindeer", "REINDEER_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Shark", "dsg_shark_leg", legConfigurationsBM, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttr("Sheep", "innoxia_sheep_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttr("Snake", "NoStepOnSnek_snake_leg", legConfigurationsBS, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Furred Spider", "charisma_spider_legFluffy", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Spider", "charisma_spider_leg", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Squirrel", "SQUIRREL_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttr("Wolf", "WOLF_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE")));
     }
 
     //TODO
@@ -1201,7 +1242,6 @@ public class Controller {
      * Initializes all the ComboBoxes by setting the items (i.e. ObservableList<\String> objects) of each ComboBox
      */
     public void initializeComboBoxes(){
-        //TODO:
         for(int i = 0; i < ComboBoxIds.length; i++) {
             @SuppressWarnings("unchecked")
             ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup(ComboBoxIds[i]);
@@ -1210,8 +1250,8 @@ public class Controller {
             cb.setConverter(new StringConverter<>() {
                 @Override
                 public String toString(Attribute attribute) {
-                    return attribute.getName(); //TODO: Fix this method throwing exceptions whenever hairStyles ComboBox values are updated
-                }
+                    return attribute.getName();
+                } //TODO: Fix this method throwing exceptions whenever hairStyles ComboBox values are updated
 
                 @Override
                 public Attribute fromString(String s) {
@@ -1219,6 +1259,9 @@ public class Controller {
                 }
             });
         }
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup("#body$leg$type");
+        updateLegTypeDependants(cb, true);
     }
 
     /**
@@ -1252,6 +1295,8 @@ public class Controller {
                 saveFile = db.parse(is);
                 System.out.println(f);
                 fileLoaded = true;
+                TabPane tb = (TabPane) root.lookup("#tabPane");
+                tb.setDisable(false);
             }
             catch(ParserConfigurationException | SAXException e){
                 e.printStackTrace();
@@ -1450,7 +1495,34 @@ public class Controller {
         ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup(fxId);
         Node value = getValueNode(event);
         value.setTextContent(cb.getValue().getValue());
+        if(fxId.equals("#body$leg$type")){
+            updateLegTypeDependants(cb, false);
+        }
         event.consume();
+    }
+
+    private void updateLegTypeDependants(ComboBox<Attribute> cb, boolean initializing){
+        LegTypeAttr legType = (LegTypeAttr) cb.getValue();
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> lc = (ComboBox<Attribute>) root.lookup("#body$leg$configuration");
+        lc.setItems(legType.getLegConfiguration());
+        lc.setValue(legType.getDefaultLegConfiguration());
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> fs = (ComboBox<Attribute>) root.lookup("#body$leg$footStructure");
+        fs.setItems(legType.getFootStructure());
+        fs.setValue(legType.getDefaultFootStructure());
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> ga = (ComboBox<Attribute>) root.lookup("#body$bodyCore$genitalArrangement");
+        ga.setItems(legType.getGenitalArrangement());
+        ga.setValue(legType.getDefaultGenitalArrangement());
+        if(!initializing){
+            Node lcValue = getValueNode(lc.getId());
+            lcValue.setTextContent(lc.getValue().getValue());
+            Node fsValue = getValueNode(fs.getId());
+            fsValue.setTextContent(fs.getValue().getValue());
+            Node gaValue = getValueNode(ga.getId());
+            gaValue.setTextContent(ga.getValue().getValue());
+        }
     }
 
     /**
