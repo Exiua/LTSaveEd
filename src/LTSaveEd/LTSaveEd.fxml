@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LTSaveEd.Controller">
-    <TabPane prefHeight="700.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <TabPane fx:id="tabPane" disable="true" prefHeight="700.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Tab text="Core">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <VBox layoutX="14.0" layoutY="44.0" spacing="10.0">
@@ -133,7 +133,7 @@
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="85.0">
                                     <Label text="Genital Arrangement: " />
-                                    <TextField fx:id="body$bodyCore$genitalArrangement" />
+                           <ComboBox fx:id="body$bodyCore$genitalArrangement" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="110.0">
                                     <Label text="Height: " />
@@ -1861,13 +1861,13 @@
                                     <HBox>
 
                                         <Label text="Configuration: " />
-                                        <TextField fx:id="body$leg$configuration" />
+                              <ComboBox fx:id="body$leg$configuration" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
 
                                         <Label text="Foot Structure: " />
-                                        <TextField fx:id="body$leg$footStructure" />
+                              <ComboBox fx:id="body$leg$footStructure" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
