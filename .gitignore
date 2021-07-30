@@ -1,7 +1,8 @@
 out
+target
 .idea
 *.iml
 *.ini
 *.txt
-src/LTSaveEd/Debug.java
-src/META-INF
+src/main/java/LTSaveEd/Debug.java
+src/main/java/META-INF
