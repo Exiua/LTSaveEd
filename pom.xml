@@ -70,6 +70,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--mvn clean -Dmaven.clean.failOnError=false compile assembly:single -DskipTests=true-->
             <!--<plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
