@@ -5,4 +5,4 @@ target
 *.ini
 *.txt
 src/main/java/LTSaveEd/Debug.java
-src/main/java/META-INF
+src/main/resources/META-INF
