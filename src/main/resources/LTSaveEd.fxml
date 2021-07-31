@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LTSaveEd.Controller">
-    <TabPane fx:id="tabPane" disable="true" prefHeight="700.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <TabPane fx:id="tabPane" prefHeight="700.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Tab text="Core">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <VBox layoutX="14.0" layoutY="44.0" spacing="10.0">
@@ -62,6 +62,12 @@
                         <Label text="Level: " />
                         <TextField fx:id="core$level$value" />
                     </HBox>
+               <HBox layoutX="10.0" layoutY="238.0">
+                  <children>
+                     <Label text="Money: " />
+                     <TextField fx:id="characterInventory$money$value" />
+                  </children>
+               </HBox>
                     <HBox layoutX="10.0" layoutY="45.0">
                         <Label text="Date of Birth: " />
                         <TextField fx:id="core$yearOfBirth$value" />
@@ -92,6 +98,12 @@
                         <Label text="Perk Points: " />
                         <TextField fx:id="core$perkPoints$value" />
                     </HBox>
+               <HBox>
+                  <children>
+                     <Label text="Essence Count: " />
+                     <TextField fx:id="characterInventory$essenceCount$value" />
+                  </children>
+               </HBox>
                     <HBox layoutX="10.0" layoutY="255.0">
                         <Label text="Health: " />
                         <TextField fx:id="core$health$value" />
@@ -148,7 +160,7 @@
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="185.0">
                                     <Label text="Pubic Hair: " />
-                                    <TextField fx:id="body$bodyCore$pubicHair" />
+                           <ComboBox fx:id="body$bodyCore$pubicHair" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="210.0">
                                     <Label text="Subspecies Override: " />
@@ -331,7 +343,7 @@
                                     <HBox>
                                        <children>
                                           <Label text="Facial Hair: " />
-                                          <TextField fx:id="body$face$facialHair" />
+                                          <ComboBox fx:id="body$face$facialHair" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
@@ -1214,7 +1226,7 @@
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Underarm Hair: " />
-                                        <TextField fx:id="body$arm$underarmHair" />
+                              <ComboBox fx:id="body$arm$underarmHair" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
 
@@ -1797,7 +1809,7 @@
                                     <HBox>
 
                                         <Label text="Ass Hair: " />
-                                        <TextField fx:id="body$anus$assHair" />
+                              <ComboBox fx:id="body$anus$assHair" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0">
