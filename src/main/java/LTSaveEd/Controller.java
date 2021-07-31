@@ -1642,9 +1642,10 @@ public class Controller {
         }
     }
 
+    /* Look into a setField recursive method
     private void setFieldsRec(){
-        //TODO: Recursive setFields method
-    }
+
+    }*/
 
     private Attribute matchComboBoxItem(ObservableList<Attribute> list, String value){
         for (Attribute attribute : list) {
