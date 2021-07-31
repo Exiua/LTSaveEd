@@ -91,7 +91,8 @@ public class Controller {
             "#body$vagina$clitSize", "#body$vagina$depth", "#body$vagina$elasticity", "#body$vagina$labiaSize",
             "#body$vagina$plasticity", "#body$tail$count", "#body$tail$girth", "#body$tentacle$count",
             "#body$tentacle$girth", "#body$wing$size", "#body$spinneret$depth", "#body$spinneret$elasticity",
-            "#body$spinneret$plasticity", "#body$spinneret$wetness", "#body$arm$rows"};
+            "#body$spinneret$plasticity", "#body$spinneret$wetness", "#body$arm$rows", "#characterInventory$money$value",
+            "#characterInventory$essenceCount$value"};
 
     /**
      * String array of all TextField ids using a double data type
@@ -122,7 +123,8 @@ public class Controller {
             "#body$nipples$areolaeShape", "#body$nipples$nippleShape", "#body$breastsCrotch$shape",
             "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape", "#body$hair$hairStyle",
             "#body$bodyCore$bodyMaterial", "#body$bodyCore$genitalArrangement", "#body$leg$configuration",
-            "#body$leg$footStructure"};
+            "#body$leg$footStructure", "#body$bodyCore$pubicHair", "#body$face$facialHair", "#body$anus$assHair",
+            "#body$arm$underarmHair"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -669,13 +671,17 @@ public class Controller {
 
     private final ObservableList<Attribute> subspeciesOverrides = FXCollections.observableArrayList(); //TODO
 
-    private final ObservableList<Attribute> pubicHairTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<Attribute> pubicHairTypes = FXCollections.observableArrayList(
+            new Attribute("None", "ZERO_NONE"), new Attribute("Stubble", "ONE_STUBBLE"),
+            new Attribute("Manicured", "TWO_MANICURED"), new Attribute("Trimmed", "THREE_TRIMMED"),
+            new Attribute("Natural", "FOUR_NATURAL"), new Attribute("Unkempt", "FIVE_UNKEMPT"),
+            new Attribute("Bushy", "SIX_BUSHY"), new Attribute("Wild", "SEVEN_WILD"));
 
-    private final ObservableList<Attribute> facialHairTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<Attribute> facialHairTypes = pubicHairTypes;
 
-    private final ObservableList<Attribute> assHairTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<Attribute> assHairTypes = pubicHairTypes;
 
-    private final ObservableList<Attribute> underarmHairTypes = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<Attribute> underarmHairTypes = pubicHairTypes;
 
     private final ObservableList<Attribute> legConfigurationsMaster = FXCollections.observableArrayList(
             new Attribute("Bipedal", "BIPEDAL"), new Attribute("Quadrupedal", "QUADRUPEDAL"),
@@ -813,6 +819,10 @@ public class Controller {
         comboBoxValues.add(legConfigurationsMaster);
         comboBoxValues.add(footStructuresMaster);
         comboBoxValues.add(genitalArrangementsNCR);
+        comboBoxValues.add(pubicHairTypes);
+        comboBoxValues.add(facialHairTypes);
+        comboBoxValues.add(assHairTypes);
+        comboBoxValues.add(underarmHairTypes);
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
@@ -1236,6 +1246,9 @@ public class Controller {
      */
     public void setRoot(AnchorPane r){
         root = r;
+        //Disables TabPane so user cannot use the editor without loading a file first (gets re-enabled in the loadFile method)
+        TabPane tb = (TabPane) root.lookup("#tabPane");
+        tb.setDisable(true);
     }
 
     /**
@@ -1620,7 +1633,7 @@ public class Controller {
                             }
                         }
                     }
-                if(attributeName.equals("body")){ //Ends the loop early as all the needed data has been parsed
+                if(attributeName.equals("characterInventory")){ //Ends the loop early as all the needed data has been parsed //TODO: Adjust as needed
                     break;
                 }
                 }
