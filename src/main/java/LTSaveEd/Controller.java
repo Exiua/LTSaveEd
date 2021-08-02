@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -303,7 +305,7 @@ public class Controller {
             new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
             new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
             new Attribute("Dragon", "dsg_dragon_ass"), new Attribute("Ferret", "dsg_ferret_ass"),
-            new Attribute("Fox", "FOX_MORPH"), new Attribute("", "innoxia_goat_ass"),
+            new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_ass"),
             new Attribute("Gryphon", "dsg_gryphon_ass"), new Attribute("Harpy", "HARPY"),
             new Attribute("Horse", "HORSE_MORPH"), new Attribute("Human", "HUMAN"),
             new Attribute("Hyena", "innoxia_hyena_ass"),
@@ -1080,6 +1082,8 @@ public class Controller {
          */
         private final TextFieldType tfType;
 
+        private boolean positiveOnly;
+
         /**
          * Constructor for a new TextFieldListener
          * @param textControl
@@ -1090,6 +1094,12 @@ public class Controller {
         public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType) {
             textInputControl = textControl;
             tfType = textFieldType;
+            positiveOnly = false;
+        }
+
+        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly){
+            this(textControl, textFieldType);
+            positiveOnly = positivesOnly;
         }
 
         /**
@@ -1124,7 +1134,7 @@ public class Controller {
                     try {
                         int nv = Integer.parseInt(newValue);
                         newValue = "" + nv; //Removes leading zeroes
-                        if(nv < 0){
+                        if(positiveOnly && nv < 0){
                             return oldValue;
                         }
                         value.setTextContent(newValue);
@@ -1137,7 +1147,7 @@ public class Controller {
                     try {
                         double nv = Double.parseDouble(newValue);
                         newValue = "" + nv; //Removes leading zeroes
-                        if(nv < 0){
+                        if(positiveOnly && nv < 0){
                             return oldValue;
                         }
                         if(newValue.indexOf('.') == -1){
@@ -1225,6 +1235,9 @@ public class Controller {
             String[] id = textInputControl.getId().split("\\$");
             NodeList attributeNodes = getAttributeNodes();
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
+            if(id[0].equals("characterRelationships")){
+                return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
+            }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return attr.getAttributes().getNamedItem(id[2]);
         }
@@ -1548,6 +1561,10 @@ public class Controller {
                 if(attributeNodes.item(i).getNodeType() != Node.TEXT_NODE) { //Probably a redundant check since the TextNodes should already be skipped
                     NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                     String attributeName = attributeNodes.item(i).getNodeName();
+                    if(attributeName.equals("characterRelationships")){
+                        setFieldsRelationships(attributeNodes.item(i));
+                        continue;
+                    }
                     for(int j = 1; j < attributeElements.getLength() - 1; j+=2){ //Every other node in the NodeList is a TextNode (so can be skipped)
                         Node currNode = attributeElements.item(j);
                         String elementName = currNode.getNodeName();
@@ -1633,13 +1650,45 @@ public class Controller {
                             }
                         }
                     }
-                if(attributeName.equals("characterInventory")){ //Ends the loop early as all the needed data has been parsed //TODO: Adjust as needed
+                if(attributeName.equals("pregnancy")){ //Ends the loop early as all the needed data has been parsed //TODO: Adjust as needed
                     break;
                 }
                 }
             }
             addListeners();
         }
+    }
+
+    private void setFieldsRelationships(Node relationshipsNode){
+        NodeList relationships = relationshipsNode.getChildNodes();
+        VBox relationBox = (VBox) root.lookup("#relationshipVbox");
+        relationBox.getChildren().clear();
+        for(int i = 1; i < relationships.getLength() - 1; i+=2){
+            NamedNodeMap attrs = relationships.item(i).getAttributes();
+            String charId = attrs.getNamedItem("character").getTextContent();
+            TextField nameField = new TextField(getNpcName(charId));
+            nameField.setDisable(true);
+            TextField idField = new TextField(charId);
+            idField.setDisable(true);
+            TextField valueField = new TextField(attrs.getNamedItem("value").getTextContent());
+            valueField.setId("characterRelationships$relationship$" + i);
+            valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
+            HBox hBox = new HBox(10);
+            hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
+                    new Label("Value: "), valueField); //Id: <Id TextField> Name: <Name TextField> Value: <Value TextField>
+            relationBox.getChildren().add(hBox);
+        }
+    }
+
+    private String getNpcName(String npcId){
+        @SuppressWarnings("unchecked")
+        ObservableList<NpcCharacter> npcs = ((ComboBox<NpcCharacter>) root.lookup("#characterSelector")).getItems();
+        for (NpcCharacter npc : npcs) {
+            if (npc.equals(npcId)) {
+                return npc.getName();
+            }
+        }
+        return null;
     }
 
     /* Look into a setField recursive method
@@ -1666,11 +1715,11 @@ public class Controller {
         hairStyles.focusedProperty().addListener(new TextObjectListener(hairStyles, TextFieldType.HAIR));
         for(String intTextFieldId : intTextFieldIds) {
             TextField tf = (TextField) root.lookup(intTextFieldId);
-            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT));
+            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT, true));
         }
         for(String doubleTextFieldId : doubleTextFieldIds){
             TextField tf = (TextField) root.lookup(doubleTextFieldId);
-            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DOUBLE));
+            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DOUBLE, true));
         }
         for(String stringTextFieldId: stringTextFieldIds){
             TextField tf = (TextField) root.lookup(stringTextFieldId);
