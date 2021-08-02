@@ -87,4 +87,15 @@ public class NpcCharacter {
             default -> null;
         };
     }
+
+    /**
+     * Checks if the supplied id matches the id of the npc
+     * @param charId
+     *   Supplied id to check against
+     * @return
+     *   True, if the ids match
+     */
+    public boolean equals(String charId){
+        return id.equals(charId);
+    }
 }
