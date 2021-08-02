@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -1924,28 +1925,44 @@
                 </TabPane>
             </AnchorPane>
         </Tab>
-        <Tab text="Inventory">
+        <Tab text="Relationships">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+               <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="124.0" layoutY="103.0" prefHeight="671.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <padding>
+                     <Insets left="14.0" top="28.0" />
+                  </padding>
+                  <content>
+                     <VBox fx:id="relationshipVbox" prefWidth="1000.0" />
+                  </content>
+               </ScrollPane>
+            </children></AnchorPane>
+        </Tab>
+        <Tab disable="true" text="Inventory">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
-        <Tab text="Clothing">
+        <Tab disable="true" text="Clothing">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
-        <Tab text="Perks">
+        <Tab disable="true" text="Perks">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
-        <Tab text="Spells">
+        <Tab disable="true" text="Spells">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
-        <Tab text="Fetishes">
+        <Tab disable="true" text="Fetishes">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
-        <Tab text="Pregnancy">
+        <Tab disable="true" text="Pregnancy">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
-        <Tab text="Family">
+        <Tab disable="true" text="Family">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
-        <Tab text="Extra">
+        <Tab disable="true" text="Extra">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
     </TabPane>
