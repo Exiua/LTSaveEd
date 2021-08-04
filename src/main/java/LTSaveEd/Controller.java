@@ -1,9 +1,11 @@
 package LTSaveEd;
 
+import com.sun.javafx.collections.MappingChange;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -47,6 +49,11 @@ public class Controller {
     private AnchorPane root;
 
     /**
+     * Namespace of the fxml
+     */
+    private ObservableMap<String, Object> namespace;
+
+    /**
      * Properties object of the config.ini file
      */
     private Properties prop;
@@ -69,64 +76,72 @@ public class Controller {
     /**
      * Id of the character to edit
      */
-    private String charId;
+    private String charId; //TODO Change this to the characterNode to speed up program
 
     /**
      * String array of all TextField ids using an int data type
      */
-    private final String[] intTextFieldIds = {"#core$level$value", "#core$experience$value", "#core$perkPoints$value",
-            "#body$bodyCore$bodySize", "#body$bodyCore$femininity", "#body$bodyCore$height", "#body$bodyCore$muscle",
-            "#body$antennae$antennaePerRow", "#body$antennae$length", "#body$antennae$rows", "#body$mouth$depth",
-            "#body$mouth$elasticity", "#body$mouth$lipSize", "#body$mouth$plasticity", "#body$mouth$wetness",
-            "#body$eye$eyePairs", "#body$tongue$tongueLength", "#body$horn$hornsPerRow", "#body$horn$length",
-            "#body$horn$rows", "#body$ass$assSize", "#body$ass$hipSize", "#body$anus$depth", "#body$anus$elasticity",
-            "#body$anus$plasticity", "#body$anus$wetness", "#body$breasts$milkRegeneration", "#body$breasts$milkStorage",
-            "#body$breasts$nippleCountPerBreast", "#body$breasts$rows", "#body$breasts$size", "#body$nipples$areolaeSize",
-            "#body$nipples$depth", "#body$nipples$elasticity", "#body$nipples$nippleSize", "#body$nipples$plasticity",
-            "#body$breastsCrotch$milkRegeneration", "#body$breastsCrotch$milkStorage",
-            "#body$breastsCrotch$nippleCountPerBreast", "#body$breastsCrotch$rows", "#body$breastsCrotch$size",
-            "#body$nipplesCrotch$areolaeSize", "#body$nipplesCrotch$depth", "#body$nipplesCrotch$elasticity",
-            "#body$nipplesCrotch$nippleSize", "#body$nipplesCrotch$plasticity", "#body$penis$depth",
-            "#body$penis$elasticity", "#body$penis$girth", "#body$penis$plasticity", "#body$penis$size",
-            "#body$testicles$cumExpulsion", "#body$testicles$cumRegeneration", "#body$testicles$cumStorage",
-            "#body$testicles$numberOfTesticles", "#body$testicles$testicleSize", "#body$vagina$clitGirth",
-            "#body$vagina$clitSize", "#body$vagina$depth", "#body$vagina$elasticity", "#body$vagina$labiaSize",
-            "#body$vagina$plasticity", "#body$tail$count", "#body$tail$girth", "#body$tentacle$count",
-            "#body$tentacle$girth", "#body$wing$size", "#body$spinneret$depth", "#body$spinneret$elasticity",
-            "#body$spinneret$plasticity", "#body$spinneret$wetness", "#body$arm$rows", "#characterInventory$money$value",
-            "#characterInventory$essenceCount$value"};
+    private final String[] intTextFieldIds = {"core$level$value", "core$experience$value", "core$perkPoints$value",
+            "body$bodyCore$bodySize", "body$bodyCore$femininity", "body$bodyCore$height", "body$bodyCore$muscle",
+            "body$antennae$antennaePerRow", "body$antennae$length", "body$antennae$rows", "body$mouth$depth",
+            "body$mouth$elasticity", "body$mouth$lipSize", "body$mouth$plasticity", "body$mouth$wetness",
+            "body$eye$eyePairs", "body$tongue$tongueLength", "body$horn$hornsPerRow", "body$horn$length",
+            "body$horn$rows", "body$ass$assSize", "body$ass$hipSize", "body$anus$depth", "body$anus$elasticity",
+            "body$anus$plasticity", "body$anus$wetness", "body$breasts$milkRegeneration", "body$breasts$milkStorage",
+            "body$breasts$nippleCountPerBreast", "body$breasts$rows", "body$breasts$size", "body$nipples$areolaeSize",
+            "body$nipples$depth", "body$nipples$elasticity", "body$nipples$nippleSize", "body$nipples$plasticity",
+            "body$breastsCrotch$milkRegeneration", "body$breastsCrotch$milkStorage",
+            "body$breastsCrotch$nippleCountPerBreast", "body$breastsCrotch$rows", "body$breastsCrotch$size",
+            "body$nipplesCrotch$areolaeSize", "body$nipplesCrotch$depth", "body$nipplesCrotch$elasticity",
+            "body$nipplesCrotch$nippleSize", "body$nipplesCrotch$plasticity", "body$penis$depth",
+            "body$penis$elasticity", "body$penis$girth", "body$penis$plasticity", "body$penis$size",
+            "body$testicles$cumExpulsion", "body$testicles$cumRegeneration", "body$testicles$cumStorage",
+            "body$testicles$numberOfTesticles", "body$testicles$testicleSize", "body$vagina$clitGirth",
+            "body$vagina$clitSize", "body$vagina$depth", "body$vagina$elasticity", "body$vagina$labiaSize",
+            "body$vagina$plasticity", "body$tail$count", "body$tail$girth", "body$tentacle$count",
+            "body$tentacle$girth", "body$wing$size", "body$spinneret$depth", "body$spinneret$elasticity",
+            "body$spinneret$plasticity", "body$spinneret$wetness", "body$arm$rows", "characterInventory$money$value",
+            "characterInventory$essenceCount$value"};
 
     /**
      * String array of all TextField ids using a double data type
      */
-    private final String[] doubleTextFieldIds = {"#core$obedience$value", "#core$health$value", "#core$mana$value",
-            "#body$mouth$capacity", "#body$mouth$stretchedCapacity", "#body$anus$capacity",
-            "#body$anus$stretchedCapacity", "#body$breasts$storedMilk", "#body$nipples$capacity",
-            "#body$nipples$stretchedCapacity", "#body$breastsCrotch$storedMilk", "#body$nipplesCrotch$capacity",
-            "#body$nipplesCrotch$stretchedCapacity", "#body$penis$capacity", "#body$penis$stretchedCapacity",
-            "#body$testicles$storedCum", "#body$vagina$capacity", "#body$vagina$stretchedCapacity", "#body$tail$length",
-            "#body$tentacle$length", "#body$spinneret$capacity", "#body$spinneret$stretchedCapacity"};
+    private final String[] doubleTextFieldIds = {"core$obedience$value", "core$health$value", "core$mana$value",
+            "body$mouth$capacity", "body$mouth$stretchedCapacity", "body$anus$capacity",
+            "body$anus$stretchedCapacity", "body$breasts$storedMilk", "body$nipples$capacity",
+            "body$nipples$stretchedCapacity", "body$breastsCrotch$storedMilk", "body$nipplesCrotch$capacity",
+            "body$nipplesCrotch$stretchedCapacity", "body$penis$capacity", "body$penis$stretchedCapacity",
+            "body$testicles$storedCum", "body$vagina$capacity", "body$vagina$stretchedCapacity", "body$tail$length",
+            "body$tentacle$length", "body$spinneret$capacity", "body$spinneret$stretchedCapacity"};
 
     /**
      * String array of all TextField ids using a String data type
      */
-    private final String[] stringTextFieldIds = {"#core$name$nameAndrogynous", "#core$name$nameFeminine",
-            "#core$name$nameMasculine", "#core$surname$value"};
+    private final String[] stringTextFieldIds = {"core$name$nameAndrogynous", "core$name$nameFeminine",
+            "core$name$nameMasculine", "core$surname$value"};
 
     /**
      * String array of all ComboBox ids
      */
-    private final String[] ComboBoxIds = {"#core$sexualOrientation$value", "#core$genderIdentity$value",
-            "#body$antennae$type", "#body$ear$type", "#body$face$type", "#body$eye$type", "#body$hair$type",
-            "#body$horn$type", "#body$leg$type", "#body$ass$type", "#body$breasts$type", "#body$milk$flavour",
-            "#body$breastsCrotch$type", "#body$milkCrotch$flavour", "#body$penis$type", "#body$cum$flavour",
-            "#body$vagina$type", "#body$girlcum$flavour", "#body$torso$type", "#body$tail$type", "#body$tentacle$type",
-            "#body$wing$type", "#body$arm$type", "#body$eye$irisShape", "#body$eye$pupilShape", "#body$breasts$shape",
-            "#body$nipples$areolaeShape", "#body$nipples$nippleShape", "#body$breastsCrotch$shape",
-            "#body$nipplesCrotch$areolaeShape", "#body$nipplesCrotch$nippleShape", "#body$hair$hairStyle",
-            "#body$bodyCore$bodyMaterial", "#body$bodyCore$genitalArrangement", "#body$leg$configuration",
-            "#body$leg$footStructure", "#body$bodyCore$pubicHair", "#body$face$facialHair", "#body$anus$assHair",
-            "#body$arm$underarmHair"};
+    private final String[] ComboBoxIds = {"core$sexualOrientation$value", "core$genderIdentity$value",
+            "body$antennae$type", "body$ear$type", "body$face$type", "body$eye$type", "body$hair$type", "body$horn$type",
+            "body$leg$type", "body$ass$type", "body$breasts$type", "body$milk$flavour", "body$breastsCrotch$type",
+            "body$milkCrotch$flavour", "body$penis$type", "body$cum$flavour", "body$vagina$type", "body$girlcum$flavour",
+            "body$torso$type", "body$tail$type", "body$tentacle$type", "body$wing$type", "body$arm$type",
+            "body$eye$irisShape", "body$eye$pupilShape", "body$breasts$shape", "body$nipples$areolaeShape",
+            "body$nipples$nippleShape", "body$breastsCrotch$shape", "body$nipplesCrotch$areolaeShape",
+            "body$nipplesCrotch$nippleShape", "body$hair$hairStyle", "body$bodyCore$bodyMaterial",
+            "body$bodyCore$genitalArrangement", "body$leg$configuration", "body$leg$footStructure",
+            "body$bodyCore$pubicHair", "body$face$facialHair", "body$anus$assHair", "body$arm$underarmHair",
+            "DOMINANT$desire", "SUBMISSIVE$desire", "VAGINAL_GIVING$desire", "VAGINAL_RECEIVING$desire",
+            "PENIS_GIVING$desire", "PENIS_RECEIVING$desire", "ANAL_GIVING$desire", "ANAL_RECEIVING$desire",
+            "BREASTS_OTHERS$desire", "BREASTS_SELF$desire", "LACTATION_OTHERS$desire", "LACTATION_SELF$desire",
+            "ORAL_RECEIVING$desire", "ORAL_GIVING$desire", "LEG_LOVER$desire", "STRUTTER$desire", "FOOT_GIVING$desire",
+            "FOOT_RECEIVING$desire", "CUM_STUD$desire", "CUM_ADDICT$desire", "DEFLOWERING$desire", "PURE_VIRGIN$desire",
+            "IMPREGNATION$desire", "PREGNANCY$desire", "TRANSFORMATION_GIVING$desire", "TRANSFORMATION_RECEIVING$desire",
+            "KINK_GIVING$desire", "KINK_RECEIVING$desire", "SADIST$desire", "MASOCHIST$desire", "DENIAL$desire",
+            "DENIAL_SELF$desire", "VOYEURIST$desire", "EXHIBITIONIST$desire", "BIMBO$desire", "CROSS_DRESSER$desire",
+            "MASTURBATION$desire", "INCEST$desire"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -752,6 +767,10 @@ public class Controller {
     private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
             new LegTypeAttr("Placeholder", "Placeholder", legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR));
 
+    private final ObservableList<Attribute> desireTypes = FXCollections.observableArrayList(
+            new Attribute("Hate", "ZERO_HATE"), new Attribute("Dislike", "ONE_DISLIKE"),
+            new Attribute("Indifferent", "TWO_NEUTRAL"), new Attribute("Like", "THREE_LIKE"),
+            new Attribute("Love", "FOUR_LOVE"));
 
     private final ArrayList<PerkNode> perks = new ArrayList<>();
 
@@ -825,6 +844,9 @@ public class Controller {
         comboBoxValues.add(facialHairTypes);
         comboBoxValues.add(assHairTypes);
         comboBoxValues.add(underarmHairTypes);
+        for(int i = 0; i < 38; i++) { //The 38 fetishes uses the same values for desire
+            comboBoxValues.add(desireTypes);
+        }
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
@@ -1064,6 +1086,13 @@ public class Controller {
        PerkNode p106 = new PerkNode(p99, "12", "ELEMENTAL_BOOST", "Elemental Striker"); //Physical
        PerkNode p107 = new PerkNode(p103, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker"); //Seductive
        PerkNode p108 = new PerkNode(p101, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker"); //Arcane
+
+        perks.addAll(FXCollections.observableArrayList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15,
+                p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36,
+                p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50, p51, p52, p53, p54, p55, p56, p57,
+                p58, p59, p60, p61, p62, p63, p64, p65, p66, p67, p68, p69, p70, p71, p72, p73, p74, p75, p76, p77, p78,
+                p79, p80, p81, p82, p83, p84, p85, p86, p87, p88, p89, p90, p91, p92, p93, p94, p95, p96, p97, p98, p99,
+                p100, p101, p102, p103, p104, p105, p106, p107, p108));
     } //This is suffering
     //I'm probably dumb and there was an easier way to do this
 
@@ -1174,7 +1203,7 @@ public class Controller {
                         }
                         value.setTextContent(newValue);
                         @SuppressWarnings("unchecked")
-                        ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) root.lookup("#body$hair$hairStyle");
+                        ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
                         Attribute attr;
                         if(nv < 4){
                             attr = hairStylesB.get(0);
@@ -1259,8 +1288,17 @@ public class Controller {
      */
     public void setRoot(AnchorPane r){
         root = r;
+    }
+
+    /**
+     * Sets namespace to the namespace of the fxml file
+     * @param namespace
+     *   Namespace of the fxml file
+     */
+    public void setNamespace(ObservableMap<String, Object> namespace){
+        this.namespace = namespace;
         //Disables TabPane so user cannot use the editor without loading a file first (gets re-enabled in the loadFile method)
-        TabPane tb = (TabPane) root.lookup("#tabPane");
+        TabPane tb = (TabPane) namespace.get("tabPane");
         tb.setDisable(true);
     }
 
@@ -1270,9 +1308,15 @@ public class Controller {
     public void initializeComboBoxes(){
         for(int i = 0; i < ComboBoxIds.length; i++) {
             @SuppressWarnings("unchecked")
-            ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup(ComboBoxIds[i]);
+            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(ComboBoxIds[i]);
             cb.setItems(comboBoxValues.get(i));
-            cb.setValue(cb.getItems().get(0));
+            if(comboBoxValues.get(i) == desireTypes){
+                cb.setValue(cb.getItems().get(2));
+            }
+            else{
+                cb.setValue(cb.getItems().get(0));
+            }
+
             cb.setConverter(new StringConverter<>() {
                 @Override
                 public String toString(Attribute attribute) {
@@ -1286,7 +1330,7 @@ public class Controller {
             });
         }
         @SuppressWarnings("unchecked")
-        ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup("#body$leg$type");
+        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get("body$leg$type");
         updateLegTypeDependants(cb, true);
     }
 
@@ -1321,7 +1365,7 @@ public class Controller {
                 saveFile = db.parse(is);
                 System.out.println(f);
                 fileLoaded = true;
-                TabPane tb = (TabPane) root.lookup("#tabPane");
+                TabPane tb = (TabPane) namespace.get("tabPane");
                 tb.setDisable(false);
             }
             catch(ParserConfigurationException | SAXException e){
@@ -1336,7 +1380,7 @@ public class Controller {
      */
     public void loadCharacterSelector(){
         @SuppressWarnings("unchecked")
-        ComboBox<NpcCharacter> characterSelector = (ComboBox<NpcCharacter>) root.lookup("#characterSelector");
+        ComboBox<NpcCharacter> characterSelector = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         NpcCharacter player = new NpcCharacter("PlayerCharacter");
         ObservableList<NpcCharacter> characterList = FXCollections.observableArrayList(player);
         NodeList npcList = saveFile.getElementsByTagName("NPC");
@@ -1369,9 +1413,9 @@ public class Controller {
     private void selectCharacter(ActionEvent event){
         event.consume();
         @SuppressWarnings("unchecked")
-        ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) root.lookup("#characterSelector");
+        ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         charId = cb.getValue().getId(); //Placeholder; will change to take input from a combobox to select character
-        Button btn = (Button) root.lookup("#deleteCharacter");
+        Button btn = (Button) namespace.get("deleteCharacter");
         btn.setVisible(!charId.equals("PlayerCharacter") && !charId.startsWith("-1"));
         setFields();
     }
@@ -1381,7 +1425,7 @@ public class Controller {
      * @param event
      *   ActionEvent from the object that was interacted with
      * @return
-     *   String of the id (without '#') of the object that was interacted with
+     *   String of the id of the object that was interacted with
      */
     private String getId(ActionEvent event){
         return ((javafx.scene.Node) event.getSource()).getId();
@@ -1400,7 +1444,7 @@ public class Controller {
     }
 
     /**
-     * Gets the Node of the attribute by reverse tracing the id (Id Format: #parent$child$attribute)
+     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute)
      * @param event
      *   ActionEvent of the element that was interacted with
      * @return
@@ -1468,8 +1512,8 @@ public class Controller {
      */
     @FXML
     private void updateXmlBoolean(ActionEvent event){
-        String fxId = "#" + getId(event);
-        CheckBox cb = (CheckBox) root.lookup(fxId);
+        String fxId = getId(event);
+        CheckBox cb = (CheckBox) namespace.get(fxId);
         Node value = getValueNode(event);
         try {
             value.setTextContent("" + cb.isSelected());
@@ -1496,14 +1540,14 @@ public class Controller {
         else{
             targetId = id.replace("TAPERED", "FLARED");
         }
-        target = (CheckBox) root.lookup(targetId);
+        target = (CheckBox) namespace.get(targetId);
         target.setSelected(false);
-        Node value = getValueNode(targetId.replace("#", ""));
+        Node value = getValueNode(targetId);
         try {
             value.setTextContent("" + target.isSelected());
         }
         catch(NullPointerException e){
-            value = getValueNodeParent(id.replace("#", ""));
+            value = getValueNodeParent(id);
             ((Element) value).setAttribute(id.split("\\$")[3], "" + target.isSelected());
         }
 
@@ -1516,12 +1560,12 @@ public class Controller {
      */
     @FXML
     private void updateXmlComboBox(ActionEvent event){
-        String fxId = "#" + getId(event);
+        String fxId = getId(event);
         @SuppressWarnings("unchecked")
-        ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup(fxId);
+        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
         Node value = getValueNode(event);
         value.setTextContent(cb.getValue().getValue());
-        if(fxId.equals("#body$leg$type")){
+        if(fxId.equals("body$leg$type")){
             updateLegTypeDependants(cb, false);
         }
         event.consume();
@@ -1530,15 +1574,15 @@ public class Controller {
     private void updateLegTypeDependants(ComboBox<Attribute> cb, boolean initializing){
         LegTypeAttr legType = (LegTypeAttr) cb.getValue();
         @SuppressWarnings("unchecked")
-        ComboBox<Attribute> lc = (ComboBox<Attribute>) root.lookup("#body$leg$configuration");
+        ComboBox<Attribute> lc = (ComboBox<Attribute>) namespace.get("body$leg$configuration");
         lc.setItems(legType.getLegConfiguration());
         lc.setValue(legType.getDefaultLegConfiguration());
         @SuppressWarnings("unchecked")
-        ComboBox<Attribute> fs = (ComboBox<Attribute>) root.lookup("#body$leg$footStructure");
+        ComboBox<Attribute> fs = (ComboBox<Attribute>) namespace.get("body$leg$footStructure");
         fs.setItems(legType.getFootStructure());
         fs.setValue(legType.getDefaultFootStructure());
         @SuppressWarnings("unchecked")
-        ComboBox<Attribute> ga = (ComboBox<Attribute>) root.lookup("#body$bodyCore$genitalArrangement");
+        ComboBox<Attribute> ga = (ComboBox<Attribute>) namespace.get("body$bodyCore$genitalArrangement");
         ga.setItems(legType.getGenitalArrangement());
         ga.setValue(legType.getDefaultGenitalArrangement());
         if(!initializing){
@@ -1561,9 +1605,23 @@ public class Controller {
                 if(attributeNodes.item(i).getNodeType() != Node.TEXT_NODE) { //Probably a redundant check since the TextNodes should already be skipped
                     NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                     String attributeName = attributeNodes.item(i).getNodeName();
-                    if(attributeName.equals("characterRelationships")){
-                        setFieldsRelationships(attributeNodes.item(i));
-                        continue;
+                    switch (attributeName) {
+                        case "characterRelationships" -> {  //These parts have an unknown number of elements which have identical tags
+                            setFieldsRelationships(attributeNodes.item(i));
+                            continue;
+                        }
+                        case "fetishes" -> {
+                            setFieldsFetishes(attributeNodes.item(i));
+                            continue;
+                        }
+                        case "fetishDesire" -> {
+                            setFieldsFetishDesires(attributeNodes.item(i));
+                            continue;
+                        }
+                        case "fetishExperience" -> {
+                            setFieldsFetishExperience(attributeNodes.item(i));
+                            continue;
+                        }
                     }
                     for(int j = 1; j < attributeElements.getLength() - 1; j+=2){ //Every other node in the NodeList is a TextNode (so can be skipped)
                         Node currNode = attributeElements.item(j);
@@ -1582,8 +1640,8 @@ public class Controller {
                                     for(int l = 0; l < mods.getLength(); l++){
                                         Node mod = mods.item(l);
                                         String value = mod.getTextContent();
-                                        String modId = "#" + attributeName + "$" + elementName + "$" + modifierName + "$" + mod.getNodeName();
-                                        CheckBox cb = (CheckBox) root.lookup(modId);
+                                        String modId = attributeName + "$" + elementName + "$" + modifierName + "$" + mod.getNodeName();
+                                        CheckBox cb = (CheckBox) namespace.get(modId);
                                         if (cb != null) {
                                             cb.setSelected(Boolean.parseBoolean(value));
                                         }
@@ -1595,21 +1653,21 @@ public class Controller {
                             Node valueNode = attributes.item(k);
                             String value = valueNode.getTextContent();
                             String bodyNodeName = valueNode.getNodeName();
-                            String nodeId = "#" + attributeName + "$" + elementName + "$" + bodyNodeName;
-                            if(nodeId.equals("#core$description$value")){
-                                TextArea ta = (TextArea) root.lookup(nodeId);
+                            String nodeId = attributeName + "$" + elementName + "$" + bodyNodeName;
+                            if(nodeId.equals("core$description$value")){
+                                TextArea ta = (TextArea) namespace.get(nodeId);
                                 ta.setText(value);
                                 continue;
                             }
                             //TODO: Instead of using nested try-catch, parse the value's data type and assign the value to the correct container
                             try { //Using TextFields for numerical and string values
-                                TextField tf = (TextField) root.lookup(nodeId);
+                                TextField tf = (TextField) namespace.get(nodeId);
                                 if (tf != null) {
                                     tf.setText(value);
-                                    if(nodeId.equals("#body$hair$length")){
+                                    if(nodeId.equals("body$hair$length")){
                                         int v = Integer.parseInt(value);
                                         @SuppressWarnings("unchecked")
-                                        ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) root.lookup("#body$hair$hairStyle");
+                                        ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
                                         Attribute attr = hairStyles.getValue();
                                         if(v >= 0 && v < 4){
                                             hairStyles.setItems(hairStylesB);
@@ -1634,14 +1692,14 @@ public class Controller {
                             }
                             catch(ClassCastException e){ //Using CheckBox for boolean values
                                 try {
-                                    CheckBox cb = (CheckBox) root.lookup(nodeId);
+                                    CheckBox cb = (CheckBox) namespace.get(nodeId);
                                     if (cb != null) {
                                         cb.setSelected(Boolean.parseBoolean(value));
                                     }
                                 }
                                 catch(ClassCastException e2){ //Using ComboBoxes for fixed values
                                     @SuppressWarnings("unchecked")
-                                    ComboBox<Attribute> cb = (ComboBox<Attribute>) root.lookup(nodeId);
+                                    ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
                                     if (cb != null){
                                         ObservableList<Attribute> itemList = cb.getItems();
                                         cb.setValue(matchComboBoxItem(itemList, value));
@@ -1661,15 +1719,15 @@ public class Controller {
 
     private void setFieldsRelationships(Node relationshipsNode){
         NodeList relationships = relationshipsNode.getChildNodes();
-        VBox relationBox = (VBox) root.lookup("#relationshipVbox");
+        VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
         for(int i = 1; i < relationships.getLength() - 1; i+=2){
             NamedNodeMap attrs = relationships.item(i).getAttributes();
             String charId = attrs.getNamedItem("character").getTextContent();
             TextField nameField = new TextField(getNpcName(charId));
-            nameField.setDisable(true);
+            nameField.setEditable(false);
             TextField idField = new TextField(charId);
-            idField.setDisable(true);
+            idField.setEditable(false);
             TextField valueField = new TextField(attrs.getNamedItem("value").getTextContent());
             valueField.setId("characterRelationships$relationship$" + i);
             valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
@@ -1680,9 +1738,46 @@ public class Controller {
         }
     }
 
+    private void setFieldsFetishes(Node fetishesNode){
+        NodeList ownedFetishes = fetishesNode.getChildNodes();
+        for(int i = 1; i < ownedFetishes.getLength() - 1; i+=2){
+            String fetishType = ownedFetishes.item(i).getAttributes().getNamedItem("type").getTextContent();
+            if(fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
+                    fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")){
+                continue; //Skip these values
+            }
+            String fetishId = fetishType.replace("FETISH_", "") + "$owned";
+            CheckBox cb = (CheckBox) namespace.get(fetishId);
+            cb.setSelected(true);
+        }
+    }
+
+    private void setFieldsFetishDesires(Node fetishesNode){
+        NodeList fetishDesires = fetishesNode.getChildNodes();
+        for(int i = 1; i < fetishDesires.getLength() - 1; i+=2){
+            NamedNodeMap attr = fetishDesires.item(i).getAttributes();
+            String fetishType = attr.getNamedItem("fetish").getTextContent().replace(
+                    "FETISH_", "");
+            String fetishId = fetishType + "$desire";
+            String fetishValue = attr.getNamedItem("desire").getTextContent();
+            @SuppressWarnings("unchecked")
+            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
+            ObservableList<Attribute> values = cb.getItems();
+            cb.setValue(matchComboBoxItem(values, fetishValue));
+        }
+    }
+
+    private void setFieldsFetishExperience(Node fetishesNode){
+        NodeList fetishExp = fetishesNode.getChildNodes();
+        Debug.printList(fetishExp);
+        for(int i = 1; i < fetishExp.getLength() - 1; i+=2){
+            continue;
+        }
+    }
+
     private String getNpcName(String npcId){
         @SuppressWarnings("unchecked")
-        ObservableList<NpcCharacter> npcs = ((ComboBox<NpcCharacter>) root.lookup("#characterSelector")).getItems();
+        ObservableList<NpcCharacter> npcs = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
         for (NpcCharacter npc : npcs) {
             if (npc.equals(npcId)) {
                 return npc.getName();
@@ -1709,20 +1804,20 @@ public class Controller {
      * Method to attach listeners to TextFields to properly detect and record changes to the xml data
      */
     private void addListeners(){
-        TextArea ta = (TextArea) root.lookup("#core$description$value");
+        TextArea ta = (TextArea) namespace.get("core$description$value");
         ta.focusedProperty().addListener(new TextObjectListener(ta, TextFieldType.STRING));
-        TextField hairStyles = (TextField) root.lookup("#body$hair$length");
+        TextField hairStyles = (TextField) namespace.get("body$hair$length");
         hairStyles.focusedProperty().addListener(new TextObjectListener(hairStyles, TextFieldType.HAIR));
         for(String intTextFieldId : intTextFieldIds) {
-            TextField tf = (TextField) root.lookup(intTextFieldId);
+            TextField tf = (TextField) namespace.get(intTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT, true));
         }
         for(String doubleTextFieldId : doubleTextFieldIds){
-            TextField tf = (TextField) root.lookup(doubleTextFieldId);
-            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DOUBLE, true));
+            TextField tf = (TextField) namespace.get(doubleTextFieldId);
+            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DOUBLE, !doubleTextFieldId.equals("core$obedience$value")));
         }
         for(String stringTextFieldId: stringTextFieldIds){
-            TextField tf = (TextField) root.lookup(stringTextFieldId);
+            TextField tf = (TextField) namespace.get(stringTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.STRING));
         }
     }
@@ -1760,7 +1855,7 @@ public class Controller {
         assert idNode != null;
         Node characterNode = idNode.getParentNode().getParentNode().getParentNode(); //idNode > coreNode > characterNode > npcNode
         @SuppressWarnings("unchecked")
-        ComboBox<NpcCharacter> charSelect = (ComboBox<NpcCharacter>) root.lookup("#characterSelector");
+        ComboBox<NpcCharacter> charSelect = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         ObservableList<NpcCharacter> charList = charSelect.getItems();
         NpcCharacter deletedChar = charSelect.getValue();
         NpcCharacter prevChar = charList.get(charList.indexOf(deletedChar) - 1);
