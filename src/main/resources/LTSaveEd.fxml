@@ -165,7 +165,7 @@
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="210.0">
                                     <Label text="Subspecies Override: " />
-                                    <TextField fx:id="body$bodyCore$subspeciesOverride" />
+                                    <TextField fx:id="body$bodyCore$subspeciesOverride" editable="false" />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="235.0">
                                     <CheckBox fx:id="body$bodyCore$takesAfterMother" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Takes After Mother: " />
@@ -1925,21 +1925,895 @@
                 </TabPane>
             </AnchorPane>
         </Tab>
-        <Tab text="Relationships">
+        <Tab text="Fetishes">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>
-               <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="124.0" layoutY="103.0" prefHeight="671.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <opaqueInsets>
-                     <Insets />
-                  </opaqueInsets>
-                  <padding>
-                     <Insets left="14.0" top="28.0" />
-                  </padding>
+               <ScrollPane hbarPolicy="NEVER" layoutX="263.0" layoutY="87.0" prefHeight="671.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <content>
-                     <VBox fx:id="relationshipVbox" prefWidth="1000.0" />
+                     <GridPane prefHeight="1500.0" prefWidth="1023.0" vgap="20.0">
+                       <columnConstraints>
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                           <VBox>
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Dominant">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="DOMINANT$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="DOMINANT$exp" />
+                                       <CheckBox fx:id="DOMINANT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Submissive">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="SUBMISSIVE$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="SUBMISSIVE$exp" />
+                                       <CheckBox fx:id="SUBMISSIVE$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="1">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Vaginal">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="VAGINAL_GIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="VAGINAL_GIVING$exp" />
+                                       <CheckBox fx:id="VAGINAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Pussy Slut">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="VAGINAL_RECEIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="VAGINAL_RECEIVING$exp" />
+                                       <CheckBox fx:id="VAGINAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="2">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Cock Stud">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="PENIS_GIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="PENIS_GIVING$exp" />
+                                       <CheckBox fx:id="PENIS_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Cock Addict">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="PENIS_RECEIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="PENIS_RECEIVING$exp" />
+                                       <CheckBox fx:id="PENIS_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="3">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Anal">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="ANAL_GIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="ANAL_GIVING$exp" />
+                                       <CheckBox fx:id="ANAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Buttslut">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="ANAL_RECEIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="ANAL_RECEIVING$exp" />
+                                       <CheckBox fx:id="ANAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="4">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Breasts Lover">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="BREASTS_OTHERS$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="BREASTS_OTHERS$exp" />
+                                       <CheckBox fx:id="BREASTS_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Breasts">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="BREASTS_SELF$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="BREASTS_SELF$exp" />
+                                       <CheckBox fx:id="BREASTS_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="5">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Milk Lover">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="LACTATION_OTHERS$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="LACTATION_OTHERS$exp" />
+                                       <CheckBox fx:id="LACTATION_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Lactation">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="LACTATION_SELF$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="LACTATION_SELF$exp" />
+                                       <CheckBox fx:id="LACTATION_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="6">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Oral">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="ORAL_RECEIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="ORAL_RECEIVING$exp" />
+                                       <CheckBox fx:id="ORAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Oral Performer">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="ORAL_GIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="ORAL_GIVING$exp" />
+                                       <CheckBox fx:id="ORAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="7">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Leg Lover">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="LEG_LOVER$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="LEG_LOVER$exp" />
+                                       <CheckBox fx:id="LEG_LOVER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Strutter">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="STRUTTER$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="STRUTTER$exp" />
+                                       <CheckBox fx:id="STRUTTER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="8">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Dominant Foot">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FOOT_GIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FOOT_GIVING$exp" />
+                                       <CheckBox fx:id="FOOT_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Submissive Foot">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FOOT_RECEIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FOOT_RECEIVING$exp" />
+                                       <CheckBox fx:id="FOOT_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="9">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Cum Stud">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="CUM_STUD$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="CUM_STUD$exp" />
+                                       <CheckBox fx:id="CUM_STUD$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="9">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Cum Addict">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="CUM_ADDICT$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="CUM_ADDICT$exp" />
+                                       <CheckBox fx:id="CUM_ADDICT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="10">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Deflowering">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="DEFLOWERING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="DEFLOWERING$exp" />
+                                       <CheckBox fx:id="DEFLOWERING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="10">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Vaginal Virginity">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="PURE_VIRGIN$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="PURE_VIRGIN$exp" />
+                                       <CheckBox fx:id="PURE_VIRGIN$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="11">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Impregnation">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="IMPREGNATION$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="IMPREGNATION$exp" />
+                                       <CheckBox fx:id="IMPREGNATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="11">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Pregnancy">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="PREGNANCY$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="PREGNANCY$exp" />
+                                       <CheckBox fx:id="PREGNANCY$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="12">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Transformer">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="TRANSFORMATION_GIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="TRANSFORMATION_GIVING$exp" />
+                                       <CheckBox fx:id="TRANSFORMATION_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="12">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Test Subject">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="TRANSFORMATION_RECEIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="TRANSFORMATION_RECEIVING$exp" />
+                                       <CheckBox fx:id="TRANSFORMATION_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="13">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Kink Advocate">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="KINK_GIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="KINK_GIVING$exp" />
+                                       <CheckBox fx:id="KINK_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="13">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Kink Curious">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="KINK_RECEIVING$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="KINK_RECEIVING$exp" />
+                                       <CheckBox fx:id="KINK_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="14">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Sadist">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="SADIST$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="SADIST$exp" />
+                                       <CheckBox fx:id="SADIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="14">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Masochist">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="MASOCHIST$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="MASOCHIST$exp" />
+                                       <CheckBox fx:id="MASOCHIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="15">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Orgasm Denier">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="DENIAL$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="DENIAL$exp" />
+                                       <CheckBox fx:id="DENIAL$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="15">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Self-Denial">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="DENIAL_SELF$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="DENIAL_SELF$exp" />
+                                       <CheckBox fx:id="DENIAL_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="16">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Voyeurist">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="VOYEURIST$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="VOYEURIST$exp" />
+                                       <CheckBox fx:id="VOYEURIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="16">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Exhibitionist">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="EXHIBITIONIST$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="EXHIBITIONIST$exp" />
+                                       <CheckBox fx:id="EXHIBITIONIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="17">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Bimbo">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="BIMBO$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="BIMBO$exp" />
+                                       <CheckBox fx:id="BIMBO$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="17">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Cross Dressing">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="CROSS_DRESSER$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="CROSS_DRESSER$exp" />
+                                       <CheckBox fx:id="CROSS_DRESSER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="18">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Masturbation">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="MASTURBATION$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="MASTURBATION$exp" />
+                                       <CheckBox fx:id="MASTURBATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="18">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Incest">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="INCEST$desire" prefWidth="150.0" />
+                                       <Label fx:id="INCEST$exp" text="Exp:" />
+                                       <TextField />
+                                       <CheckBox fx:id="INCEST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                        </children>
+                        <padding>
+                           <Insets left="14.0" top="28.0" />
+                        </padding>
+                     </GridPane>
                   </content>
                </ScrollPane>
             </children></AnchorPane>
+        </Tab>
+        <Tab text="Relationships">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="124.0" layoutY="103.0" prefHeight="671.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets left="14.0" top="28.0" />
+                    </padding>
+                    <VBox fx:id="relationshipVbox" prefWidth="1000.0" />
+                </ScrollPane>
+            </AnchorPane>
         </Tab>
         <Tab disable="true" text="Inventory">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
@@ -1951,9 +2825,6 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab disable="true" text="Spells">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </Tab>
-        <Tab disable="true" text="Fetishes">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab disable="true" text="Pregnancy">
