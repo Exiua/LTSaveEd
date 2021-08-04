@@ -63,15 +63,20 @@ public class PerkNode {
             deactivate();
         }
         else{
-            if(parent.size() == 0){
-                active = true;
+            if(active = true){
+                return;
             }
-            else if(parent.size() == 1 && parent.get(0).isActive()){
-                active = true;
-            }
-            else if(parent.get(0).isActive() || parent.get(1).isActive()){
-                active = true;
-            }
+            active = true;
+            activate();
+        }
+    }
+
+    private void activate(){
+        if(parent.size() == 0){
+            return;
+        }
+        for (PerkNode perkNode : parent) {
+            perkNode.setActive(true);
         }
     }
 
