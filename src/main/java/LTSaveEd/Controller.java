@@ -18,11 +18,16 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -71,6 +76,8 @@ public class Controller {
      */
     private String charId; //TODO Change this to the characterNode to speed up program
 
+    private boolean listenersAdded = false;
+
     /**
      * String array of all TextField ids using an int data type
      */
@@ -94,7 +101,17 @@ public class Controller {
             "body$vagina$plasticity", "body$tail$count", "body$tail$girth", "body$tentacle$count",
             "body$tentacle$girth", "body$wing$size", "body$spinneret$depth", "body$spinneret$elasticity",
             "body$spinneret$plasticity", "body$spinneret$wetness", "body$arm$rows", "characterInventory$money$value",
-            "characterInventory$essenceCount$value"};
+            "characterInventory$essenceCount$value", "FETISH_DOMINANT$exp", "FETISH_SUBMISSIVE$exp",
+            "FETISH_VAGINAL_GIVING$exp", "FETISH_VAGINAL_RECEIVING$exp", "FETISH_PENIS_GIVING$exp",
+            "FETISH_PENIS_RECEIVING$exp", "FETISH_ANAL_GIVING$exp", "FETISH_ANAL_RECEIVING$exp",
+            "FETISH_BREASTS_OTHERS$exp", "FETISH_BREASTS_SELF$exp", "FETISH_LACTATION_OTHERS$exp",
+            "FETISH_LACTATION_SELF$exp", "FETISH_ORAL_RECEIVING$exp", "FETISH_ORAL_GIVING$exp", "FETISH_LEG_LOVER$exp",
+            "FETISH_STRUTTER$exp", "FETISH_FOOT_GIVING$exp", "FETISH_FOOT_RECEIVING$exp", "FETISH_CUM_STUD$exp",
+            "FETISH_CUM_ADDICT$exp", "FETISH_DEFLOWERING$exp", "FETISH_PURE_VIRGIN$exp", "FETISH_IMPREGNATION$exp",
+            "FETISH_PREGNANCY$exp", "FETISH_TRANSFORMATION_GIVING$exp", "FETISH_TRANSFORMATION_RECEIVING$exp",
+            "FETISH_KINK_GIVING$exp", "FETISH_KINK_RECEIVING$exp", "FETISH_SADIST$exp", "FETISH_MASOCHIST$exp",
+            "FETISH_DENIAL$exp", "FETISH_DENIAL_SELF$exp", "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp",
+            "FETISH_BIMBO$exp", "FETISH_CROSS_DRESSER$exp", "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp"};
 
     /**
      * String array of all TextField ids using a double data type
@@ -126,15 +143,18 @@ public class Controller {
             "body$nipplesCrotch$nippleShape", "body$hair$hairStyle", "body$bodyCore$bodyMaterial",
             "body$bodyCore$genitalArrangement", "body$leg$configuration", "body$leg$footStructure",
             "body$bodyCore$pubicHair", "body$face$facialHair", "body$anus$assHair", "body$arm$underarmHair",
-            "DOMINANT$desire", "SUBMISSIVE$desire", "VAGINAL_GIVING$desire", "VAGINAL_RECEIVING$desire",
-            "PENIS_GIVING$desire", "PENIS_RECEIVING$desire", "ANAL_GIVING$desire", "ANAL_RECEIVING$desire",
-            "BREASTS_OTHERS$desire", "BREASTS_SELF$desire", "LACTATION_OTHERS$desire", "LACTATION_SELF$desire",
-            "ORAL_RECEIVING$desire", "ORAL_GIVING$desire", "LEG_LOVER$desire", "STRUTTER$desire", "FOOT_GIVING$desire",
-            "FOOT_RECEIVING$desire", "CUM_STUD$desire", "CUM_ADDICT$desire", "DEFLOWERING$desire", "PURE_VIRGIN$desire",
-            "IMPREGNATION$desire", "PREGNANCY$desire", "TRANSFORMATION_GIVING$desire", "TRANSFORMATION_RECEIVING$desire",
-            "KINK_GIVING$desire", "KINK_RECEIVING$desire", "SADIST$desire", "MASOCHIST$desire", "DENIAL$desire",
-            "DENIAL_SELF$desire", "VOYEURIST$desire", "EXHIBITIONIST$desire", "BIMBO$desire", "CROSS_DRESSER$desire",
-            "MASTURBATION$desire", "INCEST$desire"};
+            "FETISH_DOMINANT$desire", "FETISH_SUBMISSIVE$desire", "FETISH_VAGINAL_GIVING$desire",
+            "FETISH_VAGINAL_RECEIVING$desire", "FETISH_PENIS_GIVING$desire", "FETISH_PENIS_RECEIVING$desire",
+            "FETISH_ANAL_GIVING$desire", "FETISH_ANAL_RECEIVING$desire", "FETISH_BREASTS_OTHERS$desire",
+            "FETISH_BREASTS_SELF$desire", "FETISH_LACTATION_OTHERS$desire", "FETISH_LACTATION_SELF$desire",
+            "FETISH_ORAL_RECEIVING$desire", "FETISH_ORAL_GIVING$desire", "FETISH_LEG_LOVER$desire",
+            "FETISH_STRUTTER$desire", "FETISH_FOOT_GIVING$desire", "FETISH_FOOT_RECEIVING$desire",
+            "FETISH_CUM_STUD$desire", "FETISH_CUM_ADDICT$desire", "FETISH_DEFLOWERING$desire", "FETISH_PURE_VIRGIN$desire",
+            "FETISH_IMPREGNATION$desire", "FETISH_PREGNANCY$desire", "FETISH_TRANSFORMATION_GIVING$desire",
+            "FETISH_TRANSFORMATION_RECEIVING$desire", "FETISH_KINK_GIVING$desire", "FETISH_KINK_RECEIVING$desire",
+            "FETISH_SADIST$desire", "FETISH_MASOCHIST$desire", "FETISH_DENIAL$desire", "FETISH_DENIAL_SELF$desire",
+            "FETISH_VOYEURIST$desire", "FETISH_EXHIBITIONIST$desire", "FETISH_BIMBO$desire", "FETISH_CROSS_DRESSER$desire",
+            "FETISH_MASTURBATION$desire", "FETISH_INCEST$desire"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -1106,6 +1126,8 @@ public class Controller {
 
         private boolean positiveOnly;
 
+        private final boolean fetishExp;
+
         /**
          * Constructor for a new TextFieldListener
          * @param textControl
@@ -1117,6 +1139,7 @@ public class Controller {
             textInputControl = textControl;
             tfType = textFieldType;
             positiveOnly = false;
+            fetishExp = textInputControl.getId().startsWith("FETISH_");
         }
 
         public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly){
@@ -1150,6 +1173,17 @@ public class Controller {
          */
         private String getFormattedText(String newValue) {
             Node value = getValueNode();
+            if(value == null && fetishExp){
+                NodeList attributeNodes = getAttributeNodes();
+                Node fetishExp = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0);
+                Element fetishEntry = saveFile.createElement("entry");
+                fetishEntry.setAttribute("experience", "0");
+                fetishEntry.setAttribute("fetish", textInputControl.getId().split("\\$")[0]);
+                fetishExp.appendChild(fetishEntry);
+                value = fetishEntry.getAttributes().getNamedItem("experience");
+                System.out.println("Created new element");
+            }
+            assert value != null;
             String oldValue = value.getTextContent();
             switch(tfType) {
                 case INT:
@@ -1159,7 +1193,14 @@ public class Controller {
                         if(positiveOnly && nv < 0){
                             return oldValue;
                         }
-                        value.setTextContent(newValue);
+                        if(nv == 0 && fetishExp){
+                            Node ownerNode = ((Attr) value).getOwnerElement();
+                            ownerNode.getParentNode().removeChild(ownerNode);
+                            System.out.println("Removed element");
+                        }
+                        else{
+                            value.setTextContent(newValue);
+                        }
                         return newValue;
                     }
                     catch (NumberFormatException e) {
@@ -1256,12 +1297,26 @@ public class Controller {
         private Node getValueNode(){
             String[] id = textInputControl.getId().split("\\$");
             NodeList attributeNodes = getAttributeNodes();
+            if(id[0].startsWith("FETISH_")){
+                NodeList fetishes = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0).getChildNodes();
+                Node childNode = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
+                return childNode != null ? childNode.getAttributes().getNamedItem("experience") : null;
+            }
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
             if(id[0].equals("characterRelationships")){
                 return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
             }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return attr.getAttributes().getNamedItem(id[2]);
+        }
+
+        private Node getChildNodeByAttributeValue(NodeList children, String attribute, String value){
+            for(int i = 1; i < children.getLength() - 1; i+=2){
+                if(children.item(i).getAttributes().getNamedItem(attribute).getTextContent().equals(value)){
+                    return children.item(i);
+                }
+            }
+            return null;
         }
     }
 
@@ -1513,7 +1568,6 @@ public class Controller {
         event.consume();
     }
 
-
     private void checkboxFlaredTaperedToggle(String id){
         boolean flared = id.split("\\$")[3].equals("FLARED");
         String targetId;
@@ -1696,7 +1750,9 @@ public class Controller {
                 }
                 }
             }
-            addListeners();
+            if(!listenersAdded){
+                addListeners();
+            }
         }
     }
 
@@ -1729,7 +1785,7 @@ public class Controller {
                     fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")){
                 continue; //Skip these values
             }
-            String fetishId = fetishType.replace("FETISH_", "") + "$owned";
+            String fetishId = fetishType + "$owned";
             CheckBox cb = (CheckBox) namespace.get(fetishId);
             cb.setSelected(true);
         }
@@ -1739,8 +1795,7 @@ public class Controller {
         NodeList fetishDesires = fetishesNode.getChildNodes();
         for(int i = 1; i < fetishDesires.getLength() - 1; i+=2){
             NamedNodeMap attr = fetishDesires.item(i).getAttributes();
-            String fetishType = attr.getNamedItem("fetish").getTextContent().replace(
-                    "FETISH_", "");
+            String fetishType = attr.getNamedItem("fetish").getTextContent();
             String fetishId = fetishType + "$desire";
             String fetishValue = attr.getNamedItem("desire").getTextContent();
             @SuppressWarnings("unchecked")
@@ -1752,9 +1807,13 @@ public class Controller {
 
     private void setFieldsFetishExperience(Node fetishesNode){
         NodeList fetishExp = fetishesNode.getChildNodes();
-        Debug.printList(fetishExp);
         for(int i = 1; i < fetishExp.getLength() - 1; i+=2){
-            continue;
+            NamedNodeMap attr = fetishExp.item(i).getAttributes();
+            String fetishType = attr.getNamedItem("fetish").getTextContent();
+            String fetishId = fetishType + "$exp";
+            String fetishValue = attr.getNamedItem("experience").getTextContent();
+            TextField tf = (TextField) namespace.get(fetishId);
+            tf.setText(fetishValue);
         }
     }
 
@@ -1803,6 +1862,7 @@ public class Controller {
             TextField tf = (TextField) namespace.get(stringTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.STRING));
         }
+        listenersAdded = true;
     }
 
     /**
@@ -1920,11 +1980,22 @@ public class Controller {
         TransformerFactory tff = TransformerFactory.newInstance();
         try {
             Transformer tf = tff.newTransformer();
+            //File formatting
+            tf.setOutputProperty(OutputKeys.INDENT, "yes");
+            saveFile.normalize();
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            NodeList nodeList = (NodeList) xPath.evaluate("//text()[normalize-space()='']",
+                    saveFile, XPathConstants.NODESET);
+            for (int i = 0; i < nodeList.getLength(); ++i) {
+                Node node = nodeList.item(i);
+                node.getParentNode().removeChild(node);
+            }
+            //Saves xml to file
             DOMSource source = new DOMSource(saveFile);
             StreamResult sr = new StreamResult(f);
             tf.transform(source, sr);
         }
-        catch(TransformerException e){
+        catch(TransformerException | XPathExpressionException e){
             e.printStackTrace();
         }
     }
