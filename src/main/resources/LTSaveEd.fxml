@@ -1971,10 +1971,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="DOMINANT$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_DOMINANT$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="DOMINANT$exp" />
-                                       <CheckBox fx:id="DOMINANT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_DOMINANT$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_DOMINANT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -1993,10 +1993,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="SUBMISSIVE$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_SUBMISSIVE$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="SUBMISSIVE$exp" />
-                                       <CheckBox fx:id="SUBMISSIVE$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_SUBMISSIVE$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_SUBMISSIVE$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2015,10 +2015,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="VAGINAL_GIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_VAGINAL_GIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="VAGINAL_GIVING$exp" />
-                                       <CheckBox fx:id="VAGINAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_VAGINAL_GIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_VAGINAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2037,10 +2037,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="VAGINAL_RECEIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_VAGINAL_RECEIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="VAGINAL_RECEIVING$exp" />
-                                       <CheckBox fx:id="VAGINAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_VAGINAL_RECEIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_VAGINAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2059,10 +2059,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="PENIS_GIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_PENIS_GIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="PENIS_GIVING$exp" />
-                                       <CheckBox fx:id="PENIS_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_PENIS_GIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_PENIS_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2081,10 +2081,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="PENIS_RECEIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_PENIS_RECEIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="PENIS_RECEIVING$exp" />
-                                       <CheckBox fx:id="PENIS_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_PENIS_RECEIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_PENIS_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2103,10 +2103,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="ANAL_GIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_ANAL_GIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="ANAL_GIVING$exp" />
-                                       <CheckBox fx:id="ANAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_ANAL_GIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_ANAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2125,10 +2125,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="ANAL_RECEIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_ANAL_RECEIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="ANAL_RECEIVING$exp" />
-                                       <CheckBox fx:id="ANAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_ANAL_RECEIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_ANAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2147,10 +2147,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="BREASTS_OTHERS$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_BREASTS_OTHERS$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="BREASTS_OTHERS$exp" />
-                                       <CheckBox fx:id="BREASTS_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_BREASTS_OTHERS$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_BREASTS_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2169,10 +2169,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="BREASTS_SELF$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_BREASTS_SELF$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="BREASTS_SELF$exp" />
-                                       <CheckBox fx:id="BREASTS_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_BREASTS_SELF$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_BREASTS_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2191,10 +2191,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="LACTATION_OTHERS$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_LACTATION_OTHERS$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="LACTATION_OTHERS$exp" />
-                                       <CheckBox fx:id="LACTATION_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_LACTATION_OTHERS$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_LACTATION_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2213,10 +2213,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="LACTATION_SELF$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_LACTATION_SELF$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="LACTATION_SELF$exp" />
-                                       <CheckBox fx:id="LACTATION_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_LACTATION_SELF$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_LACTATION_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2235,10 +2235,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="ORAL_RECEIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_ORAL_RECEIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="ORAL_RECEIVING$exp" />
-                                       <CheckBox fx:id="ORAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_ORAL_RECEIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_ORAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2257,10 +2257,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="ORAL_GIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_ORAL_GIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="ORAL_GIVING$exp" />
-                                       <CheckBox fx:id="ORAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_ORAL_GIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_ORAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2279,10 +2279,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="LEG_LOVER$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_LEG_LOVER$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="LEG_LOVER$exp" />
-                                       <CheckBox fx:id="LEG_LOVER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_LEG_LOVER$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_LEG_LOVER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2301,10 +2301,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="STRUTTER$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_STRUTTER$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="STRUTTER$exp" />
-                                       <CheckBox fx:id="STRUTTER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_STRUTTER$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_STRUTTER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2323,10 +2323,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="FOOT_GIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_FOOT_GIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="FOOT_GIVING$exp" />
-                                       <CheckBox fx:id="FOOT_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_FOOT_GIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_FOOT_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2345,10 +2345,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="FOOT_RECEIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_FOOT_RECEIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="FOOT_RECEIVING$exp" />
-                                       <CheckBox fx:id="FOOT_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_FOOT_RECEIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_FOOT_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2367,10 +2367,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="CUM_STUD$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_CUM_STUD$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="CUM_STUD$exp" />
-                                       <CheckBox fx:id="CUM_STUD$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_CUM_STUD$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_CUM_STUD$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2389,10 +2389,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="CUM_ADDICT$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_CUM_ADDICT$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="CUM_ADDICT$exp" />
-                                       <CheckBox fx:id="CUM_ADDICT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_CUM_ADDICT$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_CUM_ADDICT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2411,10 +2411,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="DEFLOWERING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_DEFLOWERING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="DEFLOWERING$exp" />
-                                       <CheckBox fx:id="DEFLOWERING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_DEFLOWERING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_DEFLOWERING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2433,10 +2433,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="PURE_VIRGIN$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_PURE_VIRGIN$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="PURE_VIRGIN$exp" />
-                                       <CheckBox fx:id="PURE_VIRGIN$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_PURE_VIRGIN$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_PURE_VIRGIN$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2455,10 +2455,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="IMPREGNATION$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_IMPREGNATION$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="IMPREGNATION$exp" />
-                                       <CheckBox fx:id="IMPREGNATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_IMPREGNATION$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_IMPREGNATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2477,10 +2477,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="PREGNANCY$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_PREGNANCY$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="PREGNANCY$exp" />
-                                       <CheckBox fx:id="PREGNANCY$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_PREGNANCY$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_PREGNANCY$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2499,10 +2499,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="TRANSFORMATION_GIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_TRANSFORMATION_GIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="TRANSFORMATION_GIVING$exp" />
-                                       <CheckBox fx:id="TRANSFORMATION_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_TRANSFORMATION_GIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_TRANSFORMATION_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2521,10 +2521,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="TRANSFORMATION_RECEIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_TRANSFORMATION_RECEIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="TRANSFORMATION_RECEIVING$exp" />
-                                       <CheckBox fx:id="TRANSFORMATION_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_TRANSFORMATION_RECEIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_TRANSFORMATION_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2543,10 +2543,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="KINK_GIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_KINK_GIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="KINK_GIVING$exp" />
-                                       <CheckBox fx:id="KINK_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_KINK_GIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_KINK_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2565,10 +2565,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="KINK_RECEIVING$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_KINK_RECEIVING$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="KINK_RECEIVING$exp" />
-                                       <CheckBox fx:id="KINK_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_KINK_RECEIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_KINK_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2587,10 +2587,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="SADIST$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_SADIST$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="SADIST$exp" />
-                                       <CheckBox fx:id="SADIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_SADIST$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_SADIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2609,10 +2609,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="MASOCHIST$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_MASOCHIST$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="MASOCHIST$exp" />
-                                       <CheckBox fx:id="MASOCHIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_MASOCHIST$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_MASOCHIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2631,10 +2631,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="DENIAL$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_DENIAL$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="DENIAL$exp" />
-                                       <CheckBox fx:id="DENIAL$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_DENIAL$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_DENIAL$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2653,10 +2653,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="DENIAL_SELF$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_DENIAL_SELF$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="DENIAL_SELF$exp" />
-                                       <CheckBox fx:id="DENIAL_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_DENIAL_SELF$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_DENIAL_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2675,10 +2675,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="VOYEURIST$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_VOYEURIST$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="VOYEURIST$exp" />
-                                       <CheckBox fx:id="VOYEURIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_VOYEURIST$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_VOYEURIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2697,10 +2697,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="EXHIBITIONIST$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_EXHIBITIONIST$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="EXHIBITIONIST$exp" />
-                                       <CheckBox fx:id="EXHIBITIONIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_EXHIBITIONIST$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_EXHIBITIONIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2719,10 +2719,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="BIMBO$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_BIMBO$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="BIMBO$exp" />
-                                       <CheckBox fx:id="BIMBO$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_BIMBO$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_BIMBO$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2741,10 +2741,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="CROSS_DRESSER$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_CROSS_DRESSER$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="CROSS_DRESSER$exp" />
-                                       <CheckBox fx:id="CROSS_DRESSER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_CROSS_DRESSER$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_CROSS_DRESSER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2763,10 +2763,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="MASTURBATION$desire" prefWidth="150.0" />
+                                       <ComboBox fx:id="FETISH_MASTURBATION$desire" prefWidth="150.0" />
                                        <Label text="Exp:" />
-                                       <TextField fx:id="MASTURBATION$exp" />
-                                       <CheckBox fx:id="MASTURBATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <TextField fx:id="FETISH_MASTURBATION$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_MASTURBATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
@@ -2785,10 +2785,10 @@
                                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <children>
                                        <Label text="Desire:" />
-                                       <ComboBox fx:id="INCEST$desire" prefWidth="150.0" />
-                                       <Label fx:id="INCEST$exp" text="Exp:" />
-                                       <TextField />
-                                       <CheckBox fx:id="INCEST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
+                                       <ComboBox fx:id="FETISH_INCEST$desire" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_INCEST$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_INCEST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
