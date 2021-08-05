@@ -16,7 +16,6 @@ public class LTSaveEd extends Application {
         Parent root = loader.load();
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
-        controller.setRoot(loader.getRoot());
         controller.setNamespace(loader.getNamespace());
         controller.initializeComboBoxes();
         primaryStage.setTitle("LTSaveEd " + version);
