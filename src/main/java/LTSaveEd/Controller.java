@@ -1,6 +1,5 @@
 package LTSaveEd;
 
-import com.sun.javafx.collections.MappingChange;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -9,7 +8,6 @@ import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -42,11 +40,6 @@ public class Controller {
      * Gui's stage object
      */
     private Stage stage;
-
-    /**
-     * Root node of the fxml
-     */
-    private AnchorPane root;
 
     /**
      * Namespace of the fxml
@@ -1282,15 +1275,6 @@ public class Controller {
     }
 
     /**
-     * Sets root to the root node of the fxml file
-     * @param r
-     *   Root node of fxml file
-     */
-    public void setRoot(AnchorPane r){
-        root = r;
-    }
-
-    /**
      * Sets namespace to the namespace of the fxml file
      * @param namespace
      *   Namespace of the fxml file
@@ -1668,7 +1652,6 @@ public class Controller {
                                         int v = Integer.parseInt(value);
                                         @SuppressWarnings("unchecked")
                                         ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
-                                        Attribute attr = hairStyles.getValue();
                                         if(v >= 0 && v < 4){
                                             hairStyles.setItems(hairStylesB);
                                         }
