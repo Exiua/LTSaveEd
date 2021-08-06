@@ -36,10 +36,11 @@ import java.util.Properties;
 
 /**
  * Controller class that handles events and interactions of the GUI
+ *
  * @author Exiua
  * @version 0.1.0
  */
-public class Controller {
+public class Controller{
 
     /**
      * Gui's stage object
@@ -76,6 +77,9 @@ public class Controller {
      */
     private String charId; //TODO Change this to the characterNode to speed up program
 
+    /**
+     * Boolean tracking whether the addListeners method was run
+     */
     private boolean listenersAdded = false;
 
     /**
@@ -692,6 +696,9 @@ public class Controller {
             new Attribute("Crown braid", "CROWN_BRAID"), new Attribute("Drill hair", "DRILL_HAIR"),
             new Attribute("Hime-cut", "HIME_CUT"), new Attribute("Bird cage", "BIRD_CAGE"));
 
+    /**
+     * ObservableList of all body materials in the game
+     */
     private final ObservableList<Attribute> bodyMaterials = FXCollections.observableArrayList(
             new Attribute("Flesh", "FLESH"), new Attribute("Slime", "SLIME"),
             new Attribute("Fire", "FIRE"), new Attribute("Water", "WATER"),
@@ -699,79 +706,172 @@ public class Controller {
             new Attribute("Stone", "STONE"), new Attribute("Rubber", "RUBBER"),
             new Attribute("Energy", "ENERGY"));
 
+    /**
+     * ObservableList of all subspecies overrides in the game
+     */
     private final ObservableList<Attribute> subspeciesOverrides = FXCollections.observableArrayList(); //TODO
 
+    /**
+     * ObservableList of all body hairstyles in the game
+     */
     private final ObservableList<Attribute> pubicHairTypes = FXCollections.observableArrayList(
             new Attribute("None", "ZERO_NONE"), new Attribute("Stubble", "ONE_STUBBLE"),
             new Attribute("Manicured", "TWO_MANICURED"), new Attribute("Trimmed", "THREE_TRIMMED"),
             new Attribute("Natural", "FOUR_NATURAL"), new Attribute("Unkempt", "FIVE_UNKEMPT"),
             new Attribute("Bushy", "SIX_BUSHY"), new Attribute("Wild", "SEVEN_WILD"));
 
+    /**
+     * ObservableList of all body hairstyles in the game (same as pubicHairTypes)
+     */
     private final ObservableList<Attribute> facialHairTypes = pubicHairTypes;
 
+    /**
+     * ObservableList of all body hairstyles in the game (same as pubicHairTypes)
+     */
     private final ObservableList<Attribute> assHairTypes = pubicHairTypes;
 
+    /**
+     * ObservableList of all body hairstyles in the game (same as pubicHairTypes)
+     */
     private final ObservableList<Attribute> underarmHairTypes = pubicHairTypes;
 
+    /**
+     * ObservableList of all leg configurations in the game
+     */
     private final ObservableList<Attribute> legConfigurationsMaster = FXCollections.observableArrayList(
             new Attribute("Bipedal", "BIPEDAL"), new Attribute("Quadrupedal", "QUADRUPEDAL"),
             new Attribute("Serpent-tailed", "TAIL_LONG"), new Attribute("Arachnid", "ARACHNID"),
             new Attribute("Cephalopod", "CEPHALOPOD"), new Attribute("Mer-tailed", "TAIL"),
             new Attribute("Avian", "AVIAN"));
 
+    /**
+     * ObservableList of bipedal and quadrupedal leg configurations
+     */
     private final ObservableList<Attribute> legConfigurationsBQ = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of bipedal leg configuration
+     */
     private final ObservableList<Attribute> legConfigurationsB = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of serpent-tailed leg configurations
+     */
     private final ObservableList<Attribute> legConfigurationsS = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of arachnid leg configuration
+     */
     private final ObservableList<Attribute> legConfigurationsAr = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of cephalopod leg configuration
+     */
     private final ObservableList<Attribute> legConfigurationsC = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of mer-tailed leg configuration
+     */
     private final ObservableList<Attribute> legConfigurationsM = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of avian leg configuration
+     */
     private final ObservableList<Attribute> legConfigurationsAv = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of bipedal, quadrupedal, serpent-tailed, and mer-tailed leg configurations
+     */
     private final ObservableList<Attribute> legConfigurationsBQSM = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of bipedal and avian leg configurations
+     */
     private final ObservableList<Attribute> legConfigurationsBAv = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of bipedal and mer-tailed leg configurations
+     */
     private final ObservableList<Attribute> legConfigurationsBM = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of bipedal and serpent-tailed leg configurations
+     */
     private final ObservableList<Attribute> legConfigurationsBS = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of bipedal and arachnid leg configurations
+     */
     private final ObservableList<Attribute> legConfigurationsBAr = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of all foot structures in the game
+     */
     private final ObservableList<Attribute> footStructuresMaster = FXCollections.observableArrayList(
             new Attribute("None", "NONE"), new Attribute("Plantigrade", "PLANTIGRADE"),
             new Attribute("Unguligrade", "UNGULIGRADE"), new Attribute("Digitigrade", "DIGITIGRADE"),
             new Attribute("Arachnoid", "ARACHNOID"), new Attribute("Tentacled", "TENTACLED"));
 
+    /**
+     * ObservableList of plantigrade foot structure
+     */
     private final ObservableList<Attribute> footStructuresP = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of unguligrade foot structure
+     */
     private final ObservableList<Attribute> footStructuresU = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of none foot structure (for tailed leg configs)
+     */
     private final ObservableList<Attribute> footStructuresN = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of arachnoid foot structure
+     */
     private final ObservableList<Attribute> footStructuresA = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of tentacled foot structure
+     */
     private final ObservableList<Attribute> footStructuresT = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of plantigrade and digitigrade foot structures
+     */
     private final ObservableList<Attribute> footStructuresPD = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of digitigrade foot structure
+     */
     private final ObservableList<Attribute> footStructuresD = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of all genital arrangements in the game
+     */
     private final ObservableList<Attribute> genitalArrangementsNCR = FXCollections.observableArrayList(
             new Attribute("Normal", "NORMAL"), new Attribute("Cloaca", "CLOACA"),
             new Attribute("Rear-facing cloaca", "CLOACA_BEHIND"));
 
+    /**
+     * ObservableList of cloaca and rear-facing cloaca genital arrangements
+     */
     private final ObservableList<Attribute> genitalArrangementsCR = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of normal genital arrangement
+     */
     private final ObservableList<Attribute> genitalArrangementsN = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of cloaca genital arrangement
+     */
     private final ObservableList<Attribute> genitalArrangementsC = FXCollections.observableArrayList();
 
+    /**
+     * ObservableList of rear-facing cloaca genital arrangement
+     */
     private final ObservableList<Attribute> genitalArrangementsR = FXCollections.observableArrayList();
 
     /**
@@ -780,11 +880,17 @@ public class Controller {
     private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
             new LegTypeAttr("Placeholder", "Placeholder", legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR));
 
+    /**
+     * ObservableList of all desire types in the game
+     */
     private final ObservableList<Attribute> desireTypes = FXCollections.observableArrayList(
             new Attribute("Hate", "ZERO_HATE"), new Attribute("Dislike", "ONE_DISLIKE"),
             new Attribute("Indifferent", "TWO_NEUTRAL"), new Attribute("Like", "THREE_LIKE"),
             new Attribute("Love", "FOUR_LOVE"));
 
+    /**
+     * ArrayList of all perks in the game
+     */
     private final ArrayList<PerkNode> perks = new ArrayList<>();
 
     /**
@@ -794,16 +900,16 @@ public class Controller {
 
     /**
      * Initializes the Controller object and parses config.ini
-     * @throws IOException
-     *   If config.ini cannot be properly read
+     *
+     * @throws IOException If config.ini cannot be properly read
      */
-    public void initialize() throws IOException {
+    public void initialize() throws IOException{
         prop = new Properties();
         FileInputStream in;
-        try {
+        try{
             in = new FileInputStream("config.ini");
         }
-        catch (FileNotFoundException e){
+        catch(FileNotFoundException e){
             //Uses working directory as default file path
             prop.setProperty("defaultFilePath", Paths.get(".").toAbsolutePath().normalize().toString());
             prop.store(new FileOutputStream("config.ini"), null);
@@ -857,7 +963,7 @@ public class Controller {
         comboBoxValues.add(facialHairTypes);
         comboBoxValues.add(assHairTypes);
         comboBoxValues.add(underarmHairTypes);
-        for(int i = 0; i < 38; i++) { //The 38 fetishes uses the same values for desire
+        for(int i = 0; i < 38; i++){ //The 38 fetishes uses the same values for desire
             comboBoxValues.add(desireTypes);
         }
         initializeHairStyles();
@@ -921,7 +1027,7 @@ public class Controller {
      * Initializes all the genitalArrangements sublists
      */
     private void initializeGenitalArrangements(){
-        genitalArrangementsCR.addAll(genitalArrangementsNCR.subList(1,3));
+        genitalArrangementsCR.addAll(genitalArrangementsNCR.subList(1, 3));
         genitalArrangementsN.add(genitalArrangementsNCR.get(0));
         genitalArrangementsC.add(genitalArrangementsNCR.get(1));
         genitalArrangementsR.add(genitalArrangementsNCR.get(2));
@@ -930,7 +1036,7 @@ public class Controller {
     /**
      * Initializes the legType list
      * Has to be done after the above three initializations as the LegTypeAttr class depends
-     *   on those lists not being empty
+     * on those lists not being empty
      */
     private void initializeLegTypes(){
         legTypes.remove(0);
@@ -979,126 +1085,130 @@ public class Controller {
     }
 
     //TODO
+
+    /**
+     * Initializes PerkNodes and fills the ArrayList with the PerkNodes
+     */
     private void initializePerks(){
-       PerkNode p1 = new PerkNode(null, "1", "PHYSICAL_BASE", "Natural Fitness");
-       PerkNode p2 = new PerkNode(null, "1", "ARCANE_BASE", "Natural Arcane Power");
-       PerkNode p3 = new PerkNode(null, "1", "LEWD_KNOWLEDGE", "Lewd Knowledge");
+        PerkNode p1 = new PerkNode(null, "1", "PHYSICAL_BASE", "Natural Fitness");
+        PerkNode p2 = new PerkNode(null, "1", "ARCANE_BASE", "Natural Arcane Power");
+        PerkNode p3 = new PerkNode(null, "1", "LEWD_KNOWLEDGE", "Lewd Knowledge");
 
-       PerkNode p4 = new PerkNode(p2, "2", "ARCANE_BOOST", "Arcane Training");
-       PerkNode p5 = new PerkNode(p2, "2", "ARCANE_CRITICALS", "Arcane Precision");
-       PerkNode p6 = new PerkNode(p1, "2", "OBSERVANT", "Observant");
-       PerkNode p7 = new PerkNode(p3, "2", "SEDUCTION_BOOST", "Seductive");
-       PerkNode p8 = new PerkNode(p3, "2", "FERTILITY_BOOST", "Fertile");
-       PerkNode p9 = new PerkNode(p1, "2", "PHYSIQUE_BOOST", "Physically Fit");
-       PerkNode p10 = new PerkNode(p3, "2", "FIRING_BLANKS", "Sterile");
-       PerkNode p11 = new PerkNode(p3, "2", "VIRILITY_BOOST", "Virile");
-       PerkNode p12 = new PerkNode(p3, "2", "BARREN", "Barren");
-       PerkNode p13 = new PerkNode(p1, "2", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
-       PerkNode p14 = new PerkNode(p2, "2", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
+        PerkNode p4 = new PerkNode(p2, "2", "ARCANE_BOOST", "Arcane Training");
+        PerkNode p5 = new PerkNode(p2, "2", "ARCANE_CRITICALS", "Arcane Precision");
+        PerkNode p6 = new PerkNode(p1, "2", "OBSERVANT", "Observant");
+        PerkNode p7 = new PerkNode(p3, "2", "SEDUCTION_BOOST", "Seductive");
+        PerkNode p8 = new PerkNode(p3, "2", "FERTILITY_BOOST", "Fertile");
+        PerkNode p9 = new PerkNode(p1, "2", "PHYSIQUE_BOOST", "Physically Fit");
+        PerkNode p10 = new PerkNode(p3, "2", "FIRING_BLANKS", "Sterile");
+        PerkNode p11 = new PerkNode(p3, "2", "VIRILITY_BOOST", "Virile");
+        PerkNode p12 = new PerkNode(p3, "2", "BARREN", "Barren");
+        PerkNode p13 = new PerkNode(p1, "2", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
+        PerkNode p14 = new PerkNode(p2, "2", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
 
-       PerkNode p15 = new PerkNode(p9, "3", "PHYSICAL_DAMAGE", "Striker");
-       PerkNode p16 = new PerkNode(p4, "3", "SPELL_DAMAGE", "Spell Power");
-       PerkNode p17 = new PerkNode(p7, "3", "ORGASMIC_LEVEL_DRAIN", "Orgasmic Level Drain");
-       PerkNode p18 = new PerkNode(p4, "3", "AURA_BOOST", "Aura Reserves");
-       PerkNode p19 = new PerkNode(p11, "3", "VIRILITY_MAJOR_BOOST", "Virile");
-       PerkNode p20 = new PerkNode(p7, "3", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-       PerkNode p21 = new PerkNode(p4, "3", "SPELL_EFFICIENCY", "Spell Efficiency");
-       PerkNode p22 = new PerkNode(p9, "3", "PHYSICAL_DEFENCE", "Defender");
-       PerkNode p23 = new PerkNode(p7, "3", "SEDUCTION_BOOST", "Seductive");
-       PerkNode p24 = new PerkNode(p9, "3", "ENERGY_BOOST", "Energy Reserves");
-       PerkNode p25 = new PerkNode(p8, "3", "FERTILITY_MAJOR_BOOST", "Fertile");
-       PerkNode p26 = new PerkNode(p13, "3", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
-       PerkNode p27 = new PerkNode(p14, "3", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
+        PerkNode p15 = new PerkNode(p9, "3", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p16 = new PerkNode(p4, "3", "SPELL_DAMAGE", "Spell Power");
+        PerkNode p17 = new PerkNode(p7, "3", "ORGASMIC_LEVEL_DRAIN", "Orgasmic Level Drain");
+        PerkNode p18 = new PerkNode(p4, "3", "AURA_BOOST", "Aura Reserves");
+        PerkNode p19 = new PerkNode(p11, "3", "VIRILITY_MAJOR_BOOST", "Virile");
+        PerkNode p20 = new PerkNode(p7, "3", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p21 = new PerkNode(p4, "3", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p22 = new PerkNode(p9, "3", "PHYSICAL_DEFENCE", "Defender");
+        PerkNode p23 = new PerkNode(p7, "3", "SEDUCTION_BOOST", "Seductive");
+        PerkNode p24 = new PerkNode(p9, "3", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p25 = new PerkNode(p8, "3", "FERTILITY_MAJOR_BOOST", "Fertile");
+        PerkNode p26 = new PerkNode(p13, "3", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
+        PerkNode p27 = new PerkNode(p14, "3", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
 
-       PerkNode p28 = new PerkNode(p15, "4", "PHYSICAL_DAMAGE", "Striker");
-       PerkNode p29 = new PerkNode(p22, "4", "PHYSICAL_DEFENCE", "Defender");
-       PerkNode p30 = new PerkNode(p16, "4", "SPELL_DAMAGE", "Spell Power");
-       PerkNode p31 = new PerkNode(p23, "4", "SEDUCTION_BOOST", "Seductive");
-       PerkNode p32 = new PerkNode(p26, "4", "WEAPON_ENCHANTER", "Arcane Smith");
-       PerkNode p33 = new PerkNode(p25, "4", "FETISH_BROODMOTHER", "Broodmother");
-       PerkNode p34 = new PerkNode(p18, "4", "AURA_BOOST", "Aura Reserves");
-       PerkNode p35 = new PerkNode(p24, "4", "ENERGY_BOOST", "Energy Reserves");
-       PerkNode p36 = new PerkNode(p27, "4", "CLOTHING_ENCHANTER", "Arcane Weaver");
-       PerkNode p37 = new PerkNode(p19, "4", "FETISH_SEEDER", "Seeder");
-       PerkNode p38 = new PerkNode(p20, "4", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-       PerkNode p39 = new PerkNode(p21, "4", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p28 = new PerkNode(p15, "4", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p29 = new PerkNode(p22, "4", "PHYSICAL_DEFENCE", "Defender");
+        PerkNode p30 = new PerkNode(p16, "4", "SPELL_DAMAGE", "Spell Power");
+        PerkNode p31 = new PerkNode(p23, "4", "SEDUCTION_BOOST", "Seductive");
+        PerkNode p32 = new PerkNode(p26, "4", "WEAPON_ENCHANTER", "Arcane Smith");
+        PerkNode p33 = new PerkNode(p25, "4", "FETISH_BROODMOTHER", "Broodmother");
+        PerkNode p34 = new PerkNode(p18, "4", "AURA_BOOST", "Aura Reserves");
+        PerkNode p35 = new PerkNode(p24, "4", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p36 = new PerkNode(p27, "4", "CLOTHING_ENCHANTER", "Arcane Weaver");
+        PerkNode p37 = new PerkNode(p19, "4", "FETISH_SEEDER", "Seeder");
+        PerkNode p38 = new PerkNode(p20, "4", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p39 = new PerkNode(p21, "4", "SPELL_EFFICIENCY", "Spell Efficiency");
 
-       PerkNode p40 = new PerkNode(p34, p39, "5", "ARCANE_COMBATANT", "Arcane Combatant");
-       PerkNode p41 = new PerkNode(p33, "5", "FERTILITY_BOOST", "Fertile");
-       PerkNode p42 = new PerkNode(p28, "5", "UNARMED_DAMAGE", "Hand-to-Hand");
-       PerkNode p51 = new PerkNode(p30, "5", "ELEMENTAL_BOOST", "Elemental Striker");
-       PerkNode p46 = new PerkNode(p42, "5", "CRITICAL_BOOST", "Critical Power"); //Physical
-       PerkNode p47 = new PerkNode(p31, p38, "5", "CRITICAL_BOOST_ALT", "Critical Power"); //Seductive
-       PerkNode p48 = new PerkNode(p51, "5", "CRITICAL_BOOST_ALT_2", "Critical Power"); //Arcane
-       PerkNode p44 = new PerkNode(p48, "5", "CHUUNI", "Chuuni");
-       PerkNode p45 = new PerkNode(p46, "5", "UNARMED_TRAINING", "Martial Artist");
-       PerkNode p49 = new PerkNode(p29, p35, "5", "RUNNER_2", "Cardio King");
-       PerkNode p50 = new PerkNode(p37, "5", "VIRILITY_BOOST", "Virile");
-       PerkNode p43 = new PerkNode(p50, "5", "VIRILITY_MAJOR_BOOST", "Virile");
-       PerkNode p52 = new PerkNode(p41, "5", "FERTILITY_MAJOR_BOOST", "Fertile");
+        PerkNode p40 = new PerkNode(p34, p39, "5", "ARCANE_COMBATANT", "Arcane Combatant");
+        PerkNode p41 = new PerkNode(p33, "5", "FERTILITY_BOOST", "Fertile");
+        PerkNode p42 = new PerkNode(p28, "5", "UNARMED_DAMAGE", "Hand-to-Hand");
+        PerkNode p51 = new PerkNode(p30, "5", "ELEMENTAL_BOOST", "Elemental Striker");
+        PerkNode p46 = new PerkNode(p42, "5", "CRITICAL_BOOST", "Critical Power"); //Physical
+        PerkNode p47 = new PerkNode(p31, p38, "5", "CRITICAL_BOOST_ALT", "Critical Power"); //Seductive
+        PerkNode p48 = new PerkNode(p51, "5", "CRITICAL_BOOST_ALT_2", "Critical Power"); //Arcane
+        PerkNode p44 = new PerkNode(p48, "5", "CHUUNI", "Chuuni");
+        PerkNode p45 = new PerkNode(p46, "5", "UNARMED_TRAINING", "Martial Artist");
+        PerkNode p49 = new PerkNode(p29, p35, "5", "RUNNER_2", "Cardio King");
+        PerkNode p50 = new PerkNode(p37, "5", "VIRILITY_BOOST", "Virile");
+        PerkNode p43 = new PerkNode(p50, "5", "VIRILITY_MAJOR_BOOST", "Virile");
+        PerkNode p52 = new PerkNode(p41, "5", "FERTILITY_MAJOR_BOOST", "Fertile");
 
-       PerkNode p53 = new PerkNode(p49, p42, "6", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
-       PerkNode p57 = new PerkNode(p47, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
-       PerkNode p54 = new PerkNode(p57, "6", "MALE_ATTRACTION", "Minx");
-       PerkNode p55 = new PerkNode(p57, "6", "FEMALE_ATTRACTION", "Ladykiller");
-       PerkNode p56 = new PerkNode(p51, p40, "6", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
+        PerkNode p53 = new PerkNode(p49, p42, "6", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
+        PerkNode p57 = new PerkNode(p47, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
+        PerkNode p54 = new PerkNode(p57, "6", "MALE_ATTRACTION", "Minx");
+        PerkNode p55 = new PerkNode(p57, "6", "FEMALE_ATTRACTION", "Ladykiller");
+        PerkNode p56 = new PerkNode(p51, p40, "6", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
 
-       PerkNode p59 = new PerkNode(p53, "7", "PHYSICAL_DAMAGE", "Striker");
-       PerkNode p61 = new PerkNode(p57, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
-       PerkNode p62 = new PerkNode(p57, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
-       PerkNode p63 = new PerkNode(p59, "7", "UNARMED_DAMAGE", "Hand-to-Hand");
-       PerkNode p64 = new PerkNode(p56, "7", "AURA_BOOST", "Aura Reserves");
-       PerkNode p65 = new PerkNode(p53, "7", "ENERGY_BOOST", "Energy Reserves");
-       PerkNode p58 = new PerkNode(p65, "7", "ENERGY_BOOST_DRAIN_DAMAGE", "Aura Shielding");
-       PerkNode p66 = new PerkNode(p57, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-       PerkNode p67 = new PerkNode(p56, "7", "SPELL_EFFICIENCY", "Spell Efficiency");
-       PerkNode p60 = new PerkNode(p67, "7", "SPELL_DAMAGE", "Spell Power");
+        PerkNode p59 = new PerkNode(p53, "7", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p61 = new PerkNode(p57, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
+        PerkNode p62 = new PerkNode(p57, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
+        PerkNode p63 = new PerkNode(p59, "7", "UNARMED_DAMAGE", "Hand-to-Hand");
+        PerkNode p64 = new PerkNode(p56, "7", "AURA_BOOST", "Aura Reserves");
+        PerkNode p65 = new PerkNode(p53, "7", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p58 = new PerkNode(p65, "7", "ENERGY_BOOST_DRAIN_DAMAGE", "Aura Shielding");
+        PerkNode p66 = new PerkNode(p57, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p67 = new PerkNode(p56, "7", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p60 = new PerkNode(p67, "7", "SPELL_DAMAGE", "Spell Power");
 
-       PerkNode p69 = new PerkNode(p59, "8", "PHYSICAL_DAMAGE", "Striker");
-       PerkNode p70 = new PerkNode(p65, "8", "PHYSICAL_DEFENCE", "Defender");
-       PerkNode p71 = new PerkNode(p60, "8", "SPELL_DAMAGE", "Spell Power");
-       PerkNode p72 = new PerkNode(p62, "8", "SEDUCTION_BOOST", "Seductive");
-       PerkNode p74 = new PerkNode(p64, "8", "AURA_BOOST", "Aura Reserves");
-       PerkNode p75 = new PerkNode(p65, "8", "ENERGY_BOOST", "Energy Reserves");
-       PerkNode p76 = new PerkNode(p69, "8", "MELEE_DAMAGE", "Melee Weapons Expert");
-       PerkNode p77 = new PerkNode(p61, "8", "SEDUCTION_BOOST_MAJOR", "Seductive");
-       PerkNode p73 = new PerkNode(p77, "8", "CONVINCING_REQUESTS", "Irresistible Appeals");
-       PerkNode p68 = new PerkNode(p77, "8", "OBJECT_OF_DESIRE", "Object of Desire");
-       PerkNode p78 = new PerkNode(p66, "8", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-       PerkNode p79 = new PerkNode(p67, "8", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p69 = new PerkNode(p59, "8", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p70 = new PerkNode(p65, "8", "PHYSICAL_DEFENCE", "Defender");
+        PerkNode p71 = new PerkNode(p60, "8", "SPELL_DAMAGE", "Spell Power");
+        PerkNode p72 = new PerkNode(p62, "8", "SEDUCTION_BOOST", "Seductive");
+        PerkNode p74 = new PerkNode(p64, "8", "AURA_BOOST", "Aura Reserves");
+        PerkNode p75 = new PerkNode(p65, "8", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p76 = new PerkNode(p69, "8", "MELEE_DAMAGE", "Melee Weapons Expert");
+        PerkNode p77 = new PerkNode(p61, "8", "SEDUCTION_BOOST_MAJOR", "Seductive");
+        PerkNode p73 = new PerkNode(p77, "8", "CONVINCING_REQUESTS", "Irresistible Appeals");
+        PerkNode p68 = new PerkNode(p77, "8", "OBJECT_OF_DESIRE", "Object of Desire");
+        PerkNode p78 = new PerkNode(p66, "8", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p79 = new PerkNode(p67, "8", "SPELL_EFFICIENCY", "Spell Efficiency");
 
-       PerkNode p80 = new PerkNode(p69, "9", "PHYSICAL_DAMAGE", "Striker");
-       PerkNode p81 = new PerkNode(p70, "9", "PHYSICAL_DEFENCE", "Defender");
-       PerkNode p82 = new PerkNode(p77, "9", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
-       PerkNode p83 = new PerkNode(p72, "9", "SEDUCTION_BOOST", "Seductive"); //Left Branch
-       PerkNode p85 = new PerkNode(p75, "9", "ENERGY_BOOST", "Energy Reserves");
-       PerkNode p86 = new PerkNode(p80, "9", "RANGED_DAMAGE", "Sharp-shooter");
-       PerkNode p87 = new PerkNode(p71, "9", "SPELL_DAMAGE_MAJOR", "Spell Mastery");
-       PerkNode p88 = new PerkNode(p78, "9", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-       PerkNode p89 = new PerkNode(p79, "9", "SPELL_EFFICIENCY", "Spell Efficiency");
-       PerkNode p84 = new PerkNode(p89, "9", "AURA_BOOST", "Aura Reserves");
+        PerkNode p80 = new PerkNode(p69, "9", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p81 = new PerkNode(p70, "9", "PHYSICAL_DEFENCE", "Defender");
+        PerkNode p82 = new PerkNode(p77, "9", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
+        PerkNode p83 = new PerkNode(p72, "9", "SEDUCTION_BOOST", "Seductive"); //Left Branch
+        PerkNode p85 = new PerkNode(p75, "9", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p86 = new PerkNode(p80, "9", "RANGED_DAMAGE", "Sharp-shooter");
+        PerkNode p87 = new PerkNode(p71, "9", "SPELL_DAMAGE_MAJOR", "Spell Mastery");
+        PerkNode p88 = new PerkNode(p78, "9", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p89 = new PerkNode(p79, "9", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p84 = new PerkNode(p89, "9", "AURA_BOOST", "Aura Reserves");
 
-       PerkNode p90 = new PerkNode(p82, "10", "NYMPHOMANIAC", "Nymphomaniac");
-       PerkNode p91 = new PerkNode(p84, "10", "SACRIFICIAL_SHIELDING", "Sacrificial Shielding");
-       PerkNode p92 = new PerkNode(p81, p85, "10", "COMBAT_REGENERATION", "Combat Regeneration");
-       PerkNode p93 = new PerkNode(p80, "10", "FEROCIOUS_WARRIOR", "Ferocious Warrior");
-       PerkNode p94 = new PerkNode(p88, "10", "PURE_MIND", "Pure Thoughts");
-       PerkNode p95 = new PerkNode(p83, "10", "LUSTPYRE", "Lustpyre");
-       PerkNode p96 = new PerkNode(p93, "10", "BESERK", "Berserk");
-       PerkNode p97 = new PerkNode(p89, "10", "SPELL_EFFICIENCY", "Spell Efficiency");
-       PerkNode p98 = new PerkNode(p87, "10", "ARCANE_VAMPYRISM", "Arcane Vampyrism");
+        PerkNode p90 = new PerkNode(p82, "10", "NYMPHOMANIAC", "Nymphomaniac");
+        PerkNode p91 = new PerkNode(p84, "10", "SACRIFICIAL_SHIELDING", "Sacrificial Shielding");
+        PerkNode p92 = new PerkNode(p81, p85, "10", "COMBAT_REGENERATION", "Combat Regeneration");
+        PerkNode p93 = new PerkNode(p80, "10", "FEROCIOUS_WARRIOR", "Ferocious Warrior");
+        PerkNode p94 = new PerkNode(p88, "10", "PURE_MIND", "Pure Thoughts");
+        PerkNode p95 = new PerkNode(p83, "10", "LUSTPYRE", "Lustpyre");
+        PerkNode p96 = new PerkNode(p93, "10", "BESERK", "Berserk");
+        PerkNode p97 = new PerkNode(p89, "10", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p98 = new PerkNode(p87, "10", "ARCANE_VAMPYRISM", "Arcane Vampyrism");
 
-       PerkNode p99 = new PerkNode(p93, p92, "11", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
-       PerkNode p101 = new PerkNode(p97, "11", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
-       PerkNode p100 = new PerkNode(p101, "11", "ELEMENTAL_DEFENCE_BOOST", "Elemental Defender");
-       PerkNode p102 = new PerkNode(p99, "11", "MELEE_DAMAGE", "Melee Weapons Expert");
-       PerkNode p103 = new PerkNode(p95, p94, "11", "SEDUCTION_BOOST_MAJOR", "Seductive");
-       PerkNode p104 = new PerkNode(p99, "11", "RANGED_DAMAGE", "Sharp-shooter");
-       PerkNode p105 = new PerkNode(p101, "11", "ELEMENTAL_BOOST", "Elemental Striker");
+        PerkNode p99 = new PerkNode(p93, p92, "11", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
+        PerkNode p101 = new PerkNode(p97, "11", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
+        PerkNode p100 = new PerkNode(p101, "11", "ELEMENTAL_DEFENCE_BOOST", "Elemental Defender");
+        PerkNode p102 = new PerkNode(p99, "11", "MELEE_DAMAGE", "Melee Weapons Expert");
+        PerkNode p103 = new PerkNode(p95, p94, "11", "SEDUCTION_BOOST_MAJOR", "Seductive");
+        PerkNode p104 = new PerkNode(p99, "11", "RANGED_DAMAGE", "Sharp-shooter");
+        PerkNode p105 = new PerkNode(p101, "11", "ELEMENTAL_BOOST", "Elemental Striker");
 
-       PerkNode p106 = new PerkNode(p99, "12", "ELEMENTAL_BOOST", "Elemental Striker"); //Physical
-       PerkNode p107 = new PerkNode(p103, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker"); //Seductive
-       PerkNode p108 = new PerkNode(p101, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker"); //Arcane
+        PerkNode p106 = new PerkNode(p99, "12", "ELEMENTAL_BOOST", "Elemental Striker"); //Physical
+        PerkNode p107 = new PerkNode(p103, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker"); //Seductive
+        PerkNode p108 = new PerkNode(p101, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker"); //Arcane
 
         perks.addAll(FXCollections.observableArrayList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15,
                 p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36,
@@ -1112,7 +1222,7 @@ public class Controller {
     /**
      * Class that detects focus loss for TextFields
      */
-    public class TextObjectListener implements ChangeListener<Boolean> {
+    public class TextObjectListener implements ChangeListener<Boolean>{
 
         /**
          * TextInputControl descendant to monitor
@@ -1124,24 +1234,36 @@ public class Controller {
          */
         private final TextFieldType tfType;
 
+        /**
+         * Boolean of whether int and doubles types are only positive values
+         */
         private boolean positiveOnly;
 
+        /**
+         * Boolean representing whether the TextInputControl object is for fetish exp values
+         */
         private final boolean fetishExp;
 
         /**
          * Constructor for a new TextFieldListener
-         * @param textControl
-         *   TextInputControl descendant to monitor
-         * @param textFieldType
-         *   Data type of the TextField
+         *
+         * @param textControl   TextInputControl descendant to monitor
+         * @param textFieldType Data type of the TextField
          */
-        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType) {
+        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType){
             textInputControl = textControl;
             tfType = textFieldType;
             positiveOnly = false;
             fetishExp = textInputControl.getId().startsWith("FETISH_");
         }
 
+        /**
+         * Constructor for a new TextFieldListener
+         *
+         * @param textControl   TextInputControl descendant to monitor
+         * @param textFieldType Data type of the TextField
+         * @param positivesOnly Whether values are positive only
+         */
         public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly){
             this(textControl, textFieldType);
             positiveOnly = positivesOnly;
@@ -1149,16 +1271,14 @@ public class Controller {
 
         /**
          * Detects when the TextField has lost focus
-         * @param observable
-         *   (Taken from StackOverflow, so I'm not too sure what each parameter is for lol)
-         * @param oldValue
-         *   (Same)
-         * @param newValue
-         *   (Same)
+         *
+         * @param observable (Taken from StackOverflow, so I'm not too sure what each parameter is for lol)
+         * @param oldValue   (Same)
+         * @param newValue   (Same)
          */
         @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            if(!newValue) {  // check if focus gained or lost
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if(!newValue){  // check if focus gained or lost
                 textInputControl.setText(getFormattedText(textInputControl.getText()));
             }
         }
@@ -1166,12 +1286,11 @@ public class Controller {
         /**
          * Verifies that the text is being changed appropriately based on the data type expected in the TextField and
          * modifies the xml data if a valid String was entered
-         * @param newValue
-         *   String entered into the TextField
-         * @return
-         *   Either the new String (with minor modifications if needed) or a String of the old value
+         *
+         * @param newValue String entered into the TextField
+         * @return Either the new String (with minor modifications if needed) or a String of the old value
          */
-        private String getFormattedText(String newValue) {
+        private String getFormattedText(String newValue){
             Node value = getValueNode();
             if(value == null && fetishExp){
                 NodeList attributeNodes = getAttributeNodes();
@@ -1185,9 +1304,9 @@ public class Controller {
             }
             assert value != null;
             String oldValue = value.getTextContent();
-            switch(tfType) {
+            switch(tfType){
                 case INT:
-                    try {
+                    try{
                         int nv = Integer.parseInt(newValue);
                         newValue = "" + nv; //Removes leading zeroes
                         if(positiveOnly && nv < 0){
@@ -1203,11 +1322,11 @@ public class Controller {
                         }
                         return newValue;
                     }
-                    catch (NumberFormatException e) {
+                    catch(NumberFormatException e){
                         return oldValue;
                     }
                 case DOUBLE:
-                    try {
+                    try{
                         double nv = Double.parseDouble(newValue);
                         newValue = "" + nv; //Removes leading zeroes
                         if(positiveOnly && nv < 0){
@@ -1222,14 +1341,14 @@ public class Controller {
                         value.setTextContent(newValue);
                         return newValue;
                     }
-                    catch (NumberFormatException e) {
+                    catch(NumberFormatException e){
                         return oldValue;
                     }
                 case STRING:
                     value.setTextContent(newValue);
                     return newValue;
                 case HAIR:
-                    try {
+                    try{
                         int nv = Integer.parseInt(newValue);
                         newValue = "" + nv; //Removes leading zeroes
                         if(nv < 0){
@@ -1281,7 +1400,7 @@ public class Controller {
                         }
                         return newValue;
                     }
-                    catch (NumberFormatException e) {
+                    catch(NumberFormatException e){
                         return oldValue;
                     }
                 default:
@@ -1291,8 +1410,8 @@ public class Controller {
 
         /**
          * Gets the Node of the attribute value of the TextField
-         * @return
-         *   Node containing the attribute value
+         *
+         * @return Node containing the attribute value
          */
         private Node getValueNode(){
             String[] id = textInputControl.getId().split("\\$");
@@ -1313,17 +1432,17 @@ public class Controller {
 
     /**
      * Sets stage to supplied Stage object in order for events to work properly
-     * @param s
-     *   Stage object to be used
+     *
+     * @param s Stage object to be used
      */
-    public void setStage(Stage s) {
+    public void setStage(Stage s){
         stage = s;
     }
 
     /**
      * Sets namespace to the namespace of the fxml file
-     * @param namespace
-     *   Namespace of the fxml file
+     *
+     * @param namespace Namespace of the fxml file
      */
     public void setNamespace(ObservableMap<String, Object> namespace){
         this.namespace = namespace;
@@ -1336,7 +1455,7 @@ public class Controller {
      * Initializes all the ComboBoxes by setting the items (i.e. ObservableList<\String> objects) of each ComboBox
      */
     public void initializeComboBoxes(){
-        for(int i = 0; i < ComboBoxIds.length; i++) {
+        for(int i = 0; i < ComboBoxIds.length; i++){
             @SuppressWarnings("unchecked")
             ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(ComboBoxIds[i]);
             cb.setItems(comboBoxValues.get(i));
@@ -1347,14 +1466,14 @@ public class Controller {
                 cb.setValue(cb.getItems().get(0));
             }
 
-            cb.setConverter(new StringConverter<>() {
+            cb.setConverter(new StringConverter<>(){
                 @Override
-                public String toString(Attribute attribute) {
+                public String toString(Attribute attribute){
                     return attribute.getName();
                 } //TODO: Fix this method throwing exceptions whenever hairStyles ComboBox values are updated
 
                 @Override
-                public Attribute fromString(String s) {
+                public Attribute fromString(String s){
                     return null;
                 }
             });
@@ -1366,13 +1485,12 @@ public class Controller {
 
     /**
      * Opens a file selector so that the user can select their save .xml file they want to edit
-     * @param event
-     *   Action event performed
-     * @throws IOException
-     *   If config.ini cannot be properly written to
+     *
+     * @param event Action event performed
+     * @throws IOException If config.ini cannot be properly written to
      */
     @FXML
-    private void loadFile(ActionEvent event) throws IOException {
+    private void loadFile(ActionEvent event) throws IOException{
         event.consume();
         //Get file
         FileChooser fc = new FileChooser();
@@ -1381,16 +1499,16 @@ public class Controller {
         String currentPath = prop.getProperty("defaultFilePath");
         fc.setInitialDirectory(new File(currentPath));
         File f = fc.showOpenDialog(stage);
-        if(f != null) {
+        if(f != null){
             //Update config.ini if a different folder was used
-            if(!f.getParent().equals(currentPath)) {
+            if(!f.getParent().equals(currentPath)){
                 prop.setProperty("defaultFilePath", f.getParent());
                 prop.store(new FileOutputStream("config.ini"), null);
             }
             workingFile = f;
             //Load XML
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            try (InputStream is = new FileInputStream(f)){
+            try(InputStream is = new FileInputStream(f)){
                 DocumentBuilder db = dbf.newDocumentBuilder();
                 saveFile = db.parse(is);
                 System.out.println(f);
@@ -1420,14 +1538,14 @@ public class Controller {
         characterSelector.setItems(characterList);
         characterSelector.setValue(player);
         charId = "PlayerCharacter";
-        characterSelector.setConverter(new StringConverter<>() {
+        characterSelector.setConverter(new StringConverter<>(){
             @Override
-            public String toString(NpcCharacter npcCharacter) {
+            public String toString(NpcCharacter npcCharacter){
                 return npcCharacter.getName();
             }
 
             @Override
-            public NpcCharacter fromString(String s) {
+            public NpcCharacter fromString(String s){
                 return null;
             }
         });
@@ -1436,8 +1554,8 @@ public class Controller {
 
     /**
      * Changes the current character to be edited to the character selected by the character selector
-     * @param event
-     *   ActionEvent from the character selector ComboBox
+     *
+     * @param event ActionEvent from the character selector ComboBox
      */
     @FXML
     private void selectCharacter(ActionEvent event){
@@ -1452,10 +1570,9 @@ public class Controller {
 
     /**
      * Helper method to get fx:id of the object that was interacted with
-     * @param event
-     *   ActionEvent from the object that was interacted with
-     * @return
-     *   String of the id of the object that was interacted with
+     *
+     * @param event ActionEvent from the object that was interacted with
+     * @return String of the id of the object that was interacted with
      */
     private String getId(ActionEvent event){
         return ((javafx.scene.Node) event.getSource()).getId();
@@ -1463,8 +1580,8 @@ public class Controller {
 
     /**
      * Gets the list of immediate child Nodes of the selected character's characterNode
-     * @return
-     *   NodeList of immediate child Nodes (eg. core, body, attributes, etc.)
+     *
+     * @return NodeList of immediate child Nodes (eg. core, body, attributes, etc.)
      */
     private NodeList getAttributeNodes(){
         Node idNode = getElementByIdValue(charId);
@@ -1474,18 +1591,17 @@ public class Controller {
     }
 
     /**
-     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute)
-     * @param event
-     *   ActionEvent of the element that was interacted with
-     * @return
-     *   Node containing the attribute value
+     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute or parent$child$modifier$attribute)
+     *
+     * @param event ActionEvent of the element that was interacted with
+     * @return Node containing the attribute value
      */
     private Node getValueNode(ActionEvent event){
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
-        if(id[0].startsWith("FETISH_")){
-            if(id[1].equals("owned")) {
+        if(id[0].startsWith("FETISH_")){ //Fetish ids cannot be reverse traced, so they must be handled differently
+            if(id[1].equals("owned")){
                 NodeList fetishes = attr.getElementsByTagName("fetishes").item(0).getChildNodes();
                 return getChildNodeByAttributeValue(fetishes, "type", id[0]);
             }
@@ -1498,9 +1614,15 @@ public class Controller {
         for(int i = 0; i < id.length - 1; i++){
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
         }
-        return attr.getAttributes().getNamedItem(id[id.length-1]);
+        return attr.getAttributes().getNamedItem(id[id.length - 1]);
     }
 
+    /**
+     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute)
+     *
+     * @param objId Id of the element that was interacted with
+     * @return Node containing the attribute value
+     */
     private Node getValueNode(String objId){
         String[] id = objId.split("\\$");
         NodeList attributeNodes = getAttributeNodes();
@@ -1508,19 +1630,31 @@ public class Controller {
         for(int i = 0; i < id.length - 1; i++){
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
         }
-        return attr.getAttributes().getNamedItem(id[id.length-1]);
+        return attr.getAttributes().getNamedItem(id[id.length - 1]);
     }
 
+    /**
+     * Gets the Node of the attribute of the given Node
+     *
+     * @param node Node to get the attribute of
+     * @return Node containing the attribute value
+     */
     private Node getValueNode(Node node){
         return node.getAttributes().getNamedItem("value");
     }
 
+    /**
+     * Gets the parent Node of the Node with the attribute specified by the id
+     *
+     * @param event ActionEvent of the element that was interacted with
+     * @return Node that is the parent of the Node with the specified attribute
+     */
     private Node getValueNodeParent(ActionEvent event){
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
-        if(id[0].startsWith("FETISH_")){
-            if(id[1].equals("owned")) {
+        if(id[0].startsWith("FETISH_")){ //Fetish ids cannot be reverse traced, so they must be handled differently
+            if(id[1].equals("owned")){
                 return attr.getElementsByTagName("fetishes").item(0);
             }
             else if(id[1].equals("desire")){
@@ -1533,6 +1667,12 @@ public class Controller {
         return attr;
     }
 
+    /**
+     * Gets the parent Node of the Node with the attribute specified by the id
+     *
+     * @param objId Id of the element that was interacted with
+     * @return Node that is the parent of the Node with the specified attribute
+     */
     private Node getValueNodeParent(String objId){
         String[] id = objId.split("\\$");
         NodeList attributeNodes = getAttributeNodes();
@@ -1543,6 +1683,13 @@ public class Controller {
         return attr;
     }
 
+    /**
+     * Gets a specified child Node from the supplied parent Node
+     *
+     * @param node Parent Node to search children
+     * @param targetNode Name of the desired Node
+     * @return Desired Node if found else null
+     */
     private Node getChildNode(Node node, String targetNode){
         NodeList children = node.getChildNodes();
         for(int i = 0; i < children.getLength(); i++){
@@ -1554,10 +1701,18 @@ public class Controller {
         return null;
     }
 
+    /**
+     * Gets a Node from a NodeList based on specified attribute and value of attribute
+     *
+     * @param children NodeList to check
+     * @param attribute Attribute to check for
+     * @param value Value of attribute to check for
+     * @return Desired Node if found else null
+     */
     private Node getChildNodeByAttributeValue(NodeList children, String attribute, String value){
         for(int i = 1; i < children.getLength(); i++){
-            if(children.item(i).getNodeType() != Node.TEXT_NODE) {
-                if (children.item(i).getAttributes().getNamedItem(attribute).getTextContent().equals(value)) {
+            if(children.item(i).getNodeType() != Node.TEXT_NODE){
+                if(children.item(i).getAttributes().getNamedItem(attribute).getTextContent().equals(value)){
                     return children.item(i);
                 }
             }
@@ -1567,8 +1722,8 @@ public class Controller {
 
     /**
      * Updates xml boolean values changed by CheckBoxes
-     * @param event
-     *   ActionEvent from the CheckBox that was changed
+     *
+     * @param event ActionEvent from the CheckBox that was changed
      */
     @FXML
     private void updateXmlBoolean(ActionEvent event){
@@ -1577,6 +1732,7 @@ public class Controller {
         Node value = getValueNode(event);
         if(fxId.startsWith("FETISH_")){
             if(!cb.isSelected()){
+                assert value != null;
                 value.getParentNode().removeChild(value);
                 System.out.println("Removed fetish");
             }
@@ -1588,21 +1744,28 @@ public class Controller {
                 System.out.println("Added fetish");
             }
         }
-        else {
-            try {
+        else{
+            try{
+                assert value != null;
                 value.setTextContent("" + cb.isSelected());
-            } catch (NullPointerException e) { //Modifier attributes are deleted when false by the game
+            }
+            catch(NullPointerException e){ //Modifier attributes are deleted when false by the game
                 value = getValueNodeParent(event);
                 ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
             }
             String[] idParts = fxId.split("\\$");
-            if (idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")) {
+            if(idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")){
                 checkboxFlaredTaperedToggle(fxId);
             }
         }
         event.consume();
     }
 
+    /**
+     * Sets the CheckBox of the other value to false if one CheckBox is set to true (i.e. either flared or tapered can be true, but not both)
+     *
+     * @param id Id of the CheckBox set to true
+     */
     private void checkboxFlaredTaperedToggle(String id){
         boolean flared = id.split("\\$")[3].equals("FLARED");
         String targetId;
@@ -1616,7 +1779,7 @@ public class Controller {
         target = (CheckBox) namespace.get(targetId);
         target.setSelected(false);
         Node value = getValueNode(targetId);
-        try {
+        try{
             value.setTextContent("" + target.isSelected());
         }
         catch(NullPointerException e){
@@ -1628,8 +1791,8 @@ public class Controller {
 
     /**
      * Updates xml values changed by ComboBoxes
-     * @param event
-     *   ActionEvent from the ComboBox that was changed
+     *
+     * @param event ActionEvent from the ComboBox that was changed
      */
     @FXML
     private void updateXmlComboBox(ActionEvent event){
@@ -1646,15 +1809,21 @@ public class Controller {
                 value.appendChild(fetishEntry);
             }
         }
-        else {
+        else{
             value.setTextContent(cb.getValue().getValue());
-            if (fxId.equals("body$leg$type")) {
+            if(fxId.equals("body$leg$type")){
                 updateLegTypeDependants(cb, false);
             }
         }
         event.consume();
     }
 
+    /**
+     * Updates the ComboBoxes of leg configurations, foot structures, and genital arrangements based on the value of the leg types ComboBox
+     *
+     * @param cb Leg types ComboBox
+     * @param initializing Whether is method is supposed to just initialize the dependant ComboBoxes or edit the values in the save file as well
+     */
     private void updateLegTypeDependants(ComboBox<Attribute> cb, boolean initializing){
         LegTypeAttr legType = (LegTypeAttr) cb.getValue();
         @SuppressWarnings("unchecked")
@@ -1683,13 +1852,13 @@ public class Controller {
      * Reads data from xml save file and sSets all fields with the selected character data
      */
     private void setFields(){
-        if(fileLoaded) {
+        if(fileLoaded){
             NodeList attributeNodes = getAttributeNodes();
-            for(int i = 3; i < attributeNodes.getLength() - 1; i+=2){ //Every other node in the NodeList is a TextNode (so can be skipped)
-                if(attributeNodes.item(i).getNodeType() != Node.TEXT_NODE) { //Probably a redundant check since the TextNodes should already be skipped
+            for(int i = 3; i < attributeNodes.getLength() - 1; i += 2){ //Every other node in the NodeList is a TextNode (so can be skipped)
+                if(attributeNodes.item(i).getNodeType() != Node.TEXT_NODE){ //Probably a redundant check since the TextNodes should already be skipped
                     NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                     String attributeName = attributeNodes.item(i).getNodeName();
-                    switch (attributeName) {
+                    switch(attributeName){
                         case "characterRelationships" -> {  //These parts have an unknown number of elements which have identical tags
                             setFieldsRelationships(attributeNodes.item(i));
                             continue;
@@ -1707,7 +1876,7 @@ public class Controller {
                             continue;
                         }
                     }
-                    for(int j = 1; j < attributeElements.getLength() - 1; j+=2){ //Every other node in the NodeList is a TextNode (so can be skipped)
+                    for(int j = 1; j < attributeElements.getLength() - 1; j += 2){ //Every other node in the NodeList is a TextNode (so can be skipped)
                         Node currNode = attributeElements.item(j);
                         String elementName = currNode.getNodeName();
                         NamedNodeMap attributes = currNode.getAttributes();
@@ -1715,7 +1884,7 @@ public class Controller {
                         if(childNodes.getLength() != 0){
                             for(int k = 0; k < childNodes.getLength(); k++){
                                 Node modifiers = childNodes.item(k);
-                                if(modifiers.getNodeType() == Node.TEXT_NODE) {
+                                if(modifiers.getNodeType() == Node.TEXT_NODE){
                                     continue;
                                 }
                                 String modifierName = modifiers.getNodeName();
@@ -1726,7 +1895,7 @@ public class Controller {
                                         String value = mod.getTextContent();
                                         String modId = attributeName + "$" + elementName + "$" + modifierName + "$" + mod.getNodeName();
                                         CheckBox cb = (CheckBox) namespace.get(modId);
-                                        if (cb != null) {
+                                        if(cb != null){
                                             cb.setSelected(Boolean.parseBoolean(value));
                                         }
                                     }
@@ -1744,9 +1913,9 @@ public class Controller {
                                 continue;
                             }
                             //TODO: Instead of using nested try-catch, parse the value's data type and assign the value to the correct container
-                            try { //Using TextFields for numerical and string values
+                            try{ //Using TextFields for numerical and string values
                                 TextField tf = (TextField) namespace.get(nodeId);
-                                if (tf != null) {
+                                if(tf != null){
                                     tf.setText(value);
                                     if(nodeId.equals("body$hair$length")){
                                         int v = Integer.parseInt(value);
@@ -1774,16 +1943,16 @@ public class Controller {
                                 }
                             }
                             catch(ClassCastException e){ //Using CheckBox for boolean values
-                                try {
+                                try{
                                     CheckBox cb = (CheckBox) namespace.get(nodeId);
-                                    if (cb != null) {
+                                    if(cb != null){
                                         cb.setSelected(Boolean.parseBoolean(value));
                                     }
                                 }
                                 catch(ClassCastException e2){ //Using ComboBoxes for fixed values
                                     @SuppressWarnings("unchecked")
                                     ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
-                                    if (cb != null){
+                                    if(cb != null){
                                         ObservableList<Attribute> itemList = cb.getItems();
                                         cb.setValue(matchComboBoxItem(itemList, value));
                                     }
@@ -1791,9 +1960,9 @@ public class Controller {
                             }
                         }
                     }
-                if(attributeName.equals("pregnancy")){ //Ends the loop early as all the needed data has been parsed //TODO: Adjust as needed
-                    break;
-                }
+                    if(attributeName.equals("pregnancy")){ //Ends the loop early as all the needed data has been parsed //TODO: Adjust as needed
+                        break;
+                    }
                 }
             }
             if(!listenersAdded){
@@ -1802,11 +1971,16 @@ public class Controller {
         }
     }
 
+    /**
+     * Creates input fields for each character the selected npc/player has a relationship with
+     *
+     * @param relationshipsNode Relationship Node in the save file
+     */
     private void setFieldsRelationships(Node relationshipsNode){
         NodeList relationships = relationshipsNode.getChildNodes();
         VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
-        for(int i = 1; i < relationships.getLength() - 1; i+=2){
+        for(int i = 1; i < relationships.getLength() - 1; i += 2){
             NamedNodeMap attrs = relationships.item(i).getAttributes();
             String charId = attrs.getNamedItem("character").getTextContent();
             TextField nameField = new TextField(getNpcName(charId));
@@ -1823,9 +1997,14 @@ public class Controller {
         }
     }
 
+    /**
+     * Sets the value of fetish ownership CheckBoxes
+     *
+     * @param fetishesNode fetishes Node in the save file
+     */
     private void setFieldsFetishes(Node fetishesNode){
         NodeList ownedFetishes = fetishesNode.getChildNodes();
-        for(int i = 1; i < ownedFetishes.getLength() - 1; i+=2){
+        for(int i = 1; i < ownedFetishes.getLength() - 1; i += 2){
             String fetishType = ownedFetishes.item(i).getAttributes().getNamedItem("type").getTextContent();
             if(fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
                     fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")){
@@ -1837,9 +2016,14 @@ public class Controller {
         }
     }
 
+    /**
+     * Sets the value of fetish desire ComboBoxes
+     *
+     * @param fetishesNode fetishDesire Node in the save file
+     */
     private void setFieldsFetishDesires(Node fetishesNode){
         NodeList fetishDesires = fetishesNode.getChildNodes();
-        for(int i = 1; i < fetishDesires.getLength() - 1; i+=2){
+        for(int i = 1; i < fetishDesires.getLength() - 1; i += 2){
             NamedNodeMap attr = fetishDesires.item(i).getAttributes();
             String fetishType = attr.getNamedItem("fetish").getTextContent();
             String fetishId = fetishType + "$desire";
@@ -1851,9 +2035,14 @@ public class Controller {
         }
     }
 
+    /**
+     * Sets the value of fetish experience TextFields
+     *
+     * @param fetishesNode fetishExperiences Node in the save file
+     */
     private void setFieldsFetishExperience(Node fetishesNode){
         NodeList fetishExp = fetishesNode.getChildNodes();
-        for(int i = 1; i < fetishExp.getLength() - 1; i+=2){
+        for(int i = 1; i < fetishExp.getLength() - 1; i += 2){
             NamedNodeMap attr = fetishExp.item(i).getAttributes();
             String fetishType = attr.getNamedItem("fetish").getTextContent();
             String fetishId = fetishType + "$exp";
@@ -1863,11 +2052,17 @@ public class Controller {
         }
     }
 
+    /**
+     * Gets the name of the Npc based on the given npcId
+     *
+     * @param npcId Id of the npc
+     * @return Name of the npc if found else null
+     */
     private String getNpcName(String npcId){
         @SuppressWarnings("unchecked")
         ObservableList<NpcCharacter> npcs = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
-        for (NpcCharacter npc : npcs) {
-            if (npc.equals(npcId)) {
+        for(NpcCharacter npc : npcs){
+            if(npc.equals(npcId)){
                 return npc.getName();
             }
         }
@@ -1879,9 +2074,16 @@ public class Controller {
 
     }*/
 
+    /**
+     * Gets the Attribute that matches the value from the given ObservableList
+     *
+     * @param list ObservableList of Attributes to check
+     * @param value Value to match
+     * @return Attribute that matches the value if found else null
+     */
     private Attribute matchComboBoxItem(ObservableList<Attribute> list, String value){
-        for (Attribute attribute : list) {
-            if (attribute.equals(value)) {
+        for(Attribute attribute : list){
+            if(attribute.equals(value)){
                 return attribute;
             }
         }
@@ -1896,7 +2098,7 @@ public class Controller {
         ta.focusedProperty().addListener(new TextObjectListener(ta, TextFieldType.STRING));
         TextField hairStyles = (TextField) namespace.get("body$hair$length");
         hairStyles.focusedProperty().addListener(new TextObjectListener(hairStyles, TextFieldType.HAIR));
-        for(String intTextFieldId : intTextFieldIds) {
+        for(String intTextFieldId : intTextFieldIds){
             TextField tf = (TextField) namespace.get(intTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT, true));
         }
@@ -1904,7 +2106,7 @@ public class Controller {
             TextField tf = (TextField) namespace.get(doubleTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DOUBLE, !doubleTextFieldId.equals("core$obedience$value")));
         }
-        for(String stringTextFieldId: stringTextFieldIds){
+        for(String stringTextFieldId : stringTextFieldIds){
             TextField tf = (TextField) namespace.get(stringTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.STRING));
         }
@@ -1913,14 +2115,13 @@ public class Controller {
 
     /**
      * Finds id tags by their corresponding value attribute
-     * @param id
-     *   Value attribute to search for
-     * @return
-     *   Node representing the id tag with corresponding value attribute
+     *
+     * @param id Value attribute to search for
+     * @return Node representing the id tag with corresponding value attribute
      */
     private Node getElementByIdValue(String id){
         NodeList nodes = saveFile.getElementsByTagName("id");
-        for(int i = 0 ; i < nodes.getLength(); i++){
+        for(int i = 0; i < nodes.getLength(); i++){
             Node currNode = nodes.item(i);
             NamedNodeMap attributes = currNode.getAttributes();
             Node value = attributes.getNamedItem("value");
@@ -1931,12 +2132,17 @@ public class Controller {
         return null;
     }
 
+    /**
+     * Deletes the given Node
+     *
+     * @param node Node to be deleted
+     */
     private void removeNode(Node node){
         node.getParentNode().removeChild(node);
     }
 
     /**
-     *
+     * Deletes selected character from the save file and selects the previous character in the npc list
      */
     @FXML
     private void deleteCharacter(){
@@ -1953,6 +2159,9 @@ public class Controller {
         removeNode(characterNode);
     }
 
+    /**
+     * Deletes all offsprings, that are not on the map, from the save
+     */
     @FXML
     private void deleteOffsprings(){
         NodeList npcList = saveFile.getElementsByTagName("NPC");
@@ -1967,16 +2176,16 @@ public class Controller {
             Node locationInfo = getChildNode(character, "locationInformation");
             assert locationInfo != null;
             Node worldLoc = getChildNode(locationInfo, "worldLocation");
-            if(getValueNode(pathname).getTextContent().equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")) {
+            if(getValueNode(pathname).getTextContent().equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")){
                 assert worldLoc != null;
-                if (getValueNode(worldLoc).getTextContent().equals("EMPTY")) {
+                if(getValueNode(worldLoc).getTextContent().equals("EMPTY")){
                     Node id = getChildNode(core, "id");
                     assert id != null;
                     offspringList.add(getValueNode(id).getTextContent());
                 }
             }
         }
-        for (String s : offspringList) {
+        for(String s : offspringList){
             Node npc = Objects.requireNonNull(getElementByIdValue(s)).getParentNode().getParentNode().getParentNode();
             removeNode(npc);
         }
@@ -1984,26 +2193,26 @@ public class Controller {
 
     /**
      * Overwrites the file that was used to load in the xml data
-     * @param event
-     *   ActionEvent triggering the save call
+     *
+     * @param event ActionEvent triggering the save call
      */
     @FXML
     private void saveFileOverwrite(ActionEvent event){
         event.consume();
-        if(fileLoaded) {
+        if(fileLoaded){
             saveToFile(workingFile);
         }
     }
 
     /**
      * Writes xml data to a new file
-     * @param event
-     *   ActionEvent triggering the save call
+     *
+     * @param event ActionEvent triggering the save call
      */
     @FXML
     private void saveFileExport(ActionEvent event){
         event.consume();
-        if(fileLoaded) {
+        if(fileLoaded){
             FileChooser fc = new FileChooser();
             FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
             fc.getExtensionFilters().add(fileExtensions);
@@ -2011,7 +2220,7 @@ public class Controller {
             fc.setInitialDirectory(new File(currentPath));
             fc.setInitialFileName(workingFile.getName());
             File f = fc.showSaveDialog(stage);
-            if (f != null) {
+            if(f != null){
                 saveToFile(f);
             }
         }
@@ -2019,12 +2228,12 @@ public class Controller {
 
     /**
      * Saves xml data to the given file
-     * @param f
-     *   File to save the xml data to
+     *
+     * @param f File to save the xml data to
      */
     private void saveToFile(File f){
         TransformerFactory tff = TransformerFactory.newInstance();
-        try {
+        try{
             Transformer tf = tff.newTransformer();
             //File formatting
             tf.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -2032,7 +2241,7 @@ public class Controller {
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList nodeList = (NodeList) xPath.evaluate("//text()[normalize-space()='']",
                     saveFile, XPathConstants.NODESET);
-            for (int i = 0; i < nodeList.getLength(); ++i) {
+            for(int i = 0; i < nodeList.getLength(); ++i){
                 Node node = nodeList.item(i);
                 node.getParentNode().removeChild(node);
             }
