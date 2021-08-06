@@ -1309,15 +1309,6 @@ public class Controller {
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return attr.getAttributes().getNamedItem(id[2]);
         }
-
-        private Node getChildNodeByAttributeValue(NodeList children, String attribute, String value){
-            for(int i = 1; i < children.getLength() - 1; i+=2){
-                if(children.item(i).getAttributes().getNamedItem(attribute).getTextContent().equals(value)){
-                    return children.item(i);
-                }
-            }
-            return null;
-        }
     }
 
     /**
@@ -1493,6 +1484,17 @@ public class Controller {
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
+        if(id[0].startsWith("FETISH_")){
+            if(id[1].equals("owned")) {
+                NodeList fetishes = attr.getElementsByTagName("fetishes").item(0).getChildNodes();
+                return getChildNodeByAttributeValue(fetishes, "type", id[0]);
+            }
+            else if(id[1].equals("desire")){
+                NodeList fetishes = attr.getElementsByTagName("fetishDesire").item(0).getChildNodes();
+                Node fetishEntry = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
+                return fetishEntry != null ? fetishEntry.getAttributes().getNamedItem("desire") : null;
+            }
+        }
         for(int i = 0; i < id.length - 1; i++){
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
         }
@@ -1517,6 +1519,14 @@ public class Controller {
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
+        if(id[0].startsWith("FETISH_")){
+            if(id[1].equals("owned")) {
+                return attr.getElementsByTagName("fetishes").item(0);
+            }
+            else if(id[1].equals("desire")){
+                return attr.getElementsByTagName("fetishDesire").item(0);
+            }
+        }
         for(int i = 0; i < id.length - 1; i++){
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
         }
@@ -1544,6 +1554,17 @@ public class Controller {
         return null;
     }
 
+    private Node getChildNodeByAttributeValue(NodeList children, String attribute, String value){
+        for(int i = 1; i < children.getLength(); i++){
+            if(children.item(i).getNodeType() != Node.TEXT_NODE) {
+                if (children.item(i).getAttributes().getNamedItem(attribute).getTextContent().equals(value)) {
+                    return children.item(i);
+                }
+            }
+        }
+        return null;
+    }
+
     /**
      * Updates xml boolean values changed by CheckBoxes
      * @param event
@@ -1554,16 +1575,30 @@ public class Controller {
         String fxId = getId(event);
         CheckBox cb = (CheckBox) namespace.get(fxId);
         Node value = getValueNode(event);
-        try {
-            value.setTextContent("" + cb.isSelected());
+        if(fxId.startsWith("FETISH_")){
+            if(!cb.isSelected()){
+                value.getParentNode().removeChild(value);
+                System.out.println("Removed fetish");
+            }
+            else{
+                Element fetish = saveFile.createElement("fetish");
+                fetish.setAttribute("type", fxId.split("\\$")[0]);
+                Node fetishes = getValueNodeParent(event);
+                fetishes.appendChild(fetish);
+                System.out.println("Added fetish");
+            }
         }
-        catch(NullPointerException e){
-            value = getValueNodeParent(event);
-            ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
-        }
-        String[] idParts = fxId.split("\\$");
-        if(idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")){
-            checkboxFlaredTaperedToggle(fxId);
+        else {
+            try {
+                value.setTextContent("" + cb.isSelected());
+            } catch (NullPointerException e) { //Modifier attributes are deleted when false by the game
+                value = getValueNodeParent(event);
+                ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
+            }
+            String[] idParts = fxId.split("\\$");
+            if (idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")) {
+                checkboxFlaredTaperedToggle(fxId);
+            }
         }
         event.consume();
     }
@@ -1602,9 +1637,20 @@ public class Controller {
         @SuppressWarnings("unchecked")
         ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
         Node value = getValueNode(event);
-        value.setTextContent(cb.getValue().getValue());
-        if(fxId.equals("body$leg$type")){
-            updateLegTypeDependants(cb, false);
+        if(value == null){
+            if(fxId.startsWith("FETISH_")){
+                Element fetishEntry = saveFile.createElement("entry");
+                fetishEntry.setAttribute("desire", cb.getValue().getValue());
+                fetishEntry.setAttribute("fetish", fxId.split("\\$")[0]);
+                value = getValueNodeParent(event);
+                value.appendChild(fetishEntry);
+            }
+        }
+        else {
+            value.setTextContent(cb.getValue().getValue());
+            if (fxId.equals("body$leg$type")) {
+                updateLegTypeDependants(cb, false);
+            }
         }
         event.consume();
     }
