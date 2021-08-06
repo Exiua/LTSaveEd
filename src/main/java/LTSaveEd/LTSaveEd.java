@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class LTSaveEd extends Application {
 
-    private final String version = "v0.3.0";
+    private final String version = "v0.4.0";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
