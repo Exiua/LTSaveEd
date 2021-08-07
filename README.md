@@ -7,7 +7,7 @@ LTSaveEd is a save editor for the game _Lilith's Throne_
 
 ## How To Use
 
-Download and run `LTSaveEd.jar` from the [latest release](https://github.com/Exiua/LTSaveEd/releases). \
+Download and run `LTSaveEd.jar` from the [latest release](https://github.com/Exiua/LTSaveEd/releases). 
 
 If the jar doesn't work, download and extract the zip from the [latest release](https://github.com/Exiua/LTSaveEd/releases) and add `--module-path /path/to/javafx-sdk-16/lib --add-modules=javafx.controls,javafx.fxml` as a VM option to your run configuration, then run `LTSaveEd.java`.
 
