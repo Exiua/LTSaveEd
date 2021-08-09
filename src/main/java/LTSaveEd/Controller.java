@@ -31,8 +31,11 @@ import javax.xml.xpath.XPathFactory;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
+
+import static java.util.Map.entry;
 
 /**
  * Controller class that handles events and interactions of the GUI
@@ -895,6 +898,7 @@ public class Controller{
             new SpellTier("Earthquake", "SLAM_3"));
 
     private final ObservableList<Attribute> telekeneticShowerSpellTiers = FXCollections.observableArrayList(
+            // Yes, that is how telekinetic is spelt in the save file
             new SpellTier("Unowned", "TELEKENETIC_SHOWER_UNOWNED"),
             new SpellTier("Base", "TELEKENETIC_SHOWER"),
             new SpellTier("Mind Over Matter", "TELEKENETIC_SHOWER_1"),
@@ -1041,6 +1045,33 @@ public class Controller{
             new SpellTier("Caressing Touch", "ELEMENTAL_ARCANE_2"),
             new SpellTier("Servant of Arcane", "ELEMENTAL_ARCANE_3A"),
             new SpellTier("Binding of Arcane", "ELEMENTAL_ARCANE_3B"));
+
+    private final ObservableMap<String, SpellTier> spellMap = FXCollections.observableMap(Map.ofEntries(
+            entry("SLAM", (SpellTier) slamSpellTiers.get(0)),
+            entry("TELEKENETIC_SHOWER", (SpellTier) telekeneticShowerSpellTiers.get(0)),
+            entry("STONE_SHELL", (SpellTier) stoneShellSpellTiers.get(0)),
+            entry("ELEMENTAL_EARTH", (SpellTier) elementalEarthSpellTiers.get(0)),
+            entry("ICE_SHARD", (SpellTier) iceShardSpellTiers.get(0)),
+            entry("RAIN_CLOUD", (SpellTier) rainCloudSpellTiers.get(0)),
+            entry("SOOTHING_WATERS", (SpellTier) soothingWatersSpellTiers.get(0)),
+            entry("ELEMENTAL_WATER", (SpellTier) elementalWaterSpellTiers.get(0)),
+            entry("FIREBALL", (SpellTier) fireballSpellTiers.get(0)),
+            entry("FLASH", (SpellTier) flashSpellTiers.get(0)),
+            entry("CLOAK_OF_FLAMES", (SpellTier) cloakOfFlamesSpellTiers.get(0)),
+            entry("ELEMENTAL_FIRE", (SpellTier) elementalFireSpellTiers.get(0)),
+            entry("POISON_VAPOURS", (SpellTier) poisonVapoursSpellTiers.get(0)),
+            entry("VACUUM", (SpellTier) vacuumSpellTiers.get(0)),
+            entry("PROTECTIVE_GUSTS", (SpellTier) protectiveGustsSpellTiers.get(0)),
+            entry("ELEMENTAL_AIR", (SpellTier) elementalAirSpellTiers.get(0)),
+            entry("ARCANE_AROUSAL", (SpellTier) arcaneArousalSpellTiers.get(0)),
+            entry("TELEPATHIC_COMMUNICATION", (SpellTier) telepathicCommunicationSpellTiers.get(0)),
+            entry("ARCANE_CLOUD", (SpellTier) arcaneCloudSpellTiers.get(0)),
+            entry("CLEANSE", (SpellTier) cleanseSpellTiers.get(0)),
+            entry("STEAL", (SpellTier) stealSpellTiers.get(0)),
+            entry("TELEPORT", (SpellTier) teleportSpellTiers.get(0)),
+            entry("LILITHS_COMMAND", (SpellTier) lilithsCommandSpellTiers.get(0)),
+            entry("ELEMENTAL_ARCANE", (SpellTier) elementalArcaneSpellTiers.get(0))
+    ));
 
     /**
      * ArrayList of all perks in the game
