@@ -878,6 +878,7 @@ public class Controller{
      * ObservableList of all leg types in the game
      */
     private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
+            //This element gets deleted when the initialization method is run
             new LegTypeAttr("Placeholder", "Placeholder", legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR));
 
     /**
@@ -887,6 +888,159 @@ public class Controller{
             new Attribute("Hate", "ZERO_HATE"), new Attribute("Dislike", "ONE_DISLIKE"),
             new Attribute("Indifferent", "TWO_NEUTRAL"), new Attribute("Like", "THREE_LIKE"),
             new Attribute("Love", "FOUR_LOVE"));
+
+    private final ObservableList<Attribute> slamSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "SLAM_UNOWNED"), new SpellTier("Base", "SLAM"),
+            new SpellTier("Ground Shake", "SLAM_1"), new SpellTier("Aftershock", "SLAM_2"),
+            new SpellTier("Earthquake", "SLAM_3"));
+
+    private final ObservableList<Attribute> telekeneticShowerSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "TELEKENETIC_SHOWER_UNOWNED"),
+            new SpellTier("Base", "TELEKENETIC_SHOWER"),
+            new SpellTier("Mind Over Matter", "TELEKENETIC_SHOWER_1"),
+            new SpellTier("Precision Strikes", "TELEKENETIC_SHOWER_2"),
+            new SpellTier("Unseen Force", "TELEKENETIC_SHOWER_3"));
+
+    private final ObservableList<Attribute> stoneShellSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "STONE_SHELL_UNOWNED"), new SpellTier("Base", "STONE_SHELL"),
+            new SpellTier("Shifting Sands", "STONE_SHELL_1"),
+            new SpellTier("Hardened Carapace", "STONE_SHELL_2"),
+            new SpellTier("Explosive Finish", "STONE_SHELL_3"));
+
+    private final ObservableList<Attribute> elementalEarthSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "ELEMENTAL_EARTH_UNOWNED"),
+            new SpellTier("Base", "ELEMENTAL_EARTH"),
+            new SpellTier("Rolling Stone", "ELEMENTAL_EARTH_1"),
+            new SpellTier("Hardening", "ELEMENTAL_EARTH_2"),
+            new SpellTier("Servant of Earth", "ELEMENTAL_EARTH_3A"),
+            new SpellTier("Binding of Earth", "ELEMENTAL_EARTH_3B"));
+
+    private final ObservableList<Attribute> iceShardSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "ICE_SHARD_UNOWNED"), new SpellTier("Base", "ICE_SHARD"),
+            new SpellTier("Freezing Fog", "ICE_SHARD_1"), new SpellTier("Cold Snap", "ICE_SHARD_2"),
+            new SpellTier("Deep Freeze", "ICE_SHARD_3"));
+
+    private final ObservableList<Attribute> rainCloudSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "RAIN_CLOUD_UNOWNED"), new SpellTier("Base", "RAIN_CLOUD"),
+            new SpellTier("Deep Chill", "RAIN_CLOUD_1"), new SpellTier("Downpour", "RAIN_CLOUD_2"),
+            new SpellTier("Cloud Burst", "RAIN_CLOUD_3"));
+
+    private final ObservableList<Attribute> soothingWatersSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "SOOTHING_WATERS_UNOWNED"),
+            new SpellTier("Base", "SOOTHING_WATERS"),
+            new SpellTier("Arcane Springs", "SOOTHING_WATERS_1"),
+            new SpellTier("Rejuvenation", "SOOTHING_WATERS_2"),
+            new SpellTier("Bouncing Orbs", "SOOTHING_WATERS_3"));
+
+    private final ObservableList<Attribute> elementalWaterSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "ELEMENTAL_WATER_UNOWNED"),
+            new SpellTier("Base", "ELEMENTAL_WATER"),
+            new SpellTier("Crashing Waves", "ELEMENTAL_WATER_1"),
+            new SpellTier("Calm Waters", "ELEMENTAL_WATER_2"),
+            new SpellTier("Servant of Water", "ELEMENTAL_WATER_3A"),
+            new SpellTier("Binding of Water", "ELEMENTAL_WATER_3B"));
+
+    private final ObservableList<Attribute> fireballSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "FIREBALL_UNOWNED"), new SpellTier("Base", "FIREBALL"),
+            new SpellTier("Lingering Flames", "FIREBALL_1"), new SpellTier("Twin Comets", "FIREBALL_2"),
+            new SpellTier("Burning Fury", "FIREBALL_3"));
+
+    private final ObservableList<Attribute> flashSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "FLASH_UNOWNED"), new SpellTier("Base", "FLASH"),
+            new SpellTier("Secondary Sparks", "FLASH_1"), new SpellTier("Arcing Flash", "FLASH_2"),
+            new SpellTier("Efficient Burn", "FLASH_3"));
+
+    private final ObservableList<Attribute> cloakOfFlamesSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "CLOAK_OF_FLAMES_UNOWNED"),
+            new SpellTier("Base", "CLOAK_OF_FLAMES"),
+            new SpellTier("Incendiary", "CLOAK_OF_FLAMES_1"),
+            new SpellTier("Inferno", "CLOAK_OF_FLAMES_2"),
+            new SpellTier("Ring of Fire", "CLOAK_OF_FLAMES_3"));
+
+    private final ObservableList<Attribute> elementalFireSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "ELEMENTAL_FIRE_UNOWNED"),
+            new SpellTier("Base", "ELEMENTAL_FIRE"),
+            new SpellTier("Wildfire", "ELEMENTAL_FIRE_1"),
+            new SpellTier("Burning Desire", "ELEMENTAL_FIRE_2"),
+            new SpellTier("Servant of Fire", "ELEMENTAL_FIRE_3A"),
+            new SpellTier("Binding of Fire", "ELEMENTAL_FIRE_3B"));
+
+    private final ObservableList<Attribute> poisonVapoursSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "POISON_VAPOURS_UNOWNED"), new SpellTier("Base", "POISON_VAPOURS"),
+            new SpellTier("Choking Haze", "POISON_VAPOURS_1"),
+            new SpellTier("Arcane Sickness", "POISON_VAPOURS_2"),
+            new SpellTier("Weakening Cloud", "POISON_VAPOURS_3"));
+
+    private final ObservableList<Attribute> vacuumSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "VACUUM_UNOWNED"), new SpellTier("Base", "VACUUM"),
+            new SpellTier("Secondary Voids", "VACUUM_1"), new SpellTier("Suction", "VACUUM_2"),
+            new SpellTier("Total Void", "VACUUM_3"));
+
+    private final ObservableList<Attribute> protectiveGustsSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "PROTECTIVE_GUSTS_UNOWNED"),
+            new SpellTier("Base", "PROTECTIVE_GUSTS"),
+            new SpellTier("Guiding Wind", "PROTECTIVE_GUSTS_1"),
+            new SpellTier("Focused Blast", "PROTECTIVE_GUSTS_2"),
+            new SpellTier("Lingering Presence", "PROTECTIVE_GUSTS_3"));
+
+    private final ObservableList<Attribute> elementalAirSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "ELEMENTAL_AIR_UNOWNED"),
+            new SpellTier("Base", "ELEMENTAL_AIR"),
+            new SpellTier("Whirlwind", "ELEMENTAL_AIR_1"),
+            new SpellTier("Vitalising Scents", "ELEMENTAL_AIR_2"),
+            new SpellTier("Servant of Air", "ELEMENTAL_AIR_3A"),
+            new SpellTier("Binding of Air", "ELEMENTAL_AIR_3B"));
+
+    private final ObservableList<Attribute> arcaneArousalSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "ARCANE_AROUSAL_UNOWNED"),
+            new SpellTier("Base", "ARCANE_AROUSAL"),
+            new SpellTier("Overwhelming Lust", "ARCANE_AROUSAL_1"),
+            new SpellTier("Lustful Distraction", "ARCANE_AROUSAL_2"),
+            new SpellTier("Dirty Promises", "ARCANE_AROUSAL_3"));
+
+    private final ObservableList<Attribute> telepathicCommunicationSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "TELEPATHIC_COMMUNICATION_UNOWNED"),
+            new SpellTier("Base", "TELEPATHIC_COMMUNICATION"),
+            new SpellTier("Echoing Moans", "TELEPATHIC_COMMUNICATION_1"),
+            new SpellTier("Projected Touch", "TELEPATHIC_COMMUNICATION_2"),
+            new SpellTier("Power of Suggestion", "TELEPATHIC_COMMUNICATION_3"));
+
+    private final ObservableList<Attribute> arcaneCloudSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "ARCANE_CLOUD_UNOWNED"), new SpellTier("Base", "ARCANE_CLOUD"),
+            new SpellTier("Arcane Lightning", "ARCANE_CLOUD_1"),
+            new SpellTier("Arcane Thunder", "ARCANE_CLOUD_2"),
+            new SpellTier("Localized Storm", "ARCANE_CLOUD_3"));
+
+    private final ObservableList<Attribute> cleanseSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "CLEANSE_UNOWNED"), new SpellTier("Base", "CLEANSE"),
+            new SpellTier("Selective Cleansing", "CLEANSE_1"),
+            new SpellTier("Arcane Duality", "CLEANSE_2"),
+            new SpellTier("Arcane Will", "CLEANSE_3"));
+
+    private final ObservableList<Attribute> stealSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "STEAL_UNOWNED"), new SpellTier("Base", "STEAL"),
+            new SpellTier("Stripper", "STEAL_1"), new SpellTier("Disarm", "STEAL_2"),
+            new SpellTier("Deep Reach", "STEAL_3A"), new SpellTier("Panty Snatcher", "STEAL_3B"));
+
+    private final ObservableList<Attribute> teleportSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "TELEPORT_UNOWNED"), new SpellTier("Base", "TELEPORT"),
+            new SpellTier("Arcane Arrival", "TELEPORT_1"),
+            new SpellTier("Mass Teleportation", "TELEPORT_2"),
+            new SpellTier("Rebounding Teleportation", "TELEPORT_3"));
+
+    private final ObservableList<Attribute> lilithsCommandSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "LILITHS_COMMAND_UNOWNED"),
+            new SpellTier("Base", "LILITHS_COMMAND"),
+            new SpellTier("Overpowering Presence", "LILITHS_COMMAND_1"),
+            new SpellTier("Demonic Servants", "LILITHS_COMMAND_2"),
+            new SpellTier("Ultimate Power", "LILITHS_COMMAND_3"));
+
+    private final ObservableList<Attribute> elementalArcaneSpellTiers = FXCollections.observableArrayList(
+            new SpellTier("Unowned", "ELEMENTAL_ARCANE_UNOWNED"), new SpellTier("Base", "ELEMENTAL_ARCANE"),
+            new SpellTier("Lewd Encouragement", "ELEMENTAL_ARCANE_1"),
+            new SpellTier("Caressing Touch", "ELEMENTAL_ARCANE_2"),
+            new SpellTier("Servant of Arcane", "ELEMENTAL_ARCANE_3A"),
+            new SpellTier("Binding of Arcane", "ELEMENTAL_ARCANE_3B"));
 
     /**
      * ArrayList of all perks in the game
