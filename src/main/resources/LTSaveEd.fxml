@@ -1955,6 +1955,7 @@
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
                            <VBox>
@@ -2617,7 +2618,51 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="15">
+                           <VBox layoutX="24.0" layoutY="1140.0" GridPane.rowIndex="15">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Non-consent">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FETISH_NON_CON_DOM$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_NON_CON_DOM$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_NON_CON_DOM$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox layoutX="529.0" layoutY="1140.0" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Unwilling Fuck-toy">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FETISH_NON_CON_SUB$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_NON_CON_SUB$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_NON_CON_SUB$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="16">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2639,7 +2684,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="15">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="16">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2661,7 +2706,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="16">
+                           <VBox GridPane.rowIndex="17">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2683,7 +2728,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="16">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="17">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2705,7 +2750,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="17">
+                           <VBox GridPane.rowIndex="18">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2727,7 +2772,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="17">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="18">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2749,7 +2794,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="18">
+                           <VBox GridPane.rowIndex="19">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2771,7 +2816,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="18">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="19">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2802,6 +2847,283 @@
                </ScrollPane>
             </children></AnchorPane>
         </Tab>
+        <Tab text="Spells">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+               <TabPane layoutX="442.0" layoutY="104.0" prefHeight="671.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                 <tabs>
+                   <Tab text="Earth">
+                     <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <VBox alignment="TOP_CENTER" layoutX="149.0" layoutY="157.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                          <children>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Slam:" />
+                                                   <ComboBox fx:id="spells$SLAM" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Telekinetic Shower:" />
+                                                   <ComboBox fx:id="spells$TELEKENETIC_SHOWER" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Stone Shell:" />
+                                                   <ComboBox fx:id="spells$STONE_SHELL" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Elemental Earth:" />
+                                                   <ComboBox fx:id="spells$ELEMENTAL_EARTH" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                          <children>
+                                             <Label text="Spell Points: " />
+                                             <TextField fx:id="spellUpgradePoints$EARTH" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets left="14.0" top="28.0" />
+                                    </padding>
+                                 </VBox>
+                              </children></AnchorPane>
+                     </content>
+                   </Tab>
+                   <Tab text="Water">
+                     <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
+                                    <children>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                          <children>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Ice Shard:" />
+                                                   <ComboBox fx:id="spells$ICE_SHARD" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Rain Cloud:" />
+                                                   <ComboBox fx:id="spells$RAIN_CLOUD" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Soothing Waters:" />
+                                                   <ComboBox fx:id="spells$SOOTHING_WATERS" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Elemental Water:" />
+                                                   <ComboBox fx:id="spells$ELEMENTAL_WATER" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                          <children>
+                                             <Label text="Spell Points: " />
+                                             <TextField fx:id="spellUpgradePoints$WATER" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets left="14.0" top="28.0" />
+                                    </padding>
+                                 </VBox>
+                              </children></AnchorPane>
+                     </content>
+                   </Tab>
+                     <Tab text="Fire">
+                         <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
+                                    <children>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                          <children>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Fireball:" />
+                                                   <ComboBox fx:id="spells$FIREBALL" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Flash:" />
+                                                   <ComboBox fx:id="spells$FLASH" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Cloak of Flames" />
+                                                   <ComboBox fx:id="spells$CLOAK_OF_FLAMES" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Elemental Fire:" />
+                                                   <ComboBox fx:id="spells$ELEMENTAL_FIRE" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                          <children>
+                                             <Label text="Spell Points: " />
+                                             <TextField fx:id="spellUpgradePoints$FIRE" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets left="14.0" top="28.0" />
+                                    </padding>
+                                 </VBox>
+                              </children></AnchorPane>
+                         </content>
+                     </Tab>
+                     <Tab text="Air">
+                         <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
+                                    <children>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                          <children>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Poison Vapours:" />
+                                                   <ComboBox fx:id="spells$POISON_VAPOURS" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Vacuum:" />
+                                                   <ComboBox fx:id="spells$VACUUM" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Protective Gusts:" />
+                                                   <ComboBox fx:id="spells$PROTECTIVE_GUSTS" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Elemental Air:" />
+                                                   <ComboBox fx:id="spells$ELEMENTAL_AIR" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                          <children>
+                                             <Label text="Spell Points: " />
+                                             <TextField fx:id="spellUpgradePoints$AIR" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets left="14.0" top="28.0" />
+                                    </padding>
+                                 </VBox>
+                              </children></AnchorPane>
+                         </content>
+                     </Tab>
+                     <Tab text="Arcane">
+                         <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
+                                    <children>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                          <children>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Arcane Arousal:" />
+                                                   <ComboBox fx:id="spells$ARCANE_AROUSAL" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Telepathic Communication:" />
+                                                   <ComboBox fx:id="spells$TELEPATHIC_COMMUNICATION" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Arcane Cloud:" />
+                                                   <ComboBox fx:id="spells$ARCANE_CLOUD" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Cleanse:" />
+                                                   <ComboBox fx:id="spells$CLEANSE" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                          <children>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Steal:" />
+                                                   <ComboBox fx:id="spells$STEAL" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Teleport:" />
+                                                   <ComboBox fx:id="spells$TELEPORT" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Lilith's Command:" />
+                                                   <ComboBox fx:id="spells$LILITHS_COMMAND" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                             <VBox alignment="CENTER" spacing="10.0">
+                                                <children>
+                                                   <Label text="Elemental Arcane:" />
+                                                   <ComboBox fx:id="spells$ELEMENTAL_ARCANE" onAction="#updateXmlComboBoxSpells" prefWidth="150.0" />
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                          <children>
+                                             <Label text="Spell Points: " />
+                                             <TextField fx:id="spellUpgradePoints$ARCANE" />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                    <padding>
+                                       <Insets left="14.0" top="28.0" />
+                                    </padding>
+                                 </VBox>
+                              </children></AnchorPane>
+                         </content>
+                     </Tab>
+                 </tabs>
+               </TabPane>
+            </children></AnchorPane>
+        </Tab>
         <Tab text="Relationships">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="124.0" layoutY="103.0" prefHeight="671.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -2822,9 +3144,6 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab disable="true" text="Perks">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </Tab>
-        <Tab disable="true" text="Spells">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab disable="true" text="Pregnancy">
