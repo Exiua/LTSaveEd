@@ -117,8 +117,10 @@ public class Controller{
             "FETISH_CUM_ADDICT$exp", "FETISH_DEFLOWERING$exp", "FETISH_PURE_VIRGIN$exp", "FETISH_IMPREGNATION$exp",
             "FETISH_PREGNANCY$exp", "FETISH_TRANSFORMATION_GIVING$exp", "FETISH_TRANSFORMATION_RECEIVING$exp",
             "FETISH_KINK_GIVING$exp", "FETISH_KINK_RECEIVING$exp", "FETISH_SADIST$exp", "FETISH_MASOCHIST$exp",
-            "FETISH_DENIAL$exp", "FETISH_DENIAL_SELF$exp", "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp",
-            "FETISH_BIMBO$exp", "FETISH_CROSS_DRESSER$exp", "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp"};
+            "FETISH_NON_CON_DOM$exp", "FETISH_NON_CON_SUB$exp", "FETISH_DENIAL$exp", "FETISH_DENIAL_SELF$exp",
+            "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp", "FETISH_CROSS_DRESSER$exp",
+            "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "spellUpgradePoints$EARTH", "spellUpgradePoints$WATER",
+            "spellUpgradePoints$FIRE", "spellUpgradePoints$AIR", "spellUpgradePoints$ARCANE"};
 
     /**
      * String array of all TextField ids using a double data type
@@ -159,9 +161,15 @@ public class Controller{
             "FETISH_CUM_STUD$desire", "FETISH_CUM_ADDICT$desire", "FETISH_DEFLOWERING$desire", "FETISH_PURE_VIRGIN$desire",
             "FETISH_IMPREGNATION$desire", "FETISH_PREGNANCY$desire", "FETISH_TRANSFORMATION_GIVING$desire",
             "FETISH_TRANSFORMATION_RECEIVING$desire", "FETISH_KINK_GIVING$desire", "FETISH_KINK_RECEIVING$desire",
-            "FETISH_SADIST$desire", "FETISH_MASOCHIST$desire", "FETISH_DENIAL$desire", "FETISH_DENIAL_SELF$desire",
-            "FETISH_VOYEURIST$desire", "FETISH_EXHIBITIONIST$desire", "FETISH_BIMBO$desire", "FETISH_CROSS_DRESSER$desire",
-            "FETISH_MASTURBATION$desire", "FETISH_INCEST$desire"};
+            "FETISH_SADIST$desire", "FETISH_MASOCHIST$desire", "FETISH_NON_CON_DOM$desire", "FETISH_NON_CON_SUB$desire",
+            "FETISH_DENIAL$desire", "FETISH_DENIAL_SELF$desire", "FETISH_VOYEURIST$desire", "FETISH_EXHIBITIONIST$desire",
+            "FETISH_BIMBO$desire", "FETISH_CROSS_DRESSER$desire", "FETISH_MASTURBATION$desire", "FETISH_INCEST$desire",
+            "spells$SLAM", "spells$TELEKENETIC_SHOWER", "spells$STONE_SHELL", "spells$ELEMENTAL_EARTH", "spells$ICE_SHARD",
+            "spells$RAIN_CLOUD", "spells$SOOTHING_WATERS", "spells$ELEMENTAL_WATER", "spells$FIREBALL", "spells$FLASH",
+            "spells$CLOAK_OF_FLAMES", "spells$ELEMENTAL_FIRE", "spells$POISON_VAPOURS", "spells$VACUUM",
+            "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR", "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION",
+            "spells$ARCANE_CLOUD", "spells$CLEANSE", "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND",
+            "spells$ELEMENTAL_ARCANE"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -1148,7 +1156,7 @@ public class Controller{
         comboBoxValues.add(facialHairTypes);
         comboBoxValues.add(assHairTypes);
         comboBoxValues.add(underarmHairTypes);
-        for(int i = 0; i < 38; i++){ //The 38 fetishes uses the same values for desire
+        for(int i = 0; i < 40; i++){ //The 40 fetishes uses the same values for desire
             comboBoxValues.add(desireTypes);
         }
         initializeHairStyles();
@@ -1903,6 +1911,26 @@ public class Controller{
             }
         }
         return null;
+    }
+
+    private Node getNode(String... args){
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        for(String arg : args){
+            if(arg.equals(args[args.length - 1])){
+                Element tempAttr = (Element) attr.getElementsByTagName(arg).item(0);
+                if(tempAttr == null){
+                    attr.getAttributes().getNamedItem(arg);
+                }
+                else{
+                    attr = tempAttr;
+                }
+            }
+            else{
+                attr = (Element) attr.getElementsByTagName(arg).item(0);
+            }
+        }
+        return attr;
     }
 
     /**
