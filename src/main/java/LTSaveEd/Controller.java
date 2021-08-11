@@ -30,12 +30,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.*;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
-
-import static java.util.Map.entry;
+import java.util.*;
 
 /**
  * Controller class that handles events and interactions of the GUI
@@ -1054,32 +1049,7 @@ public class Controller{
             new SpellTier("Servant of Arcane", "ELEMENTAL_ARCANE_3A"),
             new SpellTier("Binding of Arcane", "ELEMENTAL_ARCANE_3B"));
 
-    private final ObservableMap<String, SpellTier> spellMap = FXCollections.observableMap(Map.ofEntries(
-            entry("SLAM", (SpellTier) slamSpellTiers.get(0)),
-            entry("TELEKENETIC_SHOWER", (SpellTier) telekeneticShowerSpellTiers.get(0)),
-            entry("STONE_SHELL", (SpellTier) stoneShellSpellTiers.get(0)),
-            entry("ELEMENTAL_EARTH", (SpellTier) elementalEarthSpellTiers.get(0)),
-            entry("ICE_SHARD", (SpellTier) iceShardSpellTiers.get(0)),
-            entry("RAIN_CLOUD", (SpellTier) rainCloudSpellTiers.get(0)),
-            entry("SOOTHING_WATERS", (SpellTier) soothingWatersSpellTiers.get(0)),
-            entry("ELEMENTAL_WATER", (SpellTier) elementalWaterSpellTiers.get(0)),
-            entry("FIREBALL", (SpellTier) fireballSpellTiers.get(0)),
-            entry("FLASH", (SpellTier) flashSpellTiers.get(0)),
-            entry("CLOAK_OF_FLAMES", (SpellTier) cloakOfFlamesSpellTiers.get(0)),
-            entry("ELEMENTAL_FIRE", (SpellTier) elementalFireSpellTiers.get(0)),
-            entry("POISON_VAPOURS", (SpellTier) poisonVapoursSpellTiers.get(0)),
-            entry("VACUUM", (SpellTier) vacuumSpellTiers.get(0)),
-            entry("PROTECTIVE_GUSTS", (SpellTier) protectiveGustsSpellTiers.get(0)),
-            entry("ELEMENTAL_AIR", (SpellTier) elementalAirSpellTiers.get(0)),
-            entry("ARCANE_AROUSAL", (SpellTier) arcaneArousalSpellTiers.get(0)),
-            entry("TELEPATHIC_COMMUNICATION", (SpellTier) telepathicCommunicationSpellTiers.get(0)),
-            entry("ARCANE_CLOUD", (SpellTier) arcaneCloudSpellTiers.get(0)),
-            entry("CLEANSE", (SpellTier) cleanseSpellTiers.get(0)),
-            entry("STEAL", (SpellTier) stealSpellTiers.get(0)),
-            entry("TELEPORT", (SpellTier) teleportSpellTiers.get(0)),
-            entry("LILITHS_COMMAND", (SpellTier) lilithsCommandSpellTiers.get(0)),
-            entry("ELEMENTAL_ARCANE", (SpellTier) elementalArcaneSpellTiers.get(0))
-    ));
+    private final HashMap<String, SpellTier> spellMap = new HashMap<>();
 
     /**
      * ArrayList of all perks in the game
@@ -1159,11 +1129,36 @@ public class Controller{
         for(int i = 0; i < 40; i++){ //The 40 fetishes uses the same values for desire
             comboBoxValues.add(desireTypes);
         }
+        comboBoxValues.add(slamSpellTiers);
+        comboBoxValues.add(telekeneticShowerSpellTiers);
+        comboBoxValues.add(stoneShellSpellTiers);
+        comboBoxValues.add(elementalEarthSpellTiers);
+        comboBoxValues.add(iceShardSpellTiers);
+        comboBoxValues.add(rainCloudSpellTiers);
+        comboBoxValues.add(soothingWatersSpellTiers);
+        comboBoxValues.add(elementalWaterSpellTiers);
+        comboBoxValues.add(fireballSpellTiers);
+        comboBoxValues.add(flashSpellTiers);
+        comboBoxValues.add(cloakOfFlamesSpellTiers);
+        comboBoxValues.add(elementalFireSpellTiers);
+        comboBoxValues.add(poisonVapoursSpellTiers);
+        comboBoxValues.add(vacuumSpellTiers);
+        comboBoxValues.add(protectiveGustsSpellTiers);
+        comboBoxValues.add(elementalAirSpellTiers);
+        comboBoxValues.add(arcaneArousalSpellTiers);
+        comboBoxValues.add(telepathicCommunicationSpellTiers);
+        comboBoxValues.add(arcaneCloudSpellTiers);
+        comboBoxValues.add(cleanseSpellTiers);
+        comboBoxValues.add(stealSpellTiers);
+        comboBoxValues.add(teleportSpellTiers);
+        comboBoxValues.add(lilithsCommandSpellTiers);
+        comboBoxValues.add(elementalArcaneSpellTiers);
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
         initializeGenitalArrangements();
         initializeLegTypes();
+        initializeSpellMap();
     }
 
     /**
@@ -1277,8 +1272,34 @@ public class Controller{
                 new LegTypeAttr("Wolf", "WOLF_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE")));
     }
 
-    //TODO
+    private void initializeSpellMap(){
+        spellMap.put("SLAM", (SpellTier) slamSpellTiers.get(0));
+        spellMap.put("TELEKENETIC_SHOWER", (SpellTier) telekeneticShowerSpellTiers.get(0));
+        spellMap.put("STONE_SHELL", (SpellTier) stoneShellSpellTiers.get(0));
+        spellMap.put("ELEMENTAL_EARTH", (SpellTier) elementalEarthSpellTiers.get(0));
+        spellMap.put("ICE_SHARD", (SpellTier) iceShardSpellTiers.get(0));
+        spellMap.put("RAIN_CLOUD", (SpellTier) rainCloudSpellTiers.get(0));
+        spellMap.put("SOOTHING_WATERS", (SpellTier) soothingWatersSpellTiers.get(0));
+        spellMap.put("ELEMENTAL_WATER", (SpellTier) elementalWaterSpellTiers.get(0));
+        spellMap.put("FIREBALL", (SpellTier) fireballSpellTiers.get(0));
+        spellMap.put("FLASH", (SpellTier) flashSpellTiers.get(0));
+        spellMap.put("CLOAK_OF_FLAMES", (SpellTier) cloakOfFlamesSpellTiers.get(0));
+        spellMap.put("ELEMENTAL_FIRE", (SpellTier) elementalFireSpellTiers.get(0));
+        spellMap.put("POISON_VAPOURS", (SpellTier) poisonVapoursSpellTiers.get(0));
+        spellMap.put("VACUUM", (SpellTier) vacuumSpellTiers.get(0));
+        spellMap.put("PROTECTIVE_GUSTS", (SpellTier) protectiveGustsSpellTiers.get(0));
+        spellMap.put("ELEMENTAL_AIR", (SpellTier) elementalAirSpellTiers.get(0));
+        spellMap.put("ARCANE_AROUSAL", (SpellTier) arcaneArousalSpellTiers.get(0));
+        spellMap.put("TELEPATHIC_COMMUNICATION", (SpellTier) telepathicCommunicationSpellTiers.get(0));
+        spellMap.put("ARCANE_CLOUD", (SpellTier) arcaneCloudSpellTiers.get(0));
+        spellMap.put("CLEANSE", (SpellTier) cleanseSpellTiers.get(0));
+        spellMap.put("STEAL", (SpellTier) stealSpellTiers.get(0));
+        spellMap.put("TELEPORT", (SpellTier) teleportSpellTiers.get(0));
+        spellMap.put("LILITHS_COMMAND", (SpellTier) lilithsCommandSpellTiers.get(0));
+        spellMap.put("ELEMENTAL_ARCANE", (SpellTier) elementalArcaneSpellTiers.get(0));
+    }
 
+    //TODO
     /**
      * Initializes PerkNodes and fills the ArrayList with the PerkNodes
      */
@@ -1618,6 +1639,9 @@ public class Controller{
             if(id[0].equals("characterRelationships")){
                 return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
             }
+            else if(id[0].equals("spellUpgradePoints")){
+                return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1])).getAttributes().getNamedItem("points");
+            }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return attr.getAttributes().getNamedItem(id[2]);
         }
@@ -1742,7 +1766,7 @@ public class Controller{
                 return null;
             }
         });
-        setFields();
+        //setFields();
     }
 
     /**
@@ -1890,7 +1914,6 @@ public class Controller{
                 return children.item(i);
             }
         }
-        System.out.println("No Match (null node): " + node + " " + targetNode); //Debugging
         return null;
     }
 
@@ -1903,8 +1926,8 @@ public class Controller{
      * @return Desired Node if found else null
      */
     private Node getChildNodeByAttributeValue(NodeList children, String attribute, String value){
-        for(int i = 1; i < children.getLength(); i++){
-            if(children.item(i).getNodeType() != Node.TEXT_NODE){
+        for(int i = 0; i < children.getLength(); i++){
+            if(children.item(i).getNodeType() == Node.ELEMENT_NODE){
                 if(children.item(i).getAttributes().getNamedItem(attribute).getTextContent().equals(value)){
                     return children.item(i);
                 }
@@ -2031,6 +2054,122 @@ public class Controller{
         event.consume();
     }
 
+    @FXML
+    private void updateXmlComboBoxSpells(ActionEvent event){
+        String fxId = getId(event);
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
+        SpellTier tier = (SpellTier) cb.getValue();
+        switch(tier.getTier()){
+            case -1 -> { //Unowned Spell
+                NodeList knownSpells = getNode("knownSpells").getChildNodes();
+                for(int i = 0; i < knownSpells.getLength(); i++){
+                    if(knownSpells.item(i).getNodeType() == Node.ELEMENT_NODE){
+                        Node spell = knownSpells.item(i);
+                        if(spell.getAttributes().getNamedItem("type").getTextContent().equals(tier.getType())){
+                            removeNode(spell);
+                            break;
+                        }
+                    }
+                }
+                removeHigherTierSpells(tier);
+            }
+            case 0 -> { //Base Spell
+                addBaseSpell(tier);
+                removeHigherTierSpells(tier);
+            }
+            case 1, 2 -> { //Upgrades 1 and 2
+                addBaseSpell(tier);
+                removeHigherTierSpells(tier);
+                addLowerTierSpells(tier);
+            }
+            case 3 -> { //Upgrade 3 (branching in the case of Elemental spell or 3A in the case of Steal spell)
+                addBaseSpell(tier);
+                if(tier.getType().equals("STEAL")){
+                    removeHigherTierSpells(tier);
+                }
+                addLowerTierSpells(tier);
+            }
+            case 4 -> { //Upgrade 3B only used by Steal spell
+                addBaseSpell(tier);
+                addLowerTierSpells(tier);
+            }
+        }
+        event.consume();
+    }
+
+    private void addBaseSpell(SpellTier tier){
+        Node knownSpellsNode = getNode("knownSpells");
+        NodeList knownSpells = knownSpellsNode.getChildNodes();
+        boolean exists = false;
+        for(int i = 0; i < knownSpells.getLength(); i++){
+            if(knownSpells.item(i).getNodeType() == Node.ELEMENT_NODE){
+                Node spell = knownSpells.item(i);
+                if(spell.getAttributes().getNamedItem("type").getTextContent().equals(tier.getType())){
+                    exists = true;
+                    break;
+                }
+            }
+        }
+        if(!exists){
+            Element baseSpell = saveFile.createElement("spell");
+            baseSpell.setAttribute("type", tier.getType());
+            knownSpellsNode.appendChild(baseSpell);
+        }
+    }
+
+    private void removeHigherTierSpells(SpellTier tier){
+        NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
+        for(int i = 0; i < spellUpgrades.getLength(); i++){
+            if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
+                Node spell = spellUpgrades.item(i);
+                String spellType = spell.getAttributes().getNamedItem("type").getTextContent();
+                if(spellType.startsWith(tier.getType())){
+                    int upgradeTier = SpellTier.readTier(spellUpgrades.item(i).getAttributes().getNamedItem("type").getTextContent());
+                    if(tier.getTier() < upgradeTier){
+                        if(!spellType.endsWith("CLEAN")){
+                            removeNode(spell);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void addLowerTierSpells(SpellTier tier){
+        Node spellUpgradesNode = getNode("spellUpgrades");
+        NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
+        int count = 0;
+        for(int i = 0; i < spellUpgrades.getLength(); i++){
+            if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
+                Node spell = spellUpgrades.item(i);
+                String spellType = spell.getAttributes().getNamedItem("type").getTextContent();
+                if(spellType.equals(tier.getType())){
+                    if(!spellType.endsWith("CLEAN")){
+                        count++;
+                    }
+                }
+            }
+        }
+        while(count < tier.getTier()){
+            count++;
+            Element spellUpgrade = saveFile.createElement("upgrade");
+            String value = tier.getType() + "_" + count;
+            if(tier.getType().equals("STEAL")){
+                if(count == 3){
+                    value = "STEAL_3A";
+                }
+                else if(count == 4){
+                    value = "STEAL_3B";
+                }
+            }
+            else if(count == tier.getTier()){
+                value = tier.getValue();
+            }
+            spellUpgrade.setAttribute("type", value);
+        }
+    }
+
     /**
      * Updates the ComboBoxes of leg configurations, foot structures, and genital arrangements based on the value of the leg types ComboBox
      *
@@ -2067,8 +2206,8 @@ public class Controller{
     private void setFields(){
         if(fileLoaded){
             NodeList attributeNodes = getAttributeNodes();
-            for(int i = 3; i < attributeNodes.getLength() - 1; i += 2){ //Every other node in the NodeList is a TextNode (so can be skipped)
-                if(attributeNodes.item(i).getNodeType() != Node.TEXT_NODE){ //Probably a redundant check since the TextNodes should already be skipped
+            for(int i = 0; i < attributeNodes.getLength(); i++){
+                if(attributeNodes.item(i).getNodeType() == Node.ELEMENT_NODE){ //Most likely there will be Text Nodes that must be skipped
                     NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                     String attributeName = attributeNodes.item(i).getNodeName();
                     switch(attributeName){
@@ -2086,6 +2225,18 @@ public class Controller{
                         }
                         case "fetishExperience" -> {
                             setFieldsFetishExperience(attributeNodes.item(i));
+                            continue;
+                        }
+                        case "knownSpells" -> {
+                            setFieldsKnownSpells(attributeNodes.item(i));
+                            continue;
+                        }
+                        case "spellUpgrades" -> {
+                            setFieldsSpellUpgrades(attributeNodes.item(i));
+                            continue;
+                        }
+                        case "spellUpgradePoints" -> {
+                            setFieldsSpellUpgradePoints(attributeNodes.item(i));
                             continue;
                         }
                     }
@@ -2193,20 +2344,22 @@ public class Controller{
         NodeList relationships = relationshipsNode.getChildNodes();
         VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
-        for(int i = 1; i < relationships.getLength() - 1; i += 2){
-            NamedNodeMap attrs = relationships.item(i).getAttributes();
-            String charId = attrs.getNamedItem("character").getTextContent();
-            TextField nameField = new TextField(getNpcName(charId));
-            nameField.setEditable(false);
-            TextField idField = new TextField(charId);
-            idField.setEditable(false);
-            TextField valueField = new TextField(attrs.getNamedItem("value").getTextContent());
-            valueField.setId("characterRelationships$relationship$" + i);
-            valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
-            HBox hBox = new HBox(10);
-            hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
-                    new Label("Value: "), valueField); //Id: <Id TextField> Name: <Name TextField> Value: <Value TextField>
-            relationBox.getChildren().add(hBox);
+        for(int i = 0; i < relationships.getLength(); i++){
+            if(relationships.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attrs = relationships.item(i).getAttributes();
+                String charId = attrs.getNamedItem("character").getTextContent();
+                TextField nameField = new TextField(getNpcName(charId));
+                nameField.setEditable(false);
+                TextField idField = new TextField(charId);
+                idField.setEditable(false);
+                TextField valueField = new TextField(attrs.getNamedItem("value").getTextContent());
+                valueField.setId("characterRelationships$relationship$" + i);
+                valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
+                HBox hBox = new HBox(10);
+                hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
+                        new Label("Value: "), valueField); //Id: <Id TextField> Name: <Name TextField> Value: <Value TextField>
+                relationBox.getChildren().add(hBox);
+            }
         }
     }
 
@@ -2217,15 +2370,17 @@ public class Controller{
      */
     private void setFieldsFetishes(Node fetishesNode){
         NodeList ownedFetishes = fetishesNode.getChildNodes();
-        for(int i = 1; i < ownedFetishes.getLength() - 1; i += 2){
-            String fetishType = ownedFetishes.item(i).getAttributes().getNamedItem("type").getTextContent();
-            if(fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
-                    fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")){
-                continue; //Skip these values
+        for(int i = 0; i < ownedFetishes.getLength(); i++){
+            if(ownedFetishes.item(i).getNodeType() == Node.ELEMENT_NODE){
+                String fetishType = ownedFetishes.item(i).getAttributes().getNamedItem("type").getTextContent();
+                if(fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
+                        fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")){
+                    continue; //Skip these values
+                }
+                String fetishId = fetishType + "$owned";
+                CheckBox cb = (CheckBox) namespace.get(fetishId);
+                cb.setSelected(true);
             }
-            String fetishId = fetishType + "$owned";
-            CheckBox cb = (CheckBox) namespace.get(fetishId);
-            cb.setSelected(true);
         }
     }
 
@@ -2236,15 +2391,17 @@ public class Controller{
      */
     private void setFieldsFetishDesires(Node fetishesNode){
         NodeList fetishDesires = fetishesNode.getChildNodes();
-        for(int i = 1; i < fetishDesires.getLength() - 1; i += 2){
-            NamedNodeMap attr = fetishDesires.item(i).getAttributes();
-            String fetishType = attr.getNamedItem("fetish").getTextContent();
-            String fetishId = fetishType + "$desire";
-            String fetishValue = attr.getNamedItem("desire").getTextContent();
-            @SuppressWarnings("unchecked")
-            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
-            ObservableList<Attribute> values = cb.getItems();
-            cb.setValue(matchComboBoxItem(values, fetishValue));
+        for(int i = 0; i < fetishDesires.getLength(); i++){
+            if(fetishDesires.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = fetishDesires.item(i).getAttributes();
+                String fetishType = attr.getNamedItem("fetish").getTextContent();
+                String fetishId = fetishType + "$desire";
+                String fetishValue = attr.getNamedItem("desire").getTextContent();
+                @SuppressWarnings("unchecked")
+                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
+                ObservableList<Attribute> values = cb.getItems();
+                cb.setValue(matchComboBoxItem(values, fetishValue));
+            }
         }
     }
 
@@ -2255,13 +2412,65 @@ public class Controller{
      */
     private void setFieldsFetishExperience(Node fetishesNode){
         NodeList fetishExp = fetishesNode.getChildNodes();
-        for(int i = 1; i < fetishExp.getLength() - 1; i += 2){
-            NamedNodeMap attr = fetishExp.item(i).getAttributes();
-            String fetishType = attr.getNamedItem("fetish").getTextContent();
-            String fetishId = fetishType + "$exp";
-            String fetishValue = attr.getNamedItem("experience").getTextContent();
-            TextField tf = (TextField) namespace.get(fetishId);
-            tf.setText(fetishValue);
+        for(int i = 0; i < fetishExp.getLength(); i++){
+            if(fetishExp.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = fetishExp.item(i).getAttributes();
+                String fetishType = attr.getNamedItem("fetish").getTextContent();
+                String fetishId = fetishType + "$exp";
+                String fetishValue = attr.getNamedItem("experience").getTextContent();
+                TextField tf = (TextField) namespace.get(fetishId);
+                tf.setText(fetishValue);
+            }
+        }
+    }
+
+    private void setFieldsKnownSpells(Node spellNode){
+        String partialId = "spells$";
+        NodeList spells = spellNode.getChildNodes();
+        for(int i = 0; i < spells.getLength(); i++){
+            if(spells.item(i).getNodeType() == Node.ELEMENT_NODE){
+                String type = spells.item(i).getAttributes().getNamedItem("type").getTextContent();
+                String id = partialId + type;
+                @SuppressWarnings("unchecked")
+                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(id);
+                ObservableList<Attribute> spellTiers = cb.getItems();
+                cb.setValue(spellTiers.get(1));
+                spellMap.replace(type, (SpellTier) spellTiers.get(1));
+            }
+        }
+    }
+
+    private void setFieldsSpellUpgrades(Node spellNode){
+        String partialId = "spells$";
+        NodeList spells = spellNode.getChildNodes();
+        for(int i = 0; i < spells.getLength(); i++){
+            if(spells.item(i).getNodeType() == Node.ELEMENT_NODE){
+                String value = spells.item(i).getAttributes().getNamedItem("type").getTextContent();
+                if(value.endsWith("_CLEAN")){
+                    continue;
+                }
+                String type = SpellTier.readType(value);
+                String id = partialId + type;
+                @SuppressWarnings("unchecked")
+                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(id);
+                ObservableList<Attribute> spellTiers = cb.getItems();
+                Attribute tier = matchComboBoxItem(spellTiers, value);
+                cb.setValue(tier);
+                spellMap.replace(type, (SpellTier) tier);
+            }
+        }
+    }
+
+    private void setFieldsSpellUpgradePoints(Node spellNode){
+        String idPartial = "spellUpgradePoints$";
+        NodeList schools = spellNode.getChildNodes();
+        for(int i = 0; i < schools.getLength(); i++){
+            if(schools.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = schools.item(i).getAttributes();
+                String id = idPartial + attr.getNamedItem("school").getTextContent();
+                TextField tf = (TextField) namespace.get(id);
+                tf.setText(attr.getNamedItem("points").getTextContent());
+            }
         }
     }
 
@@ -2454,7 +2663,7 @@ public class Controller{
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList nodeList = (NodeList) xPath.evaluate("//text()[normalize-space()='']",
                     saveFile, XPathConstants.NODESET);
-            for(int i = 0; i < nodeList.getLength(); ++i){
+            for(int i = 0; i < nodeList.getLength(); i++){
                 Node node = nodeList.item(i);
                 node.getParentNode().removeChild(node);
             }
