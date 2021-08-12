@@ -2673,8 +2673,8 @@ public class Controller{
             }
             //Saves xml to file
             DOMSource source = new DOMSource(saveFile);
-            StreamResult sr = new StreamResult(f);
-            tf.transform(source, sr);
+            StreamResult result = new StreamResult(f);
+            tf.transform(source, result);
         }
         catch(TransformerException | XPathExpressionException e){
             e.printStackTrace();
