@@ -114,8 +114,8 @@ public class Controller{
             "FETISH_KINK_GIVING$exp", "FETISH_KINK_RECEIVING$exp", "FETISH_SADIST$exp", "FETISH_MASOCHIST$exp",
             "FETISH_NON_CON_DOM$exp", "FETISH_NON_CON_SUB$exp", "FETISH_DENIAL$exp", "FETISH_DENIAL_SELF$exp",
             "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp", "FETISH_CROSS_DRESSER$exp",
-            "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "spellUpgradePoints$EARTH", "spellUpgradePoints$WATER",
-            "spellUpgradePoints$FIRE", "spellUpgradePoints$AIR", "spellUpgradePoints$ARCANE"};
+            "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp", "spellUpgradePoints$EARTH",
+            "spellUpgradePoints$WATER", "spellUpgradePoints$FIRE", "spellUpgradePoints$AIR", "spellUpgradePoints$ARCANE"};
 
     /**
      * String array of all TextField ids using a double data type
@@ -159,13 +159,13 @@ public class Controller{
             "FETISH_SADIST$desire", "FETISH_MASOCHIST$desire", "FETISH_NON_CON_DOM$desire", "FETISH_NON_CON_SUB$desire",
             "FETISH_DENIAL$desire", "FETISH_DENIAL_SELF$desire", "FETISH_VOYEURIST$desire", "FETISH_EXHIBITIONIST$desire",
             "FETISH_BIMBO$desire", "FETISH_CROSS_DRESSER$desire", "FETISH_MASTURBATION$desire", "FETISH_INCEST$desire",
-            "spells$SLAM", "spells$TELEKENETIC_SHOWER", "spells$STONE_SHELL", "spells$ELEMENTAL_EARTH", "spells$ICE_SHARD",
-            "spells$RAIN_CLOUD", "spells$SOOTHING_WATERS", "spells$ELEMENTAL_WATER", "spells$FIREBALL", "spells$FLASH",
-            "spells$CLOAK_OF_FLAMES", "spells$ELEMENTAL_FIRE", "spells$POISON_VAPOURS", "spells$VACUUM",
-            "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR", "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION",
-            "spells$ARCANE_CLOUD", "spells$CLEANSE", "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND",
-            "spells$ELEMENTAL_ARCANE"};
-
+            "FETISH_SIZE_QUEEN$desire", "spells$SLAM", "spells$TELEKENETIC_SHOWER", "spells$STONE_SHELL",
+            "spells$ELEMENTAL_EARTH", "spells$ICE_SHARD", "spells$RAIN_CLOUD", "spells$SOOTHING_WATERS",
+            "spells$ELEMENTAL_WATER", "spells$FIREBALL", "spells$FLASH", "spells$CLOAK_OF_FLAMES", "spells$ELEMENTAL_FIRE",
+            "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR",
+            "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD", "spells$CLEANSE",
+            "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE"};
+    //TODO: Create reset method for resetting certain fields so they don't carry over
     /**
      * ObservableList of all sexual orientations in the game
      */
@@ -1126,7 +1126,7 @@ public class Controller{
         comboBoxValues.add(facialHairTypes);
         comboBoxValues.add(assHairTypes);
         comboBoxValues.add(underarmHairTypes);
-        for(int i = 0; i < 40; i++){ //The 40 fetishes uses the same values for desire
+        for(int i = 0; i < 41; i++){ //The 41 fetishes uses the same values for desire
             comboBoxValues.add(desireTypes);
         }
         comboBoxValues.add(slamSpellTiers);
@@ -2072,21 +2072,21 @@ public class Controller{
                         }
                     }
                 }
-                removeHigherTierSpells(tier);
+                removeHigherTierSpells(tier, false);
             }
             case 0 -> { //Base Spell
                 addBaseSpell(tier);
-                removeHigherTierSpells(tier);
+                removeHigherTierSpells(tier, true);
             }
             case 1, 2 -> { //Upgrades 1 and 2
                 addBaseSpell(tier);
-                removeHigherTierSpells(tier);
+                removeHigherTierSpells(tier, true);
                 addLowerTierSpells(tier);
             }
             case 3 -> { //Upgrade 3 (branching in the case of Elemental spell or 3A in the case of Steal spell)
                 addBaseSpell(tier);
                 if(tier.getType().equals("STEAL")){
-                    removeHigherTierSpells(tier);
+                    removeHigherTierSpells(tier, true);
                 }
                 addLowerTierSpells(tier);
             }
@@ -2118,7 +2118,7 @@ public class Controller{
         }
     }
 
-    private void removeHigherTierSpells(SpellTier tier){
+    private void removeHigherTierSpells(SpellTier tier, boolean owned){
         NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
         for(int i = 0; i < spellUpgrades.getLength(); i++){
             if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
@@ -2127,7 +2127,10 @@ public class Controller{
                 if(spellType.startsWith(tier.getType())){
                     int upgradeTier = SpellTier.readTier(spellUpgrades.item(i).getAttributes().getNamedItem("type").getTextContent());
                     if(tier.getTier() < upgradeTier){
-                        if(!spellType.endsWith("CLEAN")){
+                        if(owned && !spellType.endsWith("CLEAN")){
+                            removeNode(spell);
+                        }
+                        else if(!owned){
                             removeNode(spell);
                         }
                     }
