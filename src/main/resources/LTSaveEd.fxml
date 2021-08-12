@@ -1956,6 +1956,7 @@
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
                            <VBox>
@@ -2834,6 +2835,28 @@
                                        <Label text="Exp:" />
                                        <TextField fx:id="FETISH_INCEST$exp" text="0" />
                                        <CheckBox fx:id="FETISH_INCEST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox layoutX="24.0" layoutY="1388.0" GridPane.rowIndex="20">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Size Queen">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FETISH_SIZE_QUEEN$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_SIZE_QUEEN$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_SIZE_QUEEN$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
                                     </children>
                                  </HBox>
                               </children>
