@@ -86,7 +86,7 @@ public class Controller{
      * Otherwise, for some reason, removeHigherTierSpells would be called when the ComboBox has the base value set
      * resulting in all spell upgrades being deleted from the save
      */
-    private boolean spellFieldsSet = false;
+    private boolean fieldsSet = false;
 
     /**
      * String array of all TextField ids using an int data type
@@ -174,6 +174,94 @@ public class Controller{
             "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD", "spells$CLEANSE",
             "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE"};
     //TODO: Create reset method for resetting certain fields so they don't carry over
+
+    private final String[] resetCheckBoxIds = {"FETISH_DOMINANT$owned", "FETISH_SUBMISSIVE$owned", "FETISH_VAGINAL_GIVING$owned",
+            "FETISH_VAGINAL_RECEIVING$owned", "FETISH_PENIS_GIVING$owned", "FETISH_PENIS_RECEIVING$owned",
+            "FETISH_ANAL_GIVING$owned", "FETISH_ANAL_RECEIVING$owned", "FETISH_BREASTS_OTHERS$owned",
+            "FETISH_BREASTS_SELF$owned", "FETISH_LACTATION_OTHERS$owned", "FETISH_LACTATION_SELF$owned",
+            "FETISH_ORAL_RECEIVING$owned", "FETISH_ORAL_GIVING$owned", "FETISH_LEG_LOVER$owned",
+            "FETISH_STRUTTER$owned", "FETISH_FOOT_GIVING$owned", "FETISH_FOOT_RECEIVING$owned",
+            "FETISH_CUM_STUD$owned", "FETISH_CUM_ADDICT$owned", "FETISH_DEFLOWERING$owned", "FETISH_PURE_VIRGIN$owned",
+            "FETISH_IMPREGNATION$owned", "FETISH_PREGNANCY$owned", "FETISH_TRANSFORMATION_GIVING$owned",
+            "FETISH_TRANSFORMATION_RECEIVING$owned", "FETISH_KINK_GIVING$owned", "FETISH_KINK_RECEIVING$owned",
+            "FETISH_SADIST$owned", "FETISH_MASOCHIST$owned", "FETISH_NON_CON_DOM$owned", "FETISH_NON_CON_SUB$owned",
+            "FETISH_DENIAL$owned", "FETISH_DENIAL_SELF$owned", "FETISH_VOYEURIST$owned", "FETISH_EXHIBITIONIST$owned",
+            "FETISH_BIMBO$owned", "FETISH_CROSS_DRESSER$owned", "FETISH_MASTURBATION$owned", "FETISH_INCEST$owned",
+            "FETISH_SIZE_QUEEN$owned", "body$mouth$mouthModifiers$PUFFY", "body$mouth$mouthModifiers$TENTACLED",
+            "body$mouth$mouthModifiers$RIBBED", "body$mouth$mouthModifiers$MUSCLE_CONTROL",
+            "body$tongue$tongueModifiers$RIBBED", "body$tongue$tongueModifiers$TENTACLED",
+            "body$tongue$tongueModifiers$BIFURCATED", "body$tongue$tongueModifiers$WIDE",
+            "body$tongue$tongueModifiers$FLAT", "body$tongue$tongueModifiers$STRONG",
+            "body$tongue$tongueModifiers$TAPERED", "body$nipples$nippleModifiers$PUFFY",
+            "body$nipples$nippleModifiers$TENTACLED", "body$nipples$nippleModifiers$RIBBED",
+            "body$nipples$nippleModifiers$MUSCLE_CONTROL", "body$milk$milkModifiers$MUSKY",
+            "body$milk$milkModifiers$VISCOUS", "body$milk$milkModifiers$STICKY", "body$milk$milkModifiers$SLIMY",
+            "body$milk$milkModifiers$BUBBLING", "body$milk$milkModifiers$MINERAL_OIL", "body$milk$milkModifiers$ALCOHOLIC",
+            "body$milk$milkModifiers$ADDICTIVE", "body$milk$milkModifiers$HALLUCINOGENIC",
+            "body$nipplesCrotch$nippleModifiers$PUFFY", "body$nipplesCrotch$nippleModifiers$TENTACLED",
+            "body$nipplesCrotch$nippleModifiers$RIBBED", "body$nipplesCrotch$nippleModifiers$MUSCLE_CONTROL",
+            "body$milkCrotch$milkModifiers$MUSKY", "body$milkCrotch$milkModifiers$VISCOUS",
+            "body$milkCrotch$milkModifiers$STICKY", "body$milkCrotch$milkModifiers$SLIMY",
+            "body$milkCrotch$milkModifiers$BUBBLING", "body$milkCrotch$milkModifiers$MINERAL_OIL",
+            "body$milkCrotch$milkModifiers$ALCOHOLIC", "body$milkCrotch$milkModifiers$ADDICTIVE",
+            "body$milkCrotch$milkModifiers$HALLUCINOGENIC", "body$penis$penisModifiers$SHEATHED",
+            "body$penis$penisModifiers$RIBBED", "body$penis$penisModifiers$TENTACLED", "body$penis$penisModifiers$KNOTTED",
+            "body$penis$penisModifiers$BLUNT", "body$penis$penisModifiers$TAPERED", "body$penis$penisModifiers$FLARED",
+            "body$penis$penisModifiers$BARBED", "body$penis$penisModifiers$VEINY", "body$penis$penisModifiers$PREHENSILE",
+            "body$penis$penisModifiers$OVIPOSITOR", "body$penis$urethraModifiers$PUFFY",
+            "body$penis$urethraModifiers$TENTACLED", "body$penis$urethraModifiers$RIBBED",
+            "body$penis$urethraModifiers$MUSCLE_CONTROL", "body$cum$cumModifiers$MUSKY", "body$cum$cumModifiers$VISCOUS",
+            "body$cum$cumModifiers$STICKY", "body$cum$cumModifiers$SLIMY", "body$cum$cumModifiers$BUBBLING",
+            "body$cum$cumModifiers$MINERAL_OIL", "body$cum$cumModifiers$ALCOHOLIC", "body$cum$cumModifiers$ADDICTIVE",
+            "body$cum$cumModifiers$HALLUCINOGENIC", "body$vagina$vaginaModifiers$PUFFY",
+            "body$vagina$vaginaModifiers$TENTACLED", "body$vagina$vaginaModifiers$RIBBED",
+            "body$vagina$vaginaModifiers$MUSCLE_CONTROL", "body$vagina$clitModifiers$SHEATHED",
+            "body$vagina$clitModifiers$RIBBED", "body$vagina$clitModifiers$TENTACLED", "body$vagina$clitModifiers$KNOTTED",
+            "body$vagina$clitModifiers$BLUNT", "body$vagina$clitModifiers$TAPERED", "body$vagina$clitModifiers$FLARED",
+            "body$vagina$clitModifiers$BARBED", "body$vagina$clitModifiers$VEINY", "body$vagina$clitModifiers$PREHENSILE",
+            "body$vagina$clitModifiers$OVIPOSITOR", "body$girlcum$girlcumModifiers$MUSKY",
+            "body$girlcum$girlcumModifiers$VISCOUS", "body$girlcum$girlcumModifiers$STICKY",
+            "body$girlcum$girlcumModifiers$SLIMY", "body$girlcum$girlcumModifiers$BUBBLING",
+            "body$girlcum$girlcumModifiers$MINERAL_OIL", "body$girlcum$girlcumModifiers$ALCOHOLIC",
+            "body$girlcum$girlcumModifiers$ADDICTIVE", "body$girlcum$girlcumModifiers$HALLUCINOGENIC",
+            "body$vagina$urethraModifiers$PUFFY", "body$vagina$urethraModifiers$TENTACLED",
+            "body$vagina$urethraModifiers$RIBBED", "body$vagina$urethraModifiers$MUSCLE_CONTROL",
+            "body$anus$anusModifiers$PUFFY", "body$anus$anusModifiers$TENTACLED", "body$anus$anusModifiers$RIBBED",
+            "body$anus$anusModifiers$MUSCLE_CONTROL"};
+
+    private final String[] resetComboBoxIds = {"FETISH_DOMINANT$desire", "FETISH_SUBMISSIVE$desire",
+            "FETISH_VAGINAL_GIVING$desire", "FETISH_VAGINAL_RECEIVING$desire", "FETISH_PENIS_GIVING$desire",
+            "FETISH_PENIS_RECEIVING$desire", "FETISH_ANAL_GIVING$desire", "FETISH_ANAL_RECEIVING$desire",
+            "FETISH_BREASTS_OTHERS$desire", "FETISH_BREASTS_SELF$desire", "FETISH_LACTATION_OTHERS$desire",
+            "FETISH_LACTATION_SELF$desire", "FETISH_ORAL_RECEIVING$desire", "FETISH_ORAL_GIVING$desire",
+            "FETISH_LEG_LOVER$desire", "FETISH_STRUTTER$desire", "FETISH_FOOT_GIVING$desire",
+            "FETISH_FOOT_RECEIVING$desire", "FETISH_CUM_STUD$desire", "FETISH_CUM_ADDICT$desire",
+            "FETISH_DEFLOWERING$desire", "FETISH_PURE_VIRGIN$desire", "FETISH_IMPREGNATION$desire",
+            "FETISH_PREGNANCY$desire", "FETISH_TRANSFORMATION_GIVING$desire", "FETISH_TRANSFORMATION_RECEIVING$desire",
+            "FETISH_KINK_GIVING$desire", "FETISH_KINK_RECEIVING$desire", "FETISH_SADIST$desire",
+            "FETISH_MASOCHIST$desire", "FETISH_NON_CON_DOM$desire", "FETISH_NON_CON_SUB$desire","FETISH_DENIAL$desire",
+            "FETISH_DENIAL_SELF$desire", "FETISH_VOYEURIST$desire", "FETISH_EXHIBITIONIST$desire", "FETISH_BIMBO$desire",
+            "FETISH_CROSS_DRESSER$desire", "FETISH_MASTURBATION$desire", "FETISH_INCEST$desire",
+            "FETISH_SIZE_QUEEN$desire", "spells$SLAM", "spells$TELEKENETIC_SHOWER", "spells$STONE_SHELL",
+            "spells$ELEMENTAL_EARTH", "spells$ICE_SHARD", "spells$RAIN_CLOUD", "spells$SOOTHING_WATERS",
+            "spells$ELEMENTAL_WATER", "spells$FIREBALL", "spells$FLASH", "spells$CLOAK_OF_FLAMES",
+            "spells$ELEMENTAL_FIRE", "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS",
+            "spells$ELEMENTAL_AIR", "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD",
+            "spells$CLEANSE", "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE"};
+
+    private final String[] resetIntTextFieldsIds = {"FETISH_DOMINANT$exp", "FETISH_SUBMISSIVE$exp",
+            "FETISH_VAGINAL_GIVING$exp", "FETISH_VAGINAL_RECEIVING$exp", "FETISH_PENIS_GIVING$exp",
+            "FETISH_PENIS_RECEIVING$exp", "FETISH_ANAL_GIVING$exp", "FETISH_ANAL_RECEIVING$exp",
+            "FETISH_BREASTS_OTHERS$exp", "FETISH_BREASTS_SELF$exp", "FETISH_LACTATION_OTHERS$exp",
+            "FETISH_LACTATION_SELF$exp", "FETISH_ORAL_RECEIVING$exp", "FETISH_ORAL_GIVING$exp", "FETISH_LEG_LOVER$exp",
+            "FETISH_STRUTTER$exp", "FETISH_FOOT_GIVING$exp", "FETISH_FOOT_RECEIVING$exp", "FETISH_CUM_STUD$exp",
+            "FETISH_CUM_ADDICT$exp", "FETISH_DEFLOWERING$exp", "FETISH_PURE_VIRGIN$exp", "FETISH_IMPREGNATION$exp",
+            "FETISH_PREGNANCY$exp", "FETISH_TRANSFORMATION_GIVING$exp", "FETISH_TRANSFORMATION_RECEIVING$exp",
+            "FETISH_KINK_GIVING$exp", "FETISH_KINK_RECEIVING$exp", "FETISH_SADIST$exp", "FETISH_MASOCHIST$exp",
+            "FETISH_NON_CON_DOM$exp", "FETISH_NON_CON_SUB$exp", "FETISH_DENIAL$exp", "FETISH_DENIAL_SELF$exp",
+            "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp", "FETISH_CROSS_DRESSER$exp",
+            "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp"};
+
     /**
      * ObservableList of all sexual orientations in the game
      */
@@ -1470,7 +1558,7 @@ public class Controller{
          */
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-            if(!newValue){  // check if focus gained or lost
+            if(!newValue && fieldsSet){  // check if focus gained or lost and that the fields initially have the proper value
                 textInputControl.setText(getFormattedText(textInputControl.getText()));
             }
         }
@@ -1941,38 +2029,40 @@ public class Controller{
      */
     @FXML
     private void updateXmlBoolean(ActionEvent event){
-        String fxId = getId(event);
-        CheckBox cb = (CheckBox) namespace.get(fxId);
-        Node value = getValueNode(event);
-        if(fxId.startsWith("FETISH_")){
-            if(!cb.isSelected()){
-                assert value != null;
-                value.getParentNode().removeChild(value);
-                System.out.println("Removed fetish");
+        if(fieldsSet){
+            String fxId = getId(event);
+            CheckBox cb = (CheckBox) namespace.get(fxId);
+            Node value = getValueNode(event);
+            if(fxId.startsWith("FETISH_")){
+                if(!cb.isSelected()){
+                    assert value != null;
+                    value.getParentNode().removeChild(value);
+                    System.out.println("Removed fetish");
+                }
+                else{
+                    Element fetish = saveFile.createElement("fetish");
+                    fetish.setAttribute("type", fxId.split("\\$")[0]);
+                    Node fetishes = getValueNodeParent(event);
+                    fetishes.appendChild(fetish);
+                    System.out.println("Added fetish");
+                }
             }
             else{
-                Element fetish = saveFile.createElement("fetish");
-                fetish.setAttribute("type", fxId.split("\\$")[0]);
-                Node fetishes = getValueNodeParent(event);
-                fetishes.appendChild(fetish);
-                System.out.println("Added fetish");
+                try{
+                    assert value != null;
+                    value.setTextContent("" + cb.isSelected());
+                }
+                catch(NullPointerException e){ //Modifier attributes are deleted when false by the game
+                    value = getValueNodeParent(event);
+                    ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
+                }
+                String[] idParts = fxId.split("\\$");
+                if(idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")){
+                    checkboxFlaredTaperedToggle(fxId);
+                }
             }
+            event.consume();
         }
-        else{
-            try{
-                assert value != null;
-                value.setTextContent("" + cb.isSelected());
-            }
-            catch(NullPointerException e){ //Modifier attributes are deleted when false by the game
-                value = getValueNodeParent(event);
-                ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
-            }
-            String[] idParts = fxId.split("\\$");
-            if(idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")){
-                checkboxFlaredTaperedToggle(fxId);
-            }
-        }
-        event.consume();
     }
 
     /**
@@ -2097,7 +2187,7 @@ public class Controller{
     }
 
     private void removeHigherTierSpells(SpellTier tier, boolean owned){
-        if(spellFieldsSet){
+        if(fieldsSet){
             NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
             for(int i = 0; i < spellUpgrades.getLength(); i++){
                 if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
@@ -2186,11 +2276,35 @@ public class Controller{
         }
     }
 
+    private void resetFields(){
+        fieldsSet = false;
+        for(String resetIntTextFieldsId : resetIntTextFieldsIds){
+            TextField tf = (TextField) namespace.get(resetIntTextFieldsId);
+            tf.setText("0");
+        }
+        for(String resetComboBoxId : resetComboBoxIds){
+            @SuppressWarnings("unchecked")
+            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(resetComboBoxId);
+            ObservableList<Attribute> items = cb.getItems();
+            if(resetComboBoxId.startsWith("FETISH")){
+                cb.setValue(items.get(2));
+            }
+            else{
+                cb.setValue(items.get(0));
+            }
+        }
+        for(String resetCheckBoxId : resetCheckBoxIds){
+            CheckBox cb = (CheckBox) namespace.get(resetCheckBoxId);
+            cb.setSelected(false);
+        }
+    }
+
     /**
      * Reads data from xml save file and sSets all fields with the selected character data
      */
     private void setFields(){
         if(fileLoaded){
+            resetFields();
             NodeList attributeNodes = getAttributeNodes();
             for(int i = 0; i < attributeNodes.getLength(); i++){
                 if(attributeNodes.item(i).getNodeType() == Node.ELEMENT_NODE){ //Most likely there will be Text Nodes that must be skipped
@@ -2318,6 +2432,7 @@ public class Controller{
             if(!listenersAdded){
                 addListeners();
             }
+            fieldsSet = true;
         }
     }
 
@@ -2376,17 +2491,19 @@ public class Controller{
      * @param fetishesNode fetishDesire Node in the save file
      */
     private void setFieldsFetishDesires(Node fetishesNode){
-        NodeList fetishDesires = fetishesNode.getChildNodes();
-        for(int i = 0; i < fetishDesires.getLength(); i++){
-            if(fetishDesires.item(i).getNodeType() == Node.ELEMENT_NODE){
-                NamedNodeMap attr = fetishDesires.item(i).getAttributes();
-                String fetishType = attr.getNamedItem("fetish").getTextContent();
-                String fetishId = fetishType + "$desire";
-                String fetishValue = attr.getNamedItem("desire").getTextContent();
-                @SuppressWarnings("unchecked")
-                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
-                ObservableList<Attribute> values = cb.getItems();
-                cb.setValue(matchComboBoxItem(values, fetishValue));
+        if(fieldsSet){
+            NodeList fetishDesires = fetishesNode.getChildNodes();
+            for(int i = 0; i < fetishDesires.getLength(); i++){
+                if(fetishDesires.item(i).getNodeType() == Node.ELEMENT_NODE){
+                    NamedNodeMap attr = fetishDesires.item(i).getAttributes();
+                    String fetishType = attr.getNamedItem("fetish").getTextContent();
+                    String fetishId = fetishType + "$desire";
+                    String fetishValue = attr.getNamedItem("desire").getTextContent();
+                    @SuppressWarnings("unchecked")
+                    ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
+                    ObservableList<Attribute> values = cb.getItems();
+                    cb.setValue(matchComboBoxItem(values, fetishValue));
+                }
             }
         }
     }
@@ -2443,7 +2560,6 @@ public class Controller{
                 cb.setValue(tier);
             }
         }
-        spellFieldsSet = true;
     }
 
     private void setFieldsSpellUpgradePoints(Node spellNode){
