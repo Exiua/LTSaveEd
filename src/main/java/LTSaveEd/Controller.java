@@ -1051,8 +1051,6 @@ public class Controller{
             new SpellTier("Servant of Arcane", "ELEMENTAL_ARCANE_3A"),
             new SpellTier("Binding of Arcane", "ELEMENTAL_ARCANE_3B"));
 
-    private final HashMap<String, SpellTier> spellMap = new HashMap<>();
-
     /**
      * ArrayList of all perks in the game
      */
@@ -1160,7 +1158,6 @@ public class Controller{
         initializeFootStructures();
         initializeGenitalArrangements();
         initializeLegTypes();
-        initializeSpellMap();
     }
 
     /**
@@ -1272,33 +1269,6 @@ public class Controller{
                 new LegTypeAttr("Spider", "charisma_spider_leg", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
                 new LegTypeAttr("Squirrel", "SQUIRREL_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
                 new LegTypeAttr("Wolf", "WOLF_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE")));
-    }
-
-    private void initializeSpellMap(){
-        spellMap.put("SLAM", (SpellTier) slamSpellTiers.get(0));
-        spellMap.put("TELEKENETIC_SHOWER", (SpellTier) telekeneticShowerSpellTiers.get(0));
-        spellMap.put("STONE_SHELL", (SpellTier) stoneShellSpellTiers.get(0));
-        spellMap.put("ELEMENTAL_EARTH", (SpellTier) elementalEarthSpellTiers.get(0));
-        spellMap.put("ICE_SHARD", (SpellTier) iceShardSpellTiers.get(0));
-        spellMap.put("RAIN_CLOUD", (SpellTier) rainCloudSpellTiers.get(0));
-        spellMap.put("SOOTHING_WATERS", (SpellTier) soothingWatersSpellTiers.get(0));
-        spellMap.put("ELEMENTAL_WATER", (SpellTier) elementalWaterSpellTiers.get(0));
-        spellMap.put("FIREBALL", (SpellTier) fireballSpellTiers.get(0));
-        spellMap.put("FLASH", (SpellTier) flashSpellTiers.get(0));
-        spellMap.put("CLOAK_OF_FLAMES", (SpellTier) cloakOfFlamesSpellTiers.get(0));
-        spellMap.put("ELEMENTAL_FIRE", (SpellTier) elementalFireSpellTiers.get(0));
-        spellMap.put("POISON_VAPOURS", (SpellTier) poisonVapoursSpellTiers.get(0));
-        spellMap.put("VACUUM", (SpellTier) vacuumSpellTiers.get(0));
-        spellMap.put("PROTECTIVE_GUSTS", (SpellTier) protectiveGustsSpellTiers.get(0));
-        spellMap.put("ELEMENTAL_AIR", (SpellTier) elementalAirSpellTiers.get(0));
-        spellMap.put("ARCANE_AROUSAL", (SpellTier) arcaneArousalSpellTiers.get(0));
-        spellMap.put("TELEPATHIC_COMMUNICATION", (SpellTier) telepathicCommunicationSpellTiers.get(0));
-        spellMap.put("ARCANE_CLOUD", (SpellTier) arcaneCloudSpellTiers.get(0));
-        spellMap.put("CLEANSE", (SpellTier) cleanseSpellTiers.get(0));
-        spellMap.put("STEAL", (SpellTier) stealSpellTiers.get(0));
-        spellMap.put("TELEPORT", (SpellTier) teleportSpellTiers.get(0));
-        spellMap.put("LILITHS_COMMAND", (SpellTier) lilithsCommandSpellTiers.get(0));
-        spellMap.put("ELEMENTAL_ARCANE", (SpellTier) elementalArcaneSpellTiers.get(0));
     }
 
     //TODO
@@ -2445,7 +2415,6 @@ public class Controller{
                 ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(id);
                 ObservableList<Attribute> spellTiers = cb.getItems();
                 cb.setValue(spellTiers.get(1));
-                spellMap.replace(type, (SpellTier) spellTiers.get(1));
             }
         }
     }
@@ -2466,7 +2435,6 @@ public class Controller{
                 ObservableList<Attribute> spellTiers = cb.getItems();
                 Attribute tier = matchComboBoxItem(spellTiers, value);
                 cb.setValue(tier);
-                spellMap.replace(type, (SpellTier) tier);
             }
         }
         spellFieldsSet = true;
