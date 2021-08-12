@@ -80,6 +80,12 @@ public class Controller{
      */
     private boolean listenersAdded = false;
 
+    /**
+     * Boolean tracking whether setFieldsSpellUpgrades was run
+     * <p>
+     * Otherwise, for some reason, removeHigherTierSpells would be called when the ComboBox has the base value set
+     * resulting in all spell upgrades being deleted from the save
+     */
     private boolean spellFieldsSet = false;
 
     /**
