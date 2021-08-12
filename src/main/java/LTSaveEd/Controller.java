@@ -2144,7 +2144,7 @@ public class Controller{
             if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
                 Node spell = spellUpgrades.item(i);
                 String spellType = spell.getAttributes().getNamedItem("type").getTextContent();
-                if(spellType.equals(tier.getType())){
+                if(spellType.startsWith(tier.getType())){
                     if(!spellType.endsWith("CLEAN")){
                         count++;
                     }
@@ -2167,6 +2167,7 @@ public class Controller{
                 value = tier.getValue();
             }
             spellUpgrade.setAttribute("type", value);
+            spellUpgradesNode.appendChild(spellUpgrade);
         }
     }
 
