@@ -80,6 +80,8 @@ public class Controller{
      */
     private boolean listenersAdded = false;
 
+    private boolean spellFieldsSet = false;
+
     /**
      * String array of all TextField ids using an int data type
      */
@@ -2119,19 +2121,23 @@ public class Controller{
     }
 
     private void removeHigherTierSpells(SpellTier tier, boolean owned){
-        NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
-        for(int i = 0; i < spellUpgrades.getLength(); i++){
-            if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
-                Node spell = spellUpgrades.item(i);
-                String spellType = spell.getAttributes().getNamedItem("type").getTextContent();
-                if(spellType.startsWith(tier.getType())){
-                    int upgradeTier = SpellTier.readTier(spellUpgrades.item(i).getAttributes().getNamedItem("type").getTextContent());
-                    if(tier.getTier() < upgradeTier){
-                        if(owned && !spellType.endsWith("CLEAN")){
-                            removeNode(spell);
-                        }
-                        else if(!owned){
-                            removeNode(spell);
+        if(spellFieldsSet){
+            NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
+            for(int i = 0; i < spellUpgrades.getLength(); i++){
+                if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
+                    Node spell = spellUpgrades.item(i);
+                    String spellType = spell.getAttributes().getNamedItem("type").getTextContent();
+                    if(spellType.startsWith(tier.getType())){
+                        int upgradeTier = SpellTier.readTier(spellUpgrades.item(i).getAttributes().getNamedItem("type").getTextContent());
+                        if(tier.getTier() < upgradeTier){
+                            if(owned && !spellType.endsWith("CLEAN")){
+                                removeNode(spell);
+                                i--;
+                            }
+                            else if(!owned){
+                                removeNode(spell);
+                                i--;
+                            }
                         }
                     }
                 }
@@ -2463,6 +2469,7 @@ public class Controller{
                 spellMap.replace(type, (SpellTier) tier);
             }
         }
+        spellFieldsSet = true;
     }
 
     private void setFieldsSpellUpgradePoints(Node spellNode){
