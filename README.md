@@ -3,7 +3,7 @@
 
 # About
 
-LTSaveEd is a save editor for the game _Lilith's Throne_
+LTSaveEd is a save editor for the game _Lilith's Throne_ using Java 14 and JavaFx 16.
 
 ## How To Use
 
