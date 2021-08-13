@@ -173,7 +173,8 @@ public class Controller{
             "spells$ELEMENTAL_WATER", "spells$FIREBALL", "spells$FLASH", "spells$CLOAK_OF_FLAMES", "spells$ELEMENTAL_FIRE",
             "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR",
             "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD", "spells$CLEANSE",
-            "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE"};
+            "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE",
+            "core$monthOfBirth$value"};
 
     /**
      * String array of ids for all CheckBoxes that would carry over if not reset
@@ -1155,6 +1156,14 @@ public class Controller{
             new SpellTier("Servant of Arcane", "ELEMENTAL_ARCANE_3A"),
             new SpellTier("Binding of Arcane", "ELEMENTAL_ARCANE_3B"));
 
+    private final ObservableList<Attribute> months = FXCollections.observableArrayList(
+            new Attribute("January", "JANUARY"), new Attribute("February", "FEBRUARY"),
+            new Attribute("March", "MARCH"), new Attribute("April", "APRIL"),
+            new Attribute("May", "MAY"), new Attribute("June", "JUNE"),
+            new Attribute("July", "JULY"), new Attribute("August", "AUGUST"),
+            new Attribute("September", "SEPTEMBER"), new Attribute("October", "OCTOBER"),
+            new Attribute("November", "NOVEMBER"), new Attribute("December", "DECEMBER"));
+
     /**
      * ArrayList of all perks in the game
      */
@@ -1257,6 +1266,7 @@ public class Controller{
         comboBoxValues.add(teleportSpellTiers);
         comboBoxValues.add(lilithsCommandSpellTiers);
         comboBoxValues.add(elementalArcaneSpellTiers);
+        comboBoxValues.add(months);
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
@@ -1697,10 +1707,51 @@ public class Controller{
                         return oldValue;
                     }
                 }
+                case DATE -> {
+                    try{
+                        @SuppressWarnings("unchecked")
+                        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get("core$monthOfBirth$value");
+                        String month = cb.getValue().getValue();
+                        TextField yearField = (TextField) namespace.get("core$yearOfBirth$value");
+                        int year = Integer.parseInt(yearField.getText());
+                        int monthLimit;
+                        if(month.equals("JANUARY") || month.equals("MARCH")|| month.equals("MAY") ||
+                                month.equals("JULY") || month.equals("AUGUST") || month.equals("OCTOBER") ||
+                                month.equals("DECEMBER")){
+                            monthLimit = 31;
+                        }
+                        else if(month.equals("APRIL") || month.equals("JUNE") || month.equals("SEPTEMBER") ||
+                                month.equals("NOVEMBER")){
+                            monthLimit = 30;
+                        }
+                        else{ //February
+                            monthLimit = isLeapYear(year) ? 29 : 28;
+                        }
+                        int nv = Integer.parseInt(newValue);
+                        newValue = "" + nv; //Removes leading zeroes
+                        if(nv < 1){
+                            return oldValue;
+                        }
+                        if(nv > monthLimit){
+                            return oldValue;
+                        }
+                        value.setTextContent(newValue);
+                        return newValue;
+                    }
+                    catch(NumberFormatException e){
+                        return oldValue;
+                    }
+                }
                 default -> {
                     return null;
                 }
             }
+        }
+
+        public boolean isLeapYear(int year) { //Hopefully this handles all edge cases
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, year);
+            return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
         }
 
         /**
@@ -2808,6 +2859,8 @@ public class Controller{
         ta.focusedProperty().addListener(new TextObjectListener(ta, TextFieldType.STRING));
         TextField hairStyles = (TextField) namespace.get("body$hair$length");
         hairStyles.focusedProperty().addListener(new TextObjectListener(hairStyles, TextFieldType.HAIR));
+        TextField dayOfBirth = (TextField) namespace.get("core$dayOfBirth$value");
+        dayOfBirth.focusedProperty().addListener(new TextObjectListener(dayOfBirth, TextFieldType.DATE));
         for(String intTextFieldId : intTextFieldIds){
             TextField tf = (TextField) namespace.get(intTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT, true));
