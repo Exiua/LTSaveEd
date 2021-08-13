@@ -69,14 +69,10 @@
                      <TextField fx:id="characterInventory$money$value" />
                   </children>
                </HBox>
-                    <HBox layoutX="10.0" layoutY="45.0">
-                        <Label text="Date of Birth: " />
+                    <HBox layoutX="10.0" layoutY="45.0" spacing="10.0">
+                        <Label text="Date of Birth:" />
                         <TextField fx:id="core$yearOfBirth$value" />
-                        <TextField fx:id="core$monthOfBirth$value" layoutX="83.0" layoutY="10.0">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0" />
-                            </HBox.margin>
-                        </TextField>
+                  <ComboBox fx:id="core$monthOfBirth$value" prefWidth="150.0" />
                         <TextField fx:id="core$dayOfBirth$value" layoutX="232.0" layoutY="10.0" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="115.0">
