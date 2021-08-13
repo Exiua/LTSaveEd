@@ -135,7 +135,9 @@ public class Controller{
             "body$nipples$stretchedCapacity", "body$breastsCrotch$storedMilk", "body$nipplesCrotch$capacity",
             "body$nipplesCrotch$stretchedCapacity", "body$penis$capacity", "body$penis$stretchedCapacity",
             "body$testicles$storedCum", "body$vagina$capacity", "body$vagina$stretchedCapacity", "body$tail$length",
-            "body$tentacle$length", "body$spinneret$capacity", "body$spinneret$stretchedCapacity"};
+            "body$tentacle$length", "body$spinneret$capacity", "body$spinneret$stretchedCapacity",
+            "attributes$HEALTH_MAXIMUM", "attributes$MANA_MAXIMUM", "attributes$AROUSAL", "attributes$LUST",
+            "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE", "attributes$MAJOR_CORRUPTION"};
 
     /**
      * String array of all TextField ids using a String data type
@@ -1774,11 +1776,13 @@ public class Controller{
                 return childNode != null ? childNode.getAttributes().getNamedItem("experience") : null;
             }
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
-            if(id[0].equals("characterRelationships")){
-                return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
-            }
-            else if(id[0].equals("spellUpgradePoints")){
-                return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1])).getAttributes().getNamedItem("points");
+            switch(id[0]){
+                case "characterRelationships":
+                    return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
+                case "spellUpgradePoints":
+                    return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1])).getAttributes().getNamedItem("points");
+                case "attributes":
+                    return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1])).getAttributes().getNamedItem("value");
             }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return attr.getAttributes().getNamedItem(id[2]);
@@ -2497,7 +2501,7 @@ public class Controller{
                     NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                     String attributeName = attributeNodes.item(i).getNodeName();
                     switch(attributeName){
-                        case "locationInformation", "tattoos", "attributes", "potionAttributes", "traits",
+                        case "locationInformation", "tattoos", "potionAttributes", "traits",
                                 "specialPerks", "perks", "statusEffects", "knownMoves", "equippedMoves" -> {
                             continue;
                         }
@@ -2537,6 +2541,11 @@ public class Controller{
                         case "spellUpgradePoints" -> {
                             setFieldsSpellUpgradePoints(attributeNodes.item(i));
                             System.out.println("Spell Upgrade Points Fields Set");
+                            continue;
+                        }
+                        case "attributes" -> {
+                            setFieldsAttributes(attributeNodes.item(i));
+                            System.out.println("Attribute Fields Set");
                             continue;
                         }
                     }
@@ -2803,6 +2812,19 @@ public class Controller{
         }
     }
 
+    private void setFieldsAttributes(Node attributesNode){
+        String idPartial = "attributes$";
+        NodeList attributeList = attributesNode.getChildNodes();
+        for(int i = 0; i < attributeList.getLength(); i++){
+            if(attributeList.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = attributeList.item(i).getAttributes();
+                String id = idPartial + attr.getNamedItem("type").getTextContent();
+                TextField tf = (TextField) namespace.get(id);
+                tf.setText(attr.getNamedItem("value").getTextContent());
+            }
+        }
+    }
+
     /**
      * Gets the name of the Npc based on the given npcId
      *
@@ -2820,7 +2842,7 @@ public class Controller{
         return null;
     }
 
-    /* Look into a setField recursive method
+    /* Look into a setField recursive method if possible
     private void setFieldsRec(){
 
     }*/

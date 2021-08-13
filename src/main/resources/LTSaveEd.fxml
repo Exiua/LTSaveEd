@@ -115,6 +115,61 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
+            <VBox layoutX="657.0" layoutY="102.0" prefHeight="487.0" prefWidth="324.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="49.0" prefWidth="324.0">
+                     <children>
+                        <Label text="Attributes:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Health Core: " />
+                        <TextField fx:id="attributes$HEALTH_MAXIMUM" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="59.0">
+                     <children>
+                        <Label text="Mana Core: " />
+                        <TextField fx:id="attributes$MANA_MAXIMUM" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="84.0">
+                     <children>
+                        <Label text="Resting Lust: " />
+                        <TextField fx:id="attributes$AROUSAL" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="109.0">
+                     <children>
+                        <Label text="Lust Core: " />
+                        <TextField fx:id="attributes$LUST" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="134.0">
+                     <children>
+                        <Label text="Physique Core: " />
+                        <TextField fx:id="attributes$MAJOR_PHYSIQUE" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="159.0">
+                     <children>
+                        <Label text="Arcane Core: " />
+                        <TextField fx:id="attributes$MAJOR_ARCANE" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="184.0">
+                     <children>
+                        <Label text="Corruption Core: " />
+                        <TextField fx:id="attributes$MAJOR_CORRUPTION" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
             </AnchorPane>
         </Tab>
         <Tab text="Body">
