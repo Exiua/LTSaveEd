@@ -1957,6 +1957,8 @@
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
                            <VBox>
@@ -2861,6 +2863,82 @@
                                  </HBox>
                               </children>
                            </VBox>
+                           <VBox layoutX="24.0" layoutY="1338.0" GridPane.rowIndex="21">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Switch">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_SWITCH$exp" text="0" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox layoutX="24.0" layoutY="1402.0" GridPane.columnIndex="1" GridPane.rowIndex="21">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Breeder">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_BREEDER$exp" text="0" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox layoutX="24.0" layoutY="38.0" GridPane.rowIndex="22">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Sadomasochist">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_SADOMASOCHIST$exp" text="0" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox layoutX="24.0" layoutY="38.0" GridPane.columnIndex="1" GridPane.rowIndex="22">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Lusty Maiden">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_LUSTY_MAIDEN$exp" text="0" />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
                         </children>
                         <padding>
                            <Insets left="14.0" top="28.0" />
@@ -2929,7 +3007,7 @@
                               <children>
                                  <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
                                     <children>
-                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1010.0" spacing="15.0">
                                           <children>
                                              <VBox alignment="CENTER" spacing="10.0">
                                                 <children>
@@ -2961,6 +3039,13 @@
                                           <children>
                                              <Label text="Spell Points: " />
                                              <TextField fx:id="spellUpgradePoints$WATER" />
+                                          </children>
+                                       </HBox>
+                                       <HBox alignment="CENTER" layoutX="24.0" layoutY="144.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                          <children>
+                                             <Label text="Soothing Waters Optional Spells: " />
+                                             <CheckBox fx:id="spells$SOOTHING_WATERS_1_CLEAN" mnemonicParsing="false" onAction="#updateXmlBoolean" text="Cleansing Waters" />
+                                             <CheckBox fx:id="spells$SOOTHING_WATERS_2_CLEAN" mnemonicParsing="false" onAction="#updateXmlBoolean" text="Deep Clean" />
                                           </children>
                                        </HBox>
                                     </children>
@@ -3156,7 +3241,7 @@
                     <padding>
                         <Insets left="14.0" top="28.0" />
                     </padding>
-                    <VBox fx:id="relationshipVbox" prefWidth="1000.0" />
+                    <VBox fx:id="relationshipVbox" prefWidth="1000.0" spacing="10.0" />
                 </ScrollPane>
             </AnchorPane>
         </Tab>
