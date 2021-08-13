@@ -1596,7 +1596,7 @@ public class Controller{
                         }
                         if(nv == 0 && fetishExp){
                             Node ownerNode = ((Attr) value).getOwnerElement();
-                            ownerNode.getParentNode().removeChild(ownerNode);
+                            removeNode(ownerNode);
                             System.out.println("Removed element");
                         }
                         else{
@@ -2880,7 +2880,7 @@ public class Controller{
                     saveFile, XPathConstants.NODESET);
             for(int i = 0; i < nodeList.getLength(); i++){
                 Node node = nodeList.item(i);
-                node.getParentNode().removeChild(node);
+                removeNode(node);
             }
             //Saves xml to file
             DOMSource source = new DOMSource(saveFile);
