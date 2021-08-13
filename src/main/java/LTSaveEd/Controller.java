@@ -1748,6 +1748,12 @@ public class Controller{
             }
         }
 
+        /**
+         * Checks if the given year is a leap year
+         *
+         * @param year Year to check
+         * @return True if year is a leap year else false
+         */
         public boolean isLeapYear(int year) { //Hopefully this handles all edge cases
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.YEAR, year);
