@@ -174,8 +174,10 @@ public class Controller{
             "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR",
             "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD", "spells$CLEANSE",
             "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE"};
-    //TODO: Create reset method for resetting certain fields so they don't carry over
 
+    /**
+     * String array of ids for all CheckBoxes that would carry over if not reset
+     */
     private final String[] resetCheckBoxIds = {"FETISH_DOMINANT$owned", "FETISH_SUBMISSIVE$owned", "FETISH_VAGINAL_GIVING$owned",
             "FETISH_VAGINAL_RECEIVING$owned", "FETISH_PENIS_GIVING$owned", "FETISH_PENIS_RECEIVING$owned",
             "FETISH_ANAL_GIVING$owned", "FETISH_ANAL_RECEIVING$owned", "FETISH_BREASTS_OTHERS$owned",
@@ -230,6 +232,9 @@ public class Controller{
             "body$anus$anusModifiers$PUFFY", "body$anus$anusModifiers$TENTACLED", "body$anus$anusModifiers$RIBBED",
             "body$anus$anusModifiers$MUSCLE_CONTROL", "spells$SOOTHING_WATERS_1_CLEAN", "spells$SOOTHING_WATERS_2_CLEAN"};
 
+    /**
+     * String array of ids for all ComboBoxes that would carry over if not reset
+     */
     private final String[] resetComboBoxIds = {"FETISH_DOMINANT$desire", "FETISH_SUBMISSIVE$desire",
             "FETISH_VAGINAL_GIVING$desire", "FETISH_VAGINAL_RECEIVING$desire", "FETISH_PENIS_GIVING$desire",
             "FETISH_PENIS_RECEIVING$desire", "FETISH_ANAL_GIVING$desire", "FETISH_ANAL_RECEIVING$desire",
@@ -250,6 +255,9 @@ public class Controller{
             "spells$ELEMENTAL_AIR", "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD",
             "spells$CLEANSE", "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE"};
 
+    /**
+     * String array of ids for all TextFields that would carry over if not reset
+     */
     private final String[] resetIntTextFieldsIds = {"FETISH_DOMINANT$exp", "FETISH_SUBMISSIVE$exp",
             "FETISH_VAGINAL_GIVING$exp", "FETISH_VAGINAL_RECEIVING$exp", "FETISH_PENIS_GIVING$exp",
             "FETISH_PENIS_RECEIVING$exp", "FETISH_ANAL_GIVING$exp", "FETISH_ANAL_RECEIVING$exp",
@@ -1858,6 +1866,14 @@ public class Controller{
         setFields();
     }
 
+    /**
+     * Changes that current character to be edited to the character specified by the given id
+     * <p>
+     * Because of the onAction method on the character selector ComboBox, just by changing the current value of the
+     * ComboBox, the corresponding function will be called
+     *
+     * @param characterId Character id of the new character to edit
+     */
     private void setCharacter(String characterId){
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
@@ -2026,6 +2042,12 @@ public class Controller{
         return null;
     }
 
+    /**
+     * Get a specific Node by supplying all Nodes from the Character Node to the desired Node
+     *
+     * @param args Array of Node to traverse in order to get to the desired Node
+     * @return Desired Node if found else return all the childNodes under the Character Node
+     */
     private Node getNode(String... args){
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
@@ -2160,6 +2182,11 @@ public class Controller{
         event.consume();
     }
 
+    /**
+     * Updates xml values changed by SpellTier ComboBoxes
+     *
+     * @param event ActionEvent from the ComboBox that was changed
+     */
     @FXML
     private void updateXmlComboBoxSpells(ActionEvent event){
         if(fieldsSet){
@@ -2169,7 +2196,7 @@ public class Controller{
             SpellTier tier = (SpellTier) cb.getValue();
             switch(tier.getTier()){
                 case -1 -> { //Unowned Spell
-                    NodeList knownSpells = getNode("knownSpells").getChildNodes();
+                    NodeList knownSpells = getNode("knownSpells").getChildNodes(); //Removes base spells
                     for(int i = 0; i < knownSpells.getLength(); i++){
                         if(knownSpells.item(i).getNodeType() == Node.ELEMENT_NODE){
                             Node spell = knownSpells.item(i);
@@ -2209,6 +2236,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Adds the spell Node as a child to the knownSpells Node based on the tier type
+     *
+     * @param tier SpellTier containing the spell type to be added
+     */
     private void addBaseSpell(SpellTier tier){
         Node knownSpellsNode = getNode("knownSpells");
         NodeList knownSpells = knownSpellsNode.getChildNodes();
@@ -2229,6 +2261,12 @@ public class Controller{
         }
     }
 
+    /**
+     * Removes spell upgrades with a higher tier than the given SpellTier tier
+     *
+     * @param tier SpellTier to check tier against
+     * @param owned Removes all spell upgrades if false (i.e. will remove SOOTHING_WATERS_(1/2)_CLEAN as well)
+     */
     private void removeHigherTierSpells(SpellTier tier, boolean owned){
         NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
         for(int i = 0; i < spellUpgrades.getLength(); i++){
@@ -2252,6 +2290,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Adds spell upgrades with a lower tier than the given SpellTier tier
+     *
+     * @param tier SpellTier to check tier against
+     */
     private void addLowerTierSpells(SpellTier tier){
         Node spellUpgradesNode = getNode("spellUpgrades");
         NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
@@ -2287,6 +2330,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Changes max tier spell value when switching within the same tier (i.e. 3A to 3B or vice versa)
+     *
+     * @param tier SpellTier to check value against
+     */
     private void changeWithinTierSpells(SpellTier tier){
         if(!tier.getType().equals("STEAL")){
             Node spellUpgradesNode = getNode("spellUpgrades");
@@ -2307,6 +2355,12 @@ public class Controller{
         }
     }
 
+    /**
+     * Gets the complement spell tier
+     *
+     * @param tier SpellTier to check value against
+     * @return String spell value ending in "3A" if SpellTier value ended in "3B" and vice versa
+     */
     private String getComplementTier(SpellTier tier){
         if(tier.getValue().endsWith("_3A")){
             return tier.getType() + "_3B";
@@ -2344,6 +2398,9 @@ public class Controller{
         }
     }
 
+    /**
+     * Resets the values of Fields that would carry over if not reset
+     */
     private void resetFields(){
         fieldsSet = false;
         for(String resetIntTextFieldsId : resetIntTextFieldsIds){
@@ -2624,6 +2681,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Sets the value of SpellTier ComboBoxes based on the childNodes of the knowSpells Node
+     *
+     * @param spellNode knownSpells Node in the save file
+     */
     private void setFieldsKnownSpells(Node spellNode){
         String partialId = "spells$";
         NodeList spells = spellNode.getChildNodes();
@@ -2639,6 +2701,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Sets the value of SpellTier ComboBoxes based on the childNodes of the spellUpgrades Node
+     *
+     * @param spellNode spellUpgrades Node in the save file
+     */
     private void setFieldsSpellUpgrades(Node spellNode){
         String partialId = "spells$";
         NodeList spells = spellNode.getChildNodes();
@@ -2661,6 +2728,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Sets the value of spell TextFields based on the childNodes of the spellUpgradePoints Node
+     *
+     * @param spellNode spellUpgradePoints Node in the save file
+     */
     private void setFieldsSpellUpgradePoints(Node spellNode){
         String idPartial = "spellUpgradePoints$";
         NodeList schools = spellNode.getChildNodes();
@@ -2712,6 +2784,13 @@ public class Controller{
         return null;
     }
 
+    /**
+     * Gets the NpcCharacter that matches the value from the given ObservableList
+     *
+     * @param list ObservableList of NpcCharacter to check
+     * @param value Value to match
+     * @return NpcCharacter that matches the value if found else null
+     */
     private NpcCharacter matchNpc(ObservableList<NpcCharacter> list, String value){
         for(NpcCharacter npc : list){
             if(npc.equals(value)){
