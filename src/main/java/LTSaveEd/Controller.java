@@ -2987,31 +2987,32 @@ public class Controller{
      */
     @FXML
     private void deleteOffsprings(){
+        System.out.println("Starting Offspring Removal");
         NodeList npcList = saveFile.getElementsByTagName("NPC");
-        ArrayList<String> offspringList = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
+        ObservableList<NpcCharacter> npcObservableList = cb.getItems();
         for(int i = 0; i < npcList.getLength(); i++){
-            Node character = getChildNode(npcList.item(i), "character");
-            assert character != null;
-            Node core = getChildNode(character, "core");
-            assert core != null;
-            Node pathname = getChildNode(core, "pathName");
-            assert pathname != null;
-            Node locationInfo = getChildNode(character, "locationInformation");
-            assert locationInfo != null;
-            Node worldLoc = getChildNode(locationInfo, "worldLocation");
-            if(getValueNode(pathname).getTextContent().equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")){
-                assert worldLoc != null;
-                if(getValueNode(worldLoc).getTextContent().equals("EMPTY")){
-                    Node id = getChildNode(core, "id");
-                    assert id != null;
-                    offspringList.add(getValueNode(id).getTextContent());
+            Element character = (Element) ((Element) npcList.item(i)).getElementsByTagName("character").item(0);
+            Element core = (Element) character.getElementsByTagName("core").item(0);
+            Element pathname = (Element) core.getElementsByTagName("pathName").item(0);
+            Element locationInfo = (Element) character.getElementsByTagName("locationInformation").item(0);
+            Element worldLoc = (Element) locationInfo.getElementsByTagName("worldLocation").item(0);
+            if(pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")){ //Npc is an Offspring
+                if(worldLoc.getAttribute("value").equals("EMPTY")){ //Npc is not on the map
+                    String npcId = ((Element) core.getElementsByTagName("id").item(0)).getAttribute("value");
+                    System.out.println("Deleted " + npcId);
+                    NpcCharacter npc = matchNpc(npcObservableList, npcId);
+                    if(npc == cb.getValue()){ //If character selector on an offspring that will be deleted, switch to the previous character
+                        int index = npcObservableList.indexOf(npc);
+                        cb.setValue(npcObservableList.get(index - 1));
+                    }
+                    npcObservableList.remove(npc);
+                    removeNode(npcList.item(i));
                 }
             }
         }
-        for(String s : offspringList){
-            Node npc = Objects.requireNonNull(getNodeByIdValue(s)).getParentNode().getParentNode().getParentNode();
-            removeNode(npc);
-        }
+        System.out.println("Offsprings Removed");
     }
 
     /**
