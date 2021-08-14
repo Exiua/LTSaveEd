@@ -2010,6 +2010,8 @@
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
                            <VBox>
@@ -2408,7 +2410,51 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="9">
+                           <VBox layoutX="24.0" layoutY="38.0" GridPane.rowIndex="9">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Armpit Lover">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FETISH_ARMPIT_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_ARMPIT_GIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_ARMPIT_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox layoutX="24.0" layoutY="38.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Armpit Slut">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FETISH_ARMPIT_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_ARMPIT_RECEIVING$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_ARMPIT_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="10">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2430,7 +2476,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="9">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="10">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2452,7 +2498,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="10">
+                           <VBox GridPane.rowIndex="11">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2474,7 +2520,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="10">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="11">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2496,7 +2542,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="11">
+                           <VBox GridPane.rowIndex="12">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2518,7 +2564,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="11">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="12">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2540,7 +2586,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="12">
+                           <VBox GridPane.rowIndex="13">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2562,7 +2608,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="12">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="13">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2584,7 +2630,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="13">
+                           <VBox GridPane.rowIndex="14">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2606,7 +2652,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="13">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="14">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2628,7 +2674,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="14">
+                           <VBox GridPane.rowIndex="15">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2650,7 +2696,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="14">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="15">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2672,7 +2718,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox layoutX="24.0" layoutY="1140.0" GridPane.rowIndex="15">
+                           <VBox layoutX="24.0" layoutY="1140.0" GridPane.rowIndex="16">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2694,7 +2740,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox layoutX="529.0" layoutY="1140.0" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                           <VBox layoutX="529.0" layoutY="1140.0" GridPane.columnIndex="1" GridPane.rowIndex="16">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2716,7 +2762,51 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="16">
+                           <VBox layoutX="24.0" layoutY="38.0" GridPane.rowIndex="17">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Bondage Applier">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FETISH_BONDAGE_APPLIER$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_BONDAGE_APPLIER$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_BONDAGE_APPLIER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox layoutX="24.0" layoutY="38.0" GridPane.columnIndex="1" GridPane.rowIndex="17">
+                              <children>
+                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Bondage Bitch">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                       <Label text="Desire:" />
+                                       <ComboBox fx:id="FETISH_BONDAGE_VICTIM$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                       <Label text="Exp:" />
+                                       <TextField fx:id="FETISH_BONDAGE_VICTIM$exp" text="0" />
+                                       <CheckBox fx:id="FETISH_BONDAGE_VICTIM$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                    </children>
+                                 </HBox>
+                              </children>
+                           </VBox>
+                           <VBox GridPane.rowIndex="18">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2738,7 +2828,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="16">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="18">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2760,7 +2850,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="17">
+                           <VBox GridPane.rowIndex="19">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2782,7 +2872,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="17">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="19">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2804,7 +2894,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="18">
+                           <VBox GridPane.rowIndex="20">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2826,7 +2916,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="18">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="20">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2848,7 +2938,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.rowIndex="19">
+                           <VBox GridPane.rowIndex="21">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2870,7 +2960,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="19">
+                           <VBox GridPane.columnIndex="1" GridPane.rowIndex="21">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2892,7 +2982,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox layoutX="24.0" layoutY="1388.0" GridPane.rowIndex="20">
+                           <VBox layoutX="24.0" layoutY="1388.0" GridPane.rowIndex="22">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2914,7 +3004,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox layoutX="24.0" layoutY="1338.0" GridPane.rowIndex="21">
+                           <VBox layoutX="24.0" layoutY="1338.0" GridPane.rowIndex="23">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2933,7 +3023,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox layoutX="24.0" layoutY="1402.0" GridPane.columnIndex="1" GridPane.rowIndex="21">
+                           <VBox layoutX="24.0" layoutY="1402.0" GridPane.columnIndex="1" GridPane.rowIndex="23">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2952,7 +3042,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox layoutX="24.0" layoutY="38.0" GridPane.rowIndex="22">
+                           <VBox layoutX="24.0" layoutY="38.0" GridPane.rowIndex="24">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>
@@ -2971,7 +3061,7 @@
                                  </HBox>
                               </children>
                            </VBox>
-                           <VBox layoutX="24.0" layoutY="38.0" GridPane.columnIndex="1" GridPane.rowIndex="22">
+                           <VBox layoutX="24.0" layoutY="38.0" GridPane.columnIndex="1" GridPane.rowIndex="24">
                               <children>
                                  <HBox prefHeight="100.0" prefWidth="200.0">
                                     <children>

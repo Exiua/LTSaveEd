@@ -116,15 +116,17 @@ public class Controller{
             "FETISH_PENIS_RECEIVING$exp", "FETISH_ANAL_GIVING$exp", "FETISH_ANAL_RECEIVING$exp",
             "FETISH_BREASTS_OTHERS$exp", "FETISH_BREASTS_SELF$exp", "FETISH_LACTATION_OTHERS$exp",
             "FETISH_LACTATION_SELF$exp", "FETISH_ORAL_RECEIVING$exp", "FETISH_ORAL_GIVING$exp", "FETISH_LEG_LOVER$exp",
-            "FETISH_STRUTTER$exp", "FETISH_FOOT_GIVING$exp", "FETISH_FOOT_RECEIVING$exp", "FETISH_CUM_STUD$exp",
-            "FETISH_CUM_ADDICT$exp", "FETISH_DEFLOWERING$exp", "FETISH_PURE_VIRGIN$exp", "FETISH_IMPREGNATION$exp",
-            "FETISH_PREGNANCY$exp", "FETISH_TRANSFORMATION_GIVING$exp", "FETISH_TRANSFORMATION_RECEIVING$exp",
-            "FETISH_KINK_GIVING$exp", "FETISH_KINK_RECEIVING$exp", "FETISH_SADIST$exp", "FETISH_MASOCHIST$exp",
-            "FETISH_NON_CON_DOM$exp", "FETISH_NON_CON_SUB$exp", "FETISH_DENIAL$exp", "FETISH_DENIAL_SELF$exp",
-            "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp", "FETISH_CROSS_DRESSER$exp",
-            "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp", "FETISH_SWITCH$exp",
-            "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp", "spellUpgradePoints$EARTH",
-            "spellUpgradePoints$WATER", "spellUpgradePoints$FIRE", "spellUpgradePoints$AIR", "spellUpgradePoints$ARCANE"};
+            "FETISH_STRUTTER$exp", "FETISH_FOOT_GIVING$exp", "FETISH_FOOT_RECEIVING$exp", "FETISH_ARMPIT_GIVING$exp",
+            "FETISH_ARMPIT_RECEIVING$exp", "FETISH_CUM_STUD$exp", "FETISH_CUM_ADDICT$exp", "FETISH_DEFLOWERING$exp",
+            "FETISH_PURE_VIRGIN$exp", "FETISH_IMPREGNATION$exp", "FETISH_PREGNANCY$exp",
+            "FETISH_TRANSFORMATION_GIVING$exp", "FETISH_TRANSFORMATION_RECEIVING$exp", "FETISH_KINK_GIVING$exp",
+            "FETISH_KINK_RECEIVING$exp", "FETISH_SADIST$exp", "FETISH_MASOCHIST$exp", "FETISH_NON_CON_DOM$exp",
+            "FETISH_NON_CON_SUB$exp", "FETISH_BONDAGE_APPLIER$exp", "FETISH_BONDAGE_VICTIM$exp", "FETISH_DENIAL$exp",
+            "FETISH_DENIAL_SELF$exp", "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp",
+            "FETISH_CROSS_DRESSER$exp", "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp",
+            "FETISH_SWITCH$exp", "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp",
+            "spellUpgradePoints$EARTH", "spellUpgradePoints$WATER", "spellUpgradePoints$FIRE", "spellUpgradePoints$AIR",
+            "spellUpgradePoints$ARCANE"};
 
     /**
      * String array of all TextField ids using a double data type
@@ -164,12 +166,14 @@ public class Controller{
             "FETISH_BREASTS_SELF$desire", "FETISH_LACTATION_OTHERS$desire", "FETISH_LACTATION_SELF$desire",
             "FETISH_ORAL_RECEIVING$desire", "FETISH_ORAL_GIVING$desire", "FETISH_LEG_LOVER$desire",
             "FETISH_STRUTTER$desire", "FETISH_FOOT_GIVING$desire", "FETISH_FOOT_RECEIVING$desire",
-            "FETISH_CUM_STUD$desire", "FETISH_CUM_ADDICT$desire", "FETISH_DEFLOWERING$desire", "FETISH_PURE_VIRGIN$desire",
+            "FETISH_ARMPIT_GIVING$desire", "FETISH_ARMPIT_RECEIVING$desire", "FETISH_CUM_STUD$desire",
+            "FETISH_CUM_ADDICT$desire", "FETISH_DEFLOWERING$desire", "FETISH_PURE_VIRGIN$desire",
             "FETISH_IMPREGNATION$desire", "FETISH_PREGNANCY$desire", "FETISH_TRANSFORMATION_GIVING$desire",
             "FETISH_TRANSFORMATION_RECEIVING$desire", "FETISH_KINK_GIVING$desire", "FETISH_KINK_RECEIVING$desire",
             "FETISH_SADIST$desire", "FETISH_MASOCHIST$desire", "FETISH_NON_CON_DOM$desire", "FETISH_NON_CON_SUB$desire",
-            "FETISH_DENIAL$desire", "FETISH_DENIAL_SELF$desire", "FETISH_VOYEURIST$desire", "FETISH_EXHIBITIONIST$desire",
-            "FETISH_BIMBO$desire", "FETISH_CROSS_DRESSER$desire", "FETISH_MASTURBATION$desire", "FETISH_INCEST$desire",
+            "FETISH_BONDAGE_APPLIER$desire", "FETISH_BONDAGE_VICTIM$desire", "FETISH_DENIAL$desire",
+            "FETISH_DENIAL_SELF$desire", "FETISH_VOYEURIST$desire", "FETISH_EXHIBITIONIST$desire", "FETISH_BIMBO$desire",
+            "FETISH_CROSS_DRESSER$desire", "FETISH_MASTURBATION$desire", "FETISH_INCEST$desire",
             "FETISH_SIZE_QUEEN$desire", "spells$SLAM", "spells$TELEKENETIC_SHOWER", "spells$STONE_SHELL",
             "spells$ELEMENTAL_EARTH", "spells$ICE_SHARD", "spells$RAIN_CLOUD", "spells$SOOTHING_WATERS",
             "spells$ELEMENTAL_WATER", "spells$FIREBALL", "spells$FLASH", "spells$CLOAK_OF_FLAMES", "spells$ELEMENTAL_FIRE",
@@ -187,17 +191,18 @@ public class Controller{
             "FETISH_BREASTS_SELF$owned", "FETISH_LACTATION_OTHERS$owned", "FETISH_LACTATION_SELF$owned",
             "FETISH_ORAL_RECEIVING$owned", "FETISH_ORAL_GIVING$owned", "FETISH_LEG_LOVER$owned",
             "FETISH_STRUTTER$owned", "FETISH_FOOT_GIVING$owned", "FETISH_FOOT_RECEIVING$owned",
-            "FETISH_CUM_STUD$owned", "FETISH_CUM_ADDICT$owned", "FETISH_DEFLOWERING$owned", "FETISH_PURE_VIRGIN$owned",
+            "FETISH_ARMPIT_GIVING$owned", "FETISH_ARMPIT_RECEIVING$owned", "FETISH_CUM_STUD$owned",
+            "FETISH_CUM_ADDICT$owned", "FETISH_DEFLOWERING$owned", "FETISH_PURE_VIRGIN$owned",
             "FETISH_IMPREGNATION$owned", "FETISH_PREGNANCY$owned", "FETISH_TRANSFORMATION_GIVING$owned",
             "FETISH_TRANSFORMATION_RECEIVING$owned", "FETISH_KINK_GIVING$owned", "FETISH_KINK_RECEIVING$owned",
             "FETISH_SADIST$owned", "FETISH_MASOCHIST$owned", "FETISH_NON_CON_DOM$owned", "FETISH_NON_CON_SUB$owned",
-            "FETISH_DENIAL$owned", "FETISH_DENIAL_SELF$owned", "FETISH_VOYEURIST$owned", "FETISH_EXHIBITIONIST$owned",
-            "FETISH_BIMBO$owned", "FETISH_CROSS_DRESSER$owned", "FETISH_MASTURBATION$owned", "FETISH_INCEST$owned",
-            "FETISH_SIZE_QUEEN$owned", "body$mouth$mouthModifiers$PUFFY", "body$mouth$mouthModifiers$TENTACLED",
-            "body$mouth$mouthModifiers$RIBBED", "body$mouth$mouthModifiers$MUSCLE_CONTROL",
-            "body$tongue$tongueModifiers$RIBBED", "body$tongue$tongueModifiers$TENTACLED",
-            "body$tongue$tongueModifiers$BIFURCATED", "body$tongue$tongueModifiers$WIDE",
-            "body$tongue$tongueModifiers$FLAT", "body$tongue$tongueModifiers$STRONG",
+            "FETISH_BONDAGE_APPLIER$owned", "FETISH_BONDAGE_VICTIM$owned", "FETISH_DENIAL$owned",
+            "FETISH_DENIAL_SELF$owned", "FETISH_VOYEURIST$owned", "FETISH_EXHIBITIONIST$owned", "FETISH_BIMBO$owned",
+            "FETISH_CROSS_DRESSER$owned", "FETISH_MASTURBATION$owned", "FETISH_INCEST$owned", "FETISH_SIZE_QUEEN$owned",
+            "body$mouth$mouthModifiers$PUFFY", "body$mouth$mouthModifiers$TENTACLED", "body$mouth$mouthModifiers$RIBBED",
+            "body$mouth$mouthModifiers$MUSCLE_CONTROL", "body$tongue$tongueModifiers$RIBBED",
+            "body$tongue$tongueModifiers$TENTACLED", "body$tongue$tongueModifiers$BIFURCATED",
+            "body$tongue$tongueModifiers$WIDE", "body$tongue$tongueModifiers$FLAT", "body$tongue$tongueModifiers$STRONG",
             "body$tongue$tongueModifiers$TAPERED", "body$nipples$nippleModifiers$PUFFY",
             "body$nipples$nippleModifiers$TENTACLED", "body$nipples$nippleModifiers$RIBBED",
             "body$nipples$nippleModifiers$MUSCLE_CONTROL", "body$milk$milkModifiers$MUSKY",
@@ -244,11 +249,12 @@ public class Controller{
             "FETISH_BREASTS_OTHERS$desire", "FETISH_BREASTS_SELF$desire", "FETISH_LACTATION_OTHERS$desire",
             "FETISH_LACTATION_SELF$desire", "FETISH_ORAL_RECEIVING$desire", "FETISH_ORAL_GIVING$desire",
             "FETISH_LEG_LOVER$desire", "FETISH_STRUTTER$desire", "FETISH_FOOT_GIVING$desire",
-            "FETISH_FOOT_RECEIVING$desire", "FETISH_CUM_STUD$desire", "FETISH_CUM_ADDICT$desire",
-            "FETISH_DEFLOWERING$desire", "FETISH_PURE_VIRGIN$desire", "FETISH_IMPREGNATION$desire",
-            "FETISH_PREGNANCY$desire", "FETISH_TRANSFORMATION_GIVING$desire", "FETISH_TRANSFORMATION_RECEIVING$desire",
-            "FETISH_KINK_GIVING$desire", "FETISH_KINK_RECEIVING$desire", "FETISH_SADIST$desire",
-            "FETISH_MASOCHIST$desire", "FETISH_NON_CON_DOM$desire", "FETISH_NON_CON_SUB$desire","FETISH_DENIAL$desire",
+            "FETISH_ARMPIT_GIVING$desire", "FETISH_ARMPIT_RECEIVING$desire", "FETISH_FOOT_RECEIVING$desire",
+            "FETISH_CUM_STUD$desire", "FETISH_CUM_ADDICT$desire", "FETISH_DEFLOWERING$desire", "FETISH_PURE_VIRGIN$desire",
+            "FETISH_IMPREGNATION$desire", "FETISH_PREGNANCY$desire", "FETISH_TRANSFORMATION_GIVING$desire",
+            "FETISH_TRANSFORMATION_RECEIVING$desire", "FETISH_KINK_GIVING$desire", "FETISH_KINK_RECEIVING$desire",
+            "FETISH_SADIST$desire", "FETISH_MASOCHIST$desire", "FETISH_NON_CON_DOM$desire", "FETISH_NON_CON_SUB$desire",
+            "FETISH_BONDAGE_APPLIER$desire", "FETISH_BONDAGE_VICTIM$desire","FETISH_DENIAL$desire",
             "FETISH_DENIAL_SELF$desire", "FETISH_VOYEURIST$desire", "FETISH_EXHIBITIONIST$desire", "FETISH_BIMBO$desire",
             "FETISH_CROSS_DRESSER$desire", "FETISH_MASTURBATION$desire", "FETISH_INCEST$desire",
             "FETISH_SIZE_QUEEN$desire", "spells$SLAM", "spells$TELEKENETIC_SHOWER", "spells$STONE_SHELL",
@@ -266,14 +272,15 @@ public class Controller{
             "FETISH_PENIS_RECEIVING$exp", "FETISH_ANAL_GIVING$exp", "FETISH_ANAL_RECEIVING$exp",
             "FETISH_BREASTS_OTHERS$exp", "FETISH_BREASTS_SELF$exp", "FETISH_LACTATION_OTHERS$exp",
             "FETISH_LACTATION_SELF$exp", "FETISH_ORAL_RECEIVING$exp", "FETISH_ORAL_GIVING$exp", "FETISH_LEG_LOVER$exp",
-            "FETISH_STRUTTER$exp", "FETISH_FOOT_GIVING$exp", "FETISH_FOOT_RECEIVING$exp", "FETISH_CUM_STUD$exp",
-            "FETISH_CUM_ADDICT$exp", "FETISH_DEFLOWERING$exp", "FETISH_PURE_VIRGIN$exp", "FETISH_IMPREGNATION$exp",
-            "FETISH_PREGNANCY$exp", "FETISH_TRANSFORMATION_GIVING$exp", "FETISH_TRANSFORMATION_RECEIVING$exp",
-            "FETISH_KINK_GIVING$exp", "FETISH_KINK_RECEIVING$exp", "FETISH_SADIST$exp", "FETISH_MASOCHIST$exp",
-            "FETISH_NON_CON_DOM$exp", "FETISH_NON_CON_SUB$exp", "FETISH_DENIAL$exp", "FETISH_DENIAL_SELF$exp",
-            "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp", "FETISH_CROSS_DRESSER$exp",
-            "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp", "FETISH_SWITCH$exp",
-            "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp"};
+            "FETISH_STRUTTER$exp", "FETISH_FOOT_GIVING$exp", "FETISH_FOOT_RECEIVING$exp", "FETISH_ARMPIT_GIVING$exp",
+            "FETISH_ARMPIT_RECEIVING$exp","FETISH_CUM_STUD$exp", "FETISH_CUM_ADDICT$exp", "FETISH_DEFLOWERING$exp",
+            "FETISH_PURE_VIRGIN$exp", "FETISH_IMPREGNATION$exp", "FETISH_PREGNANCY$exp",
+            "FETISH_TRANSFORMATION_GIVING$exp", "FETISH_TRANSFORMATION_RECEIVING$exp", "FETISH_KINK_GIVING$exp",
+            "FETISH_KINK_RECEIVING$exp", "FETISH_SADIST$exp", "FETISH_MASOCHIST$exp", "FETISH_NON_CON_DOM$exp",
+            "FETISH_NON_CON_SUB$exp", "FETISH_BONDAGE_APPLIER$exp", "FETISH_BONDAGE_VICTIM$exp", "FETISH_DENIAL$exp",
+            "FETISH_DENIAL_SELF$exp", "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp",
+            "FETISH_CROSS_DRESSER$exp", "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp",
+            "FETISH_SWITCH$exp", "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -1166,6 +1173,19 @@ public class Controller{
             new Attribute("September", "SEPTEMBER"), new Attribute("October", "OCTOBER"),
             new Attribute("November", "NOVEMBER"), new Attribute("December", "DECEMBER"));
 
+    private final ObservableList<Attribute> breastSizes = FXCollections.observableArrayList(
+            new Attribute("Flat", "0"), new Attribute("Training-AAA-cup", "1"),
+            new Attribute("Training-AA-cup", "2"), new Attribute("Training-A-cup", "3"),
+            new Attribute("AA-cup", "4"), new Attribute("A-cup", "5"),
+            new Attribute("B-cup", "6"), new Attribute("C-cup", "7"),
+            new Attribute("D-cup", "8"), new Attribute("DD-cup", "9"),
+            new Attribute("E-cup", "10"), new Attribute("F-cup", "11"),
+            new Attribute("FF-cup", "12"), new Attribute("G-cup", "13"),
+            new Attribute("GG-cup", "14"), new Attribute("H-cup", "15"),
+            new Attribute("HH-cup", "16"), new Attribute("J-cup", "17"),
+            new Attribute("JJ-cup", "18"), new Attribute("K-cup", "19"),
+            new Attribute("KK-cup", "20"), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""));
+
     /**
      * ArrayList of all perks in the game
      */
@@ -1241,7 +1261,7 @@ public class Controller{
         comboBoxValues.add(facialHairTypes);
         comboBoxValues.add(assHairTypes);
         comboBoxValues.add(underarmHairTypes);
-        for(int i = 0; i < 41; i++){ //The 41 fetishes uses the same values for desire
+        for(int i = 0; i < 45; i++){ //The 45 fetishes uses the same values for desire
             comboBoxValues.add(desireTypes);
         }
         comboBoxValues.add(slamSpellTiers);
@@ -2711,19 +2731,17 @@ public class Controller{
      * @param fetishesNode fetishDesire Node in the save file
      */
     private void setFieldsFetishDesires(Node fetishesNode){
-        if(fieldsSet){
-            NodeList fetishDesires = fetishesNode.getChildNodes();
-            for(int i = 0; i < fetishDesires.getLength(); i++){
-                if(fetishDesires.item(i).getNodeType() == Node.ELEMENT_NODE){
-                    NamedNodeMap attr = fetishDesires.item(i).getAttributes();
-                    String fetishType = attr.getNamedItem("fetish").getTextContent();
-                    String fetishId = fetishType + "$desire";
-                    String fetishValue = attr.getNamedItem("desire").getTextContent();
-                    @SuppressWarnings("unchecked")
-                    ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
-                    ObservableList<Attribute> values = cb.getItems();
-                    cb.setValue(matchComboBoxItem(values, fetishValue));
-                }
+        NodeList fetishDesires = fetishesNode.getChildNodes();
+        for(int i = 0; i < fetishDesires.getLength(); i++){
+            if(fetishDesires.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = fetishDesires.item(i).getAttributes();
+                String fetishType = attr.getNamedItem("fetish").getTextContent();
+                String fetishId = fetishType + "$desire";
+                String fetishValue = attr.getNamedItem("desire").getTextContent();
+                @SuppressWarnings("unchecked")
+                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
+                ObservableList<Attribute> values = cb.getItems();
+                cb.setValue(matchComboBoxItem(values, fetishValue));
             }
         }
     }
