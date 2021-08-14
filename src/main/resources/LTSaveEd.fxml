@@ -3386,6 +3386,12 @@
                 </ScrollPane>
             </AnchorPane>
         </Tab>
+        <Tab text="Extra">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+               <Button layoutX="78.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteOffsprings" text="Remove All Offsprings" />
+            </children></AnchorPane>
+        </Tab>
         <Tab disable="true" text="Inventory">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
@@ -3399,9 +3405,6 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab disable="true" text="Family">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </Tab>
-        <Tab disable="true" text="Extra">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
     </TabPane>
