@@ -2673,6 +2673,8 @@ public class Controller{
         NodeList relationships = relationshipsNode.getChildNodes();
         VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
+        @SuppressWarnings("unchecked")
+        ObservableList<NpcCharacter> npcChars = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
         for(int i = 0; i < relationships.getLength(); i++){
             if(relationships.item(i).getNodeType() == Node.ELEMENT_NODE){
                 NamedNodeMap attrs = relationships.item(i).getAttributes();
@@ -2686,16 +2688,22 @@ public class Controller{
                 valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
                 Button btn = new Button("Goto Character");
                 btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",","_"));
-                btn.setOnAction(event -> {
-                    String[] id = getId(event).split("\\$");
-                    String characterId = id[1];
-                    System.out.println(characterId);
-                    if(characterId.charAt(0) == '_'){
-                        characterId = characterId.replaceFirst("_", "-");
-                    }
-                    characterId = characterId.replace("_", ",");
-                    setCharacter(characterId);
-                });
+                NpcCharacter npc = matchNpc(npcChars, charId);
+                if(npc != null){
+                    btn.setOnAction(event -> {
+                        String[] id = getId(event).split("\\$");
+                        String characterId = id[1];
+                        System.out.println(characterId);
+                        if(characterId.charAt(0) == '_'){
+                            characterId = characterId.replaceFirst("_", "-");
+                        }
+                        characterId = characterId.replace("_", ",");
+                        setCharacter(characterId);
+                    });
+                }
+                else{
+                    btn.setDisable(true); //May be better to just delete these Node as the character no longer exists
+                }
                 HBox hBox = new HBox(10);
                 hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
                         new Label("Value: "), valueField, btn); //Id: <Id TextField> Name: <Name TextField> Value: <Value TextField>
