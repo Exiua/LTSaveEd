@@ -1653,7 +1653,7 @@ public class Controller{
                 fetishEntry.setAttribute("experience", "0");
                 fetishEntry.setAttribute("fetish", textInputControl.getId().split("\\$")[0]);
                 fetishExp.appendChild(fetishEntry);
-                value = fetishEntry.getAttributes().getNamedItem("experience");
+                value = getAttributeNode(fetishEntry, "experience");
                 System.out.println("Created new element");
             }
             assert value != null;
@@ -1825,7 +1825,7 @@ public class Controller{
             if(id[0].startsWith("FETISH_")){
                 NodeList fetishes = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0).getChildNodes();
                 Node childNode = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
-                return childNode != null ? childNode.getAttributes().getNamedItem("experience") : null;
+                return childNode != null ? getAttributeNode(childNode, "experience") : null;
             }
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
             switch(id[0]){
@@ -1837,7 +1837,7 @@ public class Controller{
                     return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1])).getAttributes().getNamedItem("value");
             }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
-            return attr.getAttributes().getNamedItem(id[2]);
+            return getAttributeNode(attr, id[2]);
         }
     }
 
@@ -2041,7 +2041,7 @@ public class Controller{
             else if(id[1].equals("desire")){
                 NodeList fetishes = attr.getElementsByTagName("fetishDesire").item(0).getChildNodes();
                 Node fetishEntry = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
-                return fetishEntry != null ? fetishEntry.getAttributes().getNamedItem("desire") : null;
+                return fetishEntry != null ? getAttributeNode(fetishEntry, "desire") : null;
             }
         }
         else if(id[0].equals("spells")){ //Same with spell ids
@@ -2051,7 +2051,7 @@ public class Controller{
         for(int i = 0; i < id.length - 1; i++){
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
         }
-        return attr.getAttributes().getNamedItem(id[id.length - 1]);
+        return getAttributeNode(attr, id[id.length - 1]);
     }
 
     /**
@@ -2067,17 +2067,29 @@ public class Controller{
         for(int i = 0; i < id.length - 1; i++){
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
         }
-        return attr.getAttributes().getNamedItem(id[id.length - 1]);
+        return getAttributeNode(attr, id[id.length - 1]);
     }
 
     /**
-     * Gets the Node of the attribute of the given Node
+     * Gets the String value of the attribute of the given Node
      *
      * @param node Node to get the attribute of
-     * @return Node containing the attribute value
+     * @param attr Attribute to get
+     * @return String containing the attribute value
      */
-    private Node getValueNode(Node node){
-        return node.getAttributes().getNamedItem("value");
+    private String getAttributeValue(Node node, String attr){
+        return node.getAttributes().getNamedItem(attr).getTextContent();
+    }
+
+    /**
+     * Gets the Node of the specified attribute of the given Node
+     *
+     * @param node Node to get the attribute of
+     * @param attr Attribute to get
+     * @return Node containing the attribute Node
+     */
+    private Node getAttributeNode(Node node, String attr){
+        return node.getAttributes().getNamedItem(attr);
     }
 
     /**
@@ -2151,7 +2163,7 @@ public class Controller{
     private Node getChildNodeByAttributeValue(NodeList children, String attribute, String value){
         for(int i = 0; i < children.getLength(); i++){
             if(children.item(i).getNodeType() == Node.ELEMENT_NODE){
-                if(children.item(i).getAttributes().getNamedItem(attribute).getTextContent().equals(value)){
+                if(getAttributeValue(children.item(i), attribute).equals(value)){
                     return children.item(i);
                 }
             }
@@ -2162,7 +2174,7 @@ public class Controller{
     /**
      * Get a specific Node by supplying all Nodes from the Character Node to the desired Node
      *
-     * @param args Array of Node to traverse in order to get to the desired Node
+     * @param args String array to traverse in order to get to the desired Node
      * @return Desired Node if found else return all the childNodes under the Character Node
      */
     private Node getNode(String... args){
@@ -2172,7 +2184,7 @@ public class Controller{
             if(arg.equals(args[args.length - 1])){
                 Element tempAttr = (Element) attr.getElementsByTagName(arg).item(0);
                 if(tempAttr == null){
-                    attr.getAttributes().getNamedItem(arg);
+                    attr = (Element) getAttributeNode(attr, arg);
                 }
                 else{
                     attr = tempAttr;
@@ -2319,7 +2331,7 @@ public class Controller{
                             Node spell = knownSpells.item(i);
                             System.out.println(spell);
                             Debug.printList(spell.getAttributes());
-                            if(spell.getAttributes().getNamedItem("type").getTextContent().equals(tier.getType())){
+                            if(getAttributeValue(spell, "type").equals(tier.getType())){
                                 removeNode(spell);
                                 break;
                             }
@@ -2389,7 +2401,7 @@ public class Controller{
         for(int i = 0; i < knownSpells.getLength(); i++){
             if(knownSpells.item(i).getNodeType() == Node.ELEMENT_NODE){
                 Node spell = knownSpells.item(i);
-                if(spell.getAttributes().getNamedItem("type").getTextContent().equals(tier.getType())){
+                if(getAttributeValue(spell, "type").equals(tier.getType())){
                     exists = true;
                     break;
                 }
@@ -2413,9 +2425,9 @@ public class Controller{
         for(int i = 0; i < spellUpgrades.getLength(); i++){
             if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
                 Node spell = spellUpgrades.item(i);
-                String spellType = spell.getAttributes().getNamedItem("type").getTextContent();
+                String spellType = getAttributeValue(spell, "type");
                 if(spellType.startsWith(tier.getType())){
-                    int upgradeTier = SpellTier.readTier(spellUpgrades.item(i).getAttributes().getNamedItem("type").getTextContent());
+                    int upgradeTier = SpellTier.readTier(getAttributeValue(spellUpgrades.item(i), "type"));
                     if(tier.getTier() < upgradeTier){
                         if(owned && !spellType.endsWith("CLEAN")){
                             removeNode(spell);
@@ -2443,7 +2455,7 @@ public class Controller{
         for(int i = 0; i < spellUpgrades.getLength(); i++){
             if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
                 Node spell = spellUpgrades.item(i);
-                String spellType = spell.getAttributes().getNamedItem("type").getTextContent();
+                String spellType = getAttributeValue(spell, "type");
                 if(spellType.startsWith(tier.getType())){
                     if(!spellType.endsWith("CLEAN")){
                         count++;
@@ -2484,7 +2496,7 @@ public class Controller{
             for(int i = 0; i < spellUpgrades.getLength(); i++){
                 if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
                     Node spell = spellUpgrades.item(i);
-                    if(spell.getAttributes().getNamedItem("type").getTextContent().equals(complementTier)){
+                    if(getAttributeValue(spell, "type").equals(complementTier)){
                         removeNode(spell);
                         Element spellUpgrade = saveFile.createElement("upgrade");
                         spellUpgrade.setAttribute("type", tier.getValue());
@@ -2786,7 +2798,7 @@ public class Controller{
         NodeList ownedFetishes = fetishesNode.getChildNodes();
         for(int i = 0; i < ownedFetishes.getLength(); i++){
             if(ownedFetishes.item(i).getNodeType() == Node.ELEMENT_NODE){
-                String fetishType = ownedFetishes.item(i).getAttributes().getNamedItem("type").getTextContent();
+                String fetishType = getAttributeValue(ownedFetishes.item(i), "type");
                 if(fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
                         fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")){
                     continue; //Skip these values
@@ -2848,7 +2860,7 @@ public class Controller{
         NodeList spells = spellNode.getChildNodes();
         for(int i = 0; i < spells.getLength(); i++){
             if(spells.item(i).getNodeType() == Node.ELEMENT_NODE){
-                String type = spells.item(i).getAttributes().getNamedItem("type").getTextContent();
+                String type = getAttributeValue(spells.item(i), "type");
                 String id = partialId + type;
                 @SuppressWarnings("unchecked")
                 ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(id);
@@ -2868,7 +2880,7 @@ public class Controller{
         NodeList spells = spellNode.getChildNodes();
         for(int i = 0; i < spells.getLength(); i++){
             if(spells.item(i).getNodeType() == Node.ELEMENT_NODE){
-                String value = spells.item(i).getAttributes().getNamedItem("type").getTextContent();
+                String value = getAttributeValue(spells.item(i), "type");
                 if(value.endsWith("_CLEAN")){
                     CheckBox checkBox = (CheckBox) namespace.get(partialId + value);
                     checkBox.setSelected(true);
