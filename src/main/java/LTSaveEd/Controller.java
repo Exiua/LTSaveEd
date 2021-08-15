@@ -238,7 +238,38 @@ public class Controller{
             "body$vagina$urethraModifiers$PUFFY", "body$vagina$urethraModifiers$TENTACLED",
             "body$vagina$urethraModifiers$RIBBED", "body$vagina$urethraModifiers$MUSCLE_CONTROL",
             "body$anus$anusModifiers$PUFFY", "body$anus$anusModifiers$TENTACLED", "body$anus$anusModifiers$RIBBED",
-            "body$anus$anusModifiers$MUSCLE_CONTROL", "spells$SOOTHING_WATERS_1_CLEAN", "spells$SOOTHING_WATERS_2_CLEAN"};
+            "body$anus$anusModifiers$MUSCLE_CONTROL", "spells$SOOTHING_WATERS_1_CLEAN", "spells$SOOTHING_WATERS_2_CLEAN",
+            "perks$1$PHYSICAL_BASE", "perks$2$PHYSIQUE_BOOST", "perks$2$OBSERVANT", "perks$2$ENCHANTMENT_STABILITY",
+            "perks$3$PHYSICAL_DEFENCE", "perks$3$ENERGY_BOOST", "perks$3$PHYSICAL_DAMAGE", "perks$3$ENCHANTMENT_STABILITY",
+            "perks$4$PHYSICAL_DEFENCE", "perks$4$ENERGY_BOOST", "perks$4$PHYSICAL_DAMAGE", "perks$4$WEAPON_ENCHANTER",
+            "perks$5$RUNNER_2", "perks$5$UNARMED_TRAINING", "perks$5$CRITICAL_BOOST", "perks$5$UNARMED_DAMAGE",
+            "perks$6$PHYSIQUE_BOOST_MAJOR", "perks$7$PHYSICAL_DAMAGE", "perks$7$UNARMED_DAMAGE",
+            "perks$7$ENERGY_BOOST_DRAIN_DAMAGE", "perks$7$ENERGY_BOOST", "perks$8$PHYSICAL_DAMAGE", "perks$8$MELEE_DAMAGE",
+            "perks$8$PHYSICAL_DEFENCE", "perks$8$ENERGY_BOOST", "perks$9$PHYSICAL_DAMAGE", "perks$9$RANGED_DAMAGE",
+            "perks$9$PHYSICAL_DEFENCE", "perks$9$ENERGY_BOOST", "perks$10$FEROCIOUS_WARRIOR", "perks$10$BESERK",
+            "perks$10$COMBAT_REGENERATION", "perks$11$MELEE_DAMAGE", "perks$11$PHYSIQUE_BOOST_MAJOR",
+            "perks$11$RANGED_DAMAGE", "perks$12$ELEMENTAL_BOOST", "perks$1$LEWD_KNOWLEDGE", "perks$2$FIRING_BLANKS",
+            "perks$2$VIRILITY_BOOST", "perks$2$SEDUCTION_BOOST", "perks$2$FERTILITY_BOOST", "perks$2$BARREN",
+            "perks$3$VIRILITY_MAJOR_BOOST", "perks$3$SEDUCTION_BOOST", "perks$3$ORGASMIC_LEVEL_DRAIN",
+            "perks$3$SEDUCTION_DEFENCE_BOOST", "perks$3$FERTILITY_MAJOR_BOOST", "perks$4$FETISH_SEEDER",
+            "perks$4$SEDUCTION_BOOST", "perks$4$SEDUCTION_DEFENCE_BOOST", "perks$4$FETISH_BROODMOTHER",
+            "perks$5$VIRILITY_BOOST", "perks$5$VIRILITY_MAJOR_BOOST", "perks$5$CRITICAL_BOOST_ALT",
+            "perks$5$FERTILITY_MAJOR_BOOST", "perks$5$FERTILITY_BOOST", "perks$6$MALE_ATTRACTION",
+            "perks$6$SEDUCTION_BOOST_MAJOR", "perks$6$FEMALE_ATTRACTION", "perks$7$SEDUCTION_BOOST",
+            "perks$7$SEDUCTION_BOOST_ALT", "perks$7$SEDUCTION_DEFENCE_BOOST", "perks$8$SEDUCTION_BOOST",
+            "perks$8$CONVINCING_REQUESTS", "perks$8$SEDUCTION_BOOST_MAJOR", "perks$8$OBJECT_OF_DESIRE",
+            "perks$8$SEDUCTION_DEFENCE_BOOST", "perks$9$SEDUCTION_BOOST", "perks$9$SEDUCTION_BOOST_ALT",
+            "perks$9$SEDUCTION_DEFENCE_BOOST", "perks$10$LUSTPYRE", "perks$10$NYMPHOMANIAC", "perks$10$PURE_MIND",
+            "perks$11$SEDUCTION_BOOST_MAJOR", "perks$12$ELEMENTAL_BOOST_ALT", "perks$1$ARCANE_BASE",
+            "perks$2$ENCHANTMENT_STABILITY_ALT", "perks$2$ARCANE_CRITICALS", "perks$2$ARCANE_BOOST",
+            "perks$3$ENCHANTMENT_STABILITY_ALT", "perks$3$SPELL_DAMAGE", "perks$3$AURA_BOOST", "perks$3$SPELL_EFFICIENCY",
+            "perks$4$CLOTHING_ENCHANTER", "perks$4$SPELL_DAMAGE", "perks$4$AURA_BOOST", "perks$4$SPELL_EFFICIENCY",
+            "perks$5$ELEMENTAL_BOOST", "perks$5$CRITICAL_BOOST_ALT_2", "perks$5$CHUUNI", "perks$5$ARCANE_COMBATANT",
+            "perks$6$ARCANE_BOOST_MAJOR", "perks$7$AURA_BOOST", "perks$7$SPELL_EFFICIENCY", "perks$7$SPELL_DAMAGE",
+            "perks$8$AURA_BOOST", "perks$8$SPELL_EFFICIENCY", "perks$8$SPELL_DAMAGE", "perks$9$AURA_BOOST",
+            "perks$9$SPELL_EFFICIENCY", "perks$9$SPELL_DAMAGE_MAJOR", "perks$10$SACRIFICIAL_SHIELDING",
+            "perks$10$SPELL_EFFICIENCY", "perks$10$ARCANE_VAMPYRISM", "perks$11$ELEMENTAL_DEFENCE_BOOST",
+            "perks$11$ARCANE_BOOST_MAJOR", "perks$11$ELEMENTAL_BOOST", "perks$12$ELEMENTAL_BOOST_ALT_2"};
 
     /**
      * String array of ids for all ComboBoxes that would carry over if not reset
@@ -1294,6 +1325,7 @@ public class Controller{
         initializeFootStructures();
         initializeGenitalArrangements();
         initializeLegTypes();
+        initializePerks();
     }
 
     /**
@@ -1825,6 +1857,7 @@ public class Controller{
      */
     public void setNamespace(ObservableMap<String, Object> namespace){
         this.namespace = namespace;
+        PerkNode.setNamespace(namespace);
         //Disables TabPane so user cannot use the editor without loading a file first (gets re-enabled in the loadFile method)
         TabPane tb = (TabPane) namespace.get("tabPane");
         tb.setDisable(true);
@@ -1890,6 +1923,7 @@ public class Controller{
             try(InputStream is = new FileInputStream(f)){
                 DocumentBuilder db = dbf.newDocumentBuilder();
                 saveFile = db.parse(is);
+                PerkNode.setSaveFile(saveFile);
                 System.out.println(f);
                 fileLoaded = true;
                 TabPane tb = (TabPane) namespace.get("tabPane");
@@ -1985,6 +2019,8 @@ public class Controller{
         Node idNode = getNodeByIdValue(charId);
         assert idNode != null;
         characterNode = idNode.getParentNode().getParentNode();
+        Node perksNode = getNode("perks");
+        PerkNode.setPerksNode(perksNode);
     }
 
     /**
@@ -2313,8 +2349,32 @@ public class Controller{
                     addLowerTierSpells(tier);
                 }
             }
-            event.consume();
         }
+        event.consume();
+    }
+
+    @FXML
+    private void updateXmlCheckBoxPerks(ActionEvent event){
+        if(fieldsSet){
+            String fxId = getId(event);
+            System.out.println(fxId);
+            String[] id = fxId.split("\\$");
+            CheckBox cb = (CheckBox) namespace.get(fxId);
+            PerkNode perk = matchPerk(perks, id[1], id[2]);
+            assert perk != null;
+            System.out.println(perk);
+            perk.setActive(cb.isSelected());
+        }
+        event.consume();
+    }
+
+    private PerkNode matchPerk(ArrayList<PerkNode> perkList, String row, String value){
+        for(PerkNode perkNode : perkList){
+            if(perkNode.equals(row, value)){
+                return perkNode;
+            }
+        }
+        return null;
     }
 
     /**
@@ -2521,8 +2581,8 @@ public class Controller{
                     NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                     String attributeName = attributeNodes.item(i).getNodeName();
                     switch(attributeName){
-                        case "locationInformation", "tattoos", "potionAttributes", "traits",
-                                "specialPerks", "perks", "statusEffects", "knownMoves", "equippedMoves" -> {
+                        case "locationInformation", "lipstickMarks", "tattoos", "potionAttributes", "traits",
+                                "specialPerks", "statusEffects", "knownMoves", "equippedMoves" -> {
                             continue;
                         }
                         case "pregnancy" -> { //Ends the loop early as all the needed data has been parsed //TODO: Adjust as needed
@@ -2566,6 +2626,11 @@ public class Controller{
                         case "attributes" -> {
                             setFieldsAttributes(attributeNodes.item(i));
                             System.out.println("Attribute Fields Set");
+                            continue;
+                        }
+                        case "perks" -> {
+                            setFieldsPerks(attributeNodes.item(i));
+                            System.out.println("Perk Fields Set");
                             continue;
                         }
                     }
@@ -2847,6 +2912,20 @@ public class Controller{
                 String id = idPartial + attr.getNamedItem("type").getTextContent();
                 TextField tf = (TextField) namespace.get(id);
                 tf.setText(attr.getNamedItem("value").getTextContent());
+            }
+        }
+    }
+
+    private void setFieldsPerks(Node perksNode){
+        String idPartial = "perks$";
+        NodeList perks = perksNode.getChildNodes();
+        for(int i = 0; i < perks.getLength(); i++){
+            if(perks.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = perks.item(i).getAttributes();
+                String id = idPartial + attr.getNamedItem("row").getTextContent() + "$" + attr.getNamedItem("type").getTextContent();
+                System.out.println(id);
+                CheckBox cb = (CheckBox) namespace.get(id);
+                cb.setSelected(true);
             }
         }
     }
