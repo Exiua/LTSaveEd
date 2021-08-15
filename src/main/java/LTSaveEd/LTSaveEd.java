@@ -6,8 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Class that initializes and starts the program
+ * @author Exiua
+ */
 public class LTSaveEd extends Application {
 
+    /**
+     * Version of the save editor
+     */
     private final String version = "v0.6.0";
 
     @Override
