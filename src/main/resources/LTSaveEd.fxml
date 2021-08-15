@@ -3089,6 +3089,289 @@
                </ScrollPane>
             </children></AnchorPane>
         </Tab>
+        <Tab text="Perks">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+               <GridPane prefHeight="671.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                 <columnConstraints>
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <CheckBox fx:id="perks$1$PHYSICAL_BASE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Natural Fitness" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                        <children>
+                           <CheckBox fx:id="perks$2$PHYSIQUE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Physically Fit" />
+                           <CheckBox fx:id="perks$2$OBSERVANT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Observant" />
+                           <CheckBox fx:id="perks$2$ENCHANTMENT_STABILITY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Stable Enchantments" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                        <children>
+                           <CheckBox fx:id="perks$3$PHYSICAL_DEFENCE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Defender" />
+                           <CheckBox fx:id="perks$3$ENERGY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Energy Reserves" />
+                           <CheckBox fx:id="perks$3$PHYSICAL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Striker" />
+                           <CheckBox fx:id="perks$3$ENCHANTMENT_STABILITY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Stable Enchantments" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                        <children>
+                           <CheckBox fx:id="perks$4$PHYSICAL_DEFENCE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Defender" />
+                           <CheckBox fx:id="perks$4$ENERGY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Energy Reserves" />
+                           <CheckBox fx:id="perks$4$PHYSICAL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Striker" />
+                           <CheckBox fx:id="perks$4$WEAPON_ENCHANTER" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Smith" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                        <children>
+                           <CheckBox fx:id="perks$5$RUNNER_2" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Cardio King" />
+                           <CheckBox fx:id="perks$5$UNARMED_TRAINING" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Martial Artist" />
+                           <CheckBox fx:id="perks$5$CRITICAL_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
+                           <CheckBox fx:id="perks$5$UNARMED_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Hand-to-Hand" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+                        <children>
+                           <CheckBox fx:id="perks$6$PHYSIQUE_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Physically Fit" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+                        <children>
+                           <CheckBox fx:id="perks$7$PHYSICAL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Striker" />
+                           <CheckBox fx:id="perks$7$UNARMED_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Hand-to-Hand" />
+                           <CheckBox fx:id="perks$7$ENERGY_BOOST_DRAIN_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Aura Shielding" />
+                           <CheckBox fx:id="perks$7$ENERGY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Energy Reserves" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+                        <children>
+                           <CheckBox fx:id="perks$8$PHYSICAL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Striker" />
+                           <CheckBox fx:id="perks$8$MELEE_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Melee Weapons Expert" />
+                           <CheckBox fx:id="perks$8$PHYSICAL_DEFENCE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Defender" />
+                           <CheckBox fx:id="perks$8$ENERGY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Energy Reserves" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
+                        <children>
+                           <CheckBox fx:id="perks$9$PHYSICAL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Striker" />
+                           <CheckBox fx:id="perks$9$RANGED_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Sharp-shooter" />
+                           <CheckBox fx:id="perks$9$PHYSICAL_DEFENCE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Defender" />
+                           <CheckBox fx:id="perks$9$ENERGY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Energy Reserves" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="9">
+                        <children>
+                           <CheckBox fx:id="perks$10$FEROCIOUS_WARRIOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Ferocious Warrior" />
+                           <CheckBox fx:id="perks$10$BESERK" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Berserk" />
+                           <CheckBox fx:id="perks$10$COMBAT_REGENERATION" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Combat Regeneration" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="10">
+                        <children>
+                           <CheckBox fx:id="perks$11$MELEE_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Melee Weapons Expert" />
+                           <CheckBox fx:id="perks$11$PHYSIQUE_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Physically Fit" />
+                           <CheckBox fx:id="perks$11$RANGED_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Sharp-shooter" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="11">
+                        <children>
+                           <CheckBox fx:id="perks$12$ELEMENTAL_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Elemental Striker" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <children>
+                           <CheckBox fx:id="perks$1$LEWD_KNOWLEDGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Lewd Knowledge" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <children>
+                           <CheckBox fx:id="perks$2$FIRING_BLANKS" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Sterile" />
+                           <CheckBox fx:id="perks$2$VIRILITY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Virile" />
+                           <CheckBox fx:id="perks$2$SEDUCTION_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$2$FERTILITY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Fertile" />
+                           <CheckBox fx:id="perks$2$BARREN" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Barren" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <children>
+                           <CheckBox fx:id="perks$3$VIRILITY_MAJOR_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Virile" />
+                           <CheckBox fx:id="perks$3$SEDUCTION_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$3$ORGASMIC_LEVEL_DRAIN" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Orgasmic Level Drain" />
+                           <CheckBox fx:id="perks$3$SEDUCTION_DEFENCE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Resistance" />
+                           <CheckBox fx:id="perks$3$FERTILITY_MAJOR_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Fertile" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <children>
+                           <CheckBox fx:id="perks$4$FETISH_SEEDER" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seeder" />
+                           <CheckBox fx:id="perks$4$SEDUCTION_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$4$SEDUCTION_DEFENCE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Resistance" />
+                           <CheckBox fx:id="perks$4$FETISH_BROODMOTHER" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Broodmother" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <children>
+                           <CheckBox fx:id="perks$5$VIRILITY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Virile" />
+                           <CheckBox fx:id="perks$5$VIRILITY_MAJOR_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Virile" />
+                           <CheckBox fx:id="perks$5$CRITICAL_BOOST_ALT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
+                           <CheckBox fx:id="perks$5$FERTILITY_MAJOR_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Fertile" />
+                           <CheckBox fx:id="perks$5$FERTILITY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Fertile" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <children>
+                           <CheckBox fx:id="perks$6$MALE_ATTRACTION" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Minx" />
+                           <CheckBox fx:id="perks$6$SEDUCTION_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$6$FEMALE_ATTRACTION" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Ladykiller" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <children>
+                           <CheckBox fx:id="perks$7$SEDUCTION_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$7$SEDUCTION_BOOST_ALT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$7$SEDUCTION_DEFENCE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Resistance" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <children>
+                           <CheckBox fx:id="perks$8$SEDUCTION_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$8$CONVINCING_REQUESTS" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Irresistible Appeals" />
+                           <CheckBox fx:id="perks$8$SEDUCTION_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$8$OBJECT_OF_DESIRE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Object of Desire" />
+                           <CheckBox fx:id="perks$8$SEDUCTION_DEFENCE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Resistance" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                        <children>
+                           <CheckBox fx:id="perks$9$SEDUCTION_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$9$SEDUCTION_BOOST_ALT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                           <CheckBox fx:id="perks$9$SEDUCTION_DEFENCE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Resistance" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        <children>
+                           <CheckBox fx:id="perks$10$LUSTPYRE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Lustpyre" />
+                           <CheckBox fx:id="perks$10$NYMPHOMANIAC" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Nymphomaniac" />
+                           <CheckBox fx:id="perks$10$PURE_MIND" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Pure Thoughts" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                        <children>
+                           <CheckBox fx:id="perks$11$SEDUCTION_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                        <children>
+                           <CheckBox fx:id="perks$12$ELEMENTAL_BOOST_ALT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Elemental Striker" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                        <children>
+                           <CheckBox fx:id="perks$1$ARCANE_BASE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Natural Arcane Power" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <children>
+                           <CheckBox fx:id="perks$2$ENCHANTMENT_STABILITY_ALT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Stable Enchantments" />
+                           <CheckBox fx:id="perks$2$ARCANE_CRITICALS" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Precision" />
+                           <CheckBox fx:id="perks$2$ARCANE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Training" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <children>
+                           <CheckBox fx:id="perks$3$ENCHANTMENT_STABILITY_ALT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Stable Enchantments" />
+                           <CheckBox fx:id="perks$3$SPELL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Power" />
+                           <CheckBox fx:id="perks$3$AURA_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Aura Reserves" />
+                           <CheckBox fx:id="perks$3$SPELL_EFFICIENCY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Efficiency" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <children>
+                           <CheckBox fx:id="perks$4$CLOTHING_ENCHANTER" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Weaver" />
+                           <CheckBox fx:id="perks$4$SPELL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Power" />
+                           <CheckBox fx:id="perks$4$AURA_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Aura Reserves" />
+                           <CheckBox fx:id="perks$4$SPELL_EFFICIENCY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Efficiency" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <children>
+                           <CheckBox fx:id="perks$5$ELEMENTAL_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Elemental Striker" />
+                           <CheckBox fx:id="perks$5$CRITICAL_BOOST_ALT_2" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
+                           <CheckBox fx:id="perks$5$CHUUNI" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Chuuni" />
+                           <CheckBox fx:id="perks$5$ARCANE_COMBATANT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Combatant" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                        <children>
+                           <CheckBox fx:id="perks$6$ARCANE_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Affinity" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                        <children>
+                           <CheckBox fx:id="perks$7$AURA_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Aura Reserves" />
+                           <CheckBox fx:id="perks$7$SPELL_EFFICIENCY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Efficiency" />
+                           <CheckBox fx:id="perks$7$SPELL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Power" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                        <children>
+                           <CheckBox fx:id="perks$8$AURA_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Aura Reserves" />
+                           <CheckBox fx:id="perks$8$SPELL_EFFICIENCY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Efficiency" />
+                           <CheckBox fx:id="perks$8$SPELL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Power" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                        <children>
+                           <CheckBox fx:id="perks$9$AURA_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Aura Reserves" />
+                           <CheckBox fx:id="perks$9$SPELL_EFFICIENCY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Efficiency" />
+                           <CheckBox fx:id="perks$9$SPELL_DAMAGE_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Mastery" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                        <children>
+                           <CheckBox fx:id="perks$10$SACRIFICIAL_SHIELDING" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Sacrificial Shielding" />
+                           <CheckBox fx:id="perks$10$SPELL_EFFICIENCY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Spell Efficiency" />
+                           <CheckBox fx:id="perks$10$ARCANE_VAMPYRISM" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Vampyrism" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                        <children>
+                           <CheckBox fx:id="perks$11$ELEMENTAL_DEFENCE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Elemental Defender" />
+                           <CheckBox fx:id="perks$11$ARCANE_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Affinity" />
+                           <CheckBox fx:id="perks$11$ELEMENTAL_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Elemental Striker" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                        <children>
+                           <CheckBox fx:id="perks$12$ELEMENTAL_BOOST_ALT_2" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Elemental Striker" />
+                        </children>
+                     </HBox>
+                  </children>
+                  <padding>
+                     <Insets left="14.0" top="28.0" />
+                  </padding>
+               </GridPane>
+            </children></AnchorPane>
+        </Tab>
         <Tab text="Spells">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>
@@ -3396,9 +3679,6 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab disable="true" text="Clothing">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </Tab>
-        <Tab disable="true" text="Perks">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab disable="true" text="Pregnancy">
