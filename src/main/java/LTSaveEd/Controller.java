@@ -180,7 +180,7 @@ public class Controller{
             "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR",
             "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD", "spells$CLEANSE",
             "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE",
-            "core$monthOfBirth$value"};
+            "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride"};
 
     /**
      * String array of ids for all CheckBoxes that would carry over if not reset
@@ -862,7 +862,50 @@ public class Controller{
     /**
      * ObservableList of all subspecies overrides in the game
      */
-    private final ObservableList<Attribute> subspeciesOverrides = FXCollections.observableArrayList(); //TODO
+    private final ObservableList<Attribute> subspeciesOverrides = FXCollections.observableArrayList(
+            new Attribute("Human", "HUMAN"), new Attribute("Angel", "ANGEL"),
+            new Attribute("Elder Lilin", "ELDER_LILIN"), new Attribute("Lilin", "LILIN"),
+            new Attribute("Demon", "DEMON"), new Attribute("Half Demon", "HALF_DEMON"),
+            new Attribute("Imp", "IMP"), new Attribute("Imp Alpha", "IMP_ALPHA"),
+            new Attribute("Cow Morph", "COW_MORPH"), new Attribute("Dog Morph", "DOG_MORPH"),
+            new Attribute("Dog Morph Border Collie", "DOG_MORPH_BORDER_COLLIE"),
+            new Attribute("Dog Morph Dobermann", "DOG_MORPH_DOBERMANN"),
+            new Attribute("Dog Morph German Shepherd", "DOG_MORPH_GERMAN_SHEPHERD"),
+            new Attribute("Wolf Morph", "WOLF_MORPH"), new Attribute("Fox Morph", "FOX_MORPH"),
+            new Attribute("Fox Morph Arctic", "FOX_MORPH_ARCTIC"),
+            new Attribute("Fox Morph Fennec", "FOX_MORPH_FENNEC"),
+            new Attribute("Fox Ascendant", "FOX_ASCENDANT"),
+            new Attribute("Fox Ascendant Arctic", "FOX_ASCENDANT_ARCTIC"),
+            new Attribute("Fox Ascendant Fennec", "FOX_ASCENDANT_FENNEC"),
+            new Attribute("Cat Morph", "CAT_MORPH"),
+            new Attribute("Cat Morph Lynx", "CAT_MORPH_LYNX"),
+            new Attribute("Cat Morph Cheetah", "CAT_MORPH_CHEETAH"),
+            new Attribute("Cat Morph Caracal", "CAT_MORPH_CARACAL"),
+            new Attribute("Cat Morph Leopard Snow", "CAT_MORPH_LEOPARD_SNOW"),
+            new Attribute("Cat Morph Leopard", "CAT_MORPH_LEOPARD"),
+            new Attribute("Cat Morph Lion", "CAT_MORPH_LION"),
+            new Attribute("Cat Morph Tiger", "CAT_MORPH_TIGER"),
+            new Attribute("Horse Morph", "HORSE_MORPH"),
+            new Attribute("Horse Morph Unicorn", "HORSE_MORPH_UNICORN"),
+            new Attribute("Horse Morph Pegasus", "HORSE_MORPH_PEGASUS"),
+            new Attribute("Horse Morph Alicorn", "HORSE_MORPH_ALICORN"),
+            new Attribute("Centaur", "CENTAUR"), new Attribute("Pegataur", "PEGATAUR"),
+            new Attribute("Unitaur", "UNITAUR"), new Attribute("Alitaur", "ALITAUR"),
+            new Attribute("Horse Morph Zebra", "HORSE_MORPH_ZEBRA"),
+            new Attribute("Reindeer Morph", "REINDEER_MORPH"),
+            new Attribute("Alligator Morph", "ALLIGATOR_MORPH"), new Attribute("Slime", "SLIME"),
+            new Attribute("Squirrel Morph", "SQUIRREL_MORPH"),
+            new Attribute("Rat Morph", "RAT_MORPH"), new Attribute("Rabbit Morph", "RABBIT_MORPH"),
+            new Attribute("Rabbit Morph Lop", "RABBIT_MORPH_LOP"),
+            new Attribute("Bat Morph", "BAT_MORPH"), new Attribute("Harpy", "HARPY"),
+            new Attribute("Harpy Raven", "HARPY_RAVEN"),
+            new Attribute("Harpy Bald Eagle", "HARPY_BALD_EAGLE"),
+            new Attribute("Harpy Phoenix", "HARPY_PHOENIX"),
+            new Attribute("Elemental Fire", "ELEMENTAL_FIRE"),
+            new Attribute("Elemental Earth", "ELEMENTAL_EARTH"),
+            new Attribute("Elemental Water", "ELEMENTAL_WATER"),
+            new Attribute("Elemental Air", "ELEMENTAL_AIR"),
+            new Attribute("Elemental Arcane", "ELEMENTAL_ARCANE")); //TODO Check if these are all subspecies in the game
 
     /**
      * ObservableList of all body hairstyles in the game
@@ -1320,6 +1363,7 @@ public class Controller{
         comboBoxValues.add(lilithsCommandSpellTiers);
         comboBoxValues.add(elementalArcaneSpellTiers);
         comboBoxValues.add(months);
+        comboBoxValues.add(subspeciesOverrides);
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
@@ -1439,7 +1483,6 @@ public class Controller{
                 new LegTypeAttr("Wolf", "WOLF_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE")));
     }
 
-    //TODO
     /**
      * Initializes PerkNodes and fills the ArrayList with the PerkNodes
      */
@@ -1882,7 +1925,7 @@ public class Controller{
                 @Override
                 public String toString(Attribute attribute){
                     return attribute.getName();
-                } //TODO: Fix this method throwing exceptions whenever hairStyles ComboBox values are updated
+                } //TODO: Fix this method throwing exceptions whenever ComboBox values are updated
 
                 @Override
                 public Attribute fromString(String s){

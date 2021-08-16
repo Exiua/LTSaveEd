@@ -216,7 +216,7 @@
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="210.0">
                                     <Label text="Subspecies Override: " />
-                                    <TextField fx:id="body$bodyCore$subspeciesOverride" editable="false" />
+                           <ComboBox fx:id="body$bodyCore$subspeciesOverride" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="235.0">
                                     <CheckBox fx:id="body$bodyCore$takesAfterMother" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Takes After Mother: " />
