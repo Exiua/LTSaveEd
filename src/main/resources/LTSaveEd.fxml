@@ -649,10 +649,11 @@
                                         <ComboBox fx:id="body$breasts$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="110.0">
+                                    <HBox layoutX="10.0" layoutY="110.0" spacing="5.0">
 
-                                        <Label text="Size: " />
+                                        <Label text="Size:" />
                                         <TextField fx:id="body$breasts$size" />
+                              <Label fx:id="breastsCupSize" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">

@@ -1247,18 +1247,8 @@ public class Controller{
             new Attribute("September", "SEPTEMBER"), new Attribute("October", "OCTOBER"),
             new Attribute("November", "NOVEMBER"), new Attribute("December", "DECEMBER"));
 
-    private final ObservableList<Attribute> breastSizes = FXCollections.observableArrayList(
-            new Attribute("Flat", "0"), new Attribute("Training-AAA-cup", "1"),
-            new Attribute("Training-AA-cup", "2"), new Attribute("Training-A-cup", "3"),
-            new Attribute("AA-cup", "4"), new Attribute("A-cup", "5"),
-            new Attribute("B-cup", "6"), new Attribute("C-cup", "7"),
-            new Attribute("D-cup", "8"), new Attribute("DD-cup", "9"),
-            new Attribute("E-cup", "10"), new Attribute("F-cup", "11"),
-            new Attribute("FF-cup", "12"), new Attribute("G-cup", "13"),
-            new Attribute("GG-cup", "14"), new Attribute("H-cup", "15"),
-            new Attribute("HH-cup", "16"), new Attribute("J-cup", "17"),
-            new Attribute("JJ-cup", "18"), new Attribute("K-cup", "19"),
-            new Attribute("KK-cup", "20"), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""), new Attribute("", ""));
+    private final ArrayList<String> breastSizes = new ArrayList<>(Arrays.asList("Flat", "Training-AAA-cup",
+            "Training-AA-cup", "Training-A-cup"));
 
     /**
      * ArrayList of all perks in the game
@@ -1370,6 +1360,7 @@ public class Controller{
         initializeGenitalArrangements();
         initializeLegTypes();
         initializePerks();
+        initializeBreastSizes();
     }
 
     /**
@@ -1616,6 +1607,17 @@ public class Controller{
     } //This is suffering
     //I'm probably dumb and there was an easier way to do this
 
+    private void initializeBreastSizes(){
+        String[] letters = {"AA", "A", "B", "C", "D", "DD", "E", "F", "FF", "G", "GG", "H", "HH", "J", "JJ", "K", "KK",
+                "L", "LL", "M", "MM", "N"};
+        String[] tiers = {"", "X", "XX", "XXX"};
+        for(String tier : tiers){
+            for(String letter : letters){
+                breastSizes.add((tier.equals("") ? tier : (tier + "-"))  + letter + "-cup");
+            }
+        }
+    }
+
     /**
      * Class that detects focus loss for TextFields
      */
@@ -1641,6 +1643,8 @@ public class Controller{
          */
         private final boolean fetishExp;
 
+        private final boolean breastsField;
+
         /**
          * Constructor for a new TextFieldListener
          *
@@ -1649,6 +1653,7 @@ public class Controller{
          */
         public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType){
             textInputControl = textControl;
+            breastsField = textControl.getId().equals("body$breasts$size");
             tfType = textFieldType;
             positiveOnly = false;
             fetishExp = textInputControl.getId().startsWith("FETISH_");
@@ -1677,6 +1682,14 @@ public class Controller{
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
             if(!newValue && fieldsSet){  // check if focus gained or lost and that the fields initially have the proper value
                 textInputControl.setText(getFormattedText(textInputControl.getText()));
+                if(breastsField){
+                    Label cupSize = (Label) namespace.get("breastsCupSize");
+                    int size = Integer.parseInt(textInputControl.getText());
+                    if(size >= breastSizes.size()){
+                        size = breastSizes.size() - 1;
+                    }
+                    cupSize.setText(breastSizes.get(size));
+                }
             }
         }
 
