@@ -2880,7 +2880,6 @@ public class Controller{
                                     }
                                 }
                                 catch(ClassCastException e2){ //Using ComboBoxes for fixed values
-                                    System.out.println(nodeId);
                                     @SuppressWarnings("unchecked")
                                     ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
                                     if(cb != null){
