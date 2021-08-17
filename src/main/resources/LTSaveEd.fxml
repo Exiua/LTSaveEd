@@ -526,10 +526,11 @@
                                           <CheckBox fx:id="body$mouth$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="185.0">
+                                    <HBox layoutX="10.0" layoutY="185.0" spacing="5.0">
                                        <children>
-                                          <Label text="Wetness: " />
+                                          <Label text="Wetness:" />
                                           <TextField fx:id="body$mouth$wetness" />
+                                          <Label fx:id="body$mouth$wetness$label" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -643,23 +644,23 @@
                                         <TextField fx:id="body$breasts$rows" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="85.0">
-
-                                        <Label text="Shape: " />
-                                        <ComboBox fx:id="body$breasts$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0" spacing="5.0">
 
                                         <Label text="Size:" />
                                         <TextField fx:id="body$breasts$size" />
-                              <Label fx:id="breastsCupSize" />
+                              <Label fx:id="body$breasts$size$label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
 
                                         <Label text="Stored Milk: " />
                                         <TextField fx:id="body$breasts$storedMilk" />
+
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="85.0">
+
+                                        <Label text="Shape: " />
+                                        <ComboBox fx:id="body$breasts$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="160.0">
@@ -710,21 +711,10 @@
                                         <TextField fx:id="body$nipples$elasticity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="110.0">
-
-                                        <Label text="Nipple Shape: " />
-                                        <ComboBox fx:id="body$nipples$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
 
                                         <Label text="Nipple Size: " />
                                         <TextField fx:id="body$nipples$nippleSize" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="160.0">
-
-                                        <CheckBox fx:id="body$nipples$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="185.0">
@@ -739,11 +729,20 @@
                                         <TextField fx:id="body$nipples$stretchedCapacity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="235.0">
+                                    <HBox layoutX="10.0" layoutY="110.0">
+
+                                        <Label text="Nipple Shape: " />
+                                        <ComboBox fx:id="body$nipples$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="160.0" spacing="10.0">
+
+                                        <CheckBox fx:id="body$nipples$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
 
                                         <CheckBox fx:id="body$nipples$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
+                                    <HBox layoutX="10.0" layoutY="235.0" />
 
                                 </VBox>
                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2">
@@ -878,22 +877,23 @@
                                         <TextField fx:id="body$breastsCrotch$rows" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="85.0">
+                                    <HBox layoutX="10.0" layoutY="110.0" spacing="5.0">
 
-                                        <Label text="Shape: " />
-                                        <ComboBox fx:id="body$breastsCrotch$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="110.0">
-
-                                        <Label text="Size: " />
+                                        <Label text="Size:" />
                                         <TextField fx:id="body$breastsCrotch$size" />
+                              <Label fx:id="body$breastsCrotch$size$label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
 
                                         <Label text="Stored Milk: " />
                                         <TextField fx:id="body$breastsCrotch$storedMilk" />
+
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="85.0">
+
+                                        <Label text="Shape: " />
+                                        <ComboBox fx:id="body$breastsCrotch$shape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="160.0">
@@ -944,21 +944,10 @@
                                         <TextField fx:id="body$nipplesCrotch$elasticity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="110.0">
-
-                                        <Label text="Nipple Shape: " />
-                                        <ComboBox fx:id="body$nipplesCrotch$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
 
                                         <Label text="Nipple Size: " />
                                         <TextField fx:id="body$nipplesCrotch$nippleSize" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="160.0">
-
-                                        <CheckBox fx:id="body$nipplesCrotch$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="185.0">
@@ -973,9 +962,17 @@
                                         <TextField fx:id="body$nipplesCrotch$stretchedCapacity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="235.0">
+                                    <HBox layoutX="10.0" layoutY="110.0">
 
-                                        <CheckBox fx:id="body$nipplesCrotch$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
+                                        <Label text="Nipple Shape: " />
+                                        <ComboBox fx:id="body$nipplesCrotch$nippleShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
+
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="160.0" spacing="10.0">
+
+                                        <CheckBox fx:id="body$nipplesCrotch$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
+
+                                           <CheckBox fx:id="body$nipplesCrotch$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
 
@@ -1241,15 +1238,16 @@
                                         <TextField fx:id="body$spinneret$stretchedCapacity" />
 
                                     </HBox>
+                                    <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
+
+                                        <Label text="Wetness:" />
+                                        <TextField fx:id="body$spinneret$wetness" />
+                              <Label fx:id="body$spinneret$wetness$label" />
+
+                                    </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
 
                                         <CheckBox fx:id="body$spinneret$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="135.0">
-
-                                        <Label text="Wetness: " />
-                                        <TextField fx:id="body$spinneret$wetness" />
 
                                     </HBox>
 
@@ -1341,11 +1339,6 @@
                                              <TextField fx:id="body$penis$girth" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="85.0">
-                                          <children>
-                                             <CheckBox fx:id="body$penis$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
-                                          </children>
-                                       </HBox>
                                        <HBox layoutX="10.0" layoutY="110.0">
                                           <children>
                                              <Label text="Plasticity: " />
@@ -1370,13 +1363,10 @@
                                              <ComboBox fx:id="body$penis$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="210.0">
+                                       <HBox layoutX="10.0" layoutY="85.0" spacing="10.0">
                                           <children>
+                                             <CheckBox fx:id="body$penis$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
                                              <CheckBox fx:id="body$penisUrethra$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Urethra Virgin: " />
-                                          </children>
-                                       </HBox>
-                                       <HBox layoutX="10.0" layoutY="235.0">
-                                          <children>
                                              <CheckBox fx:id="body$penis$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
                                           </children>
                                        </HBox>
@@ -1410,11 +1400,6 @@
                                              <TextField fx:id="body$testicles$cumStorage" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="60.0">
-                                          <children>
-                                             <CheckBox fx:id="body$testicles$internal" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internal: " />
-                                          </children>
-                                       </HBox>
                                        <HBox layoutX="10.0" layoutY="85.0">
                                           <children>
                                              <Label text="Number of Testicles: " />
@@ -1431,6 +1416,11 @@
                                           <children>
                                              <Label text="Testicle Size: " />
                                              <TextField fx:id="body$testicles$testicleSize" />
+                                          </children>
+                                       </HBox>
+                                       <HBox layoutX="10.0" layoutY="60.0">
+                                          <children>
+                                             <CheckBox fx:id="body$testicles$internal" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internal: " />
                                           </children>
                                        </HBox>
                                     </children>
@@ -1565,15 +1555,17 @@
                            <GridPane layoutX="24.0" layoutY="135.0" prefHeight="544.0" prefWidth="369.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <columnConstraints>
                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                              </columnConstraints>
                              <rowConstraints>
-                               <RowConstraints maxHeight="485.0" minHeight="10.0" prefHeight="462.0" vgrow="SOMETIMES" />
-                               <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="151.0" vgrow="SOMETIMES" />
+                               <RowConstraints maxHeight="485.0" minHeight="10.0" prefHeight="146.0" vgrow="SOMETIMES" />
+                                 <RowConstraints maxHeight="485.0" minHeight="0.0" prefHeight="123.0" vgrow="SOMETIMES" />
+                               <RowConstraints maxHeight="316.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
+                                 <RowConstraints maxHeight="341.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
+                                 <RowConstraints maxHeight="316.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
                              </rowConstraints>
                               <children>
-                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0">
+                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.rowSpan="2147483647">
                                     <children>
                                        <Label alignment="CENTER" text="Vagina" underline="true">
                                           <padding>
@@ -1607,20 +1599,10 @@
                                              <TextField fx:id="body$vagina$depth" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="85.0">
-                                          <children>
-                                             <CheckBox fx:id="body$vagina$eggLayer" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Egg Layer: " />
-                                          </children>
-                                       </HBox>
                                        <HBox layoutX="10.0" layoutY="110.0">
                                           <children>
                                              <Label text="Elasticity: " />
                                              <TextField fx:id="body$vagina$elasticity" />
-                                          </children>
-                                       </HBox>
-                                       <HBox layoutX="10.0" layoutY="135.0">
-                                          <children>
-                                             <CheckBox fx:id="body$vagina$hymen" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Hymen: " />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="160.0">
@@ -1629,20 +1611,10 @@
                                              <TextField fx:id="body$vagina$labiaSize" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="185.0">
-                                          <children>
-                                             <CheckBox fx:id="body$vagina$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
-                                          </children>
-                                       </HBox>
                                        <HBox layoutX="10.0" layoutY="210.0">
                                           <children>
                                              <Label text="Plasticity: " />
                                              <TextField fx:id="body$vagina$plasticity" />
-                                          </children>
-                                       </HBox>
-                                       <HBox layoutX="10.0" layoutY="235.0">
-                                          <children>
-                                             <CheckBox fx:id="body$vagina$squirter" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Squirter: " />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="336.0">
@@ -1651,28 +1623,61 @@
                                              <TextField fx:id="body$vagina$stretchedCapacity" />
                                           </children>
                                        </HBox>
+                                       <HBox>
+                                          <children>
+                                             <Label text="Urethra Capacity: " />
+                                             <TextField fx:id="body$vagina$urethraCapacity" />
+                                          </children>
+                                       </HBox>
+                                       <HBox>
+                                          <children>
+                                             <Label text="Urethra Depth: " />
+                                             <TextField fx:id="body$vagina$urethraDepth" />
+                                          </children>
+                                       </HBox>
+                                       <HBox>
+                                          <children>
+                                             <Label text="Urethra Elasticity: " />
+                                             <TextField fx:id="body$vagina$urethraElasticity" />
+                                          </children>
+                                       </HBox>
+                                       <HBox>
+                                          <children>
+                                             <Label text="Urethra Plasticity: " />
+                                             <TextField fx:id="body$vagina$urethraPlasticity" />
+                                          </children>
+                                       </HBox>
+                                       <HBox>
+                                          <children>
+                                             <Label text="Urethra Stretched Capacity: " />
+                                             <TextField fx:id="body$vagina$urethraStretchedCapacity" />
+                                          </children>
+                                       </HBox>
+                                       <HBox spacing="5.0">
+                                          <children>
+                                             <Label text="Wetness:" />
+                                             <TextField fx:id="body$vagina$wetness" />
+                                             <Label fx:id="body$vagina$wetness$label" />
+                                          </children>
+                                       </HBox>
                                        <HBox layoutX="10.0" layoutY="371.0">
                                           <children>
                                              <Label text="Type: " />
                                              <ComboBox fx:id="body$vagina$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                           </children>
                                        </HBox>
-                                    </children>
-                                 </VBox>
-                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.rowIndex="1">
-                                    <children>
-                                       <Label alignment="CENTER" text="Girlcum" underline="true">
-                                          <padding>
-                                             <Insets left="90.0" />
-                                          </padding>
-                                          <font>
-                                             <Font name="System Bold" size="12.0" />
-                                          </font>
-                                       </Label>
-                                       <HBox>
+                                       <HBox layoutX="10.0" layoutY="85.0" spacing="10.0">
                                           <children>
-                                             <Label text="Flavour: " />
-                                             <ComboBox fx:id="body$girlcum$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                             <CheckBox fx:id="body$vagina$eggLayer" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Egg Layer: " />
+                                             <CheckBox fx:id="body$vagina$hymen" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Hymen: " />
+                                             <CheckBox fx:id="body$vagina$pierced" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced: " />
+                                             <CheckBox fx:id="body$vagina$squirter" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Squirter: " />
+                                          </children>
+                                       </HBox>
+                                       <HBox spacing="10.0">
+                                          <children>
+                                             <CheckBox fx:id="body$vagina$urethraVirgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Urethra Virgin: " />
+                                             <CheckBox fx:id="body$vagina$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
                                           </children>
                                        </HBox>
                                     </children>
@@ -1710,7 +1715,7 @@
                                        </HBox>
                                     </children>
                                  </VBox>
-                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <children>
                                        <Label alignment="CENTER" text="Urethra Modifiers" underline="true">
                                           <padding>
@@ -1734,9 +1739,9 @@
                                        </HBox>
                                     </children>
                                  </VBox>
-                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1">
+                                 <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                     <children>
-                                       <Label alignment="CENTER" text="Vagina Modifiers" underline="true">
+                                       <Label alignment="CENTER" text="Girlcum" underline="true">
                                           <padding>
                                              <Insets left="90.0" />
                                           </padding>
@@ -1744,21 +1749,15 @@
                                              <Font name="System Bold" size="12.0" />
                                           </font>
                                        </Label>
-                                       <HBox spacing="30.0">
+                                       <HBox>
                                           <children>
-                                             <CheckBox fx:id="body$vagina$vaginaModifiers$PUFFY" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Puffy: " />
-                                             <CheckBox fx:id="body$vagina$vaginaModifiers$RIBBED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internally-ribbed: " />
-                                          </children>
-                                       </HBox>
-                                       <HBox spacing="30.0">
-                                          <children>
-                                             <CheckBox fx:id="body$vagina$vaginaModifiers$TENTACLED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Tentacled: " />
-                                             <CheckBox fx:id="body$vagina$vaginaModifiers$MUSCLE_CONTROL" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internally-muscled: " />
+                                             <Label text="Flavour: " />
+                                             <ComboBox fx:id="body$girlcum$flavour" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                           </children>
                                        </HBox>
                                     </children>
                                  </VBox>
-                                 <VBox prefHeight="587.0" prefWidth="336.0" spacing="10.0" GridPane.columnIndex="2">
+                                 <VBox prefHeight="587.0" prefWidth="336.0" spacing="10.0" GridPane.columnIndex="1">
                                     <children>
                                        <Label alignment="CENTER" text="Clitoris Modifiers" underline="true">
                                           <padding>
@@ -1793,6 +1792,30 @@
                                           <children>
                                              <CheckBox fx:id="body$vagina$clitModifiers$PREHENSILE" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Prehensile: " />
                                              <CheckBox fx:id="body$vagina$clitModifiers$OVIPOSITOR" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Ovipositor: " />
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <children>
+                                       <Label alignment="CENTER" text="Vagina Modifiers" underline="true">
+                                          <padding>
+                                             <Insets left="90.0" />
+                                          </padding>
+                                          <font>
+                                             <Font name="System Bold" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <HBox spacing="30.0">
+                                          <children>
+                                             <CheckBox fx:id="body$vagina$vaginaModifiers$PUFFY" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Puffy: " />
+                                             <CheckBox fx:id="body$vagina$vaginaModifiers$RIBBED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internally-ribbed: " />
+                                          </children>
+                                       </HBox>
+                                       <HBox spacing="30.0">
+                                          <children>
+                                             <CheckBox fx:id="body$vagina$vaginaModifiers$TENTACLED" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Tentacled: " />
+                                             <CheckBox fx:id="body$vagina$vaginaModifiers$MUSCLE_CONTROL" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Internally-muscled: " />
                                           </children>
                                        </HBox>
                                     </children>
@@ -1859,17 +1882,6 @@
                                             <Font name="System Bold" size="12.0" />
                                         </font>
                                     </Label>
-                                    <HBox>
-
-                                        <Label text="Ass Hair: " />
-                              <ComboBox fx:id="body$anus$assHair" onAction="#updateXmlComboBox" prefWidth="150.0" />
-
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-
-                                        <CheckBox fx:id="body$anus$bleached" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Bleached: " />
-
-                                    </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
 
                                         <Label text="Capacity: " />
@@ -1900,15 +1912,24 @@
                                         <TextField fx:id="body$anus$stretchedCapacity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="160.0">
+                                    <HBox layoutX="10.0" layoutY="185.0" spacing="5.0">
 
-                                        <CheckBox fx:id="body$anus$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
+                                        <Label text="Wetness:" />
+                                        <TextField fx:id="body$anus$wetness" />
+                              <Label fx:id="body$anus$wetness$label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="185.0">
+                                    <HBox>
 
-                                        <Label text="Wetness: " />
-                                        <TextField fx:id="body$anus$wetness" />
+                                           <Label text="Ass Hair: " />
+                              <ComboBox fx:id="body$anus$assHair" onAction="#updateXmlComboBox" prefWidth="150.0" />
+
+                                       </HBox>
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="10.0">
+
+                                        <CheckBox fx:id="body$anus$bleached" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Bleached: " />
+
+                                        <CheckBox fx:id="body$anus$virgin" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Virgin: " />
 
                                     </HBox>
 

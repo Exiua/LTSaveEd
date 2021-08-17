@@ -126,7 +126,8 @@ public class Controller{
             "FETISH_CROSS_DRESSER$exp", "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp",
             "FETISH_SWITCH$exp", "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp",
             "spellUpgradePoints$EARTH", "spellUpgradePoints$WATER", "spellUpgradePoints$FIRE", "spellUpgradePoints$AIR",
-            "spellUpgradePoints$ARCANE"};
+            "spellUpgradePoints$ARCANE", "body$vagina$urethraDepth", "body$vagina$urethraElasticity",
+            "body$vagina$urethraPlasticity", "body$vagina$wetness"};
 
     /**
      * String array of all TextField ids using a double data type
@@ -139,7 +140,8 @@ public class Controller{
             "body$testicles$storedCum", "body$vagina$capacity", "body$vagina$stretchedCapacity", "body$tail$length",
             "body$tentacle$length", "body$spinneret$capacity", "body$spinneret$stretchedCapacity",
             "attributes$HEALTH_MAXIMUM", "attributes$MANA_MAXIMUM", "attributes$AROUSAL", "attributes$LUST",
-            "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE", "attributes$MAJOR_CORRUPTION"};
+            "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE", "attributes$MAJOR_CORRUPTION",
+            "body$vagina$urethraCapacity", "body$vagina$urethraStretchedCapacity"};
 
     /**
      * String array of all TextField ids using a String data type
@@ -1250,6 +1252,20 @@ public class Controller{
     private final ArrayList<String> breastSizes = new ArrayList<>(Arrays.asList("Flat", "Training-AAA-cup",
             "Training-AA-cup", "Training-A-cup"));
 
+    private final ArrayList<String> wetnessTypes = new ArrayList<>(Arrays.asList("Dry", "Slightly Moist", "Moist", "Wet",
+            "Slimy", "Sloppy", "Sopping Wet", "Drooling"));
+
+    private final ArrayList<String> depthSizes = new ArrayList<>(Arrays.asList("Very Shallow", "Shallow", "Average-depth",
+            "Spacious", "Deep", "Very Deep", "Cavernous", "Fathomless"));
+
+    private final ArrayList<String> elasticitySizes = new ArrayList<>(Arrays.asList("Rigid", "Stiff", "Firm", "Flexible",
+            "Limber", "Stretchy", "Supple", "Elastic"));
+
+    private final ArrayList<String> plasticitySizes = new ArrayList<>(Arrays.asList("Rubbery", "Springy", "Tensile",
+            "Resilient", "Accommodating", "Yielding", "Malleable", "Moldable"));
+
+    private final HashMap<String, ArrayList<String>> labelMap = new HashMap<>();
+
     /**
      * ArrayList of all perks in the game
      */
@@ -1278,7 +1294,17 @@ public class Controller{
             in = new FileInputStream("config.ini");
         }
         prop.load(in);
+        initializeCollections();
+    }
+
+    /**
+     * Initializes all ObservableLists, ArrayLists, and Maps
+     */
+    private void initializeCollections(){
         initializeComboBoxValues();
+        initializePerks();
+        initializeBreastSizes();
+        initializeLabelMap();
     }
 
     /**
@@ -1359,8 +1385,6 @@ public class Controller{
         initializeFootStructures();
         initializeGenitalArrangements();
         initializeLegTypes();
-        initializePerks();
-        initializeBreastSizes();
     }
 
     /**
@@ -1618,6 +1642,15 @@ public class Controller{
         }
     }
 
+    private void initializeLabelMap(){
+        labelMap.put("body$breasts$size", breastSizes);
+        labelMap.put("body$breastsCrotch$size", breastSizes);
+        labelMap.put("body$vagina$wetness", wetnessTypes);
+        labelMap.put("body$anus$wetness", wetnessTypes);
+        labelMap.put("body$spinneret$wetness", wetnessTypes);
+        labelMap.put("body$mouth$wetness", wetnessTypes);
+    }
+
     /**
      * Class that detects focus loss for TextFields
      */
@@ -1633,6 +1666,8 @@ public class Controller{
          */
         private final TextFieldType tfType;
 
+        private final String fieldId;
+
         /**
          * Boolean of whether int and doubles types are only positive values
          */
@@ -1643,7 +1678,7 @@ public class Controller{
          */
         private final boolean fetishExp;
 
-        private final boolean breastsField;
+        private final boolean hasSecondLabel;
 
         /**
          * Constructor for a new TextFieldListener
@@ -1653,10 +1688,12 @@ public class Controller{
          */
         public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType){
             textInputControl = textControl;
-            breastsField = textControl.getId().equals("body$breasts$size");
             tfType = textFieldType;
+            fieldId = textControl.getId();
+            hasSecondLabel = labelMap.containsKey(fieldId);
             positiveOnly = false;
             fetishExp = textInputControl.getId().startsWith("FETISH_");
+            setLabel();
         }
 
         /**
@@ -1682,14 +1719,22 @@ public class Controller{
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
             if(!newValue && fieldsSet){  // check if focus gained or lost and that the fields initially have the proper value
                 textInputControl.setText(getFormattedText(textInputControl.getText()));
-                if(breastsField){
-                    Label cupSize = (Label) namespace.get("breastsCupSize");
-                    int size = Integer.parseInt(textInputControl.getText());
-                    if(size >= breastSizes.size()){
-                        size = breastSizes.size() - 1;
-                    }
-                    cupSize.setText(breastSizes.get(size));
+                setLabel();
+            }
+        }
+
+        private void setLabel(){
+            if(hasSecondLabel){
+                Label valueLabel = (Label) namespace.get(fieldId + "$label");
+                int valueToTextIndex = Integer.parseInt(textInputControl.getText());
+                ArrayList<String> valueToTextList = labelMap.get(fieldId);
+                if(valueToTextIndex >= valueToTextList.size()){
+                    valueToTextIndex = valueToTextList.size() - 1;
                 }
+                else if(valueToTextIndex < 0){
+                    valueToTextIndex = 0;
+                }
+                valueLabel.setText(valueToTextList.get(valueToTextIndex));
             }
         }
 
@@ -1707,7 +1752,7 @@ public class Controller{
                 Node fetishExp = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0);
                 Element fetishEntry = saveFile.createElement("entry");
                 fetishEntry.setAttribute("experience", "0");
-                fetishEntry.setAttribute("fetish", textInputControl.getId().split("\\$")[0]);
+                fetishEntry.setAttribute("fetish", fieldId.split("\\$")[0]);
                 fetishExp.appendChild(fetishEntry);
                 value = getAttributeNode(fetishEntry, "experience");
                 System.out.println("Created new element");
@@ -1876,7 +1921,7 @@ public class Controller{
          * @return Node containing the attribute value
          */
         private Node getValueNode(){
-            String[] id = textInputControl.getId().split("\\$");
+            String[] id = fieldId.split("\\$");
             NodeList attributeNodes = getAttributeNodes();
             if(id[0].startsWith("FETISH_")){
                 NodeList fetishes = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0).getChildNodes();
