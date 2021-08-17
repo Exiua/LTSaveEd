@@ -1264,6 +1264,27 @@ public class Controller{
     private final ArrayList<String> plasticitySizes = new ArrayList<>(Arrays.asList("Rubbery", "Springy", "Tensile",
             "Resilient", "Accommodating", "Yielding", "Malleable", "Moldable"));
 
+    private final ArrayList<String> lipSizes = new ArrayList<>(Arrays.asList("Thin", "Average-sized", "Full", "Plump",
+            "Huge", "Massive", "Gigantic", "Absurdly Colossal"));
+
+    private final ArrayList<String> bodyPartSizes = new ArrayList<>(Arrays.asList("Tiny", "Small", "Average-sized",
+            "Large", "Massive"));
+
+    private final ArrayList<String> appendageGirths = new ArrayList<>(Arrays.asList("Thin", "Slender", "Narrow",
+            "Average", "Thick", "Extra-thick", "Extremely-thick", "Unbelievable-thick"));
+
+    private final ArrayList<String> penisGirths = new ArrayList<>(Arrays.asList("Thin", "Slender", "Narrow",
+            "Averagely-girthed", "Girthy", "Thick", "Chubby", "Fat"));
+
+    private final ArrayList<String> testicleSizes = new ArrayList<>(Arrays.asList("Vestigial", "Tiny", "Average-sized",
+            "Large", "Huge", "Massive", "Gigantic", "Absurdly Enormous"));
+
+    private final ArrayList<String> assSizes = new ArrayList<>(Arrays.asList("Flat", "Tiny", "Small", "Round", "Large",
+            "Huge", "Massive", "Gigantic"));
+
+    private final ArrayList<String> hipSizes = new ArrayList<>(Arrays.asList("Completely Straight", "Very Narrow",
+            "Narrow", "Girly", "Womanly", "Very Wide", "Extremely Wide", "Absurdly Wide"));
+
     private final HashMap<String, ArrayList<String>> labelMap = new HashMap<>();
 
     /**
@@ -1649,6 +1670,43 @@ public class Controller{
         labelMap.put("body$anus$wetness", wetnessTypes);
         labelMap.put("body$spinneret$wetness", wetnessTypes);
         labelMap.put("body$mouth$wetness", wetnessTypes);
+        labelMap.put("body$mouth$depth", depthSizes);
+        labelMap.put("body$mouth$elasticity", elasticitySizes);
+        labelMap.put("body$mouth$plasticity", plasticitySizes);
+        labelMap.put("body$mouth$lipSize", lipSizes);
+        labelMap.put("body$nipples$areolaeSize", bodyPartSizes);
+        labelMap.put("body$nipples$depth", depthSizes);
+        labelMap.put("body$nipples$elasticity", elasticitySizes);
+        labelMap.put("body$nipples$nippleSize", bodyPartSizes);
+        labelMap.put("body$nipples$plasticity", plasticitySizes);
+        labelMap.put("body$nipplesCrotch$areolaeSize", bodyPartSizes);
+        labelMap.put("body$nipplesCrotch$depth", depthSizes);
+        labelMap.put("body$nipplesCrotch$elasticity", elasticitySizes);
+        labelMap.put("body$nipplesCrotch$nippleSize", bodyPartSizes);
+        labelMap.put("body$nipplesCrotch$plasticity", plasticitySizes);
+        labelMap.put("body$tail$girth", appendageGirths);
+        labelMap.put("body$tentacle$girth", appendageGirths);
+        labelMap.put("body$spinneret$depth", depthSizes);
+        labelMap.put("body$spinneret$elasticity", elasticitySizes);
+        labelMap.put("body$spinneret$plasticity", plasticitySizes);
+        labelMap.put("body$penis$depth", depthSizes);
+        labelMap.put("body$penis$elasticity", elasticitySizes);
+        labelMap.put("body$penis$girth", penisGirths);
+        labelMap.put("body$penis$plasticity", plasticitySizes);
+        labelMap.put("body$testicles$testicleSize", testicleSizes);
+        labelMap.put("body$vagina$clitGirth", penisGirths);
+        labelMap.put("body$vagina$depth", depthSizes);
+        labelMap.put("body$vagina$elasticity", elasticitySizes);
+        labelMap.put("body$vagina$labiaSize", bodyPartSizes);
+        labelMap.put("body$vagina$plasticity", plasticitySizes);
+        labelMap.put("body$vagina$urethraDepth", depthSizes);
+        labelMap.put("body$vagina$urethraElasticity", elasticitySizes);
+        labelMap.put("body$vagina$urethraPlasticity", plasticitySizes);
+        labelMap.put("body$ass$assSize", assSizes);
+        labelMap.put("body$ass$hipSize", hipSizes);
+        labelMap.put("body$anus$depth", depthSizes);
+        labelMap.put("body$anus$elasticity", elasticitySizes);
+        labelMap.put("body$anus$plasticity", plasticitySizes);
     }
 
     /**
@@ -2822,6 +2880,7 @@ public class Controller{
                                     }
                                 }
                                 catch(ClassCastException e2){ //Using ComboBoxes for fixed values
+                                    System.out.println(nodeId);
                                     @SuppressWarnings("unchecked")
                                     ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
                                     if(cb != null){

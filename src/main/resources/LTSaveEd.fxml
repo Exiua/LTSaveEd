@@ -486,22 +486,25 @@
                                           <TextField fx:id="body$mouth$capacity" />
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
                                        <children>
-                                          <Label text="Depth: " />
+                                          <Label text="Depth:" />
                                           <TextField fx:id="body$mouth$depth" />
+                                          <Label fx:id="body$mouth$depth$label" text="Label" />
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="35.0">
+                                    <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
                                        <children>
-                                          <Label text="Elasticity: " />
+                                          <Label text="Elasticity:" />
                                           <TextField fx:id="body$mouth$elasticity" />
+                                          <Label fx:id="body$mouth$elasticity$label" text="Label" />
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="60.0">
+                                    <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
                                        <children>
-                                          <Label text="Lip Size: " />
+                                          <Label text="Lip Size:" />
                                           <TextField fx:id="body$mouth$lipSize" />
+                                          <Label fx:id="body$mouth$lipSize$label" text="Label" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="85.0">
@@ -509,10 +512,11 @@
                                           <CheckBox fx:id="body$mouth$piercedLip" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Lip: " />
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="110.0">
+                                    <HBox layoutX="10.0" layoutY="110.0" spacing="5.0">
                                        <children>
-                                          <Label text="Plasticity: " />
+                                          <Label text="Plasticity:" />
                                           <TextField fx:id="body$mouth$plasticity" />
+                                          <Label fx:id="body$mouth$plasticity$label" text="Label" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
@@ -530,7 +534,7 @@
                                        <children>
                                           <Label text="Wetness:" />
                                           <TextField fx:id="body$mouth$wetness" />
-                                          <Label fx:id="body$mouth$wetness$label" />
+                                          <Label fx:id="body$mouth$wetness$label" text="Label" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -648,7 +652,7 @@
 
                                         <Label text="Size:" />
                                         <TextField fx:id="body$breasts$size" />
-                              <Label fx:id="body$breasts$size$label" />
+                              <Label fx:id="body$breasts$size$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
@@ -687,10 +691,11 @@
                                         <ComboBox fx:id="body$nipples$areolaeShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Areolae Size: " />
+                                        <Label text="Areolae Size:" />
                                         <TextField fx:id="body$nipples$areolaeSize" />
+                              <Label fx:id="body$nipples$areolaeSize$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -699,28 +704,32 @@
                                         <TextField fx:id="body$nipples$capacity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="60.0">
+                                    <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
 
-                                        <Label text="Depth: " />
+                                        <Label text="Depth:" />
                                         <TextField fx:id="body$nipples$depth" />
+                              <Label fx:id="body$nipples$depth$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="85.0">
+                                    <HBox layoutX="10.0" layoutY="85.0" spacing="5.0">
 
-                                        <Label text="Elasticity: " />
+                                        <Label text="Elasticity:" />
                                         <TextField fx:id="body$nipples$elasticity" />
+                              <Label fx:id="body$nipples$elasticity$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="135.0">
+                                    <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
 
-                                        <Label text="Nipple Size: " />
+                                        <Label text="Nipple Size:" />
                                         <TextField fx:id="body$nipples$nippleSize" />
+                              <Label fx:id="body$nipples$nippleSize$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="185.0">
+                                    <HBox layoutX="10.0" layoutY="185.0" spacing="5.0">
 
-                                        <Label text="Plasticity: " />
+                                        <Label text="Plasticity:" />
                                         <TextField fx:id="body$nipples$plasticity" />
+                              <Label fx:id="body$nipples$plasticity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="210.0">
@@ -881,7 +890,7 @@
 
                                         <Label text="Size:" />
                                         <TextField fx:id="body$breastsCrotch$size" />
-                              <Label fx:id="body$breastsCrotch$size$label" />
+                              <Label fx:id="body$breastsCrotch$size$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
@@ -920,10 +929,11 @@
                                         <ComboBox fx:id="body$nipplesCrotch$areolaeShape" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Areolae Size: " />
+                                        <Label text="Areolae Size:" />
                                         <TextField fx:id="body$nipplesCrotch$areolaeSize" />
+                              <Label fx:id="body$nipplesCrotch$areolaeSize$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -932,28 +942,32 @@
                                         <TextField fx:id="body$nipplesCrotch$capacity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="60.0">
+                                    <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
 
-                                        <Label text="Depth: " />
+                                        <Label text="Depth:" />
                                         <TextField fx:id="body$nipplesCrotch$depth" />
+                              <Label fx:id="body$nipplesCrotch$depth$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="85.0">
+                                    <HBox layoutX="10.0" layoutY="85.0" spacing="5.0">
 
-                                        <Label text="Elasticity: " />
+                                        <Label text="Elasticity:" />
                                         <TextField fx:id="body$nipplesCrotch$elasticity" />
+                              <Label fx:id="body$nipplesCrotch$elasticity$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="135.0">
+                                    <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
 
-                                        <Label text="Nipple Size: " />
+                                        <Label text="Nipple Size:" />
                                         <TextField fx:id="body$nipplesCrotch$nippleSize" />
+                              <Label fx:id="body$nipplesCrotch$nippleSize$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="185.0">
+                                    <HBox layoutX="10.0" layoutY="185.0" spacing="5.0">
 
-                                        <Label text="Plasticity: " />
+                                        <Label text="Plasticity:" />
                                         <TextField fx:id="body$nipplesCrotch$plasticity" />
+                              <Label fx:id="body$nipplesCrotch$plasticity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="210.0">
@@ -1114,14 +1128,15 @@
                                         <TextField fx:id="body$tail$count" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Girth: " />
+                                        <Label text="Girth:" />
                                         <TextField fx:id="body$tail$girth">
                                             <tooltip>
                                                 <Tooltip text="Enter a value between 1 and 8" />
                                             </tooltip>
                                         </TextField>
+                              <Label fx:id="body$tail$girth$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -1154,10 +1169,11 @@
                                         <TextField fx:id="body$tentacle$count" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Girth: " />
+                                        <Label text="Girth:" />
                                         <TextField fx:id="body$tentacle$girth" />
+                              <Label fx:id="body$tentacle$girth$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -1214,22 +1230,25 @@
                                         <TextField fx:id="body$spinneret$capacity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Depth: " />
+                                        <Label text="Depth:" />
                                         <TextField fx:id="body$spinneret$depth" />
+                              <Label fx:id="body$spinneret$depth$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="35.0">
+                                    <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
 
-                                        <Label text="Elasticity: " />
+                                        <Label text="Elasticity:" />
                                         <TextField fx:id="body$spinneret$elasticity" />
+                              <Label fx:id="body$spinneret$elasticity$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="60.0">
+                                    <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
 
-                                        <Label text="Plasticity: " />
+                                        <Label text="Plasticity:" />
                                         <TextField fx:id="body$spinneret$plasticity" />
+                              <Label fx:id="body$spinneret$plasticity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="85.0">
@@ -1242,7 +1261,7 @@
 
                                         <Label text="Wetness:" />
                                         <TextField fx:id="body$spinneret$wetness" />
-                              <Label fx:id="body$spinneret$wetness$label" />
+                              <Label fx:id="body$spinneret$wetness$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -1321,28 +1340,32 @@
                                              <TextField fx:id="body$penis$capacity" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="10.0">
+                                       <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
                                           <children>
-                                             <Label text="Depth: " />
+                                             <Label text="Depth:" />
                                              <TextField fx:id="body$penis$depth" />
+                                             <Label fx:id="body$penis$depth$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="35.0">
+                                       <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
                                           <children>
-                                             <Label text="Elasticity: " />
+                                             <Label text="Elasticity:" />
                                              <TextField fx:id="body$penis$elasticity" />
+                                             <Label fx:id="body$penis$elasticity$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="60.0">
+                                       <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
                                           <children>
-                                             <Label text="Girth: " />
+                                             <Label text="Girth:" />
                                              <TextField fx:id="body$penis$girth" />
+                                             <Label fx:id="body$penis$girth$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="110.0">
+                                       <HBox layoutX="10.0" layoutY="110.0" spacing="5.0">
                                           <children>
-                                             <Label text="Plasticity: " />
+                                             <Label text="Plasticity:" />
                                              <TextField fx:id="body$penis$plasticity" />
+                                             <Label fx:id="body$penis$plasticity$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="135.0">
@@ -1412,10 +1435,11 @@
                                              <TextField fx:id="body$testicles$storedCum" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="135.0">
+                                       <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
                                           <children>
-                                             <Label text="Testicle Size: " />
+                                             <Label text="Testicle Size:" />
                                              <TextField fx:id="body$testicles$testicleSize" />
+                                             <Label fx:id="body$testicles$testicleSize$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="60.0">
@@ -1581,10 +1605,11 @@
                                              <TextField fx:id="body$vagina$capacity" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="10.0">
+                                       <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
                                           <children>
-                                             <Label text="Clit Girth: " />
+                                             <Label text="Clit Girth:" />
                                              <TextField fx:id="body$vagina$clitGirth" />
+                                             <Label fx:id="body$vagina$clitGirth$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="35.0">
@@ -1593,28 +1618,32 @@
                                              <TextField fx:id="body$vagina$clitSize" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="60.0">
+                                       <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
                                           <children>
-                                             <Label text="Depth: " />
+                                             <Label text="Depth:" />
                                              <TextField fx:id="body$vagina$depth" />
+                                             <Label fx:id="body$vagina$depth$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="110.0">
+                                       <HBox layoutX="10.0" layoutY="110.0" spacing="5.0">
                                           <children>
-                                             <Label text="Elasticity: " />
+                                             <Label text="Elasticity:" />
                                              <TextField fx:id="body$vagina$elasticity" />
+                                             <Label fx:id="body$vagina$elasticity$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="160.0">
+                                       <HBox layoutX="10.0" layoutY="160.0" spacing="5.0">
                                           <children>
-                                             <Label text="Labia Size: " />
+                                             <Label text="Labia Size:" />
                                              <TextField fx:id="body$vagina$labiaSize" />
+                                             <Label fx:id="body$vagina$labiaSize$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="210.0">
+                                       <HBox layoutX="10.0" layoutY="210.0" spacing="5.0">
                                           <children>
-                                             <Label text="Plasticity: " />
+                                             <Label text="Plasticity:" />
                                              <TextField fx:id="body$vagina$plasticity" />
+                                             <Label fx:id="body$vagina$plasticity$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="336.0">
@@ -1629,22 +1658,25 @@
                                              <TextField fx:id="body$vagina$urethraCapacity" />
                                           </children>
                                        </HBox>
-                                       <HBox>
+                                       <HBox spacing="5.0">
                                           <children>
-                                             <Label text="Urethra Depth: " />
+                                             <Label text="Urethra Depth:" />
                                              <TextField fx:id="body$vagina$urethraDepth" />
+                                             <Label fx:id="body$vagina$urethraDepth$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox>
+                                       <HBox spacing="5.0">
                                           <children>
-                                             <Label text="Urethra Elasticity: " />
+                                             <Label text="Urethra Elasticity:" />
                                              <TextField fx:id="body$vagina$urethraElasticity" />
+                                             <Label fx:id="body$vagina$urethraElasticity$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox>
+                                       <HBox spacing="5.0">
                                           <children>
-                                             <Label text="Urethra Plasticity: " />
+                                             <Label text="Urethra Plasticity:" />
                                              <TextField fx:id="body$vagina$urethraPlasticity" />
+                                             <Label fx:id="body$vagina$urethraPlasticity$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox>
@@ -1657,7 +1689,7 @@
                                           <children>
                                              <Label text="Wetness:" />
                                              <TextField fx:id="body$vagina$wetness" />
-                                             <Label fx:id="body$vagina$wetness$label" />
+                                             <Label fx:id="body$vagina$wetness$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="371.0">
@@ -1852,16 +1884,18 @@
                                             <Font name="System Bold" size="12.0" />
                                         </font>
                                     </Label>
-                                    <HBox>
+                                    <HBox spacing="5.0">
 
-                                        <Label text="Ass Size: " />
+                                        <Label text="Ass Size:" />
                                         <TextField fx:id="body$ass$assSize" />
+                              <Label fx:id="body$ass$assSize$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Hip Size: " />
+                                        <Label text="Hip Size:" />
                                         <TextField fx:id="body$ass$hipSize" />
+                              <Label fx:id="body$ass$hipSize$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -1888,22 +1922,25 @@
                                         <TextField fx:id="body$anus$capacity" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="60.0">
+                                    <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
 
-                                        <Label text="Depth: " />
+                                        <Label text="Depth:" />
                                         <TextField fx:id="body$anus$depth" />
+                              <Label fx:id="body$anus$depth$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="85.0">
+                                    <HBox layoutX="10.0" layoutY="85.0" spacing="5.0">
 
-                                        <Label text="Elasticity: " />
+                                        <Label text="Elasticity:" />
                                         <TextField fx:id="body$anus$elasticity" />
+                              <Label fx:id="body$anus$elasticity$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="110.0">
+                                    <HBox layoutX="10.0" layoutY="110.0" spacing="5.0">
 
-                                        <Label text="Plasticity: " />
+                                        <Label text="Plasticity:" />
                                         <TextField fx:id="body$anus$plasticity" />
+                              <Label fx:id="body$anus$plasticity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0">
@@ -1916,7 +1953,7 @@
 
                                         <Label text="Wetness:" />
                                         <TextField fx:id="body$anus$wetness" />
-                              <Label fx:id="body$anus$wetness$label" />
+                              <Label fx:id="body$anus$wetness$label" text="Label" />
 
                                     </HBox>
                                     <HBox>
