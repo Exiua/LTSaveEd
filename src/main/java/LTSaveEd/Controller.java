@@ -1287,6 +1287,30 @@ public class Controller{
 
     private final HashMap<String, ArrayList<String>> labelMap = new HashMap<>();
 
+    private final ArrayList<String> femininityValues = addRangeToArrayList(new int[]{20, 20, 20, 20, 1}, //Techincally the last int should be 21, but the code already accounts for values greater
+            new String[]{"Very Masculine", "Masculine", "Androgynous", "Feminine", "Very Feminine"});
+
+    private final ArrayList<String> bodySizes = addRangeToArrayList(new int[]{20, 20, 20, 20, 1},
+            new String[]{"Skinny", "Slender", "Average", "Large", "Huge"});
+
+    private final ArrayList<String> muscleDefinitions = addRangeToArrayList(new int[]{20, 20, 20, 20, 1},
+            new String[]{"Soft", "Lightly Muscled", "Toned", "Muscular", "Ripped"});
+
+    private final ArrayList<String> hairLengths = addRangeToArrayList(new int[]{4, 7, 11, 23, 35, 60, 125, 1},
+            new String[]{"Bald", "Very Short", "Short", "Shoulder-length", "Long", "Very Long", "Incredibly Long",
+                    "Floor-length"});
+
+    private final ArrayList<String> extremityLengths = addRangeToArrayList(new int[]{10, 12, 18, 22, 1},
+            new String[]{"Tiny", "Small", "Long", "Huge", "Massive"}); //Horn and Antennae lengths
+
+    private final ArrayList<String> tongueLengths = addRangeToArrayList(new int[]{7, 8, 10, 20, 1},
+            new String[]{"Normal-sized", "Long", "Very Long", "Extremely Long", "Absurdly Long"});
+
+    private final ArrayList<String> capacitySizes = addRangeToArrayList(new int[]{(int) (1.75 * 4), (int) (2 * 4),
+                    (int) (2.5 * 4), (int) (2.5 * 4), (int) (2.5 * 4), (int) (2.5 * 4), (int) (6.25 * 4), 1},
+            new String[]{"Extremely Tight", "Tight", "Somewhat Tight", "Slightly Loose", "Loose", "Very Loose",
+                    "Stretched Open", "Gaping Wide"});
+
     /**
      * ArrayList of all perks in the game
      */
@@ -1326,6 +1350,7 @@ public class Controller{
         initializePerks();
         initializeBreastSizes();
         initializeLabelMap();
+        initializeRangedArrayLists();
     }
 
     /**
@@ -1707,6 +1732,50 @@ public class Controller{
         labelMap.put("body$anus$depth", depthSizes);
         labelMap.put("body$anus$elasticity", elasticitySizes);
         labelMap.put("body$anus$plasticity", plasticitySizes);
+        labelMap.put("body$bodyCore$bodySize", bodySizes);
+        labelMap.put("body$bodyCore$femininity", femininityValues);
+        labelMap.put("body$bodyCore$muscle", muscleDefinitions);
+        labelMap.put("body$antennae$length", extremityLengths);
+        labelMap.put("body$hair$length", hairLengths);
+        labelMap.put("body$horn$length", extremityLengths);
+        labelMap.put("body$tongue$tongueLength", tongueLengths);
+        labelMap.put("body$mouth$capacity", capacitySizes);
+        labelMap.put("body$mouth$stretchedCapacity", capacitySizes);
+        labelMap.put("body$nipples$capacity", capacitySizes);
+        labelMap.put("body$nipples$stretchedCapacity", capacitySizes);
+        labelMap.put("body$nipplesCrotch$capacity", capacitySizes);
+        labelMap.put("body$nipplesCrotch$stretchedCapacity", capacitySizes);
+        labelMap.put("body$spinneret$capacity", capacitySizes);
+        labelMap.put("body$spinneret$stretchedCapacity", capacitySizes);
+        labelMap.put("body$penis$capacity", capacitySizes);
+        labelMap.put("body$penis$stretchedCapacity", capacitySizes);
+        labelMap.put("body$vagina$capacity", capacitySizes);
+        labelMap.put("body$vagina$stretchedCapacity", capacitySizes);
+        labelMap.put("body$vagina$urethraCapacity", capacitySizes);
+        labelMap.put("body$vagina$urethraStretchedCapacity", capacitySizes);
+        labelMap.put("body$anus$capacity", capacitySizes);
+        labelMap.put("body$anus$stretchedCapacity", capacitySizes);
+    }
+
+    private void initializeRangedArrayLists(){
+
+    }
+
+    private ArrayList<String> addRangeToArrayList(int[] ranges, String[] values){
+        if(ranges.length != values.length){
+            throw new IllegalArgumentException();
+        }
+        int sum = 0;
+        for(int range : ranges){
+            sum += range;
+        }
+        ArrayList<String> list = new ArrayList<>(sum);
+        for(int i = 0; i < ranges.length; i++){
+            for(int j = 0; j < ranges[i]; j++){
+                list.add(values[i]);
+            }
+        }
+        return list;
     }
 
     /**
@@ -1784,7 +1853,8 @@ public class Controller{
         private void setLabel(){
             if(hasSecondLabel){
                 Label valueLabel = (Label) namespace.get(fieldId + "$label");
-                int valueToTextIndex = Integer.parseInt(textInputControl.getText());
+                String textValue = textInputControl.getText();
+                int valueToTextIndex = textValue.contains(".") ?  (int) (Double.parseDouble(textValue) * 4) : Integer.parseInt(textValue);
                 ArrayList<String> valueToTextList = labelMap.get(fieldId);
                 if(valueToTextIndex >= valueToTextList.size()){
                     valueToTextIndex = valueToTextList.size() - 1;

@@ -182,15 +182,17 @@
                                     <Label text="Body Material: " />
                            <ComboBox fx:id="body$bodyCore$bodyMaterial" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 </HBox>
-                                <HBox layoutX="10.0" layoutY="10.0">
+                                <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                    <Label text="Body Size: " />
+                                    <Label text="Body Size:" />
                                     <TextField fx:id="body$bodyCore$bodySize" />
+                           <Label fx:id="body$bodyCore$bodySize$label" text="Label" />
                                 </HBox>
-                                <HBox layoutX="10.0" layoutY="35.0">
+                                <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
 
-                                    <Label text="Femininity: " />
+                                    <Label text="Femininity:" />
                                     <TextField fx:id="body$bodyCore$femininity" />
+                           <Label fx:id="body$bodyCore$femininity$label" text="Label" />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="60.0">
                                     <CheckBox fx:id="body$bodyCore$feral" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Feral: " />
@@ -203,9 +205,10 @@
                                     <Label text="Height: " />
                                     <TextField fx:id="body$bodyCore$height" />
                                 </HBox>
-                                <HBox layoutX="10.0" layoutY="135.0">
-                                    <Label text="Muscle: " />
+                                <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
+                                    <Label text="Muscle:" />
                                     <TextField fx:id="body$bodyCore$muscle" />
+                           <Label fx:id="body$bodyCore$muscle$label" text="Label" />
                                 </HBox>
                                 <HBox layoutX="10.0" layoutY="160.0">
                                     <CheckBox fx:id="body$bodyCore$piercedStomach" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Stomach: " />
@@ -251,9 +254,10 @@
                                         <Label text="Antennae per row: " />
                                         <TextField fx:id="body$antennae$antennaePerRow" />
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
-                                        <Label text="Length: " />
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
+                                        <Label text="Length:" />
                                         <TextField fx:id="body$antennae$length" />
+                              <Label fx:id="body$antennae$length$label" text="Label" />
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
                                         <Label text="Rows: " />
@@ -306,10 +310,11 @@
                                         <ComboBox fx:id="body$hair$hairStyle" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Length: " />
+                                        <Label text="Length:" />
                                         <TextField fx:id="body$hair$length" />
+                              <Label fx:id="body$hair$length$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -318,6 +323,11 @@
                                         <ComboBox fx:id="body$hair$type" onAction="#updateXmlComboBox" prefWidth="150.0" />
 
                                     </HBox>
+                           <HBox>
+                              <children>
+                                 <CheckBox fx:id="body$hair$neckFluff" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Neck Fluff: " />
+                              </children>
+                           </HBox>
 
                                     <GridPane.margin>
                                         <Insets left="20.0" top="20.0" />
@@ -339,10 +349,11 @@
                                         <TextField fx:id="body$horn$hornsPerRow" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Length: " />
+                                        <Label text="Length:" />
                                         <TextField fx:id="body$horn$length" />
+                              <Label fx:id="body$horn$length$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -462,10 +473,11 @@
                                           <CheckBox fx:id="body$tongue$piercedTongue" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Tongue: " />
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
                                        <children>
-                                          <Label text="Tongue Length: " />
+                                          <Label text="Tongue Length:" />
                                           <TextField fx:id="body$tongue$tongueLength" />
+                                          <Label fx:id="body$tongue$tongueLength$label" text="Label" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -480,10 +492,11 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <HBox>
+                                    <HBox spacing="5.0">
                                        <children>
-                                          <Label text="Capacity: " />
+                                          <Label text="Capacity:" />
                                           <TextField fx:id="body$mouth$capacity" />
+                                          <Label fx:id="body$mouth$capacity$label" text="Label" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
@@ -519,10 +532,11 @@
                                           <Label fx:id="body$mouth$plasticity$label" text="Label" />
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="135.0">
+                                    <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
                                        <children>
-                                          <Label text="Stretched Capacity: " />
+                                          <Label text="Stretched Capacity:" />
                                           <TextField fx:id="body$mouth$stretchedCapacity" />
+                                          <Label fx:id="body$mouth$stretchedCapacity$label" text="Label" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="160.0">
@@ -698,10 +712,11 @@
                               <Label fx:id="body$nipples$areolaeSize$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="35.0">
+                                    <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
 
-                                        <Label text="Capacity: " />
+                                        <Label text="Capacity:" />
                                         <TextField fx:id="body$nipples$capacity" />
+                              <Label fx:id="body$nipples$capacity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
@@ -732,10 +747,11 @@
                               <Label fx:id="body$nipples$plasticity$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="210.0">
+                                    <HBox layoutX="10.0" layoutY="210.0" spacing="5.0">
 
-                                        <Label text="Stretched Capacity: " />
+                                        <Label text="Stretched Capacity:" />
                                         <TextField fx:id="body$nipples$stretchedCapacity" />
+                              <Label fx:id="body$nipples$stretchedCapacity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -936,10 +952,11 @@
                               <Label fx:id="body$nipplesCrotch$areolaeSize$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="35.0">
+                                    <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
 
-                                        <Label text="Capacity: " />
+                                        <Label text="Capacity:" />
                                         <TextField fx:id="body$nipplesCrotch$capacity" />
+                              <Label fx:id="body$nipplesCrotch$capacity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
@@ -970,10 +987,11 @@
                               <Label fx:id="body$nipplesCrotch$plasticity$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="210.0">
+                                    <HBox layoutX="10.0" layoutY="210.0" spacing="5.0">
 
-                                        <Label text="Stretched Capacity: " />
+                                        <Label text="Stretched Capacity:" />
                                         <TextField fx:id="body$nipplesCrotch$stretchedCapacity" />
+                              <Label fx:id="body$nipplesCrotch$stretchedCapacity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="110.0">
@@ -1224,10 +1242,11 @@
                                             <Font name="System Bold" size="12.0" />
                                         </font>
                                     </Label>
-                                    <HBox>
+                                    <HBox spacing="5.0">
 
-                                        <Label text="Capacity: " />
+                                        <Label text="Capacity:" />
                                         <TextField fx:id="body$spinneret$capacity" />
+                              <Label fx:id="body$spinneret$capacity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
@@ -1251,10 +1270,11 @@
                               <Label fx:id="body$spinneret$plasticity$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="85.0">
+                                    <HBox layoutX="10.0" layoutY="85.0" spacing="5.0">
 
-                                        <Label text="Stretched Capacity: " />
+                                        <Label text="Stretched Capacity:" />
                                         <TextField fx:id="body$spinneret$stretchedCapacity" />
+                              <Label fx:id="body$spinneret$stretchedCapacity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
@@ -1334,10 +1354,11 @@
                                              <Font name="System Bold" size="12.0" />
                                           </font>
                                        </Label>
-                                       <HBox>
+                                       <HBox spacing="5.0">
                                           <children>
-                                             <Label text="Capacity: " />
+                                             <Label text="Capacity:" />
                                              <TextField fx:id="body$penis$capacity" />
+                                             <Label fx:id="body$penis$capacity$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
@@ -1374,10 +1395,11 @@
                                              <TextField fx:id="body$penis$size" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="160.0">
+                                       <HBox layoutX="10.0" layoutY="160.0" spacing="5.0">
                                           <children>
-                                             <Label text="Stretched Capacity: " />
+                                             <Label text="Stretched Capacity:" />
                                              <TextField fx:id="body$penis$stretchedCapacity" />
+                                             <Label fx:id="body$penis$stretchedCapacity$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="185.0">
@@ -1599,10 +1621,11 @@
                                              <Font name="System Bold" size="12.0" />
                                           </font>
                                        </Label>
-                                       <HBox>
+                                       <HBox spacing="5.0">
                                           <children>
-                                             <Label text="Capacity: " />
+                                             <Label text="Capacity:" />
                                              <TextField fx:id="body$vagina$capacity" />
+                                             <Label fx:id="body$vagina$capacity$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
@@ -1646,16 +1669,18 @@
                                              <Label fx:id="body$vagina$plasticity$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="336.0">
+                                       <HBox layoutX="10.0" layoutY="336.0" spacing="5.0">
                                           <children>
-                                             <Label text="Stretched Capacity: " />
+                                             <Label text="Stretched Capacity:" />
                                              <TextField fx:id="body$vagina$stretchedCapacity" />
+                                             <Label fx:id="body$vagina$stretchedCapacity$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox>
+                                       <HBox spacing="5.0">
                                           <children>
-                                             <Label text="Urethra Capacity: " />
+                                             <Label text="Urethra Capacity:" />
                                              <TextField fx:id="body$vagina$urethraCapacity" />
+                                             <Label fx:id="body$vagina$urethraCapacity$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox spacing="5.0">
@@ -1679,10 +1704,11 @@
                                              <Label fx:id="body$vagina$urethraPlasticity$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox>
+                                       <HBox spacing="5.0">
                                           <children>
-                                             <Label text="Urethra Stretched Capacity: " />
+                                             <Label text="Urethra Stretched Capacity:" />
                                              <TextField fx:id="body$vagina$urethraStretchedCapacity" />
+                                             <Label fx:id="body$vagina$urethraStretchedCapacity$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox spacing="5.0">
@@ -1916,10 +1942,11 @@
                                             <Font name="System Bold" size="12.0" />
                                         </font>
                                     </Label>
-                                    <HBox layoutX="10.0" layoutY="35.0">
+                                    <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
 
-                                        <Label text="Capacity: " />
+                                        <Label text="Capacity:" />
                                         <TextField fx:id="body$anus$capacity" />
+                              <Label fx:id="body$anus$capacity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
@@ -1943,10 +1970,11 @@
                               <Label fx:id="body$anus$plasticity$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="135.0">
+                                    <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
 
-                                        <Label text="Stretched Capacity: " />
+                                        <Label text="Stretched Capacity:" />
                                         <TextField fx:id="body$anus$stretchedCapacity" />
+                              <Label fx:id="body$anus$stretchedCapacity$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="185.0" spacing="5.0">
