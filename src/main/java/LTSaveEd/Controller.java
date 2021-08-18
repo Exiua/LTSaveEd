@@ -1287,7 +1287,7 @@ public class Controller{
 
     private final HashMap<String, ArrayList<String>> labelMap = new HashMap<>();
 
-    private final ArrayList<String> femininityValues = addRangeToArrayList(new int[]{20, 20, 20, 20, 1}, //Techincally the last int should be 21, but the code already accounts for values greater
+    private final ArrayList<String> femininityValues = addRangeToArrayList(new int[]{20, 20, 20, 20, 1}, //Technically the last int should be 21, but the code already accounts for values greater
             new String[]{"Very Masculine", "Masculine", "Androgynous", "Feminine", "Very Feminine"});
 
     private final ArrayList<String> bodySizes = addRangeToArrayList(new int[]{20, 20, 20, 20, 1},
@@ -1350,7 +1350,6 @@ public class Controller{
         initializePerks();
         initializeBreastSizes();
         initializeLabelMap();
-        initializeRangedArrayLists();
     }
 
     /**
@@ -1755,10 +1754,6 @@ public class Controller{
         labelMap.put("body$vagina$urethraStretchedCapacity", capacitySizes);
         labelMap.put("body$anus$capacity", capacitySizes);
         labelMap.put("body$anus$stretchedCapacity", capacitySizes);
-    }
-
-    private void initializeRangedArrayLists(){
-
     }
 
     private ArrayList<String> addRangeToArrayList(int[] ranges, String[] values){
@@ -2362,23 +2357,6 @@ public class Controller{
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
         }
         return attr;
-    }
-
-    /**
-     * Gets a specified child Node from the supplied parent Node
-     *
-     * @param node Parent Node to search children
-     * @param targetNode Name of the desired Node
-     * @return Desired Node if found else null
-     */
-    private Node getChildNode(Node node, String targetNode){
-        NodeList children = node.getChildNodes();
-        for(int i = 0; i < children.getLength(); i++){
-            if(children.item(i).getNodeName().equals(targetNode)){
-                return children.item(i);
-            }
-        }
-        return null;
     }
 
     /**
