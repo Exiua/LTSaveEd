@@ -3346,6 +3346,26 @@ public class Controller{
         System.out.println("Offsprings Removed");
     }
 
+    @FXML
+    private void revealMap(){
+        Node mapsNode = saveFile.getElementsByTagName("maps").item(0);
+        NodeList worlds = mapsNode.getChildNodes();
+        for(int i = 0; i < worlds.getLength(); i++){
+            if(worlds.item(i).getNodeType() == Node.ELEMENT_NODE){
+                Node grid = ((Element) worlds.item(i)).getElementsByTagName("grid").item(0);
+                NodeList cells = grid.getChildNodes();
+                for(int j = 0; j < cells.getLength(); j++){
+                    if(cells.item(j).getNodeType() == Node.ELEMENT_NODE){
+                        NamedNodeMap attr = cells.item(j).getAttributes();
+                        attr.getNamedItem("discovered").setTextContent("true");
+                        attr.getNamedItem("travelledTo").setTextContent("true");
+                    }
+                }
+            }
+        }
+        System.out.println("Revealed all map tiles");
+    }
+
     /**
      * Overwrites the file that was used to load in the xml data
      *
