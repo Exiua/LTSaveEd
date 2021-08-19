@@ -1311,10 +1311,27 @@ public class Controller{
             new String[]{"Extremely Tight", "Tight", "Somewhat Tight", "Slightly Loose", "Loose", "Very Loose",
                     "Stretched Open", "Gaping Wide"});
 
+    private final ArrayList<String> milkStorageSizes = addRangeToArrayList(new int[]{1, 29, 70, 500, 400, 1000, 8000, 1},
+            new String[]{"None", "Trickle", "Small", "Decent", "Large", "Huge", "Extreme", "Monstrous"}); //Lactation
+
+    private final ArrayList<String> fluidRegenerationRates = addRangeToArrayList(new int[]{300, 500, 4200, 95000, 1},
+            new String[]{"Slow", "Average", "Fast", "Rapid", "Very Rapid"});
+
+    private final ArrayList<String> penisSizes = addRangeToArrayList(new int[]{5, 5, 10, 10, 10, 10, 10, 1},
+            new String[]{"Tiny", "Small", "Average-sized", "Large", "Huge", "Enormous", "Gigantic", "Stallion-sized"});
+
+    private final ArrayList<String> cumStorageSizes = addRangeToArrayList(new int[]{1, 9, 10, 10, 70, 900, 1},
+            new String[]{"None", "Trickle", "Average", "Large", "Huge", "Extreme", "Monstrous"});
+
+    private final ArrayList<String> clitSizes = addRangeToArrayList(new int[]{1, 4, 5, 15, 15, 10, 10, 1},
+            new String[]{"Small", "Big", "Large", "Huge", "Massive", "Enormous", "Gigantic", "Absurdly Colossal"});
+
     /**
      * ArrayList of all perks in the game
      */
     private final ArrayList<PerkNode> perks = new ArrayList<>();
+
+    private final ArrayList<TextObjectListener> listeners = new ArrayList<>();
 
     /**
      * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
@@ -1673,7 +1690,7 @@ public class Controller{
                 p58, p59, p60, p61, p62, p63, p64, p65, p66, p67, p68, p69, p70, p71, p72, p73, p74, p75, p76, p77, p78,
                 p79, p80, p81, p82, p83, p84, p85, p86, p87, p88, p89, p90, p91, p92, p93, p94, p95, p96, p97, p98, p99,
                 p100, p101, p102, p103, p104, p105, p106, p107, p108));
-    } //This is suffering
+    }
     //I'm probably dumb and there was an easier way to do this
 
     private void initializeBreastSizes(){
@@ -1754,6 +1771,14 @@ public class Controller{
         labelMap.put("body$vagina$urethraStretchedCapacity", capacitySizes);
         labelMap.put("body$anus$capacity", capacitySizes);
         labelMap.put("body$anus$stretchedCapacity", capacitySizes);
+        labelMap.put("body$breasts$milkRegeneration", fluidRegenerationRates);
+        labelMap.put("body$breasts$milkStorage", milkStorageSizes);
+        labelMap.put("body$breastsCrotch$milkRegeneration", fluidRegenerationRates);
+        labelMap.put("body$breastsCrotch$milkStorage", milkStorageSizes);
+        labelMap.put("body$penis$size", penisSizes);
+        labelMap.put("body$testicles$cumRegeneration", fluidRegenerationRates);
+        labelMap.put("body$testicles$cumStorage", cumStorageSizes);
+        labelMap.put("body$vagina$clitSize", clitSizes);
     }
 
     private ArrayList<String> addRangeToArrayList(int[] ranges, String[] values){
@@ -1816,6 +1841,7 @@ public class Controller{
             positiveOnly = false;
             fetishExp = textInputControl.getId().startsWith("FETISH_");
             setLabel();
+            listeners.add(this);
         }
 
         /**
@@ -2784,6 +2810,12 @@ public class Controller{
         }
     }
 
+    private void updateLabels(){
+        for(TextObjectListener listener : listeners){
+            listener.setLabel();
+        }
+    }
+
     /**
      * Reads data from xml save file and sSets all fields with the selected character data
      */
@@ -2945,6 +2977,7 @@ public class Controller{
                 addListeners();
             }
             fieldsSet = true;
+            updateLabels();
         }
     }
 
