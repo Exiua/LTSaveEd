@@ -638,16 +638,18 @@
                                             <Font name="System Bold" size="12.0" />
                                         </font>
                                     </Label>
-                                    <HBox>
+                                    <HBox spacing="5.0">
 
-                                        <Label text="Milk Regeneration: " />
+                                        <Label text="Milk Regeneration:" />
                                         <TextField fx:id="body$breasts$milkRegeneration" />
+                              <Label fx:id="body$breasts$milkRegeneration$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Milk Storage: " />
+                                        <Label text="Milk Storage:" />
                                         <TextField fx:id="body$breasts$milkStorage" />
+                              <Label fx:id="body$breasts$milkStorage$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -878,16 +880,18 @@
                                             <Font name="System Bold" size="12.0" />
                                         </font>
                                     </Label>
-                                    <HBox>
+                                    <HBox spacing="5.0">
 
-                                        <Label text="Milk Regeneration: " />
+                                        <Label text="Milk Regeneration:" />
                                         <TextField fx:id="body$breastsCrotch$milkRegeneration" />
+                              <Label fx:id="body$breastsCrotch$milkRegeneration$label" text="Label" />
 
                                     </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0">
+                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
 
-                                        <Label text="Milk Storage: " />
+                                        <Label text="Milk Storage:" />
                                         <TextField fx:id="body$breastsCrotch$milkStorage" />
+                              <Label fx:id="body$breastsCrotch$milkStorage$label" text="Label" />
 
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="35.0">
@@ -1389,10 +1393,11 @@
                                              <Label fx:id="body$penis$plasticity$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="135.0">
+                                       <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
                                           <children>
-                                             <Label text="Size: " />
+                                             <Label text="Size:" />
                                              <TextField fx:id="body$penis$size" />
+                                             <Label fx:id="body$penis$size$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="160.0" spacing="5.0">
@@ -1433,16 +1438,18 @@
                                              <TextField fx:id="body$testicles$cumExpulsion" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="10.0">
+                                       <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
                                           <children>
-                                             <Label text="Cum Regeneration: " />
+                                             <Label text="Cum Regeneration:" />
                                              <TextField fx:id="body$testicles$cumRegeneration" />
+                                             <Label fx:id="body$testicles$cumRegeneration$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="35.0">
+                                       <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
                                           <children>
-                                             <Label text="Cum Storage: " />
+                                             <Label text="Cum Storage:" />
                                              <TextField fx:id="body$testicles$cumStorage" />
+                                             <Label fx:id="body$testicles$cumStorage$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="85.0">
@@ -1635,10 +1642,11 @@
                                              <Label fx:id="body$vagina$clitGirth$label" text="Label" />
                                           </children>
                                        </HBox>
-                                       <HBox layoutX="10.0" layoutY="35.0">
+                                       <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
                                           <children>
-                                             <Label text="Clit Size: " />
+                                             <Label text="Clit Size:" />
                                              <TextField fx:id="body$vagina$clitSize" />
+                                             <Label fx:id="body$vagina$clitSize$label" text="Label" />
                                           </children>
                                        </HBox>
                                        <HBox layoutX="10.0" layoutY="60.0" spacing="5.0">
