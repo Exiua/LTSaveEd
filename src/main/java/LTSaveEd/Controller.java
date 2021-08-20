@@ -182,7 +182,7 @@ public class Controller{
             "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR",
             "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD", "spells$CLEANSE",
             "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE",
-            "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride"};
+            "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride", "core$history$value"};
 
     /**
      * String array of ids for all CheckBoxes that would carry over if not reset
@@ -314,6 +314,10 @@ public class Controller{
             "FETISH_DENIAL_SELF$exp", "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp",
             "FETISH_CROSS_DRESSER$exp", "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp",
             "FETISH_SWITCH$exp", "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp"};
+
+    private final String[] resetDoubleTextFieldsIds = {"attributes$HEALTH_MAXIMUM", "attributes$MANA_MAXIMUM",
+            "attributes$AROUSAL", "attributes$LUST", "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE",
+            "attributes$MAJOR_CORRUPTION"};
 
     /**
      * ObservableList of all sexual orientations in the game
@@ -1249,6 +1253,15 @@ public class Controller{
             new Attribute("September", "SEPTEMBER"), new Attribute("October", "OCTOBER"),
             new Attribute("November", "NOVEMBER"), new Attribute("December", "DECEMBER"));
 
+    private final ObservableList<Attribute> jobHistories = FXCollections.observableArrayList(
+            new Attribute("Unemployed", "UNEMPLOYED"),
+            new Attribute("Office Worker", "OFFICE_WORKER"), new Attribute("Student", "STUDENT"),
+            new Attribute("Musician", "MUSICIAN"), new Attribute("Teacher", "TEACHER"),
+            new Attribute("Writer", "WRITER"), new Attribute("Chef", "CHEF"),
+            new Attribute("Construction Worker", "CONSTRUCTION_WORKER"),
+            new Attribute("Soldier", "SOLDIER"), new Attribute("Athlete", "ATHLETE"),
+            new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"));
+
     private final ArrayList<String> breastSizes = new ArrayList<>(Arrays.asList("Flat", "Training-AAA-cup",
             "Training-AA-cup", "Training-A-cup"));
 
@@ -1445,6 +1458,7 @@ public class Controller{
         comboBoxValues.add(elementalArcaneSpellTiers);
         comboBoxValues.add(months);
         comboBoxValues.add(subspeciesOverrides);
+        comboBoxValues.add(jobHistories);
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
@@ -2127,7 +2141,15 @@ public class Controller{
                 case "spellUpgradePoints":
                     return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1])).getAttributes().getNamedItem("points");
                 case "attributes":
-                    return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1])).getAttributes().getNamedItem("value");
+                    Element attributeNode = (Element) getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1]);
+                    if(attributeNode == null){
+                        attributeNode = saveFile.createElement("attribute");
+                        attributeNode.setAttribute("type", id[1]);
+                        attributeNode.setAttribute("value", "0.0");
+                        attr.appendChild(attributeNode);
+                        System.out.println("Created attribute node");
+                    }
+                    return attributeNode.getAttributeNode("value");
             }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return getAttributeNode(attr, id[2]);
@@ -2851,6 +2873,10 @@ public class Controller{
         for(String resetIntTextFieldsId : resetIntTextFieldsIds){
             TextField tf = (TextField) namespace.get(resetIntTextFieldsId);
             tf.setText("0");
+        }
+        for(String resetDoubleTextFieldsId : resetDoubleTextFieldsIds){
+            TextField tf = (TextField) namespace.get(resetDoubleTextFieldsId);
+            tf.setText("0.0");
         }
         for(String resetComboBoxId : resetComboBoxIds){
             @SuppressWarnings("unchecked")
