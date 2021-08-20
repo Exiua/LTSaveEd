@@ -36,7 +36,7 @@ import java.util.*;
  * Controller class that handles events and interactions of the GUI
  *
  * @author Exiua
- * @version 0.1.0
+ * @version 0.7.0
  */
 public class Controller{
 
@@ -298,7 +298,7 @@ public class Controller{
             "spells$CLEANSE", "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE"};
 
     /**
-     * String array of ids for all TextFields that would carry over if not reset
+     * String array of ids for all TextFields of int type that would carry over if not reset
      */
     private final String[] resetIntTextFieldsIds = {"FETISH_DOMINANT$exp", "FETISH_SUBMISSIVE$exp",
             "FETISH_VAGINAL_GIVING$exp", "FETISH_VAGINAL_RECEIVING$exp", "FETISH_PENIS_GIVING$exp",
@@ -315,6 +315,9 @@ public class Controller{
             "FETISH_CROSS_DRESSER$exp", "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp",
             "FETISH_SWITCH$exp", "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp"};
 
+    /**
+     * String array of ids for all TextFields of double type that would carry over if not reset
+     */
     private final String[] resetDoubleTextFieldsIds = {"attributes$HEALTH_MAXIMUM", "attributes$MANA_MAXIMUM",
             "attributes$AROUSAL", "attributes$LUST", "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE",
             "attributes$MAJOR_CORRUPTION"};
@@ -1091,11 +1094,17 @@ public class Controller{
             new Attribute("Indifferent", "TWO_NEUTRAL"), new Attribute("Like", "THREE_LIKE"),
             new Attribute("Love", "FOUR_LOVE"));
 
+    /**
+     * ObservableList of all tiers of the Slam spell
+     */
     private final ObservableList<Attribute> slamSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "SLAM_UNOWNED"), new SpellTier("Base", "SLAM"),
             new SpellTier("Ground Shake", "SLAM_1"), new SpellTier("Aftershock", "SLAM_2"),
             new SpellTier("Earthquake", "SLAM_3"));
 
+    /**
+     * ObservableList of all tiers of the Telekinetic Shower spell
+     */
     private final ObservableList<Attribute> telekeneticShowerSpellTiers = FXCollections.observableArrayList(
             // Yes, that is how telekinetic is spelt in the save file
             new SpellTier("Unowned", "TELEKENETIC_SHOWER_UNOWNED"),
@@ -1104,12 +1113,18 @@ public class Controller{
             new SpellTier("Precision Strikes", "TELEKENETIC_SHOWER_2"),
             new SpellTier("Unseen Force", "TELEKENETIC_SHOWER_3"));
 
+    /**
+     * ObservableList of all tiers of the Stone Shell spell
+     */
     private final ObservableList<Attribute> stoneShellSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "STONE_SHELL_UNOWNED"), new SpellTier("Base", "STONE_SHELL"),
             new SpellTier("Shifting Sands", "STONE_SHELL_1"),
             new SpellTier("Hardened Carapace", "STONE_SHELL_2"),
             new SpellTier("Explosive Finish", "STONE_SHELL_3"));
 
+    /**
+     * ObservableList of all tiers of the Elemental Earth spell
+     */
     private final ObservableList<Attribute> elementalEarthSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "ELEMENTAL_EARTH_UNOWNED"),
             new SpellTier("Base", "ELEMENTAL_EARTH"),
@@ -1118,16 +1133,25 @@ public class Controller{
             new SpellTier("Servant of Earth", "ELEMENTAL_EARTH_3A"),
             new SpellTier("Binding of Earth", "ELEMENTAL_EARTH_3B"));
 
+    /**
+     * ObservableList of all tiers of the Ice Shard spell
+     */
     private final ObservableList<Attribute> iceShardSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "ICE_SHARD_UNOWNED"), new SpellTier("Base", "ICE_SHARD"),
             new SpellTier("Freezing Fog", "ICE_SHARD_1"), new SpellTier("Cold Snap", "ICE_SHARD_2"),
             new SpellTier("Deep Freeze", "ICE_SHARD_3"));
 
+    /**
+     * ObservableList of all tiers of the Raid Cloud spell
+     */
     private final ObservableList<Attribute> rainCloudSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "RAIN_CLOUD_UNOWNED"), new SpellTier("Base", "RAIN_CLOUD"),
             new SpellTier("Deep Chill", "RAIN_CLOUD_1"), new SpellTier("Downpour", "RAIN_CLOUD_2"),
             new SpellTier("Cloud Burst", "RAIN_CLOUD_3"));
 
+    /**
+     * ObservableList of all tiers of the Soothing Waters spell
+     */
     private final ObservableList<Attribute> soothingWatersSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "SOOTHING_WATERS_UNOWNED"),
             new SpellTier("Base", "SOOTHING_WATERS"),
@@ -1135,6 +1159,9 @@ public class Controller{
             new SpellTier("Rejuvenation", "SOOTHING_WATERS_2"),
             new SpellTier("Bouncing Orbs", "SOOTHING_WATERS_3"));
 
+    /**
+     * ObservableList of all tiers of the Elemental Water spell
+     */
     private final ObservableList<Attribute> elementalWaterSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "ELEMENTAL_WATER_UNOWNED"),
             new SpellTier("Base", "ELEMENTAL_WATER"),
@@ -1143,16 +1170,25 @@ public class Controller{
             new SpellTier("Servant of Water", "ELEMENTAL_WATER_3A"),
             new SpellTier("Binding of Water", "ELEMENTAL_WATER_3B"));
 
+    /**
+     * ObservableList of all tiers of the Fireball spell
+     */
     private final ObservableList<Attribute> fireballSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "FIREBALL_UNOWNED"), new SpellTier("Base", "FIREBALL"),
             new SpellTier("Lingering Flames", "FIREBALL_1"), new SpellTier("Twin Comets", "FIREBALL_2"),
             new SpellTier("Burning Fury", "FIREBALL_3"));
 
+    /**
+     * ObservableList of all tiers of the Flash spell
+     */
     private final ObservableList<Attribute> flashSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "FLASH_UNOWNED"), new SpellTier("Base", "FLASH"),
             new SpellTier("Secondary Sparks", "FLASH_1"), new SpellTier("Arcing Flash", "FLASH_2"),
             new SpellTier("Efficient Burn", "FLASH_3"));
 
+    /**
+     * ObservableList of all tiers of the Cloak of Flames spell
+     */
     private final ObservableList<Attribute> cloakOfFlamesSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "CLOAK_OF_FLAMES_UNOWNED"),
             new SpellTier("Base", "CLOAK_OF_FLAMES"),
@@ -1160,6 +1196,9 @@ public class Controller{
             new SpellTier("Inferno", "CLOAK_OF_FLAMES_2"),
             new SpellTier("Ring of Fire", "CLOAK_OF_FLAMES_3"));
 
+    /**
+     * ObservableList of all tiers of the Elemental Fire spell
+     */
     private final ObservableList<Attribute> elementalFireSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "ELEMENTAL_FIRE_UNOWNED"),
             new SpellTier("Base", "ELEMENTAL_FIRE"),
@@ -1168,17 +1207,26 @@ public class Controller{
             new SpellTier("Servant of Fire", "ELEMENTAL_FIRE_3A"),
             new SpellTier("Binding of Fire", "ELEMENTAL_FIRE_3B"));
 
+    /**
+     * ObservableList of all tiers of the Poison Vapour spell
+     */
     private final ObservableList<Attribute> poisonVapoursSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "POISON_VAPOURS_UNOWNED"), new SpellTier("Base", "POISON_VAPOURS"),
             new SpellTier("Choking Haze", "POISON_VAPOURS_1"),
             new SpellTier("Arcane Sickness", "POISON_VAPOURS_2"),
             new SpellTier("Weakening Cloud", "POISON_VAPOURS_3"));
 
+    /**
+     * ObservableList of all tiers of the Vacuum spell
+     */
     private final ObservableList<Attribute> vacuumSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "VACUUM_UNOWNED"), new SpellTier("Base", "VACUUM"),
             new SpellTier("Secondary Voids", "VACUUM_1"), new SpellTier("Suction", "VACUUM_2"),
             new SpellTier("Total Void", "VACUUM_3"));
 
+    /**
+     * ObservableList of all tiers of the Protective Gusts spell
+     */
     private final ObservableList<Attribute> protectiveGustsSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "PROTECTIVE_GUSTS_UNOWNED"),
             new SpellTier("Base", "PROTECTIVE_GUSTS"),
@@ -1186,6 +1234,9 @@ public class Controller{
             new SpellTier("Focused Blast", "PROTECTIVE_GUSTS_2"),
             new SpellTier("Lingering Presence", "PROTECTIVE_GUSTS_3"));
 
+    /**
+     * ObservableList of all tiers of the Elemental Air spell
+     */
     private final ObservableList<Attribute> elementalAirSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "ELEMENTAL_AIR_UNOWNED"),
             new SpellTier("Base", "ELEMENTAL_AIR"),
@@ -1194,6 +1245,9 @@ public class Controller{
             new SpellTier("Servant of Air", "ELEMENTAL_AIR_3A"),
             new SpellTier("Binding of Air", "ELEMENTAL_AIR_3B"));
 
+    /**
+     * ObservableList of all tiers of the Arcane Arousal spell
+     */
     private final ObservableList<Attribute> arcaneArousalSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "ARCANE_AROUSAL_UNOWNED"),
             new SpellTier("Base", "ARCANE_AROUSAL"),
@@ -1201,6 +1255,9 @@ public class Controller{
             new SpellTier("Lustful Distraction", "ARCANE_AROUSAL_2"),
             new SpellTier("Dirty Promises", "ARCANE_AROUSAL_3"));
 
+    /**
+     * ObservableList of all tiers of the Telepathic Communication spell
+     */
     private final ObservableList<Attribute> telepathicCommunicationSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "TELEPATHIC_COMMUNICATION_UNOWNED"),
             new SpellTier("Base", "TELEPATHIC_COMMUNICATION"),
@@ -1208,29 +1265,44 @@ public class Controller{
             new SpellTier("Projected Touch", "TELEPATHIC_COMMUNICATION_2"),
             new SpellTier("Power of Suggestion", "TELEPATHIC_COMMUNICATION_3"));
 
+    /**
+     * ObservableList of all tiers of the Arcane Cloud spell
+     */
     private final ObservableList<Attribute> arcaneCloudSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "ARCANE_CLOUD_UNOWNED"), new SpellTier("Base", "ARCANE_CLOUD"),
             new SpellTier("Arcane Lightning", "ARCANE_CLOUD_1"),
             new SpellTier("Arcane Thunder", "ARCANE_CLOUD_2"),
             new SpellTier("Localized Storm", "ARCANE_CLOUD_3"));
 
+    /**
+     * ObservableList of all tiers of the Cleanse spell
+     */
     private final ObservableList<Attribute> cleanseSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "CLEANSE_UNOWNED"), new SpellTier("Base", "CLEANSE"),
             new SpellTier("Selective Cleansing", "CLEANSE_1"),
             new SpellTier("Arcane Duality", "CLEANSE_2"),
             new SpellTier("Arcane Will", "CLEANSE_3"));
 
+    /**
+     * ObservableList of all tiers of the Steal spell
+     */
     private final ObservableList<Attribute> stealSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "STEAL_UNOWNED"), new SpellTier("Base", "STEAL"),
             new SpellTier("Stripper", "STEAL_1"), new SpellTier("Disarm", "STEAL_2"),
             new SpellTier("Deep Reach", "STEAL_3A"), new SpellTier("Panty Snatcher", "STEAL_3B"));
 
+    /**
+     * ObservableList of all tiers of the Teleport spell
+     */
     private final ObservableList<Attribute> teleportSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "TELEPORT_UNOWNED"), new SpellTier("Base", "TELEPORT"),
             new SpellTier("Arcane Arrival", "TELEPORT_1"),
             new SpellTier("Mass Teleportation", "TELEPORT_2"),
             new SpellTier("Rebounding Teleportation", "TELEPORT_3"));
 
+    /**
+     * ObservableList of all tiers of the Lilith's Command spell
+     */
     private final ObservableList<Attribute> lilithsCommandSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "LILITHS_COMMAND_UNOWNED"),
             new SpellTier("Base", "LILITHS_COMMAND"),
@@ -1238,6 +1310,9 @@ public class Controller{
             new SpellTier("Demonic Servants", "LILITHS_COMMAND_2"),
             new SpellTier("Ultimate Power", "LILITHS_COMMAND_3"));
 
+    /**
+     * ObservableList of all tiers of the Elemental Arcane spell
+     */
     private final ObservableList<Attribute> elementalArcaneSpellTiers = FXCollections.observableArrayList(
             new SpellTier("Unowned", "ELEMENTAL_ARCANE_UNOWNED"), new SpellTier("Base", "ELEMENTAL_ARCANE"),
             new SpellTier("Lewd Encouragement", "ELEMENTAL_ARCANE_1"),
@@ -1245,6 +1320,9 @@ public class Controller{
             new SpellTier("Servant of Arcane", "ELEMENTAL_ARCANE_3A"),
             new SpellTier("Binding of Arcane", "ELEMENTAL_ARCANE_3B"));
 
+    /**
+     * ObservableList of all the months
+     */
     private final ObservableList<Attribute> months = FXCollections.observableArrayList(
             new Attribute("January", "JANUARY"), new Attribute("February", "FEBRUARY"),
             new Attribute("March", "MARCH"), new Attribute("April", "APRIL"),
@@ -1253,6 +1331,9 @@ public class Controller{
             new Attribute("September", "SEPTEMBER"), new Attribute("October", "OCTOBER"),
             new Attribute("November", "NOVEMBER"), new Attribute("December", "DECEMBER"));
 
+    /**
+     * ObservableList of all the job histories in the game
+     */
     private final ObservableList<Attribute> jobHistories = FXCollections.observableArrayList(
             new Attribute("Unemployed", "UNEMPLOYED"),
             new Attribute("Office Worker", "OFFICE_WORKER"), new Attribute("Student", "STUDENT"),
@@ -1262,80 +1343,155 @@ public class Controller{
             new Attribute("Soldier", "SOLDIER"), new Attribute("Athlete", "ATHLETE"),
             new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"));
 
+    /**
+     * ArrayList of all breast size groups (gets completed in the initializer method) in the game
+     */
     private final ArrayList<String> breastSizes = new ArrayList<>(Arrays.asList("Flat", "Training-AAA-cup",
             "Training-AA-cup", "Training-A-cup"));
 
+    /**
+     * ArrayList of all wetness level groups in the game
+     */
     private final ArrayList<String> wetnessTypes = new ArrayList<>(Arrays.asList("Dry", "Slightly Moist", "Moist", "Wet",
             "Slimy", "Sloppy", "Sopping Wet", "Drooling"));
 
+    /**
+     * ArrayList of all depth size groups in the game
+     */
     private final ArrayList<String> depthSizes = new ArrayList<>(Arrays.asList("Very Shallow", "Shallow", "Average-depth",
             "Spacious", "Deep", "Very Deep", "Cavernous", "Fathomless"));
 
+    /**
+     * ArrayList of all elasticity size groups in the game
+     */
     private final ArrayList<String> elasticitySizes = new ArrayList<>(Arrays.asList("Rigid", "Stiff", "Firm", "Flexible",
             "Limber", "Stretchy", "Supple", "Elastic"));
 
+    /**
+     * ArrayList of all plasticity size groups in the game
+     */
     private final ArrayList<String> plasticitySizes = new ArrayList<>(Arrays.asList("Rubbery", "Springy", "Tensile",
             "Resilient", "Accommodating", "Yielding", "Malleable", "Moldable"));
 
+    /**
+     * ArrayList of all lip size groups in the game
+     */
     private final ArrayList<String> lipSizes = new ArrayList<>(Arrays.asList("Thin", "Average-sized", "Full", "Plump",
             "Huge", "Massive", "Gigantic", "Absurdly Colossal"));
 
+    /**
+     * ArrayList of all body part size groups in the game
+     */
     private final ArrayList<String> bodyPartSizes = new ArrayList<>(Arrays.asList("Tiny", "Small", "Average-sized",
             "Large", "Massive"));
 
+    /**
+     * ArrayList of all appendage girth groups in the game
+     */
     private final ArrayList<String> appendageGirths = new ArrayList<>(Arrays.asList("Thin", "Slender", "Narrow",
             "Average", "Thick", "Extra-thick", "Extremely-thick", "Unbelievable-thick"));
 
+    /**
+     * ArrayList of all penis (and clit) girth groups in the game
+     */
     private final ArrayList<String> penisGirths = new ArrayList<>(Arrays.asList("Thin", "Slender", "Narrow",
             "Averagely-girthed", "Girthy", "Thick", "Chubby", "Fat"));
 
+    /**
+     * ArrayList of all testicle size groups in the game
+     */
     private final ArrayList<String> testicleSizes = new ArrayList<>(Arrays.asList("Vestigial", "Tiny", "Average-sized",
             "Large", "Huge", "Massive", "Gigantic", "Absurdly Enormous"));
 
+    /**
+     * ArrayList of all ass size groups in the game
+     */
     private final ArrayList<String> assSizes = new ArrayList<>(Arrays.asList("Flat", "Tiny", "Small", "Round", "Large",
             "Huge", "Massive", "Gigantic"));
 
+    /**
+     * ArrayList of all hip size groups in the game
+     */
     private final ArrayList<String> hipSizes = new ArrayList<>(Arrays.asList("Completely Straight", "Very Narrow",
             "Narrow", "Girly", "Womanly", "Very Wide", "Extremely Wide", "Absurdly Wide"));
 
+    /**
+     * HashMap of all the secondary labels' TextField's id (key) and the corresponding ArrayList of values (value)
+     */
     private final HashMap<String, ArrayList<String>> labelMap = new HashMap<>();
 
+    /**
+     * ArrayList of all femininity value groups in the game
+     */
     private final ArrayList<String> femininityValues = addRangeToArrayList(new int[]{20, 20, 20, 20, 1}, //Technically the last int should be 21, but the code already accounts for values greater
             new String[]{"Very Masculine", "Masculine", "Androgynous", "Feminine", "Very Feminine"});
 
+    /**
+     * ArrayList of all body size groups in the game
+     */
     private final ArrayList<String> bodySizes = addRangeToArrayList(new int[]{20, 20, 20, 20, 1},
             new String[]{"Skinny", "Slender", "Average", "Large", "Huge"});
 
+    /**
+     * ArrayList of all muscle size groups in the game
+     */
     private final ArrayList<String> muscleDefinitions = addRangeToArrayList(new int[]{20, 20, 20, 20, 1},
             new String[]{"Soft", "Lightly Muscled", "Toned", "Muscular", "Ripped"});
 
+    /**
+     * ArrayList of all hair length groups in the game
+     */
     private final ArrayList<String> hairLengths = addRangeToArrayList(new int[]{4, 7, 11, 23, 35, 60, 125, 1},
             new String[]{"Bald", "Very Short", "Short", "Shoulder-length", "Long", "Very Long", "Incredibly Long",
                     "Floor-length"});
 
+    /**
+     * ArrayList of all extremity length groups in the game
+     */
     private final ArrayList<String> extremityLengths = addRangeToArrayList(new int[]{10, 12, 18, 22, 1},
             new String[]{"Tiny", "Small", "Long", "Huge", "Massive"}); //Horn and Antennae lengths
 
+    /**
+     * ArrayList of all tongue length groups in the game
+     */
     private final ArrayList<String> tongueLengths = addRangeToArrayList(new int[]{7, 8, 10, 20, 1},
             new String[]{"Normal-sized", "Long", "Very Long", "Extremely Long", "Absurdly Long"});
 
+    /**
+     * ArrayList of all capacity size groups in the game
+     */
     private final ArrayList<String> capacitySizes = addRangeToArrayList(new int[]{(int) (1.75 * 4), (int) (2 * 4),
                     (int) (2.5 * 4), (int) (2.5 * 4), (int) (2.5 * 4), (int) (2.5 * 4), (int) (6.25 * 4), 1},
             new String[]{"Extremely Tight", "Tight", "Somewhat Tight", "Slightly Loose", "Loose", "Very Loose",
                     "Stretched Open", "Gaping Wide"});
 
+    /**
+     * ArrayList of all milk storage size groups in the game
+     */
     private final ArrayList<String> milkStorageSizes = addRangeToArrayList(new int[]{1, 29, 70, 500, 400, 1000, 8000, 1},
             new String[]{"None", "Trickle", "Small", "Decent", "Large", "Huge", "Extreme", "Monstrous"}); //Lactation
 
+    /**
+     * ArrayList of all fluid regeneration rate groups in the game
+     */
     private final ArrayList<String> fluidRegenerationRates = addRangeToArrayList(new int[]{300, 500, 4200, 95000, 1},
             new String[]{"Slow", "Average", "Fast", "Rapid", "Very Rapid"});
 
+    /**
+     * ArrayList of all penis size groups in the game
+     */
     private final ArrayList<String> penisSizes = addRangeToArrayList(new int[]{5, 5, 10, 10, 10, 10, 10, 1},
             new String[]{"Tiny", "Small", "Average-sized", "Large", "Huge", "Enormous", "Gigantic", "Stallion-sized"});
 
+    /**
+     * ArrayList of all cum storage size groups in the game
+     */
     private final ArrayList<String> cumStorageSizes = addRangeToArrayList(new int[]{1, 9, 10, 10, 70, 900, 1},
             new String[]{"None", "Trickle", "Average", "Large", "Huge", "Extreme", "Monstrous"});
 
+    /**
+     * ArrayList of all clit size groups in the game
+     */
     private final ArrayList<String> clitSizes = addRangeToArrayList(new int[]{1, 4, 5, 15, 15, 10, 10, 1},
             new String[]{"Small", "Big", "Large", "Huge", "Massive", "Enormous", "Gigantic", "Absurdly Colossal"});
 
@@ -1344,8 +1500,14 @@ public class Controller{
      */
     private final ArrayList<PerkNode> perks = new ArrayList<>();
 
+    /**
+     * ArrayList of all TextObjectListeners used
+     */
     private final ArrayList<TextObjectListener> listeners = new ArrayList<>();
 
+    /**
+     * HashMap of all personality traits (key) and the corresponding PersonalityTrait object (value)
+     */
     private final HashMap<String, PersonalityTrait> personalityTraits = new HashMap<>();
 
     /**
@@ -1710,6 +1872,9 @@ public class Controller{
     }
     //I'm probably dumb and there was an easier way to do this
 
+    /**
+     * Initializes and completes the breastSizes ArrayList
+     */
     private void initializeBreastSizes(){
         String[] letters = {"AA", "A", "B", "C", "D", "DD", "E", "F", "FF", "G", "GG", "H", "HH", "J", "JJ", "K", "KK",
                 "L", "LL", "M", "MM", "N"};
@@ -1721,6 +1886,9 @@ public class Controller{
         }
     }
 
+    /**
+     * Initializes the secondary label HashMap
+     */
     private void initializeLabelMap(){
         labelMap.put("body$breasts$size", breastSizes);
         labelMap.put("body$breastsCrotch$size", breastSizes);
@@ -1798,6 +1966,9 @@ public class Controller{
         labelMap.put("body$vagina$clitSize", clitSizes);
     }
 
+    /**
+     * Initializes PersonalityTraits and fills the HashMap with the PersonalityTraits
+     */
     private void initializePersonalityTraits(){
         PersonalityTrait confident = new PersonalityTrait("CONFIDENT");
         PersonalityTrait shy = new PersonalityTrait("SHY");
@@ -1838,6 +2009,12 @@ public class Controller{
         personalityTraits.put("MUTE", mute);
     }
 
+    /**
+     * Adds multiple identical Strings to an ArrayList to create a range of indexes that would get that String
+     * @param ranges Int array of ranges for each String value
+     * @param values String array of values to add
+     * @return String ArrayList with a range for each String value
+     */
     private ArrayList<String> addRangeToArrayList(int[] ranges, String[] values){
         if(ranges.length != values.length){
             throw new IllegalArgumentException();
@@ -1882,6 +2059,9 @@ public class Controller{
          */
         private final boolean fetishExp;
 
+        /**
+         * Boolean representing whether the TextInputControl object has a second label
+         */
         private final boolean hasSecondLabel;
 
         /**
@@ -1928,6 +2108,9 @@ public class Controller{
             }
         }
 
+        /**
+         * Sets the value of the secondary value if the TextInputControl object has a secondary label
+         */
         private void setLabel(){
             if(hasSecondLabel){
                 Label valueLabel = (Label) namespace.get(fieldId + "$label");
@@ -2332,6 +2515,10 @@ public class Controller{
         return characterNode.getChildNodes();
     }
 
+    /**
+     * Sets characterNode to the character Node of the current character that is being edited
+     * @param charId Character id of the character being edited
+     */
     private void setCharacterNode(String charId){
         Node idNode = getNodeByIdValue(charId);
         assert idNode != null;
@@ -2667,6 +2854,10 @@ public class Controller{
         event.consume();
     }
 
+    /**
+     * Updates xml values changed by PersonalityTrait CheckBoxes
+     * @param event ActionEvent from the CheckBox that was changed
+     */
     @FXML
     private void updateXmlCheckBoxPersonality(ActionEvent event){
         if(fieldsSet){
@@ -2679,6 +2870,10 @@ public class Controller{
         event.consume();
     }
 
+    /**
+     * Updates xml values changed by PerkNode CheckBoxes
+     * @param event ActionEvent from the CheckBox that was changed
+     */
     @FXML
     private void updateXmlCheckBoxPerks(ActionEvent event){
         if(fieldsSet){
@@ -2694,6 +2889,13 @@ public class Controller{
         event.consume();
     }
 
+    /**
+     * Gets the matching perk from the provided ArrayList
+     * @param perkList ArrayList of perks to check
+     * @param row Row value of the perk
+     * @param value Actual value of the perk
+     * @return PerkNode that matches the row and value supplied
+     */
     private PerkNode matchPerk(ArrayList<PerkNode> perkList, String row, String value){
         for(PerkNode perkNode : perkList){
             if(perkNode.equals(row, value)){
@@ -2895,6 +3097,9 @@ public class Controller{
         }
     }
 
+    /**
+     * Updates all secondaryLabels
+     */
     private void updateLabels(){
         for(TextObjectListener listener : listeners){
             listener.setLabel();
@@ -3244,6 +3449,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Sets the values of all attribute TextFields based on the childNodes of the attributes Node
+     *
+     * @param attributesNode attributes Node in the save file
+     */
     private void setFieldsAttributes(Node attributesNode){
         String idPartial = "attributes$";
         NodeList attributeList = attributesNode.getChildNodes();
@@ -3257,6 +3467,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Sets the value of all perks CheckBoxes based on the childNodes of the perks Node
+     *
+     * @param perksNode perks Node in the save file
+     */
     private void setFieldsPerks(Node perksNode){
         String idPartial = "perks$";
         NodeList perks = perksNode.getChildNodes();
@@ -3271,6 +3486,11 @@ public class Controller{
         }
     }
 
+    /**
+     * Sets the value of all personality traits CheckBoxes based on the childNodes of the personality Node
+     *
+     * @param personalityNode personality Node in the save file
+     */
     private void setFieldsPersonality(Node personalityNode){
         String idPartial = "personalityTrait$";
         NodeList traits = personalityNode.getChildNodes();
@@ -3301,11 +3521,6 @@ public class Controller{
         }
         return null;
     }
-
-    /* Look into a setField recursive method if possible
-    private void setFieldsRec(){
-
-    }*/
 
     /**
      * Gets the Attribute that matches the value from the given ObservableList
@@ -3449,6 +3664,9 @@ public class Controller{
         System.out.println("Offsprings Removed");
     }
 
+    /**
+     * Reveals all map tiles
+     */
     @FXML
     private void revealMap(){
         Node mapsNode = saveFile.getElementsByTagName("maps").item(0);
