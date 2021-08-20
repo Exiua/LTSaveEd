@@ -7,7 +7,7 @@
     <groupId>com.ltsaveed</groupId>
     <artifactId>LTSaveEd</artifactId>
     <packaging>jar</packaging>
-    <version>0.6.0</version>
+    <version>0.7.0</version>
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
