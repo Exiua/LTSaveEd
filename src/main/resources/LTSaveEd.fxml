@@ -115,7 +115,7 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <VBox layoutX="657.0" layoutY="102.0" prefHeight="487.0" prefWidth="324.0" spacing="10.0">
+            <VBox layoutX="657.0" layoutY="102.0" prefHeight="305.0" prefWidth="324.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="324.0">
                      <children>
@@ -166,6 +166,42 @@
                      <children>
                         <Label text="Corruption Core: " />
                         <TextField fx:id="attributes$MAJOR_CORRUPTION" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox layoutX="610.0" layoutY="438.0" prefHeight="139.0" prefWidth="400.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Personality" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <CheckBox fx:id="personalityTrait$CONFIDENT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Confident" />
+                        <CheckBox fx:id="personalityTrait$SHY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Shy" />
+                        <CheckBox fx:id="personalityTrait$KIND" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Kind" />
+                        <CheckBox fx:id="personalityTrait$SELFISH" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Selfish" />
+                        <CheckBox fx:id="personalityTrait$NAIVE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Naive" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <CheckBox fx:id="personalityTrait$CYNICAL" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Cynical" />
+                        <CheckBox fx:id="personalityTrait$BRAVE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Brave" />
+                        <CheckBox fx:id="personalityTrait$COWARDLY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Cowardly" />
+                        <CheckBox fx:id="personalityTrait$LEWD" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Lewd" />
+                        <CheckBox fx:id="personalityTrait$INNOCENT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Innocent" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <CheckBox fx:id="personalityTrait$PRUDE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Prude" />
+                        <CheckBox fx:id="personalityTrait$LISP" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Lisp" />
+                        <CheckBox fx:id="personalityTrait$STUTTER" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Stutter" />
+                        <CheckBox fx:id="personalityTrait$MUTE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Mute" />
+                        <CheckBox fx:id="personalityTrait$SLOVENLY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Slovenly" />
                      </children>
                   </HBox>
                </children>
@@ -3763,6 +3799,9 @@
                     <VBox fx:id="relationshipVbox" prefWidth="1000.0" spacing="10.0" />
                 </ScrollPane>
             </AnchorPane>
+        </Tab>
+        <Tab text="World">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab text="Extra">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
