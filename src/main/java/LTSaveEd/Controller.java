@@ -1333,6 +1333,8 @@ public class Controller{
 
     private final ArrayList<TextObjectListener> listeners = new ArrayList<>();
 
+    private final HashMap<String, PersonalityTrait> personalityTraits = new HashMap<>();
+
     /**
      * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
      */
@@ -1367,6 +1369,7 @@ public class Controller{
         initializePerks();
         initializeBreastSizes();
         initializeLabelMap();
+        initializePersonalityTraits();
     }
 
     /**
@@ -1781,6 +1784,46 @@ public class Controller{
         labelMap.put("body$vagina$clitSize", clitSizes);
     }
 
+    private void initializePersonalityTraits(){
+        PersonalityTrait confident = new PersonalityTrait("CONFIDENT");
+        PersonalityTrait shy = new PersonalityTrait("SHY");
+        shy.addIncompatibleTrait(confident);
+        PersonalityTrait kind = new PersonalityTrait("KIND");
+        PersonalityTrait selfish = new PersonalityTrait("SELFISH");
+        selfish.addIncompatibleTrait(kind);
+        PersonalityTrait naive = new PersonalityTrait("NAIVE");
+        PersonalityTrait cynical = new PersonalityTrait("CYNICAL");
+        cynical.addIncompatibleTrait(naive);
+        PersonalityTrait brave = new PersonalityTrait("BRAVE");
+        PersonalityTrait cowardly = new PersonalityTrait("COWARDLY");
+        cowardly.addIncompatibleTrait(brave);
+        PersonalityTrait lewd = new PersonalityTrait("LEWD");
+        PersonalityTrait innocent = new PersonalityTrait("INNOCENT");
+        PersonalityTrait prude = new PersonalityTrait("PRUDE");
+        prude.addIncompatibleTrait(lewd, innocent);
+        innocent.addIncompatibleTrait(lewd);
+        PersonalityTrait lisp = new PersonalityTrait("LISP");
+        PersonalityTrait stutter = new PersonalityTrait("STUTTER");
+        PersonalityTrait slovenly = new PersonalityTrait("SLOVENLY");
+        PersonalityTrait mute = new PersonalityTrait("MUTE");
+        mute.addIncompatibleTrait(lisp, stutter, slovenly);
+        personalityTraits.put("CONFIDENT", confident);
+        personalityTraits.put("SHY", shy);
+        personalityTraits.put("KIND", kind);
+        personalityTraits.put("SELFISH", selfish);
+        personalityTraits.put("NAIVE", naive);
+        personalityTraits.put("CYNICAL", cynical);
+        personalityTraits.put("BRAVE", brave);
+        personalityTraits.put("COWARDLY", cowardly);
+        personalityTraits.put("LEWD", lewd);
+        personalityTraits.put("INNOCENT", innocent);
+        personalityTraits.put("PRUDE", prude);
+        personalityTraits.put("LISP", lisp);
+        personalityTraits.put("STUTTER", stutter);
+        personalityTraits.put("SLOVENLY", slovenly);
+        personalityTraits.put("MUTE", mute);
+    }
+
     private ArrayList<String> addRangeToArrayList(int[] ranges, String[] values){
         if(ranges.length != values.length){
             throw new IllegalArgumentException();
@@ -2108,6 +2151,7 @@ public class Controller{
     public void setNamespace(ObservableMap<String, Object> namespace){
         this.namespace = namespace;
         PerkNode.setNamespace(namespace);
+        PersonalityTrait.setNamespace(namespace);
         //Disables TabPane so user cannot use the editor without loading a file first (gets re-enabled in the loadFile method)
         TabPane tb = (TabPane) namespace.get("tabPane");
         tb.setDisable(true);
@@ -2174,6 +2218,7 @@ public class Controller{
                 DocumentBuilder db = dbf.newDocumentBuilder();
                 saveFile = db.parse(is);
                 PerkNode.setSaveFile(saveFile);
+                PersonalityTrait.setSaveFile(saveFile);
                 System.out.println(f);
                 fileLoaded = true;
                 TabPane tb = (TabPane) namespace.get("tabPane");
@@ -2271,6 +2316,8 @@ public class Controller{
         characterNode = idNode.getParentNode().getParentNode();
         Node perksNode = getNode("perks");
         PerkNode.setPerksNode(perksNode);
+        Node personalityNode = getNode("core", "personality");
+        PersonalityTrait.setPersonalityNode(personalityNode);
     }
 
     /**
@@ -2599,6 +2646,18 @@ public class Controller{
     }
 
     @FXML
+    private void updateXmlCheckBoxPersonality(ActionEvent event){
+        if(fieldsSet){
+            String fxId = getId(event);
+            String[] id = fxId.split("\\$");
+            CheckBox cb = (CheckBox) namespace.get(fxId);
+            PersonalityTrait trait = personalityTraits.get(id[1]);
+            trait.setActive(cb.isSelected());
+        }
+        event.consume();
+    }
+
+    @FXML
     private void updateXmlCheckBoxPerks(ActionEvent event){
         if(fieldsSet){
             String fxId = getId(event);
@@ -2888,6 +2947,10 @@ public class Controller{
                     for(int j = 1; j < attributeElements.getLength() - 1; j += 2){ //Every other node in the NodeList is a TextNode (so can be skipped)
                         Node currNode = attributeElements.item(j);
                         String elementName = currNode.getNodeName();
+                        if(elementName.equals("personality")){
+                            setFieldsPersonality(currNode);
+                            continue;
+                        }
                         NamedNodeMap attributes = currNode.getAttributes();
                         NodeList childNodes = currNode.getChildNodes();
                         if(childNodes.getLength() != 0){
@@ -3175,6 +3238,20 @@ public class Controller{
             if(perks.item(i).getNodeType() == Node.ELEMENT_NODE){
                 NamedNodeMap attr = perks.item(i).getAttributes();
                 String id = idPartial + attr.getNamedItem("row").getTextContent() + "$" + attr.getNamedItem("type").getTextContent();
+                System.out.println(id);
+                CheckBox cb = (CheckBox) namespace.get(id);
+                cb.setSelected(true);
+            }
+        }
+    }
+
+    private void setFieldsPersonality(Node personalityNode){
+        String idPartial = "personalityTrait$";
+        NodeList traits = personalityNode.getChildNodes();
+        for(int i = 0; i < traits.getLength(); i++){
+            Node trait = traits.item(i);
+            if(trait.getNodeType() == Node.ELEMENT_NODE){
+                String id = idPartial + trait.getTextContent();
                 System.out.println(id);
                 CheckBox cb = (CheckBox) namespace.get(id);
                 cb.setSelected(true);
