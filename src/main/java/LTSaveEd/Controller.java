@@ -2921,7 +2921,7 @@ public class Controller{
                                 "specialPerks", "statusEffects", "knownMoves", "equippedMoves" -> {
                             continue;
                         }
-                        case "pregnancy" -> { //Ends the loop early as all the needed data has been parsed //TODO: Adjust as needed
+                        case "pregnancy" -> { //Ends the loop early as all the needed data has been parsed //Adjust as needed
                             break MainLoop;
                         }
                         case "characterRelationships" -> {  //These parts have an unknown number of elements which have identical tags
@@ -3011,7 +3011,7 @@ public class Controller{
                                 ta.setText(value);
                                 continue;
                             }
-                            //TODO: Instead of using nested try-catch, parse the value's data type and assign the value to the correct container
+                            //Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
                             try{ //Using TextFields for numerical and string values
                                 TextField tf = (TextField) namespace.get(nodeId);
                                 if(tf != null){
