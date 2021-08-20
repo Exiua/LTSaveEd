@@ -59,9 +59,11 @@
                             <TextArea fx:id="core$description$value" prefHeight="78.0" prefWidth="475.0" wrapText="true" />
                         </children>
                     </HBox>
-                    <HBox>
-                        <Label text="Level: " />
+                    <HBox spacing="5.0">
+                        <Label text="Level:" />
                         <TextField fx:id="core$level$value" />
+                        <Label text="Experience:" />
+                        <TextField fx:id="core$experience$value" />
                     </HBox>
                <HBox layoutX="10.0" layoutY="238.0">
                   <children>
@@ -75,6 +77,12 @@
                   <ComboBox fx:id="core$monthOfBirth$value" prefWidth="150.0" />
                         <TextField fx:id="core$dayOfBirth$value" layoutX="232.0" layoutY="10.0" />
                     </HBox>
+               <HBox layoutX="10.0" layoutY="343.0">
+                  <children>
+                     <Label text="Job History: " />
+                     <ComboBox fx:id="core$history$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                  </children>
+               </HBox>
                     <HBox layoutX="10.0" layoutY="115.0">
                         <Label text="Orientation: " />
                         <ComboBox fx:id="core$sexualOrientation$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
@@ -87,10 +95,7 @@
                         <Label text="Gender Identity: " />
                         <ComboBox fx:id="core$genderIdentity$value" onAction="#updateXmlComboBox" prefHeight="25.0" prefWidth="200.0" />
                     </HBox>
-                    <HBox layoutX="10.0" layoutY="80.0">
-                        <Label text="Experience: " />
-                        <TextField fx:id="core$experience$value" />
-                    </HBox>
+                    <HBox layoutX="10.0" layoutY="80.0" />
                     <HBox layoutX="10.0" layoutY="220.0">
                         <Label text="Perk Points: " />
                         <TextField fx:id="core$perkPoints$value" />
