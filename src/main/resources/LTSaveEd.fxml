@@ -74,7 +74,7 @@
                     <HBox layoutX="10.0" layoutY="45.0" spacing="10.0">
                         <Label text="Date of Birth:" />
                         <TextField fx:id="core$yearOfBirth$value" />
-                  <ComboBox fx:id="core$monthOfBirth$value" prefWidth="150.0" />
+                  <ComboBox fx:id="core$monthOfBirth$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
                         <TextField fx:id="core$dayOfBirth$value" layoutX="232.0" layoutY="10.0" />
                     </HBox>
                <HBox layoutX="10.0" layoutY="343.0">
@@ -3806,7 +3806,51 @@
             </AnchorPane>
         </Tab>
         <Tab text="World">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+               <VBox layoutX="191.0" layoutY="79.0" prefHeight="502.0" prefWidth="527.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0">
+                  <children>
+                     <HBox prefHeight="34.0" prefWidth="527.0" spacing="5.0">
+                        <children>
+                           <Label text="Date: " />
+                           <TextField fx:id="coreInfo$date$year" />
+                           <ComboBox fx:id="coreInfo$date$month" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                           <TextField fx:id="coreInfo$date$dayOfMonth" />
+                        </children>
+                     </HBox>
+                     <HBox layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="527.0" spacing="5.0">
+                        <children>
+                           <Label text="Ralph Discount:" />
+                           <TextField fx:id="dialogueFlags$ralphDiscount$value" />
+                        </children>
+                     </HBox>
+                     <HBox layoutX="10.0" layoutY="44.0" prefHeight="34.0" prefWidth="527.0" spacing="5.0">
+                        <children>
+                           <Label text="Scarlett Price:" />
+                           <TextField fx:id="dialogueFlags$scarlettPrice$value" />
+                        </children>
+                     </HBox>
+                     <HBox layoutX="10.0" layoutY="78.0" prefHeight="34.0" prefWidth="527.0" spacing="5.0">
+                        <children>
+                           <Label text="Epona Stamps:" />
+                           <TextField fx:id="dialogueFlags$eponaStamps$value" />
+                        </children>
+                     </HBox>
+                     <HBox layoutX="10.0" layoutY="78.0" prefHeight="34.0" prefWidth="527.0" spacing="5.0">
+                        <children>
+                           <Label text="Helena Slave Order Day:" />
+                           <TextField fx:id="dialogueFlags$helenaSlaveOrderDay$value" />
+                        </children>
+                     </HBox>
+                     <HBox layoutX="10.0" layoutY="78.0" prefHeight="34.0" prefWidth="527.0" spacing="5.0">
+                        <children>
+                           <Label text="Natalya Points:" />
+                           <TextField fx:id="dialogueFlags$natalyaPoints$value" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </children></AnchorPane>
         </Tab>
         <Tab text="Extra">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
