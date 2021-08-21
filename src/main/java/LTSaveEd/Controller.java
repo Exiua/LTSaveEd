@@ -88,6 +88,8 @@ public class Controller{
      */
     private boolean fieldsSet = false;
 
+    private boolean worldFieldsSet = false;
+
     /**
      * String array of all TextField ids using an int data type
      */
@@ -127,7 +129,9 @@ public class Controller{
             "FETISH_SWITCH$exp", "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp",
             "spellUpgradePoints$EARTH", "spellUpgradePoints$WATER", "spellUpgradePoints$FIRE", "spellUpgradePoints$AIR",
             "spellUpgradePoints$ARCANE", "body$vagina$urethraDepth", "body$vagina$urethraElasticity",
-            "body$vagina$urethraPlasticity", "body$vagina$wetness"};
+            "body$vagina$urethraPlasticity", "body$vagina$wetness", "core$yearOfBirth$value",
+            "dialogueFlags$ralphDiscount$value", "dialogueFlags$scarlettPrice$value", "dialogueFlags$eponaStamps$value",
+            "dialogueFlags$helenaSlaveOrderDay$value", "dialogueFlags$natalyaPoints$value", "coreInfo$date$year"};
 
     /**
      * String array of all TextField ids using a double data type
@@ -148,6 +152,8 @@ public class Controller{
      */
     private final String[] stringTextFieldIds = {"core$name$nameAndrogynous", "core$name$nameFeminine",
             "core$name$nameMasculine", "core$surname$value"};
+
+    private final String[] dateTextFieldIds = {"core$dayOfBirth$value", "coreInfo$date$dayOfMonth"};
 
     /**
      * String array of all ComboBox ids
@@ -182,7 +188,7 @@ public class Controller{
             "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR",
             "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD", "spells$CLEANSE",
             "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE",
-            "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride", "core$history$value"};
+            "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride", "core$history$value", "coreInfo$date$month"};
 
     /**
      * String array of ids for all CheckBoxes that would carry over if not reset
@@ -1332,6 +1338,17 @@ public class Controller{
             new Attribute("November", "NOVEMBER"), new Attribute("December", "DECEMBER"));
 
     /**
+     * ObservableList of all the months with numerical values
+     */
+    private final ObservableList<Attribute> numericalMonths = FXCollections.observableArrayList(
+            new Attribute("January", "1"), new Attribute("February", "2"),
+            new Attribute("March", "3"), new Attribute("April", "4"),
+            new Attribute("May", "5"), new Attribute("June", "6"),
+            new Attribute("July", "7"), new Attribute("August", "8"),
+            new Attribute("September", "9"), new Attribute("October", "10"),
+            new Attribute("November", "11"), new Attribute("December", "12"));
+
+    /**
      * ObservableList of all the job histories in the game
      */
     private final ObservableList<Attribute> jobHistories = FXCollections.observableArrayList(
@@ -1621,6 +1638,7 @@ public class Controller{
         comboBoxValues.add(months);
         comboBoxValues.add(subspeciesOverrides);
         comboBoxValues.add(jobHistories);
+        comboBoxValues.add(numericalMonths);
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
@@ -2047,6 +2065,9 @@ public class Controller{
          */
         private final TextFieldType tfType;
 
+        /**
+         * Id of the TextField
+         */
         private final String fieldId;
 
         /**
@@ -2253,24 +2274,12 @@ public class Controller{
                 }
                 case DATE -> {
                     try{
+                        boolean coreInfo = fieldId.startsWith("coreInfo");
                         @SuppressWarnings("unchecked")
-                        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get("core$monthOfBirth$value");
-                        String month = cb.getValue().getValue();
-                        TextField yearField = (TextField) namespace.get("core$yearOfBirth$value");
+                        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(coreInfo ? "coreInfo$date$month" : "core$monthOfBirth$value");
+                        TextField yearField = (TextField) namespace.get(coreInfo ? "coreInfo$date$year" : "core$yearOfBirth$value");
                         int year = Integer.parseInt(yearField.getText());
-                        int monthLimit;
-                        if(month.equals("JANUARY") || month.equals("MARCH")|| month.equals("MAY") ||
-                                month.equals("JULY") || month.equals("AUGUST") || month.equals("OCTOBER") ||
-                                month.equals("DECEMBER")){
-                            monthLimit = 31;
-                        }
-                        else if(month.equals("APRIL") || month.equals("JUNE") || month.equals("SEPTEMBER") ||
-                                month.equals("NOVEMBER")){
-                            monthLimit = 30;
-                        }
-                        else{ //February
-                            monthLimit = isLeapYear(year) ? 29 : 28;
-                        }
+                        int monthLimit = setMonthLimit(cb.getValue(), year);
                         int nv = Integer.parseInt(newValue);
                         newValue = "" + nv; //Removes leading zeroes
                         if(nv < 1){
@@ -2293,18 +2302,6 @@ public class Controller{
         }
 
         /**
-         * Checks if the given year is a leap year
-         *
-         * @param year Year to check
-         * @return True if year is a leap year else false
-         */
-        public boolean isLeapYear(int year) { //Hopefully this handles all edge cases
-            Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.YEAR, year);
-            return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
-        }
-
-        /**
          * Gets the Node of the attribute value of the TextField
          *
          * @return Node containing the attribute value
@@ -2319,11 +2316,13 @@ public class Controller{
             }
             Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
             switch(id[0]){
-                case "characterRelationships":
+                case "characterRelationships" -> {
                     return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
-                case "spellUpgradePoints":
+                }
+                case "spellUpgradePoints" -> {
                     return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1])).getAttributes().getNamedItem("points");
-                case "attributes":
+                }
+                case "attributes" -> {
                     Element attributeNode = (Element) getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1]);
                     if(attributeNode == null){
                         attributeNode = saveFile.createElement("attribute");
@@ -2333,6 +2332,14 @@ public class Controller{
                         System.out.println("Created attribute node");
                     }
                     return attributeNode.getAttributeNode("value");
+                }
+                case "coreInfo", "dialogueFlags" -> {
+                    Element attributeNode = (Element) saveFile.getElementsByTagName(id[0]).item(0);
+                    for(int i = 1; i < id.length - 1; i++){
+                        attributeNode = (Element) attributeNode.getElementsByTagName(id[i]).item(0);
+                    }
+                    return attributeNode.getAttributeNode(id[id.length - 1]);
+                }
             }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return getAttributeNode(attr, id[2]);
@@ -2426,6 +2433,7 @@ public class Controller{
                 PersonalityTrait.setSaveFile(saveFile);
                 System.out.println(f);
                 fileLoaded = true;
+                worldFieldsSet = false;
                 TabPane tb = (TabPane) namespace.get("tabPane");
                 tb.setDisable(false);
             }
@@ -2553,6 +2561,11 @@ public class Controller{
         else if(id[0].equals("spells")){ //Same with spell ids
             NodeList spellUpgrades = attr.getElementsByTagName("spellUpgrades").item(0).getChildNodes();
             return getChildNodeByAttributeValue(spellUpgrades, "type", id[1]);
+        }
+        else if(id[0].equals("coreInfo")){
+            Element coreInfo = (Element) saveFile.getElementsByTagName(id[0]).item(0);
+            Element date = (Element) coreInfo.getElementsByTagName(id[1]).item(0);
+            return date.getAttributeNode(id[2]);
         }
         for(int i = 0; i < id.length - 1; i++){
             attr = (Element) attr.getElementsByTagName(id[i]).item(0);
@@ -2797,7 +2810,94 @@ public class Controller{
                 updateLegTypeDependants(cb, false);
             }
         }
+        if(fxId.contains("month")){
+            updateDayTextField(fxId, cb.getValue());
+        }
         event.consume();
+    }
+
+    /**
+     * Updates the day TextField value if the value is greater than the number of days in the given month
+     * @param fxId Id of the ComboBox
+     * @param month Month Attribute to check against
+     */
+    private void updateDayTextField(String fxId, Attribute month){
+        boolean coreInfo = fxId.startsWith("coreInfo");
+        String dayId = coreInfo ? "coreInfo$date$dayOfMonth" : "core$dayOfBirth$value";
+        TextField dayField = (TextField) namespace.get(dayId);
+        TextField yearField = (TextField) namespace.get(coreInfo ? "coreInfo$date$year" : "core$yearOfBirth$value");
+        int year = Integer.parseInt(yearField.getText());
+        int monthLimit = setMonthLimit(month, year);
+        int dayValue = Integer.parseInt(dayField.getText());
+        if(dayValue > monthLimit){
+            dayField.setText("" + monthLimit);
+            Node dayNode = getWorldNode(dayId.split("\\$"));
+            assert dayNode != null;
+            dayNode.setTextContent("" + monthLimit);
+        }
+    }
+
+    /**
+     * Gets a specific Node by supplied all nodeNames from game Node to desired Node
+     *
+     * @param args String array of nodeNames to traverse in order to get to the desired Node
+     * @return Desired Node if found else null
+     */
+    private Node getWorldNode(String... args){
+        Element node = (Element) saveFile.getElementsByTagName(args[0]).item(0);
+        for(int i = 1; i < args.length; i++){
+            if(i == args.length - 1){
+                Element tempNode = (Element) node.getElementsByTagName(args[i]).item(0);
+                if(tempNode == null){
+                    return node.getAttributeNode(args[i]);
+                }
+                else{
+                   return tempNode;
+                }
+            }
+            else{
+                node = (Element) node.getElementsByTagName(args[i]).item(0);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Sets the max day value based on the month
+     * @param month Month Attribute to check against
+     * @param year Year integer to check for leap year
+     * @return int representing the max days based on the month
+     */
+    private int setMonthLimit(Attribute month, int year){
+        int monthLimit;
+        if(month.equals("JANUARY") || month.equals("MARCH")|| month.equals("MAY") ||
+                month.equals("JULY") || month.equals("AUGUST") || month.equals("OCTOBER") ||
+                month.equals("DECEMBER") || month.equals("1") || month.equals("3") || month.equals("5") ||
+                month.equals("7") || month.equals("8") || month.equals("10") ||
+                month.equals("12")){
+            monthLimit = 31;
+        }
+        else if(month.equals("APRIL") || month.equals("JUNE") || month.equals("SEPTEMBER") ||
+                month.equals("NOVEMBER") || month.equals("4") || month.equals("6") || month.equals("9") ||
+                month.equals("11")){
+            monthLimit = 30;
+        }
+        else{ //February
+            monthLimit = isLeapYear(year) ? 29 : 28;
+        }
+        return monthLimit;
+    }
+
+    /**
+     * Checks if the given year is a leap year
+     *
+     * @param year Year to check
+     * @return True if year is a leap year else false
+     */
+    public boolean isLeapYear(int year) { //Hopefully this handles all edge cases
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
     }
 
     /**
@@ -3113,6 +3213,10 @@ public class Controller{
         if(fileLoaded){
             resetFields();
             System.out.println("Fields Reset");
+            if(!worldFieldsSet){
+                setWorldFields();
+                worldFieldsSet = true;
+            }
             NodeList attributeNodes = getAttributeNodes();
             Debug.printList(attributeNodes);
             System.out.println(attributeNodes.item(1).getParentNode());
@@ -3272,6 +3376,47 @@ public class Controller{
             }
             fieldsSet = true;
             updateLabels();
+        }
+    }
+
+    private void setWorldFields(){
+        Element coreInfo = (Element) saveFile.getElementsByTagName("coreInfo").item(0);
+        Node date = coreInfo.getElementsByTagName("date").item(0);
+        NamedNodeMap dateAttr = date.getAttributes();
+        for(int i = 0; i < dateAttr.getLength(); i++){
+            Node attr = dateAttr.item(i);
+            if(attr.getNodeType() == Node.ATTRIBUTE_NODE){
+                String element =  attr.getNodeName();
+                String id = "coreInfo$date$" + element;
+                if(element.equals("month")){
+                    @SuppressWarnings("unchecked")
+                    ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(id);
+                    ObservableList<Attribute> items = cb.getItems();
+                    cb.setValue(matchComboBoxItem(items, attr.getTextContent()));
+                }
+                else{
+                    TextField tf = (TextField) namespace.get(id);
+                    if(tf != null){
+                        tf.setText(attr.getTextContent());
+                    }
+                }
+            }
+        }
+        Node dialogueFlags = saveFile.getElementsByTagName("dialogueFlags").item(0);
+        NodeList flags = dialogueFlags.getChildNodes();
+        for(int i = 0; i < flags.getLength(); i++){
+            if(flags.item(i).getNodeType() == Node.ELEMENT_NODE){
+                Node flag = flags.item(i);
+                String nodeName = flag.getNodeName();
+                if(nodeName.equals("savedLongs")){
+                    break;
+                }
+                String id = "dialogueFlags$" + nodeName + "$value";
+                TextField tf = (TextField) namespace.get(id);
+                if(tf != null){
+                    tf.setText(getAttributeValue(flag, "value"));
+                }
+            }
         }
     }
 
@@ -3562,8 +3707,6 @@ public class Controller{
         ta.focusedProperty().addListener(new TextObjectListener(ta, TextFieldType.STRING));
         TextField hairStyles = (TextField) namespace.get("body$hair$length");
         hairStyles.focusedProperty().addListener(new TextObjectListener(hairStyles, TextFieldType.HAIR));
-        TextField dayOfBirth = (TextField) namespace.get("core$dayOfBirth$value");
-        dayOfBirth.focusedProperty().addListener(new TextObjectListener(dayOfBirth, TextFieldType.DATE));
         for(String intTextFieldId : intTextFieldIds){
             TextField tf = (TextField) namespace.get(intTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT, true));
@@ -3575,6 +3718,10 @@ public class Controller{
         for(String stringTextFieldId : stringTextFieldIds){
             TextField tf = (TextField) namespace.get(stringTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.STRING));
+        }
+        for(String dateTextFieldId : dateTextFieldIds){
+            TextField tf = (TextField) namespace.get(dateTextFieldId);
+            tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DATE));
         }
         listenersAdded = true;
     }
