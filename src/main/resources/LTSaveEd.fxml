@@ -65,9 +65,9 @@
                     </HBox>
                     <HBox layoutX="10.0" layoutY="45.0" spacing="10.0">
                         <Label text="Date of Birth:" />
-                        <TextField fx:id="core$yearOfBirth$value" />
+                        <TextField fx:id="core$yearOfBirth$value" text="1900" />
                         <ComboBox fx:id="core$monthOfBirth$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
-                        <TextField fx:id="core$dayOfBirth$value" layoutX="232.0" layoutY="10.0" />
+                        <TextField fx:id="core$dayOfBirth$value" layoutX="232.0" layoutY="10.0" text="1" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="343.0">
                         <Label text="Job History: " />
@@ -2881,9 +2881,9 @@
                 <VBox layoutX="191.0" layoutY="79.0" prefHeight="502.0" prefWidth="527.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0">
                     <HBox prefHeight="34.0" prefWidth="527.0" spacing="5.0">
                         <Label text="Date: " />
-                        <TextField fx:id="coreInfo$date$year" />
+                        <TextField fx:id="coreInfo$date$year" text="1900" />
                         <ComboBox fx:id="coreInfo$date$month" onAction="#updateXmlComboBox" prefWidth="150.0" />
-                        <TextField fx:id="coreInfo$date$dayOfMonth" />
+                        <TextField fx:id="coreInfo$date$dayOfMonth" text="1" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="527.0" spacing="5.0">
                         <Label text="Ralph Discount:" />
