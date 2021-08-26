@@ -83,11 +83,14 @@ public class Controller{
     /**
      * Boolean tracking whether setFieldsSpellUpgrades was run
      * <p>
-     * Otherwise, for some reason, removeHigherTierSpells would be called when the ComboBox has the base value set
+     * Otherwise, removeHigherTierSpells would be called when the ComboBox has the base value set
      * resulting in all spell upgrades being deleted from the save
      */
     private boolean fieldsSet = false;
 
+    /**
+     * Boolean tracking whether world fields have been set
+     */
     private boolean worldFieldsSet = false;
 
     /**
@@ -1362,11 +1365,14 @@ public class Controller{
             new Attribute("Soldier", "SOLDIER"), new Attribute("Athlete", "ATHLETE"),
             new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"));
 
+    /**
+     * ObservableList of all the femininity group values in the game
+     */
     private final ObservableList<Attribute> femininityAttributeValues = FXCollections.observableArrayList(
             new Attribute("Very Masculine", "VERY_MASCULINE"),
             new Attribute("Masculine", "MASCULINE"), new Attribute("Androgynous", "ANDROGYNOUS"),
             new Attribute("Feminine", "FEMININE"), new Attribute("Very Feminine", "VERY_FEMININE"));
-    //, , , ,
+
     /**
      * ArrayList of all breast size groups (gets completed in the initializer method) in the game
      */
@@ -1485,7 +1491,7 @@ public class Controller{
      * ArrayList of all capacity size groups in the game
      */
     @SuppressWarnings("all")
-    private final ArrayList<String> capacitySizes = addRangeToArrayList(new int[]{(int) (1.75 * 4), (int) (2 * 4),
+    private final ArrayList<String> capacitySizes = addRangeToArrayList(new int[]{(int) (1.75 * 4), (int) (2 * 4), //The second cast is redundant, but kept for consistancy
                     (int) (2.5 * 4), (int) (2.5 * 4), (int) (2.5 * 4), (int) (2.5 * 4), (int) (6.25 * 4), 1},
             new String[]{"Extremely Tight", "Tight", "Somewhat Tight", "Slightly Loose", "Loose", "Very Loose",
                     "Stretched Open", "Gaping Wide"});
@@ -2708,7 +2714,7 @@ public class Controller{
      * Get a specific Node by supplying all Nodes from the Character Node to the desired Node
      *
      * @param args String array to traverse in order to get to the desired Node
-     * @return Desired Node if found else return all the childNodes under the Character Node
+     * @return Desired Node if found else null
      */
     private Node getNode(String... args){
         NodeList attributeNodes = getAttributeNodes();
@@ -3001,6 +3007,11 @@ public class Controller{
         event.consume();
     }
 
+    /**
+     * Updated xml values changed by the parent id ComboBoxes
+     *
+     * @param event ActionEvent from the ComboBox that was changed
+     */
     @FXML
     private void updateXmlComboBoxIds(ActionEvent event){
         if(fieldsSet){
@@ -3261,7 +3272,7 @@ public class Controller{
     }
 
     /**
-     * Reads data from xml save file and sSets all fields with the selected character data
+     * Reads data from xml save file and sets all fields with the selected character data
      */
     private void setFields(){
         if(fileLoaded){
@@ -3443,6 +3454,9 @@ public class Controller{
         }
     }
 
+    /**
+     * Sets the value of fields relating to world data (i.e. data that is world/save specific, not character specific)
+     */
     private void setWorldFields(){
         Element coreInfo = (Element) saveFile.getElementsByTagName("coreInfo").item(0);
         Node date = coreInfo.getElementsByTagName("date").item(0);
