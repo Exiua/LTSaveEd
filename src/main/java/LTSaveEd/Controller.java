@@ -2939,7 +2939,7 @@ public class Controller{
             SpellTier tier = (SpellTier) cb.getValue();
             switch(tier.getTier()){
                 case -1 -> { //Unowned Spell
-                    NodeList knownSpells = getNode("knownSpells").getChildNodes(); //Removes base spells
+                    NodeList knownSpells = Objects.requireNonNull(getNode("knownSpells")).getChildNodes(); //Removes base spells
                     for(int i = 0; i < knownSpells.getLength(); i++){
                         if(knownSpells.item(i).getNodeType() == Node.ELEMENT_NODE){
                             Node spell = knownSpells.item(i);
@@ -3004,6 +3004,7 @@ public class Controller{
             @SuppressWarnings("unchecked")
             String currentCharacterId = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getValue().getId();
             Node valueNode = getNode(fxId.split("\\$"));
+            assert valueNode != null;
             if(!cb.getValue().getId().equals(currentCharacterId)){
                 valueNode.setTextContent(cb.getValue().getId());
             }
@@ -3056,6 +3057,7 @@ public class Controller{
      */
     private void addBaseSpell(SpellTier tier){
         Node knownSpellsNode = getNode("knownSpells");
+        assert knownSpellsNode != null;
         NodeList knownSpells = knownSpellsNode.getChildNodes();
         boolean exists = false;
         for(int i = 0; i < knownSpells.getLength(); i++){
@@ -3081,7 +3083,7 @@ public class Controller{
      * @param owned Removes all spell upgrades if false (i.e. will remove SOOTHING_WATERS_(1/2)_CLEAN as well)
      */
     private void removeHigherTierSpells(SpellTier tier, boolean owned){
-        NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
+        NodeList spellUpgrades = Objects.requireNonNull(getNode("spellUpgrades")).getChildNodes();
         for(int i = 0; i < spellUpgrades.getLength(); i++){
             if(spellUpgrades.item(i).getNodeType() == Node.ELEMENT_NODE){
                 Node spell = spellUpgrades.item(i);
@@ -3110,6 +3112,7 @@ public class Controller{
      */
     private void addLowerTierSpells(SpellTier tier){
         Node spellUpgradesNode = getNode("spellUpgrades");
+        assert spellUpgradesNode != null;
         NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
         int count = 0;
         for(int i = 0; i < spellUpgrades.getLength(); i++){
@@ -3151,6 +3154,7 @@ public class Controller{
     private void changeWithinTierSpells(SpellTier tier){
         if(!tier.getType().equals("STEAL")){
             Node spellUpgradesNode = getNode("spellUpgrades");
+            assert spellUpgradesNode != null;
             NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
             String complementTier = getComplementTier(tier);
             for(int i = 0; i < spellUpgrades.getLength(); i++){
