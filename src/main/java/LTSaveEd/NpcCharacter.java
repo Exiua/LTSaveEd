@@ -63,6 +63,11 @@ public class NpcCharacter {
             Arrays.fill(names, "Player");
             genderId = "N_Player"; //Doesn't really matter, just need the first character to match in the switch
         }
+        else if(player.equals("")){ //Used for motherIds and fatherIds as the value can be blank
+            id = player;
+            Arrays.fill(names, "None");
+            genderId = "N";
+        }
     }
 
     /**
