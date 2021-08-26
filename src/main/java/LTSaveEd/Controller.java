@@ -1484,6 +1484,7 @@ public class Controller{
     /**
      * ArrayList of all capacity size groups in the game
      */
+    @SuppressWarnings("all")
     private final ArrayList<String> capacitySizes = addRangeToArrayList(new int[]{(int) (1.75 * 4), (int) (2 * 4),
                     (int) (2.5 * 4), (int) (2.5 * 4), (int) (2.5 * 4), (int) (2.5 * 4), (int) (6.25 * 4), 1},
             new String[]{"Extremely Tight", "Tight", "Somewhat Tight", "Slightly Loose", "Loose", "Very Loose",
