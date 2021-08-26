@@ -188,7 +188,9 @@ public class Controller{
             "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS", "spells$ELEMENTAL_AIR",
             "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD", "spells$CLEANSE",
             "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE",
-            "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride", "core$history$value", "coreInfo$date$month"};
+            "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride", "core$history$value", "coreInfo$date$month",
+            "family$motherFemininity$value", "family$fatherFemininity$value", "family$motherSubspecies",
+            "family$fatherSubspecies$value"};
 
     /**
      * String array of ids for all CheckBoxes that would carry over if not reset
@@ -1360,6 +1362,11 @@ public class Controller{
             new Attribute("Soldier", "SOLDIER"), new Attribute("Athlete", "ATHLETE"),
             new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"));
 
+    private final ObservableList<Attribute> femininityAttributeValues = FXCollections.observableArrayList(
+            new Attribute("Very Masculine", "VERY_MASCULINE"),
+            new Attribute("Masculine", "MASCULINE"), new Attribute("Androgynous", "ANDROGYNOUS"),
+            new Attribute("Feminine", "FEMININE"), new Attribute("Very Feminine", "VERY_FEMININE"));
+    //, , , ,
     /**
      * ArrayList of all breast size groups (gets completed in the initializer method) in the game
      */
@@ -1639,6 +1646,10 @@ public class Controller{
         comboBoxValues.add(subspeciesOverrides);
         comboBoxValues.add(jobHistories);
         comboBoxValues.add(numericalMonths);
+        comboBoxValues.add(femininityAttributeValues);
+        comboBoxValues.add(femininityAttributeValues);
+        comboBoxValues.add(subspeciesOverrides);
+        comboBoxValues.add(subspeciesOverrides);
         initializeHairStyles();
         initializeLegConfigurations();
         initializeFootStructures();
@@ -2448,28 +2459,42 @@ public class Controller{
      * Parses the xml file for NPCs and adds them to the character selector ComboBox along with the Player Character
      */
     public void loadCharacterSelector(){
-        @SuppressWarnings("unchecked")
-        ComboBox<NpcCharacter> characterSelector = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         NpcCharacter player = new NpcCharacter("PlayerCharacter");
         ObservableList<NpcCharacter> characterList = FXCollections.observableArrayList(player);
         NodeList npcList = saveFile.getElementsByTagName("NPC");
         for(int i = 0; i < npcList.getLength(); i++){
             characterList.add(new NpcCharacter(npcList.item(i)));
         }
+        NpcCharacter nullCharacter = new NpcCharacter("");
+        ObservableList<NpcCharacter> parentList = FXCollections.observableArrayList(nullCharacter);
+        parentList.addAll(characterList);
+        @SuppressWarnings("unchecked")
+        ComboBox<NpcCharacter> motherIds = (ComboBox<NpcCharacter>) namespace.get("family$motherId$value");
+        motherIds.setItems(parentList);
+        motherIds.setValue(player);
+        @SuppressWarnings("unchecked")
+        ComboBox<NpcCharacter> fatherIds = (ComboBox<NpcCharacter>) namespace.get("family$fatherId$value");
+        fatherIds.setItems(parentList);
+        fatherIds.setValue(player);
+        setCharacterNode("PlayerCharacter");
+        @SuppressWarnings("unchecked")
+        ComboBox<NpcCharacter> characterSelector = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         characterSelector.setItems(characterList);
         characterSelector.setValue(player);
-        setCharacterNode("PlayerCharacter");
-        characterSelector.setConverter(new StringConverter<>(){
-            @Override
-            public String toString(NpcCharacter npcCharacter){
-                return npcCharacter.getName();
-            }
+        ArrayList<ComboBox<NpcCharacter>> comboBoxes = new ArrayList<>(Arrays.asList(characterSelector, motherIds, fatherIds));
+        for(ComboBox<NpcCharacter> comboBox : comboBoxes) {
+            comboBox.setConverter(new StringConverter<>() {
+                @Override
+                public String toString(NpcCharacter npcCharacter) {
+                    return npcCharacter.getName();
+                }
 
-            @Override
-            public NpcCharacter fromString(String s){
-                return null;
-            }
-        });
+                @Override
+                public NpcCharacter fromString(String s) {
+                    return null;
+                }
+            });
+        }
     }
 
     /**
@@ -2686,17 +2711,17 @@ public class Controller{
             if(arg.equals(args[args.length - 1])){
                 Element tempAttr = (Element) attr.getElementsByTagName(arg).item(0);
                 if(tempAttr == null){
-                    attr = (Element) getAttributeNode(attr, arg);
+                    return attr.getAttributeNode(arg);
                 }
                 else{
-                    attr = tempAttr;
+                    return tempAttr;
                 }
             }
             else{
                 attr = (Element) attr.getElementsByTagName(arg).item(0);
             }
         }
-        return attr;
+        return null;
     }
 
     /**
@@ -2970,6 +2995,25 @@ public class Controller{
         event.consume();
     }
 
+    @FXML
+    private void updateXmlComboBoxIds(ActionEvent event){
+        if(fieldsSet){
+            String fxId = getId(event);
+            @SuppressWarnings("unchecked")
+            ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(fxId);
+            @SuppressWarnings("unchecked")
+            String currentCharacterId = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getValue().getId();
+            Node valueNode = getNode(fxId.split("\\$"));
+            if(!cb.getValue().getId().equals(currentCharacterId)){
+                valueNode.setTextContent(cb.getValue().getId());
+            }
+            else{
+                ObservableList<NpcCharacter> charList = cb.getItems();
+                cb.setValue(matchNpc(charList, valueNode.getTextContent()));
+            }
+        }
+    }
+
     /**
      * Updates xml values changed by PerkNode CheckBoxes
      * @param event ActionEvent from the CheckBox that was changed
@@ -3230,7 +3274,7 @@ public class Controller{
                                 "specialPerks", "statusEffects", "knownMoves", "equippedMoves" -> {
                             continue;
                         }
-                        case "pregnancy" -> { //Ends the loop early as all the needed data has been parsed //Adjust as needed
+                        case "slavery" -> { //Ends the loop early as all the needed data has been parsed //Adjust as needed
                             break MainLoop;
                         }
                         case "characterRelationships" -> {  //These parts have an unknown number of elements which have identical tags
@@ -3358,11 +3402,21 @@ public class Controller{
                                     }
                                 }
                                 catch(ClassCastException e2){ //Using ComboBoxes for fixed values
-                                    @SuppressWarnings("unchecked")
-                                    ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
-                                    if(cb != null){
-                                        ObservableList<Attribute> itemList = cb.getItems();
-                                        cb.setValue(matchComboBoxItem(itemList, value));
+                                    if(nodeId.contains("motherId") || nodeId.contains("fatherId")){
+                                        @SuppressWarnings("unchecked")
+                                        ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(nodeId);
+                                        if(cb != null) {
+                                            ObservableList<NpcCharacter> itemList = cb.getItems();
+                                            cb.setValue(matchNpc(itemList, value));
+                                        }
+                                    }
+                                    else {
+                                        @SuppressWarnings("unchecked")
+                                        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
+                                        if(cb != null) {
+                                            ObservableList<Attribute> itemList = cb.getItems();
+                                            cb.setValue(matchComboBoxItem(itemList, value));
+                                        }
                                     }
                                 }
                             }
