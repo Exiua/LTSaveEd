@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -1372,6 +1373,13 @@ public class Controller{
             new Attribute("Very Masculine", "VERY_MASCULINE"),
             new Attribute("Masculine", "MASCULINE"), new Attribute("Androgynous", "ANDROGYNOUS"),
             new Attribute("Feminine", "FEMININE"), new Attribute("Very Feminine", "VERY_FEMININE"));
+
+    /**
+     * ObservableList of all the damage types in the game
+     */
+    private final ObservableList<Attribute> damageTypes = FXCollections.observableArrayList(
+            new Attribute("Physical", "PHYSICAL"), new Attribute("Fire", "FIRE"),
+            new Attribute("Ice", "ICE"), new Attribute("Poison", "POISON"));
 
     /**
      * ArrayList of all breast size groups (gets completed in the initializer method) in the game
@@ -3764,7 +3772,19 @@ public class Controller{
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
                 NamedNodeMap attr = items.item(i).getAttributes();
-
+                TextField clothingId = new TextField(attr.getNamedItem("id").getTextContent());
+                clothingId.setEditable(false);
+                TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
+                enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                enchantmentKnown.setSelected(Boolean.parseBoolean(attr.getNamedItem("enchantmentKnown").getTextContent()));
+                CheckBox isDirty = new CheckBox("Dirty: ");
+                isDirty.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                isDirty.setSelected(Boolean.parseBoolean(attr.getNamedItem("isDirty").getTextContent()));
+                HBox hBox = new HBox(10);
+                hBox.getChildren().addAll(new Label("Id: "), clothingId, new Label("Count: "), count,
+                        enchantmentKnown, isDirty);
+                vb.getChildren().add(hBox);
             }
         }
     }
@@ -3775,7 +3795,23 @@ public class Controller{
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
                 NamedNodeMap attr = items.item(i).getAttributes();
-
+                TextField weaponId = new TextField(attr.getNamedItem("id").getTextContent());
+                weaponId.setEditable(false);
+                TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                String dmgType = attr.getNamedItem("damageType").getTextContent();
+                ComboBox<Attribute> damageType;
+                if(dmgType.equals("LUST")){
+                    damageType = new ComboBox<>(FXCollections.observableArrayList(new Attribute("Lust", "Lust")));
+                    damageType.setValue(damageType.getItems().get(0));
+                }
+                else{
+                    damageType = new ComboBox<>(damageTypes);
+                    damageType.setValue(matchComboBoxItem(damageTypes, dmgType));
+                }
+                HBox hBox = new HBox(10);
+                hBox.getChildren().addAll(new Label("Id: "), weaponId, new Label("Damage Type: "), damageType,
+                        new Label("Count: "), count);
+                vb.getChildren().add(hBox);
             }
         }
     }
