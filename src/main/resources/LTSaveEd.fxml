@@ -2814,6 +2814,65 @@
                 </TabPane>
             </AnchorPane>
         </Tab>
+        <Tab text="Inventory">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+               <TabPane layoutX="357.0" layoutY="152.0" prefHeight="671.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                 <tabs>
+                   <Tab text="Items">
+                     <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <ScrollPane hbarPolicy="NEVER" layoutX="175.0" layoutY="86.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <content>
+                                       <VBox fx:id="itemsInInventory" prefWidth="1023.0" spacing="10.0">
+                                          <padding>
+                                             <Insets left="14.0" top="28.0" />
+                                          </padding></VBox>
+                                    </content>
+                                 </ScrollPane>
+                              </children></AnchorPane>
+                     </content>
+                   </Tab>
+                     <Tab text="Clothing">
+                         <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <ScrollPane hbarPolicy="NEVER" prefHeight="642.0" prefWidth="1024.0">
+                                    <content>
+                                       <VBox fx:id="clothingInInventory" prefWidth="1023.0" spacing="10.0">
+                                          <padding>
+                                             <Insets left="14.0" top="28.0" />
+                                          </padding></VBox>
+                                    </content>
+                                 </ScrollPane>
+                              </children></AnchorPane>
+                         </content>
+                     </Tab>
+                     <Tab text="Weapons">
+                         <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                 <ScrollPane hbarPolicy="NEVER" prefHeight="642.0" prefWidth="1024.0">
+                                    <content>
+                                       <VBox fx:id="weaponsInInventory" prefWidth="1023.0" spacing="10.0">
+                                          <padding>
+                                             <Insets left="14.0" top="28.0" />
+                                          </padding></VBox>
+                                    </content>
+                                 </ScrollPane>
+                              </children></AnchorPane>
+                         </content>
+                     </Tab>
+                   <Tab disable="true" text="Equipped">
+                     <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                   </Tab>
+                 </tabs>
+               </TabPane>
+            </children></AnchorPane>
+        </Tab>
         <Tab text="Relationships">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="124.0" layoutY="103.0" prefHeight="671.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -2913,12 +2972,6 @@
                 <Button layoutX="78.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteOffsprings" text="Remove All Offsprings" />
                 <Button layoutX="286.0" layoutY="80.0" mnemonicParsing="false" onAction="#revealMap" text="Reveal All Map Tiles" />
             </AnchorPane>
-        </Tab>
-        <Tab disable="true" text="Inventory">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </Tab>
-        <Tab disable="true" text="Clothing">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
         <Tab disable="true" text="Pregnancy">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
