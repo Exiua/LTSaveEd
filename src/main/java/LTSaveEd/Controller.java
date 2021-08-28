@@ -3347,9 +3347,23 @@ public class Controller{
                     for(int j = 1; j < attributeElements.getLength() - 1; j += 2){ //Every other node in the NodeList is a TextNode (so can be skipped)
                         Node currNode = attributeElements.item(j);
                         String elementName = currNode.getNodeName();
-                        if(elementName.equals("personality")){
-                            setFieldsPersonality(currNode);
-                            continue;
+                        switch(elementName){
+                            case "personality" -> {
+                                setFieldsPersonality(currNode);
+                                continue;
+                            }
+                            case "itemsInInventory" -> {
+                                setFieldsInventoryItems(currNode);
+                                continue;
+                            }
+                            case "clothingInInventory" -> {
+                                setFieldsInventoryClothing(currNode);
+                                continue;
+                            }
+                            case "weaponsInInventory" -> {
+                                setFieldsInventoryWeapons(currNode);
+                                continue;
+                            }
                         }
                         NamedNodeMap attributes = currNode.getAttributes();
                         NodeList childNodes = currNode.getChildNodes();
@@ -3374,7 +3388,7 @@ public class Controller{
                                 }
                             }
                             System.out.println(elementName + " Modifier Fields Set");
-                        }
+                        } //Modifiers Fields Setter
                         for(int k = 0; k < attributes.getLength(); k++){
                             Node valueNode = attributes.item(k);
                             String value = valueNode.getTextContent();
@@ -3540,7 +3554,7 @@ public class Controller{
                 }
                 HBox hBox = new HBox(10);
                 hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
-                        new Label("Value: "), valueField, btn); //Id: <Id TextField> Name: <Name TextField> Value: <Value TextField>
+                        new Label("Value: "), valueField, btn); //Id: <Id TextField> Name: <Name TextField> Value: <Value TextField> <GoTo Button>
                 relationBox.getChildren().add(hBox);
             }
         }
@@ -3724,6 +3738,44 @@ public class Controller{
                 System.out.println(id);
                 CheckBox cb = (CheckBox) namespace.get(id);
                 cb.setSelected(true);
+            }
+        }
+    }
+
+    private void setFieldsInventoryItems(Node inventoryNode){
+        VBox vb = (VBox) namespace.get("itemsInInventory");
+        NodeList items = inventoryNode.getChildNodes();
+        for(int i = 0; i < items.getLength(); i++) {
+            if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = items.item(i).getAttributes();
+                TextField itemId = new TextField(attr.getNamedItem("id").getTextContent());
+                itemId.setEditable(false);
+                TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                HBox hBox = new HBox(10);
+                hBox.getChildren().addAll(new Label("Id: "), itemId, new Label("Count: "), count); //Id: <Id TextField> Count: <Count TextField>
+                vb.getChildren().add(hBox);
+            }
+        }
+    }
+
+    private void setFieldsInventoryClothing(Node inventoryNode){
+        VBox vb = (VBox) namespace.get("clothingInInventory");
+        NodeList items = inventoryNode.getChildNodes();
+        for(int i = 0; i < items.getLength(); i++) {
+            if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = items.item(i).getAttributes();
+
+            }
+        }
+    }
+
+    private void setFieldsInventoryWeapons(Node inventoryNode){
+        VBox vb = (VBox) namespace.get("weaponsInInventory");
+        NodeList items = inventoryNode.getChildNodes();
+        for(int i = 0; i < items.getLength(); i++) {
+            if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
+                NamedNodeMap attr = items.item(i).getAttributes();
+
             }
         }
     }
