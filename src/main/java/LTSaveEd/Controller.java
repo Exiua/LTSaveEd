@@ -2366,6 +2366,15 @@ public class Controller{
                     }
                     return attributeNode.getAttributeNode(id[id.length - 1]);
                 }
+                case "characterInventory" -> {
+                    switch(id[1]){
+                        case "itemsInInventory", "clothingInInventory", "weaponsInInventory" -> {
+                            Node inventoryTypeNode = attr.getElementsByTagName(id[1]).item(0);
+                            Node inventorySlotNode = inventoryTypeNode.getChildNodes().item(Integer.parseInt(id[3]));
+                            return inventorySlotNode.getAttributes().getNamedItem(id[2]);
+                        }
+                    }
+                }
             }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return getAttributeNode(attr, id[2]);
@@ -3752,6 +3761,7 @@ public class Controller{
 
     private void setFieldsInventoryItems(Node inventoryNode){
         VBox vb = (VBox) namespace.get("itemsInInventory");
+        String partialId = "characterInventory$itemsInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
@@ -3759,8 +3769,21 @@ public class Controller{
                 TextField itemId = new TextField(attr.getNamedItem("id").getTextContent());
                 itemId.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                count.setId(partialId + "count$" + i);
+                count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
+                Button btn = new Button("Delete Item");
+                btn.setOnAction(event -> {
+                    HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
+                    ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
+                    String[] id = targetHBox.getId().split("\\$");
+                    NodeList itemList = Objects.requireNonNull(getNode(id[0], id[1])).getChildNodes();
+                    Node item = getChildNodeByAttributeValue(itemList, "id", id[2]);
+                    assert item != null;
+                    removeNode(item);
+                });
                 HBox hBox = new HBox(10);
-                hBox.getChildren().addAll(new Label("Id: "), itemId, new Label("Count: "), count); //Id: <Id TextField> Count: <Count TextField>
+                hBox.setId(partialId + itemId.getText());
+                hBox.getChildren().addAll(new Label("Id: "), itemId, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField>
                 vb.getChildren().add(hBox);
             }
         }
@@ -3768,6 +3791,7 @@ public class Controller{
 
     private void setFieldsInventoryClothing(Node inventoryNode){
         VBox vb = (VBox) namespace.get("clothingInInventory");
+        String partialId = "characterInventory$clothingInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
@@ -3775,15 +3799,28 @@ public class Controller{
                 TextField clothingId = new TextField(attr.getNamedItem("id").getTextContent());
                 clothingId.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                count.setId(partialId + "count$" + i);
+                count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 enchantmentKnown.setSelected(Boolean.parseBoolean(attr.getNamedItem("enchantmentKnown").getTextContent()));
                 CheckBox isDirty = new CheckBox("Dirty: ");
                 isDirty.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 isDirty.setSelected(Boolean.parseBoolean(attr.getNamedItem("isDirty").getTextContent()));
+                Button btn = new Button("Delete Item");
+                btn.setOnAction(event -> {
+                    HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
+                    ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
+                    String[] id = targetHBox.getId().split("\\$");
+                    NodeList itemList = Objects.requireNonNull(getNode(id[0], id[1])).getChildNodes();
+                    Node item = getChildNodeByAttributeValue(itemList, "id", id[2]);
+                    assert item != null;
+                    removeNode(item);
+                });
                 HBox hBox = new HBox(10);
+                hBox.setId(partialId + clothingId.getText());
                 hBox.getChildren().addAll(new Label("Id: "), clothingId, new Label("Count: "), count,
-                        enchantmentKnown, isDirty);
+                        enchantmentKnown, isDirty, btn);
                 vb.getChildren().add(hBox);
             }
         }
@@ -3791,6 +3828,7 @@ public class Controller{
 
     private void setFieldsInventoryWeapons(Node inventoryNode){
         VBox vb = (VBox) namespace.get("weaponsInInventory");
+        String partialId = "characterInventory$weaponsInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
@@ -3798,6 +3836,8 @@ public class Controller{
                 TextField weaponId = new TextField(attr.getNamedItem("id").getTextContent());
                 weaponId.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                count.setId(partialId + "count$" + i);
+                count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 String dmgType = attr.getNamedItem("damageType").getTextContent();
                 ComboBox<Attribute> damageType;
                 if(dmgType.equals("LUST")){
@@ -3808,9 +3848,20 @@ public class Controller{
                     damageType = new ComboBox<>(damageTypes);
                     damageType.setValue(matchComboBoxItem(damageTypes, dmgType));
                 }
+                Button btn = new Button("Delete Item");
+                btn.setOnAction(event -> {
+                    HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
+                    ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
+                    String[] id = targetHBox.getId().split("\\$");
+                    NodeList itemList = Objects.requireNonNull(getNode(id[0], id[1])).getChildNodes();
+                    Node item = getChildNodeByAttributeValue(itemList, "id", id[2]);
+                    assert item != null;
+                    removeNode(item);
+                });
                 HBox hBox = new HBox(10);
+                hBox.setId(partialId + weaponId.getText());
                 hBox.getChildren().addAll(new Label("Id: "), weaponId, new Label("Damage Type: "), damageType,
-                        new Label("Count: "), count);
+                        new Label("Count: "), count, btn);
                 vb.getChildren().add(hBox);
             }
         }
