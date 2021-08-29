@@ -2713,14 +2713,24 @@ public class Controller{
      * Gets a Node from a NodeList based on specified attribute and value of attribute
      *
      * @param children NodeList to check
-     * @param attribute Attribute to check for
-     * @param value Value of attribute to check for
+     * @param args Attribute/Value pairs to check for
      * @return Desired Node if found else null
+     * @throws IllegalArgumentException if number of String arguments is not a multiple of 2
      */
-    private Node getChildNodeByAttributeValue(NodeList children, String attribute, String value){
+    private Node getChildNodeByAttributeValue(NodeList children, String... args){
+        if(args.length % 2 != 0){
+            throw new IllegalArgumentException();
+        }
         for(int i = 0; i < children.getLength(); i++){
             if(children.item(i).getNodeType() == Node.ELEMENT_NODE){
-                if(getAttributeValue(children.item(i), attribute).equals(value)){
+                boolean found = true;
+                for(int j = 0; j < args.length; j += 2) {
+                    if(!getAttributeValue(children.item(i), args[j]).equals(args[j + 1])){
+                        found = false;
+                        break;
+                    }
+                }
+                if(found){
                     return children.item(i);
                 }
             }
