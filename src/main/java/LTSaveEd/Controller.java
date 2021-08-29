@@ -2370,7 +2370,8 @@ public class Controller{
                     switch(id[1]){
                         case "itemsInInventory", "clothingInInventory", "weaponsInInventory" -> {
                             Node inventoryTypeNode = attr.getElementsByTagName(id[1]).item(0);
-                            Node inventorySlotNode = inventoryTypeNode.getChildNodes().item(Integer.parseInt(id[3]));
+                            Node inventorySlotNode = getChildNodeByAttributeValue(inventoryTypeNode.getChildNodes(), "id", id[3]);
+                            assert inventorySlotNode != null;
                             return inventorySlotNode.getAttributes().getNamedItem(id[2]);
                         }
                     }
@@ -3769,7 +3770,7 @@ public class Controller{
                 TextField itemId = new TextField(attr.getNamedItem("id").getTextContent());
                 itemId.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
-                count.setId(partialId + "count$" + i);
+                count.setId(partialId + "count$" + itemId.getText());
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(event -> {
@@ -3782,7 +3783,7 @@ public class Controller{
                     removeNode(item);
                 });
                 HBox hBox = new HBox(10);
-                hBox.setId(partialId + itemId.getText());
+                hBox.setId(partialId + itemId.getText()); //Update this later when implementing item adding to inventory; May want to use partialId + itemId + itemColor to identify an item; Will also need item collapsing/grouping
                 hBox.getChildren().addAll(new Label("Id: "), itemId, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField>
                 vb.getChildren().add(hBox);
             }
@@ -3799,7 +3800,7 @@ public class Controller{
                 TextField clothingId = new TextField(attr.getNamedItem("id").getTextContent());
                 clothingId.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
-                count.setId(partialId + "count$" + i);
+                count.setId(partialId + "count$" + clothingId.getText());
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
@@ -3836,7 +3837,7 @@ public class Controller{
                 TextField weaponId = new TextField(attr.getNamedItem("id").getTextContent());
                 weaponId.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
-                count.setId(partialId + "count$" + i);
+                count.setId(partialId + "count$" + weaponId.getText());
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 String dmgType = attr.getNamedItem("damageType").getTextContent();
                 ComboBox<Attribute> damageType;
