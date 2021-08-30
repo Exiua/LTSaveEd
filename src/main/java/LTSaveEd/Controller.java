@@ -2713,7 +2713,7 @@ public class Controller{
      * Gets a Node from a NodeList based on specified attribute and value of attribute
      *
      * @param children NodeList to check
-     * @param args Attribute/Value pairs to check for
+     * @param args Attribute/Value pairs to check for (must have Attribute, followed by value to match for each pair)
      * @return Desired Node if found else null
      * @throws IllegalArgumentException if number of String arguments is not a multiple of 2
      */
@@ -3777,10 +3777,12 @@ public class Controller{
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
                 NamedNodeMap attr = items.item(i).getAttributes();
-                TextField itemId = new TextField(attr.getNamedItem("id").getTextContent());
-                itemId.setEditable(false);
+                String itemId = attr.getNamedItem("id").getTextContent();
+                String colorValue = attr.getNamedItem("colour").getTextContent();
+                TextField itemIdTf = new TextField(itemId);
+                itemIdTf.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
-                count.setId(partialId + "count$" + itemId.getText());
+                count.setId(partialId + "count$" + itemId);
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(event -> {
@@ -3788,13 +3790,13 @@ public class Controller{
                     ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
                     String[] id = targetHBox.getId().split("\\$");
                     NodeList itemList = Objects.requireNonNull(getNode(id[0], id[1])).getChildNodes();
-                    Node item = getChildNodeByAttributeValue(itemList, "id", id[2]);
+                    Node item = getChildNodeByAttributeValue(itemList, "id", id[2], "colour", id[3]);
                     assert item != null;
                     removeNode(item);
                 });
                 HBox hBox = new HBox(10);
-                hBox.setId(partialId + itemId.getText()); //Update this later when implementing item adding to inventory; May want to use partialId + itemId + itemColor to identify an item; Will also need item collapsing/grouping
-                hBox.getChildren().addAll(new Label("Id: "), itemId, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField>
+                hBox.setId(partialId + itemId + "$" + colorValue); //Update this later when implementing item adding to inventory; May want to use partialId + itemId + itemColor to identify an item; Will also need item collapsing/grouping
+                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField>
                 vb.getChildren().add(hBox);
             }
         }
@@ -3807,10 +3809,10 @@ public class Controller{
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
                 NamedNodeMap attr = items.item(i).getAttributes();
-                TextField clothingId = new TextField(attr.getNamedItem("id").getTextContent());
-                clothingId.setEditable(false);
+                TextField clothingIdTf = new TextField(attr.getNamedItem("id").getTextContent());
+                clothingIdTf.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
-                count.setId(partialId + "count$" + clothingId.getText());
+                count.setId(partialId + "count$" + clothingIdTf.getText());
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
@@ -3829,8 +3831,8 @@ public class Controller{
                     removeNode(item);
                 });
                 HBox hBox = new HBox(10);
-                hBox.setId(partialId + clothingId.getText());
-                hBox.getChildren().addAll(new Label("Id: "), clothingId, new Label("Count: "), count,
+                hBox.setId(partialId + clothingIdTf.getText());
+                hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Count: "), count,
                         enchantmentKnown, isDirty, btn);
                 vb.getChildren().add(hBox);
             }
@@ -3844,10 +3846,10 @@ public class Controller{
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
                 NamedNodeMap attr = items.item(i).getAttributes();
-                TextField weaponId = new TextField(attr.getNamedItem("id").getTextContent());
-                weaponId.setEditable(false);
+                TextField weaponIdTf = new TextField(attr.getNamedItem("id").getTextContent());
+                weaponIdTf.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
-                count.setId(partialId + "count$" + weaponId.getText());
+                count.setId(partialId + "count$" + weaponIdTf.getText());
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 String dmgType = attr.getNamedItem("damageType").getTextContent();
                 ComboBox<Attribute> damageType;
@@ -3870,12 +3872,40 @@ public class Controller{
                     removeNode(item);
                 });
                 HBox hBox = new HBox(10);
-                hBox.setId(partialId + weaponId.getText());
-                hBox.getChildren().addAll(new Label("Id: "), weaponId, new Label("Damage Type: "), damageType,
+                hBox.setId(partialId + weaponIdTf.getText());
+                hBox.getChildren().addAll(new Label("Id: "), weaponIdTf, new Label("Damage Type: "), damageType,
                         new Label("Count: "), count, btn);
                 vb.getChildren().add(hBox);
             }
         }
+    }
+
+    private boolean matchItemByColors(Node itemNode, String... colors){
+        NodeList colorList = ((Element) itemNode).getElementsByTagName("colours").item(0).getChildNodes();
+        int idx = 0;
+        for(int i = 0; i < colorList.getLength(); i++) {
+            Node color = colorList.item(i);
+            if(color.getNodeName().equals("colour")){
+                if(color.getTextContent().equals(colors[idx])){
+                    idx++;
+                }
+            }
+        }
+        return idx == colors.length - 1;
+    }
+
+    private String getItemColors(Node itemNode){
+        NodeList colorList = ((Element) itemNode).getElementsByTagName("colours").item(0).getChildNodes();
+        StringBuilder colors = new StringBuilder();
+        for(int i = 0; i < colorList.getLength(); i++) {
+            Node color = colorList.item(i);
+            if(color.getNodeName().equals("colour")){
+                colors.append(color.getTextContent()).append("$");
+            }
+        }
+        String returnString = colors.toString();
+        int strLength = returnString.length();
+        return returnString.charAt(strLength - 1) == '$' ? returnString.substring(0, strLength - 1) : returnString;
     }
 
     /**
