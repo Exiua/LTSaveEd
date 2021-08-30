@@ -2370,7 +2370,7 @@ public class Controller{
                     switch(id[1]){
                         case "itemsInInventory", "clothingInInventory", "weaponsInInventory" -> {
                             Node inventoryTypeNode = attr.getElementsByTagName(id[1]).item(0);
-                            Node inventorySlotNode = getChildNodeByAttributeValue(inventoryTypeNode.getChildNodes(), "id", id[3]);
+                            Node inventorySlotNode = getChildNodeByAttributeValue(inventoryTypeNode.getChildNodes(), "id", id[3], "colour", id[4]);
                             assert inventorySlotNode != null;
                             return inventorySlotNode.getAttributes().getNamedItem(id[2]);
                         }
@@ -3782,7 +3782,7 @@ public class Controller{
                 TextField itemIdTf = new TextField(itemId);
                 itemIdTf.setEditable(false);
                 TextField count = new TextField(attr.getNamedItem("count").getTextContent());
-                count.setId(partialId + "count$" + itemId);
+                count.setId(partialId + "count$" + itemId + "$" + colorValue);
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(event -> {
