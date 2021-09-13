@@ -3776,12 +3776,12 @@ public class Controller{
         NodeList items = inventoryNode.getChildNodes();
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
-                NamedNodeMap attr = items.item(i).getAttributes();
-                String itemId = attr.getNamedItem("id").getTextContent();
-                String colorValue = attr.getNamedItem("colour").getTextContent();
+                InventoryItem inventoryItem = new InventoryItem(items.item(i));
+                String itemId = inventoryItem.getId();
+                String colorValue = inventoryItem.getColor();
                 TextField itemIdTf = new TextField(itemId);
                 itemIdTf.setEditable(false);
-                TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                TextField count = new TextField("" + inventoryItem.getCount());
                 count.setId(partialId + "count$" + itemId + "$" + colorValue);
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 Button btn = new Button("Delete Item");
@@ -3795,7 +3795,7 @@ public class Controller{
                     removeNode(item);
                 });
                 HBox hBox = new HBox(10);
-                hBox.setId(partialId + itemId + "$" + colorValue); //Update this later when implementing item adding to inventory; May want to use partialId + itemId + itemColor to identify an item; Will also need item collapsing/grouping
+                hBox.setId(partialId + inventoryItem);
                 hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField>
                 vb.getChildren().add(hBox);
             }
