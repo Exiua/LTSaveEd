@@ -25,4 +25,9 @@ public class InventoryItem extends AbstractInventoryElement {
         return (element instanceof InventoryItem) && this.getId().equals(element.getId()) &&
                 this.color.equals(((InventoryItem) element).getColor()) && hasEqualEffects(element);
     }
+
+    @Override
+    public String toString(){
+        return getId() + "$" + color;
+    }
 }
