@@ -30,4 +30,9 @@ public class InventoryClothing extends InventoryElement{
     public void setEnchantmentsKnown(boolean enchantmentsKnown) {
         this.enchantmentsKnown = enchantmentsKnown;
     }
+
+    @Override
+    public boolean isEqual(InventoryElement element) {
+        return (element instanceof InventoryClothing) && this.getId().equals(element.getId());
+    }
 }

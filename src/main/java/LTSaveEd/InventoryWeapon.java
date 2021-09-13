@@ -30,4 +30,11 @@ public class InventoryWeapon extends InventoryElement{
     public void setDamageType(String damageType) {
         this.damageType = damageType;
     }
+
+    @Override
+    public boolean isEqual(InventoryElement element) {
+        return (element instanceof InventoryWeapon) && this.getId().equals(element.getId()) &&
+                coreEnchantment.equals(((InventoryWeapon) element).getCoreEnchantment()) &&
+                damageType.equals(((InventoryWeapon) element).getDamageType());
+    }
 }

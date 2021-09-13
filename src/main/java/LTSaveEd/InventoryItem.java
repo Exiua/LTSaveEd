@@ -18,4 +18,10 @@ public class InventoryItem extends InventoryElement{
     public void setColor(String color) {
         this.color = color;
     }
+
+    @Override
+    public boolean isEqual(InventoryElement element) {
+        return (element instanceof InventoryItem) && this.getId().equals(element.getId()) &&
+                this.color.equals(((InventoryItem) element).getColor());
+    }
 }

@@ -31,4 +31,6 @@ public abstract class InventoryElement {
     public void updateCount(int increment){
         count += increment;
     }
+
+    public abstract boolean isEqual(InventoryElement element);
 }
