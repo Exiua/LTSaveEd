@@ -35,6 +35,6 @@ public class InventoryWeapon extends AbstractInventoryElement {
     public boolean isEqual(AbstractInventoryElement element) {
         return (element instanceof InventoryWeapon) && this.getId().equals(element.getId()) &&
                 coreEnchantment.equals(((InventoryWeapon) element).getCoreEnchantment()) &&
-                damageType.equals(((InventoryWeapon) element).getDamageType());
+                damageType.equals(((InventoryWeapon) element).getDamageType()) && hasEqualEffects(element);
     }
 }

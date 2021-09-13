@@ -22,6 +22,6 @@ public class InventoryItem extends AbstractInventoryElement {
     @Override
     public boolean isEqual(AbstractInventoryElement element) {
         return (element instanceof InventoryItem) && this.getId().equals(element.getId()) &&
-                this.color.equals(((InventoryItem) element).getColor());
+                this.color.equals(((InventoryItem) element).getColor()) && hasEqualEffects(element);
     }
 }

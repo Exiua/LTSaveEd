@@ -52,10 +52,10 @@ public class InventoryClothing extends AbstractInventoryElement {
     @Override
     public boolean isEqual(AbstractInventoryElement element) {
         return (element instanceof InventoryClothing) && this.getId().equals(element.getId()) &&
-                equalColors((InventoryClothing) element);
+                hasEqualColors((InventoryClothing) element) && hasEqualEffects(element);
     }
 
-    private boolean equalColors(InventoryClothing element){
+    private boolean hasEqualColors(InventoryClothing element){
         if(colors.size() != element.colors.size()){
             return false;
         }

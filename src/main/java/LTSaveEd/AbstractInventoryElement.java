@@ -83,4 +83,16 @@ public abstract class AbstractInventoryElement {
     }
 
     public abstract boolean isEqual(AbstractInventoryElement element);
+    
+    protected boolean hasEqualEffects(AbstractInventoryElement element){
+        if(effects.size() != element.effects.size()){
+            return false;
+        }
+        for(int i = 0; i < effects.size(); i++) {
+            if(!effects.get(i).equals(element.effects.get(i))){
+                return false;
+            }
+        }
+        return true;
+    }
 }
