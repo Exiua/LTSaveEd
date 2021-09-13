@@ -15,9 +15,8 @@ public class InventoryClothing extends AbstractInventoryElement {
 
     public InventoryClothing(Node clothingNode){
         super(clothingNode);
-        Element attrs = (Element) clothingNode;
-        enchantmentsKnown = Boolean.parseBoolean(attrs.getAttribute("enchantmentsKnown"));
-        isDirty = Boolean.parseBoolean(attrs.getAttribute("isDirty"));
+        enchantmentsKnown = Boolean.parseBoolean(node.getAttribute("enchantmentsKnown"));
+        isDirty = Boolean.parseBoolean(node.getAttribute("isDirty"));
         colorNode = (Element) node.getElementsByTagName("colours");
         colors = new ArrayList<>();
         initializeColors();
@@ -39,6 +38,7 @@ public class InventoryClothing extends AbstractInventoryElement {
 
     public void setDirty(boolean dirty) {
         isDirty = dirty;
+        node.getAttributeNode("isDirty").setValue("" + dirty);
     }
 
     public boolean isEnchantmentsKnown() {
@@ -47,6 +47,7 @@ public class InventoryClothing extends AbstractInventoryElement {
 
     public void setEnchantmentsKnown(boolean enchantmentsKnown) {
         this.enchantmentsKnown = enchantmentsKnown;
+        node.getAttributeNode("enchantmentsKnown").setValue("" + enchantmentsKnown);
     }
 
     @Override

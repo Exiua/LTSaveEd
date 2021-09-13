@@ -1,6 +1,5 @@
 package LTSaveEd;
 
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class InventoryWeapon extends AbstractInventoryElement {
@@ -10,9 +9,8 @@ public class InventoryWeapon extends AbstractInventoryElement {
 
     public InventoryWeapon(Node weaponNode) {
         super(weaponNode);
-        Element attrs = (Element) weaponNode;
-        coreEnchantment = attrs.getAttribute("coreEnchantment");
-        damageType = attrs.getAttribute("damageType");
+        coreEnchantment = node.getAttribute("coreEnchantment");
+        damageType = node.getAttribute("damageType");
     }
 
     public String getCoreEnchantment() {
@@ -21,6 +19,7 @@ public class InventoryWeapon extends AbstractInventoryElement {
 
     public void setCoreEnchantment(String coreEnchantment) {
         this.coreEnchantment = coreEnchantment;
+        node.getAttributeNode("coreEnchantment").setValue(coreEnchantment);
     }
 
     public String getDamageType() {
@@ -29,6 +28,7 @@ public class InventoryWeapon extends AbstractInventoryElement {
 
     public void setDamageType(String damageType) {
         this.damageType = damageType;
+        node.getAttributeNode("damageType").setValue(damageType);
     }
 
     @Override

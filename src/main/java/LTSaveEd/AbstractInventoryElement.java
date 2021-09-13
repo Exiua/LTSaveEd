@@ -72,6 +72,10 @@ public abstract class AbstractInventoryElement {
 
     public void removeAllEffects(){
         effects.clear();
+        NodeList effectsList = effectsNode.getChildNodes();
+        for(int i = 0; i < effectsList.getLength(); i++) {
+            removeNode(effectsList.item(i));
+        }
     }
 
     public Node getNode(){
@@ -79,6 +83,10 @@ public abstract class AbstractInventoryElement {
     }
 
     public void removeNode(){
+        removeNode(node);
+    }
+
+    public void removeNode(Node node){
         node.getParentNode().removeChild(node);
     }
 

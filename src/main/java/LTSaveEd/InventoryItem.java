@@ -17,6 +17,7 @@ public class InventoryItem extends AbstractInventoryElement {
 
     public void setColor(String color) {
         this.color = color;
+        node.getAttributeNode("colour").setValue(color);
     }
 
     @Override
