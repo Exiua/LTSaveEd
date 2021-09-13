@@ -3,7 +3,7 @@ package LTSaveEd;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-public class InventoryWeapon extends InventoryElement{
+public class InventoryWeapon extends AbstractInventoryElement {
 
     private String coreEnchantment;
     private String damageType;
@@ -32,7 +32,7 @@ public class InventoryWeapon extends InventoryElement{
     }
 
     @Override
-    public boolean isEqual(InventoryElement element) {
+    public boolean isEqual(AbstractInventoryElement element) {
         return (element instanceof InventoryWeapon) && this.getId().equals(element.getId()) &&
                 coreEnchantment.equals(((InventoryWeapon) element).getCoreEnchantment()) &&
                 damageType.equals(((InventoryWeapon) element).getDamageType());
