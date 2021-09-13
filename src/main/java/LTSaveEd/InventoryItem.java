@@ -2,13 +2,13 @@ package LTSaveEd;
 
 import org.w3c.dom.Node;
 
-public class InventoryItem extends InventoryElement{
+public class InventoryItem extends AbstractInventoryElement {
 
     private String color;
 
     public InventoryItem(Node itemNode){
         super(itemNode);
-        this.color = itemNode.getAttributes().getNamedItem("colour").getTextContent();
+        color = itemNode.getAttributes().getNamedItem("colour").getTextContent();
     }
 
     public String getColor() {
@@ -20,7 +20,7 @@ public class InventoryItem extends InventoryElement{
     }
 
     @Override
-    public boolean isEqual(InventoryElement element) {
+    public boolean isEqual(AbstractInventoryElement element) {
         return (element instanceof InventoryItem) && this.getId().equals(element.getId()) &&
                 this.color.equals(((InventoryItem) element).getColor());
     }
