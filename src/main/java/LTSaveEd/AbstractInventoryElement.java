@@ -58,6 +58,7 @@ public abstract class AbstractInventoryElement {
     }
 
     //Used in Inventory editing v2
+    @Deprecated
     public void addEffect(Effect effect){
         if(effects.size() >= MAX_EFFECTS){
             throw new IllegalArgumentException("Exceeded max number of effects");
@@ -66,6 +67,7 @@ public abstract class AbstractInventoryElement {
     }
 
     //Used in Inventory editing v2
+    @Deprecated
     public void removeEffect(Effect effect){
         effects.remove(effect);
     }
