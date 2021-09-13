@@ -14,7 +14,7 @@ public abstract class AbstractInventoryElement {
     protected static final int MAX_EFFECTS = 100;
     protected final ArrayList<Effect> effects;
     protected final Element node;
-    protected final Element effectsNode;
+    protected Element effectsNode;
 
     public AbstractInventoryElement(Node elementNode){
         node = (Element) elementNode;
@@ -22,16 +22,19 @@ public abstract class AbstractInventoryElement {
         name = node.getAttribute("name");
         count = Integer.parseInt(node.getAttribute("count"));
         effects = new ArrayList<>();
-        effectsNode = (Element) node.getElementsByTagName("effects").item(0);
+        String effectsNodeName = node.getNodeName().equals("item") ? "itemEffects" : "effects";
+        effectsNode = (Element) node.getElementsByTagName(effectsNodeName).item(0);
         initializeEffects();
     }
 
     private void initializeEffects(){
-        NodeList effectsList = effectsNode.getChildNodes();
-        for(int i = 0; i < effectsList.getLength(); i++) {
-            Node effect = effectsList.item(i);
-            if(effect.getNodeType() == Node.ELEMENT_NODE){
-                effects.add(new Effect(effect));
+        if(effectsNode != null) {
+            NodeList effectsList = effectsNode.getChildNodes();
+            for(int i = 0; i < effectsList.getLength(); i++) {
+                Node effect = effectsList.item(i);
+                if(effect.getNodeType() == Node.ELEMENT_NODE) {
+                    effects.add(new Effect(effect));
+                }
             }
         }
     }
