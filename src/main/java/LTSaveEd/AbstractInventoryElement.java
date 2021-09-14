@@ -1,5 +1,6 @@
 package LTSaveEd;
 
+import javafx.scene.layout.HBox;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -11,6 +12,7 @@ public abstract class AbstractInventoryElement {
     private int count;
     private final String id;
     private final String name;
+    private HBox hBox;
     protected static final int MAX_EFFECTS = 100;
     protected final ArrayList<Effect> effects;
     protected final Element node;
@@ -54,6 +56,14 @@ public abstract class AbstractInventoryElement {
 
     public String getName() {
         return name;
+    }
+
+    public HBox getHBox() {
+        return hBox;
+    }
+
+    public void setHBox(HBox hBox) {
+        this.hBox = hBox;
     }
 
     public ArrayList<Effect> getEffects() {
