@@ -3804,7 +3804,7 @@ public class Controller{
                 hBox.setId(partialId + counter);
                 counter++;
                 inventoryItem.setHBox(hBox);
-                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField>
+                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryItems.add(inventoryItem);
             }
@@ -3844,7 +3844,7 @@ public class Controller{
                 counter++;
                 inventoryClothing.setHBox(hBox);
                 hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Count: "), count,
-                        enchantmentKnown, isDirty, btn);
+                        enchantmentKnown, isDirty, btn); //Id: <Id TextField> Count: <Count TextField> <EnchantmentKnow CheckBox> <IsDirty CheckBox> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryClothes.add(inventoryClothing);
             }
@@ -3888,7 +3888,7 @@ public class Controller{
                 counter++;
                 inventoryWeapon.setHBox(hBox);
                 hBox.getChildren().addAll(new Label("Id: "), weaponIdTf, new Label("Damage Type: "), damageType,
-                        new Label("Count: "), count, btn);
+                        new Label("Count: "), count, btn); //Id: <Id TextField> Damage Type: <DamageType ComboBox> Count: <Count TextField> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryWeapons.add(inventoryWeapon);
             }
