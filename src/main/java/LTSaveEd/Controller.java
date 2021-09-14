@@ -1544,6 +1544,12 @@ public class Controller{
      */
     private final ArrayList<TextObjectListener> listeners = new ArrayList<>();
 
+    private final ArrayList<InventoryItem> inventoryItems = new ArrayList<>();
+
+    private final ArrayList<InventoryClothing> inventoryClothes = new ArrayList<>();
+
+    private final ArrayList<InventoryWeapon> inventoryWeapons = new ArrayList<>();
+
     /**
      * HashMap of all personality traits (key) and the corresponding PersonalityTrait object (value)
      */
@@ -3771,9 +3777,11 @@ public class Controller{
     }
 
     private void setFieldsInventoryItems(Node inventoryNode){
+        inventoryItems.clear();
         VBox vb = (VBox) namespace.get("itemsInInventory");
         String partialId = "characterInventory$itemsInInventory$";
         NodeList items = inventoryNode.getChildNodes();
+        int counter = 0;
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
                 InventoryItem inventoryItem = new InventoryItem(items.item(i));
@@ -3789,69 +3797,86 @@ public class Controller{
                     HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
                     ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
                     String[] id = targetHBox.getId().split("\\$");
-                    NodeList itemList = Objects.requireNonNull(getNode(id[0], id[1])).getChildNodes();
-                    Node item = getChildNodeByAttributeValue(itemList, "id", id[2], "colour", id[3]);
-                    assert item != null;
-                    removeNode(item);
+                    int index = Integer.parseInt(id[2]);
+                    inventoryItems.get(index).removeNode();
+                    for(int j = index; j < inventoryItems.size() - 1; j++) {
+                        HBox hBox = inventoryItems.get(j + 1).getHBox();
+                        hBox.setId(partialId + j);
+                        System.out.println(partialId + j);
+                    }
+                    inventoryItems.remove(index);
                 });
                 HBox hBox = new HBox(10);
-                hBox.setId(partialId + inventoryItem);
+                hBox.setId(partialId + counter);
+                counter++;
+                inventoryItem.setHBox(hBox);
                 hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField>
                 vb.getChildren().add(hBox);
+                inventoryItems.add(inventoryItem);
             }
         }
     }
 
     private void setFieldsInventoryClothing(Node inventoryNode){
+        inventoryClothes.clear();
         VBox vb = (VBox) namespace.get("clothingInInventory");
         String partialId = "characterInventory$clothingInInventory$";
         NodeList items = inventoryNode.getChildNodes();
+        int counter = 0;
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
-                NamedNodeMap attr = items.item(i).getAttributes();
-                TextField clothingIdTf = new TextField(attr.getNamedItem("id").getTextContent());
+                InventoryClothing inventoryClothing = new InventoryClothing(items.item(i));
+                TextField clothingIdTf = new TextField(inventoryClothing.getId());
                 clothingIdTf.setEditable(false);
-                TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                TextField count = new TextField("" + inventoryClothing.getCount());
                 count.setId(partialId + "count$" + clothingIdTf.getText());
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-                enchantmentKnown.setSelected(Boolean.parseBoolean(attr.getNamedItem("enchantmentKnown").getTextContent()));
+                enchantmentKnown.setSelected(inventoryClothing.isEnchantmentsKnown());
                 CheckBox isDirty = new CheckBox("Dirty: ");
                 isDirty.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-                isDirty.setSelected(Boolean.parseBoolean(attr.getNamedItem("isDirty").getTextContent()));
+                isDirty.setSelected(inventoryClothing.isDirty());
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(event -> {
                     HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
                     ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
                     String[] id = targetHBox.getId().split("\\$");
-                    NodeList itemList = Objects.requireNonNull(getNode(id[0], id[1])).getChildNodes();
-                    Node item = getChildNodeByAttributeValue(itemList, "id", id[2]);
-                    assert item != null;
-                    removeNode(item);
+                    int index = Integer.parseInt(id[2]);
+                    inventoryClothes.get(index).removeNode();
+                    for(int j = index; j < inventoryClothes.size() - 1; j++) {
+                        HBox hBox = inventoryClothes.get(j + 1).getHBox();
+                        hBox.setId(partialId + j);
+                    }
+                    inventoryClothes.remove(index);
                 });
                 HBox hBox = new HBox(10);
-                hBox.setId(partialId + clothingIdTf.getText());
+                hBox.setId(partialId + counter);
+                counter++;
+                inventoryClothing.setHBox(hBox);
                 hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Count: "), count,
                         enchantmentKnown, isDirty, btn);
                 vb.getChildren().add(hBox);
+                inventoryClothes.add(inventoryClothing);
             }
         }
     }
 
     private void setFieldsInventoryWeapons(Node inventoryNode){
+        inventoryWeapons.clear();
         VBox vb = (VBox) namespace.get("weaponsInInventory");
         String partialId = "characterInventory$weaponsInInventory$";
         NodeList items = inventoryNode.getChildNodes();
+        int counter = 0;
         for(int i = 0; i < items.getLength(); i++) {
             if(items.item(i).getNodeType() == Node.ELEMENT_NODE){
-                NamedNodeMap attr = items.item(i).getAttributes();
-                TextField weaponIdTf = new TextField(attr.getNamedItem("id").getTextContent());
+                InventoryWeapon inventoryWeapon = new InventoryWeapon(items.item(i));
+                TextField weaponIdTf = new TextField(inventoryWeapon.getId());
                 weaponIdTf.setEditable(false);
-                TextField count = new TextField(attr.getNamedItem("count").getTextContent());
+                TextField count = new TextField("" + inventoryWeapon.getCount());
                 count.setId(partialId + "count$" + weaponIdTf.getText());
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
-                String dmgType = attr.getNamedItem("damageType").getTextContent();
+                String dmgType = inventoryWeapon.getDamageType();
                 ComboBox<Attribute> damageType;
                 if(dmgType.equals("LUST")){
                     damageType = new ComboBox<>(FXCollections.observableArrayList(new Attribute("Lust", "Lust")));
@@ -3866,16 +3891,22 @@ public class Controller{
                     HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
                     ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
                     String[] id = targetHBox.getId().split("\\$");
-                    NodeList itemList = Objects.requireNonNull(getNode(id[0], id[1])).getChildNodes();
-                    Node item = getChildNodeByAttributeValue(itemList, "id", id[2]);
-                    assert item != null;
-                    removeNode(item);
+                    int index = Integer.parseInt(id[2]);
+                    inventoryWeapons.get(index).removeNode();
+                    for(int j = index; j < inventoryWeapons.size() - 1; j++) {
+                        HBox hBox = inventoryWeapons.get(j + 1).getHBox();
+                        hBox.setId(partialId + j);
+                    }
+                    inventoryWeapons.remove(index);
                 });
                 HBox hBox = new HBox(10);
-                hBox.setId(partialId + weaponIdTf.getText());
+                hBox.setId(partialId + counter);
+                counter++;
+                inventoryWeapon.setHBox(hBox);
                 hBox.getChildren().addAll(new Label("Id: "), weaponIdTf, new Label("Damage Type: "), damageType,
                         new Label("Count: "), count, btn);
                 vb.getChildren().add(hBox);
+                inventoryWeapons.add(inventoryWeapon);
             }
         }
     }
