@@ -3798,13 +3798,7 @@ public class Controller{
                     ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
                     String[] id = targetHBox.getId().split("\\$");
                     int index = Integer.parseInt(id[2]);
-                    inventoryItems.get(index).removeNode();
-                    for(int j = index; j < inventoryItems.size() - 1; j++) {
-                        HBox hBox = inventoryItems.get(j + 1).getHBox();
-                        hBox.setId(partialId + j);
-                        System.out.println(partialId + j);
-                    }
-                    inventoryItems.remove(index);
+                    shiftHBoxIds(inventoryItems, index, partialId);
                 });
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
@@ -3843,12 +3837,7 @@ public class Controller{
                     ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
                     String[] id = targetHBox.getId().split("\\$");
                     int index = Integer.parseInt(id[2]);
-                    inventoryClothes.get(index).removeNode();
-                    for(int j = index; j < inventoryClothes.size() - 1; j++) {
-                        HBox hBox = inventoryClothes.get(j + 1).getHBox();
-                        hBox.setId(partialId + j);
-                    }
-                    inventoryClothes.remove(index);
+                    shiftHBoxIds(inventoryClothes, index, partialId);
                 });
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
@@ -3892,12 +3881,7 @@ public class Controller{
                     ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
                     String[] id = targetHBox.getId().split("\\$");
                     int index = Integer.parseInt(id[2]);
-                    inventoryWeapons.get(index).removeNode();
-                    for(int j = index; j < inventoryWeapons.size() - 1; j++) {
-                        HBox hBox = inventoryWeapons.get(j + 1).getHBox();
-                        hBox.setId(partialId + j);
-                    }
-                    inventoryWeapons.remove(index);
+                    shiftHBoxIds(inventoryWeapons, index, partialId);
                 });
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
@@ -3909,6 +3893,15 @@ public class Controller{
                 inventoryWeapons.add(inventoryWeapon);
             }
         }
+    }
+
+    private <T extends AbstractInventoryElement> void shiftHBoxIds(ArrayList<T> arrayList, int index, String partialId){
+        arrayList.get(index).removeNode();
+        for(int i = index; i < arrayList.size() - 1; i++) {
+            HBox hBox = arrayList.get(i + 1).getHBox();
+            hBox.setId(partialId + i);
+        }
+        arrayList.remove(index);
     }
 
     private boolean matchItemByColors(Node itemNode, String... colors){
