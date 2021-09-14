@@ -1,6 +1,8 @@
 out
 target
 .idea
+.eclipse
+.vscode
 .gradle
 *.iml
 *.ini
