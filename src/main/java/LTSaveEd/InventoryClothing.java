@@ -17,7 +17,7 @@ public class InventoryClothing extends AbstractInventoryElement {
         super(clothingNode);
         enchantmentsKnown = Boolean.parseBoolean(node.getAttribute("enchantmentsKnown"));
         isDirty = Boolean.parseBoolean(node.getAttribute("isDirty"));
-        colorNode = (Element) node.getElementsByTagName("colours");
+        colorNode = (Element) node.getElementsByTagName("colours").item(0);
         colors = new ArrayList<>();
         initializeColors();
     }
@@ -66,5 +66,18 @@ public class InventoryClothing extends AbstractInventoryElement {
             }
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return getId() + "$" + getColorId();
+    }
+
+    private String getColorId(){
+        StringBuilder idStr = new StringBuilder();
+        for(String color : colors) {
+            idStr.append(color).append("$");
+        }
+        return idStr.substring(0, idStr.length());
     }
 }
