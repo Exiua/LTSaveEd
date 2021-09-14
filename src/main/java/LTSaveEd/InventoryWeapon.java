@@ -17,6 +17,8 @@ public class InventoryWeapon extends AbstractInventoryElement {
         return coreEnchantment;
     }
 
+    //Used in Inventory editing v2
+    @Deprecated
     public void setCoreEnchantment(String coreEnchantment) {
         this.coreEnchantment = coreEnchantment;
         node.getAttributeNode("coreEnchantment").setValue(coreEnchantment);

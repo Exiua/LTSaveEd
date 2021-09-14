@@ -15,6 +15,8 @@ public class InventoryItem extends AbstractInventoryElement {
         return color;
     }
 
+    //Used in Inventory editing v2
+    @Deprecated
     public void setColor(String color) {
         this.color = color;
         node.getAttributeNode("colour").setValue(color);
