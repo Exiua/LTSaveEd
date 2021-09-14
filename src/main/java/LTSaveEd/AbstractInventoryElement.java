@@ -14,6 +14,7 @@ public abstract class AbstractInventoryElement {
     private final String name;
     private HBox hBox;
     protected static final int MAX_EFFECTS = 100;
+    //protected final ArrayList<?> thing;
     protected final ArrayList<Effect> effects;
     protected final Element node;
     protected Element effectsNode;
