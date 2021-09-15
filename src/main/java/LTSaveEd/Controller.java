@@ -2100,7 +2100,7 @@ public class Controller{
         /**
          * Id of the TextField
          */
-        private final String fieldId;
+        private String fieldId;
 
         /**
          * Boolean of whether int and doubles types are only positive values
@@ -2191,6 +2191,7 @@ public class Controller{
          * @return Either the new String (with minor modifications if needed) or a String of the old value
          */
         private String getFormattedText(String newValue){
+            updateFieldId();
             Node value = getValueNode();
             if(value == null && fetishExp){
                 NodeList attributeNodes = getAttributeNodes();
@@ -2410,6 +2411,12 @@ public class Controller{
             }
             attr = (Element) attr.getElementsByTagName(id[1]).item(0);
             return getAttributeNode(attr, id[2]);
+        }
+
+        private void updateFieldId(){
+            if(inventoryElement && !fieldId.equals(textInputControl.getId())){
+                fieldId = textInputControl.getId();
+            }
         }
     }
 
@@ -3940,7 +3947,7 @@ public class Controller{
                 default -> throw new IllegalStateException("Unexpected value: " + nodes.size());
             }
             for(int j = 0; j < nodes.size(); j++) {
-                nodes.get(i).setId(partialId + attrNames[j] + i);
+                nodes.get(j).setId(partialId + attrNames[j] + i);
             }
         }
         arrayList.remove(index);
