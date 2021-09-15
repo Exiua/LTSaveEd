@@ -1,5 +1,6 @@
 package LTSaveEd;
 
+import javafx.collections.ObservableList;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -104,6 +105,32 @@ public class Debug {
             }
             else {
                 System.out.print(nodes.item(i).getNodeName() + ", ");
+            }
+        }
+    }
+
+    public static void printList(ObservableList<?> nodes){
+        if(nodes == null){
+            System.out.println("null");
+            return;
+        }
+        if(nodes.size() == 0){
+            System.out.println("List Length = 0");
+            return;
+        }
+        if(nodes.size() == 1){
+            System.out.println("[" + nodes.get(0) + "]");
+            return;
+        }
+        for(int i = 0; i < nodes.size(); i++){
+            if(i == 0){
+                System.out.print("[" + nodes.get(i) + ", ");
+            }
+            else if(i == nodes.size() - 1){
+                System.out.println(nodes.get(i) + "]");
+            }
+            else {
+                System.out.print(nodes.get(i) + ", ");
             }
         }
     }
