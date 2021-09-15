@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class Debug {
 
@@ -109,7 +110,7 @@ public class Debug {
         }
     }
 
-    public static void printList(ObservableList<?> nodes){
+    public static void printList(ArrayList<?> nodes){
         if(nodes == null){
             System.out.println("null");
             return;
