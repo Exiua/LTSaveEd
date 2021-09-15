@@ -1602,9 +1602,9 @@ public class Controller{
         comboBoxValues.add(earTypes);
         comboBoxValues.add(faceTypes);
         comboBoxValues.add(eyeTypes);
-        comboBoxValues.add(hairTypes);
+        comboBoxValues.add(hairTypes); //Used more than once
         comboBoxValues.add(hornTypes);
-        comboBoxValues.add(legTypes);
+        comboBoxValues.add(legTypes); //Possibly only used once
         comboBoxValues.add(assTypes);
         comboBoxValues.add(breastsTypes);
         comboBoxValues.add(milkFlavours);
@@ -1627,11 +1627,11 @@ public class Controller{
         comboBoxValues.add(breastCrotchShapes);
         comboBoxValues.add(areolaeCrotchShapes);
         comboBoxValues.add(nippleCrotchShapes);
-        comboBoxValues.add(hairStylesFL);
+        comboBoxValues.add(hairStylesFL); //Used more than once
         comboBoxValues.add(bodyMaterials);
-        comboBoxValues.add(legConfigurationsMaster);
-        comboBoxValues.add(footStructuresMaster);
-        comboBoxValues.add(genitalArrangementsNCR);
+        comboBoxValues.add(legConfigurationsMaster); //Possibly only used once
+        comboBoxValues.add(footStructuresMaster); //Possibly only used once
+        comboBoxValues.add(genitalArrangementsNCR); //Possibly only used once
         comboBoxValues.add(pubicHairTypes);
         comboBoxValues.add(facialHairTypes);
         comboBoxValues.add(assHairTypes);
