@@ -2117,6 +2117,8 @@ public class Controller{
          */
         private final boolean hasSecondLabel;
 
+        private final boolean inventoryElement;
+
         /**
          * Constructor for a new TextFieldListener
          *
@@ -2129,7 +2131,8 @@ public class Controller{
             fieldId = textControl.getId();
             hasSecondLabel = labelMap.containsKey(fieldId);
             positiveOnly = false;
-            fetishExp = textInputControl.getId().startsWith("FETISH_");
+            fetishExp = fieldId.startsWith("FETISH_");
+            inventoryElement = fieldId.contains("InInventory");
             setLabel();
             listeners.add(this);
         }
@@ -2215,7 +2218,21 @@ public class Controller{
                             System.out.println("Removed element");
                         }
                         else{
-                            value.setTextContent(newValue);
+                            if(inventoryElement){
+                                int index = Integer.parseInt(fieldId.split("\\$")[3]);
+                                if(fieldId.contains("itemsInInventory")){
+                                    inventoryItems.get(index).setCount(newValue);
+                                }
+                                else if(fieldId.contains("clothingInInventory")){
+                                    inventoryClothes.get(index).setCount(newValue);
+                                }
+                                else if(fieldId.contains("weaponsInInventory")){
+                                    inventoryWeapons.get(index).setCount(newValue);
+                                }
+                            }
+                            else{
+                                value.setTextContent(newValue);
+                            }
                         }
                         return newValue;
                     }
@@ -2374,11 +2391,19 @@ public class Controller{
                 }
                 case "characterInventory" -> {
                     switch(id[1]){
-                        case "itemsInInventory", "clothingInInventory", "weaponsInInventory" -> {
-                            Node inventoryTypeNode = attr.getElementsByTagName(id[1]).item(0);
+                        case "itemsInInventory" -> {
+                            //id[3] should be a number corresponding to ArrayList index and id[2] should be attribute Node name
+                            return inventoryItems.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
+                        }
+                        case "clothingInInventory" -> {
+                            return inventoryClothes.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
+                        }
+                        case "weaponsInInventory" -> {
+                            return inventoryWeapons.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
+                            /*Node inventoryTypeNode = attr.getElementsByTagName(id[1]).item(0);
                             Node inventorySlotNode = getChildNodeByAttributeValue(inventoryTypeNode.getChildNodes(), "id", id[3], "colour", id[4]);
                             assert inventorySlotNode != null;
-                            return inventorySlotNode.getAttributes().getNamedItem(id[2]);
+                            return inventorySlotNode.getAttributes().getNamedItem(id[2]);*/
                         }
                     }
                 }
@@ -3789,8 +3814,10 @@ public class Controller{
                 String colorValue = inventoryItem.getColor();
                 TextField itemIdTf = new TextField(itemId);
                 itemIdTf.setEditable(false);
+                TextField nameTf = new TextField(inventoryItem.getName());
+                nameTf.setEditable(false);
                 TextField count = new TextField("" + inventoryItem.getCount());
-                count.setId(partialId + "count$" + itemId + "$" + colorValue);
+                count.setId(partialId + "count$" + counter);
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(event -> {
@@ -3804,7 +3831,8 @@ public class Controller{
                 hBox.setId(partialId + counter);
                 counter++;
                 inventoryItem.setHBox(hBox);
-                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField> <delete btn>
+                inventoryItem.addHBoxNodes(count);
+                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Name: "), nameTf, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryItems.add(inventoryItem);
             }
@@ -3823,7 +3851,7 @@ public class Controller{
                 TextField clothingIdTf = new TextField(inventoryClothing.getId());
                 clothingIdTf.setEditable(false);
                 TextField count = new TextField("" + inventoryClothing.getCount());
-                count.setId(partialId + "count$" + clothingIdTf.getText());
+                count.setId(partialId + "count$" + counter);
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
@@ -3843,6 +3871,7 @@ public class Controller{
                 hBox.setId(partialId + counter);
                 counter++;
                 inventoryClothing.setHBox(hBox);
+                inventoryClothing.addHBoxNodes(count, enchantmentKnown, isDirty);
                 hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Count: "), count,
                         enchantmentKnown, isDirty, btn); //Id: <Id TextField> Count: <Count TextField> <EnchantmentKnow CheckBox> <IsDirty CheckBox> <delete btn>
                 vb.getChildren().add(hBox);
@@ -3863,7 +3892,7 @@ public class Controller{
                 TextField weaponIdTf = new TextField(inventoryWeapon.getId());
                 weaponIdTf.setEditable(false);
                 TextField count = new TextField("" + inventoryWeapon.getCount());
-                count.setId(partialId + "count$" + weaponIdTf.getText());
+                count.setId(partialId + "count$" + counter);
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 String dmgType = inventoryWeapon.getDamageType();
                 ComboBox<Attribute> damageType;
@@ -3887,6 +3916,7 @@ public class Controller{
                 hBox.setId(partialId + counter);
                 counter++;
                 inventoryWeapon.setHBox(hBox);
+                inventoryWeapon.addHBoxNodes(count, damageType);
                 hBox.getChildren().addAll(new Label("Id: "), weaponIdTf, new Label("Damage Type: "), damageType,
                         new Label("Count: "), count, btn); //Id: <Id TextField> Damage Type: <DamageType ComboBox> Count: <Count TextField> <delete btn>
                 vb.getChildren().add(hBox);
@@ -3898,8 +3928,20 @@ public class Controller{
     private <T extends AbstractInventoryElement> void shiftHBoxIds(ArrayList<T> arrayList, int index, String partialId){
         arrayList.get(index).removeNode();
         for(int i = index; i < arrayList.size() - 1; i++) {
-            HBox hBox = arrayList.get(i + 1).getHBox();
+            AbstractInventoryElement inventoryElement = arrayList.get(i + 1);
+            HBox hBox = inventoryElement.getHBox();
             hBox.setId(partialId + i);
+            ArrayList<javafx.scene.Node> nodes = inventoryElement.getHBoxNodes();
+            String[] attrNames;
+            switch(nodes.size()){
+                case 1 -> attrNames = new String[]{"count$"};
+                case 2 -> attrNames = new String[]{"count$", "damageType$"};
+                case 3 -> attrNames = new String[]{"count$", "enchantmentKnown$", "isDirty$"};
+                default -> throw new IllegalStateException("Unexpected value: " + nodes.size());
+            }
+            for(int j = 0; j < nodes.size(); j++) {
+                nodes.get(i).setId(partialId + attrNames[j] + i);
+            }
         }
         arrayList.remove(index);
     }
