@@ -6,15 +6,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public abstract class AbstractInventoryElement {
 
-    private int count;
+    private String count;
     private final String id;
     private final String name;
     private HBox hBox;
     protected static final int MAX_EFFECTS = 100;
-    //protected final ArrayList<?> thing;
+    protected final ArrayList<javafx.scene.Node> hBoxNodes;
     protected final ArrayList<Effect> effects;
     protected final Element node;
     protected Element effectsNode;
@@ -23,10 +24,11 @@ public abstract class AbstractInventoryElement {
         node = (Element) elementNode;
         id = node.getAttribute("id");
         name = node.getAttribute("name");
-        count = Integer.parseInt(node.getAttribute("count"));
+        count = node.getAttribute("count");
         effects = new ArrayList<>();
         String effectsNodeName = node.getNodeName().equals("item") ? "itemEffects" : "effects";
         effectsNode = (Element) node.getElementsByTagName(effectsNodeName).item(0);
+        hBoxNodes = new ArrayList<>();
         initializeEffects();
     }
 
@@ -42,13 +44,13 @@ public abstract class AbstractInventoryElement {
         }
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void updateCount(int increment){
-        count += increment;
-        node.getAttributeNode("count").setValue("" + count);
+    public void setCount(String value){
+        count = value;
+        node.getAttributeNode("count").setValue(value);
     }
 
     public String getId() {
@@ -65,6 +67,23 @@ public abstract class AbstractInventoryElement {
 
     public void setHBox(HBox hBox) {
         this.hBox = hBox;
+    }
+
+    public ArrayList<javafx.scene.Node> getHBoxNodes() {
+        return hBoxNodes;
+    }
+
+    public void addHBoxNodes(javafx.scene.Node... nodes){
+        Collections.addAll(hBoxNodes, nodes);
+    }
+
+    public javafx.scene.Node getNodeByIdPart(String id){
+        for(javafx.scene.Node hBoxNode : hBoxNodes) {
+            if(hBoxNode.getId().contains(id)) {
+                return hBoxNode;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Effect> getEffects() {
@@ -94,7 +113,7 @@ public abstract class AbstractInventoryElement {
         }
     }
 
-    public Node getNode(){
+    public Element getNode(){
         return node;
     }
 
