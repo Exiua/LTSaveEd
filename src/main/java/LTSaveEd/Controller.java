@@ -1,5 +1,13 @@
 package LTSaveEd;
 
+import LTSaveEd.Objects.*;
+import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import LTSaveEd.Objects.InventoryElements.InventoryClothing;
+import LTSaveEd.Objects.InventoryElements.InventoryItem;
+import LTSaveEd.Objects.InventoryElements.InventoryWeapon;
+import LTSaveEd.Util.Debug;
+import LTSaveEd.Util.InitializeElements;
+import LTSaveEd.Util.TextFieldType;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

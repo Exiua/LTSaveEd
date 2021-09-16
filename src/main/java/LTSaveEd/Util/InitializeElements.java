@@ -1,5 +1,6 @@
-package LTSaveEd;
+package LTSaveEd.Util;
 
+import LTSaveEd.Objects.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
