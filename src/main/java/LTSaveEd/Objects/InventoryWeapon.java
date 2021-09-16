@@ -1,5 +1,6 @@
-package LTSaveEd;
+package LTSaveEd.Objects;
 
+import LTSaveEd.Objects.AbstractObjects.AbstractInventoryElement;
 import org.w3c.dom.Node;
 
 public class InventoryWeapon extends AbstractInventoryElement {

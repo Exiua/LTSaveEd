@@ -1,5 +1,10 @@
-package LTSaveEd;
+package LTSaveEd.Util;
 
+import LTSaveEd.Objects.LegTypeAttr;
+import LTSaveEd.Objects.Attribute;
+import LTSaveEd.Objects.PerkNode;
+import LTSaveEd.Objects.PersonalityTrait;
+import LTSaveEd.Objects.SpellTier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

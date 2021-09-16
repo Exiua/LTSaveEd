@@ -1,10 +1,12 @@
-package LTSaveEd;
+package LTSaveEd.Objects;
+
+import LTSaveEd.Objects.Attribute;
 
 /**
  * Class that stores spell attributes to make adding and removing spells and spell upgrades easier
  * @author Exiua
  */
-public class SpellTier extends Attribute{
+public class SpellTier extends Attribute {
 
     /**
      * Base value of a spell (e.g. FIREBALL_1 would have a type of FIREBALL)
