@@ -1,6 +1,7 @@
 package LTSaveEd.Objects.InventoryElements;
 
 import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import javafx.scene.control.CheckBox;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -37,17 +38,17 @@ public class InventoryClothing extends AbstractInventoryElement {
         return isDirty;
     }
 
-    public void setDirty(boolean dirty) {
-        isDirty = dirty;
-        node.getAttributeNode("isDirty").setValue("" + dirty);
+    public void updateDirty() {
+        isDirty = ((CheckBox) hBoxNodes.get(2)).isSelected();
+        node.getAttributeNode("isDirty").setValue("" + isDirty);
     }
 
     public boolean isEnchantmentsKnown() {
         return enchantmentsKnown;
     }
 
-    public void setEnchantmentsKnown(boolean enchantmentsKnown) {
-        this.enchantmentsKnown = enchantmentsKnown;
+    public void updateEnchantmentsKnown() {
+        enchantmentsKnown = ((CheckBox) hBoxNodes.get(1)).isSelected();
         node.getAttributeNode("enchantmentsKnown").setValue("" + enchantmentsKnown);
     }
 
