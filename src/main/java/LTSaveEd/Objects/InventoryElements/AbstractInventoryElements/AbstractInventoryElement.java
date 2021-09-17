@@ -1,5 +1,6 @@
-package LTSaveEd;
+package LTSaveEd.Objects.InventoryElements.AbstractInventoryElements;
 
+import LTSaveEd.Objects.InventoryElements.Effect;
 import javafx.scene.layout.HBox;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

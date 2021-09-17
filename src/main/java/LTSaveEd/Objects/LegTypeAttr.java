@@ -1,4 +1,4 @@
-package LTSaveEd;
+package LTSaveEd.Objects;
 
 import javafx.collections.ObservableList;
 
@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
  * and genital arrangements with a leg type as those three's possible values are dependant on the leg type value
  * @author Exiua
  */
-public class LegTypeAttr extends Attribute{
+public class LegTypeAttr extends Attribute {
 
     /**
      * Leg configurations associated with this leg type

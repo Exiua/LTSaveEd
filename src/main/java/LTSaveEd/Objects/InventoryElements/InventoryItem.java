@@ -1,5 +1,6 @@
-package LTSaveEd;
+package LTSaveEd.Objects.InventoryElements;
 
+import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
 import org.w3c.dom.Node;
 
 public class InventoryItem extends AbstractInventoryElement {

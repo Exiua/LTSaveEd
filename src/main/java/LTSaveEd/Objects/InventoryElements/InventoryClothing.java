@@ -1,5 +1,6 @@
-package LTSaveEd;
+package LTSaveEd.Objects.InventoryElements;
 
+import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

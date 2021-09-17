@@ -1,4 +1,4 @@
-package LTSaveEd;
+package LTSaveEd.Objects;
 
 /**
  * Class that stores spell attributes to make adding and removing spells and spell upgrades easier
