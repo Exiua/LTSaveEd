@@ -2816,62 +2816,50 @@
         </Tab>
         <Tab text="Inventory">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-            <children>
-               <TabPane layoutX="357.0" layoutY="152.0" prefHeight="671.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                 <tabs>
-                   <Tab text="Items">
-                     <content>
-                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                              <children>
-                                 <ScrollPane hbarPolicy="NEVER" layoutX="175.0" layoutY="86.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <content>
-                                       <VBox fx:id="itemsInInventory" prefWidth="1023.0" spacing="10.0">
-                                          <padding>
-                                             <Insets left="14.0" top="28.0" />
-                                          </padding></VBox>
-                                    </content>
-                                 </ScrollPane>
-                              </children></AnchorPane>
-                     </content>
-                   </Tab>
-                     <Tab text="Clothing">
-                         <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                              <children>
-                                 <ScrollPane hbarPolicy="NEVER" prefHeight="642.0" prefWidth="1024.0">
-                                    <content>
-                                       <VBox fx:id="clothingInInventory" prefWidth="1023.0" spacing="10.0">
-                                          <padding>
-                                             <Insets left="14.0" top="28.0" />
-                                          </padding></VBox>
-                                    </content>
-                                 </ScrollPane>
-                              </children></AnchorPane>
-                         </content>
-                     </Tab>
-                     <Tab text="Weapons">
-                         <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                              <children>
-                                 <ScrollPane hbarPolicy="NEVER" prefHeight="642.0" prefWidth="1024.0">
-                                    <content>
-                                       <VBox fx:id="weaponsInInventory" prefWidth="1023.0" spacing="10.0">
-                                          <padding>
-                                             <Insets left="14.0" top="28.0" />
-                                          </padding></VBox>
-                                    </content>
-                                 </ScrollPane>
-                              </children></AnchorPane>
-                         </content>
-                     </Tab>
-                   <Tab disable="true" text="Equipped">
-                     <content>
-                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                     </content>
-                   </Tab>
-                 </tabs>
-               </TabPane>
-            </children></AnchorPane>
+                <TabPane layoutX="357.0" layoutY="152.0" prefHeight="671.0" prefWidth="1024.0"
+                         tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <Tab text="Items">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <ScrollPane hbarPolicy="NEVER" layoutX="175.0" layoutY="86.0" prefHeight="642.0"
+                                        prefWidth="1024.0" AnchorPane.bottomAnchor="0.0"
+                                        AnchorPane.leftAnchor="0.0"
+                                        AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <VBox fx:id="itemsInInventory" prefWidth="1023.0" spacing="10.0">
+                                    <padding>
+                                        <Insets left="14.0" top="28.0"/>
+                                    </padding>
+                                </VBox>
+                            </ScrollPane>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab text="Clothing">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <ScrollPane hbarPolicy="NEVER" prefHeight="642.0" prefWidth="1024.0">
+                                <VBox fx:id="clothingInInventory" prefWidth="1023.0" spacing="10.0">
+                                    <padding>
+                                        <Insets left="14.0" top="28.0"/>
+                                    </padding>
+                                </VBox>
+                            </ScrollPane>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab text="Weapons">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <ScrollPane hbarPolicy="NEVER" prefHeight="642.0" prefWidth="1024.0">
+                                <VBox fx:id="weaponsInInventory" prefWidth="1023.0" spacing="10.0">
+                                    <padding>
+                                        <Insets left="14.0" top="28.0"/>
+                                    </padding>
+                                </VBox>
+                            </ScrollPane>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab disable="true" text="Equipped">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                    </Tab>
+                </TabPane>
+            </AnchorPane>
         </Tab>
         <Tab text="Relationships">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
