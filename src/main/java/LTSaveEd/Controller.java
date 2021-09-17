@@ -1185,48 +1185,58 @@ public class Controller{
     private void updateXmlBoolean(ActionEvent event){
         if(fieldsSet){
             String fxId = getId(event);
-            CheckBox cb = (CheckBox) namespace.get(fxId);
-            Node value = getValueNode(event);
-            if(fxId.startsWith("FETISH_")){
-                if(!cb.isSelected()){
-                    assert value != null;
-                    removeNode(value);
-                    System.out.println("Removed fetish");
-                }
-                else{
-                    Element fetish = saveFile.createElement("fetish");
-                    fetish.setAttribute("type", fxId.split("\\$")[0]);
-                    Node fetishes = getValueNodeParent(event);
-                    fetishes.appendChild(fetish);
-                    System.out.println("Added fetish");
+            if(fxId.contains("InInventory")){
+                String[] id = fxId.split("\\$");
+                int index = Integer.parseInt(id[3]);
+                switch(id[2]){
+                    case "enchantmentKnown$" -> inventoryClothes.get(index).updateEnchantmentsKnown();
+                    case "isDirty$" -> inventoryClothes.get(index).updateDirty();
                 }
             }
-            else if(fxId.startsWith("spells")){
-                if(cb.isSelected()){
-                    Element spellUpgrade = saveFile.createElement("upgrade");
-                    spellUpgrade.setAttribute("type", fxId.split("\\$")[1]);
-                    Node spellUpgrades = getValueNodeParent(event);
-                    spellUpgrades.appendChild(spellUpgrade);
-                    System.out.println("Added spell upgrade");
+            else {
+                CheckBox cb = (CheckBox) namespace.get(fxId);
+                Node value = getValueNode(event);
+                if(fxId.startsWith("FETISH_")) {
+                    if(!cb.isSelected()) {
+                        assert value != null;
+                        removeNode(value);
+                        System.out.println("Removed fetish");
+                    }
+                    else {
+                        Element fetish = saveFile.createElement("fetish");
+                        fetish.setAttribute("type", fxId.split("\\$")[0]);
+                        Node fetishes = getValueNodeParent(event);
+                        fetishes.appendChild(fetish);
+                        System.out.println("Added fetish");
+                    }
                 }
-                else{
-                    assert value != null;
-                    removeNode(value);
-                    System.out.println("Removed spell upgrade");
+                else if(fxId.startsWith("spells")) {
+                    if(cb.isSelected()) {
+                        Element spellUpgrade = saveFile.createElement("upgrade");
+                        spellUpgrade.setAttribute("type", fxId.split("\\$")[1]);
+                        Node spellUpgrades = getValueNodeParent(event);
+                        spellUpgrades.appendChild(spellUpgrade);
+                        System.out.println("Added spell upgrade");
+                    }
+                    else {
+                        assert value != null;
+                        removeNode(value);
+                        System.out.println("Removed spell upgrade");
+                    }
                 }
-            }
-            else{
-                try{
-                    assert value != null;
-                    value.setTextContent("" + cb.isSelected());
-                }
-                catch(NullPointerException e){ //Modifier attributes are deleted when false by the game
-                    value = getValueNodeParent(event);
-                    ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
-                }
-                String[] idParts = fxId.split("\\$");
-                if(idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")){
-                    checkboxFlaredTaperedToggle(fxId);
+                else {
+                    try {
+                        assert value != null;
+                        value.setTextContent("" + cb.isSelected());
+                    }
+                    catch(NullPointerException e) { //Modifier attributes are deleted when false by the game
+                        value = getValueNodeParent(event);
+                        ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
+                    }
+                    String[] idParts = fxId.split("\\$");
+                    if(idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")) {
+                        checkboxFlaredTaperedToggle(fxId);
+                    }
                 }
             }
             event.consume();
@@ -2199,17 +2209,17 @@ public class Controller{
                 itemIdTf.setEditable(false);
                 TextField nameTf = new TextField(inventoryItem.getName());
                 nameTf.setEditable(false);
-                TextField count = new TextField("" + inventoryItem.getCount());
-                count.setId(partialId + "count$" + counter);
-                count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
+                TextField itemCount = new TextField("" + inventoryItem.getCount());
+                itemCount.setId(partialId + "count$" + counter);
+                itemCount.focusedProperty().addListener(new TextObjectListener(itemCount, TextFieldType.INT));
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(this::removeHBox);
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
                 counter++;
                 inventoryItem.setHBox(hBox);
-                inventoryItem.addHBoxNodes(count);
-                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Name: "), nameTf, new Label("Count: "), count, btn); //Id: <Id TextField> Count: <Count TextField> <delete btn>
+                inventoryItem.addHBoxNodes(itemCount);
+                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Name: "), nameTf, new Label("Count: "), itemCount, btn); //Id: <Id TextField> Count: <Count TextField> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryItems.add(inventoryItem);
             }
@@ -2227,24 +2237,27 @@ public class Controller{
                 InventoryClothing inventoryClothing = new InventoryClothing(items.item(i));
                 TextField clothingIdTf = new TextField(inventoryClothing.getId());
                 clothingIdTf.setEditable(false);
-                TextField count = new TextField("" + inventoryClothing.getCount());
-                count.setId(partialId + "count$" + counter);
-                count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
+                TextField clothingCount = new TextField("" + inventoryClothing.getCount());
+                clothingCount.setId(partialId + "count$" + counter);
+                clothingCount.focusedProperty().addListener(new TextObjectListener(clothingCount, TextFieldType.INT));
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 enchantmentKnown.setSelected(inventoryClothing.isEnchantmentsKnown());
+                enchantmentKnown.setId(partialId + "enchantmentKnown$" + counter);
                 enchantmentKnown.setOnAction(this::updateXmlBoolean);
                 CheckBox isDirty = new CheckBox("Dirty: ");
                 isDirty.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 isDirty.setSelected(inventoryClothing.isDirty());
+                isDirty.setOnAction(this::updateXmlBoolean);
+                isDirty.setId(partialId + "isDirty$" + counter);
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(this::removeHBox);
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
                 counter++;
                 inventoryClothing.setHBox(hBox);
-                inventoryClothing.addHBoxNodes(count, enchantmentKnown, isDirty);
-                hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Count: "), count,
+                inventoryClothing.addHBoxNodes(clothingCount, enchantmentKnown, isDirty);
+                hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Count: "), clothingCount,
                         enchantmentKnown, isDirty, btn); //Id: <Id TextField> Count: <Count TextField> <EnchantmentKnow CheckBox> <IsDirty CheckBox> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryClothes.add(inventoryClothing);
@@ -2263,9 +2276,9 @@ public class Controller{
                 InventoryWeapon inventoryWeapon = new InventoryWeapon(items.item(i));
                 TextField weaponIdTf = new TextField(inventoryWeapon.getId());
                 weaponIdTf.setEditable(false);
-                TextField count = new TextField("" + inventoryWeapon.getCount());
-                count.setId(partialId + "count$" + counter);
-                count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
+                TextField weaponCount = new TextField("" + inventoryWeapon.getCount());
+                weaponCount.setId(partialId + "count$" + counter);
+                weaponCount.focusedProperty().addListener(new TextObjectListener(weaponCount, TextFieldType.INT));
                 String dmgType = inventoryWeapon.getDamageType();
                 ComboBox<Attribute> damageType;
                 if(dmgType.equals("LUST")){
@@ -2276,15 +2289,16 @@ public class Controller{
                     damageType = new ComboBox<>(damageTypes);
                     damageType.setValue(matchComboBoxItem(damageTypes, dmgType));
                 }
+                damageType.setId(partialId + "damageType$" + counter);
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(this::removeHBox);
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
                 counter++;
                 inventoryWeapon.setHBox(hBox);
-                inventoryWeapon.addHBoxNodes(count, damageType);
+                inventoryWeapon.addHBoxNodes(weaponCount, damageType);
                 hBox.getChildren().addAll(new Label("Id: "), weaponIdTf, new Label("Damage Type: "), damageType,
-                        new Label("Count: "), count, btn); //Id: <Id TextField> Damage Type: <DamageType ComboBox> Count: <Count TextField> <delete btn>
+                        new Label("Count: "), weaponCount, btn); //Id: <Id TextField> Damage Type: <DamageType ComboBox> Count: <Count TextField> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryWeapons.add(inventoryWeapon);
             }
