@@ -155,9 +155,16 @@ public class Controller{
             "body$nipplesCrotch$stretchedCapacity", "body$penis$capacity", "body$penis$stretchedCapacity",
             "body$testicles$storedCum", "body$vagina$capacity", "body$vagina$stretchedCapacity", "body$tail$length",
             "body$tentacle$length", "body$spinneret$capacity", "body$spinneret$stretchedCapacity",
-            "attributes$HEALTH_MAXIMUM", "attributes$MANA_MAXIMUM", "attributes$AROUSAL", "attributes$LUST",
-            "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE", "attributes$MAJOR_CORRUPTION",
-            "body$vagina$urethraCapacity", "body$vagina$urethraStretchedCapacity"};
+            "attributes$HEALTH_MAXIMUM", "attributes$MANA_MAXIMUM",
+            "attributes$EXPERIENCE", "attributes$ACTION_POINTS", "attributes$AROUSAL", "attributes$LUST",
+            "attributes$RESTING_LUST", "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE",
+            "attributes$MAJOR_CORRUPTION", "attributes$ENCHANTMENT_LIMIT", "attributes$FERTILITY", "attributes$VIRILITY",
+            "attributes$SPELL_COST_MODIFIER", "attributes$CRITICAL_DAMAGE", "attributes$ENERGY_SHIELDING",
+            "attributes$RESISTANCE_PHYSICAL", "attributes$RESISTANCE_LUST", "attributes$RESISTANCE_FIRE",
+            "attributes$RESISTANCE_ICE", "attributes$RESISTANCE_POISON", "attributes$DAMAGE_UNARMED",
+            "attributes$DAMAGE_MELEE_WEAPON", "attributes$DAMAGE_RANGED_WEAPON", "attributes$DAMAGE_SPELLS",
+            "attributes$DAMAGE_PHYSICAL", "attributes$DAMAGE_LUST", "attributes$DAMAGE_FIRE", "attributes$DAMAGE_ICE",
+            "attributes$DAMAGE_POISON", "body$vagina$urethraCapacity", "body$vagina$urethraStretchedCapacity"};
 
     /**
      * String array of all TextField ids using a String data type
@@ -339,8 +346,15 @@ public class Controller{
      * String array of ids for all TextFields of double type that would carry over if not reset
      */
     private final String[] resetDoubleTextFieldsIds = {"attributes$HEALTH_MAXIMUM", "attributes$MANA_MAXIMUM",
-            "attributes$AROUSAL", "attributes$LUST", "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE",
-            "attributes$MAJOR_CORRUPTION"};
+            "attributes$EXPERIENCE", "attributes$ACTION_POINTS", "attributes$AROUSAL", "attributes$LUST",
+            "attributes$RESTING_LUST", "attributes$MAJOR_PHYSIQUE", "attributes$MAJOR_ARCANE",
+            "attributes$MAJOR_CORRUPTION", "attributes$ENCHANTMENT_LIMIT", "attributes$FERTILITY", "attributes$VIRILITY",
+            "attributes$SPELL_COST_MODIFIER", "attributes$CRITICAL_DAMAGE", "attributes$ENERGY_SHIELDING",
+            "attributes$RESISTANCE_PHYSICAL", "attributes$RESISTANCE_LUST", "attributes$RESISTANCE_FIRE",
+            "attributes$RESISTANCE_ICE", "attributes$RESISTANCE_POISON", "attributes$DAMAGE_UNARMED",
+            "attributes$DAMAGE_MELEE_WEAPON", "attributes$DAMAGE_RANGED_WEAPON", "attributes$DAMAGE_SPELLS",
+            "attributes$DAMAGE_PHYSICAL", "attributes$DAMAGE_LUST", "attributes$DAMAGE_FIRE", "attributes$DAMAGE_ICE",
+            "attributes$DAMAGE_POISON"};
 
     /**
      * ObservableList of hairstyles for bald hair length
