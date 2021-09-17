@@ -2201,13 +2201,7 @@ public class Controller{
                 count.setId(partialId + "count$" + counter);
                 count.focusedProperty().addListener(new TextObjectListener(count, TextFieldType.INT));
                 Button btn = new Button("Delete Item");
-                btn.setOnAction(event -> {
-                    HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
-                    ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
-                    String[] id = targetHBox.getId().split("\\$");
-                    int index = Integer.parseInt(id[2]);
-                    shiftHBoxIds(inventoryItems, index, partialId);
-                });
+                btn.setOnAction(this::removeHBox);
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
                 counter++;
@@ -2237,17 +2231,12 @@ public class Controller{
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 enchantmentKnown.setSelected(inventoryClothing.isEnchantmentsKnown());
+                enchantmentKnown.setOnAction(this::updateXmlComboBox);
                 CheckBox isDirty = new CheckBox("Dirty: ");
                 isDirty.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 isDirty.setSelected(inventoryClothing.isDirty());
                 Button btn = new Button("Delete Item");
-                btn.setOnAction(event -> {
-                    HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
-                    ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
-                    String[] id = targetHBox.getId().split("\\$");
-                    int index = Integer.parseInt(id[2]);
-                    shiftHBoxIds(inventoryClothes, index, partialId);
-                });
+                btn.setOnAction(this::removeHBox);
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
                 counter++;
@@ -2286,13 +2275,7 @@ public class Controller{
                     damageType.setValue(matchComboBoxItem(damageTypes, dmgType));
                 }
                 Button btn = new Button("Delete Item");
-                btn.setOnAction(event -> {
-                    HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
-                    ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
-                    String[] id = targetHBox.getId().split("\\$");
-                    int index = Integer.parseInt(id[2]);
-                    shiftHBoxIds(inventoryWeapons, index, partialId);
-                });
+                btn.setOnAction(this::removeHBox);
                 HBox hBox = new HBox(10);
                 hBox.setId(partialId + counter);
                 counter++;
@@ -2304,6 +2287,22 @@ public class Controller{
                 inventoryWeapons.add(inventoryWeapon);
             }
         }
+    }
+
+    private void removeHBox(ActionEvent event){
+        HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
+        ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
+        String[] id = targetHBox.getId().split("\\$");
+        String partialId = id[0] + "$" + id[1] + "$";
+        ArrayList<? extends AbstractInventoryElement> inventoryElements;
+        switch(id[1]){
+            case "itemsInInventory" -> inventoryElements = inventoryItems;
+            case "clothingInInventory" -> inventoryElements = inventoryClothes;
+            case "weaponsInInventory" -> inventoryElements = inventoryWeapons;
+            default -> throw new IllegalStateException("Unexpected value: " + id[1]);
+        }
+        int index = Integer.parseInt(id[2]);
+        shiftHBoxIds(inventoryElements, index, partialId);
     }
 
     private <T extends AbstractInventoryElement> void shiftHBoxIds(ArrayList<T> arrayList, int index, String partialId){
