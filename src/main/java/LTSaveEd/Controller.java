@@ -886,7 +886,7 @@ public class Controller{
     /**
      * Parses the xml file for NPCs and adds them to the character selector ComboBox along with the Player Character
      */
-    public void loadCharacterSelector(){
+    private void loadCharacterSelector(){
         NpcCharacter player = new NpcCharacter("PlayerCharacter");
         ObservableList<NpcCharacter> characterList = FXCollections.observableArrayList(player);
         NodeList npcList = saveFile.getElementsByTagName("NPC");
