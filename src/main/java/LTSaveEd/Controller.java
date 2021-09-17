@@ -459,7 +459,7 @@ public class Controller{
     /**
      * Class that detects focus loss for TextFields
      */
-    public class TextObjectListener implements ChangeListener<Boolean>{
+    private class TextObjectListener implements ChangeListener<Boolean>{
 
         /**
          * TextInputControl descendant to monitor
