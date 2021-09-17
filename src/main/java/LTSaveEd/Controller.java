@@ -1268,29 +1268,31 @@ public class Controller{
      */
     @FXML
     private void updateXmlComboBox(ActionEvent event){
-        String fxId = getId(event);
-        @SuppressWarnings("unchecked")
-        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
-        Node value = getValueNode(event);
-        if(value == null){
-            if(fxId.startsWith("FETISH_")){
-                Element fetishEntry = saveFile.createElement("entry");
-                fetishEntry.setAttribute("desire", cb.getValue().getValue());
-                fetishEntry.setAttribute("fetish", fxId.split("\\$")[0]);
-                value = getValueNodeParent(event);
-                value.appendChild(fetishEntry);
+        if(fieldsSet) {
+            String fxId = getId(event);
+            @SuppressWarnings("unchecked")
+            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
+            Node value = getValueNode(event);
+            if(value == null) {
+                if(fxId.startsWith("FETISH_")) {
+                    Element fetishEntry = saveFile.createElement("entry");
+                    fetishEntry.setAttribute("desire", cb.getValue().getValue());
+                    fetishEntry.setAttribute("fetish", fxId.split("\\$")[0]);
+                    value = getValueNodeParent(event);
+                    value.appendChild(fetishEntry);
+                }
             }
-        }
-        else{
-            value.setTextContent(cb.getValue().getValue());
-            if(fxId.equals("body$leg$type")){
-                updateLegTypeDependants(cb, false);
+            else {
+                value.setTextContent(cb.getValue().getValue());
+                if(fxId.equals("body$leg$type")) {
+                    updateLegTypeDependants(cb, false);
+                }
             }
+            if(fxId.contains("month")) {
+                updateDayTextField(fxId, cb.getValue());
+            }
+            event.consume();
         }
-        if(fxId.contains("month")){
-            updateDayTextField(fxId, cb.getValue());
-        }
-        event.consume();
     }
 
     /**
@@ -2231,7 +2233,7 @@ public class Controller{
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 enchantmentKnown.setSelected(inventoryClothing.isEnchantmentsKnown());
-                enchantmentKnown.setOnAction(this::updateXmlComboBox);
+                enchantmentKnown.setOnAction(this::updateXmlBoolean);
                 CheckBox isDirty = new CheckBox("Dirty: ");
                 isDirty.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
                 isDirty.setSelected(inventoryClothing.isDirty());
