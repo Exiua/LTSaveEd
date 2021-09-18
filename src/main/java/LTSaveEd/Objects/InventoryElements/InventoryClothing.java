@@ -10,14 +10,14 @@ import java.util.ArrayList;
 
 public class InventoryClothing extends AbstractInventoryElement {
 
-    private boolean enchantmentsKnown;
+    private boolean enchantmentKnown;
     private boolean isDirty;
     private final Element colorNode;
     private final ArrayList<String> colors;
 
     public InventoryClothing(Node clothingNode){
         super(clothingNode);
-        enchantmentsKnown = Boolean.parseBoolean(node.getAttribute("enchantmentsKnown"));
+        enchantmentKnown = Boolean.parseBoolean(node.getAttribute("enchantmentKnown"));
         isDirty = Boolean.parseBoolean(node.getAttribute("isDirty"));
         colorNode = (Element) node.getElementsByTagName("colours").item(0);
         colors = new ArrayList<>();
@@ -43,13 +43,13 @@ public class InventoryClothing extends AbstractInventoryElement {
         node.getAttributeNode("isDirty").setValue("" + isDirty);
     }
 
-    public boolean isEnchantmentsKnown() {
-        return enchantmentsKnown;
+    public boolean isEnchantmentKnown() {
+        return enchantmentKnown;
     }
 
-    public void updateEnchantmentsKnown() {
-        enchantmentsKnown = ((CheckBox) hBoxNodes.get(1)).isSelected();
-        node.getAttributeNode("enchantmentsKnown").setValue("" + enchantmentsKnown);
+    public void updateEnchantmentKnown() {
+        enchantmentKnown = ((CheckBox) hBoxNodes.get(1)).isSelected();
+        node.getAttributeNode("enchantmentKnown").setValue("" + enchantmentKnown);
     }
 
     @Override
