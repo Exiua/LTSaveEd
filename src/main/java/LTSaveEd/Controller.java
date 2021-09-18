@@ -1460,7 +1460,7 @@ public class Controller{
     }
 
     /**
-     * Updated xml values changed by the parent id ComboBoxes
+     * Update xml values changed by the character selector ComboBox
      *
      * @param event ActionEvent from the ComboBox that was changed
      */
@@ -1508,7 +1508,7 @@ public class Controller{
      * @param perkList ArrayList of perks to check
      * @param row Row value of the perk
      * @param value Actual value of the perk
-     * @return PerkNode that matches the row and value supplied
+     * @return PerkNode that matches the row and value supplied or null if not matched
      */
     private PerkNode matchPerk(ArrayList<PerkNode> perkList, String row, String value){
         for(PerkNode perkNode : perkList){
