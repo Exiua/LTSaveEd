@@ -1189,8 +1189,8 @@ public class Controller{
                 String[] id = fxId.split("\\$");
                 int index = Integer.parseInt(id[3]);
                 switch(id[2]){
-                    case "enchantmentKnown$" -> inventoryClothes.get(index).updateEnchantmentsKnown();
-                    case "isDirty$" -> inventoryClothes.get(index).updateDirty();
+                    case "enchantmentKnown" -> inventoryClothes.get(index).updateEnchantmentKnown();
+                    case "isDirty" -> inventoryClothes.get(index).updateDirty();
                 }
             }
             else {
@@ -2237,12 +2237,14 @@ public class Controller{
                 InventoryClothing inventoryClothing = new InventoryClothing(items.item(i));
                 TextField clothingIdTf = new TextField(inventoryClothing.getId());
                 clothingIdTf.setEditable(false);
+                TextField nameTf = new TextField(inventoryClothing.getName());
+                nameTf.setEditable(false);
                 TextField clothingCount = new TextField("" + inventoryClothing.getCount());
                 clothingCount.setId(partialId + "count$" + counter);
                 clothingCount.focusedProperty().addListener(new TextObjectListener(clothingCount, TextFieldType.INT));
                 CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
                 enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-                enchantmentKnown.setSelected(inventoryClothing.isEnchantmentsKnown());
+                enchantmentKnown.setSelected(inventoryClothing.isEnchantmentKnown());
                 enchantmentKnown.setId(partialId + "enchantmentKnown$" + counter);
                 enchantmentKnown.setOnAction(this::updateXmlBoolean);
                 CheckBox isDirty = new CheckBox("Dirty: ");
@@ -2257,7 +2259,7 @@ public class Controller{
                 counter++;
                 inventoryClothing.setHBox(hBox);
                 inventoryClothing.addHBoxNodes(clothingCount, enchantmentKnown, isDirty);
-                hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Count: "), clothingCount,
+                hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf, new Label("Count: "), clothingCount,
                         enchantmentKnown, isDirty, btn); //Id: <Id TextField> Count: <Count TextField> <EnchantmentKnow CheckBox> <IsDirty CheckBox> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryClothes.add(inventoryClothing);
