@@ -2219,7 +2219,9 @@ public class Controller{
                 counter++;
                 inventoryItem.setHBox(hBox);
                 inventoryItem.addHBoxNodes(itemCount);
-                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Name: "), nameTf, new Label("Count: "), itemCount, btn); //Id: <Id TextField> Count: <Count TextField> <delete btn>
+                hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Name: "), nameTf,
+                        new Label("Count: "), itemCount, btn);
+                        //Id: <Id TextField> Name: <Name TextField> Count: <Count TextField> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryItems.add(inventoryItem);
             }
@@ -2259,8 +2261,10 @@ public class Controller{
                 counter++;
                 inventoryClothing.setHBox(hBox);
                 inventoryClothing.addHBoxNodes(clothingCount, enchantmentKnown, isDirty);
-                hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf, new Label("Count: "), clothingCount,
-                        enchantmentKnown, isDirty, btn); //Id: <Id TextField> Count: <Count TextField> <EnchantmentKnow CheckBox> <IsDirty CheckBox> <delete btn>
+                hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf,
+                        new Label("Count: "), clothingCount, enchantmentKnown, isDirty, btn);
+                        //Id: <Id TextField> Name: <Name TextField> Count: <Count TextField> <EnchantmentKnow CheckBox>
+                        // <IsDirty CheckBox> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryClothes.add(inventoryClothing);
             }
@@ -2278,6 +2282,8 @@ public class Controller{
                 InventoryWeapon inventoryWeapon = new InventoryWeapon(items.item(i));
                 TextField weaponIdTf = new TextField(inventoryWeapon.getId());
                 weaponIdTf.setEditable(false);
+                TextField nameTf = new TextField(inventoryWeapon.getName());
+                nameTf.setEditable(false);
                 TextField weaponCount = new TextField("" + inventoryWeapon.getCount());
                 weaponCount.setId(partialId + "count$" + counter);
                 weaponCount.focusedProperty().addListener(new TextObjectListener(weaponCount, TextFieldType.INT));
@@ -2299,8 +2305,10 @@ public class Controller{
                 counter++;
                 inventoryWeapon.setHBox(hBox);
                 inventoryWeapon.addHBoxNodes(weaponCount, damageType);
-                hBox.getChildren().addAll(new Label("Id: "), weaponIdTf, new Label("Damage Type: "), damageType,
-                        new Label("Count: "), weaponCount, btn); //Id: <Id TextField> Damage Type: <DamageType ComboBox> Count: <Count TextField> <delete btn>
+                hBox.getChildren().addAll(new Label("Id: "), weaponIdTf, new Label("Name: "), nameTf,
+                        new Label("Damage Type: "), damageType, new Label("Count: "), weaponCount, btn);
+                        //Id: <Id TextField> Name: <Name TextField> Damage Type: <DamageType ComboBox> Count:
+                        // <Count TextField> <delete btn>
                 vb.getChildren().add(hBox);
                 inventoryWeapons.add(inventoryWeapon);
             }
