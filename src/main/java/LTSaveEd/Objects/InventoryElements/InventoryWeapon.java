@@ -1,6 +1,8 @@
 package LTSaveEd.Objects.InventoryElements;
 
+import LTSaveEd.Objects.Attribute;
 import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import javafx.scene.control.ComboBox;
 import org.w3c.dom.Node;
 
 public class InventoryWeapon extends AbstractInventoryElement {
@@ -29,8 +31,9 @@ public class InventoryWeapon extends AbstractInventoryElement {
         return damageType;
     }
 
-    public void setDamageType(String damageType) {
-        this.damageType = damageType;
+    @SuppressWarnings("unchecked")
+    public void updateDamageType() {
+        damageType = ((ComboBox<Attribute>) hBoxNodes.get(1)).getValue().getValue();
         node.getAttributeNode("damageType").setValue(damageType);
     }
 
