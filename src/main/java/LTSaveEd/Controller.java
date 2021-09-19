@@ -2316,6 +2316,7 @@ public class Controller{
                         return null;
                     }
                 });
+                damageType.setOnAction(this::updateXmlComboBox);
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(this::removeHBox);
                 HBox hBox = new HBox(10);
