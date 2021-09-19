@@ -15,7 +15,7 @@ public class LTSaveEd extends Application {
     /**
      * Version of the save editor
      */
-    private final String version = "v1.0.0";
+    private final String version = "v1.1.0";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
