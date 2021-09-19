@@ -1280,28 +1280,35 @@ public class Controller{
     private void updateXmlComboBox(ActionEvent event){
         if(fieldsSet) {
             String fxId = getId(event);
-            @SuppressWarnings("unchecked")
-            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
-            Node value = getValueNode(event);
-            if(value == null) {
-                if(fxId.startsWith("FETISH_")) {
-                    Element fetishEntry = saveFile.createElement("entry");
-                    fetishEntry.setAttribute("desire", cb.getValue().getValue());
-                    fetishEntry.setAttribute("fetish", fxId.split("\\$")[0]);
-                    value = getValueNodeParent(event);
-                    value.appendChild(fetishEntry);
-                }
+            if(fxId.contains("InInventory")){
+                String[] id = fxId.split("\\$");
+                int index = Integer.parseInt(id[3]);
+                inventoryWeapons.get(index).updateDamageType();
             }
             else {
-                value.setTextContent(cb.getValue().getValue());
-                if(fxId.equals("body$leg$type")) {
-                    updateLegTypeDependants(cb, false);
+                @SuppressWarnings("unchecked")
+                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
+                Node value = getValueNode(event);
+                if(value == null) {
+                    if(fxId.startsWith("FETISH_")) {
+                        Element fetishEntry = saveFile.createElement("entry");
+                        fetishEntry.setAttribute("desire", cb.getValue().getValue());
+                        fetishEntry.setAttribute("fetish", fxId.split("\\$")[0]);
+                        value = getValueNodeParent(event);
+                        value.appendChild(fetishEntry);
+                    }
                 }
+                else {
+                    value.setTextContent(cb.getValue().getValue());
+                    if(fxId.equals("body$leg$type")) {
+                        updateLegTypeDependants(cb, false);
+                    }
+                }
+                if(fxId.contains("month")) {
+                    updateDayTextField(fxId, cb.getValue());
+                }
+                event.consume();
             }
-            if(fxId.contains("month")) {
-                updateDayTextField(fxId, cb.getValue());
-            }
-            event.consume();
         }
     }
 
