@@ -2305,6 +2305,17 @@ public class Controller{
                     damageType.setValue(matchComboBoxItem(damageTypes, dmgType));
                 }
                 damageType.setId(partialId + "damageType$" + counter);
+                damageType.setConverter(new StringConverter<>(){
+                    @Override
+                    public String toString(Attribute attribute){
+                        return attribute.getName();
+                    }
+
+                    @Override
+                    public Attribute fromString(String s){
+                        return null;
+                    }
+                });
                 Button btn = new Button("Delete Item");
                 btn.setOnAction(this::removeHBox);
                 HBox hBox = new HBox(10);
