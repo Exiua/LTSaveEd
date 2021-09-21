@@ -1,9 +1,10 @@
 # LTSaveEd [![Licensed under the MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Exiua/LTSaveEd/blob/master/LICENSE)
 [![Release Version](https://img.shields.io/github/v/release/Exiua/LTSaveEd?include_prereleases)](https://github.com/Exiua/LTSaveEd/releases)
 
-# About
-
 LTSaveEd is a save editor for the game _Lilith's Throne_ built using Java 14 and JavaFx 16.
+
+## Requirements
+Requires Java 14 or later if you are just running the .jar. Requires JavaFx 16 or later as well if you need to compile the program yourself.
 
 ## How To Use
 
