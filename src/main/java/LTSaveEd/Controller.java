@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -38,6 +39,8 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -73,6 +76,11 @@ public class Controller{
      * Parsed xml object
      */
     private Document saveFile;
+
+    /**
+     * Current version of the save editor
+     */
+    private String version;
 
     /**
      * Boolean of whether a valid file has been loaded
@@ -815,6 +823,14 @@ public class Controller{
         //Disables TabPane so user cannot use the editor without loading a file first (gets re-enabled in the loadFile method)
         TabPane tb = (TabPane) namespace.get("tabPane");
         tb.setDisable(true);
+    }
+
+    /**
+     * Sets version to the current version number of this save editor
+     * @param currentVersion Current version of save editor
+     */
+    public void setVersion(String currentVersion){
+        version = currentVersion;
     }
 
     /**
@@ -2581,6 +2597,43 @@ public class Controller{
             }
         }
         System.out.println("Revealed all map tiles");
+    }
+
+    @FXML
+    private void checkForUpdate(){
+        String latestVersion = getLatestVersionTag();
+        if(latestVersion != null){
+            //TODO
+        }
+    }
+
+    private String getLatestVersionTag(){
+        StringBuilder result = new StringBuilder();
+        try {
+            URL url = new URL("https://api.github.com/repos/Exiua/LTSaveEd/releases/latest");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
+            try(BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                for(String line; (line = reader.readLine()) != null; ) {
+                    result.append(line);
+                }
+            }
+            String jsonStr = result.toString();
+            String[] jsonArr = jsonStr.replace("{", "").replace("}", "").split(",");
+            String test = null;
+            for(String s : jsonArr) {
+                if(s.startsWith("\"tag_name\"")) {
+                    test = s.split(":")[1].replace("\"", "");
+                    break;
+                }
+            }
+            return test;
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
