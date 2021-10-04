@@ -8,3 +8,4 @@ target
 *.ini
 *.txt
 src/main/resources/META-INF
+.DS_Store
