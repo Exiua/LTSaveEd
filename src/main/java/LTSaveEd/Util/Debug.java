@@ -4,10 +4,16 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Debug {
 
+    @SuppressWarnings("DuplicatedCode")
     public static void printList(NodeList nodes){
         if(nodes == null){
             System.out.println("null");
@@ -75,6 +81,7 @@ public class Debug {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static void printList(NamedNodeMap nodes){
         if(nodes == null){
             System.out.println("null");
@@ -125,5 +132,43 @@ public class Debug {
                 System.out.print(nodes.get(i) + ", ");
             }
         }
+    }
+
+    public static void printArr(String[] arr){
+        for(int i = 0; i < arr.length; i++){
+            if(i == 0){
+                System.out.print("[" + arr[i] + ", ");
+            }
+            else if(i == arr.length - 1){
+                System.out.println(arr[i] + "]");
+            }
+            else {
+                System.out.print(arr[i] + ", ");
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        StringBuilder result = new StringBuilder();
+        URL url = new URL("https://api.github.com/repos/Exiua/LTSaveEd/releases/latest");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            for (String line; (line = reader.readLine()) != null; ) {
+                result.append(line);
+            }
+        }
+        String jsonStr = result.toString();
+        String[] jsonArr = jsonStr.replace("{", "").replace("}", "").split(",");
+        String test = "";
+        for(String s : jsonArr) {
+            if(s.startsWith("\"tag_name\"")) {
+                test = s.split(":")[1].replace("\"", "");
+                System.out.println(test);
+                break;
+            }
+        }
+        System.out.println("v0.1.0".compareTo(test));
     }
 }
