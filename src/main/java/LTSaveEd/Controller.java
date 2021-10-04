@@ -2603,7 +2603,13 @@ public class Controller{
     private void checkForUpdate(){
         String latestVersion = getLatestVersionTag();
         if(latestVersion != null){
-            //TODO
+            MenuItem mi = (MenuItem) namespace.get("updateStatus");
+            if(latestVersion.equals(version)){
+                mi.setText("Latest version");
+            }
+            else{
+                mi.setText("Update available");
+            }
         }
     }
 
