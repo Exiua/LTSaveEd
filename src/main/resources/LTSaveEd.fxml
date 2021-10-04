@@ -138,139 +138,136 @@
         </Tab>
         <Tab text="Attributes">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                <GridPane layoutX="726.0" layoutY="182.0" prefHeight="671.0" prefWidth="1024.0"
-                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                          AnchorPane.topAnchor="0.0">
+                <GridPane layoutX="726.0" layoutY="182.0" prefHeight="671.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                    <VBox alignment="CENTER" prefHeight="305.0" prefWidth="324.0" spacing="10.0"
-                          GridPane.columnIndex="1">
+                    <VBox alignment="CENTER" prefHeight="305.0" prefWidth="324.0" spacing="10.0" GridPane.columnIndex="1">
                         <HBox alignment="CENTER">
-                            <Label text="Energy Shielding: "/>
-                            <TextField fx:id="attributes$ENERGY_SHIELDING"/>
+                            <Label text="Energy Shielding: " />
+                            <TextField fx:id="attributes$ENERGY_SHIELDING" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="59.0">
-                            <Label text="Physical Resistance: "/>
-                            <TextField fx:id="attributes$RESISTANCE_PHYSICAL"/>
+                            <Label text="Physical Resistance: " />
+                            <TextField fx:id="attributes$RESISTANCE_PHYSICAL" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="80.0">
-                            <Label text="Lust Resistance: "/>
-                            <TextField fx:id="attributes$RESISTANCE_LUST"/>
+                            <Label text="Lust Resistance: " />
+                            <TextField fx:id="attributes$RESISTANCE_LUST" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0">
-                            <Label text="Fire Resistance: "/>
-                            <TextField fx:id="attributes$RESISTANCE_FIRE"/>
+                            <Label text="Fire Resistance: " />
+                            <TextField fx:id="attributes$RESISTANCE_FIRE" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="84.0">
-                            <Label text="Ice Resistance: "/>
-                            <TextField fx:id="attributes$RESISTANCE_ICE"/>
+                            <Label text="Ice Resistance: " />
+                            <TextField fx:id="attributes$RESISTANCE_ICE" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="109.0">
-                            <Label text="Poison Resistance: "/>
-                            <TextField fx:id="attributes$RESISTANCE_POISON"/>
+                            <Label text="Poison Resistance: " />
+                            <TextField fx:id="attributes$RESISTANCE_POISON" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="104.0">
-                            <Label text="Unarmed Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_UNARMED"/>
+                            <Label text="Unarmed Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_UNARMED" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="134.0">
-                            <Label text="Melee Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_MELEE_WEAPON"/>
+                            <Label text="Melee Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_MELEE_WEAPON" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="159.0">
-                            <Label text="Ranged Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_RANGED_WEAPON"/>
+                            <Label text="Ranged Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_RANGED_WEAPON" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="184.0">
-                            <Label text="Spell Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_SPELLS"/>
+                            <Label text="Spell Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_SPELLS" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Physical Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_PHYSICAL"/>
+                            <Label text="Physical Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_PHYSICAL" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Lust Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_LUST"/>
+                            <Label text="Lust Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_LUST" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Fire Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_FIRE"/>
+                            <Label text="Fire Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_FIRE" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Ice Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_ICE"/>
+                            <Label text="Ice Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_ICE" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Poison Damage: "/>
-                            <TextField fx:id="attributes$DAMAGE_POISON"/>
+                            <Label text="Poison Damage: " />
+                            <TextField fx:id="attributes$DAMAGE_POISON" />
                         </HBox>
                     </VBox>
                     <VBox alignment="CENTER" prefHeight="305.0" prefWidth="324.0" spacing="10.0">
                         <HBox alignment="CENTER">
-                            <Label text="Health Core: "/>
-                            <TextField fx:id="attributes$HEALTH_MAXIMUM"/>
+                            <Label text="Health Core: " />
+                            <TextField fx:id="attributes$HEALTH_MAXIMUM" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="59.0">
-                            <Label text="Mana Core: "/>
-                            <TextField fx:id="attributes$MANA_MAXIMUM"/>
+                            <Label text="Mana Core: " />
+                            <TextField fx:id="attributes$MANA_MAXIMUM" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="80.0">
-                            <Label text="Experience: "/>
-                            <TextField fx:id="attributes$EXPERIENCE"/>
+                            <Label text="Experience: " />
+                            <TextField fx:id="attributes$EXPERIENCE" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0">
-                            <Label text="Action Points: "/>
-                            <TextField fx:id="attributes$ACTION_POINTS"/>
+                            <Label text="Action Points: " />
+                            <TextField fx:id="attributes$ACTION_POINTS" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="84.0">
-                            <Label text="Arousal: "/>
-                            <TextField fx:id="attributes$AROUSAL"/>
+                            <Label text="Arousal: " />
+                            <TextField fx:id="attributes$AROUSAL" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="109.0">
-                            <Label text="Lust Core: "/>
-                            <TextField fx:id="attributes$LUST"/>
+                            <Label text="Lust Core: " />
+                            <TextField fx:id="attributes$LUST" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="104.0">
-                            <Label text="Resting Lust: "/>
-                            <TextField fx:id="attributes$RESTING_LUST"/>
+                            <Label text="Resting Lust: " />
+                            <TextField fx:id="attributes$RESTING_LUST" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="134.0">
-                            <Label text="Physique Core: "/>
-                            <TextField fx:id="attributes$MAJOR_PHYSIQUE"/>
+                            <Label text="Physique Core: " />
+                            <TextField fx:id="attributes$MAJOR_PHYSIQUE" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="159.0">
-                            <Label text="Arcane Core: "/>
-                            <TextField fx:id="attributes$MAJOR_ARCANE"/>
+                            <Label text="Arcane Core: " />
+                            <TextField fx:id="attributes$MAJOR_ARCANE" />
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="184.0">
-                            <Label text="Corruption Core: "/>
-                            <TextField fx:id="attributes$MAJOR_CORRUPTION"/>
+                            <Label text="Corruption Core: " />
+                            <TextField fx:id="attributes$MAJOR_CORRUPTION" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Enchantment Limit: "/>
-                            <TextField fx:id="attributes$ENCHANTMENT_LIMIT"/>
+                            <Label text="Enchantment Limit: " />
+                            <TextField fx:id="attributes$ENCHANTMENT_LIMIT" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Fertility: "/>
-                            <TextField fx:id="attributes$FERTILITY"/>
+                            <Label text="Fertility: " />
+                            <TextField fx:id="attributes$FERTILITY" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Virility: "/>
-                            <TextField fx:id="attributes$VIRILITY"/>
+                            <Label text="Virility: " />
+                            <TextField fx:id="attributes$VIRILITY" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Spell Cost Modifier: "/>
-                            <TextField fx:id="attributes$SPELL_COST_MODIFIER"/>
+                            <Label text="Spell Cost Modifier: " />
+                            <TextField fx:id="attributes$SPELL_COST_MODIFIER" />
                         </HBox>
                         <HBox alignment="CENTER">
-                            <Label text="Critical Damage: "/>
-                            <TextField fx:id="attributes$CRITICAL_DAMAGE"/>
+                            <Label text="Critical Damage: " />
+                            <TextField fx:id="attributes$CRITICAL_DAMAGE" />
                         </HBox>
                     </VBox>
                 </GridPane>
@@ -3072,7 +3069,7 @@
             <MenuItem mnemonicParsing="false" onAction="#saveFileExport" text="Export..." />
         </Menu>
         <Menu mnemonicParsing="false" text="Update?">
-            <MenuItem mnemonicParsing="false" text="About" />
+            <MenuItem mnemonicParsing="false" onAction="#checkForUpdate" text="Check" />
         </Menu>
     </MenuBar>
 </AnchorPane>
