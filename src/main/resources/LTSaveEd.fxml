@@ -3068,8 +3068,8 @@
             <MenuItem mnemonicParsing="false" onAction="#saveFileOverwrite" text="Overwrite" />
             <MenuItem mnemonicParsing="false" onAction="#saveFileExport" text="Export..." />
         </Menu>
-        <Menu mnemonicParsing="false" text="Update?">
-            <MenuItem mnemonicParsing="false" onAction="#checkForUpdate" text="Check" />
+        <Menu mnemonicParsing="false" onAction="#checkForUpdate" text="Update?">
+            <MenuItem fx:id="updateStatus" mnemonicParsing="false" text="Check" />
         </Menu>
     </MenuBar>
 </AnchorPane>
