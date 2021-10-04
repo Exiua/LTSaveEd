@@ -12,22 +12,20 @@ import javafx.stage.Stage;
  */
 public class LTSaveEd extends Application {
 
-    /**
-     * Version of the save editor
-     */
-    private final String version = "v1.1.0";
-
     @Override
     public void start(Stage primaryStage) throws Exception{
+        String version = "v1.1.0";
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LTSaveEd.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
         controller.setStage(primaryStage);
         controller.setNamespace(loader.getNamespace());
+        controller.setVersion(version);
         controller.initializeComboBoxes();
         primaryStage.setTitle("LTSaveEd " + version);
         primaryStage.setScene(new Scene(root, 1024, 700));
-        //primaryStage.setMaximized(true);
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
 
