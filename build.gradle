@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementaiton 'org.openjfx:javafx'
-    implementaiton 'org.openjfx:javafx-controls'
-    implementaiton 'org.openjfx:javafx-fxml'
+    implementation 'org.openjfx:javafx:17.0.0.1'
+    implementation 'org.openjfx:javafx-controls:17.0.0.1'
+    implementation 'org.openjfx:javafx-fxml:17.0.0.1'
 }
