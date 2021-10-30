@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ltsaveed'
+version '1.1.0'
+sourceCompatibility = '14'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementaiton 'org.openjfx:javafx'
+    implementaiton 'org.openjfx:javafx-controls'
+    implementaiton 'org.openjfx:javafx-fxml'
+}
