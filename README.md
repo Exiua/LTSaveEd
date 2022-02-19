@@ -14,3 +14,15 @@ If the jar doesn't work, download and extract the zip from the [latest release](
 
 ***Make a backup of your save first before using the save editor.***
 
+## Features
+- Edit both player and NPCs
+- Change name and description of player/NPCs
+- Adjust stats and attributes (level, money, health, etc.)
+- Modify body configuration
+- Adjust Fetishes, Perks, and Spells
+- Remove/Modify inventory (cannot add items yet)
+- Modify relationships and family
+- Adjust global values (ingame date, stamps, etc.)
+- Remove all non-encountered offsprings
+- Reveal the map
+
