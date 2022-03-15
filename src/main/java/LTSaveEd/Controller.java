@@ -1820,10 +1820,11 @@ public class Controller{
                         }
                     }
                     for(int j = 0; j < attributeElements.getLength(); j++){ //Every other node in the NodeList is a TextNode (so can be skipped)
-                        if(attributeNodes.item(i).getNodeType() != Node.ELEMENT_NODE){
+                        if(attributeElements.item(j).getNodeType() != Node.ELEMENT_NODE){
                             continue;
                         }
                         Node currNode = attributeElements.item(j);
+                        System.out.println(currNode.getNodeType());
                         String elementName = currNode.getNodeName();
                         switch(elementName){
                             case "personality" -> {
