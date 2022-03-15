@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LTSaveEd.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LTSaveEd.Controller">
     <TabPane fx:id="tabPane" prefHeight="700.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Tab text="Core">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -2624,6 +2624,7 @@
                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                         <CheckBox fx:id="perks$4$FETISH_SEEDER" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seeder" />
                         <CheckBox fx:id="perks$4$SEDUCTION_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Seductive" />
+                  <CheckBox fx:id="perks$4$AHEGAO" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Ahegao" />
                         <CheckBox fx:id="perks$4$SEDUCTION_DEFENCE_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Resistance" />
                         <CheckBox fx:id="perks$4$FETISH_BROODMOTHER" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Broodmother" />
                     </HBox>
