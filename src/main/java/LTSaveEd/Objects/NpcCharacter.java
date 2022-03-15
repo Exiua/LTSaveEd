@@ -27,6 +27,8 @@ public class NpcCharacter {
      */
     private String genderId;
 
+    private int femininity;
+
     /**
      * Constructor that uses the NPC Node to find the id, names, and gender identification
      * @param npcNode
@@ -36,20 +38,43 @@ public class NpcCharacter {
         if(!npcNode.getNodeName().equals("NPC")){
             throw new RuntimeException("Node is not NPC");
         }
-        NodeList nl = npcNode.getChildNodes().item(1).getChildNodes().item(3).getChildNodes();
-        for(int i = 0; i < nl.getLength(); i++){
-            Node n = nl.item(i);
-            switch (n.getNodeName()) {
-                case "id" -> id = n.getAttributes().getNamedItem("value").getTextContent();
+        NodeList nodeList = npcNode.getChildNodes().item(1).getChildNodes().item(3).getChildNodes();
+        for(int i = 0; i < nodeList.getLength(); i++){
+            Node node = nodeList.item(i);
+            switch (node.getNodeName()) {
+                case "id" -> id = node.getAttributes().getNamedItem("value").getTextContent();
                 case "name" -> {
-                    NamedNodeMap nnm = n.getAttributes();
-                    for (int j = 0; j < nnm.getLength(); j++) {
-                        names[j] = nnm.item(j).getTextContent();
+                    NamedNodeMap namedNodeMap = node.getAttributes();
+                    for (int j = 0; j < namedNodeMap.getLength(); j++) {
+                        names[j] = namedNodeMap.item(j).getTextContent();
                     }
                 }
-                case "genderIdentity" -> genderId = n.getAttributes().getNamedItem("value").getTextContent();
+                case "genderIdentity" -> genderId = node.getAttributes().getNamedItem("value").getTextContent();
             }
         }
+    }
+
+    public NpcCharacter(Node npcNode, boolean t){
+        if(!npcNode.getNodeName().equals("NPC")){
+            throw new RuntimeException("Node is not NPC");
+        }
+        NodeList characterNodeChildren = npcNode.getChildNodes().item(1).getChildNodes();
+        NodeList coreNodeChildren = characterNodeChildren.item(3).getChildNodes();
+        for(int i = 0; i < coreNodeChildren.getLength(); i++){
+            Node node = coreNodeChildren.item(i);
+            switch (node.getNodeName()) {
+                case "id" -> id = node.getAttributes().getNamedItem("value").getTextContent();
+                case "name" -> {
+                    NamedNodeMap namedNodeMap = node.getAttributes();
+                    for (int j = 0; j < namedNodeMap.getLength(); j++) {
+                        names[j] = namedNodeMap.item(j).getTextContent();
+                    }
+                }
+            }
+        }
+        Node femininityAttr = characterNodeChildren.item(7).getChildNodes().item(1).getAttributes()
+                .getNamedItem("femininity");
+        femininity = Integer.parseInt(femininityAttr.getTextContent());
     }
 
     /**
@@ -89,7 +114,7 @@ public class NpcCharacter {
             case 'N' -> names[0];
             case 'F' -> names[1];
             case 'M' -> names[2];
-            default -> null;
+            default -> throw new IllegalStateException("Invalid Gender Identity");
         };
     }
 
