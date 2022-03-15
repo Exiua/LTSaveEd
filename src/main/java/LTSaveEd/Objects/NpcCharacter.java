@@ -38,26 +38,6 @@ public class NpcCharacter {
         if(!npcNode.getNodeName().equals("NPC")){
             throw new RuntimeException("Node is not NPC");
         }
-        NodeList nodeList = npcNode.getChildNodes().item(1).getChildNodes().item(3).getChildNodes();
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Node node = nodeList.item(i);
-            switch (node.getNodeName()) {
-                case "id" -> id = node.getAttributes().getNamedItem("value").getTextContent();
-                case "name" -> {
-                    NamedNodeMap namedNodeMap = node.getAttributes();
-                    for (int j = 0; j < namedNodeMap.getLength(); j++) {
-                        names[j] = namedNodeMap.item(j).getTextContent();
-                    }
-                }
-                case "genderIdentity" -> genderId = node.getAttributes().getNamedItem("value").getTextContent();
-            }
-        }
-    }
-
-    public NpcCharacter(Node npcNode, boolean t){
-        if(!npcNode.getNodeName().equals("NPC")){
-            throw new RuntimeException("Node is not NPC");
-        }
         NodeList characterNodeChildren = npcNode.getChildNodes().item(1).getChildNodes();
         NodeList coreNodeChildren = characterNodeChildren.item(3).getChildNodes();
         for(int i = 0; i < coreNodeChildren.getLength(); i++){
@@ -105,17 +85,20 @@ public class NpcCharacter {
     }
 
     /**
-     * Get the name based on the npc's gender identity
+     * Get the name based on the npc's femininity value as that is how the game displays the correct name.
      * @return
-     *   Name that corresponds with the npc's gender identity
+     *   Name that corresponds with the npc's femininity value
      */
     public String getName(){
-        return switch (genderId.charAt(0)) {
-            case 'N' -> names[0];
-            case 'F' -> names[1];
-            case 'M' -> names[2];
-            default -> throw new IllegalStateException("Invalid Gender Identity");
-        };
+        if(femininity < 40){
+            return names[0];
+        }
+        else if(femininity < 60){
+            return names[1];
+        }
+        else{
+            return names[2];
+        }
     }
 
     /**
