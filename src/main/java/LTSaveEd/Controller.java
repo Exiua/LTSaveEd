@@ -1819,7 +1819,10 @@ public class Controller{
                             continue;
                         }
                     }
-                    for(int j = 1; j < attributeElements.getLength() - 1; j += 2){ //Every other node in the NodeList is a TextNode (so can be skipped)
+                    for(int j = 0; j < attributeElements.getLength(); j++){ //Every other node in the NodeList is a TextNode (so can be skipped)
+                        if(attributeNodes.item(i).getNodeType() != Node.ELEMENT_NODE){
+                            continue;
+                        }
                         Node currNode = attributeElements.item(j);
                         String elementName = currNode.getNodeName();
                         switch(elementName){
