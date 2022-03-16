@@ -2224,6 +2224,7 @@ public class Controller{
     private void setFieldsInventoryItems(Node inventoryNode){
         inventoryItems.clear();
         VBox vb = (VBox) namespace.get("itemsInInventory");
+        vb.getChildren().clear();
         String partialId = "characterInventory$itemsInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         int counter = 0;
@@ -2258,6 +2259,7 @@ public class Controller{
     private void setFieldsInventoryClothing(Node inventoryNode){
         inventoryClothes.clear();
         VBox vb = (VBox) namespace.get("clothingInInventory");
+        vb.getChildren().clear();
         String partialId = "characterInventory$clothingInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         int counter = 0;
@@ -2301,6 +2303,7 @@ public class Controller{
     private void setFieldsInventoryWeapons(Node inventoryNode){
         inventoryWeapons.clear();
         VBox vb = (VBox) namespace.get("weaponsInInventory");
+        vb.getChildren().clear();
         String partialId = "characterInventory$weaponsInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         int counter = 0;
