@@ -53,64 +53,6 @@ import java.util.*;
 public class Controller{
 
     /**
-     * Gui's stage object
-     */
-    private Stage stage;
-
-    /**
-     * Namespace of the fxml
-     */
-    private ObservableMap<String, Object> namespace;
-
-    /**
-     * Properties object of the config.ini file
-     */
-    private Properties prop;
-
-    /**
-     * File that was loaded in
-     */
-    private File workingFile;
-
-    /**
-     * Parsed xml object
-     */
-    private Document saveFile;
-
-    /**
-     * Current version of the save editor
-     */
-    private String version;
-
-    /**
-     * Boolean of whether a valid file has been loaded
-     */
-    private boolean fileLoaded = false;
-
-    /**
-     * Character Node of the character to edit
-     */
-    private Node characterNode;
-
-    /**
-     * Boolean tracking whether the addListeners method was run
-     */
-    private boolean listenersAdded = false;
-
-    /**
-     * Boolean tracking whether setFieldsSpellUpgrades was run
-     * <p>
-     * Otherwise, removeHigherTierSpells would be called when the ComboBox has the base value set
-     * resulting in all spell upgrades being deleted from the save
-     */
-    private boolean fieldsSet = false;
-
-    /**
-     * Boolean tracking whether world fields have been set
-     */
-    private boolean worldFieldsSet = false;
-
-    /**
      * String array of all TextField ids using an int data type
      */
     private final String[] intTextFieldIds = {"core$level$value", "core$experience$value", "core$perkPoints$value",
@@ -152,7 +94,6 @@ public class Controller{
                                               "body$vagina$urethraPlasticity", "body$vagina$wetness", "core$yearOfBirth$value",
                                               "dialogueFlags$ralphDiscount$value", "dialogueFlags$scarlettPrice$value", "dialogueFlags$eponaStamps$value",
                                               "dialogueFlags$helenaSlaveOrderDay$value", "dialogueFlags$natalyaPoints$value", "coreInfo$date$year"};
-
     /**
      * String array of all TextField ids using a double data type
      */
@@ -173,15 +114,12 @@ public class Controller{
                                                  "attributes$DAMAGE_MELEE_WEAPON", "attributes$DAMAGE_RANGED_WEAPON", "attributes$DAMAGE_SPELLS",
                                                  "attributes$DAMAGE_PHYSICAL", "attributes$DAMAGE_LUST", "attributes$DAMAGE_FIRE", "attributes$DAMAGE_ICE",
                                                  "attributes$DAMAGE_POISON", "body$vagina$urethraCapacity", "body$vagina$urethraStretchedCapacity"};
-
     /**
      * String array of all TextField ids using a String data type
      */
     private final String[] stringTextFieldIds = {"core$name$nameAndrogynous", "core$name$nameFeminine",
                                                  "core$name$nameMasculine", "core$surname$value"};
-
     private final String[] dateTextFieldIds = {"core$dayOfBirth$value", "coreInfo$date$dayOfMonth"};
-
     /**
      * String array of all ComboBox ids
      */
@@ -218,7 +156,6 @@ public class Controller{
                                           "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride", "core$history$value", "coreInfo$date$month",
                                           "family$motherFemininity$value", "family$fatherFemininity$value", "family$motherSubspecies",
                                           "family$fatherSubspecies$value"};
-
     /**
      * String array of ids for all CheckBoxes that would carry over if not reset
      */
@@ -307,7 +244,6 @@ public class Controller{
                                                "perks$9$SPELL_EFFICIENCY", "perks$9$SPELL_DAMAGE_MAJOR", "perks$10$SACRIFICIAL_SHIELDING",
                                                "perks$10$SPELL_EFFICIENCY", "perks$10$ARCANE_VAMPYRISM", "perks$11$ELEMENTAL_DEFENCE_BOOST",
                                                "perks$11$ARCANE_BOOST_MAJOR", "perks$11$ELEMENTAL_BOOST", "perks$12$ELEMENTAL_BOOST_ALT_2"};
-
     /**
      * String array of ids for all ComboBoxes that would carry over if not reset
      */
@@ -331,7 +267,6 @@ public class Controller{
                                                "spells$ELEMENTAL_FIRE", "spells$POISON_VAPOURS", "spells$VACUUM", "spells$PROTECTIVE_GUSTS",
                                                "spells$ELEMENTAL_AIR", "spells$ARCANE_AROUSAL", "spells$TELEPATHIC_COMMUNICATION", "spells$ARCANE_CLOUD",
                                                "spells$CLEANSE", "spells$STEAL", "spells$TELEPORT", "spells$LILITHS_COMMAND", "spells$ELEMENTAL_ARCANE"};
-
     /**
      * String array of ids for all TextFields of int type that would carry over if not reset
      */
@@ -349,7 +284,6 @@ public class Controller{
                                                     "FETISH_DENIAL_SELF$exp", "FETISH_VOYEURIST$exp", "FETISH_EXHIBITIONIST$exp", "FETISH_BIMBO$exp",
                                                     "FETISH_CROSS_DRESSER$exp", "FETISH_MASTURBATION$exp", "FETISH_INCEST$exp", "FETISH_SIZE_QUEEN$exp",
                                                     "FETISH_SWITCH$exp", "FETISH_BREEDER$exp", "FETISH_SADOMASOCHIST$exp", "FETISH_LUSTY_MAIDEN$exp"};
-
     /**
      * String array of ids for all TextFields of double type that would carry over if not reset
      */
@@ -363,79 +297,110 @@ public class Controller{
                                                        "attributes$DAMAGE_MELEE_WEAPON", "attributes$DAMAGE_RANGED_WEAPON", "attributes$DAMAGE_SPELLS",
                                                        "attributes$DAMAGE_PHYSICAL", "attributes$DAMAGE_LUST", "attributes$DAMAGE_FIRE", "attributes$DAMAGE_ICE",
                                                        "attributes$DAMAGE_POISON"};
-
     /**
      * ObservableList of hairstyles for bald hair length
      */
     private final ObservableList<Attribute> hairStylesB = FXCollections.observableArrayList();
-
     /**
      * ObservableList of hairstyles for very short hair length
      */
     private final ObservableList<Attribute> hairStylesVS = FXCollections.observableArrayList();
-
     /**
      * ObservableList of hairstyles for short hair length
      */
     private final ObservableList<Attribute> hairStylesS = FXCollections.observableArrayList();
-
     /**
      * ObservableList of hairstyles for shoulder-length hair length
      */
     private final ObservableList<Attribute> hairStylesSL = FXCollections.observableArrayList();
-
     /**
      * ObservableList of hairstyles for long+ hair length
      */
     private final ObservableList<Attribute> hairStylesL = FXCollections.observableArrayList();
-
     /**
      * ObservableList of hairstyles for floor-length hair length (all the hairstyles in the game)
      */
     private final ObservableList<Attribute> hairStylesFL = FXCollections.observableArrayList();
-
     /**
      * ObservableList of all desire types in the game
      */
     private final ObservableList<Attribute> desireTypes = FXCollections.observableArrayList();
-
     /**
      * ObservableList of all the damage types in the game
      */
     private final ObservableList<Attribute> damageTypes = FXCollections.observableArrayList(
             new Attribute("Physical", "PHYSICAL"), new Attribute("Fire", "FIRE"),
             new Attribute("Ice", "ICE"), new Attribute("Poison", "POISON"));
-
     /**
      * HashMap of all the secondary labels' TextField's id (key) and the corresponding ArrayList of values (value)
      */
     private final HashMap<String, ArrayList<String>> labelMap = new HashMap<>();
-
     /**
      * ArrayList of all perks in the game
      */
     private final ArrayList<PerkNode> perks = new ArrayList<>();
-
     /**
      * ArrayList of all TextObjectListeners used
      */
     private final ArrayList<TextObjectListener> listeners = new ArrayList<>();
-
     private final ArrayList<InventoryItem> inventoryItems = new ArrayList<>();
-
     private final ArrayList<InventoryClothing> inventoryClothes = new ArrayList<>();
-
     private final ArrayList<InventoryWeapon> inventoryWeapons = new ArrayList<>();
-
     /**
      * HashMap of all personality traits (key) and the corresponding PersonalityTrait object (value)
      */
     private final HashMap<String, PersonalityTrait> personalityTraits = new HashMap<>();
-
     /**
      * ArrayList to hold all the ObservableList objects to make it easier to add them to their respective ComboBoxes
      */
     private final ArrayList<ObservableList<Attribute>> comboBoxValues = new ArrayList<>();
+    /**
+     * Gui's stage object
+     */
+    private Stage stage;
+    /**
+     * Namespace of the fxml
+     */
+    private ObservableMap<String, Object> namespace;
+    /**
+     * Properties object of the config.ini file
+     */
+    private Properties prop;
+    /**
+     * File that was loaded in
+     */
+    private File workingFile;
+    /**
+     * Parsed xml object
+     */
+    private Document saveFile;
+    /**
+     * Current version of the save editor
+     */
+    private String version;
+    /**
+     * Boolean of whether a valid file has been loaded
+     */
+    private boolean fileLoaded = false;
+    /**
+     * Character Node of the character to edit
+     */
+    private Node characterNode;
+    /**
+     * Boolean tracking whether the addListeners method was run
+     */
+    private boolean listenersAdded = false;
+    /**
+     * Boolean tracking whether setFieldsSpellUpgrades was run
+     * <p>
+     * Otherwise, removeHigherTierSpells would be called when the ComboBox has the base value set
+     * resulting in all spell upgrades being deleted from the save
+     */
+    private boolean fieldsSet = false;
+    /**
+     * Boolean tracking whether world fields have been set
+     */
+    private boolean worldFieldsSet = false;
 
     /**
      * Initializes the Controller object and parses config.ini
@@ -462,344 +427,6 @@ public class Controller{
         perks.addAll(initializer.getPerks());
         initializer.initializeHairStyles(hairStylesB, hairStylesVS, hairStylesS, hairStylesSL, hairStylesL, hairStylesFL);
         desireTypes.addAll(initializer.getDesireTypes());
-    }
-
-    /**
-     * Class that detects focus loss for TextFields
-     */
-    private class TextObjectListener implements ChangeListener<Boolean>{
-
-        /**
-         * TextInputControl descendant to monitor
-         */
-        private final TextInputControl textInputControl;
-
-        /**
-         * Data type of the TextField (e.g. int, double, string, etc.)
-         */
-        private final TextFieldType tfType;
-
-        /**
-         * Id of the TextField
-         */
-        private String fieldId;
-
-        /**
-         * Boolean of whether int and doubles types are only positive values
-         */
-        private boolean positiveOnly;
-
-        /**
-         * Boolean representing whether the TextInputControl object is for fetish exp values
-         */
-        private final boolean fetishExp;
-
-        /**
-         * Boolean representing whether the TextInputControl object has a second label
-         */
-        private final boolean hasSecondLabel;
-
-        private final boolean inventoryElement;
-
-        /**
-         * Constructor for a new TextFieldListener
-         *
-         * @param textControl   TextInputControl descendant to monitor
-         * @param textFieldType Data type of the TextField
-         */
-        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType){
-            textInputControl = textControl;
-            tfType = textFieldType;
-            fieldId = textControl.getId();
-            hasSecondLabel = labelMap.containsKey(fieldId);
-            positiveOnly = false;
-            fetishExp = fieldId.startsWith("FETISH_");
-            inventoryElement = fieldId.contains("InInventory");
-            setLabel();
-            listeners.add(this);
-        }
-
-        /**
-         * Constructor for a new TextFieldListener
-         *
-         * @param textControl   TextInputControl descendant to monitor
-         * @param textFieldType Data type of the TextField
-         * @param positivesOnly Whether values are positive only
-         */
-        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly){
-            this(textControl, textFieldType);
-            positiveOnly = positivesOnly;
-        }
-
-        /**
-         * Detects when the TextField has lost focus
-         *
-         * @param observable (Taken from StackOverflow, so I'm not too sure what each parameter is for lol)
-         * @param oldValue   (Same)
-         * @param newValue   (Same)
-         */
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-            if(!newValue && fieldsSet){  // check if focus gained or lost and that the fields initially have the proper value
-                textInputControl.setText(getFormattedText(textInputControl.getText()));
-                setLabel();
-            }
-        }
-
-        /**
-         * Sets the value of the secondary value if the TextInputControl object has a secondary label
-         */
-        private void setLabel(){
-            if(hasSecondLabel){
-                Label valueLabel = (Label) namespace.get(fieldId + "$label");
-                String textValue = textInputControl.getText();
-                int valueToTextIndex = textValue.contains(".") ? (int) (Double.parseDouble(textValue) * 4) : Integer.parseInt(textValue);
-                ArrayList<String> valueToTextList = labelMap.get(fieldId);
-                if(valueToTextIndex >= valueToTextList.size()){
-                    valueToTextIndex = valueToTextList.size() - 1;
-                }
-                else if(valueToTextIndex < 0){
-                    valueToTextIndex = 0;
-                }
-                valueLabel.setText(valueToTextList.get(valueToTextIndex));
-            }
-        }
-
-        /**
-         * Verifies that the text is being changed appropriately based on the data type expected in the TextField and
-         * modifies the xml data if a valid String was entered
-         *
-         * @param newValue String entered into the TextField
-         * @return Either the new String (with minor modifications if needed) or a String of the old value
-         */
-        private String getFormattedText(String newValue){
-            updateFieldId();
-            Node value = getValueNode();
-            if(value == null && fetishExp){
-                NodeList attributeNodes = getAttributeNodes();
-                Node fetishExp = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0);
-                Element fetishEntry = saveFile.createElement("entry");
-                fetishEntry.setAttribute("experience", "0");
-                fetishEntry.setAttribute("fetish", fieldId.split("\\$")[0]);
-                fetishExp.appendChild(fetishEntry);
-                value = getAttributeNode(fetishEntry, "experience");
-                System.out.println("Created new element");
-            }
-            assert value != null;
-            String oldValue = value.getTextContent();
-            switch(tfType){
-                case INT -> {
-                    try{
-                        int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; //Removes leading zeroes
-                        if(positiveOnly && nv < 0){
-                            return oldValue;
-                        }
-                        if(nv == 0 && fetishExp){
-                            Node ownerNode = ((Attr) value).getOwnerElement();
-                            removeNode(ownerNode);
-                            System.out.println("Removed element");
-                        }
-                        else{
-                            if(inventoryElement){
-                                int index = Integer.parseInt(fieldId.split("\\$")[3]);
-                                if(fieldId.contains("itemsInInventory")){
-                                    inventoryItems.get(index).setCount(newValue);
-                                }
-                                else if(fieldId.contains("clothingInInventory")){
-                                    inventoryClothes.get(index).setCount(newValue);
-                                }
-                                else if(fieldId.contains("weaponsInInventory")){
-                                    inventoryWeapons.get(index).setCount(newValue);
-                                }
-                            }
-                            else{
-                                value.setTextContent(newValue);
-                            }
-                        }
-                        return newValue;
-                    }
-                    catch(NumberFormatException e){
-                        return oldValue;
-                    }
-                }
-                case DOUBLE -> {
-                    try{
-                        double nv = Double.parseDouble(newValue);
-                        newValue = "" + nv; //Removes leading zeroes
-                        if(positiveOnly && nv < 0){
-                            return oldValue;
-                        }
-                        if(newValue.indexOf('.') == -1){
-                            newValue += ".0";
-                        }
-                        else if(newValue.indexOf('.') == newValue.length() - 1){
-                            newValue += "0";
-                        }
-                        value.setTextContent(newValue);
-                        return newValue;
-                    }
-                    catch(NumberFormatException e){
-                        return oldValue;
-                    }
-                }
-                case STRING -> {
-                    value.setTextContent(newValue);
-                    return newValue;
-                }
-                case HAIR -> {
-                    try{
-                        int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; //Removes leading zeroes
-                        if(nv < 0){
-                            return oldValue;
-                        }
-                        value.setTextContent(newValue);
-                        @SuppressWarnings("unchecked")
-                        ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
-                        Attribute attr;
-                        if(nv < 4){
-                            attr = hairStylesB.get(0);
-                            hairStyles.setItems(hairStylesB);
-                            hairStyles.setValue(attr);
-                        }
-                        else if(nv < 11){
-                            attr = hairStyles.getValue();
-                            if(!hairStylesVS.contains(attr)){
-                                attr = hairStylesVS.get(0);
-                            }
-                            hairStyles.setItems(hairStylesVS);
-                            hairStyles.setValue(attr);
-                        }
-                        else if(nv < 22){
-                            attr = hairStyles.getValue();
-                            if(!hairStylesS.contains(attr)){
-                                attr = hairStylesS.get(0);
-                            }
-                            hairStyles.setItems(hairStylesS);
-                            hairStyles.setValue(attr);
-                        }
-                        else if(nv < 45){
-                            attr = hairStyles.getValue();
-                            if(!hairStylesSL.contains(attr)){
-                                attr = hairStylesSL.get(0);
-                            }
-                            hairStyles.setItems(hairStylesSL);
-                            hairStyles.setValue(attr);
-                        }
-                        else if(nv < 265){
-                            attr = hairStyles.getValue();
-                            if(!hairStylesL.contains(attr)){
-                                attr = hairStylesL.get(0);
-                            }
-                            hairStyles.setItems(hairStylesL);
-                            hairStyles.setValue(attr);
-                        }
-                        else{
-                            hairStyles.setItems(hairStylesFL);
-                        }
-                        return newValue;
-                    }
-                    catch(NumberFormatException e){
-                        return oldValue;
-                    }
-                }
-                case DATE -> {
-                    try{
-                        boolean coreInfo = fieldId.startsWith("coreInfo");
-                        @SuppressWarnings("unchecked")
-                        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(coreInfo ? "coreInfo$date$month" : "core$monthOfBirth$value");
-                        TextField yearField = (TextField) namespace.get(coreInfo ? "coreInfo$date$year" : "core$yearOfBirth$value");
-                        int year = Integer.parseInt(yearField.getText());
-                        int monthLimit = setMonthLimit(cb.getValue(), year);
-                        int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; //Removes leading zeroes
-                        if(nv < 1){
-                            return oldValue;
-                        }
-                        if(nv > monthLimit){
-                            return oldValue;
-                        }
-                        value.setTextContent(newValue);
-                        return newValue;
-                    }
-                    catch(NumberFormatException e){
-                        return oldValue;
-                    }
-                }
-                default -> {
-                    return null;
-                }
-            }
-        }
-
-        /**
-         * Gets the Node of the attribute value of the TextField
-         *
-         * @return Node containing the attribute value
-         */
-        private Node getValueNode(){
-            String[] id = fieldId.split("\\$");
-            NodeList attributeNodes = getAttributeNodes();
-            if(id[0].startsWith("FETISH_")){
-                NodeList fetishes = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0).getChildNodes();
-                Node childNode = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
-                return childNode != null ? getAttributeNode(childNode, "experience") : null;
-            }
-            Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
-            switch(id[0]){
-                case "characterRelationships" -> {
-                    return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
-                }
-                case "spellUpgradePoints" -> {
-                    return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1])).getAttributes().getNamedItem("points");
-                }
-                case "attributes" -> {
-                    Element attributeNode = (Element) getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1]);
-                    if(attributeNode == null){
-                        attributeNode = saveFile.createElement("attribute");
-                        attributeNode.setAttribute("type", id[1]);
-                        attributeNode.setAttribute("value", "0.0");
-                        attr.appendChild(attributeNode);
-                        System.out.println("Created attribute node");
-                    }
-                    return attributeNode.getAttributeNode("value");
-                }
-                case "coreInfo", "dialogueFlags" -> {
-                    Element attributeNode = (Element) saveFile.getElementsByTagName(id[0]).item(0);
-                    for(int i = 1; i < id.length - 1; i++){
-                        attributeNode = (Element) attributeNode.getElementsByTagName(id[i]).item(0);
-                    }
-                    return attributeNode.getAttributeNode(id[id.length - 1]);
-                }
-                case "characterInventory" -> {
-                    switch(id[1]){
-                        case "itemsInInventory" -> {
-                            //id[3] should be a number corresponding to ArrayList index and id[2] should be attribute Node name
-                            return inventoryItems.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
-                        }
-                        case "clothingInInventory" -> {
-                            return inventoryClothes.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
-                        }
-                        case "weaponsInInventory" -> {
-                            return inventoryWeapons.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
-                            /*Node inventoryTypeNode = attr.getElementsByTagName(id[1]).item(0);
-                            Node inventorySlotNode = getChildNodeByAttributeValue(inventoryTypeNode.getChildNodes(), "id", id[3], "colour", id[4]);
-                            assert inventorySlotNode != null;
-                            return inventorySlotNode.getAttributes().getNamedItem(id[2]);*/
-                        }
-                    }
-                }
-            }
-            attr = (Element) attr.getElementsByTagName(id[1]).item(0);
-            return getAttributeNode(attr, id[2]);
-        }
-
-        private void updateFieldId(){
-            if(inventoryElement && !fieldId.equals(textInputControl.getId())){
-                fieldId = textInputControl.getId();
-            }
-        }
     }
 
     /**
@@ -2741,6 +2368,339 @@ public class Controller{
         }
         catch(TransformerException | XPathExpressionException e){
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Class that detects focus loss for TextFields
+     */
+    private class TextObjectListener implements ChangeListener<Boolean>{
+
+        /**
+         * TextInputControl descendant to monitor
+         */
+        private final TextInputControl textInputControl;
+
+        /**
+         * Data type of the TextField (e.g. int, double, string, etc.)
+         */
+        private final TextFieldType tfType;
+        /**
+         * Boolean representing whether the TextInputControl object is for fetish exp values
+         */
+        private final boolean fetishExp;
+        /**
+         * Boolean representing whether the TextInputControl object has a second label
+         */
+        private final boolean hasSecondLabel;
+        private final boolean inventoryElement;
+        /**
+         * Id of the TextField
+         */
+        private String fieldId;
+        /**
+         * Boolean of whether int and doubles types are only positive values
+         */
+        private boolean positiveOnly;
+
+        /**
+         * Constructor for a new TextFieldListener
+         *
+         * @param textControl   TextInputControl descendant to monitor
+         * @param textFieldType Data type of the TextField
+         */
+        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType){
+            textInputControl = textControl;
+            tfType = textFieldType;
+            fieldId = textControl.getId();
+            hasSecondLabel = labelMap.containsKey(fieldId);
+            positiveOnly = false;
+            fetishExp = fieldId.startsWith("FETISH_");
+            inventoryElement = fieldId.contains("InInventory");
+            setLabel();
+            listeners.add(this);
+        }
+
+        /**
+         * Constructor for a new TextFieldListener
+         *
+         * @param textControl   TextInputControl descendant to monitor
+         * @param textFieldType Data type of the TextField
+         * @param positivesOnly Whether values are positive only
+         */
+        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly){
+            this(textControl, textFieldType);
+            positiveOnly = positivesOnly;
+        }
+
+        /**
+         * Detects when the TextField has lost focus
+         *
+         * @param observable (Taken from StackOverflow, so I'm not too sure what each parameter is for lol)
+         * @param oldValue   (Same)
+         * @param newValue   (Same)
+         */
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
+            if(!newValue && fieldsSet){  // check if focus gained or lost and that the fields initially have the proper value
+                textInputControl.setText(getFormattedText(textInputControl.getText()));
+                setLabel();
+            }
+        }
+
+        /**
+         * Sets the value of the secondary value if the TextInputControl object has a secondary label
+         */
+        private void setLabel(){
+            if(hasSecondLabel){
+                Label valueLabel = (Label) namespace.get(fieldId + "$label");
+                String textValue = textInputControl.getText();
+                int valueToTextIndex = textValue.contains(".") ? (int) (Double.parseDouble(textValue) * 4) : Integer.parseInt(textValue);
+                ArrayList<String> valueToTextList = labelMap.get(fieldId);
+                if(valueToTextIndex >= valueToTextList.size()){
+                    valueToTextIndex = valueToTextList.size() - 1;
+                }
+                else if(valueToTextIndex < 0){
+                    valueToTextIndex = 0;
+                }
+                valueLabel.setText(valueToTextList.get(valueToTextIndex));
+            }
+        }
+
+        /**
+         * Verifies that the text is being changed appropriately based on the data type expected in the TextField and
+         * modifies the xml data if a valid String was entered
+         *
+         * @param newValue String entered into the TextField
+         * @return Either the new String (with minor modifications if needed) or a String of the old value
+         */
+        private String getFormattedText(String newValue){
+            updateFieldId();
+            Node value = getValueNode();
+            if(value == null && fetishExp){
+                NodeList attributeNodes = getAttributeNodes();
+                Node fetishExp = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0);
+                Element fetishEntry = saveFile.createElement("entry");
+                fetishEntry.setAttribute("experience", "0");
+                fetishEntry.setAttribute("fetish", fieldId.split("\\$")[0]);
+                fetishExp.appendChild(fetishEntry);
+                value = getAttributeNode(fetishEntry, "experience");
+                System.out.println("Created new element");
+            }
+            assert value != null;
+            String oldValue = value.getTextContent();
+            switch(tfType){
+                case INT -> {
+                    try{
+                        int nv = Integer.parseInt(newValue);
+                        newValue = "" + nv; //Removes leading zeroes
+                        if(positiveOnly && nv < 0){
+                            return oldValue;
+                        }
+                        if(nv == 0 && fetishExp){
+                            Node ownerNode = ((Attr) value).getOwnerElement();
+                            removeNode(ownerNode);
+                            System.out.println("Removed element");
+                        }
+                        else{
+                            if(inventoryElement){
+                                int index = Integer.parseInt(fieldId.split("\\$")[3]);
+                                if(fieldId.contains("itemsInInventory")){
+                                    inventoryItems.get(index).setCount(newValue);
+                                }
+                                else if(fieldId.contains("clothingInInventory")){
+                                    inventoryClothes.get(index).setCount(newValue);
+                                }
+                                else if(fieldId.contains("weaponsInInventory")){
+                                    inventoryWeapons.get(index).setCount(newValue);
+                                }
+                            }
+                            else{
+                                value.setTextContent(newValue);
+                            }
+                        }
+                        return newValue;
+                    }
+                    catch(NumberFormatException e){
+                        return oldValue;
+                    }
+                }
+                case DOUBLE -> {
+                    try{
+                        double nv = Double.parseDouble(newValue);
+                        newValue = "" + nv; //Removes leading zeroes
+                        if(positiveOnly && nv < 0){
+                            return oldValue;
+                        }
+                        if(newValue.indexOf('.') == -1){
+                            newValue += ".0";
+                        }
+                        else if(newValue.indexOf('.') == newValue.length() - 1){
+                            newValue += "0";
+                        }
+                        value.setTextContent(newValue);
+                        return newValue;
+                    }
+                    catch(NumberFormatException e){
+                        return oldValue;
+                    }
+                }
+                case STRING -> {
+                    value.setTextContent(newValue);
+                    return newValue;
+                }
+                case HAIR -> {
+                    try{
+                        int nv = Integer.parseInt(newValue);
+                        newValue = "" + nv; //Removes leading zeroes
+                        if(nv < 0){
+                            return oldValue;
+                        }
+                        value.setTextContent(newValue);
+                        @SuppressWarnings("unchecked")
+                        ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
+                        Attribute attr;
+                        if(nv < 4){
+                            attr = hairStylesB.get(0);
+                            hairStyles.setItems(hairStylesB);
+                            hairStyles.setValue(attr);
+                        }
+                        else if(nv < 11){
+                            attr = hairStyles.getValue();
+                            if(!hairStylesVS.contains(attr)){
+                                attr = hairStylesVS.get(0);
+                            }
+                            hairStyles.setItems(hairStylesVS);
+                            hairStyles.setValue(attr);
+                        }
+                        else if(nv < 22){
+                            attr = hairStyles.getValue();
+                            if(!hairStylesS.contains(attr)){
+                                attr = hairStylesS.get(0);
+                            }
+                            hairStyles.setItems(hairStylesS);
+                            hairStyles.setValue(attr);
+                        }
+                        else if(nv < 45){
+                            attr = hairStyles.getValue();
+                            if(!hairStylesSL.contains(attr)){
+                                attr = hairStylesSL.get(0);
+                            }
+                            hairStyles.setItems(hairStylesSL);
+                            hairStyles.setValue(attr);
+                        }
+                        else if(nv < 265){
+                            attr = hairStyles.getValue();
+                            if(!hairStylesL.contains(attr)){
+                                attr = hairStylesL.get(0);
+                            }
+                            hairStyles.setItems(hairStylesL);
+                            hairStyles.setValue(attr);
+                        }
+                        else{
+                            hairStyles.setItems(hairStylesFL);
+                        }
+                        return newValue;
+                    }
+                    catch(NumberFormatException e){
+                        return oldValue;
+                    }
+                }
+                case DATE -> {
+                    try{
+                        boolean coreInfo = fieldId.startsWith("coreInfo");
+                        @SuppressWarnings("unchecked")
+                        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(coreInfo ? "coreInfo$date$month" : "core$monthOfBirth$value");
+                        TextField yearField = (TextField) namespace.get(coreInfo ? "coreInfo$date$year" : "core$yearOfBirth$value");
+                        int year = Integer.parseInt(yearField.getText());
+                        int monthLimit = setMonthLimit(cb.getValue(), year);
+                        int nv = Integer.parseInt(newValue);
+                        newValue = "" + nv; //Removes leading zeroes
+                        if(nv < 1){
+                            return oldValue;
+                        }
+                        if(nv > monthLimit){
+                            return oldValue;
+                        }
+                        value.setTextContent(newValue);
+                        return newValue;
+                    }
+                    catch(NumberFormatException e){
+                        return oldValue;
+                    }
+                }
+                default -> {
+                    return null;
+                }
+            }
+        }
+
+        /**
+         * Gets the Node of the attribute value of the TextField
+         *
+         * @return Node containing the attribute value
+         */
+        private Node getValueNode(){
+            String[] id = fieldId.split("\\$");
+            NodeList attributeNodes = getAttributeNodes();
+            if(id[0].startsWith("FETISH_")){
+                NodeList fetishes = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0).getChildNodes();
+                Node childNode = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
+                return childNode != null ? getAttributeNode(childNode, "experience") : null;
+            }
+            Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
+            switch(id[0]){
+                case "characterRelationships" -> {
+                    return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
+                }
+                case "spellUpgradePoints" -> {
+                    return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1])).getAttributes().getNamedItem("points");
+                }
+                case "attributes" -> {
+                    Element attributeNode = (Element) getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1]);
+                    if(attributeNode == null){
+                        attributeNode = saveFile.createElement("attribute");
+                        attributeNode.setAttribute("type", id[1]);
+                        attributeNode.setAttribute("value", "0.0");
+                        attr.appendChild(attributeNode);
+                        System.out.println("Created attribute node");
+                    }
+                    return attributeNode.getAttributeNode("value");
+                }
+                case "coreInfo", "dialogueFlags" -> {
+                    Element attributeNode = (Element) saveFile.getElementsByTagName(id[0]).item(0);
+                    for(int i = 1; i < id.length - 1; i++){
+                        attributeNode = (Element) attributeNode.getElementsByTagName(id[i]).item(0);
+                    }
+                    return attributeNode.getAttributeNode(id[id.length - 1]);
+                }
+                case "characterInventory" -> {
+                    switch(id[1]){
+                        case "itemsInInventory" -> {
+                            //id[3] should be a number corresponding to ArrayList index and id[2] should be attribute Node name
+                            return inventoryItems.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
+                        }
+                        case "clothingInInventory" -> {
+                            return inventoryClothes.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
+                        }
+                        case "weaponsInInventory" -> {
+                            return inventoryWeapons.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
+                            /*Node inventoryTypeNode = attr.getElementsByTagName(id[1]).item(0);
+                            Node inventorySlotNode = getChildNodeByAttributeValue(inventoryTypeNode.getChildNodes(), "id", id[3], "colour", id[4]);
+                            assert inventorySlotNode != null;
+                            return inventorySlotNode.getAttributes().getNamedItem(id[2]);*/
+                        }
+                    }
+                }
+            }
+            attr = (Element) attr.getElementsByTagName(id[1]).item(0);
+            return getAttributeNode(attr, id[2]);
+        }
+
+        private void updateFieldId(){
+            if(inventoryElement && !fieldId.equals(textInputControl.getId())){
+                fieldId = textInputControl.getId();
+            }
         }
     }
 }
