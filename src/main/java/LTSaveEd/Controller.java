@@ -1466,7 +1466,6 @@ public class Controller{
                         continue;
                     }
                     Node currNode = attributeElements.item(j);
-                    System.out.println(currNode.getNodeType());
                     String elementName = currNode.getNodeName();
                     switch(elementName){
                         case "personality" -> {
