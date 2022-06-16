@@ -414,7 +414,7 @@ public class Controller{
             in = new FileInputStream("config.ini");
         }
         catch(FileNotFoundException e){
-            //Uses working directory as default file path
+            // Uses working directory as default file path
             prop.setProperty("defaultFilePath", Paths.get(".").toAbsolutePath().normalize().toString());
             prop.store(new FileOutputStream("config.ini"), null);
             in = new FileInputStream("config.ini");
@@ -447,7 +447,7 @@ public class Controller{
         this.namespace = namespace;
         PerkNode.setNamespace(namespace);
         PersonalityTrait.setNamespace(namespace);
-        //Disables TabPane so user cannot use the editor without loading a file first (gets re-enabled in the loadFile method)
+        // Disables TabPane so user cannot use the editor without loading a file first (gets re-enabled in the loadFile method)
         TabPane tb = (TabPane) namespace.get("tabPane");
         tb.setDisable(true);
     }
@@ -480,7 +480,7 @@ public class Controller{
                 @Override
                 public String toString(Attribute attribute){
                     return attribute.getName();
-                } //TODO: Fix this method throwing exceptions whenever ComboBox values are updated
+                } // TODO: Fix this method throwing exceptions whenever ComboBox values are updated
                 /* This exception keeps getting thrown when ComboBox items are changed; Ignore as it doesn't break the program
                     Exception in thread "JavaFX Application Thread" java.lang.NullPointerException
 	                    at LTSaveEd.Controller$1.toString(Controller.java:2401)
@@ -507,7 +507,7 @@ public class Controller{
     @FXML
     private void loadFile(ActionEvent event) throws IOException{
         event.consume();
-        //Get file
+        // Get file
         FileChooser fc = new FileChooser();
         FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         fc.getExtensionFilters().add(fileExtensions);
@@ -515,13 +515,13 @@ public class Controller{
         fc.setInitialDirectory(new File(currentPath));
         File f = fc.showOpenDialog(stage);
         if(f != null){
-            //Update config.ini if a different folder was used
+            // Update config.ini if a different folder was used
             if(!f.getParent().equals(currentPath)){
                 prop.setProperty("defaultFilePath", f.getParent());
                 prop.store(new FileOutputStream("config.ini"), null);
             }
             workingFile = f;
-            //Load XML
+            // Load XML
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             try(InputStream is = new FileInputStream(f)){
                 DocumentBuilder db = dbf.newDocumentBuilder();
@@ -659,7 +659,7 @@ public class Controller{
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
-        if(id[0].startsWith("FETISH_")){ //Fetish ids cannot be reverse traced, so they must be handled differently
+        if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
             if(id[1].equals("owned")){
                 NodeList fetishes = attr.getElementsByTagName("fetishes").item(0).getChildNodes();
                 return getChildNodeByAttributeValue(fetishes, "type", id[0]);
@@ -670,7 +670,7 @@ public class Controller{
                 return fetishEntry != null ? getAttributeNode(fetishEntry, "desire") : null;
             }
         }
-        else if(id[0].equals("spells")){ //Same with spell ids
+        else if(id[0].equals("spells")){ // Same with spell ids
             NodeList spellUpgrades = attr.getElementsByTagName("spellUpgrades").item(0).getChildNodes();
             return getChildNodeByAttributeValue(spellUpgrades, "type", id[1]);
         }
@@ -733,7 +733,7 @@ public class Controller{
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
-        if(id[0].startsWith("FETISH_")){ //Fetish ids cannot be reverse traced, so they must be handled differently
+        if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
             if(id[1].equals("owned")){
                 return attr.getElementsByTagName("fetishes").item(0);
             }
@@ -741,7 +741,7 @@ public class Controller{
                 return attr.getElementsByTagName("fetishDesire").item(0);
             }
         }
-        else if(id[0].equals("spells")){ //Same with spell ids
+        else if(id[0].equals("spells")){ // Same with spell ids
             return attr.getElementsByTagName("spellUpgrades").item(0);
         }
         for(int i = 0; i < id.length - 1; i++){
@@ -875,7 +875,7 @@ public class Controller{
                         assert value != null;
                         value.setTextContent("" + cb.isSelected());
                     }
-                    catch(NullPointerException e){ //Modifier attributes are deleted when false by the game
+                    catch(NullPointerException e){ // Modifier attributes are deleted when false by the game
                         value = getValueNodeParent(event);
                         ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
                     }
@@ -1026,7 +1026,7 @@ public class Controller{
                 month.equals("11")){
             monthLimit = 30;
         }
-        else{ //February
+        else{ // February
             monthLimit = isLeapYear(year) ? 29 : 28;
         }
         return monthLimit;
@@ -1038,7 +1038,7 @@ public class Controller{
      * @param year Year to check
      * @return True if year is a leap year else false
      */
-    public boolean isLeapYear(int year){ //Hopefully this handles all edge cases
+    public boolean isLeapYear(int year){ // Hopefully this handles all edge cases
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
         return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
@@ -1057,8 +1057,8 @@ public class Controller{
             ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
             SpellTier tier = (SpellTier) cb.getValue();
             switch(tier.getTier()){
-                case -1 -> { //Unowned Spell
-                    NodeList knownSpells = Objects.requireNonNull(getNode("knownSpells")).getChildNodes(); //Removes base spells
+                case -1 -> { // Unowned Spell
+                    NodeList knownSpells = Objects.requireNonNull(getNode("knownSpells")).getChildNodes(); // Removes base spells
                     for(int i = 0; i < knownSpells.getLength(); i++){
                         if(knownSpells.item(i).getNodeType() != Node.ELEMENT_NODE){
                             continue;
@@ -1073,16 +1073,16 @@ public class Controller{
                     }
                     removeHigherTierSpells(tier, false);
                 }
-                case 0 -> { //Base Spell
+                case 0 -> { // Base Spell
                     addBaseSpell(tier);
                     removeHigherTierSpells(tier, true);
                 }
-                case 1, 2 -> { //Upgrades 1 and 2
+                case 1, 2 -> { // Upgrades 1 and 2
                     addBaseSpell(tier);
                     removeHigherTierSpells(tier, true);
                     addLowerTierSpells(tier);
                 }
-                case 3 -> { //Upgrade 3 (branching in the case of Elemental spell or 3A in the case of Steal spell)
+                case 3 -> { // Upgrade 3 (branching in the case of Elemental spell or 3A in the case of Steal spell)
                     addBaseSpell(tier);
                     if(tier.getType().equals("STEAL")){
                         removeHigherTierSpells(tier, true);
@@ -1090,7 +1090,7 @@ public class Controller{
                     addLowerTierSpells(tier);
                     changeWithinTierSpells(tier);
                 }
-                case 4 -> { //Upgrade 3B only used by Steal spell
+                case 4 -> { // Upgrade 3B only used by Steal spell
                     addBaseSpell(tier);
                     addLowerTierSpells(tier);
                 }
@@ -1404,7 +1404,7 @@ public class Controller{
             for(int i = 0; i < attributeNodes.getLength(); i++){
                 if(attributeNodes.item(i).getNodeType() != Node.ELEMENT_NODE){
                     continue;
-                } // Only care about Element Nodes
+                } //  Only care about Element Nodes
                 NodeList attributeElements = attributeNodes.item(i).getChildNodes();
                 String attributeName = attributeNodes.item(i).getNodeName();
                 switch(attributeName){
@@ -1412,10 +1412,10 @@ public class Controller{
                             "specialPerks", "statusEffects", "knownMoves", "equippedMoves" -> {
                         continue;
                     }
-                    case "slavery" -> { //Ends the loop early as all the needed data has been parsed //Adjust as needed
+                    case "slavery" -> { // Ends the loop early as all the needed data has been parsed // Adjust as needed
                         break MainLoop;
                     }
-                    case "characterRelationships" -> {  //These parts have an unknown number of elements which have identical tags
+                    case "characterRelationships" -> {  // These parts have an unknown number of elements which have identical tags
                         setFieldsRelationships(attributeNodes.item(i));
                         System.out.println("Character Relationship Fields Set");
                         continue;
@@ -1461,7 +1461,7 @@ public class Controller{
                         continue;
                     }
                 }
-                for(int j = 0; j < attributeElements.getLength(); j++){ //Every other node in the NodeList is a TextNode (so can be skipped)
+                for(int j = 0; j < attributeElements.getLength(); j++){ // Every other node in the NodeList is a TextNode (so can be skipped)
                     if(attributeElements.item(j).getNodeType() != Node.ELEMENT_NODE){
                         continue;
                     }
@@ -1508,7 +1508,7 @@ public class Controller{
                             }
                         }
                         System.out.println(elementName + " Modifier Fields Set");
-                    } //Modifiers Fields Setter
+                    } // Modifiers Fields Setter
                     for(int k = 0; k < attributes.getLength(); k++){
                         Node valueNode = attributes.item(k);
                         String value = valueNode.getTextContent();
@@ -1519,8 +1519,8 @@ public class Controller{
                             ta.setText(value);
                             continue;
                         }
-                        //Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
-                        try{ //Using TextFields for numerical and string values
+                        // Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
+                        try{ // Using TextFields for numerical and string values
                             TextField tf = (TextField) namespace.get(nodeId);
                             if(tf != null){
                                 tf.setText(value);
@@ -1549,14 +1549,14 @@ public class Controller{
                                 }
                             }
                         }
-                        catch(ClassCastException e){ //Using CheckBox for boolean values
+                        catch(ClassCastException e){ // Using CheckBox for boolean values
                             try{
                                 CheckBox cb = (CheckBox) namespace.get(nodeId);
                                 if(cb != null){
                                     cb.setSelected(Boolean.parseBoolean(value));
                                 }
                             }
-                            catch(ClassCastException e2){ //Using ComboBoxes for fixed values
+                            catch(ClassCastException e2){ // Using ComboBoxes for fixed values
                                 if(nodeId.contains("motherId") || nodeId.contains("fatherId")){
                                     @SuppressWarnings("unchecked")
                                     ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(nodeId);
@@ -1672,11 +1672,11 @@ public class Controller{
                 });
             }
             else{
-                btn.setDisable(true); //May be better to just delete these Node as the character no longer exists
+                btn.setDisable(true); // May be better to just delete these Node as the character no longer exists
             }
             HBox hBox = new HBox(10);
             hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
-                    new Label("Value: "), valueField, btn); //Id: <Id TextField> Name: <Name TextField> Value: <Value TextField> <GoTo Button>
+                    new Label("Value: "), valueField, btn); // Id: <Id TextField> Name: <Name TextField> Value: <Value TextField> <GoTo Button>
             relationBox.getChildren().add(hBox);
         }
     }
@@ -1695,7 +1695,7 @@ public class Controller{
             String fetishType = getAttributeValue(ownedFetishes.item(i), "type");
             if(fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
                     fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")){
-                continue; //Skip these values
+                continue; // Skip these values
             }
             String fetishId = fetishType + "$owned";
             CheckBox cb = (CheckBox) namespace.get(fetishId);
@@ -1886,7 +1886,7 @@ public class Controller{
             }
             InventoryItem inventoryItem = new InventoryItem(items.item(i));
             String itemId = inventoryItem.getId();
-            //String colorValue = inventoryItem.getColor();
+            // String colorValue = inventoryItem.getColor();
             TextField itemIdTf = new TextField(itemId);
             itemIdTf.setEditable(false);
             TextField nameTf = new TextField(inventoryItem.getName());
@@ -1903,7 +1903,7 @@ public class Controller{
             inventoryItem.addHBoxNodes(itemCount);
             hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Name: "), nameTf,
                     new Label("Count: "), itemCount, btn);
-            //Id: <Id TextField> Name: <Name TextField> Count: <Count TextField> <delete btn>
+            // Id: <Id TextField> Name: <Name TextField> Count: <Count TextField> <delete btn>
             vb.getChildren().add(hBox);
             inventoryItems.add(inventoryItem);
         }
@@ -1947,8 +1947,8 @@ public class Controller{
             inventoryClothing.addHBoxNodes(clothingCount, enchantmentKnown, isDirty);
             hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf,
                     new Label("Count: "), clothingCount, enchantmentKnown, isDirty, btn);
-            //Id: <Id TextField> Name: <Name TextField> Count: <Count TextField> <EnchantmentKnow CheckBox>
-            // <IsDirty CheckBox> <delete btn>
+            // Id: <Id TextField> Name: <Name TextField> Count: <Count TextField> <EnchantmentKnow CheckBox>
+            //  <IsDirty CheckBox> <delete btn>
             vb.getChildren().add(hBox);
             inventoryClothes.add(inventoryClothing);
         }
@@ -2005,8 +2005,8 @@ public class Controller{
             inventoryWeapon.addHBoxNodes(weaponCount, damageType);
             hBox.getChildren().addAll(new Label("Id: "), weaponIdTf, new Label("Name: "), nameTf,
                     new Label("Damage Type: "), damageType, new Label("Count: "), weaponCount, btn);
-            //Id: <Id TextField> Name: <Name TextField> Damage Type: <DamageType ComboBox> Count:
-            // <Count TextField> <delete btn>
+            // Id: <Id TextField> Name: <Name TextField> Damage Type: <DamageType ComboBox> Count:
+            //  <Count TextField> <delete btn>
             vb.getChildren().add(hBox);
             inventoryWeapons.add(inventoryWeapon);
         }
@@ -2164,7 +2164,7 @@ public class Controller{
             Node playerNode = saveFile.getElementsByTagName("playerCharacter").item(0);
             Node characterNode = playerNode.getChildNodes().item(1);
             Node coreNode = characterNode.getChildNodes().item(3);
-            return coreNode.getChildNodes().item(1); //playerNode > characterNode > coreNode > idNode
+            return coreNode.getChildNodes().item(1); // playerNode > characterNode > coreNode > idNode
         }
         else{
             NodeList nodes = saveFile.getElementsByTagName("NPC");
@@ -2173,7 +2173,7 @@ public class Controller{
                 NamedNodeMap attributes = idNode.getAttributes();
                 Node value = attributes.getNamedItem("value");
                 if(value != null && value.getTextContent().equals(id)){
-                    return idNode; //npcNode > characterNode > coreNode > idNode
+                    return idNode; // npcNode > characterNode > coreNode > idNode
                 }
             }
             return null;
@@ -2189,12 +2189,20 @@ public class Controller{
         node.getParentNode().removeChild(node);
     }
 
+    private Element getElementByTagName(Element element, String tagName, int index){
+        return (Element) element.getElementsByTagName(tagName).item(index);
+    }
+
+    private Element getElementByTagName(Element element, String tagName){
+        return (Element) element.getElementsByTagName(tagName).item(0);
+    }
+
     /**
      * Deletes selected character from the save file and selects the previous character in the npc list
      */
     @FXML
     private void deleteCharacter(){
-        Node npcNode = characterNode.getParentNode(); //characterNode > npcNode
+        Node npcNode = characterNode.getParentNode(); // characterNode > npcNode
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> charSelect = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         ObservableList<NpcCharacter> charList = charSelect.getItems();
@@ -2216,17 +2224,17 @@ public class Controller{
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         ObservableList<NpcCharacter> npcObservableList = cb.getItems();
         for(int i = 0; i < npcList.getLength(); i++){
-            Element character = (Element) ((Element) npcList.item(i)).getElementsByTagName("character").item(0);
+            Element character = getElementByTagName((Element) npcList.item(i), "character"); // (Element) ((Element) npcList.item(i)).getElementsByTagName("character").item(0);
             Element core = (Element) character.getElementsByTagName("core").item(0);
             Element pathname = (Element) core.getElementsByTagName("pathName").item(0);
             Element locationInfo = (Element) character.getElementsByTagName("locationInformation").item(0);
             Element worldLoc = (Element) locationInfo.getElementsByTagName("worldLocation").item(0);
-            if(pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")){ //Npc is an Offspring
-                if(worldLoc.getAttribute("value").equals("EMPTY")){ //Npc is not on the map
+            if(pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")){ // Npc is an Offspring
+                if(worldLoc.getAttribute("value").equals("EMPTY")){ // Npc is not on the map
                     String npcId = ((Element) core.getElementsByTagName("id").item(0)).getAttribute("value");
                     System.out.println("Deleted " + npcId);
                     NpcCharacter npc = matchNpc(npcObservableList, npcId);
-                    if(npc == cb.getValue()){ //If character selector on an offspring that will be deleted, switch to the previous character
+                    if(npc == cb.getValue()){ // If character selector on an offspring that will be deleted, switch to the previous character
                         int index = npcObservableList.indexOf(npc);
                         cb.setValue(npcObservableList.get(index - 1));
                     }
@@ -2350,7 +2358,7 @@ public class Controller{
         TransformerFactory tff = TransformerFactory.newInstance();
         try{
             Transformer tf = tff.newTransformer();
-            //File formatting
+            // File formatting
             tf.setOutputProperty(OutputKeys.INDENT, "yes");
             saveFile.normalize();
             XPath xPath = XPathFactory.newInstance().newXPath();
@@ -2360,7 +2368,7 @@ public class Controller{
                 Node node = nodeList.item(i);
                 removeNode(node);
             }
-            //Saves xml to file
+            // Saves xml to file
             DOMSource source = new DOMSource(saveFile);
             StreamResult result = new StreamResult(f);
             tf.transform(source, result);
@@ -2441,7 +2449,7 @@ public class Controller{
          */
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-            if(!newValue && fieldsSet){  // check if focus gained or lost and that the fields initially have the proper value
+            if(!newValue && fieldsSet){  // Check if focus gained or lost and that the fields initially have the proper value
                 textInputControl.setText(getFormattedText(textInputControl.getText()));
                 setLabel();
             }
@@ -2492,7 +2500,7 @@ public class Controller{
                 case INT -> {
                     try{
                         int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; //Removes leading zeroes
+                        newValue = "" + nv; // Removes leading zeroes
                         if(positiveOnly && nv < 0){
                             return oldValue;
                         }
@@ -2527,7 +2535,7 @@ public class Controller{
                 case DOUBLE -> {
                     try{
                         double nv = Double.parseDouble(newValue);
-                        newValue = "" + nv; //Removes leading zeroes
+                        newValue = "" + nv; // Removes leading zeroes
                         if(positiveOnly && nv < 0){
                             return oldValue;
                         }
@@ -2551,7 +2559,7 @@ public class Controller{
                 case HAIR -> {
                     try{
                         int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; //Removes leading zeroes
+                        newValue = "" + nv; // Removes leading zeroes
                         if(nv < 0){
                             return oldValue;
                         }
@@ -2614,7 +2622,7 @@ public class Controller{
                         int year = Integer.parseInt(yearField.getText());
                         int monthLimit = setMonthLimit(cb.getValue(), year);
                         int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; //Removes leading zeroes
+                        newValue = "" + nv; // Removes leading zeroes
                         if(nv < 1){
                             return oldValue;
                         }
@@ -2674,20 +2682,17 @@ public class Controller{
                     return attributeNode.getAttributeNode(id[id.length - 1]);
                 }
                 case "characterInventory" -> {
+                    int index = Integer.parseInt(id[3]);
                     switch(id[1]){
                         case "itemsInInventory" -> {
-                            //id[3] should be a number corresponding to ArrayList index and id[2] should be attribute Node name
-                            return inventoryItems.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
+                            // id[3] should be a number corresponding to ArrayList index and id[2] should be attribute Node name
+                            return inventoryItems.get(index).getNode().getAttributeNode(id[2]);
                         }
                         case "clothingInInventory" -> {
-                            return inventoryClothes.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
+                            return inventoryClothes.get(index).getNode().getAttributeNode(id[2]);
                         }
                         case "weaponsInInventory" -> {
-                            return inventoryWeapons.get(Integer.parseInt(id[3])).getNode().getAttributeNode(id[2]);
-                            /*Node inventoryTypeNode = attr.getElementsByTagName(id[1]).item(0);
-                            Node inventorySlotNode = getChildNodeByAttributeValue(inventoryTypeNode.getChildNodes(), "id", id[3], "colour", id[4]);
-                            assert inventorySlotNode != null;
-                            return inventorySlotNode.getAttributes().getNamedItem(id[2]);*/
+                            return inventoryWeapons.get(index).getNode().getAttributeNode(id[2]);
                         }
                     }
                 }
