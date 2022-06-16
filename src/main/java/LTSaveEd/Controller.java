@@ -661,26 +661,26 @@ public class Controller{
         Element attr = (Element) attributeNodes;
         if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
             if(id[1].equals("owned")){
-                NodeList fetishes = attr.getElementsByTagName("fetishes").item(0).getChildNodes();
+                NodeList fetishes = getElementByTagName(attr, "fetishes").getChildNodes();
                 return getChildNodeByAttributeValue(fetishes, "type", id[0]);
             }
             else if(id[1].equals("desire")){
-                NodeList fetishes = attr.getElementsByTagName("fetishDesire").item(0).getChildNodes();
+                NodeList fetishes = getElementByTagName(attr, "fetishDesire").getChildNodes();
                 Node fetishEntry = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
                 return fetishEntry != null ? getAttributeNode(fetishEntry, "desire") : null;
             }
         }
         else if(id[0].equals("spells")){ // Same with spell ids
-            NodeList spellUpgrades = attr.getElementsByTagName("spellUpgrades").item(0).getChildNodes();
+            NodeList spellUpgrades = getElementByTagName(attr, "spellUpgrades").getChildNodes();
             return getChildNodeByAttributeValue(spellUpgrades, "type", id[1]);
         }
         else if(id[0].equals("coreInfo")){
-            Element coreInfo = (Element) saveFile.getElementsByTagName(id[0]).item(0);
-            Element date = (Element) coreInfo.getElementsByTagName(id[1]).item(0);
+            Element coreInfo = getElementByTagName(saveFile, id[0]);
+            Element date = getElementByTagName(coreInfo, id[1]);
             return date.getAttributeNode(id[2]);
         }
         for(int i = 0; i < id.length - 1; i++){
-            attr = (Element) attr.getElementsByTagName(id[i]).item(0);
+            attr = getElementByTagName(attr, id[i]);
         }
         return getAttributeNode(attr, id[id.length - 1]);
     }
@@ -696,7 +696,7 @@ public class Controller{
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
         for(int i = 0; i < id.length - 1; i++){
-            attr = (Element) attr.getElementsByTagName(id[i]).item(0);
+            attr = getElementByTagName(attr, id[i]);
         }
         return getAttributeNode(attr, id[id.length - 1]);
     }
@@ -735,17 +735,17 @@ public class Controller{
         Element attr = (Element) attributeNodes;
         if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
             if(id[1].equals("owned")){
-                return attr.getElementsByTagName("fetishes").item(0);
+                return getElementByTagName(attr, "fetishes");
             }
             else if(id[1].equals("desire")){
-                return attr.getElementsByTagName("fetishDesire").item(0);
+                return getElementByTagName(attr, "fetishDesire");
             }
         }
         else if(id[0].equals("spells")){ // Same with spell ids
-            return attr.getElementsByTagName("spellUpgrades").item(0);
+            return getElementByTagName(attr, "spellUpgrades");
         }
         for(int i = 0; i < id.length - 1; i++){
-            attr = (Element) attr.getElementsByTagName(id[i]).item(0);
+            attr = getElementByTagName(attr, id[i]);
         }
         return attr;
     }
@@ -761,7 +761,7 @@ public class Controller{
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
         for(int i = 0; i < id.length - 1; i++){
-            attr = (Element) attr.getElementsByTagName(id[i]).item(0);
+            attr = getElementByTagName(attr, id[i]);
         }
         return attr;
     }
@@ -807,7 +807,7 @@ public class Controller{
         Element attr = (Element) attributeNodes;
         for(String arg : args){
             if(arg.equals(args[args.length - 1])){
-                Element tempAttr = (Element) attr.getElementsByTagName(arg).item(0);
+                Element tempAttr = getElementByTagName(attr, arg);
                 if(tempAttr == null){
                     return attr.getAttributeNode(arg);
                 }
@@ -816,7 +816,7 @@ public class Controller{
                 }
             }
             else{
-                attr = (Element) attr.getElementsByTagName(arg).item(0);
+                attr = getElementByTagName(attr, arg);
             }
         }
         return null;
@@ -987,10 +987,10 @@ public class Controller{
      * @return Desired Node if found else null
      */
     private Node getWorldNode(String... args){
-        Element node = (Element) saveFile.getElementsByTagName(args[0]).item(0);
+        Element node = getElementByTagName(saveFile, args[0]);
         for(int i = 1; i < args.length; i++){
             if(i == args.length - 1){
-                Element tempNode = (Element) node.getElementsByTagName(args[i]).item(0);
+                Element tempNode = getElementByTagName(node, args[i]);
                 if(tempNode == null){
                     return node.getAttributeNode(args[i]);
                 }
@@ -999,7 +999,7 @@ public class Controller{
                 }
             }
             else{
-                node = (Element) node.getElementsByTagName(args[i]).item(0);
+                node = getElementByTagName(node, args[i]);
             }
         }
         return null;
@@ -1591,8 +1591,8 @@ public class Controller{
      * Sets the value of fields relating to world data (i.e. data that is world/save specific, not character specific)
      */
     private void setWorldFields(){
-        Element coreInfo = (Element) saveFile.getElementsByTagName("coreInfo").item(0);
-        Node date = coreInfo.getElementsByTagName("date").item(0);
+        Element coreInfo = getElementByTagName(saveFile, "coreInfo");
+        Node date = getElementByTagName(coreInfo, "date");
         NamedNodeMap dateAttr = date.getAttributes();
         for(int i = 0; i < dateAttr.getLength(); i++){
             Node attr = dateAttr.item(i);
@@ -1613,7 +1613,7 @@ public class Controller{
                 }
             }
         }
-        Node dialogueFlags = saveFile.getElementsByTagName("dialogueFlags").item(0);
+        Node dialogueFlags = getElementByTagName(saveFile, "dialogueFlags");
         NodeList flags = dialogueFlags.getChildNodes();
         for(int i = 0; i < flags.getLength(); i++){
             if(flags.item(i).getNodeType() != Node.ELEMENT_NODE){
@@ -2050,7 +2050,7 @@ public class Controller{
     }
 
     private boolean matchItemByColors(Node itemNode, String... colors){
-        NodeList colorList = ((Element) itemNode).getElementsByTagName("colours").item(0).getChildNodes();
+        NodeList colorList = getElementByTagName((Element) itemNode, "colours").getChildNodes();
         int idx = 0;
         for(int i = 0; i < colorList.getLength(); i++){
             Node color = colorList.item(i);
@@ -2064,7 +2064,7 @@ public class Controller{
     }
 
     private String getItemColors(Node itemNode){
-        NodeList colorList = ((Element) itemNode).getElementsByTagName("colours").item(0).getChildNodes();
+        NodeList colorList = getElementByTagName((Element) itemNode, "colours").getChildNodes();
         StringBuilder colors = new StringBuilder();
         for(int i = 0; i < colorList.getLength(); i++){
             Node color = colorList.item(i);
@@ -2161,7 +2161,7 @@ public class Controller{
      */
     private Node getNodeByIdValue(String id){
         if(id.equals("PlayerCharacter")){
-            Node playerNode = saveFile.getElementsByTagName("playerCharacter").item(0);
+            Node playerNode = getElementByTagName(saveFile, "playerCharacter");
             Node characterNode = playerNode.getChildNodes().item(1);
             Node coreNode = characterNode.getChildNodes().item(3);
             return coreNode.getChildNodes().item(1); // playerNode > characterNode > coreNode > idNode
@@ -2194,7 +2194,11 @@ public class Controller{
     }
 
     private Element getElementByTagName(Element element, String tagName){
-        return (Element) element.getElementsByTagName(tagName).item(0);
+        return getElementByTagName(element, tagName);
+    }
+
+    private Element getElementByTagName(Document document, String tagName){
+        return getElementByTagName(document, tagName);
     }
 
     /**
@@ -2224,14 +2228,14 @@ public class Controller{
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         ObservableList<NpcCharacter> npcObservableList = cb.getItems();
         for(int i = 0; i < npcList.getLength(); i++){
-            Element character = getElementByTagName((Element) npcList.item(i), "character"); // (Element) ((Element) npcList.item(i)).getElementsByTagName("character").item(0);
-            Element core = (Element) character.getElementsByTagName("core").item(0);
-            Element pathname = (Element) core.getElementsByTagName("pathName").item(0);
-            Element locationInfo = (Element) character.getElementsByTagName("locationInformation").item(0);
-            Element worldLoc = (Element) locationInfo.getElementsByTagName("worldLocation").item(0);
+            Element character = getElementByTagName((Element) npcList.item(i), "character");
+            Element core = getElementByTagName(character, "core");
+            Element pathname = getElementByTagName(core, "pathName");
+            Element locationInfo = getElementByTagName(character, "locationInformation");
+            Element worldLoc = getElementByTagName(locationInfo, "worldLocation");
             if(pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")){ // Npc is an Offspring
                 if(worldLoc.getAttribute("value").equals("EMPTY")){ // Npc is not on the map
-                    String npcId = ((Element) core.getElementsByTagName("id").item(0)).getAttribute("value");
+                    String npcId = ((Element) getElementByTagName(core, "id")).getAttribute("value");
                     System.out.println("Deleted " + npcId);
                     NpcCharacter npc = matchNpc(npcObservableList, npcId);
                     if(npc == cb.getValue()){ // If character selector on an offspring that will be deleted, switch to the previous character
@@ -2251,13 +2255,13 @@ public class Controller{
      */
     @FXML
     private void revealMap(){
-        Node mapsNode = saveFile.getElementsByTagName("maps").item(0);
+        Node mapsNode = getElementByTagName(saveFile, "maps");
         NodeList worlds = mapsNode.getChildNodes();
         for(int i = 0; i < worlds.getLength(); i++){
             if(worlds.item(i).getNodeType() != Node.ELEMENT_NODE){
                 continue;
             }
-            Node grid = ((Element) worlds.item(i)).getElementsByTagName("grid").item(0);
+            Node grid = getElementByTagName((Element) worlds.item(i), "grid");
             NodeList cells = grid.getChildNodes();
             for(int j = 0; j < cells.getLength(); j++){
                 if(cells.item(j).getNodeType() != Node.ELEMENT_NODE){
@@ -2486,7 +2490,7 @@ public class Controller{
             Node value = getValueNode();
             if(value == null && fetishExp){
                 NodeList attributeNodes = getAttributeNodes();
-                Node fetishExp = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0);
+                Node fetishExp = getElementByTagName((Element) attributeNodes, "fetishExperience");
                 Element fetishEntry = saveFile.createElement("entry");
                 fetishEntry.setAttribute("experience", "0");
                 fetishEntry.setAttribute("fetish", fieldId.split("\\$")[0]);
@@ -2651,11 +2655,11 @@ public class Controller{
             String[] id = fieldId.split("\\$");
             NodeList attributeNodes = getAttributeNodes();
             if(id[0].startsWith("FETISH_")){
-                NodeList fetishes = ((Element) attributeNodes).getElementsByTagName("fetishExperience").item(0).getChildNodes();
+                NodeList fetishes = getElementByTagName((Element) attributeNodes, "fetishExperience").getChildNodes();
                 Node childNode = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
                 return childNode != null ? getAttributeNode(childNode, "experience") : null;
             }
-            Element attr = (Element) ((Element) attributeNodes).getElementsByTagName(id[0]).item(0);
+            Element attr = getElementByTagName((Element) attributeNodes, id[0]);
             switch(id[0]){
                 case "characterRelationships" -> {
                     return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
@@ -2675,9 +2679,9 @@ public class Controller{
                     return attributeNode.getAttributeNode("value");
                 }
                 case "coreInfo", "dialogueFlags" -> {
-                    Element attributeNode = (Element) saveFile.getElementsByTagName(id[0]).item(0);
+                    Element attributeNode = getElementByTagName(saveFile, id[0]);
                     for(int i = 1; i < id.length - 1; i++){
-                        attributeNode = (Element) attributeNode.getElementsByTagName(id[i]).item(0);
+                        attributeNode = getElementByTagName(attributeNode, id[i]);
                     }
                     return attributeNode.getAttributeNode(id[id.length - 1]);
                 }
@@ -2697,7 +2701,7 @@ public class Controller{
                     }
                 }
             }
-            attr = (Element) attr.getElementsByTagName(id[1]).item(0);
+            attr = getElementByTagName(attr, id[1]);
             return getAttributeNode(attr, id[2]);
         }
 
