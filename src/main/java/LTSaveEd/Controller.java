@@ -2194,11 +2194,11 @@ public class Controller{
     }
 
     private Element getElementByTagName(Element element, String tagName){
-        return getElementByTagName(element, tagName);
+        return (Element) element.getElementsByTagName(tagName).item(0);
     }
 
     private Element getElementByTagName(Document document, String tagName){
-        return getElementByTagName(document, tagName);
+        return (Element) document.getElementsByTagName(tagName).item(0);
     }
 
     /**
