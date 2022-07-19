@@ -641,7 +641,6 @@ public class Controller{
      */
     private void setCharacterNode(String charId){
         Node idNode = getNodeByIdValue(charId);
-        assert idNode != null;
         characterNode = idNode.getParentNode().getParentNode();
         Node perksNode = getNode("perks");
         PerkNode.setPerksNode(perksNode);
@@ -667,7 +666,7 @@ public class Controller{
             else if(id[1].equals("desire")){
                 NodeList fetishes = getElementByTagName(attr, "fetishDesire").getChildNodes();
                 Node fetishEntry = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
-                return fetishEntry != null ? getAttributeNode(fetishEntry, "desire") : null;
+                return getAttributeNode(fetishEntry, "desire");
             }
         }
         else if(id[0].equals("spells")){ // Same with spell ids
@@ -844,7 +843,6 @@ public class Controller{
                 Node value = getValueNode(event);
                 if(fxId.startsWith("FETISH_")){
                     if(!cb.isSelected()){
-                        assert value != null;
                         removeNode(value);
                         System.out.println("Removed fetish");
                     }
@@ -865,14 +863,12 @@ public class Controller{
                         System.out.println("Added spell upgrade");
                     }
                     else{
-                        assert value != null;
                         removeNode(value);
                         System.out.println("Removed spell upgrade");
                     }
                 }
                 else{
                     try{
-                        assert value != null;
                         value.setTextContent("" + cb.isSelected());
                     }
                     catch(NullPointerException e){ // Modifier attributes are deleted when false by the game
@@ -975,7 +971,6 @@ public class Controller{
         if(dayValue > monthLimit){
             dayField.setText("" + monthLimit);
             Node dayNode = getWorldNode(dayId.split("\\$"));
-            assert dayNode != null;
             dayNode.setTextContent("" + monthLimit);
         }
     }
@@ -1058,7 +1053,7 @@ public class Controller{
             SpellTier tier = (SpellTier) cb.getValue();
             switch(tier.getTier()){
                 case -1 -> { // Unowned Spell
-                    NodeList knownSpells = Objects.requireNonNull(getNode("knownSpells")).getChildNodes(); // Removes base spells
+                    NodeList knownSpells = getNode("knownSpells").getChildNodes(); // Removes base spells
                     for(int i = 0; i < knownSpells.getLength(); i++){
                         if(knownSpells.item(i).getNodeType() != Node.ELEMENT_NODE){
                             continue;
@@ -1130,7 +1125,6 @@ public class Controller{
             @SuppressWarnings("unchecked")
             String currentCharacterId = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getValue().getId();
             Node valueNode = getNode(fxId.split("\\$"));
-            assert valueNode != null;
             if(!cb.getValue().getId().equals(currentCharacterId)){
                 valueNode.setTextContent(cb.getValue().getId());
             }
@@ -1184,7 +1178,6 @@ public class Controller{
      */
     private void addBaseSpell(SpellTier tier){
         Node knownSpellsNode = getNode("knownSpells");
-        assert knownSpellsNode != null;
         NodeList knownSpells = knownSpellsNode.getChildNodes();
         boolean exists = false;
         for(int i = 0; i < knownSpells.getLength(); i++){
@@ -1211,7 +1204,7 @@ public class Controller{
      * @param owned Removes all spell upgrades if false (i.e. will remove SOOTHING_WATERS_(1/2)_CLEAN as well)
      */
     private void removeHigherTierSpells(SpellTier tier, boolean owned){
-        NodeList spellUpgrades = Objects.requireNonNull(getNode("spellUpgrades")).getChildNodes();
+        NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
         for(int i = 0; i < spellUpgrades.getLength(); i++){
             if(spellUpgrades.item(i).getNodeType() != Node.ELEMENT_NODE){
                 continue;
@@ -1241,7 +1234,6 @@ public class Controller{
      */
     private void addLowerTierSpells(SpellTier tier){
         Node spellUpgradesNode = getNode("spellUpgrades");
-        assert spellUpgradesNode != null;
         NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
         int count = 0;
         for(int i = 0; i < spellUpgrades.getLength(); i++){
@@ -1284,7 +1276,6 @@ public class Controller{
     private void changeWithinTierSpells(SpellTier tier){
         if(!tier.getType().equals("STEAL")){
             Node spellUpgradesNode = getNode("spellUpgrades");
-            assert spellUpgradesNode != null;
             NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
             String complementTier = getComplementTier(tier);
             for(int i = 0; i < spellUpgrades.getLength(); i++){
@@ -2492,7 +2483,6 @@ public class Controller{
                 value = getAttributeNode(fetishEntry, "experience");
                 System.out.println("Created new element");
             }
-            assert value != null;
             String oldValue = value.getTextContent();
             switch(tfType){
                 case INT -> {
@@ -2657,7 +2647,7 @@ public class Controller{
                     return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
                 }
                 case "spellUpgradePoints" -> {
-                    return Objects.requireNonNull(getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1])).getAttributes().getNamedItem("points");
+                    return getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1]).getAttributes().getNamedItem("points");
                 }
                 case "attributes" -> {
                     Element attributeNode = (Element) getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1]);
