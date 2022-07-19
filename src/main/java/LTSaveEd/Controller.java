@@ -793,7 +793,7 @@ public class Controller{
                 return children.item(i);
             }
         }
-        return null;
+        throw new NoSuchElementException("Child node with corresponding attribute not found");
     }
 
     /**
@@ -819,7 +819,7 @@ public class Controller{
                 attr = getElementByTagName(attr, arg);
             }
         }
-        return null;
+        throw new NoSuchElementException("Node not found by given path");
     }
 
     /**
@@ -1002,7 +1002,7 @@ public class Controller{
                 node = getElementByTagName(node, args[i]);
             }
         }
-        return null;
+        throw new NoSuchElementException("World node not found by given path");
     }
 
     /**
@@ -1175,7 +1175,7 @@ public class Controller{
                 return perkNode;
             }
         }
-        return null;
+        throw new NoSuchElementException("Perk not found with corresponding row and value");
     }
 
     /**
@@ -2091,7 +2091,7 @@ public class Controller{
                 return npc.getName();
             }
         }
-        return null;
+        throw new NoSuchElementException("NPC with given ID not found");
     }
 
     /**
@@ -2107,7 +2107,7 @@ public class Controller{
                 return attribute;
             }
         }
-        return null;
+        throw new NoSuchElementException("Attribute with given value not found");
     }
 
     /**
@@ -2123,7 +2123,7 @@ public class Controller{
                 return npc;
             }
         }
-        return null;
+        throw new NoSuchElementException("NPC with given value not found");
     }
 
     /**
@@ -2176,7 +2176,7 @@ public class Controller{
                     return idNode; // npcNode > characterNode > coreNode > idNode
                 }
             }
-            return null;
+            throw new NoSuchElementException("Node with given ID not found");
         }
     }
 
@@ -2314,8 +2314,8 @@ public class Controller{
         }
         catch(IOException e){
             e.printStackTrace();
+            throw new RuntimeException("IOException"); // Just didn't want to mark the method with the exception
         }
-        return null;
     }
 
     /**
@@ -2640,9 +2640,7 @@ public class Controller{
                         return oldValue;
                     }
                 }
-                default -> {
-                    return null;
-                }
+                default -> throw new IllegalArgumentException("Invalid TextFieldType enum");
             }
         }
 
