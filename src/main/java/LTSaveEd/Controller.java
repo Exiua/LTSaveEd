@@ -1154,7 +1154,6 @@ public class Controller{
             String[] id = fxId.split("\\$");
             CheckBox cb = (CheckBox) namespace.get(fxId);
             PerkNode perk = matchPerk(perks, id[1], id[2]);
-            assert perk != null;
             System.out.println(perk);
             perk.setActive(cb.isSelected());
         }
@@ -1659,21 +1658,16 @@ public class Controller{
             Button btn = new Button("Goto Character");
             btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
             NpcCharacter npc = matchNpc(npcChars, charId);
-            if(npc != null){
-                btn.setOnAction(event -> {
-                    String[] id = getId(event).split("\\$");
-                    String characterId = id[1];
-                    System.out.println(characterId);
-                    if(characterId.charAt(0) == '_'){
-                        characterId = characterId.replaceFirst("_", "-");
-                    }
-                    characterId = characterId.replace("_", ",");
-                    setCharacter(characterId);
-                });
-            }
-            else{
-                btn.setDisable(true); // May be better to just delete these Node as the character no longer exists
-            }
+            btn.setOnAction(event -> {
+                String[] id = getId(event).split("\\$");
+                String characterId = id[1];
+                System.out.println(characterId);
+                if(characterId.charAt(0) == '_'){
+                    characterId = characterId.replaceFirst("_", "-");
+                }
+                characterId = characterId.replace("_", ",");
+                setCharacter(characterId);
+            });
             HBox hBox = new HBox(10);
             hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
                     new Label("Value: "), valueField, btn); // Id: <Id TextField> Name: <Name TextField> Value: <Value TextField> <GoTo Button>
@@ -2235,7 +2229,7 @@ public class Controller{
             Element worldLoc = getElementByTagName(locationInfo, "worldLocation");
             if(pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")){ // Npc is an Offspring
                 if(worldLoc.getAttribute("value").equals("EMPTY")){ // Npc is not on the map
-                    String npcId = ((Element) getElementByTagName(core, "id")).getAttribute("value");
+                    String npcId = getElementByTagName(core, "id").getAttribute("value");
                     System.out.println("Deleted " + npcId);
                     NpcCharacter npc = matchNpc(npcObservableList, npcId);
                     if(npc == cb.getValue()){ // If character selector on an offspring that will be deleted, switch to the previous character
