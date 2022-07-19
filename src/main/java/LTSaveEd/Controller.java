@@ -470,7 +470,7 @@ public class Controller{
             ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(ComboBoxIds[i]);
             cb.setItems(comboBoxValues.get(i));
             if(comboBoxValues.get(i) == desireTypes){
-                cb.setValue(cb.getItems().get(2));
+                cb.setValue(cb.getItems().get(2)); // Sets to Neutral as desireTypes defaults to Neutral in-game
             }
             else{
                 cb.setValue(cb.getItems().get(0));
