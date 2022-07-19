@@ -22,6 +22,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -443,7 +445,7 @@ public class Controller{
      *
      * @param namespace Namespace of the fxml file
      */
-    public void setNamespace(ObservableMap<String, Object> namespace){
+    public void setNamespace(@NotNull ObservableMap<String, Object> namespace){
         this.namespace = namespace;
         PerkNode.setNamespace(namespace);
         PersonalityTrait.setNamespace(namespace);
@@ -478,7 +480,7 @@ public class Controller{
 
             cb.setConverter(new StringConverter<>(){
                 @Override
-                public String toString(Attribute attribute){
+                public String toString(@NotNull Attribute attribute){
                     return attribute.getName();
                 } // TODO: Fix this method throwing exceptions whenever ComboBox values are updated
                 /* This exception keeps getting thrown when ComboBox items are changed; Ignore as it doesn't break the program
@@ -488,7 +490,7 @@ public class Controller{
                  */
 
                 @Override
-                public Attribute fromString(String s){
+                public @Nullable Attribute fromString(String s){
                     return null;
                 }
             });
@@ -505,7 +507,7 @@ public class Controller{
      * @throws IOException If config.ini cannot be properly written to
      */
     @FXML
-    private void loadFile(ActionEvent event) throws IOException{
+    private void loadFile(@NotNull ActionEvent event) throws IOException{
         event.consume();
         // Get file
         FileChooser fc = new FileChooser();
@@ -571,12 +573,12 @@ public class Controller{
         for(ComboBox<NpcCharacter> comboBox : comboBoxes){
             comboBox.setConverter(new StringConverter<>(){
                 @Override
-                public String toString(NpcCharacter npcCharacter){
+                public String toString(@NotNull NpcCharacter npcCharacter){
                     return npcCharacter.getName();
                 }
 
                 @Override
-                public NpcCharacter fromString(String s){
+                public @Nullable NpcCharacter fromString(String s){
                     return null;
                 }
             });
@@ -589,7 +591,7 @@ public class Controller{
      * @param event ActionEvent from the character selector ComboBox
      */
     @FXML
-    private void selectCharacter(ActionEvent event){
+    private void selectCharacter(@NotNull ActionEvent event){
         event.consume();
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
@@ -621,7 +623,7 @@ public class Controller{
      * @param event ActionEvent from the object that was interacted with
      * @return String of the id of the object that was interacted with
      */
-    private String getId(ActionEvent event){
+    private String getId(@NotNull ActionEvent event){
         return ((javafx.scene.Node) event.getSource()).getId();
     }
 
@@ -630,7 +632,7 @@ public class Controller{
      *
      * @return NodeList of immediate child Nodes (eg. core, body, attributes, etc.)
      */
-    private NodeList getAttributeNodes(){
+    private @NotNull NodeList getAttributeNodes(){
         return characterNode.getChildNodes();
     }
 
@@ -639,7 +641,7 @@ public class Controller{
      *
      * @param charId Character id of the character being edited
      */
-    private void setCharacterNode(String charId){
+    private void setCharacterNode(@NotNull String charId){
         Node idNode = getNodeByIdValue(charId);
         characterNode = idNode.getParentNode().getParentNode();
         Node perksNode = getNode("perks");
@@ -654,7 +656,7 @@ public class Controller{
      * @param event ActionEvent of the element that was interacted with
      * @return Node containing the attribute value
      */
-    private Node getValueNode(ActionEvent event){
+    private Node getValueNode(@NotNull ActionEvent event){
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
@@ -690,7 +692,7 @@ public class Controller{
      * @param objId Id of the element that was interacted with
      * @return Node containing the attribute value
      */
-    private Node getValueNode(String objId){
+    private Node getValueNode(@NotNull String objId){
         String[] id = objId.split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
@@ -707,7 +709,7 @@ public class Controller{
      * @param attr Attribute to get
      * @return String containing the attribute value
      */
-    private String getAttributeValue(Node node, String attr){
+    private String getAttributeValue(@NotNull Node node, String attr){
         return node.getAttributes().getNamedItem(attr).getTextContent();
     }
 
@@ -718,7 +720,7 @@ public class Controller{
      * @param attr Attribute to get
      * @return Node containing the attribute Node
      */
-    private Node getAttributeNode(Node node, String attr){
+    private Node getAttributeNode(@NotNull Node node, String attr){
         return node.getAttributes().getNamedItem(attr);
     }
 
@@ -728,7 +730,7 @@ public class Controller{
      * @param event ActionEvent of the element that was interacted with
      * @return Node that is the parent of the Node with the specified attribute
      */
-    private Node getValueNodeParent(ActionEvent event){
+    private Node getValueNodeParent(@NotNull ActionEvent event){
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
@@ -755,7 +757,7 @@ public class Controller{
      * @param objId Id of the element that was interacted with
      * @return Node that is the parent of the Node with the specified attribute
      */
-    private Node getValueNodeParent(String objId){
+    private Node getValueNodeParent(@NotNull String objId){
         String[] id = objId.split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
@@ -770,10 +772,10 @@ public class Controller{
      *
      * @param children NodeList to check
      * @param args     Attribute/Value pairs to check for (must have Attribute, followed by value to match for each pair)
-     * @return Desired Node if found else null
+     * @return Desired Node matching given attribute/value pairs
      * @throws IllegalArgumentException if number of String arguments is not a multiple of 2
      */
-    private Node getChildNodeByAttributeValue(NodeList children, String... args){
+    private Node getChildNodeByAttributeValue(@NotNull NodeList children, String @NotNull ... args){
         if(args.length % 2 != 0){
             throw new IllegalArgumentException();
         }
@@ -801,7 +803,7 @@ public class Controller{
      * @param args String array to traverse in order to get to the desired Node
      * @return Desired Node if found else null
      */
-    private Node getNode(String... args){
+    private Node getNode(String @NotNull ... args){
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
         for(String arg : args){
@@ -827,7 +829,7 @@ public class Controller{
      * @param event ActionEvent from the CheckBox that was changed
      */
     @FXML
-    private void updateXmlBoolean(ActionEvent event){
+    private void updateXmlBoolean(@NotNull ActionEvent event){
         if(fieldsSet){
             String fxId = getId(event);
             if(fxId.contains("InInventory")){
@@ -890,7 +892,7 @@ public class Controller{
      *
      * @param id Id of the CheckBox set to true
      */
-    private void checkboxFlaredTaperedToggle(String id){
+    private void checkboxFlaredTaperedToggle(@NotNull String id){
         boolean flared = id.split("\\$")[3].equals("FLARED");
         String targetId;
         CheckBox target;
@@ -919,7 +921,7 @@ public class Controller{
      * @param event ActionEvent from the ComboBox that was changed
      */
     @FXML
-    private void updateXmlComboBox(ActionEvent event){
+    private void updateXmlComboBox(@NotNull ActionEvent event){
         if(fieldsSet){
             String fxId = getId(event);
             if(fxId.contains("InInventory")){
@@ -960,7 +962,7 @@ public class Controller{
      * @param fxId  Id of the ComboBox
      * @param month Month Attribute to check against
      */
-    private void updateDayTextField(String fxId, Attribute month){
+    private void updateDayTextField(@NotNull String fxId, @NotNull Attribute month){
         boolean coreInfo = fxId.startsWith("coreInfo");
         String dayId = coreInfo ? "coreInfo$date$dayOfMonth" : "core$dayOfBirth$value";
         TextField dayField = (TextField) namespace.get(dayId);
@@ -979,9 +981,9 @@ public class Controller{
      * Gets a specific Node by supplied all nodeNames from game Node to desired Node
      *
      * @param args String array of nodeNames to traverse in order to get to the desired Node
-     * @return Desired Node if found else null
+     * @return Desired Node matching given Node path
      */
-    private Node getWorldNode(String... args){
+    private Node getWorldNode(String @NotNull ... args){
         Element node = getElementByTagName(saveFile, args[0]);
         for(int i = 1; i < args.length; i++){
             if(i == args.length - 1){
@@ -1007,7 +1009,7 @@ public class Controller{
      * @param year  Year integer to check for leap year
      * @return int representing the max days based on the month
      */
-    private int setMonthLimit(Attribute month, int year){
+    private int setMonthLimit(@NotNull Attribute month, int year){
         int monthLimit;
         if(month.equals("JANUARY") || month.equals("MARCH") || month.equals("MAY") ||
                 month.equals("JULY") || month.equals("AUGUST") || month.equals("OCTOBER") ||
@@ -1045,7 +1047,7 @@ public class Controller{
      * @param event ActionEvent from the ComboBox that was changed
      */
     @FXML
-    private void updateXmlComboBoxSpells(ActionEvent event){
+    private void updateXmlComboBoxSpells(@NotNull ActionEvent event){
         if(fieldsSet){
             String fxId = getId(event);
             @SuppressWarnings("unchecked")
@@ -1100,7 +1102,7 @@ public class Controller{
      * @param event ActionEvent from the CheckBox that was changed
      */
     @FXML
-    private void updateXmlCheckBoxPersonality(ActionEvent event){
+    private void updateXmlCheckBoxPersonality(@NotNull ActionEvent event){
         if(fieldsSet){
             String fxId = getId(event);
             String[] id = fxId.split("\\$");
@@ -1117,7 +1119,7 @@ public class Controller{
      * @param event ActionEvent from the ComboBox that was changed
      */
     @FXML
-    private void updateXmlComboBoxIds(ActionEvent event){
+    private void updateXmlComboBoxIds(@NotNull ActionEvent event){
         if(fieldsSet){
             String fxId = getId(event);
             @SuppressWarnings("unchecked")
@@ -1141,7 +1143,7 @@ public class Controller{
      * @param event ActionEvent from the CheckBox that was changed
      */
     @FXML
-    private void updateXmlCheckBoxPerks(ActionEvent event){
+    private void updateXmlCheckBoxPerks(@NotNull ActionEvent event){
         if(fieldsSet){
             String fxId = getId(event);
             System.out.println(fxId);
@@ -1162,7 +1164,7 @@ public class Controller{
      * @param value    Actual value of the perk
      * @return PerkNode that matches the row and value supplied or null if not matched
      */
-    private PerkNode matchPerk(ArrayList<PerkNode> perkList, String row, String value){
+    private @NotNull PerkNode matchPerk(@NotNull ArrayList<PerkNode> perkList, String row, String value){
         for(PerkNode perkNode : perkList){
             if(perkNode.equals(row, value)){
                 return perkNode;
@@ -1176,7 +1178,7 @@ public class Controller{
      *
      * @param tier SpellTier containing the spell type to be added
      */
-    private void addBaseSpell(SpellTier tier){
+    private void addBaseSpell(@NotNull SpellTier tier){
         Node knownSpellsNode = getNode("knownSpells");
         NodeList knownSpells = knownSpellsNode.getChildNodes();
         boolean exists = false;
@@ -1203,7 +1205,7 @@ public class Controller{
      * @param tier  SpellTier to check tier against
      * @param owned Removes all spell upgrades if false (i.e. will remove SOOTHING_WATERS_(1/2)_CLEAN as well)
      */
-    private void removeHigherTierSpells(SpellTier tier, boolean owned){
+    private void removeHigherTierSpells(@NotNull SpellTier tier, boolean owned){
         NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
         for(int i = 0; i < spellUpgrades.getLength(); i++){
             if(spellUpgrades.item(i).getNodeType() != Node.ELEMENT_NODE){
@@ -1232,7 +1234,7 @@ public class Controller{
      *
      * @param tier SpellTier to check tier against
      */
-    private void addLowerTierSpells(SpellTier tier){
+    private void addLowerTierSpells(@NotNull SpellTier tier){
         Node spellUpgradesNode = getNode("spellUpgrades");
         NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
         int count = 0;
@@ -1273,7 +1275,7 @@ public class Controller{
      *
      * @param tier SpellTier to check value against
      */
-    private void changeWithinTierSpells(SpellTier tier){
+    private void changeWithinTierSpells(@NotNull SpellTier tier){
         if(!tier.getType().equals("STEAL")){
             Node spellUpgradesNode = getNode("spellUpgrades");
             NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
@@ -1300,7 +1302,7 @@ public class Controller{
      * @param tier SpellTier to check value against
      * @return String spell value ending in "3A" if SpellTier value ended in "3B" and vice versa
      */
-    private String getComplementTier(SpellTier tier){
+    private @NotNull String getComplementTier(@NotNull SpellTier tier){
         if(tier.getValue().endsWith("_3A")){
             return tier.getType() + "_3B";
         }
@@ -1313,7 +1315,7 @@ public class Controller{
      * @param cb           Leg types ComboBox
      * @param initializing Whether is method is supposed to just initialize the dependant ComboBoxes or edit the values in the save file as well
      */
-    private void updateLegTypeDependants(ComboBox<Attribute> cb, boolean initializing){
+    private void updateLegTypeDependants(@NotNull ComboBox<Attribute> cb, boolean initializing){
         LegTypeAttr legType = (LegTypeAttr) cb.getValue();
         @SuppressWarnings("unchecked")
         ComboBox<Attribute> lc = (ComboBox<Attribute>) namespace.get("body$leg$configuration");
@@ -1627,7 +1629,7 @@ public class Controller{
      *
      * @param relationshipsNode Relationship Node in the save file
      */
-    private void setFieldsRelationships(Node relationshipsNode){
+    private void setFieldsRelationships(@NotNull Node relationshipsNode){
         NodeList relationships = relationshipsNode.getChildNodes();
         VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
@@ -1671,7 +1673,7 @@ public class Controller{
      *
      * @param fetishesNode fetishes Node in the save file
      */
-    private void setFieldsFetishes(Node fetishesNode){
+    private void setFieldsFetishes(@NotNull Node fetishesNode){
         NodeList ownedFetishes = fetishesNode.getChildNodes();
         for(int i = 0; i < ownedFetishes.getLength(); i++){
             if(ownedFetishes.item(i).getNodeType() != Node.ELEMENT_NODE){
@@ -1693,7 +1695,7 @@ public class Controller{
      *
      * @param fetishesNode fetishDesire Node in the save file
      */
-    private void setFieldsFetishDesires(Node fetishesNode){
+    private void setFieldsFetishDesires(@NotNull Node fetishesNode){
         NodeList fetishDesires = fetishesNode.getChildNodes();
         for(int i = 0; i < fetishDesires.getLength(); i++){
             if(fetishDesires.item(i).getNodeType() != Node.ELEMENT_NODE){
@@ -1715,7 +1717,7 @@ public class Controller{
      *
      * @param fetishesNode fetishExperiences Node in the save file
      */
-    private void setFieldsFetishExperience(Node fetishesNode){
+    private void setFieldsFetishExperience(@NotNull Node fetishesNode){
         NodeList fetishExp = fetishesNode.getChildNodes();
         for(int i = 0; i < fetishExp.getLength(); i++){
             if(fetishExp.item(i).getNodeType() != Node.ELEMENT_NODE){
@@ -1735,7 +1737,7 @@ public class Controller{
      *
      * @param spellNode knownSpells Node in the save file
      */
-    private void setFieldsKnownSpells(Node spellNode){
+    private void setFieldsKnownSpells(@NotNull Node spellNode){
         String partialId = "spells$";
         NodeList spells = spellNode.getChildNodes();
         for(int i = 0; i < spells.getLength(); i++){
@@ -1756,7 +1758,7 @@ public class Controller{
      *
      * @param spellNode spellUpgrades Node in the save file
      */
-    private void setFieldsSpellUpgrades(Node spellNode){
+    private void setFieldsSpellUpgrades(@NotNull Node spellNode){
         String partialId = "spells$";
         NodeList spells = spellNode.getChildNodes();
         for(int i = 0; i < spells.getLength(); i++){
@@ -1784,7 +1786,7 @@ public class Controller{
      *
      * @param spellNode spellUpgradePoints Node in the save file
      */
-    private void setFieldsSpellUpgradePoints(Node spellNode){
+    private void setFieldsSpellUpgradePoints(@NotNull Node spellNode){
         String idPartial = "spellUpgradePoints$";
         NodeList schools = spellNode.getChildNodes();
         for(int i = 0; i < schools.getLength(); i++){
@@ -1803,7 +1805,7 @@ public class Controller{
      *
      * @param attributesNode attributes Node in the save file
      */
-    private void setFieldsAttributes(Node attributesNode){
+    private void setFieldsAttributes(@NotNull Node attributesNode){
         String idPartial = "attributes$";
         NodeList attributeList = attributesNode.getChildNodes();
         for(int i = 0; i < attributeList.getLength(); i++){
@@ -1823,7 +1825,7 @@ public class Controller{
      *
      * @param perksNode perks Node in the save file
      */
-    private void setFieldsPerks(Node perksNode){
+    private void setFieldsPerks(@NotNull Node perksNode){
         String idPartial = "perks$";
         NodeList perks = perksNode.getChildNodes();
         for(int i = 0; i < perks.getLength(); i++){
@@ -1843,7 +1845,7 @@ public class Controller{
      *
      * @param personalityNode personality Node in the save file
      */
-    private void setFieldsPersonality(Node personalityNode){
+    private void setFieldsPersonality(@NotNull Node personalityNode){
         String idPartial = "personalityTrait$";
         NodeList traits = personalityNode.getChildNodes();
         for(int i = 0; i < traits.getLength(); i++){
@@ -1858,7 +1860,7 @@ public class Controller{
         }
     }
 
-    private void setFieldsInventoryItems(Node inventoryNode){
+    private void setFieldsInventoryItems(@NotNull Node inventoryNode){
         inventoryItems.clear();
         VBox vb = (VBox) namespace.get("itemsInInventory");
         vb.getChildren().clear();
@@ -1894,7 +1896,7 @@ public class Controller{
         }
     }
 
-    private void setFieldsInventoryClothing(Node inventoryNode){
+    private void setFieldsInventoryClothing(@NotNull Node inventoryNode){
         inventoryClothes.clear();
         VBox vb = (VBox) namespace.get("clothingInInventory");
         vb.getChildren().clear();
@@ -1939,7 +1941,7 @@ public class Controller{
         }
     }
 
-    private void setFieldsInventoryWeapons(Node inventoryNode){
+    private void setFieldsInventoryWeapons(@NotNull Node inventoryNode){
         inventoryWeapons.clear();
         VBox vb = (VBox) namespace.get("weaponsInInventory");
         vb.getChildren().clear();
@@ -1971,12 +1973,12 @@ public class Controller{
             damageType.setId(partialId + "damageType$" + counter);
             damageType.setConverter(new StringConverter<>(){
                 @Override
-                public String toString(Attribute attribute){
+                public String toString(@NotNull Attribute attribute){
                     return attribute.getName();
                 }
 
                 @Override
-                public Attribute fromString(String s){
+                public @Nullable Attribute fromString(String s){
                     return null;
                 }
             });
@@ -1997,7 +1999,7 @@ public class Controller{
         }
     }
 
-    private void removeHBox(ActionEvent event){
+    private void removeHBox(@NotNull ActionEvent event){
         HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
         ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
         String[] id = targetHBox.getId().split("\\$");
@@ -2013,7 +2015,7 @@ public class Controller{
         shiftHBoxIds(inventoryElements, index, partialId);
     }
 
-    private <T extends AbstractInventoryElement> void shiftHBoxIds(ArrayList<T> arrayList, int index, String partialId){
+    private <T extends AbstractInventoryElement> void shiftHBoxIds(@NotNull ArrayList<T> arrayList, int index, String partialId){
         arrayList.get(index).removeNode();
         for(int i = index; i < arrayList.size() - 1; i++){
             AbstractInventoryElement inventoryElement = arrayList.get(i + 1);
@@ -2034,7 +2036,7 @@ public class Controller{
         arrayList.remove(index);
     }
 
-    private boolean matchItemByColors(Node itemNode, String... colors){
+    private boolean matchItemByColors(Node itemNode, String @NotNull ... colors){
         NodeList colorList = getElementByTagName((Element) itemNode, "colours").getChildNodes();
         int idx = 0;
         for(int i = 0; i < colorList.getLength(); i++){
@@ -2048,7 +2050,7 @@ public class Controller{
         return idx == colors.length - 1;
     }
 
-    private String getItemColors(Node itemNode){
+    private @NotNull String getItemColors(Node itemNode){
         NodeList colorList = getElementByTagName((Element) itemNode, "colours").getChildNodes();
         StringBuilder colors = new StringBuilder();
         for(int i = 0; i < colorList.getLength(); i++){
@@ -2066,7 +2068,7 @@ public class Controller{
      * Gets the name of the Npc based on the given npcId
      *
      * @param npcId Id of the npc
-     * @return Name of the npc if found else null
+     * @return Name of the npc
      */
     private String getNpcName(String npcId){
         @SuppressWarnings("unchecked")
@@ -2084,9 +2086,9 @@ public class Controller{
      *
      * @param list  ObservableList of Attributes to check
      * @param value Value to match
-     * @return Attribute that matches the value if found else null
+     * @return Attribute that matches the value
      */
-    private Attribute matchComboBoxItem(ObservableList<Attribute> list, String value){
+    private @NotNull Attribute matchComboBoxItem(@NotNull ObservableList<Attribute> list, String value){
         for(Attribute attribute : list){
             if(attribute.equals(value)){
                 return attribute;
@@ -2100,9 +2102,9 @@ public class Controller{
      *
      * @param list  ObservableList of NpcCharacter to check
      * @param value Value to match
-     * @return NpcCharacter that matches the value if found else null
+     * @return NpcCharacter that matches the value
      */
-    private NpcCharacter matchNpc(ObservableList<NpcCharacter> list, String value){
+    private @NotNull NpcCharacter matchNpc(@NotNull ObservableList<NpcCharacter> list, String value){
         for(NpcCharacter npc : list){
             if(npc.equals(value)){
                 return npc;
@@ -2142,9 +2144,9 @@ public class Controller{
      * Finds id tags by their corresponding value attribute
      *
      * @param id Value attribute to search for
-     * @return Node representing the id tag with corresponding value attribute if found else null
+     * @return Node representing the id tag with corresponding value attribute
      */
-    private Node getNodeByIdValue(String id){
+    private Node getNodeByIdValue(@NotNull String id){
         if(id.equals("PlayerCharacter")){
             Node playerNode = getElementByTagName(saveFile, "playerCharacter");
             Node characterNode = playerNode.getChildNodes().item(1);
@@ -2170,19 +2172,19 @@ public class Controller{
      *
      * @param node Node to be deleted
      */
-    private void removeNode(Node node){
+    private void removeNode(@NotNull Node node){
         node.getParentNode().removeChild(node);
     }
 
-    private Element getElementByTagName(Element element, String tagName, int index){
+    private Element getElementByTagName(@NotNull Element element, String tagName, int index){
         return (Element) element.getElementsByTagName(tagName).item(index);
     }
 
-    private Element getElementByTagName(Element element, String tagName){
+    private Element getElementByTagName(@NotNull Element element, String tagName){
         return (Element) element.getElementsByTagName(tagName).item(0);
     }
 
-    private Element getElementByTagName(Document document, String tagName){
+    private Element getElementByTagName(@NotNull Document document, String tagName){
         return (Element) document.getElementsByTagName(tagName).item(0);
     }
 
@@ -2263,18 +2265,16 @@ public class Controller{
     @FXML
     private void checkForUpdate(){
         String latestVersion = getLatestVersionTag();
-        if(latestVersion != null){
-            MenuItem mi = (MenuItem) namespace.get("updateStatus");
-            if(latestVersion.equals(version)){
-                mi.setText("Latest version");
-            }
-            else{
-                mi.setText("Update available");
-            }
+        MenuItem mi = (MenuItem) namespace.get("updateStatus");
+        if(latestVersion.equals(version)){
+            mi.setText("Latest version");
+        }
+        else{
+            mi.setText("Update available");
         }
     }
 
-    private String getLatestVersionTag(){
+    private @NotNull String getLatestVersionTag(){
         StringBuilder result = new StringBuilder();
         try{
             URL url = new URL("https://api.github.com/repos/Exiua/LTSaveEd/releases/latest");
@@ -2295,6 +2295,9 @@ public class Controller{
                     break;
                 }
             }
+            if(test == null){
+                throw new NoSuchElementException("Latest version tag not found");
+            }
             return test;
         }
         catch(IOException e){
@@ -2309,7 +2312,7 @@ public class Controller{
      * @param event ActionEvent triggering the save call
      */
     @FXML
-    private void saveFileOverwrite(ActionEvent event){
+    private void saveFileOverwrite(@NotNull ActionEvent event){
         event.consume();
         if(fileLoaded){
             saveToFile(workingFile);
@@ -2322,7 +2325,7 @@ public class Controller{
      * @param event ActionEvent triggering the save call
      */
     @FXML
-    private void saveFileExport(ActionEvent event){
+    private void saveFileExport(@NotNull ActionEvent event){
         event.consume();
         if(fileLoaded){
             FileChooser fc = new FileChooser();
@@ -2343,7 +2346,7 @@ public class Controller{
      *
      * @param f File to save the xml data to
      */
-    private void saveToFile(File f){
+    private void saveToFile(@NotNull File f){
         TransformerFactory tff = TransformerFactory.newInstance();
         try{
             Transformer tf = tff.newTransformer();
@@ -2405,7 +2408,7 @@ public class Controller{
          * @param textControl   TextInputControl descendant to monitor
          * @param textFieldType Data type of the TextField
          */
-        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType){
+        public TextObjectListener(@NotNull TextInputControl textControl, TextFieldType textFieldType){
             textInputControl = textControl;
             tfType = textFieldType;
             fieldId = textControl.getId();
@@ -2424,7 +2427,7 @@ public class Controller{
          * @param textFieldType Data type of the TextField
          * @param positivesOnly Whether values are positive only
          */
-        public TextObjectListener(TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly){
+        public TextObjectListener(@NotNull TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly){
             this(textControl, textFieldType);
             positiveOnly = positivesOnly;
         }
@@ -2470,10 +2473,10 @@ public class Controller{
          * @param newValue String entered into the TextField
          * @return Either the new String (with minor modifications if needed) or a String of the old value
          */
-        private String getFormattedText(String newValue){
+        private String getFormattedText(@NotNull String newValue){
             updateFieldId();
             Node value = getValueNode();
-            if(value == null && fetishExp){
+            if(fetishExp){
                 NodeList attributeNodes = getAttributeNodes();
                 Node fetishExp = getElementByTagName((Element) attributeNodes, "fetishExperience");
                 Element fetishEntry = saveFile.createElement("entry");
@@ -2639,7 +2642,7 @@ public class Controller{
             if(id[0].startsWith("FETISH_")){
                 NodeList fetishes = getElementByTagName((Element) attributeNodes, "fetishExperience").getChildNodes();
                 Node childNode = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
-                return childNode != null ? getAttributeNode(childNode, "experience") : null;
+                return getAttributeNode(childNode, "experience");
             }
             Element attr = getElementByTagName((Element) attributeNodes, id[0]);
             switch(id[0]){
@@ -2650,8 +2653,11 @@ public class Controller{
                     return getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1]).getAttributes().getNamedItem("points");
                 }
                 case "attributes" -> {
-                    Element attributeNode = (Element) getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1]);
-                    if(attributeNode == null){
+                    Element attributeNode;
+                    try{
+                        attributeNode = (Element) getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1]);
+                    }
+                    catch (NoSuchElementException e) {
                         attributeNode = saveFile.createElement("attribute");
                         attributeNode.setAttribute("type", id[1]);
                         attributeNode.setAttribute("value", "0.0");
