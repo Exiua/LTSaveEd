@@ -1086,6 +1086,9 @@ public class InitializeElements {
             new Attribute("Maid", "NPC_MAID"),
             new Attribute("Elder Lilin", "NPC_ELDER_LILIN"));
 
+    private final ArrayList<ObservableList<Attribute>> jobHistories = new ArrayList<>(Arrays.asList(playerJobHistories,
+            npcJobHistories));
+
     /**
      * ObservableList of all the femininity group values in the game
      */
@@ -1451,132 +1454,135 @@ public class InitializeElements {
      * Initializes PerkNodes and fills the ArrayList with the PerkNodes
      */
     private void initializePerks(){
-        PerkNode p1 = new PerkNode(null, "1", "PHYSICAL_BASE", "Natural Fitness");
-        PerkNode p2 = new PerkNode(null, "1", "ARCANE_BASE", "Natural Arcane Power");
-        PerkNode p3 = new PerkNode(null, "1", "LEWD_KNOWLEDGE", "Lewd Knowledge");
+        PerkNode p1_1 = new PerkNode(null, "1", "PHYSICAL_BASE", "Natural Fitness");
+        PerkNode p1_2 = new PerkNode(null, "1", "ARCANE_BASE", "Natural Arcane Power");
+        PerkNode p1_3 = new PerkNode(null, "1", "LEWD_KNOWLEDGE", "Lewd Knowledge");
 
-        PerkNode p4 = new PerkNode(p2, "2", "ARCANE_BOOST", "Arcane Training");
-        PerkNode p5 = new PerkNode(p2, "2", "ARCANE_CRITICALS", "Arcane Precision");
-        PerkNode p6 = new PerkNode(p1, "2", "OBSERVANT", "Observant");
-        PerkNode p7 = new PerkNode(p3, "2", "SEDUCTION_BOOST", "Seductive");
-        PerkNode p8 = new PerkNode(p3, "2", "FERTILITY_BOOST", "Fertile");
-        PerkNode p9 = new PerkNode(p1, "2", "PHYSIQUE_BOOST", "Physically Fit");
-        PerkNode p10 = new PerkNode(p3, "2", "FIRING_BLANKS", "Sterile");
-        PerkNode p11 = new PerkNode(p3, "2", "VIRILITY_BOOST", "Virile");
-        PerkNode p12 = new PerkNode(p3, "2", "BARREN", "Barren");
-        PerkNode p13 = new PerkNode(p1, "2", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
-        PerkNode p14 = new PerkNode(p2, "2", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
+        PerkNode p2_11 = new PerkNode(p1_2, "2", "ARCANE_BOOST", "Arcane Training");
+        PerkNode p2_10 = new PerkNode(p1_2, "2", "ARCANE_CRITICALS", "Arcane Precision");
+        PerkNode p2_2 = new PerkNode(p1_1, "2", "OBSERVANT", "Observant");
+        PerkNode p2_6 = new PerkNode(p1_3, "2", "SEDUCTION_BOOST", "Seductive");
+        PerkNode p2_7 = new PerkNode(p1_3, "2", "FERTILITY_BOOST", "Fertile");
+        PerkNode p2_1 = new PerkNode(p1_1, "2", "PHYSIQUE_BOOST", "Physically Fit");
+        PerkNode p2_4 = new PerkNode(p1_3, "2", "FIRING_BLANKS", "Sterile");
+        PerkNode p2_5 = new PerkNode(p1_3, "2", "VIRILITY_BOOST", "Virile");
+        PerkNode p2_8 = new PerkNode(p1_3, "2", "BARREN", "Barren");
+        PerkNode p2_3 = new PerkNode(p1_1, "2", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
+        PerkNode p2_9 = new PerkNode(p1_2, "2", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
 
-        PerkNode p15 = new PerkNode(p9, "3", "PHYSICAL_DAMAGE", "Striker");
-        PerkNode p16 = new PerkNode(p4, "3", "SPELL_DAMAGE", "Spell Power");
-        PerkNode p17 = new PerkNode(p7, "3", "ORGASMIC_LEVEL_DRAIN", "Orgasmic Level Drain");
-        PerkNode p18 = new PerkNode(p4, "3", "AURA_BOOST", "Aura Reserves");
-        PerkNode p19 = new PerkNode(p11, "3", "VIRILITY_MAJOR_BOOST", "Virile");
-        PerkNode p20 = new PerkNode(p7, "3", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-        PerkNode p21 = new PerkNode(p4, "3", "SPELL_EFFICIENCY", "Spell Efficiency");
-        PerkNode p22 = new PerkNode(p9, "3", "PHYSICAL_DEFENCE", "Defender");
-        PerkNode p23 = new PerkNode(p7, "3", "SEDUCTION_BOOST", "Seductive");
-        PerkNode p24 = new PerkNode(p9, "3", "ENERGY_BOOST", "Energy Reserves");
-        PerkNode p25 = new PerkNode(p8, "3", "FERTILITY_MAJOR_BOOST", "Fertile");
-        PerkNode p26 = new PerkNode(p13, "3", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
-        PerkNode p27 = new PerkNode(p14, "3", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
+        PerkNode p3_3 = new PerkNode(p2_1, "3", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p3_11 = new PerkNode(p2_11, "3", "SPELL_DAMAGE", "Spell Power");
+        PerkNode p3_7 = new PerkNode(p2_6, "3", "ORGASMIC_LEVEL_DRAIN", "Orgasmic Level Drain");
+        PerkNode p3_12 = new PerkNode(p2_11, "3", "AURA_BOOST", "Aura Reserves");
+        PerkNode p3_5 = new PerkNode(p2_5, "3", "VIRILITY_MAJOR_BOOST", "Virile");
+        PerkNode p3_8 = new PerkNode(p2_6, "3", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p3_13 = new PerkNode(p2_11, "3", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p3_1 = new PerkNode(p2_1, "3", "PHYSICAL_DEFENCE", "Defender");
+        PerkNode p3_6 = new PerkNode(p2_6, "3", "SEDUCTION_BOOST", "Seductive");
+        PerkNode p3_2 = new PerkNode(p2_1, "3", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p3_9 = new PerkNode(p2_7, "3", "FERTILITY_MAJOR_BOOST", "Fertile");
+        PerkNode p3_4 = new PerkNode(p2_3, "3", "ENCHANTMENT_STABILITY", "Stable Enchantments"); //Physical
+        PerkNode p3_10 = new PerkNode(p2_9, "3", "ENCHANTMENT_STABILITY_ALT", "Stable Enchantments"); //Arcane
 
-        PerkNode p28 = new PerkNode(p15, "4", "PHYSICAL_DAMAGE", "Striker");
-        PerkNode p29 = new PerkNode(p22, "4", "PHYSICAL_DEFENCE", "Defender");
-        PerkNode p30 = new PerkNode(p16, "4", "SPELL_DAMAGE", "Spell Power");
-        PerkNode p31 = new PerkNode(p23, "4", "SEDUCTION_BOOST", "Seductive");
-        PerkNode p32 = new PerkNode(p26, "4", "WEAPON_ENCHANTER", "Arcane Smith");
-        PerkNode p33 = new PerkNode(p25, "4", "FETISH_BROODMOTHER", "Broodmother");
-        PerkNode p34 = new PerkNode(p18, "4", "AURA_BOOST", "Aura Reserves");
-        PerkNode p35 = new PerkNode(p24, "4", "ENERGY_BOOST", "Energy Reserves");
-        PerkNode p36 = new PerkNode(p27, "4", "CLOTHING_ENCHANTER", "Arcane Weaver");
-        PerkNode p37 = new PerkNode(p19, "4", "FETISH_SEEDER", "Seeder");
-        PerkNode p38 = new PerkNode(p20, "4", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-        PerkNode p39 = new PerkNode(p21, "4", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p4_3 = new PerkNode(p3_3, "4", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p4_1 = new PerkNode(p3_1, "4", "PHYSICAL_DEFENCE", "Defender");
+        PerkNode p4_11 = new PerkNode(p3_11, "4", "SPELL_DAMAGE", "Spell Power");
+        PerkNode p4_6 = new PerkNode(p3_6, "4", "SEDUCTION_BOOST", "Seductive");
+        PerkNode p4_4 = new PerkNode(p3_4, "4", "WEAPON_ENCHANTER", "Arcane Smith");
+        PerkNode p4_9 = new PerkNode(p3_9, "4", "FETISH_BROODMOTHER", "Broodmother");
+        PerkNode p4_12 = new PerkNode(p3_12, "4", "AURA_BOOST", "Aura Reserves");
+        PerkNode p4_2 = new PerkNode(p3_2, "4", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p4_10 = new PerkNode(p3_10, "4", "CLOTHING_ENCHANTER", "Arcane Weaver");
+        PerkNode p4_5 = new PerkNode(p3_5, "4", "FETISH_SEEDER", "Seeder");
+        PerkNode p4_8 = new PerkNode(p3_8, "4", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p4_13 = new PerkNode(p3_13, "4", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p4_7 = new PerkNode(p4_6, p4_8, "4", "AHEGAO", "Ahegao");
 
-        PerkNode p40 = new PerkNode(p34, p39, "5", "ARCANE_COMBATANT", "Arcane Combatant");
-        PerkNode p41 = new PerkNode(p33, "5", "FERTILITY_BOOST", "Fertile");
-        PerkNode p42 = new PerkNode(p28, "5", "UNARMED_DAMAGE", "Hand-to-Hand");
-        PerkNode p51 = new PerkNode(p30, "5", "ELEMENTAL_BOOST", "Elemental Striker");
-        PerkNode p46 = new PerkNode(p42, "5", "CRITICAL_BOOST", "Critical Power"); //Physical
-        PerkNode p47 = new PerkNode(p31, p38, "5", "CRITICAL_BOOST_ALT", "Critical Power"); //Seductive
-        PerkNode p48 = new PerkNode(p51, "5", "CRITICAL_BOOST_ALT_2", "Critical Power"); //Arcane
-        PerkNode p44 = new PerkNode(p48, "5", "CHUUNI", "Chuuni");
-        PerkNode p45 = new PerkNode(p46, "5", "UNARMED_TRAINING", "Martial Artist");
-        PerkNode p49 = new PerkNode(p29, p35, "5", "RUNNER_2", "Cardio King");
-        PerkNode p50 = new PerkNode(p37, "5", "VIRILITY_BOOST", "Virile");
-        PerkNode p43 = new PerkNode(p50, "5", "VIRILITY_MAJOR_BOOST", "Virile");
-        PerkNode p52 = new PerkNode(p41, "5", "FERTILITY_MAJOR_BOOST", "Fertile");
+        PerkNode p5_13 = new PerkNode(p4_12, p4_13, "5", "ARCANE_COMBATANT", "Arcane Combatant");
+        PerkNode p5_9 = new PerkNode(p4_9, "5", "FERTILITY_BOOST", "Fertile");
+        PerkNode p5_4 = new PerkNode(p4_3, "5", "UNARMED_DAMAGE", "Hand-to-Hand");
+        PerkNode p5_10 = new PerkNode(p4_11, "5", "ELEMENTAL_BOOST", "Elemental Striker");
+        PerkNode p5_3 = new PerkNode(p5_4, "5", "CRITICAL_BOOST", "Critical Power"); //Physical
+        PerkNode p5_7 = new PerkNode(p4_6, p4_8, "5", "CRITICAL_BOOST_ALT", "Critical Power"); //Seductive
+        PerkNode p5_11 = new PerkNode(p5_10, "5", "CRITICAL_BOOST_ALT_2", "Critical Power"); //Arcane
+        PerkNode p5_12 = new PerkNode(p5_11, "5", "CHUUNI", "Chuuni");
+        PerkNode p5_2 = new PerkNode(p5_3, "5", "UNARMED_TRAINING", "Martial Artist");
+        PerkNode p5_1 = new PerkNode(p4_1, p4_2, "5", "RUNNER_2", "Cardio King");
+        PerkNode p5_5 = new PerkNode(p4_5, "5", "VIRILITY_BOOST", "Virile");
+        PerkNode p5_6 = new PerkNode(p5_5, "5", "VIRILITY_MAJOR_BOOST", "Virile");
+        PerkNode p5_8 = new PerkNode(p5_9, "5", "FERTILITY_MAJOR_BOOST", "Fertile");
 
-        PerkNode p53 = new PerkNode(p49, p42, "6", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
-        PerkNode p57 = new PerkNode(p47, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
-        PerkNode p54 = new PerkNode(p57, "6", "MALE_ATTRACTION", "Minx");
-        PerkNode p55 = new PerkNode(p57, "6", "FEMALE_ATTRACTION", "Ladykiller");
-        PerkNode p56 = new PerkNode(p51, p40, "6", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
+        PerkNode p6_1 = new PerkNode(p5_1, p5_4, "6", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
+        PerkNode p6_3 = new PerkNode(p5_7, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
+        PerkNode p6_2 = new PerkNode(p6_3, "6", "MALE_ATTRACTION", "Minx");
+        PerkNode p6_4 = new PerkNode(p6_3, "6", "FEMALE_ATTRACTION", "Ladykiller");
+        PerkNode p6_6 = new PerkNode(p5_10, p5_13, "6", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
 
-        PerkNode p59 = new PerkNode(p53, "7", "PHYSICAL_DAMAGE", "Striker");
-        PerkNode p61 = new PerkNode(p57, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
-        PerkNode p62 = new PerkNode(p57, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
-        PerkNode p63 = new PerkNode(p59, "7", "UNARMED_DAMAGE", "Hand-to-Hand");
-        PerkNode p64 = new PerkNode(p56, "7", "AURA_BOOST", "Aura Reserves");
-        PerkNode p65 = new PerkNode(p53, "7", "ENERGY_BOOST", "Energy Reserves");
-        PerkNode p58 = new PerkNode(p65, "7", "ENERGY_BOOST_DRAIN_DAMAGE", "Aura Shielding");
-        PerkNode p66 = new PerkNode(p57, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-        PerkNode p67 = new PerkNode(p56, "7", "SPELL_EFFICIENCY", "Spell Efficiency");
-        PerkNode p60 = new PerkNode(p67, "7", "SPELL_DAMAGE", "Spell Power");
+        PerkNode p7_1 = new PerkNode(p6_1, "7", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p7_6 = new PerkNode(p6_3, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
+        PerkNode p7_5 = new PerkNode(p6_3, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
+        PerkNode p7_2 = new PerkNode(p7_1, "7", "UNARMED_DAMAGE", "Hand-to-Hand");
+        PerkNode p7_8 = new PerkNode(p6_6, "7", "AURA_BOOST", "Aura Reserves");
+        PerkNode p7_4 = new PerkNode(p6_1, "7", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p7_3 = new PerkNode(p7_4, "7", "ENERGY_BOOST_DRAIN_DAMAGE", "Aura Shielding");
+        PerkNode p7_7 = new PerkNode(p6_3, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p7_9 = new PerkNode(p6_6, "7", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p7_10 = new PerkNode(p7_9, "7", "SPELL_DAMAGE", "Spell Power");
 
-        PerkNode p69 = new PerkNode(p59, "8", "PHYSICAL_DAMAGE", "Striker");
-        PerkNode p70 = new PerkNode(p65, "8", "PHYSICAL_DEFENCE", "Defender");
-        PerkNode p71 = new PerkNode(p60, "8", "SPELL_DAMAGE", "Spell Power");
-        PerkNode p72 = new PerkNode(p62, "8", "SEDUCTION_BOOST", "Seductive");
-        PerkNode p74 = new PerkNode(p64, "8", "AURA_BOOST", "Aura Reserves");
-        PerkNode p75 = new PerkNode(p65, "8", "ENERGY_BOOST", "Energy Reserves");
-        PerkNode p76 = new PerkNode(p69, "8", "MELEE_DAMAGE", "Melee Weapons Expert");
-        PerkNode p77 = new PerkNode(p61, "8", "SEDUCTION_BOOST_MAJOR", "Seductive");
-        PerkNode p73 = new PerkNode(p77, "8", "CONVINCING_REQUESTS", "Irresistible Appeals");
-        PerkNode p68 = new PerkNode(p77, "8", "OBJECT_OF_DESIRE", "Object of Desire");
-        PerkNode p78 = new PerkNode(p66, "8", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-        PerkNode p79 = new PerkNode(p67, "8", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p8_1 = new PerkNode(p7_1, "8", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p8_3 = new PerkNode(p7_4, "8", "PHYSICAL_DEFENCE", "Defender");
+        PerkNode p8_12 = new PerkNode(p7_10, "8", "SPELL_DAMAGE", "Spell Power");
+        PerkNode p8_5 = new PerkNode(p7_5, "8", "SEDUCTION_BOOST", "Seductive");
+        PerkNode p8_10 = new PerkNode(p7_8, "8", "AURA_BOOST", "Aura Reserves");
+        PerkNode p8_4 = new PerkNode(p7_4, "8", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p8_2 = new PerkNode(p8_1, "8", "MELEE_DAMAGE", "Melee Weapons Expert");
+        PerkNode p8_7 = new PerkNode(p7_6, "8", "SEDUCTION_BOOST_MAJOR", "Seductive");
+        PerkNode p8_6 = new PerkNode(p8_7, "8", "CONVINCING_REQUESTS", "Irresistible Appeals");
+        PerkNode p8_8 = new PerkNode(p8_7, "8", "OBJECT_OF_DESIRE", "Object of Desire");
+        PerkNode p8_9 = new PerkNode(p7_7, "8", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p8_11 = new PerkNode(p7_9, "8", "SPELL_EFFICIENCY", "Spell Efficiency");
 
-        PerkNode p80 = new PerkNode(p69, "9", "PHYSICAL_DAMAGE", "Striker");
-        PerkNode p81 = new PerkNode(p70, "9", "PHYSICAL_DEFENCE", "Defender");
-        PerkNode p82 = new PerkNode(p77, "9", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
-        PerkNode p83 = new PerkNode(p72, "9", "SEDUCTION_BOOST", "Seductive"); //Left Branch
-        PerkNode p85 = new PerkNode(p75, "9", "ENERGY_BOOST", "Energy Reserves");
-        PerkNode p86 = new PerkNode(p80, "9", "RANGED_DAMAGE", "Sharp-shooter");
-        PerkNode p87 = new PerkNode(p71, "9", "SPELL_DAMAGE_MAJOR", "Spell Mastery");
-        PerkNode p88 = new PerkNode(p78, "9", "SEDUCTION_DEFENCE_BOOST", "Resistance");
-        PerkNode p89 = new PerkNode(p79, "9", "SPELL_EFFICIENCY", "Spell Efficiency");
-        PerkNode p84 = new PerkNode(p89, "9", "AURA_BOOST", "Aura Reserves");
+        PerkNode p9_1 = new PerkNode(p8_1, "9", "PHYSICAL_DAMAGE", "Striker");
+        PerkNode p9_3 = new PerkNode(p8_3, "9", "PHYSICAL_DEFENCE", "Defender");
+        PerkNode p9_6 = new PerkNode(p8_7, "9", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
+        PerkNode p9_5 = new PerkNode(p8_5, "9", "SEDUCTION_BOOST", "Seductive"); //Left Branch
+        PerkNode p9_4 = new PerkNode(p8_4, "9", "ENERGY_BOOST", "Energy Reserves");
+        PerkNode p9_2 = new PerkNode(p9_1, "9", "RANGED_DAMAGE", "Sharp-shooter");
+        PerkNode p9_10 = new PerkNode(p8_12, "9", "SPELL_DAMAGE_MAJOR", "Spell Mastery");
+        PerkNode p9_7 = new PerkNode(p8_9, "9", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p9_9 = new PerkNode(p8_11, "9", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p9_8 = new PerkNode(p9_9, "9", "AURA_BOOST", "Aura Reserves");
 
-        PerkNode p90 = new PerkNode(p82, "10", "NYMPHOMANIAC", "Nymphomaniac");
-        PerkNode p91 = new PerkNode(p84, "10", "SACRIFICIAL_SHIELDING", "Sacrificial Shielding");
-        PerkNode p92 = new PerkNode(p81, p85, "10", "COMBAT_REGENERATION", "Combat Regeneration");
-        PerkNode p93 = new PerkNode(p80, "10", "FEROCIOUS_WARRIOR", "Ferocious Warrior");
-        PerkNode p94 = new PerkNode(p88, "10", "PURE_MIND", "Pure Thoughts");
-        PerkNode p95 = new PerkNode(p83, "10", "LUSTPYRE", "Lustpyre");
-        PerkNode p96 = new PerkNode(p93, "10", "BESERK", "Berserk");
-        PerkNode p97 = new PerkNode(p89, "10", "SPELL_EFFICIENCY", "Spell Efficiency");
-        PerkNode p98 = new PerkNode(p87, "10", "ARCANE_VAMPYRISM", "Arcane Vampyrism");
+        PerkNode p10_5 = new PerkNode(p9_6, "10", "NYMPHOMANIAC", "Nymphomaniac");
+        PerkNode p10_7 = new PerkNode(p9_8, "10", "SACRIFICIAL_SHIELDING", "Sacrificial Shielding");
+        PerkNode p10_3 = new PerkNode(p9_3, p9_4, "10", "COMBAT_REGENERATION", "Combat Regeneration");
+        PerkNode p10_1 = new PerkNode(p9_1, "10", "FEROCIOUS_WARRIOR", "Ferocious Warrior");
+        PerkNode p10_6 = new PerkNode(p9_7, "10", "PURE_MIND", "Pure Thoughts");
+        PerkNode p10_4 = new PerkNode(p9_5, "10", "LUSTPYRE", "Lustpyre");
+        PerkNode p10_2 = new PerkNode(p10_1, "10", "BESERK", "Berserk");
+        PerkNode p10_8 = new PerkNode(p9_9, "10", "SPELL_EFFICIENCY", "Spell Efficiency");
+        PerkNode p10_9 = new PerkNode(p9_10, "10", "ARCANE_VAMPYRISM", "Arcane Vampyrism");
 
-        PerkNode p99 = new PerkNode(p93, p92, "11", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
-        PerkNode p101 = new PerkNode(p97, "11", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
-        PerkNode p100 = new PerkNode(p101, "11", "ELEMENTAL_DEFENCE_BOOST", "Elemental Defender");
-        PerkNode p102 = new PerkNode(p99, "11", "MELEE_DAMAGE", "Melee Weapons Expert");
-        PerkNode p103 = new PerkNode(p95, p94, "11", "SEDUCTION_BOOST_MAJOR", "Seductive");
-        PerkNode p104 = new PerkNode(p99, "11", "RANGED_DAMAGE", "Sharp-shooter");
-        PerkNode p105 = new PerkNode(p101, "11", "ELEMENTAL_BOOST", "Elemental Striker");
+        PerkNode p11_2 = new PerkNode(p10_1, p10_3, "11", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
+        PerkNode p11_6 = new PerkNode(p10_8, "11", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
+        PerkNode p11_5 = new PerkNode(p11_6, "11", "ELEMENTAL_DEFENCE_BOOST", "Elemental Defender");
+        PerkNode p11_1 = new PerkNode(p11_2, "11", "MELEE_DAMAGE", "Melee Weapons Expert");
+        PerkNode p11_4 = new PerkNode(p10_4, p10_6, "11", "SEDUCTION_BOOST_MAJOR", "Seductive");
+        PerkNode p11_3 = new PerkNode(p11_2, "11", "RANGED_DAMAGE", "Sharp-shooter");
+        PerkNode p11_7 = new PerkNode(p11_6, "11", "ELEMENTAL_BOOST", "Elemental Striker");
 
-        PerkNode p106 = new PerkNode(p99, "12", "ELEMENTAL_BOOST", "Elemental Striker"); //Physical
-        PerkNode p107 = new PerkNode(p103, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker"); //Seductive
-        PerkNode p108 = new PerkNode(p101, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker"); //Arcane
+        PerkNode p12_1 = new PerkNode(p11_2, "12", "ELEMENTAL_BOOST", "Elemental Striker"); //Physical
+        PerkNode p12_2 = new PerkNode(p11_4, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker"); //Seductive
+        PerkNode p12_3 = new PerkNode(p11_6, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker"); //Arcane
 
-        perks.addAll(FXCollections.observableArrayList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15,
-                p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36,
-                p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50, p51, p52, p53, p54, p55, p56, p57,
-                p58, p59, p60, p61, p62, p63, p64, p65, p66, p67, p68, p69, p70, p71, p72, p73, p74, p75, p76, p77, p78,
-                p79, p80, p81, p82, p83, p84, p85, p86, p87, p88, p89, p90, p91, p92, p93, p94, p95, p96, p97, p98, p99,
-                p100, p101, p102, p103, p104, p105, p106, p107, p108));
+        perks.addAll(FXCollections.observableArrayList(p1_1, p1_2, p1_3, p2_11, p2_10, p2_2, p2_6, p2_7, p2_1, p2_4,
+                p2_5, p2_8, p2_3, p2_9, p3_3, p3_11, p3_7, p3_12, p3_5, p3_8, p3_13, p3_1, p3_6, p3_2, p3_9, p3_4, p3_10,
+                p4_3, p4_1, p4_11, p4_6, p4_4, p4_9, p4_12, p4_2, p4_10, p4_5, p4_8, p4_13, p4_7, p5_13, p5_9, p5_4,
+                p5_10, p5_3, p5_7, p5_11, p5_12, p5_2, p5_1, p5_5, p5_6, p5_8, p6_1, p6_3, p6_2, p6_4, p6_6, p7_1, p7_6,
+                p7_5, p7_2, p7_8, p7_4, p7_3, p7_7, p7_9, p7_10, p8_1, p8_3, p8_12, p8_5, p8_10, p8_4, p8_2, p8_7, p8_6,
+                p8_8, p8_9, p8_11, p9_1, p9_3, p9_6, p9_5, p9_4, p9_2, p9_10, p9_7, p9_9, p9_8, p10_5, p10_7, p10_3,
+                p10_1, p10_6, p10_4, p10_2, p10_8, p10_9, p11_2, p11_6, p11_5, p11_1, p11_4, p11_3, p11_7, p12_1, p12_2,
+                p12_3));
     }
     //I'm probably dumb and there was an easier way to do this
 
@@ -1738,5 +1744,9 @@ public class InitializeElements {
             }
         }
         return list;
+    }
+
+    public ArrayList<ObservableList<Attribute>> getJobHistories() {
+        return jobHistories;
     }
 }
