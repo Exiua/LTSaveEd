@@ -1385,15 +1385,19 @@ public class Controller{
         if (!fileLoaded) {
             return;
         }
+
         resetFields();
         System.out.println("Fields Reset");
+
         if(!worldFieldsSet){
             setWorldFields();
             worldFieldsSet = true;
         }
+
         NodeList attributeNodes = getAttributeNodes();
         Debug.printList(attributeNodes);
         System.out.println(attributeNodes.item(1).getParentNode());
+
         MainLoop:
         for(int i = 0; i < attributeNodes.getLength(); i++){
             if(attributeNodes.item(i).getNodeType() != Node.ELEMENT_NODE){
@@ -1455,12 +1459,15 @@ public class Controller{
                     continue;
                 }
             }
+
             for(int j = 0; j < attributeElements.getLength(); j++){ // Every other node in the NodeList is a TextNode (so can be skipped)
                 if(attributeElements.item(j).getNodeType() != Node.ELEMENT_NODE){
                     continue;
                 }
+
                 Node currNode = attributeElements.item(j);
                 String elementName = currNode.getNodeName();
+
                 switch(elementName){
                     case "personality" -> {
                         setFieldsPersonality(currNode);
@@ -1479,22 +1486,29 @@ public class Controller{
                         continue;
                     }
                 }
+
                 NamedNodeMap attributes = currNode.getAttributes();
                 NodeList childNodes = currNode.getChildNodes();
+
                 if(childNodes.getLength() != 0){
                     for(int k = 0; k < childNodes.getLength(); k++){
                         Node modifiers = childNodes.item(k);
+
                         if(modifiers.getNodeType() == Node.TEXT_NODE){
                             continue;
                         }
+
                         String modifierName = modifiers.getNodeName();
+
                         if(modifierName.contains("Modifiers")){
                             NamedNodeMap mods = modifiers.getAttributes();
+
                             for(int l = 0; l < mods.getLength(); l++){
                                 Node mod = mods.item(l);
                                 String value = mod.getTextContent();
                                 String modId = attributeName + "$" + elementName + "$" + modifierName + "$" + mod.getNodeName();
                                 CheckBox cb = (CheckBox) namespace.get(modId);
+
                                 if(cb != null){
                                     cb.setSelected(Boolean.parseBoolean(value));
                                 }
@@ -1503,25 +1517,31 @@ public class Controller{
                     }
                     System.out.println(elementName + " Modifier Fields Set");
                 } // Modifiers Fields Setter
+
                 for(int k = 0; k < attributes.getLength(); k++){
                     Node valueNode = attributes.item(k);
                     String value = valueNode.getTextContent();
                     String bodyNodeName = valueNode.getNodeName();
                     String nodeId = attributeName + "$" + elementName + "$" + bodyNodeName;
+
                     if(nodeId.equals("core$description$value")){
                         TextArea ta = (TextArea) namespace.get(nodeId);
                         ta.setText(value);
                         continue;
                     }
+
                     // Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
                     try{ // Using TextFields for numerical and string values
                         TextField tf = (TextField) namespace.get(nodeId);
+
                         if(tf != null){
                             tf.setText(value);
+
                             if(nodeId.equals("body$hair$length")){
                                 int v = Integer.parseInt(value);
                                 @SuppressWarnings("unchecked")
                                 ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
+
                                 if(v >= 0 && v < 4){
                                     hairStyles.setItems(hairStylesB);
                                 }
@@ -1546,6 +1566,7 @@ public class Controller{
                     catch(ClassCastException e){ // Using CheckBox for boolean values
                         try{
                             CheckBox cb = (CheckBox) namespace.get(nodeId);
+
                             if(cb != null){
                                 cb.setSelected(Boolean.parseBoolean(value));
                             }
@@ -1554,6 +1575,7 @@ public class Controller{
                             if(nodeId.contains("motherId") || nodeId.contains("fatherId")){
                                 @SuppressWarnings("unchecked")
                                 ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(nodeId);
+
                                 if(cb != null){
                                     ObservableList<NpcCharacter> itemList = cb.getItems();
                                     cb.setValue(matchNpc(itemList, value));
@@ -1562,6 +1584,7 @@ public class Controller{
                             else{
                                 @SuppressWarnings("unchecked")
                                 ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
+
                                 if(cb != null){
                                     ObservableList<Attribute> itemList = cb.getItems();
                                     cb.setValue(matchComboBoxItem(itemList, value));
@@ -1573,9 +1596,11 @@ public class Controller{
             }
             System.out.println(attributeName + " Fields Set");
         }
+
         if(!listenersAdded){
             addListeners();
         }
+
         fieldsSet = true;
         updateLabels();
     }
@@ -2018,18 +2043,21 @@ public class Controller{
 
     private <T extends AbstractInventoryElement> void shiftHBoxIds(@NotNull ArrayList<T> arrayList, int index, String partialId){
         arrayList.get(index).removeNode();
+
         for(int i = index; i < arrayList.size() - 1; i++){
             AbstractInventoryElement inventoryElement = arrayList.get(i + 1);
             HBox hBox = inventoryElement.getHBox();
             hBox.setId(partialId + i);
             ArrayList<javafx.scene.Node> nodes = inventoryElement.getHBoxNodes();
             String[] attrNames;
+
             switch(nodes.size()){
                 case 1 -> attrNames = new String[]{"count$"};
                 case 2 -> attrNames = new String[]{"count$", "damageType$"};
                 case 3 -> attrNames = new String[]{"count$", "enchantmentKnown$", "isDirty$"};
                 default -> throw new IllegalStateException("Unexpected value: " + nodes.size());
             }
+
             for(int j = 0; j < nodes.size(); j++){
                 nodes.get(j).setId(partialId + attrNames[j] + i);
             }
