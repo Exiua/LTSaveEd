@@ -1382,201 +1382,202 @@ public class Controller{
      * Reads data from xml save file and sets all fields with the selected character data
      */
     private void setFields(){
-        if(fileLoaded){
-            resetFields();
-            System.out.println("Fields Reset");
-            if(!worldFieldsSet){
-                setWorldFields();
-                worldFieldsSet = true;
-            }
-            NodeList attributeNodes = getAttributeNodes();
-            Debug.printList(attributeNodes);
-            System.out.println(attributeNodes.item(1).getParentNode());
-            MainLoop:
-            for(int i = 0; i < attributeNodes.getLength(); i++){
-                if(attributeNodes.item(i).getNodeType() != Node.ELEMENT_NODE){
+        if (!fileLoaded) {
+            return;
+        }
+        resetFields();
+        System.out.println("Fields Reset");
+        if(!worldFieldsSet){
+            setWorldFields();
+            worldFieldsSet = true;
+        }
+        NodeList attributeNodes = getAttributeNodes();
+        Debug.printList(attributeNodes);
+        System.out.println(attributeNodes.item(1).getParentNode());
+        MainLoop:
+        for(int i = 0; i < attributeNodes.getLength(); i++){
+            if(attributeNodes.item(i).getNodeType() != Node.ELEMENT_NODE){
+                continue;
+            } //  Only care about Element Nodes
+            NodeList attributeElements = attributeNodes.item(i).getChildNodes();
+            String attributeName = attributeNodes.item(i).getNodeName();
+            switch(attributeName){
+                case "locationInformation", "lipstickMarks", "tattoos", "potionAttributes", "traits",
+                        "specialPerks", "statusEffects", "knownMoves", "equippedMoves" -> {
                     continue;
-                } //  Only care about Element Nodes
-                NodeList attributeElements = attributeNodes.item(i).getChildNodes();
-                String attributeName = attributeNodes.item(i).getNodeName();
-                switch(attributeName){
-                    case "locationInformation", "lipstickMarks", "tattoos", "potionAttributes", "traits",
-                            "specialPerks", "statusEffects", "knownMoves", "equippedMoves" -> {
+                }
+                case "slavery" -> { // Ends the loop early as all the needed data has been parsed // Adjust as needed
+                    break MainLoop;
+                }
+                case "characterRelationships" -> {  // These parts have an unknown number of elements which have identical tags
+                    setFieldsRelationships(attributeNodes.item(i));
+                    System.out.println("Character Relationship Fields Set");
+                    continue;
+                }
+                case "fetishes" -> {
+                    setFieldsFetishes(attributeNodes.item(i));
+                    System.out.println("Fetish Fields Set");
+                    continue;
+                }
+                case "fetishDesire" -> {
+                    setFieldsFetishDesires(attributeNodes.item(i));
+                    System.out.println("Fetish Desire Fields Set");
+                    continue;
+                }
+                case "fetishExperience" -> {
+                    setFieldsFetishExperience(attributeNodes.item(i));
+                    System.out.println("Fetish Experience Fields Set");
+                    continue;
+                }
+                case "knownSpells" -> {
+                    setFieldsKnownSpells(attributeNodes.item(i));
+                    System.out.println("Known Spell Fields Set");
+                    continue;
+                }
+                case "spellUpgrades" -> {
+                    setFieldsSpellUpgrades(attributeNodes.item(i));
+                    System.out.println("Spell Upgrade Fields Set");
+                    continue;
+                }
+                case "spellUpgradePoints" -> {
+                    setFieldsSpellUpgradePoints(attributeNodes.item(i));
+                    System.out.println("Spell Upgrade Points Fields Set");
+                    continue;
+                }
+                case "attributes" -> {
+                    setFieldsAttributes(attributeNodes.item(i));
+                    System.out.println("Attribute Fields Set");
+                    continue;
+                }
+                case "perks" -> {
+                    setFieldsPerks(attributeNodes.item(i));
+                    System.out.println("Perk Fields Set");
+                    continue;
+                }
+            }
+            for(int j = 0; j < attributeElements.getLength(); j++){ // Every other node in the NodeList is a TextNode (so can be skipped)
+                if(attributeElements.item(j).getNodeType() != Node.ELEMENT_NODE){
+                    continue;
+                }
+                Node currNode = attributeElements.item(j);
+                String elementName = currNode.getNodeName();
+                switch(elementName){
+                    case "personality" -> {
+                        setFieldsPersonality(currNode);
                         continue;
                     }
-                    case "slavery" -> { // Ends the loop early as all the needed data has been parsed // Adjust as needed
-                        break MainLoop;
-                    }
-                    case "characterRelationships" -> {  // These parts have an unknown number of elements which have identical tags
-                        setFieldsRelationships(attributeNodes.item(i));
-                        System.out.println("Character Relationship Fields Set");
+                    case "itemsInInventory" -> {
+                        setFieldsInventoryItems(currNode);
                         continue;
                     }
-                    case "fetishes" -> {
-                        setFieldsFetishes(attributeNodes.item(i));
-                        System.out.println("Fetish Fields Set");
+                    case "clothingInInventory" -> {
+                        setFieldsInventoryClothing(currNode);
                         continue;
                     }
-                    case "fetishDesire" -> {
-                        setFieldsFetishDesires(attributeNodes.item(i));
-                        System.out.println("Fetish Desire Fields Set");
-                        continue;
-                    }
-                    case "fetishExperience" -> {
-                        setFieldsFetishExperience(attributeNodes.item(i));
-                        System.out.println("Fetish Experience Fields Set");
-                        continue;
-                    }
-                    case "knownSpells" -> {
-                        setFieldsKnownSpells(attributeNodes.item(i));
-                        System.out.println("Known Spell Fields Set");
-                        continue;
-                    }
-                    case "spellUpgrades" -> {
-                        setFieldsSpellUpgrades(attributeNodes.item(i));
-                        System.out.println("Spell Upgrade Fields Set");
-                        continue;
-                    }
-                    case "spellUpgradePoints" -> {
-                        setFieldsSpellUpgradePoints(attributeNodes.item(i));
-                        System.out.println("Spell Upgrade Points Fields Set");
-                        continue;
-                    }
-                    case "attributes" -> {
-                        setFieldsAttributes(attributeNodes.item(i));
-                        System.out.println("Attribute Fields Set");
-                        continue;
-                    }
-                    case "perks" -> {
-                        setFieldsPerks(attributeNodes.item(i));
-                        System.out.println("Perk Fields Set");
+                    case "weaponsInInventory" -> {
+                        setFieldsInventoryWeapons(currNode);
                         continue;
                     }
                 }
-                for(int j = 0; j < attributeElements.getLength(); j++){ // Every other node in the NodeList is a TextNode (so can be skipped)
-                    if(attributeElements.item(j).getNodeType() != Node.ELEMENT_NODE){
-                        continue;
-                    }
-                    Node currNode = attributeElements.item(j);
-                    String elementName = currNode.getNodeName();
-                    switch(elementName){
-                        case "personality" -> {
-                            setFieldsPersonality(currNode);
+                NamedNodeMap attributes = currNode.getAttributes();
+                NodeList childNodes = currNode.getChildNodes();
+                if(childNodes.getLength() != 0){
+                    for(int k = 0; k < childNodes.getLength(); k++){
+                        Node modifiers = childNodes.item(k);
+                        if(modifiers.getNodeType() == Node.TEXT_NODE){
                             continue;
                         }
-                        case "itemsInInventory" -> {
-                            setFieldsInventoryItems(currNode);
-                            continue;
-                        }
-                        case "clothingInInventory" -> {
-                            setFieldsInventoryClothing(currNode);
-                            continue;
-                        }
-                        case "weaponsInInventory" -> {
-                            setFieldsInventoryWeapons(currNode);
-                            continue;
-                        }
-                    }
-                    NamedNodeMap attributes = currNode.getAttributes();
-                    NodeList childNodes = currNode.getChildNodes();
-                    if(childNodes.getLength() != 0){
-                        for(int k = 0; k < childNodes.getLength(); k++){
-                            Node modifiers = childNodes.item(k);
-                            if(modifiers.getNodeType() == Node.TEXT_NODE){
-                                continue;
-                            }
-                            String modifierName = modifiers.getNodeName();
-                            if(modifierName.contains("Modifiers")){
-                                NamedNodeMap mods = modifiers.getAttributes();
-                                for(int l = 0; l < mods.getLength(); l++){
-                                    Node mod = mods.item(l);
-                                    String value = mod.getTextContent();
-                                    String modId = attributeName + "$" + elementName + "$" + modifierName + "$" + mod.getNodeName();
-                                    CheckBox cb = (CheckBox) namespace.get(modId);
-                                    if(cb != null){
-                                        cb.setSelected(Boolean.parseBoolean(value));
-                                    }
-                                }
-                            }
-                        }
-                        System.out.println(elementName + " Modifier Fields Set");
-                    } // Modifiers Fields Setter
-                    for(int k = 0; k < attributes.getLength(); k++){
-                        Node valueNode = attributes.item(k);
-                        String value = valueNode.getTextContent();
-                        String bodyNodeName = valueNode.getNodeName();
-                        String nodeId = attributeName + "$" + elementName + "$" + bodyNodeName;
-                        if(nodeId.equals("core$description$value")){
-                            TextArea ta = (TextArea) namespace.get(nodeId);
-                            ta.setText(value);
-                            continue;
-                        }
-                        // Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
-                        try{ // Using TextFields for numerical and string values
-                            TextField tf = (TextField) namespace.get(nodeId);
-                            if(tf != null){
-                                tf.setText(value);
-                                if(nodeId.equals("body$hair$length")){
-                                    int v = Integer.parseInt(value);
-                                    @SuppressWarnings("unchecked")
-                                    ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
-                                    if(v >= 0 && v < 4){
-                                        hairStyles.setItems(hairStylesB);
-                                    }
-                                    else if(v < 11){
-                                        hairStyles.setItems(hairStylesVS);
-                                    }
-                                    else if(v < 22){
-                                        hairStyles.setItems(hairStylesS);
-                                    }
-                                    else if(v < 45){
-                                        hairStyles.setItems(hairStylesSL);
-                                    }
-                                    else if(v < 265){
-                                        hairStyles.setItems(hairStylesL);
-                                    }
-                                    else{
-                                        hairStyles.setItems(hairStylesFL);
-                                    }
-                                }
-                            }
-                        }
-                        catch(ClassCastException e){ // Using CheckBox for boolean values
-                            try{
-                                CheckBox cb = (CheckBox) namespace.get(nodeId);
+                        String modifierName = modifiers.getNodeName();
+                        if(modifierName.contains("Modifiers")){
+                            NamedNodeMap mods = modifiers.getAttributes();
+                            for(int l = 0; l < mods.getLength(); l++){
+                                Node mod = mods.item(l);
+                                String value = mod.getTextContent();
+                                String modId = attributeName + "$" + elementName + "$" + modifierName + "$" + mod.getNodeName();
+                                CheckBox cb = (CheckBox) namespace.get(modId);
                                 if(cb != null){
                                     cb.setSelected(Boolean.parseBoolean(value));
                                 }
                             }
-                            catch(ClassCastException e2){ // Using ComboBoxes for fixed values
-                                if(nodeId.contains("motherId") || nodeId.contains("fatherId")){
-                                    @SuppressWarnings("unchecked")
-                                    ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(nodeId);
-                                    if(cb != null){
-                                        ObservableList<NpcCharacter> itemList = cb.getItems();
-                                        cb.setValue(matchNpc(itemList, value));
-                                    }
+                        }
+                    }
+                    System.out.println(elementName + " Modifier Fields Set");
+                } // Modifiers Fields Setter
+                for(int k = 0; k < attributes.getLength(); k++){
+                    Node valueNode = attributes.item(k);
+                    String value = valueNode.getTextContent();
+                    String bodyNodeName = valueNode.getNodeName();
+                    String nodeId = attributeName + "$" + elementName + "$" + bodyNodeName;
+                    if(nodeId.equals("core$description$value")){
+                        TextArea ta = (TextArea) namespace.get(nodeId);
+                        ta.setText(value);
+                        continue;
+                    }
+                    // Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
+                    try{ // Using TextFields for numerical and string values
+                        TextField tf = (TextField) namespace.get(nodeId);
+                        if(tf != null){
+                            tf.setText(value);
+                            if(nodeId.equals("body$hair$length")){
+                                int v = Integer.parseInt(value);
+                                @SuppressWarnings("unchecked")
+                                ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
+                                if(v >= 0 && v < 4){
+                                    hairStyles.setItems(hairStylesB);
+                                }
+                                else if(v < 11){
+                                    hairStyles.setItems(hairStylesVS);
+                                }
+                                else if(v < 22){
+                                    hairStyles.setItems(hairStylesS);
+                                }
+                                else if(v < 45){
+                                    hairStyles.setItems(hairStylesSL);
+                                }
+                                else if(v < 265){
+                                    hairStyles.setItems(hairStylesL);
                                 }
                                 else{
-                                    @SuppressWarnings("unchecked")
-                                    ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
-                                    if(cb != null){
-                                        ObservableList<Attribute> itemList = cb.getItems();
-                                        cb.setValue(matchComboBoxItem(itemList, value));
-                                    }
+                                    hairStyles.setItems(hairStylesFL);
+                                }
+                            }
+                        }
+                    }
+                    catch(ClassCastException e){ // Using CheckBox for boolean values
+                        try{
+                            CheckBox cb = (CheckBox) namespace.get(nodeId);
+                            if(cb != null){
+                                cb.setSelected(Boolean.parseBoolean(value));
+                            }
+                        }
+                        catch(ClassCastException e2){ // Using ComboBoxes for fixed values
+                            if(nodeId.contains("motherId") || nodeId.contains("fatherId")){
+                                @SuppressWarnings("unchecked")
+                                ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(nodeId);
+                                if(cb != null){
+                                    ObservableList<NpcCharacter> itemList = cb.getItems();
+                                    cb.setValue(matchNpc(itemList, value));
+                                }
+                            }
+                            else{
+                                @SuppressWarnings("unchecked")
+                                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
+                                if(cb != null){
+                                    ObservableList<Attribute> itemList = cb.getItems();
+                                    cb.setValue(matchComboBoxItem(itemList, value));
                                 }
                             }
                         }
                     }
                 }
-                System.out.println(attributeName + " Fields Set");
             }
-            if(!listenersAdded){
-                addListeners();
-            }
-            fieldsSet = true;
-            updateLabels();
+            System.out.println(attributeName + " Fields Set");
         }
+        if(!listenersAdded){
+            addListeners();
+        }
+        fieldsSet = true;
+        updateLabels();
     }
 
     /**
@@ -2078,7 +2079,7 @@ public class Controller{
                 return npc.getName();
             }
         }
-        throw new NoSuchElementException("NPC with given ID not found");
+        throw new NoSuchElementException("NPC with ID {" + npcId + "} not found");
     }
 
     /**
@@ -2094,7 +2095,7 @@ public class Controller{
                 return attribute;
             }
         }
-        throw new NoSuchElementException("Attribute with given value not found");
+        throw new NoSuchElementException("Attribute with value {" + value + "} not found");
     }
 
     /**
