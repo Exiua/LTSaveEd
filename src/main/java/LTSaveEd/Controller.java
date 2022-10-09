@@ -642,15 +642,6 @@ public class Controller{
     }
 
     /**
-     * Gets the list of immediate child Nodes of the selected character's characterNode
-     *
-     * @return NodeList of immediate child Nodes (eg. core, body, attributes, etc.)
-     */
-    private @NotNull NodeList getAttributeNodes(){
-        return characterNode.getChildNodes();
-    }
-
-    /**
      * Sets characterNode to the character Node of the current character that is being edited
      *
      * @param charId Character id of the character being edited
@@ -662,179 +653,6 @@ public class Controller{
         PerkNode.setPerksNode(perksNode);
         Node personalityNode = getNode("core", "personality");
         PersonalityTrait.setPersonalityNode(personalityNode);
-    }
-
-    /**
-     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute or parent$child$modifier$attribute)
-     *
-     * @param event ActionEvent of the element that was interacted with
-     * @return Node containing the attribute value
-     */
-    private Node getValueNode(@NotNull ActionEvent event){
-        String[] id = getId(event).split("\\$");
-        NodeList attributeNodes = getAttributeNodes();
-        Element attr = (Element) attributeNodes;
-        if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
-            if(id[1].equals("owned")){
-                NodeList fetishes = getElementByTagName(attr, "fetishes").getChildNodes();
-                return getChildNodeByAttributeValue(fetishes, "type", id[0]);
-            }
-            else if(id[1].equals("desire")){
-                NodeList fetishes = getElementByTagName(attr, "fetishDesire").getChildNodes();
-                Node fetishEntry = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
-                return getAttributeNode(fetishEntry, "desire");
-            }
-        }
-        else if(id[0].equals("spells")){ // Same with spell ids
-            NodeList spellUpgrades = getElementByTagName(attr, "spellUpgrades").getChildNodes();
-            return getChildNodeByAttributeValue(spellUpgrades, "type", id[1]);
-        }
-        else if(id[0].equals("coreInfo")){
-            Element coreInfo = getElementByTagName(saveFile, id[0]);
-            Element date = getElementByTagName(coreInfo, id[1]);
-            return date.getAttributeNode(id[2]);
-        }
-        for(int i = 0; i < id.length - 1; i++){
-            attr = getElementByTagName(attr, id[i]);
-        }
-        return getAttributeNode(attr, id[id.length - 1]);
-    }
-
-    /**
-     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute)
-     *
-     * @param objId Id of the element that was interacted with
-     * @return Node containing the attribute value
-     */
-    private Node getValueNode(@NotNull String objId){
-        String[] id = objId.split("\\$");
-        NodeList attributeNodes = getAttributeNodes();
-        Element attr = (Element) attributeNodes;
-        for(int i = 0; i < id.length - 1; i++){
-            attr = getElementByTagName(attr, id[i]);
-        }
-        return getAttributeNode(attr, id[id.length - 1]);
-    }
-
-    /**
-     * Gets the String value of the attribute of the given Node
-     *
-     * @param node Node to get the attribute of
-     * @param attr Attribute to get
-     * @return String containing the attribute value
-     */
-    private String getAttributeValue(@NotNull Node node, String attr){
-        return node.getAttributes().getNamedItem(attr).getTextContent();
-    }
-
-    /**
-     * Gets the Node of the specified attribute of the given Node
-     *
-     * @param node Node to get the attribute of
-     * @param attr Attribute to get
-     * @return Node containing the attribute Node
-     */
-    private Node getAttributeNode(@NotNull Node node, String attr){
-        return node.getAttributes().getNamedItem(attr);
-    }
-
-    /**
-     * Gets the parent Node of the Node with the attribute specified by the id
-     *
-     * @param event ActionEvent of the element that was interacted with
-     * @return Node that is the parent of the Node with the specified attribute
-     */
-    private Node getValueNodeParent(@NotNull ActionEvent event){
-        String[] id = getId(event).split("\\$");
-        NodeList attributeNodes = getAttributeNodes();
-        Element attr = (Element) attributeNodes;
-        if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
-            if(id[1].equals("owned")){
-                return getElementByTagName(attr, "fetishes");
-            }
-            else if(id[1].equals("desire")){
-                return getElementByTagName(attr, "fetishDesire");
-            }
-        }
-        else if(id[0].equals("spells")){ // Same with spell ids
-            return getElementByTagName(attr, "spellUpgrades");
-        }
-        for(int i = 0; i < id.length - 1; i++){
-            attr = getElementByTagName(attr, id[i]);
-        }
-        return attr;
-    }
-
-    /**
-     * Gets the parent Node of the Node with the attribute specified by the id
-     *
-     * @param objId Id of the element that was interacted with
-     * @return Node that is the parent of the Node with the specified attribute
-     */
-    private Node getValueNodeParent(@NotNull String objId){
-        String[] id = objId.split("\\$");
-        NodeList attributeNodes = getAttributeNodes();
-        Element attr = (Element) attributeNodes;
-        for(int i = 0; i < id.length - 1; i++){
-            attr = getElementByTagName(attr, id[i]);
-        }
-        return attr;
-    }
-
-    /**
-     * Gets a Node from a NodeList based on specified attribute and value of attribute
-     *
-     * @param children NodeList to check
-     * @param args     Attribute/Value pairs to check for (must have Attribute, followed by value to match for each pair)
-     * @return Desired Node matching given attribute/value pairs
-     * @throws IllegalArgumentException if number of String arguments is not a multiple of 2
-     */
-    private Node getChildNodeByAttributeValue(@NotNull NodeList children, String @NotNull ... args){
-        if(args.length % 2 != 0){
-            throw new IllegalArgumentException();
-        }
-        for(int i = 0; i < children.getLength(); i++){
-            if(children.item(i).getNodeType() != Node.ELEMENT_NODE){
-                continue;
-            }
-            boolean found = true;
-            for(int j = 0; j < args.length; j += 2){
-                if(!getAttributeValue(children.item(i), args[j]).equals(args[j + 1])){
-                    found = false;
-                    break;
-                }
-            }
-            if(found){
-                return children.item(i);
-            }
-        }
-        throw new NoSuchElementException("Child node with corresponding attribute not found");
-    }
-
-    /**
-     * Get a specific Node by supplying all Nodes from the Character Node to the desired Node
-     *
-     * @param args String array to traverse in order to get to the desired Node
-     * @return Desired Node if found else null
-     */
-    private Node getNode(String @NotNull ... args){
-        NodeList attributeNodes = getAttributeNodes();
-        Element attr = (Element) attributeNodes;
-        for(String arg : args){
-            if(arg.equals(args[args.length - 1])){
-                Element tempAttr = getElementByTagName(attr, arg);
-                if(tempAttr == null){
-                    return attr.getAttributeNode(arg);
-                }
-                else{
-                    return tempAttr;
-                }
-            }
-            else{
-                attr = getElementByTagName(attr, arg);
-            }
-        }
-        throw new NoSuchElementException("Node not found by given path");
     }
 
     /**
@@ -2191,6 +2009,190 @@ public class Controller{
         listenersAdded = true;
     }
 
+    //region DOM Traversal Methods
+
+    /**
+     * Gets the list of immediate child Nodes of the selected character's characterNode
+     *
+     * @return NodeList of immediate child Nodes (eg. core, body, attributes, etc.)
+     */
+    private @NotNull NodeList getAttributeNodes(){
+        return characterNode.getChildNodes();
+    }
+
+    /**
+     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute or parent$child$modifier$attribute)
+     *
+     * @param event ActionEvent of the element that was interacted with
+     * @return Node containing the attribute value
+     */
+    private Node getValueNode(@NotNull ActionEvent event){
+        String[] id = getId(event).split("\\$");
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
+            if(id[1].equals("owned")){
+                NodeList fetishes = getElementByTagName(attr, "fetishes").getChildNodes();
+                return getChildNodeByAttributeValue(fetishes, "type", id[0]);
+            }
+            else if(id[1].equals("desire")){
+                NodeList fetishes = getElementByTagName(attr, "fetishDesire").getChildNodes();
+                Node fetishEntry = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
+                return getAttributeNode(fetishEntry, "desire");
+            }
+        }
+        else if(id[0].equals("spells")){ // Same with spell ids
+            NodeList spellUpgrades = getElementByTagName(attr, "spellUpgrades").getChildNodes();
+            return getChildNodeByAttributeValue(spellUpgrades, "type", id[1]);
+        }
+        else if(id[0].equals("coreInfo")){
+            Element coreInfo = getElementByTagName(saveFile, id[0]);
+            Element date = getElementByTagName(coreInfo, id[1]);
+            return date.getAttributeNode(id[2]);
+        }
+        for(int i = 0; i < id.length - 1; i++){
+            attr = getElementByTagName(attr, id[i]);
+        }
+        return getAttributeNode(attr, id[id.length - 1]);
+    }
+
+    /**
+     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute)
+     *
+     * @param objId Id of the element that was interacted with
+     * @return Node containing the attribute value
+     */
+    private Node getValueNode(@NotNull String objId){
+        String[] id = objId.split("\\$");
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        for(int i = 0; i < id.length - 1; i++){
+            attr = getElementByTagName(attr, id[i]);
+        }
+        return getAttributeNode(attr, id[id.length - 1]);
+    }
+
+    /**
+     * Gets the String value of the attribute of the given Node
+     *
+     * @param node Node to get the attribute of
+     * @param attr Attribute to get
+     * @return String containing the attribute value
+     */
+    private String getAttributeValue(@NotNull Node node, String attr){
+        return node.getAttributes().getNamedItem(attr).getTextContent();
+    }
+
+    /**
+     * Gets the Node of the specified attribute of the given Node
+     *
+     * @param node Node to get the attribute of
+     * @param attr Attribute to get
+     * @return Node containing the attribute Node
+     */
+    private Node getAttributeNode(@NotNull Node node, String attr){
+        return node.getAttributes().getNamedItem(attr);
+    }
+
+    /**
+     * Gets the parent Node of the Node with the attribute specified by the id
+     *
+     * @param event ActionEvent of the element that was interacted with
+     * @return Node that is the parent of the Node with the specified attribute
+     */
+    private Node getValueNodeParent(@NotNull ActionEvent event){
+        String[] id = getId(event).split("\\$");
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
+            if(id[1].equals("owned")){
+                return getElementByTagName(attr, "fetishes");
+            }
+            else if(id[1].equals("desire")){
+                return getElementByTagName(attr, "fetishDesire");
+            }
+        }
+        else if(id[0].equals("spells")){ // Same with spell ids
+            return getElementByTagName(attr, "spellUpgrades");
+        }
+        for(int i = 0; i < id.length - 1; i++){
+            attr = getElementByTagName(attr, id[i]);
+        }
+        return attr;
+    }
+
+    /**
+     * Gets the parent Node of the Node with the attribute specified by the id
+     *
+     * @param objId Id of the element that was interacted with
+     * @return Node that is the parent of the Node with the specified attribute
+     */
+    private Node getValueNodeParent(@NotNull String objId){
+        String[] id = objId.split("\\$");
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        for(int i = 0; i < id.length - 1; i++){
+            attr = getElementByTagName(attr, id[i]);
+        }
+        return attr;
+    }
+
+    /**
+     * Gets a Node from a NodeList based on specified attribute and value of attribute
+     *
+     * @param children NodeList to check
+     * @param args     Attribute/Value pairs to check for (must have Attribute, followed by value to match for each pair)
+     * @return Desired Node matching given attribute/value pairs
+     * @throws IllegalArgumentException if number of String arguments is not a multiple of 2
+     */
+    private Node getChildNodeByAttributeValue(@NotNull NodeList children, String @NotNull ... args){
+        if(args.length % 2 != 0){
+            throw new IllegalArgumentException();
+        }
+        for(int i = 0; i < children.getLength(); i++){
+            if(children.item(i).getNodeType() != Node.ELEMENT_NODE){
+                continue;
+            }
+            boolean found = true;
+            for(int j = 0; j < args.length; j += 2){
+                if(!getAttributeValue(children.item(i), args[j]).equals(args[j + 1])){
+                    found = false;
+                    break;
+                }
+            }
+            if(found){
+                return children.item(i);
+            }
+        }
+        throw new NoSuchElementException("Child node with corresponding attribute not found");
+    }
+
+    /**
+     * Get a specific Node by supplying all Nodes from the Character Node to the desired Node
+     *
+     * @param args String array to traverse in order to get to the desired Node
+     * @return Desired Node if found else null
+     */
+    private Node getNode(String @NotNull ... args){
+        NodeList attributeNodes = getAttributeNodes();
+        Element attr = (Element) attributeNodes;
+        for(String arg : args){
+            if(arg.equals(args[args.length - 1])){
+                Element tempAttr = getElementByTagName(attr, arg);
+                if(tempAttr == null){
+                    return attr.getAttributeNode(arg);
+                }
+                else{
+                    return tempAttr;
+                }
+            }
+            else{
+                attr = getElementByTagName(attr, arg);
+            }
+        }
+        throw new NoSuchElementException("Node not found by given path");
+    }
+
     /**
      * Finds id tags by their corresponding value attribute
      *
@@ -2238,6 +2240,8 @@ public class Controller{
     private Element getElementByTagName(@NotNull Document document, String tagName){
         return (Element) document.getElementsByTagName(tagName).item(0);
     }
+
+    //endregion
 
     /**
      * Deletes selected character from the save file and selects the previous character in the npc list
