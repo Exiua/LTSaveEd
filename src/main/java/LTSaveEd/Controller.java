@@ -357,6 +357,10 @@ public class Controller{
      */
     private final ArrayList<ObservableList<Attribute>> comboBoxValues = new ArrayList<>();
     /**
+     * ArrayList to hold all the ObservableList objects related to jobHistories
+     */
+    private final ArrayList<ObservableList<Attribute>> jobHistories = new ArrayList<>();
+    /**
      * Gui's stage object
      */
     private Stage stage;
@@ -426,6 +430,7 @@ public class Controller{
         initializer.getLabelMap().forEach(labelMap::putIfAbsent);
         initializer.getPersonalityTraits().forEach(personalityTraits::putIfAbsent);
         comboBoxValues.addAll(initializer.getComboBoxValues());
+        jobHistories.addAll(initializer.getJobHistories());
         perks.addAll(initializer.getPerks());
         initializer.initializeHairStyles(hairStylesB, hairStylesVS, hairStylesS, hairStylesSL, hairStylesL, hairStylesFL);
         desireTypes.addAll(initializer.getDesireTypes());
@@ -598,7 +603,16 @@ public class Controller{
         String charId = cb.getValue().getId();
         setCharacterNode(charId);
         Button btn = (Button) namespace.get("deleteCharacter");
-        btn.setVisible(!charId.equals("PlayerCharacter") && !charId.startsWith("-1"));
+        boolean isPlayer = charId.equals("PlayerCharacter");
+        btn.setVisible(!isPlayer && !charId.startsWith("-1"));
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> attributeComboBox = (ComboBox<Attribute>) namespace.get("core$history$value");
+        if(isPlayer){
+            attributeComboBox.setItems(jobHistories.get(0));
+        }
+        else{
+            attributeComboBox.setItems(jobHistories.get(1));
+        }
         setFields();
     }
 
@@ -1661,13 +1675,21 @@ public class Controller{
         relationBox.getChildren().clear();
         @SuppressWarnings("unchecked")
         ObservableList<NpcCharacter> npcChars = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
-        for(int i = 0; i < relationships.getLength(); i++){
-            if(relationships.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for(int i = 0; i < relationships.getLength(); i++) {
+            if (relationships.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             NamedNodeMap attrs = relationships.item(i).getAttributes();
             String charId = attrs.getNamedItem("character").getTextContent();
-            TextField nameField = new TextField(getNpcName(charId));
+            String npcName;
+
+            try {
+                npcName = getNpcName(charId);
+            } catch (NoSuchElementException e) {
+                continue;
+            }
+
+            TextField nameField = new TextField(npcName);
             nameField.setEditable(false);
             TextField idField = new TextField(charId);
             idField.setEditable(false);
@@ -1681,7 +1703,7 @@ public class Controller{
                 String[] id = getId(event).split("\\$");
                 String characterId = id[1];
                 System.out.println(characterId);
-                if(characterId.charAt(0) == '_'){
+                if (characterId.charAt(0) == '_') {
                     characterId = characterId.replaceFirst("_", "-");
                 }
                 characterId = characterId.replace("_", ",");
