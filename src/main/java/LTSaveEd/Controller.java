@@ -613,7 +613,10 @@ public class Controller{
         else{
             attributeComboBox.setItems(jobHistories.get(1));
         }
+		long startTime = System.nanoTime();
         setFields();
+		long endTime = System.nanoTime();
+		System.out.println("SetFields completed in " + (endTime - startTime) / 1000000. + "ms");
     }
 
     /**
@@ -1232,11 +1235,12 @@ public class Controller{
 
         MainLoop:
         for(int i = 0; i < attributeNodes.getLength(); i++){
-            if(attributeNodes.item(i).getNodeType() != Node.ELEMENT_NODE){
+            Node currentNode = attributeNodes.item(i);
+            if(currentNode.getNodeType() != Node.ELEMENT_NODE){
                 continue;
             } //  Only care about Element Nodes
-            NodeList attributeElements = attributeNodes.item(i).getChildNodes();
-            String attributeName = attributeNodes.item(i).getNodeName();
+            NodeList attributeElements = currentNode.getChildNodes();
+            String attributeName = currentNode.getNodeName();
             switch(attributeName){
                 case "locationInformation", "lipstickMarks", "tattoos", "potionAttributes", "traits",
                         "specialPerks", "statusEffects", "knownMoves", "equippedMoves" -> {
@@ -1246,47 +1250,47 @@ public class Controller{
                     break MainLoop;
                 }
                 case "characterRelationships" -> {  // These parts have an unknown number of elements which have identical tags
-                    setFieldsRelationships(attributeNodes.item(i));
+                    setFieldsRelationships(currentNode);
                     System.out.println("Character Relationship Fields Set");
                     continue;
                 }
                 case "fetishes" -> {
-                    setFieldsFetishes(attributeNodes.item(i));
+                    setFieldsFetishes(currentNode);
                     System.out.println("Fetish Fields Set");
                     continue;
                 }
                 case "fetishDesire" -> {
-                    setFieldsFetishDesires(attributeNodes.item(i));
+                    setFieldsFetishDesires(currentNode);
                     System.out.println("Fetish Desire Fields Set");
                     continue;
                 }
                 case "fetishExperience" -> {
-                    setFieldsFetishExperience(attributeNodes.item(i));
+                    setFieldsFetishExperience(currentNode);
                     System.out.println("Fetish Experience Fields Set");
                     continue;
                 }
                 case "knownSpells" -> {
-                    setFieldsKnownSpells(attributeNodes.item(i));
+                    setFieldsKnownSpells(currentNode);
                     System.out.println("Known Spell Fields Set");
                     continue;
                 }
                 case "spellUpgrades" -> {
-                    setFieldsSpellUpgrades(attributeNodes.item(i));
+                    setFieldsSpellUpgrades(currentNode);
                     System.out.println("Spell Upgrade Fields Set");
                     continue;
                 }
                 case "spellUpgradePoints" -> {
-                    setFieldsSpellUpgradePoints(attributeNodes.item(i));
+                    setFieldsSpellUpgradePoints(currentNode);
                     System.out.println("Spell Upgrade Points Fields Set");
                     continue;
                 }
                 case "attributes" -> {
-                    setFieldsAttributes(attributeNodes.item(i));
+                    setFieldsAttributes(currentNode);
                     System.out.println("Attribute Fields Set");
                     continue;
                 }
                 case "perks" -> {
-                    setFieldsPerks(attributeNodes.item(i));
+                    setFieldsPerks(currentNode);
                     System.out.println("Perk Fields Set");
                     continue;
                 }
@@ -1435,6 +1439,84 @@ public class Controller{
 
         fieldsSet = true;
         updateLabels();
+    }
+
+	private void setFields2(){
+		if (!fileLoaded) {
+			return;
+		}
+
+		resetFields();
+		System.out.println("Fields Reset");
+
+        if(!worldFieldsSet){
+            setWorldFields();
+            worldFieldsSet = true;
+        }
+
+        for(String[] array : new String[][]{intTextFieldIds, doubleTextFieldIds, stringTextFieldIds}){
+            for(String id : array) {
+                TextField textField = (TextField) namespace.get(id);
+                System.out.println(id);
+                String[] path = id.contains("$") ? id.split("\\$") : new String[]{id};
+                String value;
+                try {
+                    value = getNode(path).getTextContent();
+                }
+                catch (IllegalArgumentException | NullPointerException e) {
+                    continue;
+                }
+                textField.setText(value);
+            }
+        }
+
+        Node node = getNode("characterRelationships");
+        setFieldsRelationships(node);
+        System.out.println("Character Relationship Fields Set");
+
+        node = getNode("fetishes");
+        setFieldsFetishes(node);
+        System.out.println("Fetish Fields Set");
+
+        node = getNode("fetishDesire");
+        setFieldsFetishDesires(node);
+        System.out.println("Fetish Desire Fields Set");
+
+        node = getNode("fetishExperience");
+        setFieldsFetishExperience(node);
+        System.out.println("Fetish Experience Fields Set");
+
+        node = getNode("knownSpells");
+        setFieldsKnownSpells(node);
+        System.out.println("Known Spell Fields Set");
+
+        node = getNode("spellUpgrades");
+        setFieldsSpellUpgrades(node);
+        System.out.println("Spell Upgrade Fields Set");
+
+        node = getNode("spellUpgradePoints");
+        setFieldsSpellUpgradePoints(node);
+        System.out.println("Spell Upgrade Points Fields Set");
+
+        node = getNode("attributes");
+        setFieldsAttributes(node);
+        System.out.println("Attribute Fields Set");
+
+        node = getNode("perks");
+        setFieldsPerks(node);
+        System.out.println("Perk Fields Set");
+
+        node = getNode("core", "personality");
+        setFieldsPersonality(node);
+
+        node = getNode("characterInventory", "itemsInInventory");
+        setFieldsInventoryItems(node);
+
+        node = getNode("characterInventory", "clothingInInventory");
+        setFieldsInventoryClothing(node);
+
+        node = getNode("characterInventory", "weaponsInInventory");
+        setFieldsInventoryWeapons(node);
     }
 
     /**
