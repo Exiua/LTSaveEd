@@ -1033,7 +1033,7 @@ public class InitializeElements {
     /**
      * ObservableList of all the job histories in the game
      */
-    private final ObservableList<Attribute> jobHistories = FXCollections.observableArrayList(
+    private final ObservableList<Attribute> playerJobHistories = FXCollections.observableArrayList(
             new Attribute("Unemployed", "UNEMPLOYED"),
             new Attribute("Office Worker", "OFFICE_WORKER"), new Attribute("Student", "STUDENT"),
             new Attribute("Musician", "MUSICIAN"), new Attribute("Teacher", "TEACHER"),
@@ -1041,6 +1041,50 @@ public class InitializeElements {
             new Attribute("Construction Worker", "CONSTRUCTION_WORKER"),
             new Attribute("Soldier", "SOLDIER"), new Attribute("Athlete", "ATHLETE"),
             new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"));
+
+    private final ObservableList<Attribute> npcJobHistories = FXCollections.observableArrayList(
+            new Attribute("Unemployed", "NPC_UNEMPLOYED"),
+            new Attribute("Beautician", "NPC_BEAUTICIAN"),
+            new Attribute("Enforcer Sword Constable", "NPC_ENFORCER_SWORD_CONSTABLE"),
+            new Attribute("Enforcer Sword Inspector", "NPC_ENFORCER_SWORD_INSPECTOR"),
+            new Attribute("Enforcer Sword Chief Inspector", "NPC_ENFORCER_SWORD_CHIEF_INSPECTOR"),
+            new Attribute("Enforcer Sword Sergeant", "NPC_ENFORCER_SWORD_SERGEANT"),
+            new Attribute("Enforcer Sword Super", "NPC_ENFORCER_SWORD_SUPER"),
+            new Attribute("Enforcer Patrol Constable", "NPC_ENFORCER_PATROL_CONSTABLE"),
+            new Attribute("Enforcer Patrol Inspector", "NPC_ENFORCER_PATROL_INSPECTOR"),
+            new Attribute("Enforcer Patrol Sergeant", "NPC_ENFORCER_PATROL_SERGEANT"),
+            new Attribute("Slime Queen Guard", "NPC_SLIME_QUEEN_GUARD"),
+            new Attribute("Slime Queen", "NPC_SLIME_QUEEN"),
+            new Attribute("Elis Mayor", "NPC_ELIS_MAYOR"),
+            new Attribute("Stable Mistress", "NPC_STABLE_MISTRESS"),
+            new Attribute("Epona", "NPC_EPONA"),
+            new Attribute("Business Owner", "NPC_BUSINESS_OWNER"),
+            new Attribute("Casino Owner", "NPC_CASINO_OWNER"),
+            new Attribute("Clothing Store Owner", "NPC_CLOTHING_STORE_OWNER"),
+            new Attribute("Gym Owner", "NPC_GYM_OWNER"),
+            new Attribute("Nightclub Owner", "NPC_NIGHTCLUB_OWNER"),
+            new Attribute("Store Owner", "NPC_STORE_OWNER"),
+            new Attribute("Tavern Owner", "NPC_TAVERN_OWNER"),
+            new Attribute("Assistant", "NPC_ASSISTANT"),
+            new Attribute("Arcane Researcher", "NPC_ARCANE_RESEARCHER"),
+            new Attribute("Bar Tender", "NPC_BAR_TENDER"),
+            new Attribute("Bouncer", "NPC_BOUNCER"),
+            new Attribute("Prostitute", "NPC_PROSTITUTE"),
+            new Attribute("Lyssieth Guard", "NPC_LYSSIETH_GUARD"),
+            new Attribute("Slave", "NPC_SLAVE"),
+            new Attribute("Slaver Admin", "NPC_SLAVER_ADMIN"),
+            new Attribute("Harpy Flock Member", "NPC_HARPY_FLOCK_MEMBER"),
+            new Attribute("Harpy Matriarch", "NPC_HARPY_MATRIARCH"),
+            new Attribute("Construction Worker Arcane", "NPC_CONSTRUCTION_WORKER_ARCANE"),
+            new Attribute("Bounty Hunter", "NPC_BOUNTY_HUNTER"),
+            new Attribute("Taur Transport", "NPC_TAUR_TRANSPORT"),
+            new Attribute("Elemental", "ELEMENTAL"), new Attribute("Mugger", "NPC_MUGGER"),
+            new Attribute("Gang Member", "NPC_GANG_MEMBER"),
+            new Attribute("Gang Body Guard", "NPC_GANG_BODY_GUARD"),
+            new Attribute("Gang Leader", "NPC_GANG_LEADER"),
+            new Attribute("Office Worker", "NPC_OFFICE_WORKER"),
+            new Attribute("Maid", "NPC_MAID"),
+            new Attribute("Elder Lilin", "NPC_ELDER_LILIN"));
 
     /**
      * ObservableList of all the femininity group values in the game
@@ -1283,7 +1327,7 @@ public class InitializeElements {
                 elementalFireSpellTiers, poisonVapoursSpellTiers, vacuumSpellTiers, protectiveGustsSpellTiers,
                 elementalAirSpellTiers, arcaneArousalSpellTiers, telepathicCommunicationSpellTiers, arcaneCloudSpellTiers,
                 cleanseSpellTiers, stealSpellTiers, teleportSpellTiers, lilithsCommandSpellTiers,
-                elementalArcaneSpellTiers, months, subspeciesOverrides, jobHistories, numericalMonths,
+                elementalArcaneSpellTiers, months, subspeciesOverrides, playerJobHistories, numericalMonths,
                 femininityAttributeValues, femininityAttributeValues, subspeciesOverrides, subspeciesOverrides));
         initializeHairStyles();
         initializeLegConfigurations();
