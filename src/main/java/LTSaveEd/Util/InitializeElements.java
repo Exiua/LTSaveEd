@@ -1502,9 +1502,9 @@ public class InitializeElements {
         PerkNode p5_9 = new PerkNode(p4_9, "5", "FERTILITY_BOOST", "Fertile");
         PerkNode p5_4 = new PerkNode(p4_3, "5", "UNARMED_DAMAGE", "Hand-to-Hand");
         PerkNode p5_10 = new PerkNode(p4_11, "5", "ELEMENTAL_BOOST", "Elemental Striker");
-        PerkNode p5_3 = new PerkNode(p5_4, "5", "CRITICAL_BOOST", "Critical Power"); //Physical
-        PerkNode p5_7 = new PerkNode(p4_6, p4_8, "5", "CRITICAL_BOOST_ALT", "Critical Power"); //Seductive
-        PerkNode p5_11 = new PerkNode(p5_10, "5", "CRITICAL_BOOST_ALT_2", "Critical Power"); //Arcane
+        PerkNode p5_3 = new PerkNode(p5_4, "5", "CRITICAL_BOOST", "Critical Power");
+        PerkNode p5_7 = new PerkNode(p4_6, p4_8, "5", "CRITICAL_BOOST_LUST", "Critical Power");
+        PerkNode p5_11 = new PerkNode(p5_10, "5", "CRITICAL_BOOST_ARCANE", "Critical Power");
         PerkNode p5_12 = new PerkNode(p5_11, "5", "CHUUNI", "Chuuni");
         PerkNode p5_2 = new PerkNode(p5_3, "5", "UNARMED_TRAINING", "Martial Artist");
         PerkNode p5_1 = new PerkNode(p4_1, p4_2, "5", "RUNNER_2", "Cardio King");
