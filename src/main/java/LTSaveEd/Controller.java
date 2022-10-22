@@ -2795,18 +2795,24 @@ public class Controller{
                     return attributeNode.getAttributeNode(id[id.length - 1]);
                 }
                 case "characterInventory" -> {
-                    int index = Integer.parseInt(id[3]);
-                    switch(id[1]){
-                        case "itemsInInventory" -> {
-                            // id[3] should be a number corresponding to ArrayList index and id[2] should be attribute Node name
-                            return inventoryItems.get(index).getNode().getAttributeNode(id[2]);
+                    if(id.length == 4) {
+                        int index = Integer.parseInt(id[3]);
+                        switch (id[1]) {
+                            case "itemsInInventory" -> {
+                                // id[3] should be a number corresponding to ArrayList index and id[2] should be attribute Node name
+                                return inventoryItems.get(index).getNode().getAttributeNode(id[2]);
+                            }
+                            case "clothingInInventory" -> {
+                                return inventoryClothes.get(index).getNode().getAttributeNode(id[2]);
+                            }
+                            case "weaponsInInventory" -> {
+                                return inventoryWeapons.get(index).getNode().getAttributeNode(id[2]);
+                            }
                         }
-                        case "clothingInInventory" -> {
-                            return inventoryClothes.get(index).getNode().getAttributeNode(id[2]);
-                        }
-                        case "weaponsInInventory" -> {
-                            return inventoryWeapons.get(index).getNode().getAttributeNode(id[2]);
-                        }
+                    }
+                    else{
+                        attr = getElementByTagName(attr, id[1]);
+                        return getAttributeNode(attr, id[2]);
                     }
                 }
             }
