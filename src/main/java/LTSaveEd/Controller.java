@@ -2333,6 +2333,14 @@ public class Controller{
                 }
             }
         }
+        // This is the new way offsprings are handled
+        NodeList offspringList = saveFile.getElementsByTagName("OffspringSeed");
+        while(offspringList.getLength() > 0) {
+            for (int i = 0; i < offspringList.getLength(); i++) {
+                removeNode(offspringList.item(i));
+            }
+            offspringList = saveFile.getElementsByTagName("OffspringSeed");
+        }
         System.out.println("Offsprings Removed");
     }
 
@@ -2463,6 +2471,7 @@ public class Controller{
             DOMSource source = new DOMSource(saveFile);
             StreamResult result = new StreamResult(f);
             tf.transform(source, result);
+            System.out.println("Saved to file");
         }
         catch(TransformerException | XPathExpressionException e){
             e.printStackTrace();
