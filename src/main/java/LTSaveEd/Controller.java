@@ -2208,7 +2208,20 @@ public class Controller{
                 return children.item(i);
             }
         }
-        throw new NoSuchElementException("Child node with corresponding attribute not found");
+        throw new NoSuchElementException("Child node with attribute " + args[0] + " = " + args[1] + " not found");
+    }
+
+    private Node getChildNodeByTextContent(@NotNull NodeList children, @NotNull String text){
+        for(int i = 0; i < children.getLength(); i++) {
+            if (children.item(i).getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+            Node node = children.item(i);
+            if(node.getTextContent().equals(text)){
+                return node;
+            }
+        }
+        throw new NoSuchElementException("Child node with textContent " + text + " not found");
     }
 
     /**
