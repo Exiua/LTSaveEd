@@ -2599,12 +2599,12 @@ public class Controller{
             Node value = getValueNode();
             if(fetishExp){
                 NodeList attributeNodes = getAttributeNodes();
-                Node fetishExp = getElementByTagName((Element) attributeNodes, "fetishExperience");
-                Element fetishEntry = saveFile.createElement("entry");
-                fetishEntry.setAttribute("experience", "0");
-                fetishEntry.setAttribute("fetish", fieldId.split("\\$")[0]);
-                fetishExp.appendChild(fetishEntry);
-                value = getAttributeNode(fetishEntry, "experience");
+                Node fetishes = getElementByTagName((Element) attributeNodes, "fetishes");
+                Element fetishEntry = saveFile.createElement("f");
+                fetishEntry.setAttribute("xp", "0");
+                fetishEntry.setTextContent(fieldId.split("\\$")[0]);
+                fetishes.appendChild(fetishEntry);
+                value = getAttributeNode(fetishEntry, "xp");
                 System.out.println("Created new element");
             }
             String oldValue = value.getTextContent();
