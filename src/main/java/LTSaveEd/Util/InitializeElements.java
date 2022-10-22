@@ -778,9 +778,9 @@ public class InitializeElements {
      * ObservableList of all desire types in the game
      */
     private final ObservableList<Attribute> desireTypes = FXCollections.observableArrayList(
-            new Attribute("Hate", "ZERO_HATE"), new Attribute("Dislike", "ONE_DISLIKE"),
-            new Attribute("Indifferent", "TWO_NEUTRAL"), new Attribute("Like", "THREE_LIKE"),
-            new Attribute("Love", "FOUR_LOVE"));
+            new Attribute("Hate", "0"), new Attribute("Dislike", "1"),
+            new Attribute("Indifferent", "2"), new Attribute("Like", "3"),
+            new Attribute("Love", "4"));
 
     /**
      * ObservableList of all tiers of the Slam spell
