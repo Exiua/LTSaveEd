@@ -2761,9 +2761,9 @@ public class Controller{
             String[] id = fieldId.split("\\$");
             NodeList attributeNodes = getAttributeNodes();
             if(id[0].startsWith("FETISH_")){
-                NodeList fetishes = getElementByTagName((Element) attributeNodes, "fetishExperience").getChildNodes();
-                Node childNode = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
-                return getAttributeNode(childNode, "experience");
+                NodeList fetishes = getElementByTagName((Element) attributeNodes, "fetishes").getChildNodes();
+                Node childNode = getChildNodeByTextContent(fetishes, id[0]);
+                return getAttributeNode(childNode, "xp");
             }
             Element attr = getElementByTagName((Element) attributeNodes, id[0]);
             switch(id[0]){
