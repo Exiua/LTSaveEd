@@ -229,7 +229,7 @@ public class Controller{
                                                "perks$3$VIRILITY_MAJOR_BOOST", "perks$3$SEDUCTION_BOOST", "perks$3$ORGASMIC_LEVEL_DRAIN",
                                                "perks$3$SEDUCTION_DEFENCE_BOOST", "perks$3$FERTILITY_MAJOR_BOOST", "perks$4$FETISH_SEEDER",
                                                "perks$4$SEDUCTION_BOOST", "perks$4$SEDUCTION_DEFENCE_BOOST", "perks$4$FETISH_BROODMOTHER",
-                                               "perks$5$VIRILITY_BOOST", "perks$5$VIRILITY_MAJOR_BOOST", "perks$5$CRITICAL_BOOST_ALT",
+                                               "perks$5$VIRILITY_BOOST", "perks$5$VIRILITY_MAJOR_BOOST", "perks$5$CRITICAL_BOOST_LUST",
                                                "perks$5$FERTILITY_MAJOR_BOOST", "perks$5$FERTILITY_BOOST", "perks$6$MALE_ATTRACTION",
                                                "perks$6$SEDUCTION_BOOST_MAJOR", "perks$6$FEMALE_ATTRACTION", "perks$7$SEDUCTION_BOOST",
                                                "perks$7$SEDUCTION_BOOST_ALT", "perks$7$SEDUCTION_DEFENCE_BOOST", "perks$8$SEDUCTION_BOOST",
@@ -240,7 +240,7 @@ public class Controller{
                                                "perks$2$ENCHANTMENT_STABILITY_ALT", "perks$2$ARCANE_CRITICALS", "perks$2$ARCANE_BOOST",
                                                "perks$3$ENCHANTMENT_STABILITY_ALT", "perks$3$SPELL_DAMAGE", "perks$3$AURA_BOOST", "perks$3$SPELL_EFFICIENCY",
                                                "perks$4$CLOTHING_ENCHANTER", "perks$4$SPELL_DAMAGE", "perks$4$AURA_BOOST", "perks$4$SPELL_EFFICIENCY",
-                                               "perks$5$ELEMENTAL_BOOST", "perks$5$CRITICAL_BOOST_ALT_2", "perks$5$CHUUNI", "perks$5$ARCANE_COMBATANT",
+                                               "perks$5$ELEMENTAL_BOOST", "perks$5$CRITICAL_BOOST_ARCANE", "perks$5$CHUUNI", "perks$5$ARCANE_COMBATANT",
                                                "perks$6$ARCANE_BOOST_MAJOR", "perks$7$AURA_BOOST", "perks$7$SPELL_EFFICIENCY", "perks$7$SPELL_DAMAGE",
                                                "perks$8$AURA_BOOST", "perks$8$SPELL_EFFICIENCY", "perks$8$SPELL_DAMAGE", "perks$9$AURA_BOOST",
                                                "perks$9$SPELL_EFFICIENCY", "perks$9$SPELL_DAMAGE_MAJOR", "perks$10$SACRIFICIAL_SHIELDING",
@@ -1259,16 +1259,6 @@ public class Controller{
                     System.out.println("Fetish Fields Set");
                     continue;
                 }
-                case "fetishDesire" -> {
-                    setFieldsFetishDesires(currentNode);
-                    System.out.println("Fetish Desire Fields Set");
-                    continue;
-                }
-                case "fetishExperience" -> {
-                    setFieldsFetishExperience(currentNode);
-                    System.out.println("Fetish Experience Fields Set");
-                    continue;
-                }
                 case "knownSpells" -> {
                     setFieldsKnownSpells(currentNode);
                     System.out.println("Known Spell Fields Set");
@@ -1478,14 +1468,6 @@ public class Controller{
         setFieldsFetishes(node);
         System.out.println("Fetish Fields Set");
 
-        node = getNode("fetishDesire");
-        setFieldsFetishDesires(node);
-        System.out.println("Fetish Desire Fields Set");
-
-        node = getNode("fetishExperience");
-        setFieldsFetishExperience(node);
-        System.out.println("Fetish Experience Fields Set");
-
         node = getNode("knownSpells");
         setFieldsKnownSpells(node);
         System.out.println("Known Spell Fields Set");
@@ -1627,56 +1609,36 @@ public class Controller{
             if(ownedFetishes.item(i).getNodeType() != Node.ELEMENT_NODE){
                 continue;
             }
-            String fetishType = getAttributeValue(ownedFetishes.item(i), "type");
+
+            Node fetish = ownedFetishes.item(i);
+            String fetishType = fetish.getTextContent();
             if(fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
-                    fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")){
+                    fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")) {
                 continue; // Skip these values
             }
-            String fetishId = fetishType + "$owned";
-            CheckBox cb = (CheckBox) namespace.get(fetishId);
-            cb.setSelected(true);
-        }
-    }
+            Node desire = getAttributeNode(fetish, "desire");
+            Node owned = getAttributeNode(fetish, "o");
+            Node xp = getAttributeNode(fetish, "xp");
 
-    /**
-     * Sets the value of fetish desire ComboBoxes
-     *
-     * @param fetishesNode fetishDesire Node in the save file
-     */
-    private void setFieldsFetishDesires(@NotNull Node fetishesNode){
-        NodeList fetishDesires = fetishesNode.getChildNodes();
-        for(int i = 0; i < fetishDesires.getLength(); i++){
-            if(fetishDesires.item(i).getNodeType() != Node.ELEMENT_NODE){
-                continue;
+            if(desire != null){
+                String fetishId = fetishType + "$desire";
+                String fetishValue = desire.getTextContent();
+                @SuppressWarnings("unchecked")
+                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
+                ObservableList<Attribute> values = cb.getItems();
+                cb.setValue(matchComboBoxItem(values, fetishValue));
             }
-            NamedNodeMap attr = fetishDesires.item(i).getAttributes();
-            String fetishType = attr.getNamedItem("fetish").getTextContent();
-            String fetishId = fetishType + "$desire";
-            String fetishValue = attr.getNamedItem("desire").getTextContent();
-            @SuppressWarnings("unchecked")
-            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fetishId);
-            ObservableList<Attribute> values = cb.getItems();
-            cb.setValue(matchComboBoxItem(values, fetishValue));
-        }
-    }
-
-    /**
-     * Sets the value of fetish experience TextFields
-     *
-     * @param fetishesNode fetishExperiences Node in the save file
-     */
-    private void setFieldsFetishExperience(@NotNull Node fetishesNode){
-        NodeList fetishExp = fetishesNode.getChildNodes();
-        for(int i = 0; i < fetishExp.getLength(); i++){
-            if(fetishExp.item(i).getNodeType() != Node.ELEMENT_NODE){
-                continue;
+            if(owned != null && owned.getTextContent().equals("true")) {
+                String fetishId = fetishType + "$owned";
+                CheckBox cb = (CheckBox) namespace.get(fetishId);
+                cb.setSelected(true);
             }
-            NamedNodeMap attr = fetishExp.item(i).getAttributes();
-            String fetishType = attr.getNamedItem("fetish").getTextContent();
-            String fetishId = fetishType + "$exp";
-            String fetishValue = attr.getNamedItem("experience").getTextContent();
-            TextField tf = (TextField) namespace.get(fetishId);
-            tf.setText(fetishValue);
+            if(xp != null){
+                String fetishId = fetishType + "$exp";
+                String fetishValue = xp.getTextContent();
+                TextField tf = (TextField) namespace.get(fetishId);
+                tf.setText(fetishValue);
+            }
         }
     }
 
@@ -2371,6 +2333,14 @@ public class Controller{
                 }
             }
         }
+        // This is the new way offsprings are handled
+        NodeList offspringList = saveFile.getElementsByTagName("OffspringSeed");
+        while(offspringList.getLength() > 0) {
+            for (int i = 0; i < offspringList.getLength(); i++) {
+                removeNode(offspringList.item(i));
+            }
+            offspringList = saveFile.getElementsByTagName("OffspringSeed");
+        }
         System.out.println("Offsprings Removed");
     }
 
@@ -2501,6 +2471,7 @@ public class Controller{
             DOMSource source = new DOMSource(saveFile);
             StreamResult result = new StreamResult(f);
             tf.transform(source, result);
+            System.out.println("Saved to file");
         }
         catch(TransformerException | XPathExpressionException e){
             e.printStackTrace();

@@ -2676,7 +2676,7 @@
                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                               <CheckBox fx:id="perks$5$VIRILITY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Virile" />
                               <CheckBox fx:id="perks$5$VIRILITY_MAJOR_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Virile" />
-                              <CheckBox fx:id="perks$5$CRITICAL_BOOST_ALT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
+                              <CheckBox fx:id="perks$5$CRITICAL_BOOST_LUST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
                               <CheckBox fx:id="perks$5$FERTILITY_MAJOR_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Fertile" />
                               <CheckBox fx:id="perks$5$FERTILITY_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Fertile" />
                           </HBox>
@@ -2735,7 +2735,7 @@
                           </HBox>
                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                               <CheckBox fx:id="perks$5$ELEMENTAL_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Elemental Striker" />
-                              <CheckBox fx:id="perks$5$CRITICAL_BOOST_ALT_2" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
+                              <CheckBox fx:id="perks$5$CRITICAL_BOOST_ARCANE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
                               <CheckBox fx:id="perks$5$CHUUNI" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Chuuni" />
                               <CheckBox fx:id="perks$5$ARCANE_COMBATANT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Arcane Combatant" />
                           </HBox>
