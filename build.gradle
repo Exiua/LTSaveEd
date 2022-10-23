@@ -1,6 +1,7 @@
 plugins {
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.9'
+    //id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'com.dua3.javafxgradle7plugin' version '0.0.9'
     id 'org.beryx.jlink' version '2.12.0'
 }
 
@@ -13,16 +14,40 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = "$moduleName/LTSaveEd.Launcher"
+application {
+    mainModule = 'LTSaveEd'
+    mainClass = 'LTSaveEd.Launcher'
+}
 
+//mainClassName = "$moduleName/LTSaveEd.Launcher"
+
+apply plugin: 'java'
+sourceCompatibility = 14
+targetCompatibility = 14
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Main-Class': 'LTSaveEd.Launcher'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
 
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
-        name = 'hellofx'
+        name = 'LTSaveEd'
     }
 }
 
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
+    runtimeOnly "org.openjfx:javafx-controls:16:win"
+    runtimeOnly "org.openjfx:javafx-controls:16:linux"
+    runtimeOnly "org.openjfx:javafx-controls:16:mac"
+    runtimeOnly "org.openjfx:javafx-fxml:16:win"
+    runtimeOnly "org.openjfx:javafx-fxml:16:linux"
+    runtimeOnly "org.openjfx:javafx-fxml:16:mac"
 }
