@@ -1501,68 +1501,6 @@ public class Controller {
                             cb.setSelected(Boolean.parseBoolean(value));
                         }
                     }
-                    // Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
-                    /*try { // Using TextFields for numerical and string values
-                        TextField tf = (TextField) namespace.get(nodeId);
-
-                        if (tf != null) {
-                            tf.setText(value);
-
-                            if (nodeId.equals("body$hair$length")) {
-                                int v = Integer.parseInt(value);
-                                @SuppressWarnings("unchecked")
-                                ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
-
-                                if (v >= 0 && v < 4) {
-                                    hairStyles.setItems(hairStylesB);
-                                }
-                                else if (v < 11) {
-                                    hairStyles.setItems(hairStylesVS);
-                                }
-                                else if (v < 22) {
-                                    hairStyles.setItems(hairStylesS);
-                                }
-                                else if (v < 45) {
-                                    hairStyles.setItems(hairStylesSL);
-                                }
-                                else if (v < 265) {
-                                    hairStyles.setItems(hairStylesL);
-                                }
-                                else {
-                                    hairStyles.setItems(hairStylesFL);
-                                }
-                            }
-                        }
-                    }
-                    catch (ClassCastException e) { // Using CheckBox for boolean values
-                        try {
-                            CheckBox cb = (CheckBox) namespace.get(nodeId);
-
-                            if (cb != null) {
-                                cb.setSelected(Boolean.parseBoolean(value));
-                            }
-                        }
-                        catch (ClassCastException e2) { // Using ComboBoxes for fixed values
-                            if (nodeId.contains("motherId") || nodeId.contains("fatherId")) {
-                                @SuppressWarnings("unchecked")
-                                ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(nodeId);
-
-                                if (cb != null) {
-                                    ObservableList<NpcCharacter> itemList = cb.getItems();
-                                    cb.setValue(matchNpc(itemList, value));
-                                }
-                            }
-                            else {
-                                @SuppressWarnings("unchecked")
-                                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
-
-                                if (cb != null) {
-                                    ObservableList<Attribute> itemList = cb.getItems();
-                                    cb.setValue(matchComboBoxItem(itemList, value));
-                                }
-                            }
-                        }
-                    }*/
                 }
             }
             System.out.println(attributeName + " Fields Set");
