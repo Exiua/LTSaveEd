@@ -4,111 +4,231 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import QFont, QTextCursor
 from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, QFormLayout, QPushButton, QHBoxLayout, QTabWidget, \
     QDesktopWidget, QTextEdit, QTableWidget, QTableWidgetItem, QLabel, QCheckBox, QFileDialog, QComboBox, QMessageBox, \
-    QTextBrowser, QVBoxLayout
+    QTextBrowser, QVBoxLayout, QMainWindow
 
 
-class LTSaveEd(QWidget):
-    def __init__(self, parent: QWidget | None = None):
-        super().__init__(parent)
-        # region Instance Variables
-
+class LTSaveEd(QMainWindow):
+    def __init__(self):
+        super().__init__()
         self.title: str = "LTSaveEd"
         self.version: str = "v2.0.0"
-
-        # endregion
-
-        self.setGeometry(0, 0, 768, 432)
+        # Window Settings
+        self.x, self.y, self.w, self.h = 0, 0, 768, 432
+        self.setGeometry(self.x, self.y, self.w, self.h)
 
         qtRectangle = self.frameGeometry()
         centerPoint = QDesktopWidget().availableGeometry().center()
         qtRectangle.moveCenter(centerPoint)
         self.move(qtRectangle.topLeft())
 
-        # region UI Construction
+        self.window = MainWindow(self)
+        self.setCentralWidget(self.window)
+        self.setWindowTitle(f"{self.title} {self.version}")  # Window Title
+        self.show()
 
-        tab_widget = QTabWidget()
 
-        # region Tab Creation
+class CoreTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(CoreTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
-        # region Core Tab
-
-        core_tab = QWidget()
-        vbox = QVBoxLayout(core_tab)
         hbox = QHBoxLayout()
-        label = QLabel("Id:")
-        self.core_id_value = QLineEdit()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
         hbox.addWidget(label)
-        hbox.addWidget(self.core_id_value)
-        vbox.addLayout(hbox)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
 
-        # endregion
+        layout.addStretch()
 
-        # region Attributes Tab
 
-        attributes_tab = QWidget()
+class AttributesTab(QWidget):
+    def __init__(self, parent=None):
+        super(AttributesTab, self).__init__(parent)
+        lay = QVBoxLayout(self)
+        hlay = QHBoxLayout()
+        lay.addLayout(hlay)
+        lay.addStretch()
 
-        # endregion
+        label_language = QLabel("Language")
+        combo_language = QComboBox(self)
+        combo_language.addItem("item1")
+        combo_language.addItem("item2")
+        hlay.addWidget(label_language)
+        hlay.addWidget(combo_language)
 
-        # region Body Tab
 
-        body_tab = QWidget()
+class BodyTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(BodyTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
-        # endregion
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
 
-        # region Fetishes Tab
+        layout.addStretch()
 
-        fetishes_tab = QWidget()
 
-        # endregion
+class FetishesTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(FetishesTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
-        # region Perks Tab
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
 
-        perks_tab = QWidget()
+        layout.addStretch()
 
-        # endregion
 
-        # region Spells Tab
+class PerksTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(PerksTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
-        spells_tab = QWidget()
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
 
-        # endregion
+        layout.addStretch()
 
-        # region Inventory Tab
 
-        inventory_tab = QWidget()
+class SpellsTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(SpellsTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
-        # endregion
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
 
-        # region Relationships Tab
+        layout.addStretch()
 
-        relationships_tab = QWidget()
 
-        # endregion
+class InventoryTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(InventoryTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
-        # region Family Tab
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
 
-        family_tab = QWidget()
+        layout.addStretch()
 
-        # endregion
 
-        # region World Tab
+class RelationshipsTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(RelationshipsTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
-        world_tab = QWidget()
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
 
-        # endregion
+        layout.addStretch()
 
-        # region Extra Tab
 
-        extra_tab = QWidget()
+class FamilyTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(FamilyTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
-        # endregion
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
 
-        # region Pregnancy Tab
+        layout.addStretch()
 
-        pregnancy_tab = QWidget()
 
-        # endregion
+class WorldTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(WorldTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
 
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
+
+        layout.addStretch()
+
+
+class ExtraTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(ExtraTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
+
+        layout.addStretch()
+
+
+class PregnancyTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(PregnancyTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Character:")
+        combo_box = QComboBox()
+        hbox.addWidget(label)
+        hbox.addWidget(combo_box)
+        layout.addLayout(hbox)
+
+        layout.addStretch()
+
+
+class MainWindow(QWidget):
+    def __init__(self, parent):
+        super(MainWindow, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+        # Initialize tabs
+        tab_widget = QTabWidget()
+        core_tab = CoreTab()
+        attributes_tab = AttributesTab()
+        body_tab = BodyTab()
+        fetishes_tab = FetishesTab()
+        perks_tab = PerksTab()
+        spells_tab = SpellsTab()
+        inventory_tab = InventoryTab()
+        relationships_tab = RelationshipsTab()
+        family_tab = FamilyTab()
+        world_tab = WorldTab()
+        extra_tab = ExtraTab()
+        pregnancy_tab = PregnancyTab()
+
+        # Add tabs
         tab_widget.addTab(core_tab, "Core")
         tab_widget.addTab(attributes_tab, "Attributes")
         tab_widget.addTab(body_tab, "Body")
@@ -123,18 +243,10 @@ class LTSaveEd(QWidget):
         tab_widget.addTab(pregnancy_tab, "Pregnancy")
         tab_widget.setTabEnabled(11, False)
 
-        # endregion
-
-        form_layout = QFormLayout()
-        form_layout.addRow(tab_widget)
-        self.setLayout(form_layout)
-        self.setWindowTitle(f"{self.title} {self.version}")
-
-        # endregion
+        layout.addWidget(tab_widget)
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    win = LTSaveEd()
-    win.show()
+    ex = LTSaveEd()
     sys.exit(app.exec_())
