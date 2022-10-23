@@ -678,17 +678,27 @@ public class Controller{
             else{
                 CheckBox cb = (CheckBox) namespace.get(fxId);
                 Node value = getValueNode(event);
+                String[] id = fxId.split("\\$");
                 if(fxId.startsWith("FETISH_")){
                     if(!cb.isSelected()){
-                        removeNode(value);
-                        System.out.println("Removed fetish");
+                        if(value != null) {
+                            ((Element) value).removeAttribute("o");
+                            System.out.println("Removed fetish ownership");
+                        }
                     }
                     else{
-                        Element fetish = saveFile.createElement("fetish");
-                        fetish.setAttribute("type", fxId.split("\\$")[0]);
-                        Node fetishes = getValueNodeParent(event);
-                        fetishes.appendChild(fetish);
-                        System.out.println("Added fetish");
+                        if(value == null){
+                            Element fetish = saveFile.createElement("f");
+                            fetish.setTextContent(id[0]);
+                            Node fetishes = getValueNodeParent(event);
+                            fetishes.appendChild(fetish);
+                            System.out.println("Added fetish");
+                        }
+                        else{
+                            ((Element) value).setAttribute("o", "true");
+                            System.out.println("Added fetish ownership");
+                        }
+
                     }
                 }
                 else if(fxId.startsWith("spells")){
@@ -2064,6 +2074,22 @@ public class Controller{
         return characterNode.getChildNodes();
     }
 
+    private Node getFetishAttributeParent(){
+        //TODO
+        return null;
+    }
+
+    private Node getFetishValueNode(@NotNull Element attr, @NotNull String[] id){
+        NodeList fetishes = getElementByTagName(attr, "fetishes").getChildNodes();
+        Node childNode = getChildNodeByTextContent(fetishes, id[0]);
+        return switch (id[1]) {
+            case "owned" -> getAttributeNode(childNode, "o");
+            case "desire" -> getAttributeNode(childNode, "desire");
+            case "exp" -> getAttributeNode(childNode, "xp");
+            default -> throw new IllegalArgumentException("Fetish element does not contain " + id[1] + " attribute");
+        };
+    }
+
     /**
      * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute or parent$child$modifier$attribute)
      *
@@ -2072,18 +2098,9 @@ public class Controller{
      */
     private Node getValueNode(@NotNull ActionEvent event){
         String[] id = getId(event).split("\\$");
-        NodeList attributeNodes = getAttributeNodes();
-        Element attr = (Element) attributeNodes;
+        Element attr = (Element) getAttributeNodes();
         if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
-            if(id[1].equals("owned")){
-                NodeList fetishes = getElementByTagName(attr, "fetishes").getChildNodes();
-                return getChildNodeByAttributeValue(fetishes, "type", id[0]);
-            }
-            else if(id[1].equals("desire")){
-                NodeList fetishes = getElementByTagName(attr, "fetishDesire").getChildNodes();
-                Node fetishEntry = getChildNodeByAttributeValue(fetishes, "fetish", id[0]);
-                return getAttributeNode(fetishEntry, "desire");
-            }
+            return getFetishValueNode(attr, id);
         }
         else if(id[0].equals("spells")){ // Same with spell ids
             NodeList spellUpgrades = getElementByTagName(attr, "spellUpgrades").getChildNodes();
@@ -2149,12 +2166,7 @@ public class Controller{
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
         if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
-            if(id[1].equals("owned")){
-                return getElementByTagName(attr, "fetishes");
-            }
-            else if(id[1].equals("desire")){
-                return getElementByTagName(attr, "fetishDesire");
-            }
+            return getElementByTagName(attr, "fetishes");
         }
         else if(id[0].equals("spells")){ // Same with spell ids
             return getElementByTagName(attr, "spellUpgrades");
@@ -2596,16 +2608,28 @@ public class Controller{
          */
         private String getFormattedText(@NotNull String newValue){
             updateFieldId();
-            Node value = getValueNode();
-            if(fetishExp){
+            Node value;
+            try{
+                value = getValueNode();
+            }
+            catch (NoSuchElementException e){
                 NodeList attributeNodes = getAttributeNodes();
                 Node fetishes = getElementByTagName((Element) attributeNodes, "fetishes");
                 Element fetishEntry = saveFile.createElement("f");
                 fetishEntry.setAttribute("xp", "0");
                 fetishEntry.setTextContent(fieldId.split("\\$")[0]);
                 fetishes.appendChild(fetishEntry);
-                value = getAttributeNode(fetishEntry, "xp");
                 System.out.println("Created new element");
+                value = getValueNode();
+            }
+
+            if(fetishExp && value == null){
+                NodeList attributeNodes = getAttributeNodes();
+                Node fetishes = getElementByTagName((Element) attributeNodes, "fetishes");
+                value = getChildNodeByTextContent(fetishes.getChildNodes(), fieldId.split("\\$")[0]);
+                ((Element) value).setAttribute("xp", "0");
+                value = getAttributeNode(value, "xp");
+                System.out.println("Added xp attribute to fetish");
             }
             String oldValue = value.getTextContent();
             switch(tfType){
@@ -2759,13 +2783,11 @@ public class Controller{
          */
         private Node getValueNode(){
             String[] id = fieldId.split("\\$");
-            NodeList attributeNodes = getAttributeNodes();
+            Element attr = (Element) getAttributeNodes();
             if(id[0].startsWith("FETISH_")){
-                NodeList fetishes = getElementByTagName((Element) attributeNodes, "fetishes").getChildNodes();
-                Node childNode = getChildNodeByTextContent(fetishes, id[0]);
-                return getAttributeNode(childNode, "xp");
+                return getFetishValueNode(attr, id);
             }
-            Element attr = getElementByTagName((Element) attributeNodes, id[0]);
+            attr = getElementByTagName(attr, id[0]);
             switch(id[0]){
                 case "characterRelationships" -> {
                     return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
