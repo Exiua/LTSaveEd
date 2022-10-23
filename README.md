@@ -8,7 +8,7 @@ Requires Java 14 or later if you are just running the .jar. Requires JavaFx 16 o
 
 ## How To Use
 
-Download and run `LTSaveEd.jar` from the [latest release](https://github.com/Exiua/LTSaveEd/releases). 
+Download and run `LTSaveEd.jar` from the [latest release](https://github.com/Exiua/LTSaveEd/releases). If nothing happens when you double-click the jar, try running `java -jar LTSaveEd.jar`. If you have multiple versions of Java installed, try `/path/to/java14+_jdk/bin/java.exe -jar LTSaveEd.jar`.
 
 If the jar doesn't work, download and extract the zip from the [latest release](https://github.com/Exiua/LTSaveEd/releases) and add `--module-path /path/to/javafx-sdk-16/lib --add-modules=javafx.controls,javafx.fxml` as a VM option to your run configuration, then run `LTSaveEd.java`.
 
