@@ -50,7 +50,7 @@ import java.util.*;
  * Controller class that handles events and interactions of the GUI
  *
  * @author Exiua
- * @version 0.7.0
+ * @version 1.3.1
  */
 public class Controller{
 
