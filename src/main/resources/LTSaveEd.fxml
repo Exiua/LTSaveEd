@@ -2814,7 +2814,7 @@
                     </Tab>
                     <Tab text="Water">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
+                            <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1010.0" spacing="15.0">
                                     <VBox alignment="CENTER" spacing="10.0">
                                         <Label text="Ice Shard:" />
@@ -2850,7 +2850,7 @@
                     </Tab>
                     <Tab text="Fire">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
+                            <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                     <VBox alignment="CENTER" spacing="10.0">
                                         <Label text="Fireball:" />
@@ -2881,7 +2881,7 @@
                     </Tab>
                     <Tab text="Air">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
+                            <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                     <VBox alignment="CENTER" spacing="10.0">
                                         <Label text="Poison Vapours:" />
@@ -2912,7 +2912,7 @@
                     </Tab>
                     <Tab text="Arcane">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0">
+                            <VBox alignment="TOP_CENTER" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                     <VBox alignment="CENTER" spacing="10.0">
                                         <Label text="Arcane Arousal:" />
@@ -2968,7 +2968,7 @@
                     <Tab text="Items">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <ScrollPane hbarPolicy="NEVER" layoutX="175.0" layoutY="86.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <VBox fx:id="itemsInInventory" prefWidth="1023.0" spacing="10.0">
+                                <VBox fx:id="itemsInInventory" prefWidth="1024.0" spacing="10.0">
                                     <padding>
                                         <Insets bottom="20.0" left="14.0" top="28.0" />
                                     </padding>
