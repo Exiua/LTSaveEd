@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # Extra Stuff
-.idea/*
+.idea/
 Save Editor Test.xml
