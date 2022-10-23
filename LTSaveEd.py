@@ -1,17 +1,18 @@
 import sys
+from typing import Type
 
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import QFont, QTextCursor, QIntValidator
+from PyQt5.QtGui import QFont, QTextCursor, QIntValidator, QValidator
 from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, QFormLayout, QPushButton, QHBoxLayout, QTabWidget, \
     QDesktopWidget, QTextEdit, QTableWidget, QTableWidgetItem, QLabel, QCheckBox, QFileDialog, QComboBox, QMessageBox, \
     QTextBrowser, QVBoxLayout, QMainWindow, QPlainTextEdit
-
 
 # region Globals
 
 int_only = QIntValidator()
 positive_int_only = QIntValidator()
 positive_int_only.setBottom(0)
+
 
 # endregion
 
@@ -131,7 +132,7 @@ class CoreTab(QWidget):
         self.core_yearOfBirth_value = QLineEdit()
         self.core_yearOfBirth_value.setFixedWidth(150)
         self.core_monthOfBirth_value = QComboBox()
-        self.core_monthOfBirth_value.setFixedWidth(150)  #TODO: Proper Validation
+        self.core_monthOfBirth_value.setFixedWidth(150)  # TODO: Proper Validation
         self.core_dayOfBirth_value = QLineEdit()
         self.core_dayOfBirth_value.setFixedWidth(150)
         hbox.addWidget(label)
@@ -290,17 +291,123 @@ class CoreTab(QWidget):
 class AttributesTab(QWidget):
     def __init__(self, parent=None):
         super(AttributesTab, self).__init__(parent)
-        lay = QVBoxLayout(self)
-        hlay = QHBoxLayout()
-        lay.addLayout(hlay)
-        lay.addStretch()
+        layout = QHBoxLayout(self)
+        layout.addStretch()
 
-        label_language = QLabel("Language")
-        combo_language = QComboBox(self)
-        combo_language.addItem("item1")
-        combo_language.addItem("item2")
-        hlay.addWidget(label_language)
-        hlay.addWidget(combo_language)
+        # region Left VBox
+
+        left_vbox = QVBoxLayout()
+        left_vbox.addStretch()
+        left_vbox.setSpacing(10)
+
+        hbox, self.attributes_HEALTH_MAXIMUM = create_labeled_line_edit("Health Core:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_MANA_MAXIMUM = create_labeled_line_edit("Mana Core:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_EXPERIENCE = create_labeled_line_edit("Experience:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_ACTION_POINTS = create_labeled_line_edit("Action Points:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_AROUSAL = create_labeled_line_edit("Arousal:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_LUST = create_labeled_line_edit("Lust Core:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_RESTING_LUST = create_labeled_line_edit("Resting Lust:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_MAJOR_PHYSIQUE = create_labeled_line_edit("Physique Core:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_MAJOR_ARCANE = create_labeled_line_edit("Arcane Core:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_MAJOR_CORRUPTION = create_labeled_line_edit("Corruption Core:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_ENCHANTMENT_LIMIT = create_labeled_line_edit("Enchantment Limit:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_FERTILITY = create_labeled_line_edit("Fertility:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_VIRILITY = create_labeled_line_edit("Virility:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_SPELL_COST_MODIFIER = create_labeled_line_edit("Spell Cost Modifier:", center=True)
+        left_vbox.addLayout(hbox)
+
+        hbox, self.attributes_CRITICAL_DAMAGE = create_labeled_line_edit("Critical Damage:", center=True)
+        left_vbox.addLayout(hbox)
+
+        left_vbox.addStretch()
+
+        # endregion
+
+        # region Right VBox
+
+        right_vbox = QVBoxLayout()
+        right_vbox.addStretch()
+        right_vbox.setSpacing(10)
+
+        hbox, self.attributes_ENERGY_SHIELDING = create_labeled_line_edit("Energy Shielding:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_RESISTANCE_PHYSICAL = create_labeled_line_edit("Physical Resistance:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_RESISTANCE_LUST = create_labeled_line_edit("Lust Resistance:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_RESISTANCE_FIRE = create_labeled_line_edit("Fire Resistance:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_RESISTANCE_ICE = create_labeled_line_edit("Ice Resistance:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_RESISTANCE_POISON = create_labeled_line_edit("Poison Resistance:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_UNARMED = create_labeled_line_edit("Unarmed Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_MELEE_WEAPON = create_labeled_line_edit("Melee Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_RANGED_WEAPON = create_labeled_line_edit("Ranged Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_SPELLS = create_labeled_line_edit("Spell Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_PHYSICAL = create_labeled_line_edit("Physical Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_LUST = create_labeled_line_edit("Lust Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_FIRE = create_labeled_line_edit("Fire Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_ICE = create_labeled_line_edit("Ice Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        hbox, self.attributes_DAMAGE_POISON = create_labeled_line_edit("Poison Damage:", center=True)
+        right_vbox.addLayout(hbox)
+
+        right_vbox.addStretch()
+
+        # endregion
+
+        layout.addLayout(left_vbox)
+        layout.addSpacing(250)
+        layout.addLayout(right_vbox)
+        layout.addStretch()
 
 
 class BodyTab(QWidget):
@@ -489,6 +596,21 @@ class MainWindow(QWidget):
         tab_widget.setTabEnabled(11, False)
 
         layout.addWidget(tab_widget)
+
+
+def create_labeled_line_edit(text: str, width: int = 150, validator: QValidator | None = None, center: bool = False) -> tuple[QHBoxLayout, QLineEdit]:
+    hbox = QHBoxLayout()
+    if center:
+        hbox.addStretch()
+    label = QLabel(text)
+    line_edit = QLineEdit()
+    line_edit.setFixedWidth(width)
+    line_edit.setValidator(validator)
+    hbox.addWidget(label)
+    hbox.addWidget(line_edit)
+    if center:
+        hbox.addStretch()
+    return hbox, line_edit
 
 
 if __name__ == '__main__':
