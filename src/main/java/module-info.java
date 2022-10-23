@@ -1,7 +1,9 @@
 module LTSaveEd {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.xml;
+    requires org.jetbrains.annotations;
 
-    opens org.openjfx to javafx.fxml;
-    exports org.openjfx;
+    opens LTSaveEd to javafx.fxml;
+    exports LTSaveEd;
 }
