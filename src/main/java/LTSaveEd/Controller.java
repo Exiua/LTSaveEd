@@ -52,7 +52,7 @@ import java.util.*;
  * @author Exiua
  * @version 1.3.1
  */
-public class Controller{
+public class Controller {
 
     /**
      * String array of all TextField ids using an int data type
@@ -125,7 +125,7 @@ public class Controller{
     /**
      * String array of all ComboBox ids
      */
-    private final String[] ComboBoxIds = {"core$sexualOrientation$value", "core$genderIdentity$value",
+    private final String[] comboBoxIds = {"core$sexualOrientation$value", "core$genderIdentity$value",
                                           "body$antennae$type", "body$ear$type", "body$face$type", "body$eye$type", "body$hair$type", "body$horn$type",
                                           "body$leg$type", "body$ass$type", "body$breasts$type", "body$milk$flavour", "body$breastsCrotch$type",
                                           "body$milkCrotch$flavour", "body$penis$type", "body$cum$flavour", "body$vagina$type", "body$girlcum$flavour",
@@ -158,6 +158,61 @@ public class Controller{
                                           "core$monthOfBirth$value", "body$bodyCore$subspeciesOverride", "core$history$value", "coreInfo$date$month",
                                           "family$motherFemininity$value", "family$fatherFemininity$value", "family$motherSubspecies",
                                           "family$fatherSubspecies$value"};
+    private final String[] checkBoxIds = {"body$bodyCore$feral", "body$bodyCore$piercedStomach", "body$bodyCore$takesAfterMother",
+                                          "body$ear$pierced", "body$hair$neckFluff", "body$face$piercedNose", "body$tongue$piercedTongue",
+                                          "body$mouth$piercedLip", "body$mouth$virgin", "body$mouth$mouthModifiers$PUFFY",
+                                          "body$mouth$mouthModifiers$RIBBED", "body$mouth$mouthModifiers$TENTACLED",
+                                          "body$mouth$mouthModifiers$MUSCLE_CONTROL", "body$tongue$tongueModifiers$RIBBED",
+                                          "body$tongue$tongueModifiers$TENTACLED", "body$tongue$tongueModifiers$BIFURCATED",
+                                          "body$tongue$tongueModifiers$WIDE", "body$tongue$tongueModifiers$FLAT",
+                                          "body$tongue$tongueModifiers$STRONG", "body$tongue$tongueModifiers$TAPERED",
+                                          "body$nipples$pierced", "body$nipples$virgin", "body$nipples$nippleModifiers$PUFFY",
+                                          "body$nipples$nippleModifiers$RIBBED", "body$nipples$nippleModifiers$TENTACLED",
+                                          "body$nipples$nippleModifiers$MUSCLE_CONTROL", "body$milk$milkModifiers$MUSKY",
+                                          "body$milk$milkModifiers$VISCOUS", "body$milk$milkModifiers$STICKY",
+                                          "body$milk$milkModifiers$SLIMY", "body$milk$milkModifiers$BUBBLING",
+                                          "body$milk$milkModifiers$MINERAL_OIL", "body$milk$milkModifiers$ALCOHOLIC",
+                                          "body$milk$milkModifiers$ADDICTIVE", "body$milk$milkModifiers$HALLUCINOGENIC",
+                                          "body$nipplesCrotch$pierced", "body$nipplesCrotch$virgin",
+                                          "body$milkCrotch$milkModifiers$MUSKY", "body$milkCrotch$milkModifiers$VISCOUS",
+                                          "body$milkCrotch$milkModifiers$STICKY", "body$milkCrotch$milkModifiers$SLIMY",
+                                          "body$milkCrotch$milkModifiers$BUBBLING", "body$milkCrotch$milkModifiers$MINERAL_OIL",
+                                          "body$milkCrotch$milkModifiers$ALCOHOLIC", "body$milkCrotch$milkModifiers$ADDICTIVE",
+                                          "body$milkCrotch$milkModifiers$HALLUCINOGENIC", "body$nipplesCrotch$nippleModifiers$PUFFY",
+                                          "body$nipplesCrotch$nippleModifiers$RIBBED", "body$nipplesCrotch$nippleModifiers$TENTACLED",
+                                          "body$nipplesCrotch$nippleModifiers$MUSCLE_CONTROL", "body$spinneret$virgin",
+                                          "body$penis$pierced", "body$penisUrethra$virgin", "body$penis$virgin",
+                                          "body$testicles$internal", "body$cum$cumModifiers$MUSKY",
+                                          "body$cum$cumModifiers$VISCOUS", "body$cum$cumModifiers$STICKY",
+                                          "body$cum$cumModifiers$SLIMY", "body$cum$cumModifiers$BUBBLING",
+                                          "body$cum$cumModifiers$MINERAL_OIL", "body$cum$cumModifiers$ALCOHOLIC",
+                                          "body$cum$cumModifiers$ADDICTIVE", "body$cum$cumModifiers$HALLUCINOGENIC",
+                                          "body$penis$urethraModifiers$PUFFY", "body$penis$urethraModifiers$RIBBED",
+                                          "body$penis$urethraModifiers$TENTACLED", "body$penis$urethraModifiers$MUSCLE_CONTROL",
+                                          "body$penis$penisModifiers$SHEATHED", "body$penis$penisModifiers$RIBBED",
+                                          "body$penis$penisModifiers$TENTACLED", "body$penis$penisModifiers$KNOTTED",
+                                          "body$penis$penisModifiers$BLUNT", "body$penis$penisModifiers$TAPERED",
+                                          "body$penis$penisModifiers$FLARED", "body$penis$penisModifiers$BARBED",
+                                          "body$penis$penisModifiers$VEINY", "body$penis$penisModifiers$PREHENSILE",
+                                          "body$penis$penisModifiers$OVIPOSITOR", "body$vagina$eggLayer", "body$vagina$hymen",
+                                          "body$vagina$pierced", "body$vagina$squirter", "body$vagina$urethraVirgin",
+                                          "body$vagina$virgin", "body$vagina$clitModifiers$SHEATHED", "body$vagina$clitModifiers$RIBBED",
+                                          "body$vagina$clitModifiers$TENTACLED", "body$vagina$clitModifiers$KNOTTED",
+                                          "body$vagina$clitModifiers$BLUNT", "body$vagina$clitModifiers$TAPERED",
+                                          "body$vagina$clitModifiers$FLARED", "body$vagina$clitModifiers$BARBED",
+                                          "body$vagina$clitModifiers$VEINY", "body$vagina$clitModifiers$PREHENSILE",
+                                          "body$vagina$clitModifiers$OVIPOSITOR", "body$girlcum$girlcumModifiers$MUSKY",
+                                          "body$girlcum$girlcumModifiers$VISCOUS", "body$girlcum$girlcumModifiers$STICKY",
+                                          "body$girlcum$girlcumModifiers$SLIMY", "body$girlcum$girlcumModifiers$BUBBLING",
+                                          "body$girlcum$girlcumModifiers$MINERAL_OIL", "body$girlcum$girlcumModifiers$ALCOHOLIC",
+                                          "body$girlcum$girlcumModifiers$ADDICTIVE", "body$girlcum$girlcumModifiers$HALLUCINOGENIC",
+                                          "body$vagina$urethraModifiers$PUFFY", "body$vagina$urethraModifiers$RIBBED",
+                                          "body$vagina$urethraModifiers$TENTACLED", "body$vagina$urethraModifiers$MUSCLE_CONTROL",
+                                          "body$vagina$vaginaModifiers$PUFFY", "body$vagina$vaginaModifiers$RIBBED",
+                                          "body$vagina$vaginaModifiers$TENTACLED", "body$vagina$vaginaModifiers$MUSCLE_CONTROL",
+                                          "body$anus$bleached", "body$anus$virgin", "body$anus$anusModifiers$PUFFY",
+                                          "body$anus$anusModifiers$RIBBED", "body$anus$anusModifiers$TENTACLED",
+                                          "body$anus$anusModifiers$MUSCLE_CONTROL"};
     /**
      * String array of ids for all CheckBoxes that would carry over if not reset
      */
@@ -299,6 +354,11 @@ public class Controller{
                                                        "attributes$DAMAGE_MELEE_WEAPON", "attributes$DAMAGE_RANGED_WEAPON", "attributes$DAMAGE_SPELLS",
                                                        "attributes$DAMAGE_PHYSICAL", "attributes$DAMAGE_LUST", "attributes$DAMAGE_FIRE", "attributes$DAMAGE_ICE",
                                                        "attributes$DAMAGE_POISON"};
+
+    private final HashSet<String> textFieldIdsHashSet = new HashSet<>();
+    private final HashSet<String> comboBoxIdsHashSet = new HashSet<>();
+    private final HashSet<String> checkBoxFieldIdsHashSet = new HashSet<>();
+
     /**
      * ObservableList of hairstyles for bald hair length
      */
@@ -418,13 +478,13 @@ public class Controller{
      *
      * @throws IOException If config.ini cannot be properly read
      */
-    public void initialize() throws IOException{
+    public void initialize() throws IOException {
         prop = new Properties();
         FileInputStream in;
-        try{
+        try {
             in = new FileInputStream("config.ini");
         }
-        catch(FileNotFoundException e){
+        catch (FileNotFoundException e) {
             // Uses working directory as default file path
             prop.setProperty("defaultFilePath", Paths.get(".").toAbsolutePath().normalize().toString());
             prop.store(new FileOutputStream("config.ini"), null);
@@ -439,6 +499,18 @@ public class Controller{
         perks.addAll(initializer.getPerks());
         initializer.initializeHairStyles(hairStylesB, hairStylesVS, hairStylesS, hairStylesSL, hairStylesL, hairStylesFL);
         desireTypes.addAll(initializer.getDesireTypes());
+        initializeHashSets();
+    }
+
+    private void initializeHashSets() {
+        textFieldIdsHashSet.addAll(List.of(intTextFieldIds));
+        textFieldIdsHashSet.addAll(List.of(doubleTextFieldIds));
+        textFieldIdsHashSet.addAll(List.of(dateTextFieldIds));
+        textFieldIdsHashSet.addAll(List.of(stringTextFieldIds));
+        textFieldIdsHashSet.addAll(Arrays.asList("body$hair$length", "core$id$value", "family$motherName$value",
+                "family$fatherName$value"));
+        comboBoxIdsHashSet.addAll(List.of(comboBoxIds));
+        checkBoxFieldIdsHashSet.addAll(List.of(checkBoxIds));
     }
 
     /**
@@ -446,7 +518,7 @@ public class Controller{
      *
      * @param s Stage object to be used
      */
-    public void setStage(Stage s){
+    public void setStage(Stage s) {
         stage = s;
     }
 
@@ -455,7 +527,7 @@ public class Controller{
      *
      * @param namespace Namespace of the fxml file
      */
-    public void setNamespace(@NotNull ObservableMap<String, Object> namespace){
+    public void setNamespace(@NotNull ObservableMap<String, Object> namespace) {
         this.namespace = namespace;
         PerkNode.setNamespace(namespace);
         PersonalityTrait.setNamespace(namespace);
@@ -469,28 +541,28 @@ public class Controller{
      *
      * @param currentVersion Current version of save editor
      */
-    public void setVersion(String currentVersion){
+    public void setVersion(String currentVersion) {
         version = currentVersion;
     }
 
     /**
      * Initializes all the ComboBoxes by setting the items (i.e. ObservableList<\String> objects) of each ComboBox
      */
-    public void initializeComboBoxes(){
-        for(int i = 0; i < ComboBoxIds.length; i++){
+    public void initializeComboBoxes() {
+        for (int i = 0; i < comboBoxIds.length; i++) {
             @SuppressWarnings("unchecked")
-            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(ComboBoxIds[i]);
+            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(comboBoxIds[i]);
             cb.setItems(comboBoxValues.get(i));
-            if(comboBoxValues.get(i) == desireTypes){
+            if (comboBoxValues.get(i) == desireTypes) {
                 cb.setValue(cb.getItems().get(2)); // Sets to Neutral as desireTypes defaults to Neutral in-game
             }
-            else{
+            else {
                 cb.setValue(cb.getItems().get(0));
             }
 
-            cb.setConverter(new StringConverter<>(){
+            cb.setConverter(new StringConverter<>() {
                 @Override
-                public String toString(@NotNull Attribute attribute){
+                public String toString(@NotNull Attribute attribute) {
                     return attribute.getName();
                 } // TODO: Fix this method throwing exceptions whenever ComboBox values are updated
                 /* This exception keeps getting thrown when ComboBox items are changed; Ignore as it doesn't break the program
@@ -500,7 +572,7 @@ public class Controller{
                  */
 
                 @Override
-                public @Nullable Attribute fromString(String s){
+                public @Nullable Attribute fromString(String s) {
                     return null;
                 }
             });
@@ -517,7 +589,7 @@ public class Controller{
      * @throws IOException If config.ini cannot be properly written to
      */
     @FXML
-    private void loadFile(@NotNull ActionEvent event) throws IOException{
+    private void loadFile(@NotNull ActionEvent event) throws IOException {
         event.consume();
         // Get file
         FileChooser fc = new FileChooser();
@@ -526,16 +598,16 @@ public class Controller{
         String currentPath = prop.getProperty("defaultFilePath");
         fc.setInitialDirectory(new File(currentPath));
         File f = fc.showOpenDialog(stage);
-        if(f != null){
+        if (f != null) {
             // Update config.ini if a different folder was used
-            if(!f.getParent().equals(currentPath)){
+            if (!f.getParent().equals(currentPath)) {
                 prop.setProperty("defaultFilePath", f.getParent());
                 prop.store(new FileOutputStream("config.ini"), null);
             }
             workingFile = f;
             // Load XML
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            try(InputStream is = new FileInputStream(f)){
+            try (InputStream is = new FileInputStream(f)) {
                 DocumentBuilder db = dbf.newDocumentBuilder();
                 saveFile = db.parse(is);
                 PerkNode.setSaveFile(saveFile);
@@ -546,7 +618,7 @@ public class Controller{
                 TabPane tb = (TabPane) namespace.get("tabPane");
                 tb.setDisable(false);
             }
-            catch(ParserConfigurationException | SAXException e){
+            catch (ParserConfigurationException | SAXException e) {
                 e.printStackTrace();
             }
             loadCharacterSelector();
@@ -556,11 +628,11 @@ public class Controller{
     /**
      * Parses the xml file for NPCs and adds them to the character selector ComboBox along with the Player Character
      */
-    private void loadCharacterSelector(){
+    private void loadCharacterSelector() {
         NpcCharacter player = new NpcCharacter("PlayerCharacter");
         ObservableList<NpcCharacter> characterList = FXCollections.observableArrayList(player);
         NodeList npcList = saveFile.getElementsByTagName("NPC");
-        for(int i = 0; i < npcList.getLength(); i++){
+        for (int i = 0; i < npcList.getLength(); i++) {
             characterList.add(new NpcCharacter(npcList.item(i)));
         }
         NpcCharacter nullCharacter = new NpcCharacter("");
@@ -580,15 +652,15 @@ public class Controller{
         characterSelector.setItems(characterList);
         characterSelector.setValue(player);
         ArrayList<ComboBox<NpcCharacter>> comboBoxes = new ArrayList<>(Arrays.asList(characterSelector, motherIds, fatherIds));
-        for(ComboBox<NpcCharacter> comboBox : comboBoxes){
-            comboBox.setConverter(new StringConverter<>(){
+        for (ComboBox<NpcCharacter> comboBox : comboBoxes) {
+            comboBox.setConverter(new StringConverter<>() {
                 @Override
-                public String toString(@NotNull NpcCharacter npcCharacter){
+                public String toString(@NotNull NpcCharacter npcCharacter) {
                     return npcCharacter.getName();
                 }
 
                 @Override
-                public @Nullable NpcCharacter fromString(String s){
+                public @Nullable NpcCharacter fromString(String s) {
                     return null;
                 }
             });
@@ -601,7 +673,7 @@ public class Controller{
      * @param event ActionEvent from the character selector ComboBox
      */
     @FXML
-    private void selectCharacter(@NotNull ActionEvent event){
+    private void selectCharacter(@NotNull ActionEvent event) {
         event.consume();
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
@@ -612,16 +684,16 @@ public class Controller{
         btn.setVisible(!isPlayer && !charId.startsWith("-1"));
         @SuppressWarnings("unchecked")
         ComboBox<Attribute> attributeComboBox = (ComboBox<Attribute>) namespace.get("core$history$value");
-        if(isPlayer){
+        if (isPlayer) {
             attributeComboBox.setItems(jobHistories.get(0));
         }
-        else{
+        else {
             attributeComboBox.setItems(jobHistories.get(1));
         }
-		long startTime = System.nanoTime();
+        long startTime = System.nanoTime();
         setFields();
-		long endTime = System.nanoTime();
-		System.out.println("SetFields completed in " + (endTime - startTime) / 1000000. + "ms");
+        long endTime = System.nanoTime();
+        System.out.println("SetFields completed in " + (endTime - startTime) / 1000000. + "ms");
     }
 
     /**
@@ -632,7 +704,7 @@ public class Controller{
      *
      * @param characterId Character id of the new character to edit
      */
-    private void setCharacter(String characterId){
+    private void setCharacter(String characterId) {
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         ObservableList<NpcCharacter> charList = cb.getItems();
@@ -645,7 +717,7 @@ public class Controller{
      * @param event ActionEvent from the object that was interacted with
      * @return String of the id of the object that was interacted with
      */
-    private String getId(@NotNull ActionEvent event){
+    private String getId(@NotNull ActionEvent event) {
         return ((javafx.scene.Node) event.getSource()).getId();
     }
 
@@ -654,7 +726,7 @@ public class Controller{
      *
      * @param charId Character id of the character being edited
      */
-    private void setCharacterNode(@NotNull String charId){
+    private void setCharacterNode(@NotNull String charId) {
         Node idNode = getNodeByIdValue(charId);
         characterNode = idNode.getParentNode().getParentNode();
         Node perksNode = getNode("perks");
@@ -669,59 +741,59 @@ public class Controller{
      * @param event ActionEvent from the CheckBox that was changed
      */
     @FXML
-    private void updateXmlBoolean(@NotNull ActionEvent event){
-        if(fieldsSet){
+    private void updateXmlBoolean(@NotNull ActionEvent event) {
+        if (fieldsSet) {
             String fxId = getId(event);
-            if(fxId.contains("InInventory")){
+            if (fxId.contains("InInventory")) {
                 String[] id = fxId.split("\\$");
                 int index = Integer.parseInt(id[3]);
-                switch(id[2]){
+                switch (id[2]) {
                     case "enchantmentKnown" -> inventoryClothes.get(index).updateEnchantmentKnown();
                     case "isDirty" -> inventoryClothes.get(index).updateDirty();
                 }
             }
-            else{
+            else {
                 CheckBox cb = (CheckBox) namespace.get(fxId);
                 Node value = getValueNode(event);
                 String[] id = fxId.split("\\$");
-                if(fxId.startsWith("FETISH_")){
-                    if(!cb.isSelected()){
+                if (fxId.startsWith("FETISH_")) {
+                    if (!cb.isSelected()) {
                         Element parent = ((Attr) value).getOwnerElement();
                         parent.removeAttribute("o");
-                        if(parent.getAttributes().getLength() == 0){
+                        if (parent.getAttributes().getLength() == 0) {
                             removeNode(parent);
                             System.out.println("Removed fetish");
                         }
                         System.out.println("Removed fetish ownership");
                     }
-                    else{
+                    else {
                         ((Attr) value).getOwnerElement().setAttribute("o", "true");
                         System.out.println("Added fetish ownership");
 
                     }
                 }
-                else if(fxId.startsWith("spells")){
-                    if(cb.isSelected()){
+                else if (fxId.startsWith("spells")) {
+                    if (cb.isSelected()) {
                         Element spellUpgrade = saveFile.createElement("upgrade");
                         spellUpgrade.setAttribute("type", id[1]);
                         Node spellUpgrades = getValueNodeParent(event);
                         spellUpgrades.appendChild(spellUpgrade);
                         System.out.println("Added spell upgrade");
                     }
-                    else{
+                    else {
                         removeNode(value);
                         System.out.println("Removed spell upgrade");
                     }
                 }
-                else{
-                    try{
+                else {
+                    try {
                         value.setTextContent("" + cb.isSelected());
                     }
-                    catch(NullPointerException e){ // Modifier attributes are deleted when false by the game
+                    catch (NullPointerException e) { // Modifier attributes are deleted when false by the game
                         value = getValueNodeParent(event);
                         ((Element) value).setAttribute(id[3], "" + cb.isSelected());
                     }
-                    if(id[id.length - 1].equals("FLARED") || id[id.length - 1].equals("TAPERED")){
+                    if (id[id.length - 1].equals("FLARED") || id[id.length - 1].equals("TAPERED")) {
                         checkboxFlaredTaperedToggle(fxId);
                     }
                 }
@@ -735,23 +807,23 @@ public class Controller{
      *
      * @param id Id of the CheckBox set to true
      */
-    private void checkboxFlaredTaperedToggle(@NotNull String id){
+    private void checkboxFlaredTaperedToggle(@NotNull String id) {
         boolean flared = id.split("\\$")[3].equals("FLARED");
         String targetId;
         CheckBox target;
-        if(flared){
+        if (flared) {
             targetId = id.replace("FLARED", "TAPERED");
         }
-        else{
+        else {
             targetId = id.replace("TAPERED", "FLARED");
         }
         target = (CheckBox) namespace.get(targetId);
         target.setSelected(false);
         Node value = getValueNode(targetId);
-        try{
+        try {
             value.setTextContent("" + target.isSelected());
         }
-        catch(NullPointerException e){
+        catch (NullPointerException e) {
             value = getValueNodeParent(id);
             ((Element) value).setAttribute(id.split("\\$")[3], "" + target.isSelected());
         }
@@ -760,9 +832,10 @@ public class Controller{
 
     /**
      * Get the secondsPassed value for the save file
+     *
      * @return Seconds passed between save file start date and current date
      */
-    private long getSaveTimeValue(){
+    private long getSaveTimeValue() {
         long baseSeconds = baseDate.getTimeInMillis() / 1000;
         long currentSeconds = currentDate.getTimeInMillis() / 1000;
         return currentSeconds - baseSeconds;
@@ -774,19 +847,19 @@ public class Controller{
      * @param event ActionEvent from the ComboBox that was changed
      */
     @FXML
-    private void updateXmlComboBox(@NotNull ActionEvent event){
-        if(fieldsSet){
+    private void updateXmlComboBox(@NotNull ActionEvent event) {
+        if (fieldsSet) {
             String fxId = getId(event);
-            if(fxId.contains("InInventory")){
+            if (fxId.contains("InInventory")) {
                 String[] id = fxId.split("\\$");
                 int index = Integer.parseInt(id[3]);
                 inventoryWeapons.get(index).updateDamageType();
             }
-            else{
+            else {
                 @SuppressWarnings("unchecked")
                 ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
                 Node value = getValueNode(event);
-                if(fxId.contains("coreInfo")){
+                if (fxId.contains("coreInfo")) {
                     Attribute monthAttr = cb.getValue();
                     int month = Integer.parseInt(monthAttr.getValue());
                     currentDate.set(Calendar.MONTH, month);
@@ -810,7 +883,7 @@ public class Controller{
      * @param fxId  Id of the ComboBox
      * @param month Month Attribute to check against
      */
-    private void updateDayTextField(@NotNull String fxId, @NotNull Attribute month){
+    private void updateDayTextField(@NotNull String fxId, @NotNull Attribute month) {
         boolean coreInfo = fxId.startsWith("coreInfo");
         String dayId = coreInfo ? "coreInfo$date$dayOfMonth" : "core$dayOfBirth$value";
         TextField dayField = (TextField) namespace.get(dayId);
@@ -818,7 +891,7 @@ public class Controller{
         int year = Integer.parseInt(yearField.getText());
         int monthLimit = setMonthLimit(month, year);
         int dayValue = Integer.parseInt(dayField.getText());
-        if(dayValue > monthLimit){
+        if (dayValue > monthLimit) {
             dayField.setText("" + monthLimit);
             Node dayNode = getWorldNode(dayId.split("\\$"));
             dayNode.setTextContent("" + monthLimit);
@@ -831,19 +904,19 @@ public class Controller{
      * @param args String array of nodeNames to traverse in order to get to the desired Node
      * @return Desired Node matching given Node path
      */
-    private Node getWorldNode(String @NotNull ... args){
+    private Node getWorldNode(String @NotNull ... args) {
         Element node = getElementByTagName(saveFile, args[0]);
-        for(int i = 1; i < args.length; i++){
-            if(i == args.length - 1){
+        for (int i = 1; i < args.length; i++) {
+            if (i == args.length - 1) {
                 Element tempNode = getElementByTagName(node, args[i]);
-                if(tempNode == null){
+                if (tempNode == null) {
                     return node.getAttributeNode(args[i]);
                 }
-                else{
+                else {
                     return tempNode;
                 }
             }
-            else{
+            else {
                 node = getElementByTagName(node, args[i]);
             }
         }
@@ -857,21 +930,21 @@ public class Controller{
      * @param year  Year integer to check for leap year
      * @return int representing the max days based on the month
      */
-    private int setMonthLimit(@NotNull Attribute month, int year){
+    private int setMonthLimit(@NotNull Attribute month, int year) {
         int monthLimit;
-        if(month.equals("JANUARY") || month.equals("MARCH") || month.equals("MAY") ||
+        if (month.equals("JANUARY") || month.equals("MARCH") || month.equals("MAY") ||
                 month.equals("JULY") || month.equals("AUGUST") || month.equals("OCTOBER") ||
                 month.equals("DECEMBER") || month.equals("1") || month.equals("3") || month.equals("5") ||
                 month.equals("7") || month.equals("8") || month.equals("10") ||
-                month.equals("12")){
+                month.equals("12")) {
             monthLimit = 31;
         }
-        else if(month.equals("APRIL") || month.equals("JUNE") || month.equals("SEPTEMBER") ||
+        else if (month.equals("APRIL") || month.equals("JUNE") || month.equals("SEPTEMBER") ||
                 month.equals("NOVEMBER") || month.equals("4") || month.equals("6") || month.equals("9") ||
-                month.equals("11")){
+                month.equals("11")) {
             monthLimit = 30;
         }
-        else{ // February
+        else { // February
             monthLimit = isLeapYear(year) ? 29 : 28;
         }
         return monthLimit;
@@ -883,7 +956,7 @@ public class Controller{
      * @param year Year to check
      * @return True if year is a leap year else false
      */
-    public boolean isLeapYear(int year){ // Hopefully this handles all edge cases
+    public boolean isLeapYear(int year) { // Hopefully this handles all edge cases
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
         return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
@@ -895,23 +968,23 @@ public class Controller{
      * @param event ActionEvent from the ComboBox that was changed
      */
     @FXML
-    private void updateXmlComboBoxSpells(@NotNull ActionEvent event){
-        if(fieldsSet){
+    private void updateXmlComboBoxSpells(@NotNull ActionEvent event) {
+        if (fieldsSet) {
             String fxId = getId(event);
             @SuppressWarnings("unchecked")
             ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
             SpellTier tier = (SpellTier) cb.getValue();
-            switch(tier.getTier()){
+            switch (tier.getTier()) {
                 case -1 -> { // Unowned Spell
                     NodeList knownSpells = getNode("knownSpells").getChildNodes(); // Removes base spells
-                    for(int i = 0; i < knownSpells.getLength(); i++){
-                        if(knownSpells.item(i).getNodeType() != Node.ELEMENT_NODE){
+                    for (int i = 0; i < knownSpells.getLength(); i++) {
+                        if (knownSpells.item(i).getNodeType() != Node.ELEMENT_NODE) {
                             continue;
                         }
                         Node spell = knownSpells.item(i);
                         System.out.println(spell);
                         Debug.printList(spell.getAttributes());
-                        if(getAttributeValue(spell, "type").equals(tier.getType())){
+                        if (getAttributeValue(spell, "type").equals(tier.getType())) {
                             removeNode(spell);
                             break;
                         }
@@ -929,7 +1002,7 @@ public class Controller{
                 }
                 case 3 -> { // Upgrade 3 (branching in the case of Elemental spell or 3A in the case of Steal spell)
                     addBaseSpell(tier);
-                    if(tier.getType().equals("STEAL")){
+                    if (tier.getType().equals("STEAL")) {
                         removeHigherTierSpells(tier, true);
                     }
                     addLowerTierSpells(tier);
@@ -950,8 +1023,8 @@ public class Controller{
      * @param event ActionEvent from the CheckBox that was changed
      */
     @FXML
-    private void updateXmlCheckBoxPersonality(@NotNull ActionEvent event){
-        if(fieldsSet){
+    private void updateXmlCheckBoxPersonality(@NotNull ActionEvent event) {
+        if (fieldsSet) {
             String fxId = getId(event);
             String[] id = fxId.split("\\$");
             CheckBox cb = (CheckBox) namespace.get(fxId);
@@ -967,18 +1040,18 @@ public class Controller{
      * @param event ActionEvent from the ComboBox that was changed
      */
     @FXML
-    private void updateXmlComboBoxIds(@NotNull ActionEvent event){
-        if(fieldsSet){
+    private void updateXmlComboBoxIds(@NotNull ActionEvent event) {
+        if (fieldsSet) {
             String fxId = getId(event);
             @SuppressWarnings("unchecked")
             ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(fxId);
             @SuppressWarnings("unchecked")
             String currentCharacterId = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getValue().getId();
             Node valueNode = getNode(fxId.split("\\$"));
-            if(!cb.getValue().getId().equals(currentCharacterId)){
+            if (!cb.getValue().getId().equals(currentCharacterId)) {
                 valueNode.setTextContent(cb.getValue().getId());
             }
-            else{
+            else {
                 ObservableList<NpcCharacter> charList = cb.getItems();
                 cb.setValue(matchNpc(charList, valueNode.getTextContent()));
             }
@@ -991,8 +1064,8 @@ public class Controller{
      * @param event ActionEvent from the CheckBox that was changed
      */
     @FXML
-    private void updateXmlCheckBoxPerks(@NotNull ActionEvent event){
-        if(fieldsSet){
+    private void updateXmlCheckBoxPerks(@NotNull ActionEvent event) {
+        if (fieldsSet) {
             String fxId = getId(event);
             System.out.println(fxId);
             String[] id = fxId.split("\\$");
@@ -1012,9 +1085,9 @@ public class Controller{
      * @param value    Actual value of the perk
      * @return PerkNode that matches the row and value supplied or null if not matched
      */
-    private @NotNull PerkNode matchPerk(@NotNull ArrayList<PerkNode> perkList, String row, String value){
-        for(PerkNode perkNode : perkList){
-            if(perkNode.equals(row, value)){
+    private @NotNull PerkNode matchPerk(@NotNull ArrayList<PerkNode> perkList, String row, String value) {
+        for (PerkNode perkNode : perkList) {
+            if (perkNode.equals(row, value)) {
                 return perkNode;
             }
         }
@@ -1026,21 +1099,21 @@ public class Controller{
      *
      * @param tier SpellTier containing the spell type to be added
      */
-    private void addBaseSpell(@NotNull SpellTier tier){
+    private void addBaseSpell(@NotNull SpellTier tier) {
         Node knownSpellsNode = getNode("knownSpells");
         NodeList knownSpells = knownSpellsNode.getChildNodes();
         boolean exists = false;
-        for(int i = 0; i < knownSpells.getLength(); i++){
-            if(knownSpells.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < knownSpells.getLength(); i++) {
+            if (knownSpells.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             Node spell = knownSpells.item(i);
-            if(getAttributeValue(spell, "type").equals(tier.getType())){
+            if (getAttributeValue(spell, "type").equals(tier.getType())) {
                 exists = true;
                 break;
             }
         }
-        if(!exists){
+        if (!exists) {
             Element baseSpell = saveFile.createElement("spell");
             baseSpell.setAttribute("type", tier.getType());
             knownSpellsNode.appendChild(baseSpell);
@@ -1053,22 +1126,22 @@ public class Controller{
      * @param tier  SpellTier to check tier against
      * @param owned Removes all spell upgrades if false (i.e. will remove SOOTHING_WATERS_(1/2)_CLEAN as well)
      */
-    private void removeHigherTierSpells(@NotNull SpellTier tier, boolean owned){
+    private void removeHigherTierSpells(@NotNull SpellTier tier, boolean owned) {
         NodeList spellUpgrades = getNode("spellUpgrades").getChildNodes();
-        for(int i = 0; i < spellUpgrades.getLength(); i++){
-            if(spellUpgrades.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < spellUpgrades.getLength(); i++) {
+            if (spellUpgrades.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             Node spell = spellUpgrades.item(i);
             String spellType = getAttributeValue(spell, "type");
-            if(spellType.startsWith(tier.getType())){
+            if (spellType.startsWith(tier.getType())) {
                 int upgradeTier = SpellTier.readTier(getAttributeValue(spellUpgrades.item(i), "type"));
-                if(tier.getTier() < upgradeTier){
-                    if(owned && !spellType.endsWith("CLEAN")){
+                if (tier.getTier() < upgradeTier) {
+                    if (owned && !spellType.endsWith("CLEAN")) {
                         removeNode(spell);
                         i--;
                     }
-                    else if(!owned){
+                    else if (!owned) {
                         removeNode(spell);
                         i--;
                     }
@@ -1082,35 +1155,35 @@ public class Controller{
      *
      * @param tier SpellTier to check tier against
      */
-    private void addLowerTierSpells(@NotNull SpellTier tier){
+    private void addLowerTierSpells(@NotNull SpellTier tier) {
         Node spellUpgradesNode = getNode("spellUpgrades");
         NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
         int count = 0;
-        for(int i = 0; i < spellUpgrades.getLength(); i++){
-            if(spellUpgrades.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < spellUpgrades.getLength(); i++) {
+            if (spellUpgrades.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             Node spell = spellUpgrades.item(i);
             String spellType = getAttributeValue(spell, "type");
-            if(spellType.startsWith(tier.getType())){
-                if(!spellType.endsWith("CLEAN")){
+            if (spellType.startsWith(tier.getType())) {
+                if (!spellType.endsWith("CLEAN")) {
                     count++;
                 }
             }
         }
-        while(count < tier.getTier()){
+        while (count < tier.getTier()) {
             count++;
             Element spellUpgrade = saveFile.createElement("upgrade");
             String value = tier.getType() + "_" + count;
-            if(tier.getType().equals("STEAL")){
-                if(count == 3){
+            if (tier.getType().equals("STEAL")) {
+                if (count == 3) {
                     value = "STEAL_3A";
                 }
-                else if(count == 4){
+                else if (count == 4) {
                     value = "STEAL_3B";
                 }
             }
-            else if(count == tier.getTier()){
+            else if (count == tier.getTier()) {
                 value = tier.getValue();
             }
             spellUpgrade.setAttribute("type", value);
@@ -1123,17 +1196,17 @@ public class Controller{
      *
      * @param tier SpellTier to check value against
      */
-    private void changeWithinTierSpells(@NotNull SpellTier tier){
-        if(!tier.getType().equals("STEAL")){
+    private void changeWithinTierSpells(@NotNull SpellTier tier) {
+        if (!tier.getType().equals("STEAL")) {
             Node spellUpgradesNode = getNode("spellUpgrades");
             NodeList spellUpgrades = spellUpgradesNode.getChildNodes();
             String complementTier = getComplementTier(tier);
-            for(int i = 0; i < spellUpgrades.getLength(); i++){
-                if(spellUpgrades.item(i).getNodeType() != Node.ELEMENT_NODE){
+            for (int i = 0; i < spellUpgrades.getLength(); i++) {
+                if (spellUpgrades.item(i).getNodeType() != Node.ELEMENT_NODE) {
                     continue;
                 }
                 Node spell = spellUpgrades.item(i);
-                if(getAttributeValue(spell, "type").equals(complementTier)){
+                if (getAttributeValue(spell, "type").equals(complementTier)) {
                     removeNode(spell);
                     Element spellUpgrade = saveFile.createElement("upgrade");
                     spellUpgrade.setAttribute("type", tier.getValue());
@@ -1150,8 +1223,8 @@ public class Controller{
      * @param tier SpellTier to check value against
      * @return String spell value ending in "3A" if SpellTier value ended in "3B" and vice versa
      */
-    private @NotNull String getComplementTier(@NotNull SpellTier tier){
-        if(tier.getValue().endsWith("_3A")){
+    private @NotNull String getComplementTier(@NotNull SpellTier tier) {
+        if (tier.getValue().endsWith("_3A")) {
             return tier.getType() + "_3B";
         }
         return tier.getType() + "_3A";
@@ -1163,7 +1236,7 @@ public class Controller{
      * @param cb           Leg types ComboBox
      * @param initializing Whether is method is supposed to just initialize the dependant ComboBoxes or edit the values in the save file as well
      */
-    private void updateLegTypeDependants(@NotNull ComboBox<Attribute> cb, boolean initializing){
+    private void updateLegTypeDependants(@NotNull ComboBox<Attribute> cb, boolean initializing) {
         LegTypeAttr legType = (LegTypeAttr) cb.getValue();
         @SuppressWarnings("unchecked")
         ComboBox<Attribute> lc = (ComboBox<Attribute>) namespace.get("body$leg$configuration");
@@ -1177,7 +1250,7 @@ public class Controller{
         ComboBox<Attribute> ga = (ComboBox<Attribute>) namespace.get("body$bodyCore$genitalArrangement");
         ga.setItems(legType.getGenitalArrangement());
         ga.setValue(legType.getDefaultGenitalArrangement());
-        if(!initializing){
+        if (!initializing) {
             Node lcValue = getValueNode(lc.getId());
             lcValue.setTextContent(lc.getValue().getValue());
             Node fsValue = getValueNode(fs.getId());
@@ -1190,28 +1263,28 @@ public class Controller{
     /**
      * Resets the values of Fields that would carry over if not reset
      */
-    private void resetFields(){
+    private void resetFields() {
         fieldsSet = false;
-        for(String resetIntTextFieldsId : resetIntTextFieldsIds){
+        for (String resetIntTextFieldsId : resetIntTextFieldsIds) {
             TextField tf = (TextField) namespace.get(resetIntTextFieldsId);
             tf.setText("0");
         }
-        for(String resetDoubleTextFieldsId : resetDoubleTextFieldsIds){
+        for (String resetDoubleTextFieldsId : resetDoubleTextFieldsIds) {
             TextField tf = (TextField) namespace.get(resetDoubleTextFieldsId);
             tf.setText("0.0");
         }
-        for(String resetComboBoxId : resetComboBoxIds){
+        for (String resetComboBoxId : resetComboBoxIds) {
             @SuppressWarnings("unchecked")
             ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(resetComboBoxId);
             ObservableList<Attribute> items = cb.getItems();
-            if(resetComboBoxId.startsWith("FETISH")){
+            if (resetComboBoxId.startsWith("FETISH")) {
                 cb.setValue(items.get(2));
             }
-            else{
+            else {
                 cb.setValue(items.get(0));
             }
         }
-        for(String resetCheckBoxId : resetCheckBoxIds){
+        for (String resetCheckBoxId : resetCheckBoxIds) {
             CheckBox cb = (CheckBox) namespace.get(resetCheckBoxId);
             cb.setSelected(false);
         }
@@ -1220,8 +1293,8 @@ public class Controller{
     /**
      * Updates all secondaryLabels
      */
-    private void updateLabels(){
-        for(TextObjectListener listener : listeners){
+    private void updateLabels() {
+        for (TextObjectListener listener : listeners) {
             listener.setLabel();
         }
     }
@@ -1229,7 +1302,7 @@ public class Controller{
     /**
      * Reads data from xml save file and sets all fields with the selected character data
      */
-    private void setFields(){
+    private void setFields() {
         if (!fileLoaded) {
             return;
         }
@@ -1237,7 +1310,7 @@ public class Controller{
         resetFields();
         System.out.println("Fields Reset");
 
-        if(!worldFieldsSet){
+        if (!worldFieldsSet) {
             setWorldFields();
             worldFieldsSet = true;
         }
@@ -1247,14 +1320,14 @@ public class Controller{
         System.out.println(attributeNodes.item(1).getParentNode());
 
         MainLoop:
-        for(int i = 0; i < attributeNodes.getLength(); i++){
+        for (int i = 0; i < attributeNodes.getLength(); i++) {
             Node currentNode = attributeNodes.item(i);
-            if(currentNode.getNodeType() != Node.ELEMENT_NODE){
+            if (currentNode.getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             } //  Only care about Element Nodes
             NodeList attributeElements = currentNode.getChildNodes();
             String attributeName = currentNode.getNodeName();
-            switch(attributeName){
+            switch (attributeName) {
                 case "locationInformation", "lipstickMarks", "tattoos", "potionAttributes", "traits",
                         "specialPerks", "statusEffects", "knownMoves", "equippedMoves" -> {
                     continue;
@@ -1299,15 +1372,15 @@ public class Controller{
                 }
             }
 
-            for(int j = 0; j < attributeElements.getLength(); j++){ // Every other node in the NodeList is a TextNode (so can be skipped)
-                if(attributeElements.item(j).getNodeType() != Node.ELEMENT_NODE){
+            for (int j = 0; j < attributeElements.getLength(); j++) { // Every other node in the NodeList is a TextNode (so can be skipped)
+                if (attributeElements.item(j).getNodeType() != Node.ELEMENT_NODE) {
                     continue;
                 }
 
                 Node currNode = attributeElements.item(j);
                 String elementName = currNode.getNodeName();
 
-                switch(elementName){
+                switch (elementName) {
                     case "personality" -> {
                         setFieldsPersonality(currNode);
                         continue;
@@ -1329,26 +1402,26 @@ public class Controller{
                 NamedNodeMap attributes = currNode.getAttributes();
                 NodeList childNodes = currNode.getChildNodes();
 
-                if(childNodes.getLength() != 0){
-                    for(int k = 0; k < childNodes.getLength(); k++){
+                if (childNodes.getLength() != 0) {
+                    for (int k = 0; k < childNodes.getLength(); k++) {
                         Node modifiers = childNodes.item(k);
 
-                        if(modifiers.getNodeType() == Node.TEXT_NODE){
+                        if (modifiers.getNodeType() == Node.TEXT_NODE) {
                             continue;
                         }
 
                         String modifierName = modifiers.getNodeName();
 
-                        if(modifierName.contains("Modifiers")){
+                        if (modifierName.contains("Modifiers")) {
                             NamedNodeMap mods = modifiers.getAttributes();
 
-                            for(int l = 0; l < mods.getLength(); l++){
+                            for (int l = 0; l < mods.getLength(); l++) {
                                 Node mod = mods.item(l);
                                 String value = mod.getTextContent();
                                 String modId = attributeName + "$" + elementName + "$" + modifierName + "$" + mod.getNodeName();
                                 CheckBox cb = (CheckBox) namespace.get(modId);
 
-                                if(cb != null){
+                                if (cb != null) {
                                     cb.setSelected(Boolean.parseBoolean(value));
                                 }
                             }
@@ -1357,86 +1430,145 @@ public class Controller{
                     System.out.println(elementName + " Modifier Fields Set");
                 } // Modifiers Fields Setter
 
-                for(int k = 0; k < attributes.getLength(); k++){
+                for (int k = 0; k < attributes.getLength(); k++) {
                     Node valueNode = attributes.item(k);
                     String value = valueNode.getTextContent();
                     String bodyNodeName = valueNode.getNodeName();
                     String nodeId = attributeName + "$" + elementName + "$" + bodyNodeName;
 
-                    if(nodeId.equals("core$description$value")){
+                    if (nodeId.equals("core$description$value")) {
                         TextArea ta = (TextArea) namespace.get(nodeId);
                         ta.setText(value);
                         continue;
                     }
 
-                    // Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
-                    try{ // Using TextFields for numerical and string values
+                    if(textFieldIdsHashSet.contains(nodeId)){
                         TextField tf = (TextField) namespace.get(nodeId);
 
-                        if(tf != null){
+                        if (tf != null) {
                             tf.setText(value);
 
-                            if(nodeId.equals("body$hair$length")){
+                            if (nodeId.equals("body$hair$length")) {
                                 int v = Integer.parseInt(value);
                                 @SuppressWarnings("unchecked")
                                 ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
 
-                                if(v >= 0 && v < 4){
+                                if (v >= 0 && v < 4) {
                                     hairStyles.setItems(hairStylesB);
                                 }
-                                else if(v < 11){
+                                else if (v < 11) {
                                     hairStyles.setItems(hairStylesVS);
                                 }
-                                else if(v < 22){
+                                else if (v < 22) {
                                     hairStyles.setItems(hairStylesS);
                                 }
-                                else if(v < 45){
+                                else if (v < 45) {
                                     hairStyles.setItems(hairStylesSL);
                                 }
-                                else if(v < 265){
+                                else if (v < 265) {
                                     hairStyles.setItems(hairStylesL);
                                 }
-                                else{
+                                else {
                                     hairStyles.setItems(hairStylesFL);
                                 }
                             }
                         }
                     }
-                    catch(ClassCastException e){ // Using CheckBox for boolean values
-                        try{
+                    else if(comboBoxIdsHashSet.contains(nodeId)){
+                        if (nodeId.contains("motherId") || nodeId.contains("fatherId")) {
+                            @SuppressWarnings("unchecked")
+                            ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(nodeId);
+
+                            if (cb != null) {
+                                ObservableList<NpcCharacter> itemList = cb.getItems();
+                                cb.setValue(matchNpc(itemList, value));
+                            }
+                        }
+                        else {
+                            @SuppressWarnings("unchecked")
+                            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
+
+                            if (cb != null) {
+                                ObservableList<Attribute> itemList = cb.getItems();
+                                cb.setValue(matchComboBoxItem(itemList, value));
+                            }
+                        }
+                    }
+                    else if (checkBoxFieldIdsHashSet.contains(nodeId)) {
+                        CheckBox cb = (CheckBox) namespace.get(nodeId);
+
+                        if (cb != null) {
+                            cb.setSelected(Boolean.parseBoolean(value));
+                        }
+                    }
+                    // Instead of using nested try-catch, it may be possible to parse the value's data type and assign the value to the correct container
+                    /*try { // Using TextFields for numerical and string values
+                        TextField tf = (TextField) namespace.get(nodeId);
+
+                        if (tf != null) {
+                            tf.setText(value);
+
+                            if (nodeId.equals("body$hair$length")) {
+                                int v = Integer.parseInt(value);
+                                @SuppressWarnings("unchecked")
+                                ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
+
+                                if (v >= 0 && v < 4) {
+                                    hairStyles.setItems(hairStylesB);
+                                }
+                                else if (v < 11) {
+                                    hairStyles.setItems(hairStylesVS);
+                                }
+                                else if (v < 22) {
+                                    hairStyles.setItems(hairStylesS);
+                                }
+                                else if (v < 45) {
+                                    hairStyles.setItems(hairStylesSL);
+                                }
+                                else if (v < 265) {
+                                    hairStyles.setItems(hairStylesL);
+                                }
+                                else {
+                                    hairStyles.setItems(hairStylesFL);
+                                }
+                            }
+                        }
+                    }
+                    catch (ClassCastException e) { // Using CheckBox for boolean values
+                        try {
                             CheckBox cb = (CheckBox) namespace.get(nodeId);
 
-                            if(cb != null){
+                            if (cb != null) {
                                 cb.setSelected(Boolean.parseBoolean(value));
                             }
                         }
-                        catch(ClassCastException e2){ // Using ComboBoxes for fixed values
-                            if(nodeId.contains("motherId") || nodeId.contains("fatherId")){
+                        catch (ClassCastException e2) { // Using ComboBoxes for fixed values
+                            if (nodeId.contains("motherId") || nodeId.contains("fatherId")) {
                                 @SuppressWarnings("unchecked")
                                 ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get(nodeId);
 
-                                if(cb != null){
+                                if (cb != null) {
                                     ObservableList<NpcCharacter> itemList = cb.getItems();
                                     cb.setValue(matchNpc(itemList, value));
                                 }
                             }
-                            else{
+                            else {
                                 @SuppressWarnings("unchecked")
                                 ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
 
-                                if(cb != null){
+                                if (cb != null) {
                                     ObservableList<Attribute> itemList = cb.getItems();
                                     cb.setValue(matchComboBoxItem(itemList, value));
                                 }
                             }
                         }
-                    }
+                    }*/
                 }
             }
             System.out.println(attributeName + " Fields Set");
         }
 
-        if(!listenersAdded){
+        if (!listenersAdded) {
             addListeners();
         }
 
@@ -1444,21 +1576,21 @@ public class Controller{
         updateLabels();
     }
 
-	private void setFields2(){
-		if (!fileLoaded) {
-			return;
-		}
+    private void setFields2() {
+        if (!fileLoaded) {
+            return;
+        }
 
-		resetFields();
-		System.out.println("Fields Reset");
+        resetFields();
+        System.out.println("Fields Reset");
 
-        if(!worldFieldsSet){
+        if (!worldFieldsSet) {
             setWorldFields();
             worldFieldsSet = true;
         }
 
-        for(String[] array : new String[][]{intTextFieldIds, doubleTextFieldIds, stringTextFieldIds}){
-            for(String id : array) {
+        for (String[] array : new String[][]{intTextFieldIds, doubleTextFieldIds, stringTextFieldIds}) {
+            for (String id : array) {
                 TextField textField = (TextField) namespace.get(id);
                 System.out.println(id);
                 String[] path = id.contains("$") ? id.split("\\$") : new String[]{id};
@@ -1517,7 +1649,7 @@ public class Controller{
     /**
      * Sets the value of fields relating to world data (i.e. data that is world/save specific, not character specific)
      */
-    private void setWorldFields(){
+    private void setWorldFields() {
         Element coreInfo = getElementByTagName(saveFile, "coreInfo");
         //region Set Date
         Element date = getElementByTagName(coreInfo, "date");
@@ -1532,11 +1664,11 @@ public class Controller{
         currentDate.add(Calendar.SECOND, seconds);
         String baseId = "coreInfo$date$";
         TextField tf = (TextField) namespace.get(baseId + "year");
-        if(tf != null){
+        if (tf != null) {
             tf.setText("" + currentDate.get(Calendar.YEAR));
         }
         tf = (TextField) namespace.get(baseId + "dayOfMonth");
-        if(tf != null){
+        if (tf != null) {
             tf.setText("" + currentDate.get(Calendar.DAY_OF_MONTH));
         }
         @SuppressWarnings("unchecked")
@@ -1546,18 +1678,18 @@ public class Controller{
         //endregion
         Node dialogueFlags = getElementByTagName(saveFile, "dialogueFlags");
         NodeList flags = dialogueFlags.getChildNodes();
-        for(int i = 0; i < flags.getLength(); i++){
-            if(flags.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < flags.getLength(); i++) {
+            if (flags.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             Node flag = flags.item(i);
             String nodeName = flag.getNodeName();
-            if(nodeName.equals("savedLongs")){
+            if (nodeName.equals("savedLongs")) {
                 break;
             }
             String id = "dialogueFlags$" + nodeName + "$value";
             tf = (TextField) namespace.get(id);
-            if(tf != null){
+            if (tf != null) {
                 tf.setText(getAttributeValue(flag, "value"));
             }
         }
@@ -1568,13 +1700,13 @@ public class Controller{
      *
      * @param relationshipsNode Relationship Node in the save file
      */
-    private void setFieldsRelationships(@NotNull Node relationshipsNode){
+    private void setFieldsRelationships(@NotNull Node relationshipsNode) {
         NodeList relationships = relationshipsNode.getChildNodes();
         VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
         @SuppressWarnings("unchecked")
         ObservableList<NpcCharacter> npcChars = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
-        for(int i = 0; i < relationships.getLength(); i++) {
+        for (int i = 0; i < relationships.getLength(); i++) {
             if (relationships.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
@@ -1584,7 +1716,8 @@ public class Controller{
 
             try {
                 npcName = getNpcName(charId);
-            } catch (NoSuchElementException e) {
+            }
+            catch (NoSuchElementException e) {
                 continue;
             }
 
@@ -1620,16 +1753,16 @@ public class Controller{
      *
      * @param fetishesNode fetishes Node in the save file
      */
-    private void setFieldsFetishes(@NotNull Node fetishesNode){
+    private void setFieldsFetishes(@NotNull Node fetishesNode) {
         NodeList ownedFetishes = fetishesNode.getChildNodes();
-        for(int i = 0; i < ownedFetishes.getLength(); i++){
-            if(ownedFetishes.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < ownedFetishes.getLength(); i++) {
+            if (ownedFetishes.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
 
             Node fetish = ownedFetishes.item(i);
             String fetishType = fetish.getTextContent();
-            if(fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
+            if (fetishType.equals("FETISH_BREEDER") || fetishType.equals("FETISH_LUSTY_MAIDEN") ||
                     fetishType.equals("FETISH_SWITCH") || fetishType.equals("FETISH_SADOMASOCHIST")) {
                 continue; // Skip these values
             }
@@ -1637,7 +1770,7 @@ public class Controller{
             Node owned = getAttributeNode(fetish, "o");
             Node xp = getAttributeNode(fetish, "xp");
 
-            if(desire != null){
+            if (desire != null) {
                 String fetishId = fetishType + "$desire";
                 String fetishValue = desire.getTextContent();
                 @SuppressWarnings("unchecked")
@@ -1645,12 +1778,12 @@ public class Controller{
                 ObservableList<Attribute> values = cb.getItems();
                 cb.setValue(matchComboBoxItem(values, fetishValue));
             }
-            if(owned != null && owned.getTextContent().equals("true")) {
+            if (owned != null && owned.getTextContent().equals("true")) {
                 String fetishId = fetishType + "$owned";
                 CheckBox cb = (CheckBox) namespace.get(fetishId);
                 cb.setSelected(true);
             }
-            if(xp != null){
+            if (xp != null) {
                 String fetishId = fetishType + "$exp";
                 String fetishValue = xp.getTextContent();
                 TextField tf = (TextField) namespace.get(fetishId);
@@ -1664,11 +1797,11 @@ public class Controller{
      *
      * @param spellNode knownSpells Node in the save file
      */
-    private void setFieldsKnownSpells(@NotNull Node spellNode){
+    private void setFieldsKnownSpells(@NotNull Node spellNode) {
         String partialId = "spells$";
         NodeList spells = spellNode.getChildNodes();
-        for(int i = 0; i < spells.getLength(); i++){
-            if(spells.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < spells.getLength(); i++) {
+            if (spells.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             String type = getAttributeValue(spells.item(i), "type");
@@ -1685,15 +1818,15 @@ public class Controller{
      *
      * @param spellNode spellUpgrades Node in the save file
      */
-    private void setFieldsSpellUpgrades(@NotNull Node spellNode){
+    private void setFieldsSpellUpgrades(@NotNull Node spellNode) {
         String partialId = "spells$";
         NodeList spells = spellNode.getChildNodes();
-        for(int i = 0; i < spells.getLength(); i++){
-            if(spells.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < spells.getLength(); i++) {
+            if (spells.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             String value = getAttributeValue(spells.item(i), "type");
-            if(value.endsWith("_CLEAN")){
+            if (value.endsWith("_CLEAN")) {
                 CheckBox checkBox = (CheckBox) namespace.get(partialId + value);
                 checkBox.setSelected(true);
                 continue;
@@ -1713,11 +1846,11 @@ public class Controller{
      *
      * @param spellNode spellUpgradePoints Node in the save file
      */
-    private void setFieldsSpellUpgradePoints(@NotNull Node spellNode){
+    private void setFieldsSpellUpgradePoints(@NotNull Node spellNode) {
         String idPartial = "spellUpgradePoints$";
         NodeList schools = spellNode.getChildNodes();
-        for(int i = 0; i < schools.getLength(); i++){
-            if(schools.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < schools.getLength(); i++) {
+            if (schools.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             NamedNodeMap attr = schools.item(i).getAttributes();
@@ -1732,11 +1865,11 @@ public class Controller{
      *
      * @param attributesNode attributes Node in the save file
      */
-    private void setFieldsAttributes(@NotNull Node attributesNode){
+    private void setFieldsAttributes(@NotNull Node attributesNode) {
         String idPartial = "attributes$";
         NodeList attributeList = attributesNode.getChildNodes();
-        for(int i = 0; i < attributeList.getLength(); i++){
-            if(attributeList.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < attributeList.getLength(); i++) {
+            if (attributeList.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             NamedNodeMap attr = attributeList.item(i).getAttributes();
@@ -1752,11 +1885,11 @@ public class Controller{
      *
      * @param perksNode perks Node in the save file
      */
-    private void setFieldsPerks(@NotNull Node perksNode){
+    private void setFieldsPerks(@NotNull Node perksNode) {
         String idPartial = "perks$";
         NodeList perks = perksNode.getChildNodes();
-        for(int i = 0; i < perks.getLength(); i++){
-            if(perks.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < perks.getLength(); i++) {
+            if (perks.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             NamedNodeMap attr = perks.item(i).getAttributes();
@@ -1772,12 +1905,12 @@ public class Controller{
      *
      * @param personalityNode personality Node in the save file
      */
-    private void setFieldsPersonality(@NotNull Node personalityNode){
+    private void setFieldsPersonality(@NotNull Node personalityNode) {
         String idPartial = "personalityTrait$";
         NodeList traits = personalityNode.getChildNodes();
-        for(int i = 0; i < traits.getLength(); i++){
+        for (int i = 0; i < traits.getLength(); i++) {
             Node trait = traits.item(i);
-            if(trait.getNodeType() != Node.ELEMENT_NODE){
+            if (trait.getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             String id = idPartial + trait.getTextContent();
@@ -1787,15 +1920,15 @@ public class Controller{
         }
     }
 
-    private void setFieldsInventoryItems(@NotNull Node inventoryNode){
+    private void setFieldsInventoryItems(@NotNull Node inventoryNode) {
         inventoryItems.clear();
         VBox vb = (VBox) namespace.get("itemsInInventory");
         vb.getChildren().clear();
         String partialId = "characterInventory$itemsInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         int counter = 0;
-        for(int i = 0; i < items.getLength(); i++){
-            if(items.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < items.getLength(); i++) {
+            if (items.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             InventoryItem inventoryItem = new InventoryItem(items.item(i));
@@ -1823,15 +1956,15 @@ public class Controller{
         }
     }
 
-    private void setFieldsInventoryClothing(@NotNull Node inventoryNode){
+    private void setFieldsInventoryClothing(@NotNull Node inventoryNode) {
         inventoryClothes.clear();
         VBox vb = (VBox) namespace.get("clothingInInventory");
         vb.getChildren().clear();
         String partialId = "characterInventory$clothingInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         int counter = 0;
-        for(int i = 0; i < items.getLength(); i++){
-            if(items.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < items.getLength(); i++) {
+            if (items.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             InventoryClothing inventoryClothing = new InventoryClothing(items.item(i));
@@ -1868,15 +2001,15 @@ public class Controller{
         }
     }
 
-    private void setFieldsInventoryWeapons(@NotNull Node inventoryNode){
+    private void setFieldsInventoryWeapons(@NotNull Node inventoryNode) {
         inventoryWeapons.clear();
         VBox vb = (VBox) namespace.get("weaponsInInventory");
         vb.getChildren().clear();
         String partialId = "characterInventory$weaponsInInventory$";
         NodeList items = inventoryNode.getChildNodes();
         int counter = 0;
-        for(int i = 0; i < items.getLength(); i++){
-            if(items.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < items.getLength(); i++) {
+            if (items.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             InventoryWeapon inventoryWeapon = new InventoryWeapon(items.item(i));
@@ -1889,23 +2022,23 @@ public class Controller{
             weaponCount.focusedProperty().addListener(new TextObjectListener(weaponCount, TextFieldType.INT));
             String dmgType = inventoryWeapon.getDamageType();
             ComboBox<Attribute> damageType;
-            if(dmgType.equals("LUST")){
+            if (dmgType.equals("LUST")) {
                 damageType = new ComboBox<>(FXCollections.observableArrayList(new Attribute("Lust", "Lust")));
                 damageType.setValue(damageType.getItems().get(0));
             }
-            else{
+            else {
                 damageType = new ComboBox<>(damageTypes);
                 damageType.setValue(matchComboBoxItem(damageTypes, dmgType));
             }
             damageType.setId(partialId + "damageType$" + counter);
-            damageType.setConverter(new StringConverter<>(){
+            damageType.setConverter(new StringConverter<>() {
                 @Override
-                public String toString(@NotNull Attribute attribute){
+                public String toString(@NotNull Attribute attribute) {
                     return attribute.getName();
                 }
 
                 @Override
-                public @Nullable Attribute fromString(String s){
+                public @Nullable Attribute fromString(String s) {
                     return null;
                 }
             });
@@ -1926,13 +2059,13 @@ public class Controller{
         }
     }
 
-    private void removeHBox(@NotNull ActionEvent event){
+    private void removeHBox(@NotNull ActionEvent event) {
         HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
         ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
         String[] id = targetHBox.getId().split("\\$");
         String partialId = id[0] + "$" + id[1] + "$";
         ArrayList<? extends AbstractInventoryElement> inventoryElements;
-        switch(id[1]){
+        switch (id[1]) {
             case "itemsInInventory" -> inventoryElements = inventoryItems;
             case "clothingInInventory" -> inventoryElements = inventoryClothes;
             case "weaponsInInventory" -> inventoryElements = inventoryWeapons;
@@ -1942,37 +2075,37 @@ public class Controller{
         shiftHBoxIds(inventoryElements, index, partialId);
     }
 
-    private <T extends AbstractInventoryElement> void shiftHBoxIds(@NotNull ArrayList<T> arrayList, int index, String partialId){
+    private <T extends AbstractInventoryElement> void shiftHBoxIds(@NotNull ArrayList<T> arrayList, int index, String partialId) {
         arrayList.get(index).removeNode();
 
-        for(int i = index; i < arrayList.size() - 1; i++){
+        for (int i = index; i < arrayList.size() - 1; i++) {
             AbstractInventoryElement inventoryElement = arrayList.get(i + 1);
             HBox hBox = inventoryElement.getHBox();
             hBox.setId(partialId + i);
             ArrayList<javafx.scene.Node> nodes = inventoryElement.getHBoxNodes();
             String[] attrNames;
 
-            switch(nodes.size()){
+            switch (nodes.size()) {
                 case 1 -> attrNames = new String[]{"count$"};
                 case 2 -> attrNames = new String[]{"count$", "damageType$"};
                 case 3 -> attrNames = new String[]{"count$", "enchantmentKnown$", "isDirty$"};
                 default -> throw new IllegalStateException("Unexpected value: " + nodes.size());
             }
 
-            for(int j = 0; j < nodes.size(); j++){
+            for (int j = 0; j < nodes.size(); j++) {
                 nodes.get(j).setId(partialId + attrNames[j] + i);
             }
         }
         arrayList.remove(index);
     }
 
-    private boolean matchItemByColors(Node itemNode, String @NotNull ... colors){
+    private boolean matchItemByColors(Node itemNode, String @NotNull ... colors) {
         NodeList colorList = getElementByTagName((Element) itemNode, "colours").getChildNodes();
         int idx = 0;
-        for(int i = 0; i < colorList.getLength(); i++){
+        for (int i = 0; i < colorList.getLength(); i++) {
             Node color = colorList.item(i);
-            if(color.getNodeName().equals("colour")){
-                if(color.getTextContent().equals(colors[idx])){
+            if (color.getNodeName().equals("colour")) {
+                if (color.getTextContent().equals(colors[idx])) {
                     idx++;
                 }
             }
@@ -1980,12 +2113,12 @@ public class Controller{
         return idx == colors.length - 1;
     }
 
-    private @NotNull String getItemColors(Node itemNode){
+    private @NotNull String getItemColors(Node itemNode) {
         NodeList colorList = getElementByTagName((Element) itemNode, "colours").getChildNodes();
         StringBuilder colors = new StringBuilder();
-        for(int i = 0; i < colorList.getLength(); i++){
+        for (int i = 0; i < colorList.getLength(); i++) {
             Node color = colorList.item(i);
-            if(color.getNodeName().equals("colour")){
+            if (color.getNodeName().equals("colour")) {
                 colors.append(color.getTextContent()).append("$");
             }
         }
@@ -2000,11 +2133,11 @@ public class Controller{
      * @param npcId Id of the npc
      * @return Name of the npc
      */
-    private String getNpcName(String npcId){
+    private String getNpcName(String npcId) {
         @SuppressWarnings("unchecked")
         ObservableList<NpcCharacter> npcs = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
-        for(NpcCharacter npc : npcs){
-            if(npc.equals(npcId)){
+        for (NpcCharacter npc : npcs) {
+            if (npc.equals(npcId)) {
                 return npc.getName();
             }
         }
@@ -2018,9 +2151,9 @@ public class Controller{
      * @param value Value to match
      * @return Attribute that matches the value
      */
-    private @NotNull Attribute matchComboBoxItem(@NotNull ObservableList<Attribute> list, String value){
-        for(Attribute attribute : list){
-            if(attribute.equals(value)){
+    private @NotNull Attribute matchComboBoxItem(@NotNull ObservableList<Attribute> list, String value) {
+        for (Attribute attribute : list) {
+            if (attribute.equals(value)) {
                 return attribute;
             }
         }
@@ -2034,9 +2167,9 @@ public class Controller{
      * @param value Value to match
      * @return NpcCharacter that matches the value
      */
-    private @NotNull NpcCharacter matchNpc(@NotNull ObservableList<NpcCharacter> list, String value){
-        for(NpcCharacter npc : list){
-            if(npc.equals(value)){
+    private @NotNull NpcCharacter matchNpc(@NotNull ObservableList<NpcCharacter> list, String value) {
+        for (NpcCharacter npc : list) {
+            if (npc.equals(value)) {
                 return npc;
             }
         }
@@ -2046,24 +2179,24 @@ public class Controller{
     /**
      * Method to attach listeners to TextFields to properly detect and record changes to the xml data
      */
-    private void addListeners(){
+    private void addListeners() {
         TextArea ta = (TextArea) namespace.get("core$description$value");
         ta.focusedProperty().addListener(new TextObjectListener(ta, TextFieldType.STRING));
         TextField hairStyles = (TextField) namespace.get("body$hair$length");
         hairStyles.focusedProperty().addListener(new TextObjectListener(hairStyles, TextFieldType.HAIR));
-        for(String intTextFieldId : intTextFieldIds){
+        for (String intTextFieldId : intTextFieldIds) {
             TextField tf = (TextField) namespace.get(intTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.INT, true));
         }
-        for(String doubleTextFieldId : doubleTextFieldIds){
+        for (String doubleTextFieldId : doubleTextFieldIds) {
             TextField tf = (TextField) namespace.get(doubleTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DOUBLE, !doubleTextFieldId.equals("core$obedience$value")));
         }
-        for(String stringTextFieldId : stringTextFieldIds){
+        for (String stringTextFieldId : stringTextFieldIds) {
             TextField tf = (TextField) namespace.get(stringTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.STRING));
         }
-        for(String dateTextFieldId : dateTextFieldIds){
+        for (String dateTextFieldId : dateTextFieldIds) {
             TextField tf = (TextField) namespace.get(dateTextFieldId);
             tf.focusedProperty().addListener(new TextObjectListener(tf, TextFieldType.DATE));
         }
@@ -2077,16 +2210,16 @@ public class Controller{
      *
      * @return NodeList of immediate child Nodes (eg. core, body, attributes, etc.)
      */
-    private @NotNull NodeList getAttributeNodes(){
+    private @NotNull NodeList getAttributeNodes() {
         return characterNode.getChildNodes();
     }
 
-    private Node getFetishAttributeParent(){
+    private Node getFetishAttributeParent() {
         //TODO
         return null;
     }
 
-    private Element createFetishNode(String fetishName, ActionEvent event){
+    private Element createFetishNode(String fetishName, ActionEvent event) {
         Element fetish = saveFile.createElement("f");
         fetish.setTextContent(fetishName);
         Node fetishes = getValueNodeParent(event);
@@ -2094,7 +2227,7 @@ public class Controller{
         return fetish;
     }
 
-    private Element createFetishNode(String fetishName, Element fetishes){
+    private Element createFetishNode(String fetishName, Element fetishes) {
         Element fetish = saveFile.createElement("f");
         fetish.setTextContent(fetishName);
         fetishes.appendChild(fetish);
@@ -2102,14 +2235,14 @@ public class Controller{
     }
 
     @NotNull
-    private Node getFetishValueNode(@NotNull Element attr, @NotNull String[] id){
+    private Node getFetishValueNode(@NotNull Element attr, @NotNull String[] id) {
         NodeList fetishes = getElementByTagName(attr, "fetishes").getChildNodes();
 
         Node childNode;
-        try{
+        try {
             childNode = getChildNodeByTextContent(fetishes, id[0]);
         }
-        catch (NoSuchElementException e){
+        catch (NoSuchElementException e) {
             childNode = createFetishNode(id[0], (Element) fetishes);
             System.out.println("Added fetish");
         }
@@ -2118,21 +2251,21 @@ public class Controller{
         switch (id[1]) {
             case "owned" -> {
                 node = getAttributeNode(childNode, "o");
-                if(node == null){
+                if (node == null) {
                     ((Element) childNode).setAttribute("o", "true");
                     node = getAttributeNode(childNode, "o");
                 }
             }
             case "desire" -> {
                 node = getAttributeNode(childNode, "desire");
-                if(node == null){
+                if (node == null) {
                     ((Element) childNode).setAttribute("desire", "0");
                     node = getAttributeNode(childNode, "desire");
                 }
             }
             case "exp" -> {
                 node = getAttributeNode(childNode, "xp");
-                if(node == null){
+                if (node == null) {
                     ((Element) childNode).setAttribute("xp", "0");
                     node = getAttributeNode(childNode, "xp");
                 }
@@ -2149,21 +2282,21 @@ public class Controller{
      * @param event ActionEvent of the element that was interacted with
      * @return Node containing the attribute value
      */
-    private Node getValueNode(@NotNull ActionEvent event){
+    private Node getValueNode(@NotNull ActionEvent event) {
         String[] id = getId(event).split("\\$");
         Element attr = (Element) getAttributeNodes();
-        if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
+        if (id[0].startsWith("FETISH_")) { // Fetish ids cannot be reverse traced, so they must be handled differently
             return getFetishValueNode(attr, id);
         }
-        else if(id[0].equals("spells")){ // Same with spell ids
+        else if (id[0].equals("spells")) { // Same with spell ids
             NodeList spellUpgrades = getElementByTagName(attr, "spellUpgrades").getChildNodes();
             return getChildNodeByAttributeValue(spellUpgrades, "type", id[1]);
         }
-        else if(id[0].equals("coreInfo")){
+        else if (id[0].equals("coreInfo")) {
             Element coreInfo = getElementByTagName(saveFile, id[0]);
             return coreInfo.getAttributeNode("secondsPassed");
         }
-        for(int i = 0; i < id.length - 1; i++){
+        for (int i = 0; i < id.length - 1; i++) {
             attr = getElementByTagName(attr, id[i]);
         }
         return getAttributeNode(attr, id[id.length - 1]);
@@ -2175,11 +2308,11 @@ public class Controller{
      * @param objId Id of the element that was interacted with
      * @return Node containing the attribute value
      */
-    private Node getValueNode(@NotNull String objId){
+    private Node getValueNode(@NotNull String objId) {
         String[] id = objId.split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
-        for(int i = 0; i < id.length - 1; i++){
+        for (int i = 0; i < id.length - 1; i++) {
             attr = getElementByTagName(attr, id[i]);
         }
         return getAttributeNode(attr, id[id.length - 1]);
@@ -2192,7 +2325,7 @@ public class Controller{
      * @param attr Attribute to get
      * @return String containing the attribute value
      */
-    private String getAttributeValue(@NotNull Node node, String attr){
+    private String getAttributeValue(@NotNull Node node, String attr) {
         return node.getAttributes().getNamedItem(attr).getTextContent();
     }
 
@@ -2203,7 +2336,7 @@ public class Controller{
      * @param attr Attribute to get
      * @return Node containing the attribute Node
      */
-    private Node getAttributeNode(@NotNull Node node, String attr){
+    private Node getAttributeNode(@NotNull Node node, String attr) {
         return node.getAttributes().getNamedItem(attr);
     }
 
@@ -2213,17 +2346,17 @@ public class Controller{
      * @param event ActionEvent of the element that was interacted with
      * @return Node that is the parent of the Node with the specified attribute
      */
-    private Node getValueNodeParent(@NotNull ActionEvent event){
+    private Node getValueNodeParent(@NotNull ActionEvent event) {
         String[] id = getId(event).split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
-        if(id[0].startsWith("FETISH_")){ // Fetish ids cannot be reverse traced, so they must be handled differently
+        if (id[0].startsWith("FETISH_")) { // Fetish ids cannot be reverse traced, so they must be handled differently
             return getElementByTagName(attr, "fetishes");
         }
-        else if(id[0].equals("spells")){ // Same with spell ids
+        else if (id[0].equals("spells")) { // Same with spell ids
             return getElementByTagName(attr, "spellUpgrades");
         }
-        for(int i = 0; i < id.length - 1; i++){
+        for (int i = 0; i < id.length - 1; i++) {
             attr = getElementByTagName(attr, id[i]);
         }
         return attr;
@@ -2235,11 +2368,11 @@ public class Controller{
      * @param objId Id of the element that was interacted with
      * @return Node that is the parent of the Node with the specified attribute
      */
-    private Node getValueNodeParent(@NotNull String objId){
+    private Node getValueNodeParent(@NotNull String objId) {
         String[] id = objId.split("\\$");
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
-        for(int i = 0; i < id.length - 1; i++){
+        for (int i = 0; i < id.length - 1; i++) {
             attr = getElementByTagName(attr, id[i]);
         }
         return attr;
@@ -2253,22 +2386,22 @@ public class Controller{
      * @return Desired Node matching given attribute/value pairs
      * @throws IllegalArgumentException if number of String arguments is not a multiple of 2
      */
-    private Node getChildNodeByAttributeValue(@NotNull NodeList children, String @NotNull ... args){
-        if(args.length % 2 != 0){
+    private Node getChildNodeByAttributeValue(@NotNull NodeList children, String @NotNull ... args) {
+        if (args.length % 2 != 0) {
             throw new IllegalArgumentException();
         }
-        for(int i = 0; i < children.getLength(); i++){
-            if(children.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < children.getLength(); i++) {
+            if (children.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             boolean found = true;
-            for(int j = 0; j < args.length; j += 2){
-                if(!getAttributeValue(children.item(i), args[j]).equals(args[j + 1])){
+            for (int j = 0; j < args.length; j += 2) {
+                if (!getAttributeValue(children.item(i), args[j]).equals(args[j + 1])) {
                     found = false;
                     break;
                 }
             }
-            if(found){
+            if (found) {
                 return children.item(i);
             }
         }
@@ -2276,13 +2409,13 @@ public class Controller{
     }
 
     @NotNull
-    private Node getChildNodeByTextContent(@NotNull NodeList children, @NotNull String text){
-        for(int i = 0; i < children.getLength(); i++) {
+    private Node getChildNodeByTextContent(@NotNull NodeList children, @NotNull String text) {
+        for (int i = 0; i < children.getLength(); i++) {
             if (children.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             Node node = children.item(i);
-            if(node.getTextContent().equals(text)){
+            if (node.getTextContent().equals(text)) {
                 return node;
             }
         }
@@ -2295,20 +2428,20 @@ public class Controller{
      * @param args String array to traverse in order to get to the desired Node
      * @return Desired Node if found else null
      */
-    private Node getNode(String @NotNull ... args){
+    private Node getNode(String @NotNull ... args) {
         NodeList attributeNodes = getAttributeNodes();
         Element attr = (Element) attributeNodes;
-        for(String arg : args){
-            if(arg.equals(args[args.length - 1])){
+        for (String arg : args) {
+            if (arg.equals(args[args.length - 1])) {
                 Element tempAttr = getElementByTagName(attr, arg);
-                if(tempAttr == null){
+                if (tempAttr == null) {
                     return attr.getAttributeNode(arg);
                 }
-                else{
+                else {
                     return tempAttr;
                 }
             }
-            else{
+            else {
                 attr = getElementByTagName(attr, arg);
             }
         }
@@ -2321,20 +2454,20 @@ public class Controller{
      * @param id Value attribute to search for
      * @return Node representing the id tag with corresponding value attribute
      */
-    private Node getNodeByIdValue(@NotNull String id){
-        if(id.equals("PlayerCharacter")){
+    private Node getNodeByIdValue(@NotNull String id) {
+        if (id.equals("PlayerCharacter")) {
             Node playerNode = getElementByTagName(saveFile, "playerCharacter");
             Node characterNode = playerNode.getChildNodes().item(1);
             Node coreNode = characterNode.getChildNodes().item(3);
             return coreNode.getChildNodes().item(1); // playerNode > characterNode > coreNode > idNode
         }
-        else{
+        else {
             NodeList nodes = saveFile.getElementsByTagName("NPC");
-            for(int i = 0; i < nodes.getLength(); i++){
+            for (int i = 0; i < nodes.getLength(); i++) {
                 Node idNode = nodes.item(i).getChildNodes().item(1).getChildNodes().item(3).getChildNodes().item(1);
                 NamedNodeMap attributes = idNode.getAttributes();
                 Node value = attributes.getNamedItem("value");
-                if(value != null && value.getTextContent().equals(id)){
+                if (value != null && value.getTextContent().equals(id)) {
                     return idNode; // npcNode > characterNode > coreNode > idNode
                 }
             }
@@ -2347,19 +2480,19 @@ public class Controller{
      *
      * @param node Node to be deleted
      */
-    private void removeNode(@NotNull Node node){
+    private void removeNode(@NotNull Node node) {
         node.getParentNode().removeChild(node);
     }
 
-    private Element getElementByTagName(@NotNull Element element, String tagName, int index){
+    private Element getElementByTagName(@NotNull Element element, String tagName, int index) {
         return (Element) element.getElementsByTagName(tagName).item(index);
     }
 
-    private Element getElementByTagName(@NotNull Element element, String tagName){
+    private Element getElementByTagName(@NotNull Element element, String tagName) {
         return (Element) element.getElementsByTagName(tagName).item(0);
     }
 
-    private Element getElementByTagName(@NotNull Document document, String tagName){
+    private Element getElementByTagName(@NotNull Document document, String tagName) {
         return (Element) document.getElementsByTagName(tagName).item(0);
     }
 
@@ -2369,7 +2502,7 @@ public class Controller{
      * Deletes selected character from the save file and selects the previous character in the npc list
      */
     @FXML
-    private void deleteCharacter(){
+    private void deleteCharacter() {
         Node npcNode = characterNode.getParentNode(); // characterNode > npcNode
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> charSelect = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
@@ -2385,24 +2518,24 @@ public class Controller{
      * Deletes all offsprings, that are not on the map, from the save
      */
     @FXML
-    private void deleteOffsprings(){
+    private void deleteOffsprings() {
         System.out.println("Starting Offspring Removal");
         NodeList npcList = saveFile.getElementsByTagName("NPC");
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         ObservableList<NpcCharacter> npcObservableList = cb.getItems();
-        for(int i = 0; i < npcList.getLength(); i++){
+        for (int i = 0; i < npcList.getLength(); i++) {
             Element character = getElementByTagName((Element) npcList.item(i), "character");
             Element core = getElementByTagName(character, "core");
             Element pathname = getElementByTagName(core, "pathName");
             Element locationInfo = getElementByTagName(character, "locationInformation");
             Element worldLoc = getElementByTagName(locationInfo, "worldLocation");
-            if(pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")){ // Npc is an Offspring
-                if(worldLoc.getAttribute("value").equals("EMPTY")){ // Npc is not on the map
+            if (pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")) { // Npc is an Offspring
+                if (worldLoc.getAttribute("value").equals("EMPTY")) { // Npc is not on the map
                     String npcId = getElementByTagName(core, "id").getAttribute("value");
                     System.out.println("Deleted " + npcId);
                     NpcCharacter npc = matchNpc(npcObservableList, npcId);
-                    if(npc == cb.getValue()){ // If character selector on an offspring that will be deleted, switch to the previous character
+                    if (npc == cb.getValue()) { // If character selector on an offspring that will be deleted, switch to the previous character
                         int index = npcObservableList.indexOf(npc);
                         cb.setValue(npcObservableList.get(index - 1));
                     }
@@ -2413,7 +2546,7 @@ public class Controller{
         }
         // This is the new way offsprings are handled
         NodeList offspringList = saveFile.getElementsByTagName("OffspringSeed");
-        while(offspringList.getLength() > 0) {
+        while (offspringList.getLength() > 0) {
             for (int i = 0; i < offspringList.getLength(); i++) {
                 removeNode(offspringList.item(i));
             }
@@ -2426,17 +2559,17 @@ public class Controller{
      * Reveals all map tiles
      */
     @FXML
-    private void revealMap(){
+    private void revealMap() {
         Node mapsNode = getElementByTagName(saveFile, "maps");
         NodeList worlds = mapsNode.getChildNodes();
-        for(int i = 0; i < worlds.getLength(); i++){
-            if(worlds.item(i).getNodeType() != Node.ELEMENT_NODE){
+        for (int i = 0; i < worlds.getLength(); i++) {
+            if (worlds.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             Node grid = getElementByTagName((Element) worlds.item(i), "grid");
             NodeList cells = grid.getChildNodes();
-            for(int j = 0; j < cells.getLength(); j++){
-                if(cells.item(j).getNodeType() != Node.ELEMENT_NODE){
+            for (int j = 0; j < cells.getLength(); j++) {
+                if (cells.item(j).getNodeType() != Node.ELEMENT_NODE) {
                     continue;
                 }
                 NamedNodeMap attr = cells.item(j).getAttributes();
@@ -2448,44 +2581,44 @@ public class Controller{
     }
 
     @FXML
-    private void checkForUpdate(){
+    private void checkForUpdate() {
         String latestVersion = getLatestVersionTag();
         MenuItem mi = (MenuItem) namespace.get("updateStatus");
-        if(latestVersion.equals(version)){
+        if (latestVersion.equals(version)) {
             mi.setText("Latest version");
         }
-        else{
+        else {
             mi.setText("Update available");
         }
     }
 
-    private @NotNull String getLatestVersionTag(){
+    private @NotNull String getLatestVersionTag() {
         StringBuilder result = new StringBuilder();
-        try{
+        try {
             URL url = new URL("https://api.github.com/repos/Exiua/LTSaveEd/releases/latest");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))){
-                for(String line; (line = reader.readLine()) != null; ){
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                for (String line; (line = reader.readLine()) != null; ) {
                     result.append(line);
                 }
             }
             String jsonStr = result.toString();
             String[] jsonArr = jsonStr.replace("{", "").replace("}", "").split(",");
             String test = null;
-            for(String s : jsonArr){
-                if(s.startsWith("\"tag_name\"")){
+            for (String s : jsonArr) {
+                if (s.startsWith("\"tag_name\"")) {
                     test = s.split(":")[1].replace("\"", "");
                     break;
                 }
             }
-            if(test == null){
+            if (test == null) {
                 throw new NoSuchElementException("Latest version tag not found");
             }
             return test;
         }
-        catch(IOException e){
+        catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("IOException"); // Just didn't want to mark the method with the exception
         }
@@ -2497,9 +2630,9 @@ public class Controller{
      * @param event ActionEvent triggering the save call
      */
     @FXML
-    private void saveFileOverwrite(@NotNull ActionEvent event){
+    private void saveFileOverwrite(@NotNull ActionEvent event) {
         event.consume();
-        if(fileLoaded){
+        if (fileLoaded) {
             saveToFile(workingFile);
         }
     }
@@ -2510,9 +2643,9 @@ public class Controller{
      * @param event ActionEvent triggering the save call
      */
     @FXML
-    private void saveFileExport(@NotNull ActionEvent event){
+    private void saveFileExport(@NotNull ActionEvent event) {
         event.consume();
-        if(fileLoaded){
+        if (fileLoaded) {
             FileChooser fc = new FileChooser();
             FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
             fc.getExtensionFilters().add(fileExtensions);
@@ -2520,7 +2653,7 @@ public class Controller{
             fc.setInitialDirectory(new File(currentPath));
             fc.setInitialFileName(workingFile.getName());
             File f = fc.showSaveDialog(stage);
-            if(f != null){
+            if (f != null) {
                 saveToFile(f);
             }
         }
@@ -2531,9 +2664,9 @@ public class Controller{
      *
      * @param f File to save the xml data to
      */
-    private void saveToFile(@NotNull File f){
+    private void saveToFile(@NotNull File f) {
         TransformerFactory tff = TransformerFactory.newInstance();
-        try{
+        try {
             Transformer tf = tff.newTransformer();
             // File formatting
             tf.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -2541,7 +2674,7 @@ public class Controller{
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList nodeList = (NodeList) xPath.evaluate("//text()[normalize-space()='']",
                     saveFile, XPathConstants.NODESET);
-            for(int i = 0; i < nodeList.getLength(); i++){
+            for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
                 removeNode(node);
             }
@@ -2551,7 +2684,7 @@ public class Controller{
             tf.transform(source, result);
             System.out.println("Saved to file");
         }
-        catch(TransformerException | XPathExpressionException e){
+        catch (TransformerException | XPathExpressionException e) {
             e.printStackTrace();
         }
     }
@@ -2559,7 +2692,7 @@ public class Controller{
     /**
      * Class that detects focus loss for TextFields
      */
-    private class TextObjectListener implements ChangeListener<Boolean>{
+    private class TextObjectListener implements ChangeListener<Boolean> {
 
         /**
          * TextInputControl descendant to monitor
@@ -2594,7 +2727,7 @@ public class Controller{
          * @param textControl   TextInputControl descendant to monitor
          * @param textFieldType Data type of the TextField
          */
-        public TextObjectListener(@NotNull TextInputControl textControl, TextFieldType textFieldType){
+        public TextObjectListener(@NotNull TextInputControl textControl, TextFieldType textFieldType) {
             textInputControl = textControl;
             tfType = textFieldType;
             fieldId = textControl.getId();
@@ -2613,7 +2746,7 @@ public class Controller{
          * @param textFieldType Data type of the TextField
          * @param positivesOnly Whether values are positive only
          */
-        public TextObjectListener(@NotNull TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly){
+        public TextObjectListener(@NotNull TextInputControl textControl, TextFieldType textFieldType, boolean positivesOnly) {
             this(textControl, textFieldType);
             positiveOnly = positivesOnly;
         }
@@ -2626,8 +2759,8 @@ public class Controller{
          * @param newValue   (Same)
          */
         @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue){
-            if(!newValue && fieldsSet){  // Check if focus gained or lost and that the fields initially have the proper value
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if (!newValue && fieldsSet) {  // Check if focus gained or lost and that the fields initially have the proper value
                 textInputControl.setText(getFormattedText(textInputControl.getText()));
                 setLabel();
             }
@@ -2636,16 +2769,16 @@ public class Controller{
         /**
          * Sets the value of the secondary value if the TextInputControl object has a secondary label
          */
-        private void setLabel(){
-            if(hasSecondLabel){
+        private void setLabel() {
+            if (hasSecondLabel) {
                 Label valueLabel = (Label) namespace.get(fieldId + "$label");
                 String textValue = textInputControl.getText();
                 int valueToTextIndex = textValue.contains(".") ? (int) (Double.parseDouble(textValue) * 4) : Integer.parseInt(textValue);
                 ArrayList<String> valueToTextList = labelMap.get(fieldId);
-                if(valueToTextIndex >= valueToTextList.size()){
+                if (valueToTextIndex >= valueToTextList.size()) {
                     valueToTextIndex = valueToTextList.size() - 1;
                 }
-                else if(valueToTextIndex < 0){
+                else if (valueToTextIndex < 0) {
                     valueToTextIndex = 0;
                 }
                 valueLabel.setText(valueToTextList.get(valueToTextIndex));
@@ -2659,13 +2792,13 @@ public class Controller{
          * @param newValue String entered into the TextField
          * @return Either the new String (with minor modifications if needed) or a String of the old value
          */
-        private String getFormattedText(@NotNull String newValue){
+        private String getFormattedText(@NotNull String newValue) {
             updateFieldId();
             Node value;
-            try{
+            try {
                 value = getValueNode();
             }
-            catch (NoSuchElementException e){
+            catch (NoSuchElementException e) {
                 NodeList attributeNodes = getAttributeNodes();
                 Element fetishes = getElementByTagName((Element) attributeNodes, "fetishes");
                 Element fetishEntry = createFetishNode(fieldId.split("\\$")[0], fetishes);
@@ -2674,7 +2807,7 @@ public class Controller{
                 value = getValueNode();
             }
 
-            if(fetishExp && value == null){
+            if (fetishExp && value == null) {
                 NodeList attributeNodes = getAttributeNodes();
                 Node fetishes = getElementByTagName((Element) attributeNodes, "fetishes");
                 value = getChildNodeByTextContent(fetishes.getChildNodes(), fieldId.split("\\$")[0]);
@@ -2683,65 +2816,65 @@ public class Controller{
                 System.out.println("Added xp attribute to fetish");
             }
             String oldValue = value.getTextContent();
-            switch(tfType){
+            switch (tfType) {
                 case INT -> {
-                    try{
+                    try {
                         int nv = Integer.parseInt(newValue);
                         newValue = "" + nv; // Removes leading zeroes
-                        if(positiveOnly && nv < 0){
+                        if (positiveOnly && nv < 0) {
                             return oldValue;
                         }
-                        if(nv == 0 && fetishExp){
+                        if (nv == 0 && fetishExp) {
                             Node ownerNode = ((Attr) value).getOwnerElement();
                             removeNode(ownerNode);
                             System.out.println("Removed element");
                         }
-                        else{
-                            if(inventoryElement){
+                        else {
+                            if (inventoryElement) {
                                 int index = Integer.parseInt(fieldId.split("\\$")[3]);
-                                if(fieldId.contains("itemsInInventory")){
+                                if (fieldId.contains("itemsInInventory")) {
                                     inventoryItems.get(index).setCount(newValue);
                                 }
-                                else if(fieldId.contains("clothingInInventory")){
+                                else if (fieldId.contains("clothingInInventory")) {
                                     inventoryClothes.get(index).setCount(newValue);
                                 }
-                                else if(fieldId.contains("weaponsInInventory")){
+                                else if (fieldId.contains("weaponsInInventory")) {
                                     inventoryWeapons.get(index).setCount(newValue);
                                 }
                             }
-                            else{
-                                if(fieldId.startsWith("coreInfo")){
+                            else {
+                                if (fieldId.startsWith("coreInfo")) {
                                     currentDate.set(Calendar.YEAR, nv);
                                     value.setTextContent("" + getSaveTimeValue());
                                 }
-                                else{
+                                else {
                                     value.setTextContent(newValue);
                                 }
                             }
                         }
                         return newValue;
                     }
-                    catch(NumberFormatException e){
+                    catch (NumberFormatException e) {
                         return oldValue;
                     }
                 }
                 case DOUBLE -> {
-                    try{
+                    try {
                         double nv = Double.parseDouble(newValue);
                         newValue = "" + nv; // Removes leading zeroes
-                        if(positiveOnly && nv < 0){
+                        if (positiveOnly && nv < 0) {
                             return oldValue;
                         }
-                        if(newValue.indexOf('.') == -1){
+                        if (newValue.indexOf('.') == -1) {
                             newValue += ".0";
                         }
-                        else if(newValue.indexOf('.') == newValue.length() - 1){
+                        else if (newValue.indexOf('.') == newValue.length() - 1) {
                             newValue += "0";
                         }
                         value.setTextContent(newValue);
                         return newValue;
                     }
-                    catch(NumberFormatException e){
+                    catch (NumberFormatException e) {
                         return oldValue;
                     }
                 }
@@ -2750,64 +2883,64 @@ public class Controller{
                     return newValue;
                 }
                 case HAIR -> {
-                    try{
+                    try {
                         int nv = Integer.parseInt(newValue);
                         newValue = "" + nv; // Removes leading zeroes
-                        if(nv < 0){
+                        if (nv < 0) {
                             return oldValue;
                         }
                         value.setTextContent(newValue);
                         @SuppressWarnings("unchecked")
                         ComboBox<Attribute> hairStyles = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
                         Attribute attr;
-                        if(nv < 4){
+                        if (nv < 4) {
                             attr = hairStylesB.get(0);
                             hairStyles.setItems(hairStylesB);
                             hairStyles.setValue(attr);
                         }
-                        else if(nv < 11){
+                        else if (nv < 11) {
                             attr = hairStyles.getValue();
-                            if(!hairStylesVS.contains(attr)){
+                            if (!hairStylesVS.contains(attr)) {
                                 attr = hairStylesVS.get(0);
                             }
                             hairStyles.setItems(hairStylesVS);
                             hairStyles.setValue(attr);
                         }
-                        else if(nv < 22){
+                        else if (nv < 22) {
                             attr = hairStyles.getValue();
-                            if(!hairStylesS.contains(attr)){
+                            if (!hairStylesS.contains(attr)) {
                                 attr = hairStylesS.get(0);
                             }
                             hairStyles.setItems(hairStylesS);
                             hairStyles.setValue(attr);
                         }
-                        else if(nv < 45){
+                        else if (nv < 45) {
                             attr = hairStyles.getValue();
-                            if(!hairStylesSL.contains(attr)){
+                            if (!hairStylesSL.contains(attr)) {
                                 attr = hairStylesSL.get(0);
                             }
                             hairStyles.setItems(hairStylesSL);
                             hairStyles.setValue(attr);
                         }
-                        else if(nv < 265){
+                        else if (nv < 265) {
                             attr = hairStyles.getValue();
-                            if(!hairStylesL.contains(attr)){
+                            if (!hairStylesL.contains(attr)) {
                                 attr = hairStylesL.get(0);
                             }
                             hairStyles.setItems(hairStylesL);
                             hairStyles.setValue(attr);
                         }
-                        else{
+                        else {
                             hairStyles.setItems(hairStylesFL);
                         }
                         return newValue;
                     }
-                    catch(NumberFormatException e){
+                    catch (NumberFormatException e) {
                         return oldValue;
                     }
                 }
                 case DATE -> {
-                    try{
+                    try {
                         boolean coreInfo = fieldId.startsWith("coreInfo");
                         @SuppressWarnings("unchecked")
                         ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(coreInfo ? "coreInfo$date$month" : "core$monthOfBirth$value");
@@ -2816,17 +2949,17 @@ public class Controller{
                         int monthLimit = setMonthLimit(cb.getValue(), year);
                         int nv = Integer.parseInt(newValue);
                         newValue = "" + nv; // Removes leading zeroes
-                        if(nv < 1){
+                        if (nv < 1) {
                             return oldValue;
                         }
-                        if(nv > monthLimit){
+                        if (nv > monthLimit) {
                             return oldValue;
                         }
                         currentDate.set(Calendar.DAY_OF_MONTH, nv);
                         value.setTextContent("" + getSaveTimeValue());
                         return newValue;
                     }
-                    catch(NumberFormatException e){
+                    catch (NumberFormatException e) {
                         return oldValue;
                     }
                 }
@@ -2839,14 +2972,14 @@ public class Controller{
          *
          * @return Node containing the attribute value
          */
-        private Node getValueNode(){
+        private Node getValueNode() {
             String[] id = fieldId.split("\\$");
             Element attr = (Element) getAttributeNodes();
-            if(id[0].startsWith("FETISH_")){
+            if (id[0].startsWith("FETISH_")) {
                 return getFetishValueNode(attr, id);
             }
             attr = getElementByTagName(attr, id[0]);
-            switch(id[0]){
+            switch (id[0]) {
                 case "characterRelationships" -> {
                     return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
                 }
@@ -2854,7 +2987,7 @@ public class Controller{
                     try {
                         return getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1]).getAttributes().getNamedItem("points");
                     }
-                    catch (NoSuchElementException e){
+                    catch (NoSuchElementException e) {
                         Element upgradeEntry = saveFile.createElement("upgradeEntry");
                         upgradeEntry.setAttribute("school", id[1]);
                         upgradeEntry.setAttribute("points", "0");
@@ -2864,7 +2997,7 @@ public class Controller{
                 }
                 case "attributes" -> {
                     Element attributeNode;
-                    try{
+                    try {
                         attributeNode = (Element) getChildNodeByAttributeValue(attr.getChildNodes(), "type", id[1]);
                     }
                     catch (NoSuchElementException e) {
@@ -2882,13 +3015,13 @@ public class Controller{
                 }
                 case "dialogueFlags" -> {
                     Element attributeNode = getElementByTagName(saveFile, id[0]);
-                    for(int i = 1; i < id.length - 1; i++){
+                    for (int i = 1; i < id.length - 1; i++) {
                         attributeNode = getElementByTagName(attributeNode, id[i]);
                     }
                     return attributeNode.getAttributeNode(id[id.length - 1]);
                 }
                 case "characterInventory" -> {
-                    if(id.length == 4) {
+                    if (id.length == 4) {
                         int index = Integer.parseInt(id[3]);
                         switch (id[1]) {
                             case "itemsInInventory" -> {
@@ -2903,7 +3036,7 @@ public class Controller{
                             }
                         }
                     }
-                    else{
+                    else {
                         attr = getElementByTagName(attr, id[1]);
                         return getAttributeNode(attr, id[2]);
                     }
@@ -2913,8 +3046,8 @@ public class Controller{
             return getAttributeNode(attr, id[2]);
         }
 
-        private void updateFieldId(){
-            if(inventoryElement && !fieldId.equals(textInputControl.getId())){
+        private void updateFieldId() {
+            if (inventoryElement && !fieldId.equals(textInputControl.getId())) {
                 fieldId = textInputControl.getId();
             }
         }
