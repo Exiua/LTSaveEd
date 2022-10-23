@@ -360,6 +360,11 @@ public class Controller{
      * ArrayList to hold all the ObservableList objects related to jobHistories
      */
     private final ArrayList<ObservableList<Attribute>> jobHistories = new ArrayList<>();
+
+    private final Calendar baseDate = Calendar.getInstance();
+
+    private final Calendar currentDate = Calendar.getInstance();
+
     /**
      * Gui's stage object
      */
@@ -754,6 +759,16 @@ public class Controller{
     }
 
     /**
+     * Get the secondsPassed value for the save file
+     * @return Seconds passed between save file start date and current date
+     */
+    private long getSaveTimeValue(){
+        long baseSeconds = baseDate.getTimeInMillis() / 1000;
+        long currentSeconds = currentDate.getTimeInMillis() / 1000;
+        return currentSeconds - baseSeconds;
+    }
+
+    /**
      * Updates xml values changed by ComboBoxes
      *
      * @param event ActionEvent from the ComboBox that was changed
@@ -771,12 +786,18 @@ public class Controller{
                 @SuppressWarnings("unchecked")
                 ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
                 Node value = getValueNode(event);
-                value.setTextContent(cb.getValue().getValue());
-                if(fxId.equals("body$leg$type")){
-                    updateLegTypeDependants(cb, false);
+                if(fxId.contains("coreInfo")){
+                    Attribute monthAttr = cb.getValue();
+                    int month = Integer.parseInt(monthAttr.getValue());
+                    currentDate.set(Calendar.MONTH, month);
+                    value.setTextContent("" + getSaveTimeValue());
+                    updateDayTextField(fxId, monthAttr);
                 }
-                if(fxId.contains("month")){
-                    updateDayTextField(fxId, cb.getValue());
+                else {
+                    value.setTextContent(cb.getValue().getValue());
+                    if (fxId.equals("body$leg$type")) {
+                        updateLegTypeDependants(cb, false);
+                    }
                 }
                 event.consume();
             }
@@ -1498,27 +1519,31 @@ public class Controller{
      */
     private void setWorldFields(){
         Element coreInfo = getElementByTagName(saveFile, "coreInfo");
-        Node date = getElementByTagName(coreInfo, "date");
-        NamedNodeMap dateAttr = date.getAttributes();
-        for(int i = 0; i < dateAttr.getLength(); i++){
-            Node attr = dateAttr.item(i);
-            if(attr.getNodeType() == Node.ATTRIBUTE_NODE){
-                String element = attr.getNodeName();
-                String id = "coreInfo$date$" + element;
-                if(element.equals("month")){
-                    @SuppressWarnings("unchecked")
-                    ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(id);
-                    ObservableList<Attribute> items = cb.getItems();
-                    cb.setValue(matchComboBoxItem(items, attr.getTextContent()));
-                }
-                else{
-                    TextField tf = (TextField) namespace.get(id);
-                    if(tf != null){
-                        tf.setText(attr.getTextContent());
-                    }
-                }
-            }
+        //region Set Date
+        Element date = getElementByTagName(coreInfo, "date");
+        int year = Integer.parseInt(date.getAttribute("year"));
+        int month = Integer.parseInt(date.getAttribute("month"));
+        int day = Integer.parseInt(date.getAttribute("dayOfMonth"));
+        int seconds = Integer.parseInt(coreInfo.getAttribute("secondsPassed"));
+        baseDate.clear();
+        currentDate.clear();
+        baseDate.set(year, month, day);
+        currentDate.set(year, month, day);
+        currentDate.add(Calendar.SECOND, seconds);
+        String baseId = "coreInfo$date$";
+        TextField tf = (TextField) namespace.get(baseId + "year");
+        if(tf != null){
+            tf.setText("" + currentDate.get(Calendar.YEAR));
         }
+        tf = (TextField) namespace.get(baseId + "dayOfMonth");
+        if(tf != null){
+            tf.setText("" + currentDate.get(Calendar.DAY_OF_MONTH));
+        }
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(baseId + "month");
+        ObservableList<Attribute> items = cb.getItems();
+        cb.setValue(matchComboBoxItem(items, "" + currentDate.get(Calendar.MONTH)));
+        //endregion
         Node dialogueFlags = getElementByTagName(saveFile, "dialogueFlags");
         NodeList flags = dialogueFlags.getChildNodes();
         for(int i = 0; i < flags.getLength(); i++){
@@ -1531,7 +1556,7 @@ public class Controller{
                 break;
             }
             String id = "dialogueFlags$" + nodeName + "$value";
-            TextField tf = (TextField) namespace.get(id);
+            tf = (TextField) namespace.get(id);
             if(tf != null){
                 tf.setText(getAttributeValue(flag, "value"));
             }
@@ -2136,8 +2161,7 @@ public class Controller{
         }
         else if(id[0].equals("coreInfo")){
             Element coreInfo = getElementByTagName(saveFile, id[0]);
-            Element date = getElementByTagName(coreInfo, id[1]);
-            return date.getAttributeNode(id[2]);
+            return coreInfo.getAttributeNode("secondsPassed");
         }
         for(int i = 0; i < id.length - 1; i++){
             attr = getElementByTagName(attr, id[i]);
@@ -2686,7 +2710,13 @@ public class Controller{
                                 }
                             }
                             else{
-                                value.setTextContent(newValue);
+                                if(fieldId.startsWith("coreInfo")){
+                                    currentDate.set(Calendar.YEAR, nv);
+                                    value.setTextContent("" + getSaveTimeValue());
+                                }
+                                else{
+                                    value.setTextContent(newValue);
+                                }
                             }
                         }
                         return newValue;
@@ -2792,7 +2822,8 @@ public class Controller{
                         if(nv > monthLimit){
                             return oldValue;
                         }
-                        value.setTextContent(newValue);
+                        currentDate.set(Calendar.DAY_OF_MONTH, nv);
+                        value.setTextContent("" + getSaveTimeValue());
                         return newValue;
                     }
                     catch(NumberFormatException e){
@@ -2845,7 +2876,11 @@ public class Controller{
                     }
                     return attributeNode.getAttributeNode("value");
                 }
-                case "coreInfo", "dialogueFlags" -> {
+                case "coreInfo" -> {
+                    Element coreInfo = getElementByTagName(saveFile, id[0]);
+                    return coreInfo.getAttributeNode("secondsPassed");
+                }
+                case "dialogueFlags" -> {
                     Element attributeNode = getElementByTagName(saveFile, id[0]);
                     for(int i = 1; i < id.length - 1; i++){
                         attributeNode = getElementByTagName(attributeNode, id[i]);
