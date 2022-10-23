@@ -1,0 +1,28 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'org.beryx.jlink' version '2.12.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "16"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+mainClassName = "$moduleName/LTSaveEd.Launcher"
+
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'hellofx'
+    }
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:23.0.0'
+}
