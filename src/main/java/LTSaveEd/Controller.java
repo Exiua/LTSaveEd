@@ -681,30 +681,24 @@ public class Controller{
                 String[] id = fxId.split("\\$");
                 if(fxId.startsWith("FETISH_")){
                     if(!cb.isSelected()){
-                        if(value != null) {
-                            ((Element) value).removeAttribute("o");
-                            System.out.println("Removed fetish ownership");
+                        Element parent = ((Attr) value).getOwnerElement();
+                        parent.removeAttribute("o");
+                        if(parent.getAttributes().getLength() == 0){
+                            removeNode(parent);
+                            System.out.println("Removed fetish");
                         }
+                        System.out.println("Removed fetish ownership");
                     }
                     else{
-                        if(value == null){
-                            Element fetish = saveFile.createElement("f");
-                            fetish.setTextContent(id[0]);
-                            Node fetishes = getValueNodeParent(event);
-                            fetishes.appendChild(fetish);
-                            System.out.println("Added fetish");
-                        }
-                        else{
-                            ((Element) value).setAttribute("o", "true");
-                            System.out.println("Added fetish ownership");
-                        }
+                        ((Attr) value).getOwnerElement().setAttribute("o", "true");
+                        System.out.println("Added fetish ownership");
 
                     }
                 }
                 else if(fxId.startsWith("spells")){
                     if(cb.isSelected()){
                         Element spellUpgrade = saveFile.createElement("upgrade");
-                        spellUpgrade.setAttribute("type", fxId.split("\\$")[1]);
+                        spellUpgrade.setAttribute("type", id[1]);
                         Node spellUpgrades = getValueNodeParent(event);
                         spellUpgrades.appendChild(spellUpgrade);
                         System.out.println("Added spell upgrade");
@@ -720,10 +714,9 @@ public class Controller{
                     }
                     catch(NullPointerException e){ // Modifier attributes are deleted when false by the game
                         value = getValueNodeParent(event);
-                        ((Element) value).setAttribute(fxId.split("\\$")[3], "" + cb.isSelected());
+                        ((Element) value).setAttribute(id[3], "" + cb.isSelected());
                     }
-                    String[] idParts = fxId.split("\\$");
-                    if(idParts[idParts.length - 1].equals("FLARED") || idParts[idParts.length - 1].equals("TAPERED")){
+                    if(id[id.length - 1].equals("FLARED") || id[id.length - 1].equals("TAPERED")){
                         checkboxFlaredTaperedToggle(fxId);
                     }
                 }
@@ -778,20 +771,9 @@ public class Controller{
                 @SuppressWarnings("unchecked")
                 ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
                 Node value = getValueNode(event);
-                if(value == null){
-                    if(fxId.startsWith("FETISH_")){
-                        Element fetishEntry = saveFile.createElement("entry");
-                        fetishEntry.setAttribute("desire", cb.getValue().getValue());
-                        fetishEntry.setAttribute("fetish", fxId.split("\\$")[0]);
-                        value = getValueNodeParent(event);
-                        value.appendChild(fetishEntry);
-                    }
-                }
-                else{
-                    value.setTextContent(cb.getValue().getValue());
-                    if(fxId.equals("body$leg$type")){
-                        updateLegTypeDependants(cb, false);
-                    }
+                value.setTextContent(cb.getValue().getValue());
+                if(fxId.equals("body$leg$type")){
+                    updateLegTypeDependants(cb, false);
                 }
                 if(fxId.contains("month")){
                     updateDayTextField(fxId, cb.getValue());
@@ -2079,15 +2061,61 @@ public class Controller{
         return null;
     }
 
+    private Element createFetishNode(String fetishName, ActionEvent event){
+        Element fetish = saveFile.createElement("f");
+        fetish.setTextContent(fetishName);
+        Node fetishes = getValueNodeParent(event);
+        fetishes.appendChild(fetish);
+        return fetish;
+    }
+
+    private Element createFetishNode(String fetishName, Element fetishes){
+        Element fetish = saveFile.createElement("f");
+        fetish.setTextContent(fetishName);
+        fetishes.appendChild(fetish);
+        return fetish;
+    }
+
+    @NotNull
     private Node getFetishValueNode(@NotNull Element attr, @NotNull String[] id){
         NodeList fetishes = getElementByTagName(attr, "fetishes").getChildNodes();
-        Node childNode = getChildNodeByTextContent(fetishes, id[0]);
-        return switch (id[1]) {
-            case "owned" -> getAttributeNode(childNode, "o");
-            case "desire" -> getAttributeNode(childNode, "desire");
-            case "exp" -> getAttributeNode(childNode, "xp");
+
+        Node childNode;
+        try{
+            childNode = getChildNodeByTextContent(fetishes, id[0]);
+        }
+        catch (NoSuchElementException e){
+            childNode = createFetishNode(id[0], (Element) fetishes);
+            System.out.println("Added fetish");
+        }
+
+        Node node;
+        switch (id[1]) {
+            case "owned" -> {
+                node = getAttributeNode(childNode, "o");
+                if(node == null){
+                    ((Element) childNode).setAttribute("o", "true");
+                    node = getAttributeNode(childNode, "o");
+                }
+            }
+            case "desire" -> {
+                node = getAttributeNode(childNode, "desire");
+                if(node == null){
+                    ((Element) childNode).setAttribute("desire", "0");
+                    node = getAttributeNode(childNode, "desire");
+                }
+            }
+            case "exp" -> {
+                node = getAttributeNode(childNode, "xp");
+                if(node == null){
+                    ((Element) childNode).setAttribute("xp", "0");
+                    node = getAttributeNode(childNode, "xp");
+                }
+            }
             default -> throw new IllegalArgumentException("Fetish element does not contain " + id[1] + " attribute");
-        };
+        }
+
+        return node;
     }
 
     /**
@@ -2223,6 +2251,7 @@ public class Controller{
         throw new NoSuchElementException("Child node with attribute " + args[0] + " = " + args[1] + " not found");
     }
 
+    @NotNull
     private Node getChildNodeByTextContent(@NotNull NodeList children, @NotNull String text){
         for(int i = 0; i < children.getLength(); i++) {
             if (children.item(i).getNodeType() != Node.ELEMENT_NODE) {
@@ -2614,11 +2643,9 @@ public class Controller{
             }
             catch (NoSuchElementException e){
                 NodeList attributeNodes = getAttributeNodes();
-                Node fetishes = getElementByTagName((Element) attributeNodes, "fetishes");
-                Element fetishEntry = saveFile.createElement("f");
+                Element fetishes = getElementByTagName((Element) attributeNodes, "fetishes");
+                Element fetishEntry = createFetishNode(fieldId.split("\\$")[0], fetishes);
                 fetishEntry.setAttribute("xp", "0");
-                fetishEntry.setTextContent(fieldId.split("\\$")[0]);
-                fetishes.appendChild(fetishEntry);
                 System.out.println("Created new element");
                 value = getValueNode();
             }
@@ -2793,7 +2820,16 @@ public class Controller{
                     return attr.getChildNodes().item(Integer.parseInt(id[2])).getAttributes().getNamedItem("value");
                 }
                 case "spellUpgradePoints" -> {
-                    return getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1]).getAttributes().getNamedItem("points");
+                    try {
+                        return getChildNodeByAttributeValue(attr.getChildNodes(), "school", id[1]).getAttributes().getNamedItem("points");
+                    }
+                    catch (NoSuchElementException e){
+                        Element upgradeEntry = saveFile.createElement("upgradeEntry");
+                        upgradeEntry.setAttribute("school", id[1]);
+                        upgradeEntry.setAttribute("points", "0");
+                        attr.appendChild(upgradeEntry);
+                        return upgradeEntry.getAttributeNode("points");
+                    }
                 }
                 case "attributes" -> {
                     Element attributeNode;
