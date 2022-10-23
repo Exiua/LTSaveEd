@@ -1,10 +1,19 @@
 import sys
 
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import QFont, QTextCursor
+from PyQt5.QtGui import QFont, QTextCursor, QIntValidator
 from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, QFormLayout, QPushButton, QHBoxLayout, QTabWidget, \
     QDesktopWidget, QTextEdit, QTableWidget, QTableWidgetItem, QLabel, QCheckBox, QFileDialog, QComboBox, QMessageBox, \
-    QTextBrowser, QVBoxLayout, QMainWindow
+    QTextBrowser, QVBoxLayout, QMainWindow, QPlainTextEdit
+
+
+# region Globals
+
+int_only = QIntValidator()
+positive_int_only = QIntValidator()
+positive_int_only.setBottom(0)
+
+# endregion
 
 
 class LTSaveEd(QMainWindow):
@@ -13,7 +22,7 @@ class LTSaveEd(QMainWindow):
         self.title: str = "LTSaveEd"
         self.version: str = "v2.0.0"
         # Window Settings
-        self.x, self.y, self.w, self.h = 0, 0, 768, 432
+        self.x, self.y, self.w, self.h = 0, 0, 1024, 700
         self.setGeometry(self.x, self.y, self.w, self.h)
 
         qtRectangle = self.frameGeometry()
@@ -30,16 +39,252 @@ class LTSaveEd(QMainWindow):
 class CoreTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(CoreTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QHBoxLayout(self)
+
+        # region Left VBox
+
+        left_vbox = QVBoxLayout()
 
         hbox = QHBoxLayout()
         label = QLabel("Character:")
-        combo_box = QComboBox()
+        self.character_selector = QComboBox()
+        self.character_selector.setFixedWidth(150)
+        self.delete_character = QPushButton("Delete Character")
+        self.delete_character.setStyleSheet("color: #FF0000")
         hbox.addWidget(label)
-        hbox.addWidget(combo_box)
-        layout.addLayout(hbox)
+        hbox.addWidget(self.character_selector)
+        hbox.addWidget(self.delete_character)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
 
-        layout.addStretch()
+        hbox = QHBoxLayout()
+        label = QLabel("Id:")
+        self.core_id_value = QLineEdit()
+        self.core_id_value.setFixedWidth(250)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_id_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Name (A, F, M):")
+        self.core_name_nameAndrogynous = QLineEdit()
+        self.core_name_nameFeminine = QLineEdit()
+        self.core_name_nameMasculine = QLineEdit()
+        self.core_name_nameAndrogynous.setFixedWidth(150)
+        self.core_name_nameFeminine.setFixedWidth(150)
+        self.core_name_nameMasculine.setFixedWidth(150)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_name_nameAndrogynous)
+        hbox.addWidget(self.core_name_nameFeminine)
+        hbox.addWidget(self.core_name_nameMasculine)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Surname:")
+        self.core_surname_value = QLineEdit()
+        self.core_surname_value.setFixedWidth(150)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_surname_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Description:")
+        self.core_description_value = QPlainTextEdit()
+        self.core_description_value.setFixedWidth(475)
+        self.core_description_value.setFixedHeight(78)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_description_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Level:")
+        self.core_level_value = QLineEdit()
+        self.core_level_value.setFixedWidth(150)
+        self.core_level_value.setValidator(positive_int_only)
+        label2 = QLabel("Experience:")
+        self.core_experience_value = QLineEdit()
+        self.core_experience_value.setFixedWidth(150)
+        self.core_experience_value.setValidator(positive_int_only)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_level_value)
+        hbox.addWidget(label2)
+        hbox.addWidget(self.core_experience_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Money:")
+        self.characterInventory_money_value = QLineEdit()
+        self.characterInventory_money_value.setFixedWidth(150)
+        self.characterInventory_money_value.setValidator(positive_int_only)
+        hbox.addWidget(label)
+        hbox.addWidget(self.characterInventory_money_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Date of Birth:")
+        self.core_yearOfBirth_value = QLineEdit()
+        self.core_yearOfBirth_value.setFixedWidth(150)
+        self.core_monthOfBirth_value = QComboBox()
+        self.core_monthOfBirth_value.setFixedWidth(150)  #TODO: Proper Validation
+        self.core_dayOfBirth_value = QLineEdit()
+        self.core_dayOfBirth_value.setFixedWidth(150)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_yearOfBirth_value)
+        hbox.addWidget(self.core_monthOfBirth_value)
+        hbox.addWidget(self.core_dayOfBirth_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Job History:")
+        self.core_history_value = QComboBox()
+        self.core_history_value.setFixedWidth(150)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_history_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Orientation:")
+        self.core_sexualOrientation_value = QComboBox()
+        self.core_sexualOrientation_value.setFixedWidth(150)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_sexualOrientation_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Obedience:")
+        self.core_obedience_value = QLineEdit()
+        self.core_obedience_value.setFixedWidth(150)
+        self.core_obedience_value.setValidator(positive_int_only)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_obedience_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Gender Identity:")
+        self.core_genderIdentity_value = QComboBox()
+        self.core_genderIdentity_value.setFixedWidth(200)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_genderIdentity_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Perk Points:")
+        self.core_perkPoints_value = QLineEdit()
+        self.core_perkPoints_value.setFixedWidth(150)
+        self.core_perkPoints_value.setValidator(positive_int_only)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_perkPoints_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Essence Count:")
+        self.characterInventory_essenceCount_value = QLineEdit()
+        self.characterInventory_essenceCount_value.setFixedWidth(150)
+        self.characterInventory_essenceCount_value.setValidator(positive_int_only)
+        hbox.addWidget(label)
+        hbox.addWidget(self.characterInventory_essenceCount_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Health:")
+        self.core_health_value = QLineEdit()
+        self.core_health_value.setFixedWidth(150)
+        self.core_health_value.setValidator(positive_int_only)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_health_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        label = QLabel("Mana:")
+        self.core_mana_value = QLineEdit()
+        self.core_mana_value.setFixedWidth(150)
+        self.core_mana_value.setValidator(positive_int_only)
+        hbox.addWidget(label)
+        hbox.addWidget(self.core_mana_value)
+        hbox.addStretch()
+        left_vbox.addLayout(hbox)
+
+        left_vbox.addStretch()
+
+        # endregion
+
+        # region Right VBox
+
+        right_vbox = QVBoxLayout()
+        right_vbox.addStretch()
+
+        hbox = QHBoxLayout()
+        hbox.addStretch()
+        label = QLabel("Personality:")
+        hbox.addWidget(label)
+        hbox.addStretch()
+        right_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        hbox.addStretch()
+        self.personalityTrait_CONFIDENT = QCheckBox("Confident")
+        hbox.addWidget(self.personalityTrait_CONFIDENT)
+        self.personalityTrait_SHY = QCheckBox("Shy")
+        hbox.addWidget(self.personalityTrait_SHY)
+        self.personalityTrait_KIND = QCheckBox("Kind")
+        hbox.addWidget(self.personalityTrait_KIND)
+        self.personalityTrait_SELFISH = QCheckBox("Selfish")
+        hbox.addWidget(self.personalityTrait_SELFISH)
+        self.personalityTrait_NAIVE = QCheckBox("Naive")
+        hbox.addWidget(self.personalityTrait_NAIVE)
+        hbox.addStretch()
+        right_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        hbox.addStretch()
+        self.personalityTrait_CYNICAL = QCheckBox("Cynical")
+        hbox.addWidget(self.personalityTrait_CYNICAL)
+        self.personalityTrait_BRAVE = QCheckBox("Brave")
+        hbox.addWidget(self.personalityTrait_BRAVE)
+        self.personalityTrait_COWARDLY = QCheckBox("Cowardly")
+        hbox.addWidget(self.personalityTrait_COWARDLY)
+        self.personalityTrait_LEWD = QCheckBox("Lewd")
+        hbox.addWidget(self.personalityTrait_LEWD)
+        self.personalityTrait_INNOCENT = QCheckBox("Innocent")
+        hbox.addWidget(self.personalityTrait_INNOCENT)
+        hbox.addStretch()
+        right_vbox.addLayout(hbox)
+
+        hbox = QHBoxLayout()
+        hbox.addStretch()
+        self.personalityTrait_PRUDE = QCheckBox("Prude")
+        hbox.addWidget(self.personalityTrait_PRUDE)
+        self.personalityTrait_LISP = QCheckBox("Lisp")
+        hbox.addWidget(self.personalityTrait_LISP)
+        self.personalityTrait_STUTTER = QCheckBox("Stutter")
+        hbox.addWidget(self.personalityTrait_STUTTER)
+        self.personalityTrait_MUTE = QCheckBox("Mute")
+        hbox.addWidget(self.personalityTrait_MUTE)
+        self.personalityTrait_SLOVENLY = QCheckBox("Slovenly")
+        hbox.addWidget(self.personalityTrait_SLOVENLY)
+        hbox.addStretch()
+        right_vbox.addLayout(hbox)
+
+        right_vbox.addStretch()
+
+        # endregion
+
+        layout.addLayout(left_vbox)
+        layout.addLayout(right_vbox)
 
 
 class AttributesTab(QWidget):
