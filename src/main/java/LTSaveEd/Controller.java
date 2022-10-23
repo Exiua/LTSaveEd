@@ -787,11 +787,11 @@ public class Controller {
                 }
                 else {
                     try {
-                        value.setTextContent("" + cb.isSelected());
+                        value.setTextContent(String.valueOf(cb.isSelected()));
                     }
                     catch (NullPointerException e) { // Modifier attributes are deleted when false by the game
                         value = getValueNodeParent(event);
-                        ((Element) value).setAttribute(id[3], "" + cb.isSelected());
+                        ((Element) value).setAttribute(id[3], String.valueOf(cb.isSelected()));
                     }
                     if (id[id.length - 1].equals("FLARED") || id[id.length - 1].equals("TAPERED")) {
                         checkboxFlaredTaperedToggle(fxId);
@@ -821,11 +821,11 @@ public class Controller {
         target.setSelected(false);
         Node value = getValueNode(targetId);
         try {
-            value.setTextContent("" + target.isSelected());
+            value.setTextContent(String.valueOf(target.isSelected()));
         }
         catch (NullPointerException e) {
             value = getValueNodeParent(id);
-            ((Element) value).setAttribute(id.split("\\$")[3], "" + target.isSelected());
+            ((Element) value).setAttribute(id.split("\\$")[3], String.valueOf(target.isSelected()));
         }
 
     }
@@ -863,7 +863,7 @@ public class Controller {
                     Attribute monthAttr = cb.getValue();
                     int month = Integer.parseInt(monthAttr.getValue());
                     currentDate.set(Calendar.MONTH, month);
-                    value.setTextContent("" + getSaveTimeValue());
+                    value.setTextContent(String.valueOf(getSaveTimeValue()));
                     updateDayTextField(fxId, monthAttr);
                 }
                 else {
@@ -892,9 +892,9 @@ public class Controller {
         int monthLimit = setMonthLimit(month, year);
         int dayValue = Integer.parseInt(dayField.getText());
         if (dayValue > monthLimit) {
-            dayField.setText("" + monthLimit);
+            dayField.setText(String.valueOf(monthLimit));
             Node dayNode = getWorldNode(dayId.split("\\$"));
-            dayNode.setTextContent("" + monthLimit);
+            dayNode.setTextContent(String.valueOf(monthLimit));
         }
     }
 
@@ -1603,16 +1603,16 @@ public class Controller {
         String baseId = "coreInfo$date$";
         TextField tf = (TextField) namespace.get(baseId + "year");
         if (tf != null) {
-            tf.setText("" + currentDate.get(Calendar.YEAR));
+            tf.setText(String.valueOf(currentDate.get(Calendar.YEAR)));
         }
         tf = (TextField) namespace.get(baseId + "dayOfMonth");
         if (tf != null) {
-            tf.setText("" + currentDate.get(Calendar.DAY_OF_MONTH));
+            tf.setText(String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH)));
         }
         @SuppressWarnings("unchecked")
         ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(baseId + "month");
         ObservableList<Attribute> items = cb.getItems();
-        cb.setValue(matchComboBoxItem(items, "" + currentDate.get(Calendar.MONTH)));
+        cb.setValue(matchComboBoxItem(items, String.valueOf(currentDate.get(Calendar.MONTH))));
         //endregion
         Node dialogueFlags = getElementByTagName(saveFile, "dialogueFlags");
         NodeList flags = dialogueFlags.getChildNodes();
@@ -1876,7 +1876,7 @@ public class Controller {
             itemIdTf.setEditable(false);
             TextField nameTf = new TextField(inventoryItem.getName());
             nameTf.setEditable(false);
-            TextField itemCount = new TextField("" + inventoryItem.getCount());
+            TextField itemCount = new TextField(inventoryItem.getCount());
             itemCount.setId(partialId + "count$" + counter);
             itemCount.focusedProperty().addListener(new TextObjectListener(itemCount, TextFieldType.INT));
             Button btn = new Button("Delete Item");
@@ -1910,7 +1910,7 @@ public class Controller {
             clothingIdTf.setEditable(false);
             TextField nameTf = new TextField(inventoryClothing.getName());
             nameTf.setEditable(false);
-            TextField clothingCount = new TextField("" + inventoryClothing.getCount());
+            TextField clothingCount = new TextField(inventoryClothing.getCount());
             clothingCount.setId(partialId + "count$" + counter);
             clothingCount.focusedProperty().addListener(new TextObjectListener(clothingCount, TextFieldType.INT));
             CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
@@ -1955,7 +1955,7 @@ public class Controller {
             weaponIdTf.setEditable(false);
             TextField nameTf = new TextField(inventoryWeapon.getName());
             nameTf.setEditable(false);
-            TextField weaponCount = new TextField("" + inventoryWeapon.getCount());
+            TextField weaponCount = new TextField(inventoryWeapon.getCount());
             weaponCount.setId(partialId + "count$" + counter);
             weaponCount.focusedProperty().addListener(new TextObjectListener(weaponCount, TextFieldType.INT));
             String dmgType = inventoryWeapon.getDamageType();
@@ -2758,9 +2758,14 @@ public class Controller {
                 case INT -> {
                     try {
                         int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; // Removes leading zeroes
+                        newValue = String.valueOf(nv); // Removes leading zeroes
                         if (positiveOnly && nv < 0) {
-                            return oldValue;
+                            if(fieldId.contains("coreInfo")){
+                                return String.valueOf(currentDate.get(Calendar.YEAR));
+                            }
+                            else {
+                                return oldValue;
+                            }
                         }
                         if (nv == 0 && fetishExp) {
                             Node ownerNode = ((Attr) value).getOwnerElement();
@@ -2783,7 +2788,7 @@ public class Controller {
                             else {
                                 if (fieldId.startsWith("coreInfo")) {
                                     currentDate.set(Calendar.YEAR, nv);
-                                    value.setTextContent("" + getSaveTimeValue());
+                                    value.setTextContent(String.valueOf(getSaveTimeValue()));
                                 }
                                 else {
                                     value.setTextContent(newValue);
@@ -2793,13 +2798,16 @@ public class Controller {
                         return newValue;
                     }
                     catch (NumberFormatException e) {
+                        if(fieldId.contains("coreInfo")){
+                            return String.valueOf(currentDate.get(Calendar.YEAR));
+                        }
                         return oldValue;
                     }
                 }
                 case DOUBLE -> {
                     try {
                         double nv = Double.parseDouble(newValue);
-                        newValue = "" + nv; // Removes leading zeroes
+                        newValue = String.valueOf(nv); // Removes leading zeroes
                         if (positiveOnly && nv < 0) {
                             return oldValue;
                         }
@@ -2823,7 +2831,7 @@ public class Controller {
                 case HAIR -> {
                     try {
                         int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; // Removes leading zeroes
+                        newValue = String.valueOf(nv); // Removes leading zeroes
                         if (nv < 0) {
                             return oldValue;
                         }
@@ -2886,18 +2894,18 @@ public class Controller {
                         int year = Integer.parseInt(yearField.getText());
                         int monthLimit = setMonthLimit(cb.getValue(), year);
                         int nv = Integer.parseInt(newValue);
-                        newValue = "" + nv; // Removes leading zeroes
-                        if (nv < 1) {
-                            return oldValue;
-                        }
-                        if (nv > monthLimit) {
-                            return oldValue;
+                        newValue = String.valueOf(nv); // Removes leading zeroes
+                        if (nv < 1 || nv > monthLimit) {
+                            return String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH));
                         }
                         currentDate.set(Calendar.DAY_OF_MONTH, nv);
-                        value.setTextContent("" + getSaveTimeValue());
+                        value.setTextContent(String.valueOf(getSaveTimeValue()));
                         return newValue;
                     }
                     catch (NumberFormatException e) {
+                        if ("coreInfo$date$dayOfMonth".equals(fieldId)) {
+                            return String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH));
+                        }
                         return oldValue;
                     }
                 }
