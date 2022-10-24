@@ -2,17 +2,20 @@ import sys
 from typing import Type
 
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtGui import QFont, QTextCursor, QIntValidator, QValidator
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont, QTextCursor, QIntValidator, QValidator, QDoubleValidator
 from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, QFormLayout, QPushButton, QHBoxLayout, QTabWidget, \
     QDesktopWidget, QTextEdit, QTableWidget, QTableWidgetItem, QLabel, QCheckBox, QFileDialog, QComboBox, QMessageBox, \
-    QTextBrowser, QVBoxLayout, QMainWindow, QPlainTextEdit
+    QTextBrowser, QVBoxLayout, QMainWindow, QPlainTextEdit, QGridLayout
 
 # region Globals
 
 int_only = QIntValidator()
 positive_int_only = QIntValidator()
 positive_int_only.setBottom(0)
-
+float_only = QDoubleValidator()
+positive_float_only = QDoubleValidator()
+positive_float_only.setBottom(0)
 
 # endregion
 
@@ -123,34 +126,16 @@ class CoreTab(QWidget):
         hbox.addStretch()
         left_vbox.addLayout(hbox)
 
-        hbox = QHBoxLayout()
-        label = QLabel("Job History:")
-        self.core_history_value = QComboBox()
-        self.core_history_value.setFixedWidth(150)
-        hbox.addWidget(label)
-        hbox.addWidget(self.core_history_value)
-        hbox.addStretch()
+        hbox, self.core_history_value = create_labeled_combo_box("Job History:")
         left_vbox.addLayout(hbox)
 
-        hbox = QHBoxLayout()
-        label = QLabel("Orientation:")
-        self.core_sexualOrientation_value = QComboBox()
-        self.core_sexualOrientation_value.setFixedWidth(150)
-        hbox.addWidget(label)
-        hbox.addWidget(self.core_sexualOrientation_value)
-        hbox.addStretch()
+        hbox, self.core_sexualOrientation_value = create_labeled_combo_box("Orientation:")
         left_vbox.addLayout(hbox)
 
-        hbox, self.core_obedience_value = create_labeled_line_edit("Obedience:", validator=positive_int_only)
+        hbox, self.core_obedience_value = create_labeled_line_edit("Obedience:", validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox = QHBoxLayout()
-        label = QLabel("Gender Identity:")
-        self.core_genderIdentity_value = QComboBox()
-        self.core_genderIdentity_value.setFixedWidth(200)
-        hbox.addWidget(label)
-        hbox.addWidget(self.core_genderIdentity_value)
-        hbox.addStretch()
+        hbox, self.core_genderIdentity_value = create_labeled_combo_box("Gender Identity:", width=200)
         left_vbox.addLayout(hbox)
 
         hbox, self.core_perkPoints_value = create_labeled_line_edit("Perk Points:", validator=positive_int_only)
@@ -160,10 +145,10 @@ class CoreTab(QWidget):
                                                                                     validator=positive_int_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.core_health_value = create_labeled_line_edit("Health:", validator=positive_int_only)
+        hbox, self.core_health_value = create_labeled_line_edit("Health:", validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.core_mana_value = create_labeled_line_edit("Mana:", validator=positive_int_only)
+        hbox, self.core_mana_value = create_labeled_line_edit("Mana:", validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
         left_vbox.addStretch()
@@ -247,49 +232,49 @@ class AttributesTab(QWidget):
         left_vbox.addStretch()
         left_vbox.setSpacing(10)
 
-        hbox, self.attributes_HEALTH_MAXIMUM = create_labeled_line_edit("Health Core:", center=True)
+        hbox, self.attributes_HEALTH_MAXIMUM = create_labeled_line_edit("Health Core:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_MANA_MAXIMUM = create_labeled_line_edit("Mana Core:", center=True)
+        hbox, self.attributes_MANA_MAXIMUM = create_labeled_line_edit("Mana Core:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_EXPERIENCE = create_labeled_line_edit("Experience:", center=True)
+        hbox, self.attributes_EXPERIENCE = create_labeled_line_edit("Experience:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_ACTION_POINTS = create_labeled_line_edit("Action Points:", center=True)
+        hbox, self.attributes_ACTION_POINTS = create_labeled_line_edit("Action Points:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_AROUSAL = create_labeled_line_edit("Arousal:", center=True)
+        hbox, self.attributes_AROUSAL = create_labeled_line_edit("Arousal:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_LUST = create_labeled_line_edit("Lust Core:", center=True)
+        hbox, self.attributes_LUST = create_labeled_line_edit("Lust Core:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_RESTING_LUST = create_labeled_line_edit("Resting Lust:", center=True)
+        hbox, self.attributes_RESTING_LUST = create_labeled_line_edit("Resting Lust:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_MAJOR_PHYSIQUE = create_labeled_line_edit("Physique Core:", center=True)
+        hbox, self.attributes_MAJOR_PHYSIQUE = create_labeled_line_edit("Physique Core:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_MAJOR_ARCANE = create_labeled_line_edit("Arcane Core:", center=True)
+        hbox, self.attributes_MAJOR_ARCANE = create_labeled_line_edit("Arcane Core:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_MAJOR_CORRUPTION = create_labeled_line_edit("Corruption Core:", center=True)
+        hbox, self.attributes_MAJOR_CORRUPTION = create_labeled_line_edit("Corruption Core:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_ENCHANTMENT_LIMIT = create_labeled_line_edit("Enchantment Limit:", center=True)
+        hbox, self.attributes_ENCHANTMENT_LIMIT = create_labeled_line_edit("Enchantment Limit:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_FERTILITY = create_labeled_line_edit("Fertility:", center=True)
+        hbox, self.attributes_FERTILITY = create_labeled_line_edit("Fertility:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_VIRILITY = create_labeled_line_edit("Virility:", center=True)
+        hbox, self.attributes_VIRILITY = create_labeled_line_edit("Virility:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_SPELL_COST_MODIFIER = create_labeled_line_edit("Spell Cost Modifier:", center=True)
+        hbox, self.attributes_SPELL_COST_MODIFIER = create_labeled_line_edit("Spell Cost Modifier:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_CRITICAL_DAMAGE = create_labeled_line_edit("Critical Damage:", center=True)
+        hbox, self.attributes_CRITICAL_DAMAGE = create_labeled_line_edit("Critical Damage:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
         left_vbox.addStretch()
@@ -362,14 +347,30 @@ class BodyTab(QWidget):
         super(BodyTab, self).__init__(parent)
         layout = QVBoxLayout(self)
 
-        hbox = QHBoxLayout()
-        label = QLabel("Character:")
-        combo_box = QComboBox()
-        hbox.addWidget(label)
-        hbox.addWidget(combo_box)
-        layout.addLayout(hbox)
+        # Initialize tabs
+        tab_widget = QTabWidget()
+        body_core_tab = BodyCoreTab()
+        head_tab = HeadTab()
+        face_tab = FaceTab()
+        breasts_tab = BreastsTab()
+        breasts_crotch_tab = BreastsCrotchTab()
+        torso_tab = TorsoTab()
+        penis_tab = PenisTab()
+        vagina_tab = VaginaTab()
+        ass_tab = AssTab()
 
-        layout.addStretch()
+        # Add tabs
+        tab_widget.addTab(body_core_tab, "Body Core")
+        tab_widget.addTab(head_tab, "Head")
+        tab_widget.addTab(face_tab, "Face")
+        tab_widget.addTab(breasts_tab, "Breasts")
+        tab_widget.addTab(breasts_crotch_tab, "Breasts Crotch")
+        tab_widget.addTab(torso_tab, "Torso")
+        tab_widget.addTab(penis_tab, "Penis")
+        tab_widget.addTab(vagina_tab, "Vagina")
+        tab_widget.addTab(ass_tab, "Ass")
+
+        layout.addWidget(tab_widget)
 
 
 # region Body Tabs
@@ -379,53 +380,88 @@ class BodyCoreTab(QWidget):
         super(BodyCoreTab, self).__init__(parent)
         layout = QVBoxLayout(self)
 
+        hbox, self.body_bodyCore_bodyMaterial = create_labeled_combo_box("Body Material:")
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_labeled_line_edit("Body Size:", validator=positive_int_only)
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_labeled_line_edit("Femininity:", validator=positive_int_only)
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_check_box("Feral:", right_to_left=True)
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_labeled_combo_box("Genital Arrangement:")
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_labeled_line_edit("Height:", validator=positive_int_only)
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_labeled_line_edit("Muscle:", validator=positive_int_only)
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_check_box("Pierced Stomach:", right_to_left=True)
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_labeled_combo_box("Pubic Hair:")
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_labeled_combo_box("Subspecies Override:")
+        layout.addLayout(hbox)
+
+        hbox, self.body_bodyCore_bodyMaterial = create_check_box("Takes After Mother:", right_to_left=True)
+        layout.addLayout(hbox)
+
+        layout.addStretch()
+
 
 class HeadTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(HeadTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
 
 
 class FaceTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(FaceTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
 
 
 class BreastsTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(BreastsTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
 
 
 class BreastsCrotchTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(BreastsCrotchTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
 
 
 class TorsoTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(TorsoTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
 
 
 class PenisTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(PenisTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
 
 
 class VaginaTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(VaginaTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
 
 
 class AssTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(AssTab, self).__init__(parent)
-        layout = QVBoxLayout(self)
+        layout = QGridLayout(self)
 
 
 # endregion
@@ -605,7 +641,7 @@ class MainWindow(QWidget):
 
 
 def create_labeled_line_edit(text: str, width: int = 150, validator: QValidator | None = None, center: bool = False) -> \
-tuple[QHBoxLayout, QLineEdit]:
+        tuple[QHBoxLayout, QLineEdit]:
     hbox = QHBoxLayout()
     if center:
         hbox.addStretch()
@@ -617,6 +653,31 @@ tuple[QHBoxLayout, QLineEdit]:
     hbox.addWidget(line_edit)
     hbox.addStretch()
     return hbox, line_edit
+
+
+def create_labeled_combo_box(text: str, width: int = 150, center: bool = False) -> tuple[QHBoxLayout, QComboBox]:
+    hbox = QHBoxLayout()
+    if center:
+        hbox.addStretch()
+    label = QLabel(text)
+    combo_box = QComboBox()
+    combo_box.setFixedWidth(width)
+    hbox.addWidget(label)
+    hbox.addWidget(combo_box)
+    hbox.addStretch()
+    return hbox, combo_box
+
+
+def create_check_box(text: str, center: bool = False, right_to_left: bool = False) -> tuple[QHBoxLayout, QCheckBox]:
+    hbox = QHBoxLayout()
+    if center:
+        hbox.addStretch()
+    check_box = QCheckBox(text)
+    if right_to_left:
+        check_box.setLayoutDirection(Qt.RightToLeft)
+    hbox.addWidget(check_box)
+    hbox.addStretch()
+    return hbox, check_box
 
 
 if __name__ == '__main__':
