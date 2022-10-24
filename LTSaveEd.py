@@ -156,7 +156,8 @@ class CoreTab(QWidget):
         hbox, self.core_perkPoints_value = create_labeled_line_edit("Perk Points:", validator=positive_int_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.characterInventory_essenceCount_value = create_labeled_line_edit("Essence Count:", validator=positive_int_only)
+        hbox, self.characterInventory_essenceCount_value = create_labeled_line_edit("Essence Count:",
+                                                                                    validator=positive_int_only)
         left_vbox.addLayout(hbox)
 
         hbox, self.core_health_value = create_labeled_line_edit("Health:", validator=positive_int_only)
@@ -371,6 +372,65 @@ class BodyTab(QWidget):
         layout.addStretch()
 
 
+# region Body Tabs
+
+class BodyCoreTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(BodyCoreTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+class HeadTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(HeadTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+class FaceTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(FaceTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+class BreastsTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(BreastsTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+class BreastsCrotchTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(BreastsCrotchTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+class TorsoTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(TorsoTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+class PenisTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(PenisTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+class VaginaTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(VaginaTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+class AssTab(QWidget):
+    def __init__(self, parent: QWidget | None = None):
+        super(AssTab, self).__init__(parent)
+        layout = QVBoxLayout(self)
+
+
+# endregion
+
+
 class FetishesTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(FetishesTab, self).__init__(parent)
@@ -544,7 +604,8 @@ class MainWindow(QWidget):
         layout.addWidget(tab_widget)
 
 
-def create_labeled_line_edit(text: str, width: int = 150, validator: QValidator | None = None, center: bool = False) -> tuple[QHBoxLayout, QLineEdit]:
+def create_labeled_line_edit(text: str, width: int = 150, validator: QValidator | None = None, center: bool = False) -> \
+tuple[QHBoxLayout, QLineEdit]:
     hbox = QHBoxLayout()
     if center:
         hbox.addStretch()
