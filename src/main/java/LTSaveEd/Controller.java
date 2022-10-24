@@ -2571,7 +2571,17 @@ public class Controller {
     private void saveFileOverwrite(@NotNull ActionEvent event) {
         event.consume();
         if (fileLoaded) {
-            saveToFile(workingFile);
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setTitle("Confirm Action");
+            alert.setContentText("Overwrite Save File?");
+            ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type.getButtonData() == ButtonBar.ButtonData.YES) {
+                    saveToFile(workingFile);
+                }
+            });
         }
     }
 
