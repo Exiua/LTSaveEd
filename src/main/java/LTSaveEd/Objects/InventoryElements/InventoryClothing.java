@@ -41,6 +41,7 @@ public class InventoryClothing extends AbstractInventoryElement {
     public void updateDirty() {
         isDirty = ((CheckBox) hBoxNodes.get(2)).isSelected();
         node.getAttributeNode("isDirty").setValue("" + isDirty);
+        System.out.println("Clothing is " + (isDirty ? "dirty" : "clean"));
     }
 
     public boolean isEnchantmentKnown() {
@@ -50,6 +51,7 @@ public class InventoryClothing extends AbstractInventoryElement {
     public void updateEnchantmentKnown() {
         enchantmentKnown = ((CheckBox) hBoxNodes.get(1)).isSelected();
         node.getAttributeNode("enchantmentKnown").setValue("" + enchantmentKnown);
+        System.out.println("Enchantment " + (enchantmentKnown ? "known" : "unknown"));
     }
 
     @Override
