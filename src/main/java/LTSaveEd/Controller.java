@@ -2575,7 +2575,7 @@ public class Controller {
         if (fileLoaded) {
             Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Confirm Action");
-            alert.setContentText("Overwrite Save File?");
+            alert.setContentText("Overwrite Save File: {" + workingFile.getName().replace(".xml", "") + "}?");
             ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
             ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
             alert.getButtonTypes().setAll(okButton, noButton);
