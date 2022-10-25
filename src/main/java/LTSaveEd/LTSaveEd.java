@@ -1,6 +1,7 @@
 package LTSaveEd;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +12,8 @@ import javafx.stage.Stage;
  * @author Exiua
  */
 public class LTSaveEd extends Application {
+
+    private static HostServices hostServices;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -26,7 +29,12 @@ public class LTSaveEd extends Application {
         primaryStage.setTitle("LTSaveEd " + version);
         primaryStage.setScene(new Scene(root, 1024, 700));
         primaryStage.setMaximized(true);
+        hostServices = getHostServices();
         primaryStage.show();
+    }
+
+    public static void openLinkInBrowser(String url){
+        hostServices.showDocument(url); // Should never be called before start()
     }
 
 
