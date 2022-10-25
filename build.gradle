@@ -16,7 +16,7 @@ javafx {
 }
 
 application {
-    mainModule = 'LTSaveEd'
+    mainModule = 'LTSaveEd.main'
     mainClass = 'LTSaveEd.Launcher'
 }
 
@@ -53,4 +53,7 @@ dependencies {
     runtimeOnly "org.openjfx:javafx-fxml:16:win"
     runtimeOnly "org.openjfx:javafx-fxml:16:linux"
     runtimeOnly "org.openjfx:javafx-fxml:16:mac"
+    runtimeOnly "org.openjfx:javafx-graphics:16:win"
+    runtimeOnly "org.openjfx:javafx-graphics:16:linux"
+    runtimeOnly "org.openjfx:javafx-graphics:16:mac"
 }
