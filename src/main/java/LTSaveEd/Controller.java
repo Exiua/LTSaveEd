@@ -2536,12 +2536,39 @@ public class Controller {
     @FXML
     private void checkForUpdate() {
         String latestVersion = getLatestVersionTag();
-        MenuItem mi = (MenuItem) namespace.get("updateStatus");
-        if (latestVersion.equals(version)) {
-            mi.setText("Latest version");
+        var v1 = Arrays.stream(version.replace("v", "").split("\\.")).mapToInt(Integer::parseInt).toArray();
+        var v2 = Arrays.stream(latestVersion.replace("v", "").split("\\.")).mapToInt(Integer::parseInt).toArray();
+        boolean updateAvailable;
+
+        if (v1[0] == v2[0]) {
+            if (v1[1] == v2[1]) {
+                updateAvailable = v1[2] < v2[2];
+            }
+            else{
+                updateAvailable = v1[1] < v2[1];
+            }
         }
         else {
-            mi.setText("Update available");
+            updateAvailable = v1[0] < v2[0];
+        }
+
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Update Check");
+        if(updateAvailable){
+            alert.setContentText("This is an update available");
+            ButtonType yesButton = new ButtonType("Download", ButtonBar.ButtonData.YES);
+            alert.getButtonTypes().setAll(yesButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type.getButtonData() == ButtonBar.ButtonData.YES) {
+                    LTSaveEd.openLinkInBrowser("https://github.com/Exiua/LTSaveEd/releases");
+                }
+            });
+        }
+        else{
+            alert.setContentText("This is the latest version");
+            ButtonType yesButton = new ButtonType("Ok", ButtonBar.ButtonData.YES);
+            alert.getButtonTypes().setAll(yesButton);
+            alert.showAndWait();
         }
     }
 
@@ -2575,6 +2602,12 @@ public class Controller {
             e.printStackTrace();
             throw new RuntimeException("IOException"); // Just didn't want to mark the method with the exception
         }
+    }
+
+    @FXML
+    private void hideMenu(){
+        Menu update = (Menu) namespace.get("updateButton");
+        update.hide();
     }
 
     /**
