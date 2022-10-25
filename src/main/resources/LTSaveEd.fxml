@@ -1799,7 +1799,7 @@
                                 <ComboBox fx:id="FETISH_DOMINANT$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_DOMINANT$exp" text="0" />
-                                <CheckBox fx:id="FETISH_DOMINANT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_DOMINANT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1">
@@ -1815,7 +1815,7 @@
                                 <ComboBox fx:id="FETISH_SUBMISSIVE$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_SUBMISSIVE$exp" text="0" />
-                                <CheckBox fx:id="FETISH_SUBMISSIVE$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_SUBMISSIVE$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="1">
@@ -1831,7 +1831,7 @@
                                 <ComboBox fx:id="FETISH_VAGINAL_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_VAGINAL_GIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_VAGINAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_VAGINAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -1847,7 +1847,7 @@
                                 <ComboBox fx:id="FETISH_VAGINAL_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_VAGINAL_RECEIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_VAGINAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_VAGINAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="2">
@@ -1863,7 +1863,7 @@
                                 <ComboBox fx:id="FETISH_PENIS_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_PENIS_GIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_PENIS_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_PENIS_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -1879,7 +1879,7 @@
                                 <ComboBox fx:id="FETISH_PENIS_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_PENIS_RECEIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_PENIS_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_PENIS_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="3">
@@ -1895,7 +1895,7 @@
                                 <ComboBox fx:id="FETISH_ANAL_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_ANAL_GIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_ANAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_ANAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -1911,7 +1911,7 @@
                                 <ComboBox fx:id="FETISH_ANAL_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_ANAL_RECEIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_ANAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_ANAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="4">
@@ -1927,7 +1927,7 @@
                                 <ComboBox fx:id="FETISH_BREASTS_OTHERS$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_BREASTS_OTHERS$exp" text="0" />
-                                <CheckBox fx:id="FETISH_BREASTS_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_BREASTS_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -1943,7 +1943,7 @@
                                 <ComboBox fx:id="FETISH_BREASTS_SELF$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_BREASTS_SELF$exp" text="0" />
-                                <CheckBox fx:id="FETISH_BREASTS_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_BREASTS_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="5">
@@ -1959,7 +1959,7 @@
                                 <ComboBox fx:id="FETISH_LACTATION_OTHERS$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_LACTATION_OTHERS$exp" text="0" />
-                                <CheckBox fx:id="FETISH_LACTATION_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_LACTATION_OTHERS$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -1975,7 +1975,7 @@
                                 <ComboBox fx:id="FETISH_LACTATION_SELF$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_LACTATION_SELF$exp" text="0" />
-                                <CheckBox fx:id="FETISH_LACTATION_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_LACTATION_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="6">
@@ -1991,7 +1991,7 @@
                                 <ComboBox fx:id="FETISH_ORAL_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_ORAL_RECEIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_ORAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_ORAL_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -2007,7 +2007,7 @@
                                 <ComboBox fx:id="FETISH_ORAL_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_ORAL_GIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_ORAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_ORAL_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="7">
@@ -2023,7 +2023,7 @@
                                 <ComboBox fx:id="FETISH_LEG_LOVER$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_LEG_LOVER$exp" text="0" />
-                                <CheckBox fx:id="FETISH_LEG_LOVER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_LEG_LOVER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -2039,7 +2039,7 @@
                                 <ComboBox fx:id="FETISH_STRUTTER$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_STRUTTER$exp" text="0" />
-                                <CheckBox fx:id="FETISH_STRUTTER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_STRUTTER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="8">
@@ -2055,7 +2055,7 @@
                                 <ComboBox fx:id="FETISH_FOOT_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_FOOT_GIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_FOOT_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_FOOT_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="8">
@@ -2071,7 +2071,7 @@
                                 <ComboBox fx:id="FETISH_FOOT_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_FOOT_RECEIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_FOOT_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_FOOT_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox layoutX="24.0" layoutY="38.0" GridPane.rowIndex="9">
@@ -2087,7 +2087,7 @@
                                 <ComboBox fx:id="FETISH_ARMPIT_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_ARMPIT_GIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_ARMPIT_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_ARMPIT_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox layoutX="24.0" layoutY="38.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
@@ -2103,7 +2103,7 @@
                                 <ComboBox fx:id="FETISH_ARMPIT_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_ARMPIT_RECEIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_ARMPIT_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_ARMPIT_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="10">
@@ -2119,7 +2119,7 @@
                                 <ComboBox fx:id="FETISH_CUM_STUD$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_CUM_STUD$exp" text="0" />
-                                <CheckBox fx:id="FETISH_CUM_STUD$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_CUM_STUD$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="10">
@@ -2135,7 +2135,7 @@
                                 <ComboBox fx:id="FETISH_CUM_ADDICT$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_CUM_ADDICT$exp" text="0" />
-                                <CheckBox fx:id="FETISH_CUM_ADDICT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_CUM_ADDICT$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="11">
@@ -2151,7 +2151,7 @@
                                 <ComboBox fx:id="FETISH_DEFLOWERING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_DEFLOWERING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_DEFLOWERING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_DEFLOWERING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="11">
@@ -2167,7 +2167,7 @@
                                 <ComboBox fx:id="FETISH_PURE_VIRGIN$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_PURE_VIRGIN$exp" text="0" />
-                                <CheckBox fx:id="FETISH_PURE_VIRGIN$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_PURE_VIRGIN$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="12">
@@ -2183,7 +2183,7 @@
                                 <ComboBox fx:id="FETISH_IMPREGNATION$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_IMPREGNATION$exp" text="0" />
-                                <CheckBox fx:id="FETISH_IMPREGNATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_IMPREGNATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="12">
@@ -2199,7 +2199,7 @@
                                 <ComboBox fx:id="FETISH_PREGNANCY$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_PREGNANCY$exp" text="0" />
-                                <CheckBox fx:id="FETISH_PREGNANCY$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_PREGNANCY$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="13">
@@ -2215,7 +2215,7 @@
                                 <ComboBox fx:id="FETISH_TRANSFORMATION_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_TRANSFORMATION_GIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_TRANSFORMATION_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_TRANSFORMATION_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="13">
@@ -2231,7 +2231,7 @@
                                 <ComboBox fx:id="FETISH_TRANSFORMATION_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_TRANSFORMATION_RECEIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_TRANSFORMATION_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_TRANSFORMATION_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="14">
@@ -2247,7 +2247,7 @@
                                 <ComboBox fx:id="FETISH_KINK_GIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_KINK_GIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_KINK_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_KINK_GIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="14">
@@ -2263,7 +2263,7 @@
                                 <ComboBox fx:id="FETISH_KINK_RECEIVING$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_KINK_RECEIVING$exp" text="0" />
-                                <CheckBox fx:id="FETISH_KINK_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_KINK_RECEIVING$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="15">
@@ -2279,7 +2279,7 @@
                                 <ComboBox fx:id="FETISH_SADIST$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_SADIST$exp" text="0" />
-                                <CheckBox fx:id="FETISH_SADIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_SADIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="15">
@@ -2295,7 +2295,7 @@
                                 <ComboBox fx:id="FETISH_MASOCHIST$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_MASOCHIST$exp" text="0" />
-                                <CheckBox fx:id="FETISH_MASOCHIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_MASOCHIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox layoutX="24.0" layoutY="1140.0" GridPane.rowIndex="16">
@@ -2311,7 +2311,7 @@
                                 <ComboBox fx:id="FETISH_NON_CON_DOM$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_NON_CON_DOM$exp" text="0" />
-                                <CheckBox fx:id="FETISH_NON_CON_DOM$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_NON_CON_DOM$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox layoutX="529.0" layoutY="1140.0" GridPane.columnIndex="1" GridPane.rowIndex="16">
@@ -2327,7 +2327,7 @@
                                 <ComboBox fx:id="FETISH_NON_CON_SUB$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_NON_CON_SUB$exp" text="0" />
-                                <CheckBox fx:id="FETISH_NON_CON_SUB$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_NON_CON_SUB$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox layoutX="24.0" layoutY="38.0" GridPane.rowIndex="17">
@@ -2343,7 +2343,7 @@
                                 <ComboBox fx:id="FETISH_BONDAGE_APPLIER$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_BONDAGE_APPLIER$exp" text="0" />
-                                <CheckBox fx:id="FETISH_BONDAGE_APPLIER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_BONDAGE_APPLIER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox layoutX="24.0" layoutY="38.0" GridPane.columnIndex="1" GridPane.rowIndex="17">
@@ -2359,7 +2359,7 @@
                                 <ComboBox fx:id="FETISH_BONDAGE_VICTIM$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_BONDAGE_VICTIM$exp" text="0" />
-                                <CheckBox fx:id="FETISH_BONDAGE_VICTIM$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_BONDAGE_VICTIM$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="18">
@@ -2375,7 +2375,7 @@
                                 <ComboBox fx:id="FETISH_DENIAL$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_DENIAL$exp" text="0" />
-                                <CheckBox fx:id="FETISH_DENIAL$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_DENIAL$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="18">
@@ -2391,7 +2391,7 @@
                                 <ComboBox fx:id="FETISH_DENIAL_SELF$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_DENIAL_SELF$exp" text="0" />
-                                <CheckBox fx:id="FETISH_DENIAL_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_DENIAL_SELF$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="19">
@@ -2407,7 +2407,7 @@
                                 <ComboBox fx:id="FETISH_VOYEURIST$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_VOYEURIST$exp" text="0" />
-                                <CheckBox fx:id="FETISH_VOYEURIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_VOYEURIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="19">
@@ -2423,7 +2423,7 @@
                                 <ComboBox fx:id="FETISH_EXHIBITIONIST$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_EXHIBITIONIST$exp" text="0" />
-                                <CheckBox fx:id="FETISH_EXHIBITIONIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_EXHIBITIONIST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="20">
@@ -2439,7 +2439,7 @@
                                 <ComboBox fx:id="FETISH_BIMBO$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_BIMBO$exp" text="0" />
-                                <CheckBox fx:id="FETISH_BIMBO$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_BIMBO$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="20">
@@ -2455,7 +2455,7 @@
                                 <ComboBox fx:id="FETISH_CROSS_DRESSER$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_CROSS_DRESSER$exp" text="0" />
-                                <CheckBox fx:id="FETISH_CROSS_DRESSER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_CROSS_DRESSER$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.rowIndex="21">
@@ -2471,7 +2471,7 @@
                                 <ComboBox fx:id="FETISH_MASTURBATION$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_MASTURBATION$exp" text="0" />
-                                <CheckBox fx:id="FETISH_MASTURBATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_MASTURBATION$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="21">
@@ -2487,7 +2487,7 @@
                                 <ComboBox fx:id="FETISH_INCEST$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_INCEST$exp" text="0" />
-                                <CheckBox fx:id="FETISH_INCEST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_INCEST$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox layoutX="24.0" layoutY="1388.0" GridPane.rowIndex="22">
@@ -2503,7 +2503,7 @@
                                 <ComboBox fx:id="FETISH_SIZE_QUEEN$desire" onAction="#updateXmlComboBox" prefWidth="150.0" />
                                 <Label text="Exp:" />
                                 <TextField fx:id="FETISH_SIZE_QUEEN$exp" text="0" />
-                                <CheckBox fx:id="FETISH_SIZE_QUEEN$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Owned: " />
+                                <CheckBox fx:id="FETISH_SIZE_QUEEN$owned" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBooleanFetish" text="Owned: " />
                             </HBox>
                         </VBox>
                         <VBox layoutX="24.0" layoutY="1338.0" GridPane.rowIndex="23">
@@ -2839,8 +2839,8 @@
                                 </HBox>
                                 <HBox alignment="CENTER" layoutX="24.0" layoutY="144.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                     <Label text="Soothing Waters Optional Spells: " />
-                                    <CheckBox fx:id="spells$SOOTHING_WATERS_1_CLEAN" mnemonicParsing="false" onAction="#updateXmlBoolean" text="Cleansing Waters" />
-                                    <CheckBox fx:id="spells$SOOTHING_WATERS_2_CLEAN" mnemonicParsing="false" onAction="#updateXmlBoolean" text="Deep Clean" />
+                                    <CheckBox fx:id="spells$SOOTHING_WATERS_1_CLEAN" mnemonicParsing="false" onAction="#updateXmlBooleanSpells" text="Cleansing Waters" />
+                                    <CheckBox fx:id="spells$SOOTHING_WATERS_2_CLEAN" mnemonicParsing="false" onAction="#updateXmlBooleanSpells" text="Deep Clean" />
                                 </HBox>
                                 <padding>
                                     <Insets left="14.0" top="28.0" />
