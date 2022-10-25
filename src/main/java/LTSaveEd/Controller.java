@@ -2171,19 +2171,6 @@ public class Controller {
         return characterNode.getChildNodes();
     }
 
-    private Node getFetishAttributeParent() {
-        //TODO
-        return null;
-    }
-
-    private Element createFetishNode(String fetishName, ActionEvent event) {
-        Element fetish = saveFile.createElement("f");
-        fetish.setTextContent(fetishName);
-        Node fetishes = getValueNodeParent(event);
-        fetishes.appendChild(fetish);
-        return fetish;
-    }
-
     private Element createFetishNode(String fetishName, Element fetishes) {
         Element fetish = saveFile.createElement("f");
         fetish.setTextContent(fetishName);
@@ -2439,10 +2426,6 @@ public class Controller {
      */
     private void removeNode(@NotNull Node node) {
         node.getParentNode().removeChild(node);
-    }
-
-    private Element getElementByTagName(@NotNull Element element, String tagName, int index) {
-        return (Element) element.getElementsByTagName(tagName).item(index);
     }
 
     private Element getElementByTagName(@NotNull Element element, String tagName) {
