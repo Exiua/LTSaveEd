@@ -3081,7 +3081,7 @@
                     <HBox prefHeight="34.0" prefWidth="527.0" spacing="5.0">
                         <Label text="Date: " />
                         <TextField fx:id="coreInfo$date$year" text="1900" />
-                        <ComboBox fx:id="coreInfo$date$month" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                        <ComboBox fx:id="coreInfo$date$month" onAction="#updateXmlComboBoxMonth" prefWidth="150.0" />
                         <TextField fx:id="coreInfo$date$dayOfMonth" text="1" />
                     </HBox>
                     <HBox layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="527.0" spacing="5.0">

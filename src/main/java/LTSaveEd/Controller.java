@@ -869,31 +869,42 @@ public class Controller {
     private void updateXmlComboBox(@NotNull ActionEvent event) {
         if (fieldsSet) {
             String fxId = getId(event);
-            if (fxId.contains("InInventory")) {
-                String[] id = fxId.split("\\$");
-                int index = Integer.parseInt(id[3]);
-                inventoryWeapons.get(index).updateDamageType();
+            @SuppressWarnings("unchecked")
+            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
+            Node value = getValueNode(event);
+            value.setTextContent(cb.getValue().getValue());
+            if (fxId.equals("body$leg$type")) {
+                updateLegTypeDependants(cb, false);
             }
-            else {
-                @SuppressWarnings("unchecked")
-                ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
-                Node value = getValueNode(event);
-                if (fxId.contains("coreInfo")) {
-                    Attribute monthAttr = cb.getValue();
-                    int month = Integer.parseInt(monthAttr.getValue());
-                    currentDate.set(Calendar.MONTH, month);
-                    value.setTextContent(String.valueOf(getSaveTimeValue()));
-                    updateDayTextField(fxId, monthAttr);
-                }
-                else {
-                    value.setTextContent(cb.getValue().getValue());
-                    if (fxId.equals("body$leg$type")) {
-                        updateLegTypeDependants(cb, false);
-                    }
-                }
-                event.consume();
-            }
+            event.consume();
         }
+    }
+
+    @FXML
+    private void updateXmlComboBoxInventory(@NotNull ActionEvent event){
+        if (fieldsSet) {
+            String fxId = getId(event);
+            String[] id = fxId.split("\\$");
+            int index = Integer.parseInt(id[3]);
+            inventoryWeapons.get(index).updateDamageType();
+        }
+        event.consume();
+    }
+
+    @FXML
+    private void updateXmlComboBoxMonth(@NotNull ActionEvent event){
+        if (fieldsSet) {
+            String fxId = getId(event);
+            @SuppressWarnings("unchecked")
+            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
+            Node value = getValueNode(event);
+            Attribute monthAttr = cb.getValue();
+            int month = Integer.parseInt(monthAttr.getValue());
+            currentDate.set(Calendar.MONTH, month);
+            value.setTextContent(String.valueOf(getSaveTimeValue()));
+            updateDayTextField(fxId, monthAttr);
+        }
+        event.consume();
     }
 
     /**
@@ -1616,7 +1627,9 @@ public class Controller {
         int seconds = Integer.parseInt(coreInfo.getAttribute("secondsPassed"));
         baseDate.clear();
         currentDate.clear();
+        //noinspection MagicConstant
         baseDate.set(year, month, day);
+        //noinspection MagicConstant
         currentDate.set(year, month, day);
         currentDate.add(Calendar.SECOND, seconds);
         String baseId = "coreInfo$date$";
@@ -1999,7 +2012,7 @@ public class Controller {
                     return null;
                 }
             });
-            damageType.setOnAction(this::updateXmlComboBox);
+            damageType.setOnAction(this::updateXmlComboBoxInventory);
             Button btn = new Button("Delete Item");
             btn.setOnAction(this::removeHBox);
             HBox hBox = new HBox(10);
