@@ -564,7 +564,7 @@ public class Controller {
                 @Override
                 public String toString(@NotNull Attribute attribute) {
                     return attribute.getName();
-                } // TODO: Fix this method throwing exceptions whenever ComboBox values are updated
+                } // Future: Fix this method throwing exceptions whenever ComboBox values are updated
                 /* This exception keeps getting thrown when ComboBox items are changed; Ignore as it doesn't break the program
                     Exception in thread "JavaFX Application Thread" java.lang.NullPointerException
 	                    at LTSaveEd.Controller$1.toString(Controller.java:2401)
@@ -1701,6 +1701,7 @@ public class Controller {
             Button btn = new Button("Goto Character");
             btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
             NpcCharacter npc = matchNpc(npcChars, charId);
+            // possible catch and delete relation entry for deleted npcs
             btn.setOnAction(event -> {
                 String[] id = getId(event).split("\\$");
                 String characterId = id[1];
