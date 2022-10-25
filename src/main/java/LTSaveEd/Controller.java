@@ -744,62 +744,81 @@ public class Controller {
     private void updateXmlBoolean(@NotNull ActionEvent event) {
         if (fieldsSet) {
             String fxId = getId(event);
-            if (fxId.contains("InInventory")) {
-                String[] id = fxId.split("\\$");
-                int index = Integer.parseInt(id[3]);
-                switch (id[2]) {
-                    case "enchantmentKnown" -> inventoryClothes.get(index).updateEnchantmentKnown();
-                    case "isDirty" -> inventoryClothes.get(index).updateDirty();
-                }
+            CheckBox cb = (CheckBox) namespace.get(fxId);
+            Node value = getValueNode(event);
+            String[] id = fxId.split("\\$");
+            try {
+                value.setTextContent(String.valueOf(cb.isSelected()));
             }
-            else {
-                CheckBox cb = (CheckBox) namespace.get(fxId);
-                Node value = getValueNode(event);
-                String[] id = fxId.split("\\$");
-                if (fxId.startsWith("FETISH_")) {
-                    if (!cb.isSelected()) {
-                        Element parent = ((Attr) value).getOwnerElement();
-                        parent.removeAttribute("o");
-                        if (parent.getAttributes().getLength() == 0) {
-                            removeNode(parent);
-                            System.out.println("Removed fetish");
-                        }
-                        System.out.println("Removed fetish ownership");
-                    }
-                    else {
-                        ((Attr) value).getOwnerElement().setAttribute("o", "true");
-                        System.out.println("Added fetish ownership");
-
-                    }
-                }
-                else if (fxId.startsWith("spells")) {
-                    if (cb.isSelected()) {
-                        Element spellUpgrade = saveFile.createElement("upgrade");
-                        spellUpgrade.setAttribute("type", id[1]);
-                        Node spellUpgrades = getValueNodeParent(event);
-                        spellUpgrades.appendChild(spellUpgrade);
-                        System.out.println("Added spell upgrade");
-                    }
-                    else {
-                        removeNode(value);
-                        System.out.println("Removed spell upgrade");
-                    }
-                }
-                else {
-                    try {
-                        value.setTextContent(String.valueOf(cb.isSelected()));
-                    }
-                    catch (NullPointerException e) { // Modifier attributes are deleted when false by the game
-                        value = getValueNodeParent(event);
-                        ((Element) value).setAttribute(id[3], String.valueOf(cb.isSelected()));
-                    }
-                    if (id[id.length - 1].equals("FLARED") || id[id.length - 1].equals("TAPERED")) {
-                        checkboxFlaredTaperedToggle(fxId);
-                    }
-                }
+            catch (NullPointerException e) { // Modifier attributes are deleted when false by the game
+                value = getValueNodeParent(event);
+                ((Element) value).setAttribute(id[3], String.valueOf(cb.isSelected()));
+            }
+            if (id[id.length - 1].equals("FLARED") || id[id.length - 1].equals("TAPERED")) {
+                checkboxFlaredTaperedToggle(fxId);
             }
             event.consume();
         }
+    }
+
+    @FXML
+    private void updateXmlBooleanFetish(@NotNull ActionEvent event){
+        if (fieldsSet) {
+            String fxId = getId(event);
+            CheckBox cb = (CheckBox) namespace.get(fxId);
+            Node value = getValueNode(event);
+            if (!cb.isSelected()) {
+                Element parent = ((Attr) value).getOwnerElement();
+                parent.removeAttribute("o");
+                if (parent.getAttributes().getLength() == 0) {
+                    removeNode(parent);
+                    System.out.println("Removed fetish");
+                }
+                System.out.println("Removed fetish ownership");
+            }
+            else {
+                ((Attr) value).getOwnerElement().setAttribute("o", "true");
+                System.out.println("Added fetish ownership");
+
+            }
+        }
+        event.consume();
+    }
+
+    @FXML
+    private void updateXmlBooleanSpells(@NotNull ActionEvent event){
+        if (fieldsSet) {
+            String fxId = getId(event);
+            CheckBox cb = (CheckBox) namespace.get(fxId);
+            if (cb.isSelected()) {
+                String[] id = fxId.split("\\$");
+                Element spellUpgrade = saveFile.createElement("upgrade");
+                spellUpgrade.setAttribute("type", id[1]);
+                Node spellUpgrades = getValueNodeParent(event);
+                spellUpgrades.appendChild(spellUpgrade);
+                System.out.println("Added spell upgrade");
+            }
+            else {
+                Node value = getValueNode(event);
+                removeNode(value);
+                System.out.println("Removed spell upgrade");
+            }
+        }
+        event.consume();
+    }
+
+    @FXML
+    private void updateXmlBooleanInventory(@NotNull ActionEvent event){
+        if (fieldsSet) {
+            String fxId = getId(event);
+            String[] id = fxId.split("\\$");
+            int index = Integer.parseInt(id[3]);
+            switch (id[2]) {
+                case "enchantmentKnown" -> inventoryClothes.get(index).updateEnchantmentKnown();
+                case "isDirty" -> inventoryClothes.get(index).updateDirty();
+            }
+        }
+        event.consume();
     }
 
     /**
@@ -1917,11 +1936,11 @@ public class Controller {
             enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
             enchantmentKnown.setSelected(inventoryClothing.isEnchantmentKnown());
             enchantmentKnown.setId(partialId + "enchantmentKnown$" + counter);
-            enchantmentKnown.setOnAction(this::updateXmlBoolean);
+            enchantmentKnown.setOnAction(this::updateXmlBooleanInventory);
             CheckBox isDirty = new CheckBox("Dirty: ");
             isDirty.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
             isDirty.setSelected(inventoryClothing.isDirty());
-            isDirty.setOnAction(this::updateXmlBoolean);
+            isDirty.setOnAction(this::updateXmlBooleanInventory);
             isDirty.setId(partialId + "isDirty$" + counter);
             Button btn = new Button("Delete Item");
             btn.setOnAction(this::removeHBox);
