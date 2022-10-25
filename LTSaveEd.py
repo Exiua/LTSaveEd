@@ -11,11 +11,19 @@ from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, QFormLayout, QPush
 # region Globals
 
 int_only = QIntValidator()
+
 positive_int_only = QIntValidator()
 positive_int_only.setBottom(0)
+
 float_only = QDoubleValidator()
+
 positive_float_only = QDoubleValidator()
 positive_float_only.setBottom(0)
+
+header_font = QFont()
+header_font.setBold(True)
+header_font.setUnderline(True)
+
 
 # endregion
 
@@ -232,16 +240,20 @@ class AttributesTab(QWidget):
         left_vbox.addStretch()
         left_vbox.setSpacing(10)
 
-        hbox, self.attributes_HEALTH_MAXIMUM = create_labeled_line_edit("Health Core:", center=True, validator=positive_float_only)
+        hbox, self.attributes_HEALTH_MAXIMUM = create_labeled_line_edit("Health Core:", center=True,
+                                                                        validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_MANA_MAXIMUM = create_labeled_line_edit("Mana Core:", center=True, validator=positive_float_only)
+        hbox, self.attributes_MANA_MAXIMUM = create_labeled_line_edit("Mana Core:", center=True,
+                                                                      validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_EXPERIENCE = create_labeled_line_edit("Experience:", center=True, validator=positive_float_only)
+        hbox, self.attributes_EXPERIENCE = create_labeled_line_edit("Experience:", center=True,
+                                                                    validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_ACTION_POINTS = create_labeled_line_edit("Action Points:", center=True, validator=positive_float_only)
+        hbox, self.attributes_ACTION_POINTS = create_labeled_line_edit("Action Points:", center=True,
+                                                                       validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
         hbox, self.attributes_AROUSAL = create_labeled_line_edit("Arousal:", center=True, validator=positive_float_only)
@@ -250,31 +262,40 @@ class AttributesTab(QWidget):
         hbox, self.attributes_LUST = create_labeled_line_edit("Lust Core:", center=True, validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_RESTING_LUST = create_labeled_line_edit("Resting Lust:", center=True, validator=positive_float_only)
+        hbox, self.attributes_RESTING_LUST = create_labeled_line_edit("Resting Lust:", center=True,
+                                                                      validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_MAJOR_PHYSIQUE = create_labeled_line_edit("Physique Core:", center=True, validator=positive_float_only)
+        hbox, self.attributes_MAJOR_PHYSIQUE = create_labeled_line_edit("Physique Core:", center=True,
+                                                                        validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_MAJOR_ARCANE = create_labeled_line_edit("Arcane Core:", center=True, validator=positive_float_only)
+        hbox, self.attributes_MAJOR_ARCANE = create_labeled_line_edit("Arcane Core:", center=True,
+                                                                      validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_MAJOR_CORRUPTION = create_labeled_line_edit("Corruption Core:", center=True, validator=positive_float_only)
+        hbox, self.attributes_MAJOR_CORRUPTION = create_labeled_line_edit("Corruption Core:", center=True,
+                                                                          validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_ENCHANTMENT_LIMIT = create_labeled_line_edit("Enchantment Limit:", center=True, validator=positive_float_only)
+        hbox, self.attributes_ENCHANTMENT_LIMIT = create_labeled_line_edit("Enchantment Limit:", center=True,
+                                                                           validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_FERTILITY = create_labeled_line_edit("Fertility:", center=True, validator=positive_float_only)
+        hbox, self.attributes_FERTILITY = create_labeled_line_edit("Fertility:", center=True,
+                                                                   validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_VIRILITY = create_labeled_line_edit("Virility:", center=True, validator=positive_float_only)
+        hbox, self.attributes_VIRILITY = create_labeled_line_edit("Virility:", center=True,
+                                                                  validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_SPELL_COST_MODIFIER = create_labeled_line_edit("Spell Cost Modifier:", center=True, validator=positive_float_only)
+        hbox, self.attributes_SPELL_COST_MODIFIER = create_labeled_line_edit("Spell Cost Modifier:", center=True,
+                                                                             validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
-        hbox, self.attributes_CRITICAL_DAMAGE = create_labeled_line_edit("Critical Damage:", center=True, validator=positive_float_only)
+        hbox, self.attributes_CRITICAL_DAMAGE = create_labeled_line_edit("Critical Damage:", center=True,
+                                                                         validator=positive_float_only)
         left_vbox.addLayout(hbox)
 
         left_vbox.addStretch()
@@ -420,6 +441,104 @@ class HeadTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super(HeadTab, self).__init__(parent)
         layout = QGridLayout(self)
+
+        # region Vbox (0, 0)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = create_header("Antennae")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_antennaePerRow = create_labeled_line_edit("Antennae per row:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_rows = create_labeled_line_edit("Rows:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 0, 0)
+
+        # endregion
+
+        # region Vbox (0, 1)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = create_header("Ear")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_ear_pierced = create_check_box("Pierced:", right_to_left=True)
+        vbox.addLayout(hbox)
+
+        hbox, self.body_ear_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 0, 1)
+
+        # endregion
+
+        # region Vbox (1, 0)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = create_header("Hair")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_hair_hairStyle = create_labeled_combo_box("Hair Style:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_hair_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_hair_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_hair_neckFluff = create_check_box("Neck Fluff:", right_to_left=True)
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 1, 0)
+
+        # endregion
+
+        # region Vbox (1, 1)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = create_header("Horn")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_horn_hornsPerRow = create_labeled_line_edit("Horns per row:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_horn_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_horn_rows = create_labeled_line_edit("Rows:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_horn_type = create_labeled_line_edit("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 1, 1)
+
+        # endregion
 
 
 class FaceTab(QWidget):
@@ -678,6 +797,16 @@ def create_check_box(text: str, center: bool = False, right_to_left: bool = Fals
     hbox.addWidget(check_box)
     hbox.addStretch()
     return hbox, check_box
+
+
+def create_header(text: str) -> QHBoxLayout:
+    hbox = QHBoxLayout()
+    # hbox.addStretch()
+    label = QLabel(f"\t\t{text}")
+    label.setFont(header_font)
+    hbox.addWidget(label)
+    hbox.addStretch()
+    return hbox
 
 
 if __name__ == '__main__':
