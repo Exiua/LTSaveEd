@@ -9,6 +9,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -3125,8 +3126,10 @@
             <MenuItem mnemonicParsing="false" onAction="#saveFileOverwrite" text="Overwrite" />
             <MenuItem mnemonicParsing="false" onAction="#saveFileExport" text="Export..." />
         </Menu>
-        <Menu mnemonicParsing="false" onAction="#checkForUpdate" text="Update?">
-            <MenuItem fx:id="updateStatus" mnemonicParsing="false" text="Check" />
+        <Menu fx:id="updateButton" mnemonicParsing="false" onShowing="#checkForUpdate" onShown="#hideMenu" text="Update?">
+         <items>
+            <SeparatorMenuItem mnemonicParsing="false" />
+         </items>
         </Menu>
     </MenuBar>
 </AnchorPane>
