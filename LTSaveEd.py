@@ -546,6 +546,187 @@ class FaceTab(QWidget):
         super(FaceTab, self).__init__(parent)
         layout = QGridLayout(self)
 
+        # region Vbox (0, 0)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = create_header("Face")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_antennaePerRow = create_labeled_line_edit("Antennae per row:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_rows = create_labeled_line_edit("Rows:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 0, 0)
+
+        # endregion
+
+        # region Vbox (0, 1)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = QHBoxLayout()
+        # hbox.addStretch()
+        label = QLabel("\t\tAntennae")
+        label.setFont(header_font)
+        hbox.addWidget(label)
+        hbox.addStretch()
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_antennaePerRow = create_labeled_line_edit("Antennae per row:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_rows = create_labeled_line_edit("Rows:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 0, 1)
+
+        # endregion
+
+        # region Vbox (0, 2)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = QHBoxLayout()
+        # hbox.addStretch()
+        label = QLabel("\t\tAntennae")
+        label.setFont(header_font)
+        hbox.addWidget(label)
+        hbox.addStretch()
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_antennaePerRow = create_labeled_line_edit("Antennae per row:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_rows = create_labeled_line_edit("Rows:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 0, 2)
+
+        # endregion
+
+        # region Vbox (1, 0)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = QHBoxLayout()
+        # hbox.addStretch()
+        label = QLabel("\t\tAntennae")
+        label.setFont(header_font)
+        hbox.addWidget(label)
+        hbox.addStretch()
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_antennaePerRow = create_labeled_line_edit("Antennae per row:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_rows = create_labeled_line_edit("Rows:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 1, 0)
+
+        # endregion
+
+        # region Vbox (1, 1)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = QHBoxLayout()
+        # hbox.addStretch()
+        label = QLabel("\t\tAntennae")
+        label.setFont(header_font)
+        hbox.addWidget(label)
+        hbox.addStretch()
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_antennaePerRow = create_labeled_line_edit("Antennae per row:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_rows = create_labeled_line_edit("Rows:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 1, 1)
+
+        # endregion
+
+        # region Vbox (1, 2)
+
+        vbox = QVBoxLayout()
+        vbox.addStretch()
+
+        hbox = QHBoxLayout()
+        # hbox.addStretch()
+        label = QLabel("\t\tAntennae")
+        label.setFont(header_font)
+        hbox.addWidget(label)
+        hbox.addStretch()
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_antennaePerRow = create_labeled_line_edit("Antennae per row:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_length = create_labeled_line_edit("Length:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_rows = create_labeled_line_edit("Rows:")
+        vbox.addLayout(hbox)
+
+        hbox, self.body_antennae_type = create_labeled_combo_box("Type:")
+        vbox.addLayout(hbox)
+
+        vbox.addStretch()
+
+        layout.addLayout(vbox, 1, 2)
+
+        # endregion
+
 
 class BreastsTab(QWidget):
     def __init__(self, parent: QWidget | None = None):
