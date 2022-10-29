@@ -566,14 +566,14 @@ public class Controller {
 
             cb.setConverter(new StringConverter<>() {
                 @Override
-                public String toString(@NotNull Attribute attribute) {
-                    return attribute.getName();
-                } // Future: Fix this method throwing exceptions whenever ComboBox values are updated
-                /* This exception keeps getting thrown when ComboBox items are changed; Ignore as it doesn't break the program
-                    Exception in thread "JavaFX Application Thread" java.lang.NullPointerException
-	                    at LTSaveEd.Controller$1.toString(Controller.java:2401)
-	                    at LTSaveEd.Controller$1.toString(Controller.java:2398)...
-                 */
+                public String toString(Attribute attribute) {
+                    if(attribute != null) {
+                        return attribute.getName();
+                    }
+                    else{
+                        return null;
+                    }
+                }
 
                 @Override
                 public @Nullable Attribute fromString(String s) {
@@ -659,8 +659,13 @@ public class Controller {
         for (ComboBox<NpcCharacter> comboBox : comboBoxes) {
             comboBox.setConverter(new StringConverter<>() {
                 @Override
-                public String toString(@NotNull NpcCharacter npcCharacter) {
-                    return npcCharacter.getName();
+                public String toString(NpcCharacter npcCharacter) {
+                    if(npcCharacter != null) {
+                        return npcCharacter.getName();
+                    }
+                    else{
+                        return null;
+                    }
                 }
 
                 @Override
