@@ -1,7 +1,7 @@
-package LTSaveEd.Objects.InventoryElements;
+package LTSaveEd.DataObjects.InventoryElements;
 
-import LTSaveEd.Objects.Attribute;
-import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import LTSaveEd.DataObjects.Attribute;
+import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
 import javafx.scene.control.ComboBox;
 import org.w3c.dom.Node;
 

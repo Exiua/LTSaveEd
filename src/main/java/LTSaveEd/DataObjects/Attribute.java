@@ -1,4 +1,4 @@
-package LTSaveEd.Objects;
+package LTSaveEd.DataObjects;
 
 /**
  * Class that stores attribute display name and actual values to make ComboBoxes look cleaner

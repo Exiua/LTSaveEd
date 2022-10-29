@@ -1,4 +1,4 @@
-package LTSaveEd.Objects;
+package LTSaveEd.DataObjects;
 
 import javafx.collections.ObservableMap;
 import javafx.scene.control.CheckBox;
