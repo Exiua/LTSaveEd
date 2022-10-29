@@ -1,10 +1,10 @@
 package LTSaveEd;
 
-import LTSaveEd.Objects.*;
-import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
-import LTSaveEd.Objects.InventoryElements.InventoryClothing;
-import LTSaveEd.Objects.InventoryElements.InventoryItem;
-import LTSaveEd.Objects.InventoryElements.InventoryWeapon;
+import LTSaveEd.DataObjects.*;
+import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
+import LTSaveEd.DataObjects.InventoryElements.InventoryItem;
+import LTSaveEd.DataObjects.InventoryElements.InventoryWeapon;
 import LTSaveEd.Util.Debug;
 import LTSaveEd.Util.InitializeElements;
 import LTSaveEd.Util.TextFieldType;
@@ -53,6 +53,8 @@ import java.util.*;
  * @version 1.3.1
  */
 public class Controller {
+
+    //region Instance Variables
 
     /**
      * String array of all TextField ids using an int data type
@@ -472,6 +474,8 @@ public class Controller {
      * Boolean tracking whether world fields have been set
      */
     private boolean worldFieldsSet = false;
+
+    //endregion
 
     /**
      * Initializes the Controller object and parses config.ini
