@@ -1678,8 +1678,8 @@ public class Controller {
         NodeList relationships = relationshipsNode.getChildNodes();
         VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
-        @SuppressWarnings("unchecked")
-        ObservableList<NpcCharacter> npcChars = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
+        //@SuppressWarnings("unchecked")
+        //ObservableList<NpcCharacter> npcChars = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
         for (int i = 0; i < relationships.getLength(); i++) {
             if (relationships.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
@@ -1704,7 +1704,7 @@ public class Controller {
             valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
             Button btn = new Button("Goto Character");
             btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
-            NpcCharacter npc = matchNpc(npcChars, charId);
+            //NpcCharacter npc = matchNpc(npcChars, charId);
             // possible catch and delete relation entry for deleted npcs
             btn.setOnAction(event -> {
                 String[] id = getId(event).split("\\$");
