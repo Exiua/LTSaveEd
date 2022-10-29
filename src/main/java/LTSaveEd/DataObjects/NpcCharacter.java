@@ -111,4 +111,9 @@ public class NpcCharacter {
     public boolean equals(String charId){
         return id.equals(charId);
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
