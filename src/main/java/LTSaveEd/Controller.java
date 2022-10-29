@@ -678,12 +678,10 @@ public class Controller {
 
     /**
      * Changes the current character to be edited to the character selected by the character selector
-     *
-     * @param event ActionEvent from the character selector ComboBox
      */
     @FXML
-    private void selectCharacter(@NotNull ActionEvent event) {
-        event.consume();
+    private void selectCharacter() {
+        fieldsSet = false;
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         String charId = cb.getValue().getId();
@@ -736,7 +734,8 @@ public class Controller {
      * @param charId Character id of the character being edited
      */
     private void setCharacterNode(@NotNull String charId) {
-        Node idNode = getNodeByIdValue(charId);
+        System.out.println("Switching to character: " + charId);
+        Node idNode = getCharacterNode(charId);
         characterNode = idNode.getParentNode().getParentNode();
         Node perksNode = getNode("perks");
         PerkNode.setPerksNode(perksNode);
@@ -2137,7 +2136,7 @@ public class Controller {
                 return attribute;
             }
         }
-        throw new NoSuchElementException("Attribute with value {" + value + "} not found");
+        throw new NoSuchElementException("Attribute with value {" + value + "} not found in list " + Debug.listToString(list, 5));
     }
 
     /**
@@ -2421,7 +2420,7 @@ public class Controller {
      * @param id Value attribute to search for
      * @return Node representing the id tag with corresponding value attribute
      */
-    private Node getNodeByIdValue(@NotNull String id) {
+    private Node getCharacterNode(@NotNull String id) {
         if (id.equals("PlayerCharacter")) {
             Node playerNode = getElementByTagName(saveFile, "playerCharacter");
             Node characterNode = playerNode.getChildNodes().item(1);
