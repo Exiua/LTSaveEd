@@ -567,12 +567,7 @@ public class Controller {
             cb.setConverter(new StringConverter<>() {
                 @Override
                 public String toString(Attribute attribute) {
-                    if(attribute != null) {
-                        return attribute.getName();
-                    }
-                    else{
-                        return null;
-                    }
+                    return attribute != null ? attribute.getName() : null;
                 }
 
                 @Override
@@ -602,31 +597,32 @@ public class Controller {
         String currentPath = prop.getProperty("defaultFilePath");
         fc.setInitialDirectory(new File(currentPath));
         File f = fc.showOpenDialog(stage);
-        if (f != null) {
-            // Update config.ini if a different folder was used
-            if (!f.getParent().equals(currentPath)) {
-                prop.setProperty("defaultFilePath", f.getParent());
-                prop.store(new FileOutputStream("config.ini"), null);
-            }
-            workingFile = f;
-            // Load XML
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            try (InputStream is = new FileInputStream(f)) {
-                DocumentBuilder db = dbf.newDocumentBuilder();
-                saveFile = db.parse(is);
-                PerkNode.setSaveFile(saveFile);
-                PersonalityTrait.setSaveFile(saveFile);
-                System.out.println(f);
-                fileLoaded = true;
-                worldFieldsSet = false;
-                TabPane tb = (TabPane) namespace.get("tabPane");
-                tb.setDisable(false);
-            }
-            catch (ParserConfigurationException | SAXException e) {
-                e.printStackTrace();
-            }
-            loadCharacterSelector();
+        if (f == null) {
+            return;
         }
+        // Update config.ini if a different folder was used
+        if (!f.getParent().equals(currentPath)) {
+            prop.setProperty("defaultFilePath", f.getParent());
+            prop.store(new FileOutputStream("config.ini"), null);
+        }
+        workingFile = f;
+        // Load XML
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try (InputStream is = new FileInputStream(f)) {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            saveFile = db.parse(is);
+            PerkNode.setSaveFile(saveFile);
+            PersonalityTrait.setSaveFile(saveFile);
+            System.out.println(f);
+            fileLoaded = true;
+            worldFieldsSet = false;
+            TabPane tb = (TabPane) namespace.get("tabPane");
+            tb.setDisable(false);
+        }
+        catch (ParserConfigurationException | SAXException e) {
+            e.printStackTrace();
+        }
+        loadCharacterSelector();
     }
 
     /**
@@ -660,12 +656,7 @@ public class Controller {
             comboBox.setConverter(new StringConverter<>() {
                 @Override
                 public String toString(NpcCharacter npcCharacter) {
-                    if(npcCharacter != null) {
-                        return npcCharacter.getName();
-                    }
-                    else{
-                        return null;
-                    }
+                    return npcCharacter != null ? npcCharacter.getName() : null;
                 }
 
                 @Override
