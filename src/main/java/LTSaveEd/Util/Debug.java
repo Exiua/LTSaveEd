@@ -1,5 +1,6 @@
 package LTSaveEd.Util;
 
+import javafx.collections.ObservableList;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -8,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -133,6 +133,29 @@ public class Debug {
                 System.out.print(nodes.get(i) + ", ");
             }
         }
+    }
+
+    public static String listToString(ObservableList<?> list, int length){
+        if(list == null){
+            return "null";
+        }
+        if(list.size() == 0){
+            return "[]";
+        }
+        if(list.size() == 1){
+            return "[" + list.get(0) + "]";
+        }
+
+        StringBuilder out = new StringBuilder("[");
+        for(int i = 0; i < length; i++){
+            if(i == length - 1){
+                out.append(list.get(i)).append("]");
+            }
+            else {
+                out.append(list.get(i)).append(", ");
+            }
+        }
+        return out.toString();
     }
 
     public static void printArr(String[] arr){

@@ -1,6 +1,6 @@
-package LTSaveEd.Objects.InventoryElements;
+package LTSaveEd.DataObjects.InventoryElements;
 
-import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
 import javafx.scene.control.CheckBox;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

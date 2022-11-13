@@ -1,13 +1,14 @@
 package LTSaveEd;
 
-import LTSaveEd.Objects.*;
-import LTSaveEd.Objects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
-import LTSaveEd.Objects.InventoryElements.InventoryClothing;
-import LTSaveEd.Objects.InventoryElements.InventoryItem;
-import LTSaveEd.Objects.InventoryElements.InventoryWeapon;
+import LTSaveEd.DataObjects.*;
+import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
+import LTSaveEd.DataObjects.InventoryElements.InventoryItem;
+import LTSaveEd.DataObjects.InventoryElements.InventoryWeapon;
 import LTSaveEd.Util.Debug;
 import LTSaveEd.Util.InitializeElements;
 import LTSaveEd.Util.TextFieldType;
+import LTSaveEd.Util.Utility;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -53,6 +54,8 @@ import java.util.*;
  * @version 1.3.1
  */
 public class Controller {
+
+    //region Instance Variables
 
     /**
      * String array of all TextField ids using an int data type
@@ -473,6 +476,8 @@ public class Controller {
      */
     private boolean worldFieldsSet = false;
 
+    //endregion
+
     /**
      * Initializes the Controller object and parses config.ini
      *
@@ -562,14 +567,9 @@ public class Controller {
 
             cb.setConverter(new StringConverter<>() {
                 @Override
-                public String toString(@NotNull Attribute attribute) {
-                    return attribute.getName();
-                } // Future: Fix this method throwing exceptions whenever ComboBox values are updated
-                /* This exception keeps getting thrown when ComboBox items are changed; Ignore as it doesn't break the program
-                    Exception in thread "JavaFX Application Thread" java.lang.NullPointerException
-	                    at LTSaveEd.Controller$1.toString(Controller.java:2401)
-	                    at LTSaveEd.Controller$1.toString(Controller.java:2398)...
-                 */
+                public String toString(Attribute attribute) {
+                    return attribute != null ? attribute.getName() : null;
+                }
 
                 @Override
                 public @Nullable Attribute fromString(String s) {
@@ -598,31 +598,32 @@ public class Controller {
         String currentPath = prop.getProperty("defaultFilePath");
         fc.setInitialDirectory(new File(currentPath));
         File f = fc.showOpenDialog(stage);
-        if (f != null) {
-            // Update config.ini if a different folder was used
-            if (!f.getParent().equals(currentPath)) {
-                prop.setProperty("defaultFilePath", f.getParent());
-                prop.store(new FileOutputStream("config.ini"), null);
-            }
-            workingFile = f;
-            // Load XML
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            try (InputStream is = new FileInputStream(f)) {
-                DocumentBuilder db = dbf.newDocumentBuilder();
-                saveFile = db.parse(is);
-                PerkNode.setSaveFile(saveFile);
-                PersonalityTrait.setSaveFile(saveFile);
-                System.out.println(f);
-                fileLoaded = true;
-                worldFieldsSet = false;
-                TabPane tb = (TabPane) namespace.get("tabPane");
-                tb.setDisable(false);
-            }
-            catch (ParserConfigurationException | SAXException e) {
-                e.printStackTrace();
-            }
-            loadCharacterSelector();
+        if (f == null) {
+            return;
         }
+        // Update config.ini if a different folder was used
+        if (!f.getParent().equals(currentPath)) {
+            prop.setProperty("defaultFilePath", f.getParent());
+            prop.store(new FileOutputStream("config.ini"), null);
+        }
+        workingFile = f;
+        // Load XML
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try (InputStream is = new FileInputStream(f)) {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            saveFile = db.parse(is);
+            PerkNode.setSaveFile(saveFile);
+            PersonalityTrait.setSaveFile(saveFile);
+            System.out.println(f);
+            fileLoaded = true;
+            worldFieldsSet = false;
+            TabPane tb = (TabPane) namespace.get("tabPane");
+            tb.setDisable(false);
+        }
+        catch (ParserConfigurationException | SAXException e) {
+            e.printStackTrace();
+        }
+        loadCharacterSelector();
     }
 
     /**
@@ -655,28 +656,35 @@ public class Controller {
         for (ComboBox<NpcCharacter> comboBox : comboBoxes) {
             comboBox.setConverter(new StringConverter<>() {
                 @Override
-                public String toString(@NotNull NpcCharacter npcCharacter) {
-                    return npcCharacter.getName();
+                public String toString(NpcCharacter npcCharacter) {
+                    return npcCharacter != null ? npcCharacter.getName() : null;
                 }
 
                 @Override
-                public @Nullable NpcCharacter fromString(String s) {
-                    return null;
+                public @Nullable NpcCharacter fromString(String string) {
+                    return comboBox.getItems().stream().filter(object ->
+                            object.getName().equals(string)).findFirst().orElse(null);
                 }
             });
         }
+        //new AutoCompleteComboBoxListener<>(characterSelector);
+        Utility.AddAutoCompleteToComboBox(characterSelector, (typedText, itemToCompare) ->
+                itemToCompare.getName().toLowerCase().contains(typedText.toLowerCase()));
     }
 
     /**
      * Changes the current character to be edited to the character selected by the character selector
-     *
-     * @param event ActionEvent from the character selector ComboBox
      */
     @FXML
-    private void selectCharacter(@NotNull ActionEvent event) {
-        event.consume();
+    private void selectCharacter() {
+        fieldsSet = false;
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
+
+        if(cb.getValue() == null){
+            return;
+        }
+
         String charId = cb.getValue().getId();
         setCharacterNode(charId);
         Button btn = (Button) namespace.get("deleteCharacter");
@@ -727,7 +735,8 @@ public class Controller {
      * @param charId Character id of the character being edited
      */
     private void setCharacterNode(@NotNull String charId) {
-        Node idNode = getNodeByIdValue(charId);
+        System.out.println("Switching to character: " + charId);
+        Node idNode = getCharacterNode(charId);
         characterNode = idNode.getParentNode().getParentNode();
         Node perksNode = getNode("perks");
         PerkNode.setPerksNode(perksNode);
@@ -1619,7 +1628,9 @@ public class Controller {
      */
     private void setWorldFields() {
         Element coreInfo = getElementByTagName(saveFile, "coreInfo");
+
         //region Set Date
+
         Element date = getElementByTagName(coreInfo, "date");
         int year = Integer.parseInt(date.getAttribute("year"));
         int month = Integer.parseInt(date.getAttribute("month"));
@@ -1628,9 +1639,9 @@ public class Controller {
         baseDate.clear();
         currentDate.clear();
         //noinspection MagicConstant
-        baseDate.set(year, month, day);
+        baseDate.set(year, month - 1, day);
         //noinspection MagicConstant
-        currentDate.set(year, month, day);
+        currentDate.set(year, month - 1, day);
         currentDate.add(Calendar.SECOND, seconds);
         String baseId = "coreInfo$date$";
         TextField tf = (TextField) namespace.get(baseId + "year");
@@ -1644,8 +1655,10 @@ public class Controller {
         @SuppressWarnings("unchecked")
         ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(baseId + "month");
         ObservableList<Attribute> items = cb.getItems();
-        cb.setValue(matchComboBoxItem(items, String.valueOf(currentDate.get(Calendar.MONTH))));
+        cb.setValue(matchComboBoxItem(items, String.valueOf(currentDate.get(Calendar.MONTH) + 1)));
+
         //endregion
+
         Node dialogueFlags = getElementByTagName(saveFile, "dialogueFlags");
         NodeList flags = dialogueFlags.getChildNodes();
         for (int i = 0; i < flags.getLength(); i++) {
@@ -1674,8 +1687,8 @@ public class Controller {
         NodeList relationships = relationshipsNode.getChildNodes();
         VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
-        @SuppressWarnings("unchecked")
-        ObservableList<NpcCharacter> npcChars = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
+        //@SuppressWarnings("unchecked")
+        //ObservableList<NpcCharacter> npcChars = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
         for (int i = 0; i < relationships.getLength(); i++) {
             if (relationships.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
@@ -1700,7 +1713,7 @@ public class Controller {
             valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
             Button btn = new Button("Goto Character");
             btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
-            NpcCharacter npc = matchNpc(npcChars, charId);
+            //NpcCharacter npc = matchNpc(npcChars, charId);
             // possible catch and delete relation entry for deleted npcs
             btn.setOnAction(event -> {
                 String[] id = getId(event).split("\\$");
@@ -2128,7 +2141,7 @@ public class Controller {
                 return attribute;
             }
         }
-        throw new NoSuchElementException("Attribute with value {" + value + "} not found");
+        throw new NoSuchElementException("Attribute with value {" + value + "} not found in list " + Debug.listToString(list, 5));
     }
 
     /**
@@ -2412,7 +2425,7 @@ public class Controller {
      * @param id Value attribute to search for
      * @return Node representing the id tag with corresponding value attribute
      */
-    private Node getNodeByIdValue(@NotNull String id) {
+    private Node getCharacterNode(@NotNull String id) {
         if (id.equals("PlayerCharacter")) {
             Node playerNode = getElementByTagName(saveFile, "playerCharacter");
             Node characterNode = playerNode.getChildNodes().item(1);
