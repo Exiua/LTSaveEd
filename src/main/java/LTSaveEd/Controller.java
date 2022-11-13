@@ -909,7 +909,7 @@ public class Controller {
             Node value = getValueNode(event);
             Attribute monthAttr = cb.getValue();
             int month = Integer.parseInt(monthAttr.getValue());
-            currentDate.set(Calendar.MONTH, month);
+            currentDate.set(Calendar.MONTH, month - 1);
             value.setTextContent(String.valueOf(getSaveTimeValue()));
             updateDayTextField(fxId, monthAttr);
         }
