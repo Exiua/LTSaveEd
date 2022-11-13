@@ -1,3 +1,7 @@
 .scroll-pane {
     -fx-background-color:transparent;
 }
+
+.combo-box .combo-box-popup > .list-view {
+    -fx-min-height: 200;
+}

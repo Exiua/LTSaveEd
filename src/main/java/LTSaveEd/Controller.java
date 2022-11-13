@@ -667,6 +667,7 @@ public class Controller {
                 }
             });
         }
+        //new AutoCompleteComboBoxListener<>(characterSelector);
         Utility.AddAutoCompleteToComboBox(characterSelector, (typedText, itemToCompare) ->
                 itemToCompare.getName().toLowerCase().contains(typedText.toLowerCase()));
     }
@@ -679,6 +680,11 @@ public class Controller {
         fieldsSet = false;
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
+
+        if(cb.getValue() == null){
+            return;
+        }
+
         String charId = cb.getValue().getId();
         setCharacterNode(charId);
         Button btn = (Button) namespace.get("deleteCharacter");
