@@ -30,17 +30,20 @@ public class AutoCompleteComboBoxListener<T> implements EventHandler<KeyEvent> {
             caretPos = -1;
             moveCaret(comboBox.getEditor().getText().length());
             return;
-        } else if(event.getCode() == KeyCode.DOWN) {
+        }
+        else if(event.getCode() == KeyCode.DOWN) {
             if(!comboBox.isShowing()) {
                 comboBox.show();
             }
             caretPos = -1;
             moveCaret(comboBox.getEditor().getText().length());
             return;
-        } else if(event.getCode() == KeyCode.BACK_SPACE) {
+        }
+        else if(event.getCode() == KeyCode.BACK_SPACE) {
             moveCaretToPos = true;
             caretPos = comboBox.getEditor().getCaretPosition();
-        } else if(event.getCode() == KeyCode.DELETE) {
+        }
+        else if(event.getCode() == KeyCode.DELETE) {
             moveCaretToPos = true;
             caretPos = comboBox.getEditor().getCaretPosition();
         }

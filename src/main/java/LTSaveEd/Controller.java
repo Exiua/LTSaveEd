@@ -8,6 +8,7 @@ import LTSaveEd.DataObjects.InventoryElements.InventoryWeapon;
 import LTSaveEd.Util.Debug;
 import LTSaveEd.Util.InitializeElements;
 import LTSaveEd.Util.TextFieldType;
+import LTSaveEd.Util.Utility;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -660,11 +661,14 @@ public class Controller {
                 }
 
                 @Override
-                public @Nullable NpcCharacter fromString(String s) {
-                    return null;
+                public @Nullable NpcCharacter fromString(String string) {
+                    return comboBox.getItems().stream().filter(object ->
+                            object.getName().equals(string)).findFirst().orElse(null);
                 }
             });
         }
+        Utility.AddAutoCompleteToComboBox(characterSelector, (typedText, itemToCompare) ->
+                itemToCompare.getName().toLowerCase().contains(typedText.toLowerCase()));
     }
 
     /**

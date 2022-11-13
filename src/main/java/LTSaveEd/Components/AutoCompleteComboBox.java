@@ -51,8 +51,8 @@ public class AutoCompleteComboBox {
             return this.hidden;
         }
 
-        private boolean isHidden() {
-            return this.hiddenProperty().get();
+        private boolean isVisible() {
+            return !this.hiddenProperty().get();
         }
 
         private void setHidden(boolean hidden) {
@@ -80,7 +80,7 @@ public class AutoCompleteComboBox {
             hideableHideableItems.add(hideableItem);
         }
 
-        FilteredList<HideableItem<T>> filteredHideableItems = new FilteredList<>(hideableHideableItems, t -> !t.isHidden());
+        FilteredList<HideableItem<T>> filteredHideableItems = new FilteredList<>(hideableHideableItems, t -> t.isVisible());
 
         ComboBox<HideableItem<T>> comboBox = new ComboBox<>();
         comboBox.setItems(filteredHideableItems);
@@ -190,5 +190,130 @@ public class AutoCompleteComboBox {
         });
 
         return comboBox;
+    }
+
+    public static <T> void addAutoCompleteToComboBox(ComboBox<T> comboBox, StringConverter<HideableItem<T>> converter) {
+        ObservableList<HideableItem<T>> hideableItems = FXCollections.observableArrayList(hideableItem -> new Observable[]
+                {
+                        hideableItem.hiddenProperty()
+                });
+
+        var items = comboBox.getItems();
+
+        for (T item : items) {
+            HideableItem<T> hideableItem = new HideableItem<>(item, converter);
+            hideableItems.add(hideableItem);
+        }
+
+        FilteredList<HideableItem<T>> filteredHideableItems = new FilteredList<>(hideableItems, t -> t.isVisible());
+
+        @SuppressWarnings("unchecked")
+        ComboBox<HideableItem<T>> moddedComboBox = (ComboBox<HideableItem<T>>) comboBox;
+        moddedComboBox.setItems(filteredHideableItems);
+        moddedComboBox.setConverter(converter);
+
+        ComboBoxListViewSkin<HideableItem<T>> comboBoxListViewSkin = new ComboBoxListViewSkin<>(moddedComboBox);
+        comboBoxListViewSkin.getPopupContent().addEventFilter(KeyEvent.ANY, (KeyEvent event) ->
+        {
+            if (event.getCode() == KeyCode.SPACE) {
+                event.consume();
+            }
+        });
+        moddedComboBox.setSkin(comboBoxListViewSkin);
+
+        @SuppressWarnings("unchecked")
+        HideableItem<T>[] selectedItem = (HideableItem<T>[]) new HideableItem[1];
+
+        moddedComboBox.addEventHandler(KeyEvent.KEY_PRESSED, event ->
+        {
+            if (!moddedComboBox.isShowing() || event.isShiftDown() || event.isControlDown()) {
+                return;
+            }
+            moddedComboBox.setEditable(true);
+            moddedComboBox.getEditor().clear();
+        });
+
+        moddedComboBox.showingProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) ->
+        {
+            if (newValue) {
+                @SuppressWarnings("unchecked")
+                ListView<HideableItem<T>> lv = (ListView<HideableItem<T>>) ((ComboBoxListViewSkin<?>) moddedComboBox.getSkin()).getPopupContent();
+
+                Platform.runLater(() ->
+                {
+                    if (selectedItem[0] == null) // first use
+                    {
+                        double cellHeight = ((Control) lv.lookup(".list-cell")).getHeight();
+                        lv.setFixedCellSize(cellHeight);
+                    }
+                });
+
+                lv.scrollTo(moddedComboBox.getValue());
+            }
+            else {
+
+                HideableItem<T> value = moddedComboBox.getValue();
+                if (value != null) {
+                    selectedItem[0] = value;
+                }
+
+                moddedComboBox.setEditable(false);
+                if (value != null) {
+                    Platform.runLater(() ->
+                    {
+                        moddedComboBox.getSelectionModel().select(selectedItem[0]);
+                        moddedComboBox.setValue(selectedItem[0]);
+                    });
+                }
+
+            }
+        });
+
+        moddedComboBox.setOnHidden((Event event) ->
+        {
+            for (HideableItem<T> item : hideableItems) {
+                item.setHidden(false);
+            }
+        });
+        moddedComboBox.valueProperty().addListener((ObservableValue<? extends HideableItem<T>> obs, HideableItem<T> oldValue, HideableItem<T> newValue) ->
+        {
+            if (newValue == null) {
+                for (HideableItem<T> item : hideableItems) {
+                    item.setHidden(false);
+                }
+            }
+        });
+
+        moddedComboBox.getEditor().textProperty().addListener((ObservableValue<? extends String> obs, String oldValue, String newValue) ->
+        {
+            if (!moddedComboBox.isShowing()) {
+                return;
+            }
+
+            Platform.runLater(() ->
+            {
+                if (moddedComboBox.getSelectionModel().getSelectedItem() == null) {
+                    for (HideableItem<T> item : hideableItems) {
+                        item.setHidden(!item.toString().toLowerCase().contains(newValue.toLowerCase()));
+                    }
+                }
+                else {
+
+                    boolean validText = false;
+
+                    for (HideableItem<T> hideableItem : hideableItems) {
+                        if (hideableItem.toString().equals(newValue)) {
+                            validText = true;
+                            break;
+                        }
+                    }
+
+                    if (!validText) {
+                        moddedComboBox.getSelectionModel().select(null);
+                    }
+                }
+            });
+        });
+
     }
 }
