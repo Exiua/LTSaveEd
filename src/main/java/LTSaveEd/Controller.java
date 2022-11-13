@@ -1622,7 +1622,9 @@ public class Controller {
      */
     private void setWorldFields() {
         Element coreInfo = getElementByTagName(saveFile, "coreInfo");
+
         //region Set Date
+
         Element date = getElementByTagName(coreInfo, "date");
         int year = Integer.parseInt(date.getAttribute("year"));
         int month = Integer.parseInt(date.getAttribute("month"));
@@ -1631,9 +1633,9 @@ public class Controller {
         baseDate.clear();
         currentDate.clear();
         //noinspection MagicConstant
-        baseDate.set(year, month, day);
+        baseDate.set(year, month - 1, day);
         //noinspection MagicConstant
-        currentDate.set(year, month, day);
+        currentDate.set(year, month - 1, day);
         currentDate.add(Calendar.SECOND, seconds);
         String baseId = "coreInfo$date$";
         TextField tf = (TextField) namespace.get(baseId + "year");
@@ -1647,8 +1649,10 @@ public class Controller {
         @SuppressWarnings("unchecked")
         ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(baseId + "month");
         ObservableList<Attribute> items = cb.getItems();
-        cb.setValue(matchComboBoxItem(items, String.valueOf(currentDate.get(Calendar.MONTH))));
+        cb.setValue(matchComboBoxItem(items, String.valueOf(currentDate.get(Calendar.MONTH) + 1)));
+
         //endregion
+
         Node dialogueFlags = getElementByTagName(saveFile, "dialogueFlags");
         NodeList flags = dialogueFlags.getChildNodes();
         for (int i = 0; i < flags.getLength(); i++) {
