@@ -21,18 +21,22 @@ def get_item_ids(item_dir_path) -> list[str]:
     for contributor in contributors:
         contributor_subdir_path = os.path.join(item_dir_path, contributor)
         _, contributor_directories, contributor_files = next(os.walk(contributor_subdir_path), (None, [], []))
-        for directory in contributor_directories:
+
+        for directory in contributor_directories:  # Gets nested files (e.g. innoxia dir)
             items = os.listdir(os.path.join(contributor_subdir_path, directory))
+
             for item in items:
                 if ".xml" not in item:
                     continue
                 item_id = f"{contributor}_{directory}_{item.replace('.xml', '')}"
                 item_ids.append(item_id)
-        for file in contributor_files:
+
+        for file in contributor_files:  # Gets top level files (e.g. TonyJC dir)
             if ".xml" not in file:
                 continue
             item_id = f"{contributor}_{file.replace('.xml', '')}"
             item_ids.append(item_id)
+
     return item_ids
 
 
