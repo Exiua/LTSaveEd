@@ -124,12 +124,82 @@
             <TabItem.Header>
                 <TextBlock VerticalAlignment="Center">Attributes</TextBlock>
             </TabItem.Header>
-            <StackPanel>
-                <TextBlock
-                    Text="I am in the triangle page ! I'll put a button to show you that each page contains what you want."
-                    HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Button>A button in the triangle page !</Button>
-            </StackPanel>
+            <Grid ColumnDefinitions="750, Auto" RowDefinitions="Auto, Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Health Core:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Mana Core:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Experience:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Action Points:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Arousal:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Lust Core:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Resting Lust:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Physique Core:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Arcane Core:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Corruption Core:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Enchantment Limit:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Fertility:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Virility:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Spell Cost Modifier:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 80" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Critical Damage:" VerticalAlignment="Center"/>
+                        <TextBox Width="150"/>
+                        <TextBlock Text="/ 500" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+                    <TextBlock>Health Core:</TextBlock>
+                </StackPanel>
+            </Grid>
         </TabItem>
         <TabItem>
             <TabItem.Header>
