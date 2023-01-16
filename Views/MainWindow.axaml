@@ -205,10 +205,102 @@
             <TabItem.Header>
                 <TextBlock VerticalAlignment="Center">Body</TextBlock>
             </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
+            <TabControl>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Body Core</TextBlock>
+                    </TabItem.Header>
+                    <StackPanel Orientation="Vertical" Spacing="10" Margin="20">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Body Material:" VerticalAlignment="Center"/>
+                            <ComboBox Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Body Size:" VerticalAlignment="Center"/>
+                            <TextBox Width="150"/>
+                            <TextBlock Text="Label" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Femininity:" VerticalAlignment="Center"/>
+                            <TextBox Width="150"/>
+                            <TextBlock Text="Label" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Feral:" VerticalAlignment="Center"/>
+                            <CheckBox VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Genital Arrangement:" VerticalAlignment="Center"/>
+                            <ComboBox Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Height:" VerticalAlignment="Center"/>
+                            <TextBox Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Muscles:" VerticalAlignment="Center"/>
+                            <TextBox Width="150"/>
+                            <TextBlock Text="Label" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Pierced Stomach:" VerticalAlignment="Center"/>
+                            <CheckBox VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Pubic Hair:" VerticalAlignment="Center"/>
+                            <ComboBox Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Subspecies Override:" VerticalAlignment="Center"/>
+                            <ComboBox Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Takes After Mother:" VerticalAlignment="Center"/>
+                            <CheckBox VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Head</TextBlock>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Face</TextBlock>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Breasts</TextBlock>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Breasts Crotch</TextBlock>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Torso</TextBlock>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Penis</TextBlock>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Vagina</TextBlock>
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Ass</TextBlock>
+                    </TabItem.Header>
+                </TabItem>
+            </TabControl>
         </TabItem>
         <TabItem>
             <TabItem.Header>
