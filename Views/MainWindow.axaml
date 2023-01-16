@@ -3,7 +3,7 @@
         xmlns:vm="using:LTSaveEd.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="LTSaveEd.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="LTSaveEd">
@@ -11,9 +11,216 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <TabControl>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Core</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal" Spacing="500" Margin="20">
+                <StackPanel Orientation="Vertical" Spacing="10">
+                    <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                        <TextBlock Text="Character:" VerticalAlignment="Center" />
+                        <ComboBox Width="175" />
+                        <Button Width="175" Height="30" Foreground="Red" HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center">
+                            DELETE CHARACTER
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Id:" VerticalAlignment="Center" />
+                        <TextBox Width="250" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Name (A, F, M):" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                        <TextBox Width="150" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Description:" VerticalAlignment="Center" />
+                        <TextBox Width="475" Height="75" AcceptsReturn="True" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Level:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                        <TextBlock Text="Experience:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Money:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Date of Birth:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                        <ComboBox Width="150" SelectedIndex="0" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Job History:" VerticalAlignment="Center" />
+                        <ComboBox Width="150" SelectedIndex="0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Orientation:" VerticalAlignment="Center" />
+                        <ComboBox Width="150" SelectedIndex="0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Obedience:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Gender Identity:" VerticalAlignment="Center" />
+                        <ComboBox Width="200" SelectedIndex="0" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Perk Points:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Essence Count:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Health:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="Mana:" VerticalAlignment="Center" />
+                        <TextBox Width="150" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Spacing="10" Height="550">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="50">
+                        <TextBlock TextAlignment="Center" FontWeight="Bold">Personality</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
+                        <CheckBox>Confident</CheckBox>
+                        <CheckBox>Shy</CheckBox>
+                        <CheckBox>Kind</CheckBox>
+                        <CheckBox>Selfish</CheckBox>
+                        <CheckBox>Naive</CheckBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
+                        <CheckBox>Cynical</CheckBox>
+                        <CheckBox>Brave</CheckBox>
+                        <CheckBox>Cowardly</CheckBox>
+                        <CheckBox>Lewd</CheckBox>
+                        <CheckBox>Innocent</CheckBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
+                        <CheckBox>Prude</CheckBox>
+                        <CheckBox>Lisp</CheckBox>
+                        <CheckBox>Stutter</CheckBox>
+                        <CheckBox>Mute</CheckBox>
+                        <CheckBox>Slovenly</CheckBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Attributes</TextBlock>
+            </TabItem.Header>
+            <StackPanel>
+                <TextBlock
+                    Text="I am in the triangle page ! I'll put a button to show you that each page contains what you want."
+                    HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button>A button in the triangle page !</Button>
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Body</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Fetishes</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Perks</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Spells</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Inventory</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Relationships</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Family</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">World</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Extra</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+        <TabItem IsEnabled="False">
+            <TabItem.Header>
+                <TextBlock VerticalAlignment="Center">Pregnancy</TextBlock>
+            </TabItem.Header>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Rectangle Fill="Blue" Width="63" Height="41" />
+            </StackPanel>
+        </TabItem>
+    </TabControl>
 
 </Window>
