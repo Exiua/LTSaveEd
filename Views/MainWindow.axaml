@@ -3,6 +3,7 @@
         xmlns:vm="using:LTSaveEd.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:LTSaveEd.ViewModels"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="LTSaveEd.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -18,7 +19,7 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Open">
-                    <MenuItem Header="_Import..." />
+                    <MenuItem Header="_Import..." Command="{Binding LoadFile}" />
                 </MenuItem>
                 <MenuItem Header="_Save As">
                     <MenuItem Header="Overwrite" />
@@ -44,7 +45,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Id:" VerticalAlignment="Center" />
-                                <TextBox Width="250" />
+                                <TextBox Text="{Binding CoreTabViewModel.CharacterId}" Width="250" IsReadOnly="True" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Name (A, F, M):" VerticalAlignment="Center" />
