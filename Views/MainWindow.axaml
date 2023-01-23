@@ -14,375 +14,391 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <TabControl>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Core</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal" Spacing="500" Margin="20">
-                <StackPanel Orientation="Vertical" Spacing="10">
-                    <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
-                        <TextBlock Text="Character:" VerticalAlignment="Center" />
-                        <ComboBox Width="175" />
-                        <Button Width="175" Height="30" Foreground="Red" HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center">
-                            DELETE CHARACTER
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Id:" VerticalAlignment="Center" />
-                        <TextBox Width="250" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Name (A, F, M):" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                        <TextBox Width="150" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Description:" VerticalAlignment="Center" />
-                        <TextBox Width="475" Height="75" AcceptsReturn="True" TextWrapping="Wrap" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Level:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                        <TextBlock Text="Experience:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Money:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Date of Birth:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                        <ComboBox Width="150" SelectedIndex="0" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Job History:" VerticalAlignment="Center" />
-                        <ComboBox Width="150" SelectedIndex="0" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Orientation:" VerticalAlignment="Center" />
-                        <ComboBox Width="150" SelectedIndex="0" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Obedience:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Gender Identity:" VerticalAlignment="Center" />
-                        <ComboBox Width="200" SelectedIndex="0" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Perk Points:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Essence Count:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Health:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Mana:" VerticalAlignment="Center" />
-                        <TextBox Width="150" />
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Spacing="10" Height="550">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="50">
-                        <TextBlock TextAlignment="Center" FontWeight="Bold">Personality</TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
-                        <CheckBox>Confident</CheckBox>
-                        <CheckBox>Shy</CheckBox>
-                        <CheckBox>Kind</CheckBox>
-                        <CheckBox>Selfish</CheckBox>
-                        <CheckBox>Naive</CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
-                        <CheckBox>Cynical</CheckBox>
-                        <CheckBox>Brave</CheckBox>
-                        <CheckBox>Cowardly</CheckBox>
-                        <CheckBox>Lewd</CheckBox>
-                        <CheckBox>Innocent</CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
-                        <CheckBox>Prude</CheckBox>
-                        <CheckBox>Lisp</CheckBox>
-                        <CheckBox>Stutter</CheckBox>
-                        <CheckBox>Mute</CheckBox>
-                        <CheckBox>Slovenly</CheckBox>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Attributes</TextBlock>
-            </TabItem.Header>
-            <Grid ColumnDefinitions="750, Auto" RowDefinitions="Auto, Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="0">
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Health Core:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Mana Core:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Experience:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Action Points:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Arousal:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Lust Core:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Resting Lust:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Physique Core:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Arcane Core:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Corruption Core:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Enchantment Limit:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Fertility:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Virility:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 100" VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Spell Cost Modifier:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 80" VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <TextBlock Text="Critical Damage:" VerticalAlignment="Center"/>
-                        <TextBox Width="150"/>
-                        <TextBlock Text="/ 500" VerticalAlignment="Center" />
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
-                    <TextBlock>Health Core:</TextBlock>
-                </StackPanel>
-            </Grid>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Body</TextBlock>
-            </TabItem.Header>
+    <Panel>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Open">
+                    <MenuItem Header="_Import..." />
+                </MenuItem>
+                <MenuItem Header="_Save As">
+                    <MenuItem Header="Overwrite" />
+                    <MenuItem Header="Export..." />
+                </MenuItem>
+                <MenuItem Header="Update?"/>
+            </Menu>
+
             <TabControl>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Body Core</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Core</TextBlock>
                     </TabItem.Header>
-                    <StackPanel Orientation="Vertical" Spacing="10" Margin="20">
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Body Material:" VerticalAlignment="Center"/>
-                            <ComboBox Width="150"/>
+                    <StackPanel Orientation="Horizontal" Spacing="500" Margin="20">
+                        <StackPanel Orientation="Vertical" Spacing="10">
+                            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                                <TextBlock Text="Character:" VerticalAlignment="Center" />
+                                <ComboBox Width="175" />
+                                <Button Width="175" Height="30" Foreground="Red" HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center">
+                                    DELETE CHARACTER
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Id:" VerticalAlignment="Center" />
+                                <TextBox Width="250" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Name (A, F, M):" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBox Width="150" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Description:" VerticalAlignment="Center" />
+                                <TextBox Width="475" Height="75" AcceptsReturn="True" TextWrapping="Wrap" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Level:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="Experience:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Money:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Date of Birth:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <ComboBox Width="150" SelectedIndex="0" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Job History:" VerticalAlignment="Center" />
+                                <ComboBox Width="150" SelectedIndex="0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Orientation:" VerticalAlignment="Center" />
+                                <ComboBox Width="150" SelectedIndex="0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Obedience:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Gender Identity:" VerticalAlignment="Center" />
+                                <ComboBox Width="200" SelectedIndex="0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Perk Points:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Essence Count:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Health:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Mana:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Body Size:" VerticalAlignment="Center"/>
-                            <TextBox Width="150"/>
-                            <TextBlock Text="Label" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Femininity:" VerticalAlignment="Center"/>
-                            <TextBox Width="150"/>
-                            <TextBlock Text="Label" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Feral:" VerticalAlignment="Center"/>
-                            <CheckBox VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Genital Arrangement:" VerticalAlignment="Center"/>
-                            <ComboBox Width="150"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Height:" VerticalAlignment="Center"/>
-                            <TextBox Width="150"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Muscles:" VerticalAlignment="Center"/>
-                            <TextBox Width="150"/>
-                            <TextBlock Text="Label" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Pierced Stomach:" VerticalAlignment="Center"/>
-                            <CheckBox VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Pubic Hair:" VerticalAlignment="Center"/>
-                            <ComboBox Width="150"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Subspecies Override:" VerticalAlignment="Center"/>
-                            <ComboBox Width="150"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="Takes After Mother:" VerticalAlignment="Center"/>
-                            <CheckBox VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Vertical" Spacing="10" Height="550">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="50">
+                                <TextBlock TextAlignment="Center" FontWeight="Bold">Personality</TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
+                                <CheckBox>Confident</CheckBox>
+                                <CheckBox>Shy</CheckBox>
+                                <CheckBox>Kind</CheckBox>
+                                <CheckBox>Selfish</CheckBox>
+                                <CheckBox>Naive</CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
+                                <CheckBox>Cynical</CheckBox>
+                                <CheckBox>Brave</CheckBox>
+                                <CheckBox>Cowardly</CheckBox>
+                                <CheckBox>Lewd</CheckBox>
+                                <CheckBox>Innocent</CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
+                                <CheckBox>Prude</CheckBox>
+                                <CheckBox>Lisp</CheckBox>
+                                <CheckBox>Stutter</CheckBox>
+                                <CheckBox>Mute</CheckBox>
+                                <CheckBox>Slovenly</CheckBox>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Head</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Attributes</TextBlock>
                     </TabItem.Header>
+                    <Grid ColumnDefinitions="750, Auto" RowDefinitions="Auto, Auto" HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="0">
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Health Core:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Mana Core:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Experience:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Action Points:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Arousal:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Lust Core:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Resting Lust:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Physique Core:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Arcane Core:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Corruption Core:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Enchantment Limit:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Fertility:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Virility:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 100" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Spell Cost Modifier:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 80" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Critical Damage:" VerticalAlignment="Center" />
+                                <TextBox Width="150" />
+                                <TextBlock Text="/ 500" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+                            <TextBlock>Health Core:</TextBlock>
+                        </StackPanel>
+                    </Grid>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Face</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Body</TextBlock>
                     </TabItem.Header>
+                    <TabControl>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Body Core</TextBlock>
+                            </TabItem.Header>
+                            <StackPanel Orientation="Vertical" Spacing="10" Margin="20">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Body Material:" VerticalAlignment="Center" />
+                                    <ComboBox Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Body Size:" VerticalAlignment="Center" />
+                                    <TextBox Width="150" />
+                                    <TextBlock Text="Label" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Femininity:" VerticalAlignment="Center" />
+                                    <TextBox Width="150" />
+                                    <TextBlock Text="Label" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Feral:" VerticalAlignment="Center" />
+                                    <CheckBox VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Genital Arrangement:" VerticalAlignment="Center" />
+                                    <ComboBox Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Height:" VerticalAlignment="Center" />
+                                    <TextBox Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Muscles:" VerticalAlignment="Center" />
+                                    <TextBox Width="150" />
+                                    <TextBlock Text="Label" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Pierced Stomach:" VerticalAlignment="Center" />
+                                    <CheckBox VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Pubic Hair:" VerticalAlignment="Center" />
+                                    <ComboBox Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Subspecies Override:" VerticalAlignment="Center" />
+                                    <ComboBox Width="150" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock Text="Takes After Mother:" VerticalAlignment="Center" />
+                                    <CheckBox VerticalAlignment="Center" />
+                                </StackPanel>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Head</TextBlock>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Face</TextBlock>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Breasts</TextBlock>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Breasts Crotch</TextBlock>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Torso</TextBlock>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Penis</TextBlock>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Vagina</TextBlock>
+                            </TabItem.Header>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock VerticalAlignment="Center">Ass</TextBlock>
+                            </TabItem.Header>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Breasts</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Fetishes</TextBlock>
                     </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Breasts Crotch</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Perks</TextBlock>
                     </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Torso</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Spells</TextBlock>
                     </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Penis</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Inventory</TextBlock>
                     </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Vagina</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Relationships</TextBlock>
                     </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock VerticalAlignment="Center">Ass</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Family</TextBlock>
                     </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">World</TextBlock>
+                    </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Extra</TextBlock>
+                    </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem IsEnabled="False">
+                    <TabItem.Header>
+                        <TextBlock VerticalAlignment="Center">Pregnancy</TextBlock>
+                    </TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <Rectangle Fill="Blue" Width="63" Height="41" />
+                    </StackPanel>
                 </TabItem>
             </TabControl>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Fetishes</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Perks</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Spells</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Inventory</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Relationships</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Family</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">World</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Extra</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-        <TabItem IsEnabled="False">
-            <TabItem.Header>
-                <TextBlock VerticalAlignment="Center">Pregnancy</TextBlock>
-            </TabItem.Header>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Square : " HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Rectangle Fill="Blue" Width="63" Height="41" />
-            </StackPanel>
-        </TabItem>
-    </TabControl>
+        </DockPanel>
+    </Panel>
 
 </Window>
