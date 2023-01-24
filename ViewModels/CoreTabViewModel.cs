@@ -258,4 +258,113 @@ public class CoreTabViewModel : TabViewModel
             Confident = false;
         }
     }
+    
+    public void ToggleSelfishTrait()
+    {
+        if (Selfish)
+        {
+            Kind = false;
+        }
+    }
+    
+    public void ToggleKindTrait()
+    {
+        if (Kind)
+        {
+            Selfish = false;
+        }
+    }
+    
+    public void ToggleCynicalTrait()
+    {
+        if (Cynical)
+        {
+            Naive = false;
+        }
+    }
+    
+    public void ToggleNaiveTrait()
+    {
+        if (Naive)
+        {
+            Cynical = false;
+        }
+    }
+    
+    public void ToggleCowardlyTrait()
+    {
+        if (Cowardly)
+        {
+            Brave = false;
+        }
+    }
+    
+    public void ToggleBraveTrait()
+    {
+        if (Brave)
+        {
+            Cowardly = false;
+        }
+    }
+    
+    public void TogglePrudeTrait()
+    {
+        if (Prude)
+        {
+            Lewd = false;
+            Innocent = false;
+        }
+    }
+    
+    public void ToggleLewdTrait()
+    {
+        if (Lewd)
+        {
+            Prude = false;
+            Innocent = false;
+        }
+    }
+    
+    public void ToggleInnocentTrait()
+    {
+        if (Innocent)
+        {
+            Prude = false;
+            Lewd = false;
+        }
+    }
+    
+    public void ToggleMuteTrait()
+    {
+        if (Mute)
+        {
+            Lisp = false;
+            Stutter = false;
+            Slovenly = false;
+        }
+    }
+    
+    public void ToggleLispTrait()
+    {
+        if (Lisp)
+        {
+            Mute = false;
+        }
+    }
+    
+    public void ToggleStutterTrait()
+    {
+        if (Stutter)
+        {
+            Mute = false;
+        }
+    }
+    
+    public void ToggleSlovenlyTrait()
+    {
+        if (Slovenly)
+        {
+            Mute = false;
+        }
+    }
 }

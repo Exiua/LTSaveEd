@@ -113,23 +113,23 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
                                 <CheckBox Command="{Binding CoreTabViewModel.ToggleConfidentTrait}" IsChecked="{Binding CoreTabViewModel.Confident}">Confident</CheckBox>
                                 <CheckBox Command="{Binding CoreTabViewModel.ToggleShyTrait}" IsChecked="{Binding CoreTabViewModel.Shy}">Shy</CheckBox>
-                                <CheckBox>Kind</CheckBox>
-                                <CheckBox>Selfish</CheckBox>
-                                <CheckBox>Naive</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleKindTrait}" IsChecked="{Binding CoreTabViewModel.Kind}">Kind</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleSelfishTrait}" IsChecked="{Binding CoreTabViewModel.Selfish}">Selfish</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleNaiveTrait}" IsChecked="{Binding CoreTabViewModel.Naive}">Naive</CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
-                                <CheckBox>Cynical</CheckBox>
-                                <CheckBox>Brave</CheckBox>
-                                <CheckBox>Cowardly</CheckBox>
-                                <CheckBox>Lewd</CheckBox>
-                                <CheckBox>Innocent</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleCynicalTrait}" IsChecked="{Binding CoreTabViewModel.Cynical}">Cynical</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleBraveTrait}" IsChecked="{Binding CoreTabViewModel.Shy}">Brave</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleCowardlyTrait}" IsChecked="{Binding CoreTabViewModel.Cowardly}">Cowardly</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleLewdTrait}" IsChecked="{Binding CoreTabViewModel.Lewd}">Lewd</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleInnocentTrait}" IsChecked="{Binding CoreTabViewModel.Innocent}">Innocent</CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
-                                <CheckBox>Prude</CheckBox>
-                                <CheckBox>Lisp</CheckBox>
-                                <CheckBox>Stutter</CheckBox>
-                                <CheckBox>Mute</CheckBox>
-                                <CheckBox>Slovenly</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.TogglePrudeTrait}" IsChecked="{Binding CoreTabViewModel.Prude}">Prude</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleLispTrait}" IsChecked="{Binding CoreTabViewModel.Lisp}">Lisp</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleStutterTrait}" IsChecked="{Binding CoreTabViewModel.Stutter}">Stutter</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleMuteTrait}" IsChecked="{Binding CoreTabViewModel.Mute}">Mute</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleSlovenlyTrait}" IsChecked="{Binding CoreTabViewModel.Slovenly}">Slovenly</CheckBox>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
