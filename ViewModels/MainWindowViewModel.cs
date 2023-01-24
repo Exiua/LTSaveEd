@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
 using LTSaveEd.Models;
 using LTSaveEd.Views;
-using LTSaveEd.Utility;
 using ReactiveUI;
 
 namespace LTSaveEd.ViewModels;
@@ -12,11 +11,15 @@ public class MainWindowViewModel : ReactiveObject
 
     private static SaveFile SaveFile => SaveFile.savefile;
 
+    private readonly List<TabViewModel> _tabs;
+
     public CoreTabViewModel CoreTabViewModel { get; }
 
     public MainWindowViewModel()
     {
+        _tabs = new List<TabViewModel>();
         CoreTabViewModel = new CoreTabViewModel();
+        _tabs.Add(CoreTabViewModel);
     }
     
     public async void LoadFile()
@@ -33,6 +36,9 @@ public class MainWindowViewModel : ReactiveObject
 
     private void LoadData()
     {
-        CoreTabViewModel.PopulateTab();
+        foreach (var tab in _tabs)
+        {
+            tab.PopulateTab();
+        }
     }
 }

@@ -49,23 +49,23 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Name (A, F, M):" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
-                                <TextBox Width="150" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.AndrogynousName}" Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.FeminineName}" Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.MasculineName}" Width="150" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Description:" VerticalAlignment="Center" />
-                                <TextBox Width="475" Height="75" AcceptsReturn="True" TextWrapping="Wrap" />
+                                <TextBox Text="{Binding CoreTabViewModel.Description}" Width="475" Height="75" AcceptsReturn="True" TextWrapping="Wrap" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Level:" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.Level}" Width="150" />
                                 <TextBlock Text="Experience:" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.Experience}" Width="150" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Money:" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.Money}" Width="150" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Date of Birth:" VerticalAlignment="Center" />
@@ -83,7 +83,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Obedience:" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.Obedience}" Width="150" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Gender Identity:" VerticalAlignment="Center" />
@@ -91,19 +91,19 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Perk Points:" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.PerkPoints}" Width="150" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Essence Count:" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.EssenceCount}" Width="150" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Health:" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.Health}" Width="150" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <TextBlock Text="Mana:" VerticalAlignment="Center" />
-                                <TextBox Width="150" />
+                                <TextBox Text="{Binding CoreTabViewModel.Mana}" Width="150" />
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Spacing="10" Height="550">
@@ -111,8 +111,8 @@
                                 <TextBlock TextAlignment="Center" FontWeight="Bold">Personality</TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
-                                <CheckBox>Confident</CheckBox>
-                                <CheckBox>Shy</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleConfidentTrait}" IsChecked="{Binding CoreTabViewModel.Confident}">Confident</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleShyTrait}" IsChecked="{Binding CoreTabViewModel.Shy}">Shy</CheckBox>
                                 <CheckBox>Kind</CheckBox>
                                 <CheckBox>Selfish</CheckBox>
                                 <CheckBox>Naive</CheckBox>
