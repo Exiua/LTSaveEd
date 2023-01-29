@@ -234,6 +234,21 @@ public class CoreTabViewModel : TabViewModel
     {
         PopulateCharacterComboBox();
         CharacterId = SaveFile.currentCharacter.GetDescendantByName("id").FirstAttribute?.Value ?? "NULL";
+        var names = SaveFile.currentCharacter.GetDescendantByName("name").Attributes();
+        foreach (var name in names)
+        {
+            switch (name.Name.LocalName)
+            {
+                case "nameAndrogynous":
+                    break;
+                case "nameFeminine":
+                    break;
+                case "nameMasculine":
+                    break;
+                default:
+                    throw new Exception($"Unknown Attribute Found: {name.Name.LocalName}");
+            }
+        }
     }
     
     private void PopulateCharacterComboBox()

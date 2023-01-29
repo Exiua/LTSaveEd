@@ -119,7 +119,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Height="50">
                                 <CheckBox Command="{Binding CoreTabViewModel.ToggleCynicalTrait}" IsChecked="{Binding CoreTabViewModel.Cynical}">Cynical</CheckBox>
-                                <CheckBox Command="{Binding CoreTabViewModel.ToggleBraveTrait}" IsChecked="{Binding CoreTabViewModel.Shy}">Brave</CheckBox>
+                                <CheckBox Command="{Binding CoreTabViewModel.ToggleBraveTrait}" IsChecked="{Binding CoreTabViewModel.Brave}">Brave</CheckBox>
                                 <CheckBox Command="{Binding CoreTabViewModel.ToggleCowardlyTrait}" IsChecked="{Binding CoreTabViewModel.Cowardly}">Cowardly</CheckBox>
                                 <CheckBox Command="{Binding CoreTabViewModel.ToggleLewdTrait}" IsChecked="{Binding CoreTabViewModel.Lewd}">Lewd</CheckBox>
                                 <CheckBox Command="{Binding CoreTabViewModel.ToggleInnocentTrait}" IsChecked="{Binding CoreTabViewModel.Innocent}">Innocent</CheckBox>
