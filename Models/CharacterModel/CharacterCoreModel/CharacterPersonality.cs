@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Xml.Linq;
+using LTSaveEd.Exceptions;
 
 namespace LTSaveEd.Models.CharacterModel.CharacterCoreModel;
 
@@ -178,6 +179,11 @@ public class CharacterPersonality
 
     public CharacterPersonality(XElement personalityElement)
     {
+        if (personalityElement.Name != "personality")
+        {
+            throw new IncorrectElementException(personalityElement);
+        }
+        
         var traits = personalityElement.Elements();
         foreach (var trait in traits)
         {

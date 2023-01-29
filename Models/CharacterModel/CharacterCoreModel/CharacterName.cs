@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using LTSaveEd.Exceptions;
 
 namespace LTSaveEd.Models.CharacterModel.CharacterCoreModel;
 
@@ -13,7 +14,7 @@ public class CharacterName
     {
         if (nameElement.Name != "name")
         {
-            throw new Exception("Incorrect Element Supplied" + nameElement);
+            throw new IncorrectElementException(nameElement);
         }
         
         var attributes = nameElement.Attributes();

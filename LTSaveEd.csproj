@@ -10,7 +10,6 @@
     <ItemGroup>
         <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
-        <Folder Include="Models\CharacterModel\CharacterBodyModel" />
         <None Remove=".gitignore" />
     </ItemGroup>
 

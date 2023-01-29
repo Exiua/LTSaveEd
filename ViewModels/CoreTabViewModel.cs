@@ -233,8 +233,8 @@ public class CoreTabViewModel : TabViewModel
     public override void PopulateTab()
     {
         PopulateCharacterComboBox();
-        CharacterId = SaveFile.currentCharacter.GetDescendantByName("id").FirstAttribute?.Value ?? "NULL";
-        var names = SaveFile.currentCharacter.GetDescendantByName("name").Attributes();
+        CharacterId = SaveFile.currentCharacterElement.GetDescendantByName("id").FirstAttribute?.Value ?? "NULL";
+        var names = SaveFile.currentCharacterElement.GetDescendantByName("name").Attributes();
         foreach (var name in names)
         {
             switch (name.Name.LocalName)
