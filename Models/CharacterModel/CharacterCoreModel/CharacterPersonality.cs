@@ -177,6 +177,11 @@ public class CharacterPersonality
         }
     }
 
+    public CharacterPersonality()
+    {
+        
+    }
+    
     public CharacterPersonality(XElement personalityElement)
     {
         if (personalityElement.Name != "personality")

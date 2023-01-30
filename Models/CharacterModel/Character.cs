@@ -9,8 +9,15 @@ public class Character
 {
     public CharacterCore core { get; }
     public CharacterBody body  { get; set; }
-    public bool player { get; set; }
+    public bool player { get; }
 
+    public Character()
+    {
+        core = new CharacterCore();
+        body = new CharacterBody();
+        player = false;
+    }
+    
     public Character(XElement characterElement)
     {
         if (characterElement.Name != "character")

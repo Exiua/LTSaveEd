@@ -7,25 +7,140 @@ namespace LTSaveEd.Models.CharacterModel.CharacterCoreModel;
 
 public class CharacterCore
 {
-    public string id { get; set; }
-    public CharacterName name { get; set; }
-    public string surname { get; set; }
-    public string description { get; set; }
-    public int level { get; set; }
-    public int experience { get; set; }
-    public int money { get; set; }
-    public DateOnly dateOfBirth { get; set; }
-    public string JobHistory { get; set; }
-    public string orientnation { get; set; }
-    public double obedience { get; set; }
-    public string genderIdentity { get; set; }
-    public int perkPoints { get; set; }
-    public int essenceCount { get; set; }
-    public float health  { get; set; }
-    public float mana { get; set; }
-    public CharacterPersonality Personality  { get; set; }
+    private string _id;
+    private CharacterName _name;
+    private string _surname;
+    private string _description;
+    private int _level;
+    private int _experience;
+    private int _money;
+    private DateOnly _dateOfBirth;
+    private string _jobHistory;
+    private string _orientation;
+    private double _obedience;
+    private string _genderIdentity;
+    private int _perkPoints;
+    private int _essenceCount;
+    private float _health;
+    private float _mana;
+    private CharacterPersonality _personality;
 
-    private static XElement CurrentCharacterElement => SaveFile.savefile.currentCharacterElement;
+    public string id
+    {
+        get => _id;
+        set => _id = value;
+    }
+
+    public CharacterName name
+    {
+        get => _name;
+        set => _name = value;
+    }
+
+    public string surname
+    {
+        get => _surname;
+        set => _surname = value;
+    }
+
+    public string description
+    {
+        get => _description;
+        set => _description = value;
+    }
+
+    public int level
+    {
+        get => _level;
+        set => _level = value;
+    }
+
+    public int experience
+    {
+        get => _experience;
+        set => _experience = value;
+    }
+
+    public int money
+    {
+        get => _money;
+        set => _money = value;
+    }
+
+    public DateOnly dateOfBirth
+    {
+        get => _dateOfBirth;
+        set => _dateOfBirth = value;
+    }
+
+    public string JobHistory
+    {
+        get => _jobHistory;
+        set => _jobHistory = value;
+    }
+
+    public string Orientation
+    {
+        get => _orientation;
+        set => _orientation = value;
+    }
+
+    public double obedience
+    {
+        get => _obedience;
+        set => _obedience = value;
+    }
+
+    public string genderIdentity
+    {
+        get => _genderIdentity;
+        set => _genderIdentity = value;
+    }
+
+    public int perkPoints
+    {
+        get => _perkPoints;
+        set => _perkPoints = value;
+    }
+
+    public int essenceCount
+    {
+        get => _essenceCount;
+        set => _essenceCount = value;
+    }
+
+    public float health
+    {
+        get => _health;
+        set => _health = value;
+    }
+
+    public float mana
+    {
+        get => _mana;
+        set => _mana = value;
+    }
+
+    public CharacterPersonality Personality
+    {
+        get => _personality;
+        set => _personality = value;
+    }
+
+    private static XElement CurrentCharacterElement => SaveFileData.savefile.currentCharacterElement;
+    private XElement coreElement { get; set; } = null!;
+
+    public CharacterCore()
+    {
+        _id = "";
+        _name = new CharacterName();
+        _surname = "";
+        _description = "";
+        _jobHistory = "";
+        _orientation = "";
+        _genderIdentity = "";
+        _personality = new CharacterPersonality();
+    }
     
     public CharacterCore(XElement coreElement)
     {
@@ -34,26 +149,27 @@ public class CharacterCore
             throw new IncorrectElementException(coreElement);
         }
 
+        this.coreElement = coreElement;
         id = GetChildAttributeValue("id");
-        name = new CharacterName(CurrentCharacterElement.GetChildByName("name"));
+        name = new CharacterName(coreElement.GetChildByName("name"));
         surname = GetChildAttributeValue("surname");
         description = GetChildAttributeValue("description");
         level = GetChildAttributeIntValue("level");
         experience = GetChildAttributeIntValue("experience");
         money = int.Parse(CurrentCharacterElement.GetChildBySequence("characterInventory", "money").FirstAttribute?.Value ?? "-1");
-        dateOfBirth = GetDateOfBirth(coreElement);
+        dateOfBirth = GetDateOfBirth();
         JobHistory = GetChildAttributeValue("history");
-        orientnation = GetChildAttributeValue("sexualOrientation");
+        Orientation = GetChildAttributeValue("sexualOrientation");
         obedience = GetChildAttributeDoubleValue("obedience");
         genderIdentity = GetChildAttributeValue("genderIdentity");
         perkPoints = GetChildAttributeIntValue("perkPoints");
         essenceCount = int.Parse(CurrentCharacterElement.GetChildBySequence("characterInventory", "essenceCount").FirstAttribute?.Value ?? "-1");;
         health = GetChildAttributeDoubleValue("health");
         mana = GetChildAttributeDoubleValue("mana");
-        Personality = new CharacterPersonality(CurrentCharacterElement.GetChildByName("personality"));
+        Personality = new CharacterPersonality(coreElement.GetChildByName("personality"));
     }
 
-    private DateOnly GetDateOfBirth(XElement coreElement)
+    private DateOnly GetDateOfBirth()
     {
         var year = int.Parse(coreElement.GetChildAttributeByName("yearOfBirth").Value);
         var monthString = coreElement.GetChildAttributeByName("monthOfBirth").Value;
@@ -83,7 +199,7 @@ public class CharacterCore
 
     private string GetChildAttributeValue(string tagName)
     {
-        return CurrentCharacterElement.GetChildAttributeValue(tagName);
+        return coreElement.GetChildAttributeValue(tagName);
     }
 
     private int GetChildAttributeIntValue(string tagName)
