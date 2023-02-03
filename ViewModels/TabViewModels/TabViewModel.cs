@@ -6,8 +6,7 @@ namespace LTSaveEd.ViewModels;
 
 public abstract class TabViewModel : ReactiveObject
 {
-    protected static SaveFile SaveFile => SaveFile.savefile;
-    protected static Character Character => SaveFile.currentCharacter;
-    
+    protected static SaveFileData SaveFileData => SaveFileData.savefile;
+    protected static Character Character => SaveFileData.currentCharacter;
     public abstract void PopulateTab();
 }

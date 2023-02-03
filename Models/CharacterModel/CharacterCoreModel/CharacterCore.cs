@@ -150,23 +150,23 @@ public class CharacterCore
         }
 
         this.coreElement = coreElement;
-        id = GetChildAttributeValue("id");
-        name = new CharacterName(coreElement.GetChildByName("name"));
-        surname = GetChildAttributeValue("surname");
-        description = GetChildAttributeValue("description");
-        level = GetChildAttributeIntValue("level");
-        experience = GetChildAttributeIntValue("experience");
-        money = int.Parse(CurrentCharacterElement.GetChildBySequence("characterInventory", "money").FirstAttribute?.Value ?? "-1");
-        dateOfBirth = GetDateOfBirth();
-        JobHistory = GetChildAttributeValue("history");
-        Orientation = GetChildAttributeValue("sexualOrientation");
-        obedience = GetChildAttributeDoubleValue("obedience");
-        genderIdentity = GetChildAttributeValue("genderIdentity");
-        perkPoints = GetChildAttributeIntValue("perkPoints");
-        essenceCount = int.Parse(CurrentCharacterElement.GetChildBySequence("characterInventory", "essenceCount").FirstAttribute?.Value ?? "-1");;
-        health = GetChildAttributeDoubleValue("health");
-        mana = GetChildAttributeDoubleValue("mana");
-        Personality = new CharacterPersonality(coreElement.GetChildByName("personality"));
+        _id = GetChildAttributeValue("id");
+        _name = new CharacterName(coreElement.GetChildByName("name"));
+        _surname = GetChildAttributeValue("surname");
+        _description = GetChildAttributeValue("description");
+        _level = GetChildAttributeIntValue("level");
+        _experience = GetChildAttributeIntValue("experience");
+        _money = int.Parse(CurrentCharacterElement.GetChildBySequence("characterInventory", "money").FirstAttribute?.Value ?? "-1");
+        _dateOfBirth = GetDateOfBirth();
+        _jobHistory = GetChildAttributeValue("history");
+        _orientation = GetChildAttributeValue("sexualOrientation");
+        _obedience = GetChildAttributeDoubleValue("obedience");
+        _genderIdentity = GetChildAttributeValue("genderIdentity");
+        _perkPoints = GetChildAttributeIntValue("perkPoints");
+        _essenceCount = int.Parse(CurrentCharacterElement.GetChildBySequence("characterInventory", "essenceCount").FirstAttribute?.Value ?? "-1");;
+        _health = GetChildAttributeDoubleValue("health");
+        _mana = GetChildAttributeDoubleValue("mana");
+        _personality = new CharacterPersonality(coreElement.GetChildByName("personality"));
     }
 
     private DateOnly GetDateOfBirth()

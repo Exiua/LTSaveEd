@@ -22,8 +22,8 @@
                     <MenuItem Header="_Import..." Command="{Binding LoadFile}" />
                 </MenuItem>
                 <MenuItem Header="_Save As">
-                    <MenuItem Header="Overwrite" />
-                    <MenuItem Header="Export..." />
+                    <MenuItem Header="Overwrite" Command="{Binding OverwriteFile}"/>
+                    <MenuItem Header="Export..." Command="{Binding SaveFile}" />
                 </MenuItem>
                 <MenuItem Header="Update?"/>
             </Menu>

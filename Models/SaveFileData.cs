@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using LTSaveEd.Exceptions;
@@ -7,22 +8,22 @@ using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models;
 
-public class SaveFile
+public class SaveFileData
 {
-    public static readonly SaveFile savefile;
+    public static readonly SaveFileData savefile;
 
-    public XElement currentCharacterElement { get; private set; }
+    public XElement currentCharacterElement { get; private set; } = null!;
 
-    public Character currentCharacter { get; set; }
+    public Character currentCharacter { get; set; } = new(); // Initialized to blank character
     
     private XDocument root = null!;
     private Dictionary<XElement, Character> _loadedCharacters = new();
 
-    private SaveFile() { }
+    private SaveFileData() { }
 
-    static SaveFile()
+    static SaveFileData()
     {
-        savefile = new SaveFile();
+        savefile = new SaveFileData();
     }
 
     public void LoadData(string filepath)
@@ -38,6 +39,11 @@ public class SaveFile
             currentCharacter = new Character(currentCharacterElement);
             _loadedCharacters[currentCharacterElement] = currentCharacter;
         }
+    }
+
+    public void SaveData(string filepath)
+    {
+        root.Save(filepath);
     }
 
     public XElement GetTagByName(string tagName)

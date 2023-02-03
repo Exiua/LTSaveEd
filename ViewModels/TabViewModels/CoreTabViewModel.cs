@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using LTSaveEd.Models;
+using LTSaveEd.Models.CharacterModel.CharacterCoreModel;
 using LTSaveEd.Utility;
 using ReactiveUI;
 
@@ -41,219 +42,236 @@ public class CoreTabViewModel : TabViewModel
     private bool mute;
     private bool _slovenly;
     
+    private static CharacterCore Core => Character.core;
+    
     public string CharacterId
     {
-        get => _characterId;
-        set => this.RaiseAndSetIfChanged(ref _characterId, value);
+        get => Core.id;
+        set
+        {
+            Core.id = value;
+            this.RaisePropertyChanged();
+        }
     }
+
     public string AndrogynousName
     {
-        get => _androgynousName;
-        set => this.RaiseAndSetIfChanged(ref _androgynousName, value);
+        get => Core.name.androgynous;
+        set
+        {
+            Core.name.androgynous = value;
+            this.RaisePropertyChanged();
+        }
     }
+
     public string FeminineName
     {
-        get => _feminineName;
-        set => this.RaiseAndSetIfChanged(ref _feminineName, value);
+        get => Core.name.feminine;
+        set
+        {
+            Core.name.feminine = value;
+            this.RaisePropertyChanged();
+        }
     }
+
     public string MasculineName
     {
-        get => _masculineName;
-        set => this.RaiseAndSetIfChanged(ref _masculineName, value);
+        get => Core.name.masculine;
+        set
+        {
+            Core.name.masculine = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public string Description
     {
-        get => _description;
-        set => this.RaiseAndSetIfChanged(ref _description, value);
+        get => Core.description;
+        set
+        {
+            Core.description = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public int Level
     {
-        get => level;
-        set => this.RaiseAndSetIfChanged(ref level, value);
+        get => Core.level;
+        set
+        {
+            Core.level = value; //TODO
+            this.RaisePropertyChanged();
+        }
     }
 
     public int Experience
     {
-        get => experience;
-        set => this.RaiseAndSetIfChanged(ref experience, value);
+        get => Core.experience;
+        set => this.RaisePropertyChanged();
     }
 
     public int Money
     {
-        get => money;
-        set => this.RaiseAndSetIfChanged(ref money, value);
+        get => Core.money;
+        set => this.RaisePropertyChanged();
     }
 
     public DateOnly Birthday
     {
-        get => birthday;
-        set => this.RaiseAndSetIfChanged(ref birthday, value);
+        get => Core.dateOfBirth;
+        set => this.RaisePropertyChanged();
     }
 
     public string JobHistory
     {
-        get => _jobHistory;
-        set => this.RaiseAndSetIfChanged(ref _jobHistory, value);
+        get => Core.JobHistory;
+        set => this.RaisePropertyChanged();
     }
 
     public string Orientation
     {
-        get => orientation;
-        set => this.RaiseAndSetIfChanged(ref orientation, value);
+        get => Core.Orientation;
+        set => this.RaisePropertyChanged();
     }
 
     public double Obedience
     {
-        get => obedience;
-        set => this.RaiseAndSetIfChanged(ref obedience, value);
+        get => Core.obedience;
+        set => this.RaisePropertyChanged();
     }
 
     public string GenderIdentity
     {
-        get => genderIdentity;
-        set => this.RaiseAndSetIfChanged(ref genderIdentity, value);
+        get => Core.genderIdentity;
+        set => this.RaisePropertyChanged();
     }
 
     public int PerkPoints
     {
-        get => perkPoints;
-        set => this.RaiseAndSetIfChanged(ref perkPoints, value);
+        get => Core.perkPoints;
+        set => this.RaisePropertyChanged();
     }
 
     public int EssenceCount
     {
-        get => essenceCount;
-        set => this.RaiseAndSetIfChanged(ref essenceCount, value);
+        get => Core.essenceCount;
+        set => this.RaisePropertyChanged();
     }
 
     public double Health
     {
-        get => health;
-        set => this.RaiseAndSetIfChanged(ref health, value);
+        get => Core.health;
+        set => this.RaisePropertyChanged();
     }
 
     public double Mana
     {
-        get => mana;
-        set => this.RaiseAndSetIfChanged(ref mana, value);
+        get => Core.mana;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Confident
     {
-        get => confident;
-        set => this.RaiseAndSetIfChanged(ref confident, value);
+        get => Core.Personality.Confident;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Shy
     {
-        get => shy;
-        set => this.RaiseAndSetIfChanged(ref shy, value);
+        get => Core.Personality.Shy;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Kind
     {
-        get => kind;
-        set => this.RaiseAndSetIfChanged(ref kind, value);
+        get => Core.Personality.Kind;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Selfish
     {
-        get => selfish;
-        set => this.RaiseAndSetIfChanged(ref selfish, value);
+        get => Core.Personality.Selfish;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Naive
     {
-        get => naive;
-        set => this.RaiseAndSetIfChanged(ref naive, value);
+        get => Core.Personality.Naive;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Cynical
     {
-        get => cynical;
-        set => this.RaiseAndSetIfChanged(ref cynical, value);
+        get => Core.Personality.Cynical;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Brave
     {
-        get => brave;
-        set => this.RaiseAndSetIfChanged(ref brave, value);
+        get => Core.Personality.Brave;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Cowardly
     {
-        get => _cowardly;
-        set => this.RaiseAndSetIfChanged(ref _cowardly, value);
+        get => Core.Personality.Cowardly;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Lewd
     {
-        get => lewd;
-        set => this.RaiseAndSetIfChanged(ref lewd, value);
+        get => Core.Personality.Lewd;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Innocent
     {
-        get => innocent;
-        set => this.RaiseAndSetIfChanged(ref innocent, value);
+        get => Core.Personality.Innocent;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Prude
     {
-        get => prude;
-        set => this.RaiseAndSetIfChanged(ref prude, value);
+        get => Core.Personality.Prude;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Lisp
     {
-        get => lisp;
-        set => this.RaiseAndSetIfChanged(ref lisp, value);
+        get => Core.Personality.Lisp;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Stutter
     {
-        get => stutter;
-        set => this.RaiseAndSetIfChanged(ref stutter, value);
+        get => Core.Personality.Stutter;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Mute
     {
-        get => mute;
-        set => this.RaiseAndSetIfChanged(ref mute, value);
+        get => Core.Personality.Mute;
+        set => this.RaisePropertyChanged();
     }
 
     public bool Slovenly
     {
-        get => _slovenly;
-        set => this.RaiseAndSetIfChanged(ref _slovenly, value);
+        get => Core.Personality.Slovenly;
+        set => this.RaisePropertyChanged();
     }
 
     public override void PopulateTab()
     {
         PopulateCharacterComboBox();
-        CharacterId = SaveFile.currentCharacterElement.GetDescendantByName("id").FirstAttribute?.Value ?? "NULL";
-        var names = SaveFile.currentCharacterElement.GetDescendantByName("name").Attributes();
-        foreach (var name in names)
-        {
-            switch (name.Name.LocalName)
-            {
-                case "nameAndrogynous":
-                    break;
-                case "nameFeminine":
-                    break;
-                case "nameMasculine":
-                    break;
-                default:
-                    throw new Exception($"Unknown Attribute Found: {name.Name.LocalName}");
-            }
-        }
+        this.RaisePropertyChanged(nameof(CharacterId));
+        this.RaisePropertyChanged(nameof(AndrogynousName));
+        this.RaisePropertyChanged(nameof(FeminineName));
+        this.RaisePropertyChanged(nameof(MasculineName));
     }
     
     private void PopulateCharacterComboBox()
     {
-        var npcs = SaveFile.GetNpcList();
+        var npcs = SaveFileData.GetNpcList();
         //npcs.Print();
         Debug.WriteLine("Populated Character ComboBox");
     }
