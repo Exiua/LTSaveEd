@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.ReactiveUI;
 using LTSaveEd.ViewModels;
+using ReactiveUI;
 
 namespace LTSaveEd.Views;
 
-public partial class MainWindow : Window
+public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
     public string Filepath { get; set; } = ".";
     
@@ -15,6 +18,9 @@ public partial class MainWindow : Window
     {
         MainWindowViewModel.Window = this;
         InitializeComponent();
+        #if DEBUG
+        this.AttachDevTools();
+        #endif
     }
 
     public async Task<string?> GetReadableFilepath()
@@ -61,5 +67,19 @@ public partial class MainWindow : Window
 
         Debug.WriteLine($"Filepath: {result}");
         return result;
+    }
+
+    public async Task<bool> GetPopupResponse(string message)
+    {
+        var popupViewModel = new PopupViewModel(message);
+        var dialog = new PopupWindow
+        {
+            DataContext = popupViewModel,
+            Width = 500,
+            Height = 150
+        };
+
+        await dialog.ShowDialog(this);
+        return popupViewModel.Result;
     }
 }

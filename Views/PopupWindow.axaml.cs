@@ -6,12 +6,15 @@ namespace LTSaveEd.Views;
 
 public partial class PopupWindow : Window
 {
+    public static PopupWindow Window { get; private set; } = null!;
+    
     public PopupWindow()
     {
+        Window = this;
         InitializeComponent();
-#if DEBUG
+        #if DEBUG
         this.AttachDevTools();
-#endif
+        #endif
     }
 
     private void InitializeComponent()

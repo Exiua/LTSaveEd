@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using Avalonia.Controls;
+using System.Reactive.Linq;
+using System.Windows.Input;
 using LTSaveEd.Models;
 using LTSaveEd.Views;
 using ReactiveUI;
@@ -17,11 +16,20 @@ public class MainWindowViewModel : ReactiveObject
     private readonly List<TabViewModel> _tabs;
 
     private bool _fileLoaded;
-    
+
+    public Interaction<PopupViewModel, bool> ShowPopup { get; }
+    public ICommand OpenPopupCommand { get; }
+
     public CoreTabViewModel CoreTabViewModel { get; }
 
     public MainWindowViewModel()
     {
+        ShowPopup = new Interaction<PopupViewModel, bool>();
+        OpenPopupCommand = ReactiveCommand.CreateFromTask(async (string msg) =>
+        {
+            var popup = new PopupViewModel(msg);
+            var result = await ShowPopup.Handle(popup);
+        });
         _tabs = new List<TabViewModel>();
         CoreTabViewModel = new CoreTabViewModel();
         _tabs.Add(CoreTabViewModel);
@@ -56,15 +64,18 @@ public class MainWindowViewModel : ReactiveObject
         SaveFileData.SaveData(filepath);
     }
 
-    public void OverwriteFile()
+    public async void OverwriteFile()
     {
         if (!_fileLoaded)
         {
             return;
         }
-        
-        
-        SaveFileData.SaveData(Window.Filepath);
+
+        var overwriteConfirm = await Window.GetPopupResponse("Are you sure you want to overwrite your save file?");
+        if(overwriteConfirm)
+        {
+            SaveFileData.SaveData(Window.Filepath);
+        }
     }
 
     private void LoadData()

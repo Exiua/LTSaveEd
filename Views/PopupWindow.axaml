@@ -2,29 +2,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:LTSaveEd.ViewModels"
         mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="150"
         x:Class="LTSaveEd.Views.PopupWindow"
-        Title="PopupWindow"
+        Title="Confirmation Required"
         TransparencyLevelHint="AcrylicBlur"
-        ExtendClientAreaToDecorationsHint="True"
         WindowStartupLocation="CenterOwner">
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:PopupViewModel />
+    </Design.DataContext>
+    
     <Panel>
-        <ExperimentalAcrylicBorder IsHitTestVisible="False">
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial
-                    BackgroundSource="Digger"
-                    TintColor="Black"
-                    TintOpacity="1"
-                    MaterialOpacity="0.65" />
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder>
-
         <Panel Margin="40">
             <StackPanel Orientation="Vertical" Spacing="50">
-                <TextBlock Text="Message" HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Message}" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" Spacing="50" HorizontalAlignment="Center">
-                    <Button>Yes</Button>
-                    <Button>No</Button>
+                    <Button Command="{Binding SetTrue}">Yes</Button>
+                    <Button Command="{Binding SetFalse}">No</Button>
                 </StackPanel>
             </StackPanel>
         </Panel>
