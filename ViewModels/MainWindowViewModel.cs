@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Reactive.Linq;
-using System.Windows.Input;
 using LTSaveEd.Models;
 using LTSaveEd.Views;
 using ReactiveUI;
@@ -17,19 +15,10 @@ public class MainWindowViewModel : ReactiveObject
 
     private bool _fileLoaded;
 
-    public Interaction<PopupViewModel, bool> ShowPopup { get; }
-    public ICommand OpenPopupCommand { get; }
-
     public CoreTabViewModel CoreTabViewModel { get; }
 
     public MainWindowViewModel()
     {
-        ShowPopup = new Interaction<PopupViewModel, bool>();
-        OpenPopupCommand = ReactiveCommand.CreateFromTask(async (string msg) =>
-        {
-            var popup = new PopupViewModel(msg);
-            var result = await ShowPopup.Handle(popup);
-        });
         _tabs = new List<TabViewModel>();
         CoreTabViewModel = new CoreTabViewModel();
         _tabs.Add(CoreTabViewModel);

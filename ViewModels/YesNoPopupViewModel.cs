@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace LTSaveEd.ViewModels;
 
-public class PopupViewModel : ReactiveObject
+public class YesNoPopupViewModel : ReactiveObject
 {
     private string _message;
 
@@ -19,12 +19,12 @@ public class PopupViewModel : ReactiveObject
     
     public bool Result { get; set; }
 
-    public PopupViewModel()
+    public YesNoPopupViewModel()
     {
         _message = "";
     }
     
-    public PopupViewModel(string message)
+    public YesNoPopupViewModel(string message)
     {
         _message = message;
     }

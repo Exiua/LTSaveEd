@@ -71,7 +71,7 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 
     public async Task<bool> GetPopupResponse(string message)
     {
-        var popupViewModel = new PopupViewModel(message);
+        var popupViewModel = new YesNoPopupViewModel(message);
         var dialog = new PopupWindow
         {
             DataContext = popupViewModel,
