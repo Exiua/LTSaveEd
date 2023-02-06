@@ -200,91 +200,151 @@ public class CoreTabViewModel : TabViewModel
     public bool Confident
     {
         get => Core.Personality.Confident;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Confident = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Shy
     {
         get => Core.Personality.Shy;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Shy = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Kind
     {
         get => Core.Personality.Kind;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Kind = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Selfish
     {
         get => Core.Personality.Selfish;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Selfish = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Naive
     {
         get => Core.Personality.Naive;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Naive = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Cynical
     {
         get => Core.Personality.Cynical;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Cynical = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Brave
     {
         get => Core.Personality.Brave;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Brave = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Cowardly
     {
         get => Core.Personality.Cowardly;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Cowardly = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Lewd
     {
         get => Core.Personality.Lewd;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Lewd = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Innocent
     {
         get => Core.Personality.Innocent;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Innocent = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Prude
     {
         get => Core.Personality.Prude;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Prude = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Lisp
     {
         get => Core.Personality.Lisp;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Lisp = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Stutter
     {
         get => Core.Personality.Stutter;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Stutter = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Mute
     {
         get => Core.Personality.Mute;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Mute = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Slovenly
     {
         get => Core.Personality.Slovenly;
-        set => this.RaisePropertyChanged();
+        set
+        {
+            Core.Personality.Slovenly = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public override void PopulateTab()
@@ -299,7 +359,7 @@ public class CoreTabViewModel : TabViewModel
             nameof(Cynical), nameof(Brave), nameof(Cowardly), nameof(Lewd), nameof(Innocent), nameof(Prude),
             nameof(Lisp), nameof(Stutter), nameof(Mute), nameof(Slovenly)
         };
-        
+
         foreach (var propertyName in propertyNames)
         {
             this.RaisePropertyChanged(propertyName);
@@ -325,11 +385,11 @@ public class CoreTabViewModel : TabViewModel
             return int.TryParse(value, out var newValue) && newValue >= 0 ? newValue : oldValue;
         }
     }
-    
+
     private double ValidateDouble(string value, double oldValue, bool allowNegative = false)
     {
         Debug.WriteLine($"New: {value}, Old: {oldValue}");
-        if(allowNegative)
+        if (allowNegative)
         {
             return double.TryParse(value, out var newValue) ? newValue : oldValue;
         }
