@@ -21,8 +21,8 @@ public class CharacterCore
     private string _genderIdentity;
     private int _perkPoints;
     private int _essenceCount;
-    private float _health;
-    private float _mana;
+    private double _health;
+    private double _mana;
     private CharacterPersonality _personality;
 
     public string id
@@ -109,13 +109,13 @@ public class CharacterCore
         set => _essenceCount = value;
     }
 
-    public float health
+    public double health
     {
         get => _health;
         set => _health = value;
     }
 
-    public float mana
+    public double mana
     {
         get => _mana;
         set => _mana = value;

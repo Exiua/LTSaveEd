@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using LTSaveEd.Models;
+using System.Globalization;
 using LTSaveEd.Models.CharacterModel.CharacterCoreModel;
-using LTSaveEd.Utility;
 using ReactiveUI;
 
 namespace LTSaveEd.ViewModels;
@@ -41,9 +40,9 @@ public class CoreTabViewModel : TabViewModel
     private bool stutter;
     private bool mute;
     private bool _slovenly;
-    
+
     private static CharacterCore Core => Character.core;
-    
+
     public string CharacterId
     {
         get => Core.id;
@@ -94,26 +93,34 @@ public class CoreTabViewModel : TabViewModel
         }
     }
 
-    public int Level
+    public string Level
     {
-        get => Core.level;
+        get => Core.level.ToString();
         set
         {
-            Core.level = value; //TODO
+            Core.level = ValidateInt(value, Core.level);
             this.RaisePropertyChanged();
         }
     }
 
-    public int Experience
+    public string Experience
     {
-        get => Core.experience;
-        set => this.RaisePropertyChanged();
+        get => Core.experience.ToString();
+        set
+        {
+            Core.experience = ValidateInt(value, Core.experience);
+            this.RaisePropertyChanged();
+        }
     }
 
-    public int Money
+    public string Money
     {
-        get => Core.money;
-        set => this.RaisePropertyChanged();
+        get => Core.money.ToString();
+        set
+        {
+            Core.money = ValidateInt(value, Core.money);
+            this.RaisePropertyChanged();
+        }
     }
 
     public DateOnly Birthday
@@ -134,10 +141,14 @@ public class CoreTabViewModel : TabViewModel
         set => this.RaisePropertyChanged();
     }
 
-    public double Obedience
+    public string Obedience
     {
-        get => Core.obedience;
-        set => this.RaisePropertyChanged();
+        get => Core.obedience.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            Core.obedience = ValidateDouble(value, Core.obedience);
+            this.RaisePropertyChanged();
+        }
     }
 
     public string GenderIdentity
@@ -146,28 +157,44 @@ public class CoreTabViewModel : TabViewModel
         set => this.RaisePropertyChanged();
     }
 
-    public int PerkPoints
+    public string PerkPoints
     {
-        get => Core.perkPoints;
-        set => this.RaisePropertyChanged();
+        get => Core.perkPoints.ToString();
+        set
+        {
+            Core.perkPoints = ValidateInt(value, Core.perkPoints);
+            this.RaisePropertyChanged();
+        }
     }
 
-    public int EssenceCount
+    public string EssenceCount
     {
-        get => Core.essenceCount;
-        set => this.RaisePropertyChanged();
+        get => Core.essenceCount.ToString();
+        set
+        {
+            Core.essenceCount = ValidateInt(value, Core.essenceCount);
+            this.RaisePropertyChanged();
+        }
     }
 
-    public double Health
+    public string Health
     {
-        get => Core.health;
-        set => this.RaisePropertyChanged();
+        get => Core.health.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            Core.health = ValidateDouble(value, Core.health);
+            this.RaisePropertyChanged();
+        }
     }
 
-    public double Mana
+    public string Mana
     {
-        get => Core.mana;
-        set => this.RaisePropertyChanged();
+        get => Core.mana.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            Core.mana = ValidateDouble(value, Core.mana);
+            this.RaisePropertyChanged();
+        }
     }
 
     public bool Confident
@@ -263,17 +290,53 @@ public class CoreTabViewModel : TabViewModel
     public override void PopulateTab()
     {
         PopulateCharacterComboBox();
-        this.RaisePropertyChanged(nameof(CharacterId));
-        this.RaisePropertyChanged(nameof(AndrogynousName));
-        this.RaisePropertyChanged(nameof(FeminineName));
-        this.RaisePropertyChanged(nameof(MasculineName));
+        var propertyNames = new[]
+        {
+            nameof(CharacterId), nameof(AndrogynousName), nameof(FeminineName), nameof(MasculineName),
+            nameof(Description), nameof(Level), nameof(Experience), nameof(Money), nameof(Birthday), nameof(JobHistory),
+            nameof(Orientation), nameof(Obedience), nameof(GenderIdentity), nameof(PerkPoints), nameof(EssenceCount),
+            nameof(Health), nameof(Mana), nameof(Confident), nameof(Shy), nameof(Kind), nameof(Selfish), nameof(Naive),
+            nameof(Cynical), nameof(Brave), nameof(Cowardly), nameof(Lewd), nameof(Innocent), nameof(Prude),
+            nameof(Lisp), nameof(Stutter), nameof(Mute), nameof(Slovenly)
+        };
+        
+        foreach (var propertyName in propertyNames)
+        {
+            this.RaisePropertyChanged(propertyName);
+        }
     }
-    
+
     private void PopulateCharacterComboBox()
     {
         var npcs = SaveFileData.GetNpcList();
         //npcs.Print();
         Debug.WriteLine("Populated Character ComboBox");
+    }
+
+    private int ValidateInt(string value, int oldValue, bool allowNegative = false)
+    {
+        Debug.WriteLine($"New: {value}, Old: {oldValue}");
+        if (allowNegative)
+        {
+            return int.TryParse(value, out var newValue) ? newValue : oldValue;
+        }
+        else
+        {
+            return int.TryParse(value, out var newValue) && newValue >= 0 ? newValue : oldValue;
+        }
+    }
+    
+    private double ValidateDouble(string value, double oldValue, bool allowNegative = false)
+    {
+        Debug.WriteLine($"New: {value}, Old: {oldValue}");
+        if(allowNegative)
+        {
+            return double.TryParse(value, out var newValue) ? newValue : oldValue;
+        }
+        else
+        {
+            return double.TryParse(value, out var newValue) && newValue >= 0 ? newValue : oldValue;
+        }
     }
 
     public void ToggleConfidentTrait()
@@ -283,7 +346,7 @@ public class CoreTabViewModel : TabViewModel
             Shy = false;
         }
     }
-    
+
     public void ToggleShyTrait()
     {
         if (Shy)
@@ -291,7 +354,7 @@ public class CoreTabViewModel : TabViewModel
             Confident = false;
         }
     }
-    
+
     public void ToggleSelfishTrait()
     {
         if (Selfish)
@@ -299,7 +362,7 @@ public class CoreTabViewModel : TabViewModel
             Kind = false;
         }
     }
-    
+
     public void ToggleKindTrait()
     {
         if (Kind)
@@ -307,7 +370,7 @@ public class CoreTabViewModel : TabViewModel
             Selfish = false;
         }
     }
-    
+
     public void ToggleCynicalTrait()
     {
         if (Cynical)
@@ -315,7 +378,7 @@ public class CoreTabViewModel : TabViewModel
             Naive = false;
         }
     }
-    
+
     public void ToggleNaiveTrait()
     {
         if (Naive)
@@ -323,7 +386,7 @@ public class CoreTabViewModel : TabViewModel
             Cynical = false;
         }
     }
-    
+
     public void ToggleCowardlyTrait()
     {
         if (Cowardly)
@@ -331,7 +394,7 @@ public class CoreTabViewModel : TabViewModel
             Brave = false;
         }
     }
-    
+
     public void ToggleBraveTrait()
     {
         if (Brave)
@@ -339,7 +402,7 @@ public class CoreTabViewModel : TabViewModel
             Cowardly = false;
         }
     }
-    
+
     public void TogglePrudeTrait()
     {
         if (Prude)
@@ -348,7 +411,7 @@ public class CoreTabViewModel : TabViewModel
             Innocent = false;
         }
     }
-    
+
     public void ToggleLewdTrait()
     {
         if (Lewd)
@@ -357,7 +420,7 @@ public class CoreTabViewModel : TabViewModel
             Innocent = false;
         }
     }
-    
+
     public void ToggleInnocentTrait()
     {
         if (Innocent)
@@ -366,7 +429,7 @@ public class CoreTabViewModel : TabViewModel
             Lewd = false;
         }
     }
-    
+
     public void ToggleMuteTrait()
     {
         if (Mute)
@@ -376,7 +439,7 @@ public class CoreTabViewModel : TabViewModel
             Slovenly = false;
         }
     }
-    
+
     public void ToggleLispTrait()
     {
         if (Lisp)
@@ -384,7 +447,7 @@ public class CoreTabViewModel : TabViewModel
             Mute = false;
         }
     }
-    
+
     public void ToggleStutterTrait()
     {
         if (Stutter)
@@ -392,7 +455,7 @@ public class CoreTabViewModel : TabViewModel
             Mute = false;
         }
     }
-    
+
     public void ToggleSlovenlyTrait()
     {
         if (Slovenly)

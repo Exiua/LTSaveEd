@@ -4,13 +4,12 @@ using System.IO;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.ReactiveUI;
+using Avalonia.Interactivity;
 using LTSaveEd.ViewModels;
-using ReactiveUI;
 
 namespace LTSaveEd.Views;
 
-public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
+public partial class MainWindow : Window
 {
     public string Filepath { get; set; } = ".";
     
