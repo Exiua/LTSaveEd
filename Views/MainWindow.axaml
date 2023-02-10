@@ -36,7 +36,7 @@
                         <StackPanel Orientation="Vertical" Spacing="10">
                             <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
                                 <TextBlock Text="Character:" VerticalAlignment="Center" />
-                                <ComboBox Width="175" />
+                                <AutoCompleteBox Width="175" />
                                 <Button Width="175" Height="30" Foreground="Red" HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center">
                                     DELETE CHARACTER
