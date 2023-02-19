@@ -13,4 +13,10 @@ public static class ExtensionMethods
         output = string.Concat(output.AsSpan(0, output.Length - 2), "]");
         Debug.WriteLine(output);
     }
+    
+    public static List<T> GetRange<T>(this List<T> list, Range range)
+    {
+        var (start, length) = range.GetOffsetAndLength(list.Count);
+        return list.GetRange(start, length);
+    }
 }

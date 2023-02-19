@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.Exceptions;
+using LTSaveEd.Models.CharacterModel.CharacterBodyModel;
 using LTSaveEd.Models.CharacterModel.CharacterCoreModel;
 using LTSaveEd.Utility;
 

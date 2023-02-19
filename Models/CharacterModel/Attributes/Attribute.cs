@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LTSaveEd.Models.CharacterModel;
+namespace LTSaveEd.Models.CharacterModel.Attributes;
 
 public class Attribute
 {
