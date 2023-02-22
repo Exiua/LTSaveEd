@@ -73,6 +73,24 @@ public class CharacterCore
         set => _dateOfBirth = value;
     }
 
+    public int dayOfBirth
+    {
+        get => _dateOfBirth.Day;
+        set => _dateOfBirth = new DateOnly(_dateOfBirth.Year, dateOfBirth.Month, value);
+    }
+
+    public int monthOfBirth
+    {
+        get => _dateOfBirth.Month;
+        set => _dateOfBirth = new DateOnly(_dateOfBirth.Year, value, dateOfBirth.Day);
+    }
+
+    public int yearOfBirth
+    {
+        get => _dateOfBirth.Year;
+        set => _dateOfBirth = new DateOnly(value, dateOfBirth.Month, dateOfBirth.Day);
+    }
+    
     public string JobHistory
     {
         get => _jobHistory;
@@ -127,8 +145,10 @@ public class CharacterCore
         set => _personality = value;
     }
 
+    public bool player { get; }
+
     private static XElement CurrentCharacterElement => SaveFileData.savefile.currentCharacterElement;
-    private XElement coreElement { get; set; } = null!;
+    private XElement coreElement { get; } = null!;
 
     public CharacterCore()
     {
@@ -140,6 +160,7 @@ public class CharacterCore
         _orientation = "";
         _genderIdentity = "";
         _personality = new CharacterPersonality();
+        player = false;
     }
     
     public CharacterCore(XElement coreElement)
@@ -151,6 +172,7 @@ public class CharacterCore
 
         this.coreElement = coreElement;
         _id = GetChildAttributeValue("id");
+        player = _id == "PlayerCharacter";
         _name = new CharacterName(coreElement.GetChildByName("name"));
         _surname = GetChildAttributeValue("surname");
         _description = GetChildAttributeValue("description");

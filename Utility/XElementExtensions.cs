@@ -38,15 +38,26 @@ public static class XElementExtensions
         return attribute;
     }
 
+    public static string GetAttributeValueByName(this XElement parent, string attributeName = "value")
+    {
+        var attribute = (from attr in parent.Attributes(attributeName) select attr).First();
+        if (attribute is null)
+        {
+            throw new AttributeNotFoundException(attributeName);
+        }
+
+        return attribute.Value;
+    }
+
     public static XAttribute GetChildAttributeByName(this XElement parent, string childName, string attributeName = "value")
     {
         var child = parent.GetChildByName(childName);
         return child.GetAttributeByName(attributeName);
     }
 
-    public static string GetChildAttributeValue(this XElement parent, string tagName)
+    public static string GetChildAttributeValue(this XElement parent, string tagName, string attributeName = "value")
     {
-        return parent.GetChildByName(tagName).FirstAttribute?.Value ?? "NULL";
+        return parent.GetChildByName(tagName).GetAttributeByName(attributeName).Value;
     }
 
     public static XElement GetChildBySequence(this XElement parent, params string[] tagNames)

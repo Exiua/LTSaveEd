@@ -28,5 +28,6 @@ public class Character
 
         player = characterElement.Parent?.Name == "playerCharacter";
         core = new CharacterCore(characterElement.GetChildByName("core"));
+        //body = new CharacterBody(characterElement.GetChildByName("body"));
     }
 }

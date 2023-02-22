@@ -129,6 +129,36 @@ public class CoreTabViewModel : TabViewModel
         set => this.RaisePropertyChanged();
     }
 
+    public int dayOfBirth
+    {
+        get => Core.dayOfBirth;
+        set
+        {
+            Core.dayOfBirth = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
+    public int monthOfBirth
+    {
+        get => Core.monthOfBirth;
+        set
+        {
+            Core.monthOfBirth = value;
+            this.RaisePropertyChanged();
+        }
+    }
+
+    public string yearOfBirth
+    {
+        get => Core.yearOfBirth.ToString();
+        set
+        {
+            Core.yearOfBirth = ValidateInt(value, Core.yearOfBirth);
+            this.RaisePropertyChanged();
+        }
+    }
+
     public string JobHistory
     {
         get => Core.JobHistory;
