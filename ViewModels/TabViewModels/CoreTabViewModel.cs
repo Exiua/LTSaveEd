@@ -129,12 +129,12 @@ public class CoreTabViewModel : TabViewModel
         set => this.RaisePropertyChanged();
     }
 
-    public int dayOfBirth
+    public string dayOfBirth
     {
-        get => Core.dayOfBirth;
+        get => Core.dayOfBirth.ToString();
         set
         {
-            Core.dayOfBirth = value;
+            Core.dayOfBirth = ValidateDayOfMonth(value, Core.dateOfBirth);
             this.RaisePropertyChanged();
         }
     }
@@ -414,6 +414,23 @@ public class CoreTabViewModel : TabViewModel
         {
             return int.TryParse(value, out var newValue) && newValue >= 0 ? newValue : oldValue;
         }
+    }
+    
+    private int ValidateDayOfMonth(string value, DateOnly date)
+    {
+        var day = ValidateInt(value, date.Day);
+        if (day == date.Day)
+        {
+            return day;
+        }
+
+        var daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
+        if (day == 0 || day > daysInMonth)
+        {
+            return date.Day;
+        }
+        
+        return day;
     }
 
     private double ValidateDouble(string value, double oldValue, bool allowNegative = false)

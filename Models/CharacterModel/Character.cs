@@ -9,12 +9,14 @@ namespace LTSaveEd.Models.CharacterModel;
 public class Character
 {
     public CharacterCore core { get; }
+    public CharacterAttributes attributes { get; }
     public CharacterBody body  { get; set; }
     public bool player { get; }
 
     public Character()
     {
         core = new CharacterCore();
+        //attributes = new CharacterAttributes();
         body = new CharacterBody();
         player = false;
     }
@@ -28,6 +30,7 @@ public class Character
 
         player = characterElement.Parent?.Name == "playerCharacter";
         core = new CharacterCore(characterElement.GetChildByName("core"));
+        attributes = new CharacterAttributes(characterElement.GetChildByName("attributes"));
         //body = new CharacterBody(characterElement.GetChildByName("body"));
     }
 }
