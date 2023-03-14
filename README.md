@@ -14,7 +14,7 @@ If the jar doesn't work, download and extract the zip from the [latest release](
 
 ***Make a backup of your save first before using the save editor.***
 
-[^1] The exe was only testing on Windows 10. The exe is also unsigned, so Windows Defender SmartScreen may warn you that running unsigned exe is potentially dangerous. 
+[^1]: The exe was only testing on Windows 10. The exe is also unsigned, so Windows Defender SmartScreen may warn you that running unsigned exe is potentially dangerous. 
 
 ## Features
 - Edit both player and NPCs
