@@ -8,11 +8,13 @@ Requires Java 14 or later if you are just running the .jar. Requires JavaFx 16 o
 
 ## How To Use
 
-Download and run `LTSaveEd.jar` from the [latest release](https://github.com/Exiua/LTSaveEd/releases). If nothing happens when you double-click the jar, try running `java -jar LTSaveEd.jar`. If you have multiple versions of Java installed, try `/path/to/java14+_jdk/bin/java.exe -jar LTSaveEd.jar`.
+Download and run `LTSaveEd.jar` (or `LTSaveEd.exe`[^1]) from the [latest release](https://github.com/Exiua/LTSaveEd/releases). If nothing happens when you double-click the jar, try running `java -jar LTSaveEd.jar`. If you have multiple versions of Java installed, try `/path/to/java14+_jdk/bin/java.exe -jar LTSaveEd.jar`.
 
 If the jar doesn't work, download and extract the zip from the [latest release](https://github.com/Exiua/LTSaveEd/releases) and add `--module-path /path/to/javafx-sdk-16/lib --add-modules=javafx.controls,javafx.fxml` as a VM option to your run configuration, then run `LTSaveEd.java`.
 
 ***Make a backup of your save first before using the save editor.***
+
+[^1] The exe was only testing on Windows 10. The exe is also unsigned, so Windows Defender SmartScreen may warn you that running unsigned exe is potentially dangerous. 
 
 ## Features
 - Edit both player and NPCs
