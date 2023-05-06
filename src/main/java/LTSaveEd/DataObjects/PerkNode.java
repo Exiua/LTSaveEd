@@ -274,7 +274,7 @@ public class PerkNode {
      *   Boolean based on if the row and types match
      */
     public boolean equals(String perkRow, String perkType){
-        return ("" + row).equals(perkRow) && type.equals(perkType);
+        return row.equals(perkRow) && type.equals(perkType);
     }
 
     @Override
