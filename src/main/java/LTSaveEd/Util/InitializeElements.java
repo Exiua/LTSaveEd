@@ -1454,9 +1454,9 @@ public class InitializeElements {
      * Initializes PerkNodes and fills the ArrayList with the PerkNodes
      */
     private void initializePerks(){
-        PerkNode p1_1 = new PerkNode(null, "1", "PHYSICAL_BASE", "Natural Fitness");
-        PerkNode p1_2 = new PerkNode(null, "1", "ARCANE_BASE", "Natural Arcane Power");
-        PerkNode p1_3 = new PerkNode(null, "1", "LEWD_KNOWLEDGE", "Lewd Knowledge");
+        PerkNode p1_1 = new PerkNode("1", "PHYSICAL_BASE", "Natural Fitness");
+        PerkNode p1_2 = new PerkNode("1", "ARCANE_BASE", "Natural Arcane Power");
+        PerkNode p1_3 = new PerkNode("1", "LEWD_KNOWLEDGE", "Lewd Knowledge");
 
         PerkNode p2_11 = new PerkNode(p1_2, "2", "ARCANE_BOOST", "Arcane Training");
         PerkNode p2_10 = new PerkNode(p1_2, "2", "ARCANE_CRITICALS", "Arcane Precision");
