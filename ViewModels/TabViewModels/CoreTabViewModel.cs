@@ -45,70 +45,65 @@ public class CoreTabViewModel : TabViewModel
 
     public string CharacterId
     {
-        get => Core.id;
-        set
-        {
-            Core.id = value;
-            this.RaisePropertyChanged();
-        }
+        get => Core.Id;
     }
 
     public string AndrogynousName
     {
-        get => Core.name.androgynous;
+        get => Core.Name.Androgynous;
         set
         {
-            Core.name.androgynous = value;
+            Core.Name.Androgynous = value;
             this.RaisePropertyChanged();
         }
     }
 
     public string FeminineName
     {
-        get => Core.name.feminine;
+        get => Core.Name.Feminine;
         set
         {
-            Core.name.feminine = value;
+            Core.Name.Feminine = value;
             this.RaisePropertyChanged();
         }
     }
 
     public string MasculineName
     {
-        get => Core.name.masculine;
+        get => Core.Name.Masculine;
         set
         {
-            Core.name.masculine = value;
+            Core.Name.Masculine = value;
             this.RaisePropertyChanged();
         }
     }
 
     public string Description
     {
-        get => Core.description;
+        get => Core.Description;
         set
         {
-            Core.description = value;
+            Core.Description = value;
             this.RaisePropertyChanged();
         }
     }
 
     public string Level
     {
-        get => Core.level.ToString();
+        get => Core.Level.ToString();
         set
         {
-            Core.level = ValidateInt(value, Core.level);
+            Core.Level = ValidateInt(value, Core.Level);
             this.RaisePropertyChanged();
         }
     }
 
     public string Experience
     {
-        get => Core.experience.ToString();
+        get => Core.Experience.ToString();
         set
         {
-            Core.experience = ValidateInt(value, Core.experience);
+            Core.Experience = ValidateInt(value, Core.Experience);
             this.RaisePropertyChanged();
         }
     }

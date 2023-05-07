@@ -10,37 +10,37 @@ public class CharacterName
     private string _feminine;
     private string _masculine;
 
-    public string androgynous
+    public string Androgynous
     {
         get => _androgynous;
         set
         {
             _androgynous = value;
-            nameElement.SetAttributeValue("nameAndrogynous", value);
+            NameElement.SetAttributeValue("nameAndrogynous", value);
         }
     }
 
-    public string feminine
+    public string Feminine
     {
         get => _feminine;
         set
         {
             _feminine = value;
-            nameElement.SetAttributeValue("nameFeminine", value);
+            NameElement.SetAttributeValue("nameFeminine", value);
         }
     }
 
-    public string masculine
+    public string Masculine
     {
         get => _masculine;
         set
         {
             _masculine = value;
-            nameElement.SetAttributeValue("nameMasculine", value);
+            NameElement.SetAttributeValue("nameMasculine", value);
         }
     }
 
-    private XElement nameElement { get; } = null!;
+    private XElement NameElement { get; } = null!;
 
     public CharacterName()
     {
@@ -56,7 +56,7 @@ public class CharacterName
             throw new IncorrectElementException(nameElement);
         }
 
-        this.nameElement = nameElement;
+        NameElement = nameElement;
         var attributes = nameElement.Attributes();
         foreach (var attribute in attributes)
         {
@@ -85,6 +85,6 @@ public class CharacterName
 
     public override string ToString()
     {
-        return $"{nameof(CharacterName)}{{androgynous: {androgynous}, feminine: {feminine}, masculine: {masculine}}}";
+        return $"{nameof(CharacterName)}{{androgynous: {Androgynous}, feminine: {Feminine}, masculine: {Masculine}}}";
     }
 }

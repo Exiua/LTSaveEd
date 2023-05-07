@@ -7,8 +7,8 @@ namespace LTSaveEd.Models.CharacterModel.CharacterCoreModel;
 
 public class CharacterCore
 {
-    private string _id;
-    private CharacterName _name;
+    private readonly string _id;
+    private readonly CharacterName _name;
     private string _surname;
     private string _description;
     private int _level;
@@ -25,37 +25,36 @@ public class CharacterCore
     private double _mana;
     private CharacterPersonality _personality;
 
-    public string id
+    public string Id
     {
         get => _id;
-        set => _id = value;
     }
 
-    public CharacterName name
+    public CharacterName Name
     {
         get => _name;
-        set => _name = value;
     }
 
-    public string surname
+
+    public string Surname
     {
         get => _surname;
         set => _surname = value;
     }
 
-    public string description
+    public string Description
     {
         get => _description;
         set => _description = value;
     }
 
-    public int level
+    public int Level
     {
         get => _level;
         set => _level = value;
     }
 
-    public int experience
+    public int Experience
     {
         get => _experience;
         set => _experience = value;
@@ -142,7 +141,6 @@ public class CharacterCore
     public CharacterPersonality Personality
     {
         get => _personality;
-        set => _personality = value;
     }
 
     public bool player { get; }
