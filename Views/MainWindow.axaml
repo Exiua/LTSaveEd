@@ -522,7 +522,7 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="1" Grid.Column="1">
-                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Lip & Throat Modifiers</TextBlock>
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Lip &amp; Throat Modifiers</TextBlock>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
                                         <TextBlock Text="Puffy:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
@@ -568,18 +568,60 @@
                             <Grid ColumnDefinitions="750, 500, Auto" RowDefinitions="500, Auto" HorizontalAlignment="Center"
                                   VerticalAlignment="Center" >
                                 <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="0">
-                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Face</TextBlock>
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Breasts</TextBlock>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Facial Hair:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Milk Regeneration:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Milk Storage:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Nipple Count per Breast:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Rows:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Size:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Stored Milk:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Milk Storage:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Shape:" VerticalAlignment="Center" />
                                         <ComboBox Width="150" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Pierced Nose:" VerticalAlignment="Center" />
-                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Type:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="1">
-                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Mouth</TextBlock>
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Nipples</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Areolae Shape:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Areolae Size:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
                                         <TextBlock Text="Capacity:" VerticalAlignment="Center" />
                                         <TextBox Width="150" />
@@ -596,13 +638,9 @@
                                         <TextBlock Text="Label" VerticalAlignment="Center" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Lip Size:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Nipple Size:" VerticalAlignment="Center" />
                                         <TextBox Width="150" />
                                         <TextBlock Text="Label" VerticalAlignment="Center" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Pierced Lip:" VerticalAlignment="Center" />
-                                        <CheckBox VerticalAlignment="Center" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
                                         <TextBlock Text="Plasticity:" VerticalAlignment="Center" />
@@ -615,29 +653,25 @@
                                         <TextBlock Text="Label" VerticalAlignment="Center" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Nipple Shape:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Pierced:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
                                         <TextBlock Text="Virgin:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Wetness:" VerticalAlignment="Center" />
-                                        <TextBox Width="150" />
-                                        <TextBlock Text="Label" VerticalAlignment="Center" />
-                                    </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="2">
-                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Tongue</TextBlock>
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Milk</TextBlock>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Pierced Tongue:" VerticalAlignment="Center" />
-                                        <CheckBox VerticalAlignment="Center" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Tongue Length:" VerticalAlignment="Center" />
-                                        <TextBox Width="150" />
-                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                        <TextBlock Text="Flavour:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="1" Grid.Column="1">
-                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Lip & Throat Modifiers</TextBlock>
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Nipple Modifiers</TextBlock>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
                                         <TextBlock Text="Puffy:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
@@ -652,25 +686,29 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="1" Grid.Column="2">
-                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Tongue Modifiers</TextBlock>
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Milk Modifiers</TextBlock>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Ribbed:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Musky:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
-                                        <TextBlock Text="Tentacled:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Viscous:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
-                                        <TextBlock Text="Bifurcated:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Sticky:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Wide:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Slimy:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
-                                        <TextBlock Text="Flat:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Bubbling:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
-                                        <TextBlock Text="Strong:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Mineral oil:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="10">
-                                        <TextBlock Text="Tapered:" VerticalAlignment="Center" />
+                                        <TextBlock Text="Alcoholic:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Addictive:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Psychoactive:" VerticalAlignment="Center" />
                                         <CheckBox VerticalAlignment="Center" />
                                     </StackPanel>
                                 </StackPanel>
@@ -680,11 +718,272 @@
                             <TabItem.Header>
                                 <TextBlock VerticalAlignment="Center">Breasts Crotch</TextBlock>
                             </TabItem.Header>
+                            <Grid ColumnDefinitions="750, 500, Auto" RowDefinitions="500, Auto" HorizontalAlignment="Center"
+                                  VerticalAlignment="Center" >
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="0">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Breasts Crotch</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Milk Regeneration:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Milk Storage:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Nipple Count per Breast:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Rows:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Size:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Stored Milk:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Milk Storage:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Shape:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Type:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="1">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Nipples Crotch</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Areolae Shape:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Areolae Size:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Capacity:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Depth:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Elasticity:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Nipple Size:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Plasticity:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Stretched Capacity:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Nipple Shape:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Pierced:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Virgin:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="2">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Milk Crotch</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Flavour:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="1" Grid.Column="1">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Nipple Crotch Modifiers</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Puffy:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Internally-ribbed:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Tentacled:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Internally-muscled:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="1" Grid.Column="2">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Milk Crotch Modifiers</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Musky:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Viscous:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Sticky:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Slimy:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Bubbling:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Mineral oil:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Alcoholic:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Addictive:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                        <TextBlock Text="Psychoactive:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem>
                             <TabItem.Header>
                                 <TextBlock VerticalAlignment="Center">Torso</TextBlock>
                             </TabItem.Header>
+                            <Grid ColumnDefinitions="750, 500, Auto" RowDefinitions="500, Auto" HorizontalAlignment="Center"
+                                  VerticalAlignment="Center" >
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="0">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Torso</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Type:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="1">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Tail</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Count:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Girth:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Length:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Type:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="0" Grid.Column="2">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Tentacle</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Count:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Girth:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Length:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Type:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="1" Grid.Column="0">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Wing</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Size:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Type:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="1" Grid.Column="1">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Spinneret</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Capacity:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Depth:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Elasticity:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Plasticity:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Stretched Capacity:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Wetness:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                        <TextBlock Text="Label" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Virgin:" VerticalAlignment="Center" />
+                                        <CheckBox VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Spacing="10" Grid.Row="1" Grid.Column="2">
+                                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">Arm</TextBlock>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Rows:" VerticalAlignment="Center" />
+                                        <TextBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Type:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Text="Underarm Hair:" VerticalAlignment="Center" />
+                                        <ComboBox Width="150" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
                         </TabItem>
                         <TabItem>
                             <TabItem.Header>
