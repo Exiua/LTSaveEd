@@ -1,5 +1,8 @@
 import sys
 import os
+import json
+
+from lxml import etree
 
 
 def get_items(filepath: str):
@@ -13,31 +16,67 @@ def get_items(filepath: str):
     clothing_ids = get_item_ids(clothing_dir_path)
     item_ids = get_item_ids(items_dir_path)
     weapon_ids = get_item_ids(weapons_dir_path)
+    write("scripts/clothes.json", clothing_ids)
+    write("scripts/items.json", item_ids)
+    write("scripts/weapons.json", weapon_ids)
 
 
-def get_item_ids(item_dir_path) -> list[str]:
-    item_ids = []
+def write(filepath: str, data: list[str]):
+    with open(filepath, "w") as f:
+        json.dump(data, f, indent=4)
+
+
+def get_item_ids(item_dir_path) -> dict[str, list[str]]:
+    item_ids = {}
     contributors = os.listdir(item_dir_path)
     for contributor in contributors:
-        contributor_subdir_path = os.path.join(item_dir_path, contributor)
-        _, contributor_directories, contributor_files = next(os.walk(contributor_subdir_path), (None, [], []))
+        contributor_dir_path = os.path.join(item_dir_path, contributor)
+        _, contributor_directories, contributor_files = next(os.walk(contributor_dir_path), (None, [], []))
 
         for directory in contributor_directories:  # Gets nested files (e.g. innoxia dir)
-            items = os.listdir(os.path.join(contributor_subdir_path, directory))
+            contributor_subdir_path = os.path.join(contributor_dir_path, directory)
+            items = os.listdir(contributor_subdir_path)
 
             for item in items:
                 if ".xml" not in item:
                     continue
                 item_id = f"{contributor}_{directory}_{item.replace('.xml', '')}"
-                item_ids.append(item_id)
+                item_path = os.path.join(contributor_subdir_path, item)
+                sort_item_id(item_ids, item_id, item_path)
 
         for file in contributor_files:  # Gets top level files (e.g. TonyJC dir)
             if ".xml" not in file:
                 continue
             item_id = f"{contributor}_{file.replace('.xml', '')}"
-            item_ids.append(item_id)
+            item_path = os.path.join(contributor_dir_path, file)
+            sort_item_id(item_ids, item_id, item_path)
 
     return item_ids
+
+
+def sort_item_id(item_ids: dict[str, list[str]], item_id: str, item_path: str):
+    root = etree.parse(item_path).getroot()
+    match root.tag:
+        case "clothing":
+            equip_slots = root.find(".//equipSlots")
+            if equip_slots is not None:
+                for slot in equip_slots:
+                    print(slot.text)
+                    add_element(item_ids, slot.text, item_id)
+            else:
+                slot = root.find(".//slot")
+                add_element(item_ids, slot.text, item_id)
+        case "item":
+            pass
+        case "weapon":
+            melee_tag = root.find(".//melee")
+            add_element(item_ids, melee_tag.text, item_id)
+
+
+def add_element(dictionary: dict[str, list[str]], key: str, value: str):
+    if key not in dictionary:
+        dictionary[key] = []
+    dictionary[key].append(value)
 
 
 if __name__ == '__main__':
