@@ -19,9 +19,40 @@ def get_items(filepath: str):
     write("scripts/clothes.json", clothing_ids)
     write("scripts/items.json", item_ids)
     write("scripts/weapons.json", weapon_ids)
+    write_java(clothing_ids, item_ids, weapon_ids)
 
 
-def write(filepath: str, data: list[str]):
+def write_java(clothes_dict, items_dict, weapons_dict):
+    f = open("scripts/java.txt", "w")
+    f.write("// region Clothes Initialization\n\n")
+
+    for key in clothes_dict:
+        items = clothes_dict[key]
+        items = [f'"{item}"' for item in items]
+        items = ", ".join(items)
+        f.write(f"clothesMap.put(ClothingType.{key}, new String[]{{{items}}});\n")
+
+    f.write("\n// endregion\n\n// region Items Initialization\n\n")
+
+    for key in items_dict:
+        items = items_dict[key]
+        items = [f'"{item}"' for item in items]
+        items = ", ".join(items)
+        f.write(f"itemsMap.put(ItemType.{key}, new String[]{{{items}}});\n")
+
+    f.write("\n// endregion\n\n// region Weapons Initialization\n\n")
+
+    for key in weapons_dict:
+        items = weapons_dict[key]
+        items = [f'"{item}"' for item in items]
+        items = ", ".join(items)
+        f.write(f"weaponsMap.put(WeaponType.{key}, new String[]{{{items}}});\n")
+
+    f.write("\n// endregion")
+    f.close()
+
+
+def write(filepath: str, data):
     with open(filepath, "w") as f:
         json.dump(data, f, indent=4)
 
@@ -61,16 +92,19 @@ def sort_item_id(item_ids: dict[str, list[str]], item_id: str, item_path: str):
             equip_slots = root.find(".//equipSlots")
             if equip_slots is not None:
                 for slot in equip_slots:
-                    print(slot.text)
                     add_element(item_ids, slot.text, item_id)
             else:
                 slot = root.find(".//slot")
                 add_element(item_ids, slot.text, item_id)
         case "item":
-            pass
+            add_element(item_ids, "ITEM", item_id)
         case "weapon":
             melee_tag = root.find(".//melee")
-            add_element(item_ids, melee_tag.text, item_id)
+            match melee_tag.text:
+                case "true":
+                    add_element(item_ids, "MELEE", item_id)
+                case "false":
+                    add_element(item_ids, "RANGED", item_id)
 
 
 def add_element(dictionary: dict[str, list[str]], key: str, value: str):

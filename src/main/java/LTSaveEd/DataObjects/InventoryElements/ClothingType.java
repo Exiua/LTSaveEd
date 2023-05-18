@@ -6,32 +6,32 @@ public enum ClothingType {
     HAIR,
     MOUTH,
     NECK,
-    OVER_TORSO,
-    TORSO,
+    TORSO_OVER,     // OVER_TORSO
+    TORSO_UNDER,    // TORSO
     CHEST,
-    NIPPLES,
+    NIPPLE,         // NIPPLES
     STOMACH,
-    HANDS,
-    WRISTS,
-    FINGERS,
+    HAND,           // HANDS
+    WRIST,          // WRISTS
+    FINGER,         // FINGERS
     HIPS,
     ANUS,
-    LEGS,
+    LEG,            // LEGS
     GROIN,
-    FEET,
-    CALVES,
-    ANKLES,
+    FOOT,           // FEET
+    SOCK,           // CALVES
+    ANKLE,          // ANKLES
     HORNS,
     WINGS,
     TAIL,
     PENIS,
     VAGINA,
-    EAR_PIERCING,
-    NOSE_PIERCING,
-    TONGUE_PIERCING,
-    LIP_PIERCING,
-    NAVEL_PIERCING,
-    NIPPLE_PIERCING,
-    VAGINAL_PIERCING,
-    COCK_PIERCING
+    PIERCING_EAR,
+    PIERCING_NOSE,
+    PIERCING_TONGUE,
+    PIERCING_LIP,
+    PIERCING_STOMACH,
+    PIERCING_NIPPLE,
+    PIERCING_VAGINA,
+    PIERCING_PENIS
 }
