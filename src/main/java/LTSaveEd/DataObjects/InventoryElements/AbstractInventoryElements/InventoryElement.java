@@ -9,7 +9,7 @@ import org.w3c.dom.NodeList;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class AbstractInventoryElement {
+public abstract class InventoryElement {
 
     private String count;
     private final String id;
@@ -21,7 +21,7 @@ public abstract class AbstractInventoryElement {
     protected final Element node;
     protected Element effectsNode;
 
-    public AbstractInventoryElement(Node elementNode){
+    public InventoryElement(Node elementNode){
         node = (Element) elementNode;
         id = node.getAttribute("id");
         name = node.getAttribute("name");
@@ -126,9 +126,9 @@ public abstract class AbstractInventoryElement {
         node.getParentNode().removeChild(node);
     }
 
-    public abstract boolean isEqual(AbstractInventoryElement element);
+    public abstract boolean isEqual(InventoryElement element);
     
-    protected boolean hasEqualEffects(AbstractInventoryElement element){
+    protected boolean hasEqualEffects(InventoryElement element){
         if(effects.size() != element.effects.size()){
             return false;
         }

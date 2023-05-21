@@ -1,10 +1,11 @@
 package LTSaveEd;
 
 import LTSaveEd.DataObjects.*;
-import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.InventoryElement;
 import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import LTSaveEd.DataObjects.InventoryElements.InventoryItem;
 import LTSaveEd.DataObjects.InventoryElements.InventoryWeapon;
+import LTSaveEd.DataObjects.InventoryElements.MultiColor;
 import LTSaveEd.Util.Debug;
 import LTSaveEd.Util.InitializeElements;
 import LTSaveEd.Util.TextFieldType;
@@ -15,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.*;
@@ -396,6 +398,47 @@ public class Controller {
     private final ObservableList<Attribute> damageTypes = FXCollections.observableArrayList(
             new Attribute("Physical", "PHYSICAL"), new Attribute("Fire", "FIRE"),
             new Attribute("Ice", "ICE"), new Attribute("Poison", "POISON"));
+
+    private final ObservableList<Attribute> standardColorAttributeValues = FXCollections.observableArrayList(
+            new Attribute("White", "WHITE"), new Attribute("Light Grey", "GREY_LIGHT"),
+            new Attribute("Grey", "GREY"), new Attribute("Dark Grey", "GREY_DARK"),
+            new Attribute("Black", "BLACK"), new Attribute("Pitch Black", "BLACK_JET"),
+            new Attribute("Midnight Red", "RED_VERY_DARK"),
+            new Attribute("Burgundy", "RED_BURGUNDY"),
+            new Attribute("Dark Red", "RED_DARK"), new Attribute("Red", "RED"),
+            new Attribute("Bright Red", "RED_BRIGHT"), new Attribute("Orange", "ORANGE"),
+            new Attribute("Bright Orange", "ORANGE_BRIGHT"),
+            new Attribute("Dark Orange", "ORANGE_DARK"),
+            new Attribute("Desaturated Brown", "DESATURATED_BROWN"),
+            new Attribute("Dark Desaturated Brown", "DESATURATED_BROWN_DARK"),
+            new Attribute("Brown", "BROWN"), new Attribute("Dark Brown", "BROWN_DARK"),
+            new Attribute("Midnight Brown", "BROWN_VERY_DARK"),  new Attribute("Tan", "TAN"),
+            new Attribute("Khaki", "KHAKI"), new Attribute("Olive", "OLIVE"),
+            new Attribute("Mustard Yellow", "YELLOW_DARK"), new Attribute("Yellow", "YELLOW"),
+            new Attribute("Lime Green", "GREEN_LIME"), new Attribute("Green", "GREEN"),
+            new Attribute("Drab Green", "GREEN_DRAB"), new Attribute("Dark Green", "GREEN_DARK"),
+            new Attribute("Midnight Green", "GREEN_VERY_DARK"),
+            new Attribute("Turquoise", "TURQUOISE"), new Attribute("Light Blue", "BLUE_LIGHT"),
+            new Attribute("Blue", "BLUE"), new Attribute("Blue-grey", "BLUE_GREY"),
+            new Attribute("Navy Blue", "BLUE_NAVY"), new Attribute("Dark Blue", "BLUE_DARK"),
+            new Attribute("Midnight Blue", "BLUE_VERY_DARK"),
+            new Attribute("Midnight Purple", "PURPLE_VERY_DARK"),
+            new Attribute("Royal Purple", "PURPLE_ROYAL"),
+            new Attribute("Dark Purple", "PURPLE_DARK"), new Attribute("Purple", "PURPLE"),
+            new Attribute("Violet", "PURPLE_LIGHT"), new Attribute("Periwinkle", "PERIWINKLE"),
+            new Attribute("Light Pink", "PINK_LIGHT"), new Attribute("Pink", "PINK"),
+            new Attribute("Hot Pink", "PINK_HOT"), new Attribute("Deep Pink", "PINK_DARK"));
+
+    private final ObservableList<Attribute> metallicColorAttributeValues = FXCollections.observableArrayList(
+            new Attribute("Black Steel", "BLACK_STEEL"), new Attribute("Gunmetal Gray", "GUNMETAL"),
+            new Attribute("Steel", "STEEL"), new Attribute("Iron", "IRON"),
+            new Attribute("Brass", "BRASS"), new Attribute("Copper", "COPPER"),
+            new Attribute("Bronze", "BRONZE"), new Attribute("Silver", "SILVER"),
+            new Attribute("Rose Gold", "ROSE_GOLD"), new Attribute("Gold", "GOLD"),
+            new Attribute("Platinum", "PLATINUM"));
+
+    private final ObservableList<Attribute> fullColorAttributeValues = FXCollections.observableArrayList();
+
     /**
      * HashMap of all the secondary labels' TextField's id (key) and the corresponding ArrayList of values (value)
      */
@@ -476,6 +519,18 @@ public class Controller {
      */
     private boolean worldFieldsSet = false;
 
+    private final StringConverter<Attribute> attributeStringConverter = new StringConverter<>() {
+        @Override
+        public String toString(@NotNull Attribute attribute) {
+            return attribute.getName();
+        }
+
+        @Override
+        public @Nullable Attribute fromString(String s) {
+            return null;
+        }
+    };
+
     //endregion
 
     /**
@@ -496,6 +551,7 @@ public class Controller {
             in = new FileInputStream("config.ini");
         }
         prop.load(in);
+
         InitializeElements initializer = new InitializeElements();
         initializer.getLabelMap().forEach(labelMap::putIfAbsent);
         initializer.getPersonalityTraits().forEach(personalityTraits::putIfAbsent);
@@ -504,6 +560,10 @@ public class Controller {
         perks.addAll(initializer.getPerks());
         initializer.initializeHairStyles(hairStylesB, hairStylesVS, hairStylesS, hairStylesSL, hairStylesL, hairStylesFL);
         desireTypes.addAll(initializer.getDesireTypes());
+
+        fullColorAttributeValues.addAll(metallicColorAttributeValues);
+        fullColorAttributeValues.addAll(standardColorAttributeValues);
+
         initializeHashSets();
     }
 
@@ -1713,7 +1773,7 @@ public class Controller {
             valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
             Button btn = new Button("Goto Character");
             btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
-            //NpcCharacter npc = matchNpc(npcChars, charId);
+            // NpcCharacter npc = matchNpc(npcChars, charId);
             // possible catch and delete relation entry for deleted npcs
             btn.setOnAction(event -> {
                 String[] id = getId(event).split("\\$");
@@ -1915,21 +1975,26 @@ public class Controller {
             if (items.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
+
             InventoryItem inventoryItem = new InventoryItem(items.item(i));
             String itemId = inventoryItem.getId();
             // String colorValue = inventoryItem.getColor();
             TextField itemIdTf = new TextField(itemId);
             itemIdTf.setEditable(false);
+
             TextField nameTf = new TextField(inventoryItem.getName());
             nameTf.setEditable(false);
+
             TextField itemCount = new TextField(inventoryItem.getCount());
             itemCount.setId(partialId + "count$" + counter);
             itemCount.focusedProperty().addListener(new TextObjectListener(itemCount, TextFieldType.INT));
-            Button btn = new Button("Delete Item");
-            btn.setOnAction(this::removeHBox);
+
+            Button btn = createButton("Delete Item", this::removeHBox);
+
             HBox hBox = new HBox(10);
             hBox.setId(partialId + counter);
             counter++;
+
             inventoryItem.setHBox(hBox);
             inventoryItem.addHBoxNodes(itemCount);
             hBox.getChildren().addAll(new Label("Id: "), itemIdTf, new Label("Name: "), nameTf,
@@ -1951,33 +2016,46 @@ public class Controller {
             if (items.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
+
             InventoryClothing inventoryClothing = new InventoryClothing(items.item(i));
             TextField clothingIdTf = new TextField(inventoryClothing.getId());
             clothingIdTf.setEditable(false);
+
             TextField nameTf = new TextField(inventoryClothing.getName());
             nameTf.setEditable(false);
+
             TextField clothingCount = new TextField(inventoryClothing.getCount());
             clothingCount.setId(partialId + "count$" + counter);
             clothingCount.focusedProperty().addListener(new TextObjectListener(clothingCount, TextFieldType.INT));
-            CheckBox enchantmentKnown = new CheckBox("Enchantment Known: ");
-            enchantmentKnown.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-            enchantmentKnown.setSelected(inventoryClothing.isEnchantmentKnown());
+
+            CheckBox enchantmentKnown = createCheckBox("Enchantment Known: ", inventoryClothing.isEnchantmentKnown(), this::updateXmlBooleanInventory);
             enchantmentKnown.setId(partialId + "enchantmentKnown$" + counter);
-            enchantmentKnown.setOnAction(this::updateXmlBooleanInventory);
-            CheckBox isDirty = new CheckBox("Dirty: ");
-            isDirty.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-            isDirty.setSelected(inventoryClothing.isDirty());
-            isDirty.setOnAction(this::updateXmlBooleanInventory);
+
+            CheckBox isDirty = createCheckBox("Dirty: ", inventoryClothing.isDirty(), this::updateXmlBooleanInventory);
             isDirty.setId(partialId + "isDirty$" + counter);
-            Button btn = new Button("Delete Item");
-            btn.setOnAction(this::removeHBox);
+
+            Button btn = createButton("Delete Item", this::removeHBox);
+
             HBox hBox = new HBox(10);
             hBox.setId(partialId + counter);
             counter++;
+
             inventoryClothing.setHBox(hBox);
             inventoryClothing.addHBoxNodes(clothingCount, enchantmentKnown, isDirty);
-            hBox.getChildren().addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf,
-                    new Label("Count: "), clothingCount, enchantmentKnown, isDirty, btn);
+            ObservableList<javafx.scene.Node> hBoxChildren = hBox.getChildren();
+            hBoxChildren.addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf);
+
+            MultiColor colors = inventoryClothing.getColors();
+            for(int j = 0; j < colors.getColorCount(); j++){
+                String color = colors.getColor(j).replace("CLOTHING_", "");
+                ComboBox<Attribute> colorComboBox = new ComboBox<>(fullColorAttributeValues);
+                Attribute clothingColorAttribute = matchComboBoxItem(fullColorAttributeValues, color);
+                colorComboBox.setValue(clothingColorAttribute);
+                colorComboBox.setConverter(attributeStringConverter);
+                hBoxChildren.add(colorComboBox);
+            }
+
+            hBoxChildren.addAll(new Label("Count: "), clothingCount, enchantmentKnown, isDirty, btn);
             // Id: <Id TextField> Name: <Name TextField> Count: <Count TextField> <EnchantmentKnow CheckBox>
             //  <IsDirty CheckBox> <delete btn>
             vb.getChildren().add(hBox);
@@ -2005,30 +2083,21 @@ public class Controller {
             weaponCount.setId(partialId + "count$" + counter);
             weaponCount.focusedProperty().addListener(new TextObjectListener(weaponCount, TextFieldType.INT));
             String dmgType = inventoryWeapon.getDamageType();
-            ComboBox<Attribute> damageType;
+
+            ObservableList<Attribute> values;
+            String currentValue;
             if (dmgType.equals("LUST")) {
-                damageType = new ComboBox<>(FXCollections.observableArrayList(new Attribute("Lust", "Lust")));
-                damageType.setValue(damageType.getItems().get(0));
+                values = FXCollections.observableArrayList(new Attribute("Lust", "Lust"));
+                currentValue = values.get(0).getValue();
             }
             else {
-                damageType = new ComboBox<>(damageTypes);
-                damageType.setValue(matchComboBoxItem(damageTypes, dmgType));
+                values = damageTypes;
+                currentValue = dmgType;
             }
-            damageType.setId(partialId + "damageType$" + counter);
-            damageType.setConverter(new StringConverter<>() {
-                @Override
-                public String toString(@NotNull Attribute attribute) {
-                    return attribute.getName();
-                }
 
-                @Override
-                public @Nullable Attribute fromString(String s) {
-                    return null;
-                }
-            });
-            damageType.setOnAction(this::updateXmlComboBoxInventory);
-            Button btn = new Button("Delete Item");
-            btn.setOnAction(this::removeHBox);
+            ComboBox<Attribute> damageType = createComboBox(values, currentValue, this::updateXmlComboBoxInventory);
+            damageType.setId(partialId + "damageType$" + counter);
+            Button btn = createButton("Delete Item", this::removeHBox);
             HBox hBox = new HBox(10);
             hBox.setId(partialId + counter);
             counter++;
@@ -2048,7 +2117,7 @@ public class Controller {
         ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
         String[] id = targetHBox.getId().split("\\$");
         String partialId = id[0] + "$" + id[1] + "$";
-        ArrayList<? extends AbstractInventoryElement> inventoryElements;
+        ArrayList<? extends InventoryElement> inventoryElements;
         switch (id[1]) {
             case "itemsInInventory" -> inventoryElements = inventoryItems;
             case "clothingInInventory" -> inventoryElements = inventoryClothes;
@@ -2059,11 +2128,11 @@ public class Controller {
         shiftHBoxIds(inventoryElements, index, partialId);
     }
 
-    private <T extends AbstractInventoryElement> void shiftHBoxIds(@NotNull ArrayList<T> arrayList, int index, String partialId) {
+    private <T extends InventoryElement> void shiftHBoxIds(@NotNull ArrayList<T> arrayList, int index, String partialId) {
         arrayList.get(index).removeNode();
 
         for (int i = index; i < arrayList.size() - 1; i++) {
-            AbstractInventoryElement inventoryElement = arrayList.get(i + 1);
+            InventoryElement inventoryElement = arrayList.get(i + 1);
             HBox hBox = inventoryElement.getHBox();
             hBox.setId(partialId + i);
             ArrayList<javafx.scene.Node> nodes = inventoryElement.getHBoxNodes();
@@ -2109,6 +2178,29 @@ public class Controller {
         String returnString = colors.toString();
         int strLength = returnString.length();
         return returnString.charAt(strLength - 1) == '$' ? returnString.substring(0, strLength - 1) : returnString;
+    }
+
+    private ComboBox<Attribute> createComboBox(ObservableList<Attribute> values, String value, EventHandler<ActionEvent> onAction){
+        ComboBox<Attribute> comboBox = new ComboBox<>(values);
+        Attribute currentValue = matchComboBoxItem(values, value);
+        comboBox.setValue(currentValue);
+        comboBox.setConverter(attributeStringConverter);
+        comboBox.setOnAction(onAction);
+        return comboBox;
+    }
+
+    private Button createButton(String text, EventHandler<ActionEvent> onAction){
+        Button btn = new Button(text);
+        btn.setOnAction(onAction);
+        return btn;
+    }
+
+    private CheckBox createCheckBox(String text, boolean selected, EventHandler<ActionEvent> onAction){
+        CheckBox checkBox = new CheckBox(text);
+        checkBox.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+        checkBox.setSelected(selected);
+        checkBox.setOnAction(onAction);
+        return checkBox;
     }
 
     /**

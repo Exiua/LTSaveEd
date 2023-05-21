@@ -1301,6 +1301,22 @@ public class InitializeElements {
         return labelMap;
     }
 
+    public ArrayList<ObservableList<Attribute>> getJobHistories() {
+        return jobHistories;
+    }
+
+    public HashMap<ClothingType, String[]> getClothesMap(){
+        return clothesMap;
+    }
+
+    public HashMap<ItemType, String[]> getItemsMap(){
+        return itemsMap;
+    }
+
+    public HashMap<WeaponType, String[]> getWeaponsMap(){
+        return weaponsMap;
+    }
+
     @SafeVarargs
     public final void initializeHairStyles(ObservableList<Attribute>... hairStyles){
         for(int i = 0; i < hairStyles.length; i++) {
@@ -1806,9 +1822,5 @@ public class InitializeElements {
             }
         }
         return list;
-    }
-
-    public ArrayList<ObservableList<Attribute>> getJobHistories() {
-        return jobHistories;
     }
 }

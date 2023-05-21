@@ -1,9 +1,9 @@
 package LTSaveEd.DataObjects.InventoryElements;
 
-import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.InventoryElement;
 import org.w3c.dom.Node;
 
-public class InventoryItem extends AbstractInventoryElement {
+public class InventoryItem extends InventoryElement {
 
     private String color;
 
@@ -24,7 +24,7 @@ public class InventoryItem extends AbstractInventoryElement {
     }
 
     @Override
-    public boolean isEqual(AbstractInventoryElement element) {
+    public boolean isEqual(InventoryElement element) {
         return (element instanceof InventoryItem) && this.getId().equals(element.getId()) &&
                 this.color.equals(((InventoryItem) element).getColor()) && hasEqualEffects(element);
     }

@@ -1,11 +1,11 @@
 package LTSaveEd.DataObjects.InventoryElements;
 
 import LTSaveEd.DataObjects.Attribute;
-import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.AbstractInventoryElement;
+import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.InventoryElement;
 import javafx.scene.control.ComboBox;
 import org.w3c.dom.Node;
 
-public class InventoryWeapon extends AbstractInventoryElement {
+public class InventoryWeapon extends InventoryElement {
 
     private String coreEnchantment;
     private String damageType;
@@ -38,7 +38,7 @@ public class InventoryWeapon extends AbstractInventoryElement {
     }
 
     @Override
-    public boolean isEqual(AbstractInventoryElement element) {
+    public boolean isEqual(InventoryElement element) {
         return (element instanceof InventoryWeapon) && this.getId().equals(element.getId()) &&
                 coreEnchantment.equals(((InventoryWeapon) element).getCoreEnchantment()) &&
                 damageType.equals(((InventoryWeapon) element).getDamageType()) && hasEqualEffects(element);
