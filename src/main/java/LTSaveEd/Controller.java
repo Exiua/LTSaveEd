@@ -1747,8 +1747,6 @@ public class Controller {
         NodeList relationships = relationshipsNode.getChildNodes();
         VBox relationBox = (VBox) namespace.get("relationshipVbox");
         relationBox.getChildren().clear();
-        //@SuppressWarnings("unchecked")
-        //ObservableList<NpcCharacter> npcChars = ((ComboBox<NpcCharacter>) namespace.get("characterSelector")).getItems();
         for (int i = 0; i < relationships.getLength(); i++) {
             if (relationships.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
@@ -1759,6 +1757,7 @@ public class Controller {
 
             try {
                 npcName = getNpcName(charId);
+                // TODO: Remove Missing NPCs
             }
             catch (NoSuchElementException e) {
                 continue;
@@ -1773,7 +1772,6 @@ public class Controller {
             valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
             Button btn = new Button("Goto Character");
             btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
-            // NpcCharacter npc = matchNpc(npcChars, charId);
             // possible catch and delete relation entry for deleted npcs
             btn.setOnAction(event -> {
                 String[] id = getId(event).split("\\$");
@@ -2044,6 +2042,7 @@ public class Controller {
             inventoryClothing.addHBoxNodes(clothingCount, enchantmentKnown, isDirty);
             ObservableList<javafx.scene.Node> hBoxChildren = hBox.getChildren();
             hBoxChildren.addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf);
+            hBoxChildren.addAll(new Label("Count: "), clothingCount, enchantmentKnown, isDirty, btn);
 
             MultiColor colors = inventoryClothing.getColors();
             for(int j = 0; j < colors.getColorCount(); j++){
@@ -2054,8 +2053,6 @@ public class Controller {
                 colorComboBox.setConverter(attributeStringConverter);
                 hBoxChildren.add(colorComboBox);
             }
-
-            hBoxChildren.addAll(new Label("Count: "), clothingCount, enchantmentKnown, isDirty, btn);
             // Id: <Id TextField> Name: <Name TextField> Count: <Count TextField> <EnchantmentKnow CheckBox>
             //  <IsDirty CheckBox> <delete btn>
             vb.getChildren().add(hBox);
@@ -2116,7 +2113,6 @@ public class Controller {
         HBox targetHBox = (HBox) ((javafx.scene.Node) event.getSource()).getParent();
         ((VBox) targetHBox.getParent()).getChildren().remove(targetHBox);
         String[] id = targetHBox.getId().split("\\$");
-        String partialId = id[0] + "$" + id[1] + "$";
         ArrayList<? extends InventoryElement> inventoryElements;
         switch (id[1]) {
             case "itemsInInventory" -> inventoryElements = inventoryItems;
@@ -2125,31 +2121,33 @@ public class Controller {
             default -> throw new IllegalStateException("Unexpected value: " + id[1]);
         }
         int index = Integer.parseInt(id[2]);
-        shiftHBoxIds(inventoryElements, index, partialId);
+        shiftHBoxIds(inventoryElements, index);
     }
 
-    private <T extends InventoryElement> void shiftHBoxIds(@NotNull ArrayList<T> arrayList, int index, String partialId) {
+    private <T extends InventoryElement> void shiftHBoxIds(@NotNull ArrayList<T> arrayList, int index) {
         arrayList.get(index).removeNode();
 
         for (int i = index; i < arrayList.size() - 1; i++) {
             InventoryElement inventoryElement = arrayList.get(i + 1);
             HBox hBox = inventoryElement.getHBox();
-            hBox.setId(partialId + i);
+            String partialId = removeNumberFromId(hBox.getId());
+            hBox.setId(partialId + "$" + i);
             ArrayList<javafx.scene.Node> nodes = inventoryElement.getHBoxNodes();
-            String[] attrNames;
 
-            switch (nodes.size()) {
-                case 1 -> attrNames = new String[]{"count$"};
-                case 2 -> attrNames = new String[]{"count$", "damageType$"};
-                case 3 -> attrNames = new String[]{"count$", "enchantmentKnown$", "isDirty$"};
-                default -> throw new IllegalStateException("Unexpected value: " + nodes.size());
-            }
-
-            for (int j = 0; j < nodes.size(); j++) {
-                nodes.get(j).setId(partialId + attrNames[j] + i);
+            for (javafx.scene.Node node : nodes) {
+                String id = node.getId();
+                String partialAttrId = removeNumberFromId(id);
+                String newId = partialAttrId + "$" + i;
+                node.setId(newId);
             }
         }
         arrayList.remove(index);
+    }
+
+    private String removeNumberFromId(String id){
+        String[] idParts = id.split("\\$");
+        idParts = Arrays.copyOfRange(idParts, 0, idParts.length - 1);
+        return String.join("$", idParts);
     }
 
     private boolean matchItemByColors(Node itemNode, String @NotNull ... colors) {
