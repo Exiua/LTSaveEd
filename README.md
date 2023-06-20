@@ -28,3 +28,7 @@ If the jar doesn't work, download and extract the zip from the [latest release](
 - Remove all non-encountered offsprings
 - Reveal the map
 
+## Troubleshooting
+- A popup saying "This application requires a Java Runtime Environment ##"
+  - Try running `java --version` or `java -version` in a terminal. If the output says `java 1.8`, you have Java 8 installed. You can download the latest version of Java from [here](https://www.oracle.com/java/technologies/downloads/)
+
