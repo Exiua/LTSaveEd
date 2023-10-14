@@ -2875,6 +2875,7 @@ public class Controller {
          */
         private String getFormattedText(@NotNull String newValue) {
             updateFieldId();
+            System.out.println(fieldId + " " + newValue);
             Node value;
             try {
                 value = getValueNode();
@@ -3031,18 +3032,39 @@ public class Controller {
                 case DATE -> {
                     try {
                         boolean coreInfo = fieldId.startsWith("coreInfo");
+                        String monthId;
+                        String yearId;
+                        if(coreInfo){
+                            monthId = "coreInfo$date$month";
+                            yearId = "coreInfo$date$year";
+                        }
+                        else{
+                            monthId = "core$monthOfBirth$value";
+                            yearId = "core$yearOfBirth$value";
+                        }
                         @SuppressWarnings("unchecked")
-                        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(coreInfo ? "coreInfo$date$month" : "core$monthOfBirth$value");
-                        TextField yearField = (TextField) namespace.get(coreInfo ? "coreInfo$date$year" : "core$yearOfBirth$value");
+                        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(monthId);
+                        TextField yearField = (TextField) namespace.get(yearId);
                         int year = Integer.parseInt(yearField.getText());
                         int monthLimit = getMonthLimit(cb.getValue(), year);
-                        int nv = Integer.parseInt(newValue);
-                        newValue = String.valueOf(nv); // Removes leading zeroes
+                        int nv = Integer.parseInt(newValue); // Removes leading zeroes
+                        newValue = String.valueOf(nv);
+                        System.out.println(fieldId + " " + newValue);
                         if (nv < 1 || nv > monthLimit) {
-                            return String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH));
+                            if(coreInfo) {
+                                return String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH));
+                            }
+                            else{
+                                return oldValue;
+                            }
                         }
-                        currentDate.set(Calendar.DAY_OF_MONTH, nv);
-                        value.setTextContent(String.valueOf(getSaveTimeValue()));
+                        if(coreInfo) {
+                            currentDate.set(Calendar.DAY_OF_MONTH, nv);
+                            value.setTextContent(String.valueOf(getSaveTimeValue()));
+                        }
+                        else{
+                            value.setTextContent(newValue);
+                        }
                         return newValue;
                     }
                     catch (NumberFormatException e) {
