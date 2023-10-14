@@ -1,6 +1,9 @@
 package LTSaveEd.Util;
 
 import LTSaveEd.DataObjects.*;
+import LTSaveEd.DataObjects.InventoryElements.ClothingType;
+import LTSaveEd.DataObjects.InventoryElements.ItemType;
+import LTSaveEd.DataObjects.InventoryElements.WeaponType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -772,7 +775,7 @@ public class InitializeElements {
      */
     private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
             //This element gets deleted when the initialization method is run
-            new LegTypeAttr("Placeholder", "Placeholder", legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR));
+            new LegTypeAttribute("Placeholder", "Placeholder", legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR));
 
     /**
      * ObservableList of all desire types in the game
@@ -1040,7 +1043,8 @@ public class InitializeElements {
             new Attribute("Writer", "WRITER"), new Attribute("Chef", "CHEF"),
             new Attribute("Construction Worker", "CONSTRUCTION_WORKER"),
             new Attribute("Soldier", "SOLDIER"), new Attribute("Athlete", "ATHLETE"),
-            new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"));
+            new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"),
+            new Attribute("Tourist", "TOURIST"));
 
     private final ObservableList<Attribute> npcJobHistories = FXCollections.observableArrayList(
             new Attribute("Unemployed", "NPC_UNEMPLOYED"),
@@ -1268,6 +1272,12 @@ public class InitializeElements {
     private final ArrayList<ObservableList<Attribute>> hairStylesArr = new ArrayList<>(Arrays.asList(hairStylesB, hairStylesVS, hairStylesS, hairStylesSL,
             hairStylesL, hairStylesFL));
 
+    private final HashMap<ClothingType, String[]> clothesMap = new HashMap<>();
+
+    private final HashMap<ItemType, String[]> itemsMap = new HashMap<>();
+
+    private final HashMap<WeaponType, String[]> weaponsMap = new HashMap<>();
+
     public InitializeElements(){
         initializeCollections();
     }
@@ -1292,6 +1302,22 @@ public class InitializeElements {
         return labelMap;
     }
 
+    public ArrayList<ObservableList<Attribute>> getJobHistories() {
+        return jobHistories;
+    }
+
+    public HashMap<ClothingType, String[]> getClothesMap(){
+        return clothesMap;
+    }
+
+    public HashMap<ItemType, String[]> getItemsMap(){
+        return itemsMap;
+    }
+
+    public HashMap<WeaponType, String[]> getWeaponsMap(){
+        return weaponsMap;
+    }
+
     @SafeVarargs
     public final void initializeHairStyles(ObservableList<Attribute>... hairStyles){
         for(int i = 0; i < hairStyles.length; i++) {
@@ -1308,6 +1334,7 @@ public class InitializeElements {
         initializeBreastSizes();
         initializeLabelMap();
         initializePersonalityTraits();
+        initializeItemMaps();
     }
 
     /**
@@ -1407,47 +1434,47 @@ public class InitializeElements {
     private void initializeLegTypes(){
         legTypes.remove(0);
         legTypes.addAll(FXCollections.observableArrayList(
-                new LegTypeAttr("Alligator", "ALLIGATOR_MORPH", legConfigurationsBQ, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Angel", "ANGEL", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Badger", "innoxia_badger_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Bat", "BAT_MORPH", legConfigurationsB, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Bear", "dsg_bear_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Capybara", "NoStepOnSnek_capybara_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Cat", "CAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Cow", "COW_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Demonic", "DEMON_COMMON", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Demonic-hoofed", "DEMON_HOOFED", legConfigurationsB, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Demonic-horse", "DEMON_HORSE", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Demonic-snake", "DEMON_SNAKE", legConfigurationsS, footStructuresN, genitalArrangementsCR),
-                new LegTypeAttr("Demonic-spider", "DEMON_SPIDER", legConfigurationsAr, footStructuresA, genitalArrangementsN),
-                new LegTypeAttr("Demonic-octopus", "DEMON_OCTOPUS", legConfigurationsC, footStructuresT, genitalArrangementsC),
-                new LegTypeAttr("Demonic-fish", "DEMON_FISH", legConfigurationsM, footStructuresN, genitalArrangementsCR),
-                new LegTypeAttr("Demonic-eagle", "DEMON_EAGLE", legConfigurationsAv, footStructuresD, genitalArrangementsR),
-                new LegTypeAttr("Dog", "DOG_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Dragon", "dsg_dragon_leg", legConfigurationsBQSM, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Ferret", "dsg_ferret_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Fox", "FOX_MORPH", legConfigurationsBQ, legConfigurationsBQ, footStructuresPD, "DIGITIGRADE"),
-                new LegTypeAttr("Goat", "innoxia_goat_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Gryphon", "dsg_gryphon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Harpy", "HARPY", legConfigurationsBAv, footStructuresD, genitalArrangementsNCR),
-                new LegTypeAttr("Horse", "HORSE_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Human", "HUMAN", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Hyena", "innoxia_hyena_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Octopus", "NoStepOnSnek_octopus_leg", legConfigurationsC, footStructuresT, genitalArrangementsC),
-                new LegTypeAttr("Otter", "dsg_otter_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Panther", "innoxia_panther_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Pig", "innoxia_pig_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Rabbit", "RABBIT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Racoon", "dsg_racoon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Rat", "RAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Reindeer", "REINDEER_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Shark", "dsg_shark_leg", legConfigurationsBM, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Sheep", "innoxia_sheep_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Snake", "NoStepOnSnek_snake_leg", legConfigurationsBS, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Furred Spider", "charisma_spider_legFluffy", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Spider", "charisma_spider_leg", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Squirrel", "SQUIRREL_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Wolf", "WOLF_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE")));
+                new LegTypeAttribute("Alligator", "ALLIGATOR_MORPH", legConfigurationsBQ, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Angel", "ANGEL", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Badger", "innoxia_badger_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Bat", "BAT_MORPH", legConfigurationsB, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Bear", "dsg_bear_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Capybara", "NoStepOnSnek_capybara_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Cat", "CAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Cow", "COW_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Demonic", "DEMON_COMMON", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Demonic-hoofed", "DEMON_HOOFED", legConfigurationsB, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Demonic-horse", "DEMON_HORSE", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Demonic-snake", "DEMON_SNAKE", legConfigurationsS, footStructuresN, genitalArrangementsCR),
+                new LegTypeAttribute("Demonic-spider", "DEMON_SPIDER", legConfigurationsAr, footStructuresA, genitalArrangementsN),
+                new LegTypeAttribute("Demonic-octopus", "DEMON_OCTOPUS", legConfigurationsC, footStructuresT, genitalArrangementsC),
+                new LegTypeAttribute("Demonic-fish", "DEMON_FISH", legConfigurationsM, footStructuresN, genitalArrangementsCR),
+                new LegTypeAttribute("Demonic-eagle", "DEMON_EAGLE", legConfigurationsAv, footStructuresD, genitalArrangementsR),
+                new LegTypeAttribute("Dog", "DOG_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Dragon", "dsg_dragon_leg", legConfigurationsBQSM, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Ferret", "dsg_ferret_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Fox", "FOX_MORPH", legConfigurationsBQ, legConfigurationsBQ, footStructuresPD, "DIGITIGRADE"),
+                new LegTypeAttribute("Goat", "innoxia_goat_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Gryphon", "dsg_gryphon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Harpy", "HARPY", legConfigurationsBAv, footStructuresD, genitalArrangementsNCR),
+                new LegTypeAttribute("Horse", "HORSE_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Human", "HUMAN", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Hyena", "innoxia_hyena_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Octopus", "NoStepOnSnek_octopus_leg", legConfigurationsC, footStructuresT, genitalArrangementsC),
+                new LegTypeAttribute("Otter", "dsg_otter_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Panther", "innoxia_panther_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Pig", "innoxia_pig_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Rabbit", "RABBIT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Racoon", "dsg_racoon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Rat", "RAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Reindeer", "REINDEER_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Shark", "dsg_shark_leg", legConfigurationsBM, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Sheep", "innoxia_sheep_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Snake", "NoStepOnSnek_snake_leg", legConfigurationsBS, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Furred Spider", "charisma_spider_legFluffy", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Spider", "charisma_spider_leg", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Squirrel", "SQUIRREL_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Wolf", "WOLF_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE")));
     }
 
     /**
@@ -1513,19 +1540,20 @@ public class InitializeElements {
         PerkNode p5_8 = new PerkNode(p5_9, "5", "FERTILITY_MAJOR_BOOST", "Fertile");
 
         PerkNode p6_1 = new PerkNode(p5_1, p5_4, "6", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
-        PerkNode p6_3 = new PerkNode(p5_7, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
-        PerkNode p6_2 = new PerkNode(p6_3, "6", "MALE_ATTRACTION", "Minx");
-        PerkNode p6_4 = new PerkNode(p6_3, "6", "FEMALE_ATTRACTION", "Ladykiller");
+        PerkNode p6_2 = new PerkNode(p6_1, "6", "HYPERMOBILITY", "Hypermobility");
+        PerkNode p6_4 = new PerkNode(p5_7, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
+        PerkNode p6_3 = new PerkNode(p6_4, "6", "MALE_ATTRACTION", "Minx");
+        PerkNode p6_5 = new PerkNode(p6_4, "6", "FEMALE_ATTRACTION", "Ladykiller");
         PerkNode p6_6 = new PerkNode(p5_10, p5_13, "6", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
 
         PerkNode p7_1 = new PerkNode(p6_1, "7", "PHYSICAL_DAMAGE", "Striker");
-        PerkNode p7_6 = new PerkNode(p6_3, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
-        PerkNode p7_5 = new PerkNode(p6_3, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
+        PerkNode p7_6 = new PerkNode(p6_4, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
+        PerkNode p7_5 = new PerkNode(p6_4, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
         PerkNode p7_2 = new PerkNode(p7_1, "7", "UNARMED_DAMAGE", "Hand-to-Hand");
         PerkNode p7_8 = new PerkNode(p6_6, "7", "AURA_BOOST", "Aura Reserves");
         PerkNode p7_4 = new PerkNode(p6_1, "7", "ENERGY_BOOST", "Energy Reserves");
         PerkNode p7_3 = new PerkNode(p7_4, "7", "ENERGY_BOOST_DRAIN_DAMAGE", "Aura Shielding");
-        PerkNode p7_7 = new PerkNode(p6_3, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p7_7 = new PerkNode(p6_4, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
         PerkNode p7_9 = new PerkNode(p6_6, "7", "SPELL_EFFICIENCY", "Spell Efficiency");
         PerkNode p7_10 = new PerkNode(p7_9, "7", "SPELL_DAMAGE", "Spell Power");
 
@@ -1578,13 +1606,13 @@ public class InitializeElements {
         perks.addAll(FXCollections.observableArrayList(p1_1, p1_2, p1_3, p2_11, p2_10, p2_2, p2_6, p2_7, p2_1, p2_4,
                 p2_5, p2_8, p2_3, p2_9, p3_3, p3_11, p3_7, p3_12, p3_5, p3_8, p3_13, p3_1, p3_6, p3_2, p3_9, p3_4, p3_10,
                 p4_3, p4_1, p4_11, p4_6, p4_4, p4_9, p4_12, p4_2, p4_10, p4_5, p4_8, p4_13, p4_7, p5_13, p5_9, p5_4,
-                p5_10, p5_3, p5_7, p5_11, p5_12, p5_2, p5_1, p5_5, p5_6, p5_8, p6_1, p6_3, p6_2, p6_4, p6_6, p7_1, p7_6,
-                p7_5, p7_2, p7_8, p7_4, p7_3, p7_7, p7_9, p7_10, p8_1, p8_3, p8_12, p8_5, p8_10, p8_4, p8_2, p8_7, p8_6,
-                p8_8, p8_9, p8_11, p9_1, p9_3, p9_6, p9_5, p9_4, p9_2, p9_10, p9_7, p9_9, p9_8, p10_5, p10_7, p10_3,
+                p5_10, p5_3, p5_7, p5_11, p5_12, p5_2, p5_1, p5_5, p5_6, p5_8, p6_1, p6_2, p6_4, p6_3, p6_5, p6_6, p7_1,
+                p7_6, p7_5, p7_2, p7_8, p7_4, p7_3, p7_7, p7_9, p7_10, p8_1, p8_3, p8_12, p8_5, p8_10, p8_4, p8_2, p8_7,
+                p8_6, p8_8, p8_9, p8_11, p9_1, p9_3, p9_6, p9_5, p9_4, p9_2, p9_10, p9_7, p9_9, p9_8, p10_5, p10_7, p10_3,
                 p10_1, p10_6, p10_4, p10_2, p10_8, p10_9, p11_2, p11_6, p11_5, p11_1, p11_4, p11_3, p11_7, p12_1, p12_2,
                 p12_3));
     }
-    //I'm probably dumb and there was an easier way to do this
+    // I'm probably dumb and there was an easier way to do this
 
     /**
      * Initializes and completes the breastSizes ArrayList
@@ -1723,6 +1751,58 @@ public class InitializeElements {
         personalityTraits.put("MUTE", mute);
     }
 
+    private void initializeItemMaps(){
+        // region Clothes Initialization
+
+        clothesMap.put(ClothingType.TORSO_OVER, new String[]{"bloom_wasp609_rainCoat_rain_coat", "c4mg1rl_trickster_cloak", "dsg_eep_ptrlequipset_stpvest", "dsg_eep_riotarmorset_riotarmor", "dsg_eep_servequipset_debuggerydo_enfdjacket", "dsg_eep_servequipset_enfdjacket", "dsg_eep_servequipset_enfdwaistcoat", "dsg_eep_servequipset_enfgreatcoat", "dsg_eep_servequipset_milsweatervest_crew", "dsg_eep_servequipset_milsweatervest_crewen", "dsg_eep_servequipset_milsweater_crew", "dsg_eep_servequipset_milsweater_crewen", "dsg_eep_servequipset_milsweater_vee", "dsg_eep_tacequipset_hpltcarrier", "dsg_eep_tacequipset_pltcarrier", "dsg_hlf_equip_rbandolier", "dsg_hlf_equip_rwebbing", "dsg_ljacket_ljacket", "dsg_ljacket_ljacket_f", "dsg_m65jacket_m65jacket", "innoxia_butler_butler_jacket", "innoxia_darkSiren_siren_cloak", "innoxia_japanese_haori", "innoxia_lyssiethUniform_tunic", "innoxia_scientist_lab_coat", "innoxia_torsoOver_apron", "innoxia_torsoOver_beer_barrel", "innoxia_torsoOver_blazer", "innoxia_torsoOver_christmas_jumper", "innoxia_torsoOver_dress_coat", "innoxia_torsoOver_feminine_blazer", "innoxia_torsoOver_fur_cloak", "innoxia_torsoOver_himation", "innoxia_torsoOver_hooded_cloak", "innoxia_torsoOver_hoodie", "innoxia_torsoOver_keyhole_jumper", "innoxia_torsoOver_open_front_cardigan", "innoxia_torsoOver_ribbed_jumper", "innoxia_torsoOver_suit_jacket", "innoxia_torsoOver_vending_machine", "innoxia_torsoOver_womens_leather_jacket", "innoxia_torsoOver_womens_winter_coat", "nerdlinger_builder_utility_jacket_utility_jacket", "NoStepOnSnek_poncho_poncho", "TonyJC_cropped_sweater", "TonyJC_shoulderless_top"});
+        clothesMap.put(ClothingType.TORSO_UNDER, new String[]{"c4mg1rl_benevolent_kyudogi", "c4mg1rl_trickster_tunic", "dsg_eep_ptrlequipset_flsldshirt", "dsg_eep_ptrlequipset_fssldshirt", "dsg_eep_ptrlequipset_lsldshirt", "dsg_eep_ptrlequipset_ssldshirt", "dsg_eep_tacequipset_cbtshirt", "dsg_eep_tacequipset_enf_cbtshirt", "dsg_eep_tacequipset_enf_sslcbtshirt", "dsg_eep_tacequipset_sslcbtshirt", "dsg_hlf_equip_rtunic", "innoxia_butler_butler_waistcoat_shirt", "innoxia_japanese_kimono", "innoxia_japanese_kimono_short", "innoxia_japanese_mens_kimono", "innoxia_maid_dress", "innoxia_torso_blouse", "innoxia_torso_feminine_short_sleeve_shirt", "innoxia_torso_long_sleeved_shirt", "innoxia_torso_peplos", "innoxia_torso_plunge_blouse", "innoxia_torso_plunge_club_dress", "innoxia_torso_short_sleeved_shirt", "innoxia_torso_tshirt", "innoxia_torso_tshirt_test_item", "innoxia_witch_witch_dress", "phlarx_dresses_ballgown", "phlarx_dresses_evening_gown", "phlarx_dresses_rockabilly_dress", "phlarx_dresses_vintage_dress", "rfpnj_slavery_administration_shirt", "sage_latex_croptop", "TonyJC_cropped_tshirt", "TonyJC_crop_tank_top", "TonyJC_one_strap_crop_tank_top", "TonyJC_sleeveless_shirt", "TonyJC_spaghetti_crop_tank_top", "TonyJC_tank_top", "TonyJC_tie_up_crop_top"});
+        clothesMap.put(ClothingType.HAND, new String[]{"c4mg1rl_benevolent_mitsugake", "dsg_ckls_ckls_gloves", "innoxia_butler_butler_gloves", "innoxia_hand_elbow_length_gloves", "innoxia_hand_fingerless_gloves", "innoxia_hand_fishnet_gloves", "innoxia_hand_gloves", "innoxia_hand_striped_gloves", "innoxia_hand_wraps", "innoxia_maid_sleeves", "innoxia_rainbow_gloves", "sage_latex_arm_warmers", "sage_latex_elbow_gloves"});
+        clothesMap.put(ClothingType.NECK, new String[]{"c4mg1rl_benevolent_necklace", "c4mg1rl_trickster_cloak", "dsg_eep_riotarmorset_riotneckprotector", "dsg_foxscarf_foxscarf", "innoxia_bdsm_choker", "innoxia_bdsm_metal_collar", "innoxia_cattle_cowbell_collar", "innoxia_darkSiren_siren_amulet", "innoxia_darkSiren_siren_cloak", "innoxia_elemental_snowflake_necklace", "innoxia_elemental_sun_necklace", "innoxia_mouth_bandana", "innoxia_neck_ambers_bitch_collar", "innoxia_neck_ankh_necklace", "innoxia_neck_bell_collar", "innoxia_neck_breeder_collar", "innoxia_neck_collar_bowtie", "innoxia_neck_demonstone_necklace", "innoxia_neck_diamond_necklace", "innoxia_neck_filly_choker", "innoxia_neck_gemstone_necklace", "innoxia_neck_heart_necklace", "innoxia_neck_horseshoe_necklace", "innoxia_neck_key_chain", "innoxia_neck_scarf", "innoxia_neck_tie", "innoxia_neck_velvet_choker", "innoxia_torsoOver_fur_cloak", "irbynx_spikedCollar_punk_neck_metal_collar_spiked"});
+        clothesMap.put(ClothingType.WRIST, new String[]{"c4mg1rl_benevolent_necklace", "dsg_eep_riotarmorset_riotarmguards", "dsg_eep_tacequipset_telbowpads", "dsg_hlf_equip_rbrassard", "dsg_hndcuffs_hndcuffs", "innoxia_bdsm_wrist_bracelets", "innoxia_bdsm_wrist_restraints", "innoxia_elemental_snowflake_necklace", "innoxia_elemental_sun_necklace", "innoxia_neck_ankh_necklace", "innoxia_neck_demonstone_necklace", "innoxia_neck_gemstone_necklace", "innoxia_neck_heart_necklace", "innoxia_neck_horseshoe_necklace", "innoxia_neck_key_chain", "innoxia_wrist_thin_bangles", "nerdlinger_rollerskating_elbowpads_rollerskating_elbowpads", "norin_hair_accessories_hair_scrunchie", "sage_latex_arm_warmers"});
+        clothesMap.put(ClothingType.STOMACH, new String[]{"c4mg1rl_strapless_bodysuit_strapless_bodysuit", "innoxia_bdsm_karada", "innoxia_milking_breast_pumps", "innoxia_stomach_lowback_body", "innoxia_stomach_overbust_corset", "innoxia_stomach_sarashi", "innoxia_stomach_underbust_corset", "sage_latex_bodysuit", "sage_latex_corset"});
+        clothesMap.put(ClothingType.EYES, new String[]{"c4mg1rl_trickster_mask", "dsg_eep_tacequipset_bglasses", "dsg_eep_tacequipset_bgoggles", "dsg_eep_tacequipset_nvgoggles", "innoxia_bdsm_blindfold", "innoxia_darkSiren_siren_seal", "innoxia_eye_aviators", "innoxia_eye_glasses", "innoxia_eye_half_moon_glasses", "innoxia_eye_half_rim_glasses", "innoxia_eye_patch", "innoxia_eye_safety_glasses", "innoxia_eye_thick_rim_glasses", "innoxia_scientist_safety_goggles", "nerdlinger_sports_noseguard_transparent_noseguard", "phlarx_sunglasses_cat_eye_sunglasses", "phlarx_sunglasses_heart_sunglasses", "phlarx_sunglasses_round_sunglasses"});
+        clothesMap.put(ClothingType.SOCK, new String[]{"corpseBloom_toeless_stockings_toeless_stockings", "dsg_ckls_ckls_stockings", "innoxia_maid_stockings", "innoxia_rainbow_stockings", "innoxia_sock_fishnets", "innoxia_sock_kneehigh_socks", "innoxia_sock_pantyhose", "innoxia_sock_socks", "innoxia_sock_stockings", "innoxia_sock_thighhigh_socks", "innoxia_sock_thighhigh_socks_striped", "innoxia_sock_toeless_striped_stockings", "innoxia_sock_trainer_socks", "nerdlinger_ronin_tabi_tabi", "sage_latex_stockings", "sage_latex_stockings_open"});
+        clothesMap.put(ClothingType.HEAD, new String[]{"dsg_bheadband_bheadband", "dsg_ckls_ckls_headband", "dsg_eep_ptrlequipset_bwhat", "dsg_eep_ptrlequipset_pcap", "dsg_eep_riotarmorset_riothelmet", "dsg_eep_servequipset_debuggerydo_enfberet", "dsg_eep_servequipset_enfberet", "dsg_eep_tacequipset_chelmet", "dsg_hlf_equip_rbooniehat", "innoxia_head_antler_headband", "innoxia_head_cap", "innoxia_head_circlet", "innoxia_head_cowboy_hat", "innoxia_head_hard_hat", "innoxia_head_headband", "innoxia_head_headband_bow", "innoxia_head_jack_o_lantern", "innoxia_head_slime_queens_tiara", "innoxia_head_sweatband", "innoxia_head_tiara", "innoxia_impArcanist_arcanist_hat", "innoxia_lyssiethUniform_hat", "innoxia_maid_headpiece", "innoxia_mouth_bandana", "innoxia_witch_witch_hat", "innoxia_witch_witch_hat_wide", "nerdlinger_rollerskating_helmet_rollerskating_helmet", "nerdlinger_sports_biking_helmet_biking_helmet"});
+        clothesMap.put(ClothingType.CHEST, new String[]{"dsg_ckls_ckls_bra", "innoxia_chest_lacy_plunge_bra", "innoxia_chest_strapless_bra", "innoxia_loinCloth_ragged_chest_wrap", "sage_latex_bra"});
+        clothesMap.put(ClothingType.GROIN, new String[]{"dsg_ckls_ckls_panties", "innoxia_bdsm_chastity_belt", "innoxia_bdsm_chastity_belt_full", "innoxia_groin_backless_panties", "innoxia_groin_bikini", "innoxia_groin_boxers", "innoxia_groin_boyshorts", "innoxia_groin_briefs", "innoxia_groin_crotchless_briefs", "innoxia_groin_crotchless_panties", "innoxia_groin_crotchless_thong", "innoxia_groin_jockstrap", "innoxia_groin_lacy_panties", "innoxia_groin_lacy_thong", "innoxia_groin_panties", "innoxia_groin_shimapan", "innoxia_groin_thong", "innoxia_groin_vstring", "sage_latex_panties"});
+        clothesMap.put(ClothingType.LEG, new String[]{"dsg_eep_ptrlequipset_enfslacks", "dsg_eep_servequipset_enfdslacks", "dsg_eep_servequipset_enfskirt", "dsg_eep_tacequipset_tpants", "dsg_hlf_equip_rtrousers", "innoxia_butler_butler_trousers", "innoxia_leg_assless_chaps", "innoxia_leg_asymmetrical_skirt", "innoxia_leg_bike_shorts", "innoxia_leg_cargo_trousers", "innoxia_leg_crotchless_chaps", "innoxia_leg_distressed_jeans", "innoxia_leg_hotpants", "innoxia_leg_jeans", "innoxia_leg_mens_hakama", "innoxia_leg_micro_skirt_belted", "innoxia_leg_micro_skirt_pleated", "innoxia_leg_mini_skirt", "innoxia_leg_pencil_skirt", "innoxia_leg_shorts", "innoxia_leg_skirt", "innoxia_leg_sport_shorts", "innoxia_leg_taur_skirt", "innoxia_leg_taur_trousers", "innoxia_leg_tight_jeans", "innoxia_leg_trousers", "innoxia_leg_trousers_women", "innoxia_leg_yoga_pants", "innoxia_loinCloth_loin_cloth", "innoxia_loinCloth_ragged_skirt", "innoxia_lyssiethUniform_skirt", "nerdlinger_street_joggers_joggers", "sage_latex_latexleggings", "TonyJC_daisy_dukes", "TonyJC_denim_overalls"});
+        clothesMap.put(ClothingType.HIPS, new String[]{"dsg_eep_ptrlequipset_utilbelt", "dsg_eep_riotarmorset_riotbelt", "dsg_eep_servequipset_enfdbelt", "dsg_eep_servequipset_enfstbelt", "dsg_eep_tacequipset_battlebelt", "dsg_eep_tacequipset_hbattlebelt", "innoxia_hips_leather_belt"});
+        clothesMap.put(ClothingType.ANKLE, new String[]{"dsg_eep_riotarmorset_riotshinguards", "dsg_eep_tacequipset_tkneepads", "innoxia_ankle_anklet", "innoxia_ankle_shin_guards", "innoxia_bdsm_spreaderbar", "innoxia_bdsm_wrist_bracelets", "innoxia_bdsm_wrist_restraints", "nerdlinger_rollerskating_kneepads_rollerskating_kneepads"});
+        clothesMap.put(ClothingType.FOOT, new String[]{"dsg_eep_servequipset_enfjackboots", "dsg_eep_servequipset_enfpumps", "dsg_eep_tacequipset_cboots", "dsg_hlf_equip_vcboots", "innoxia_butler_butler_shoes", "innoxia_foot_ankle_boots", "innoxia_foot_chelsea_boots", "innoxia_foot_flats", "innoxia_foot_gladiator_sandals", "innoxia_foot_goth_boots_fem", "innoxia_foot_heels", "innoxia_foot_low_top_skater_shoes", "innoxia_foot_mens_smart_shoes", "innoxia_foot_platform_boots", "innoxia_foot_stiletto_heels", "innoxia_foot_strappy_sandals", "innoxia_foot_thigh_high_boots", "innoxia_foot_trainers", "innoxia_foot_work_boots", "innoxia_japanese_geta", "innoxia_japanese_mens_geta", "innoxia_loinCloth_foot_wraps", "innoxia_lyssiethUniform_shoes", "innoxia_maid_heels", "innoxia_witch_witch_boots", "innoxia_witch_witch_boots_thigh_high", "nerdlinger_street_hitop_canvas_sneakers_hi_top_canvas_sneakers"});
+        clothesMap.put(ClothingType.MOUTH, new String[]{"dsg_eep_tacequipset_gmask", "dsg_hlf_equip_sbandana", "innoxia_anus_ribbed_dildo", "innoxia_bdsm_ballgag", "innoxia_bdsm_ringgag", "innoxia_mouth_bandana", "innoxia_webbing_seal_mouth", "norin_dildos_realistic_dildo"});
+        clothesMap.put(ClothingType.ANUS, new String[]{"innoxia_anus_ribbed_dildo", "innoxia_buttPlugs_butt_plug", "innoxia_buttPlugs_butt_plug_heart", "innoxia_buttPlugs_butt_plug_jewel", "innoxia_buttPlugs_butt_plug_tail", "innoxia_webbing_seal_anus", "norin_anal_beads_anal_beads", "norin_dildos_realistic_dildo"});
+        clothesMap.put(ClothingType.VAGINA, new String[]{"innoxia_anus_ribbed_dildo", "innoxia_milking_vagina_pump", "innoxia_vagina_insertable_dildo", "innoxia_vagina_sticker_anal_only", "innoxia_webbing_seal_vagina", "norin_clover_clamps_clover_clamps", "norin_dildos_realistic_dildo", "norin_strapless_dildo_strapless_dildo"});
+        clothesMap.put(ClothingType.PENIS, new String[]{"innoxia_bdsm_chastity_cage", "innoxia_bdsm_ornate_chastity_cage", "innoxia_bdsm_penis_strapon", "innoxia_milking_penis_pump", "innoxia_penis_condom", "innoxia_penis_condom_strong", "innoxia_penis_condom_super_strong", "innoxia_penis_condom_webbing"});
+        clothesMap.put(ClothingType.PIERCING_EAR, new String[]{"innoxia_cattle_piercing_ear_tag", "innoxia_elemental_piercing_ear_snowflakes", "innoxia_elemental_piercing_ear_sun", "innoxia_piercing_basic_barbell", "innoxia_piercing_basic_barbell_pair", "innoxia_piercing_ear_ball_studs", "innoxia_piercing_ear_chain_dangle", "innoxia_piercing_ear_cuff_chains", "innoxia_piercing_ear_hoops", "innoxia_piercing_ear_pearl_studs", "innoxia_piercing_ear_ring", "innoxia_quest_dairy_ear_tag", "innoxia_quest_dairy_ear_tag_npc", "norin_piercings_piercing_ear_bats", "norin_rose_piercings_piercing_ear_rose", "norin_sunflower_piercings_piercing_ear_sunflower"});
+        clothesMap.put(ClothingType.PIERCING_NOSE, new String[]{"innoxia_cattle_piercing_nose_ring", "innoxia_elemental_piercing_nose_snowflake", "innoxia_elemental_piercing_nose_sun", "innoxia_piercing_nose_ball_stud", "innoxia_piercing_nose_ring", "norin_rose_piercings_piercing_nose_rose", "norin_sunflower_piercings_piercing_nose_sunflower"});
+        clothesMap.put(ClothingType.FINGER, new String[]{"innoxia_finger_gemstone_ring", "innoxia_finger_gemstone_ring_unisex", "innoxia_finger_lips_ring", "innoxia_finger_meander_ring", "innoxia_finger_ring", "innoxia_finger_wrap_ring"});
+        clothesMap.put(ClothingType.HAIR, new String[]{"innoxia_hair_rose", "innoxia_japanese_kanzashi", "innoxia_mouth_bandana", "norin_hair_accessories_hair_bobby_pins", "norin_hair_accessories_hair_celtic_barrette", "norin_hair_accessories_hair_dragonfly", "norin_hair_accessories_hair_pins", "norin_hair_accessories_hair_scrunchie", "norin_hair_accessories_hair_sticks", "norin_tail_ribbon_tail_ribbon"});
+        clothesMap.put(ClothingType.HORNS, new String[]{"innoxia_horn_ring_chain", "innoxia_horn_thin_rings"});
+        clothesMap.put(ClothingType.NIPPLE, new String[]{"innoxia_milking_breast_pumps", "innoxia_webbing_seal_nipples", "norin_clover_clamps_clover_clamps"});
+        clothesMap.put(ClothingType.PIERCING_TONGUE, new String[]{"innoxia_piercing_basic_barbell"});
+        clothesMap.put(ClothingType.PIERCING_NIPPLE, new String[]{"innoxia_piercing_basic_barbell_pair", "innoxia_piercing_nipple_chain", "norin_piercings_bat_wings_barbells", "norin_piercings_heart_barbells", "norin_piercings_piercing_nipple_chain", "norin_piercings_piercing_nipple_rings"});
+        clothesMap.put(ClothingType.PIERCING_STOMACH, new String[]{"innoxia_piercing_gemstone_barbell", "innoxia_piercing_ringed_barbell", "norin_piercings_caution_when_wet", "norin_piercings_piercing_pentagram_navel", "norin_rose_piercings_piercing_navel_rose", "norin_sunflower_piercings_piercing_sunflower_navel"});
+        clothesMap.put(ClothingType.PIERCING_VAGINA, new String[]{"innoxia_piercing_gemstone_barbell", "innoxia_piercing_ringed_barbell", "norin_piercings_heart_clit", "norin_piercings_piercing_vagina_sex", "norin_piercings_piercing_vertical_hood"});
+        clothesMap.put(ClothingType.PIERCING_LIP, new String[]{"innoxia_piercing_lip_double_ring", "norin_piercings_piercing_lip_flower", "norin_rose_piercings_piercing_lip_rose", "norin_sunflower_piercings_piercing_lip_sunflower"});
+        clothesMap.put(ClothingType.PIERCING_PENIS, new String[]{"innoxia_piercing_penis_ring"});
+        clothesMap.put(ClothingType.TAIL, new String[]{"norin_hair_accessories_hair_scrunchie", "norin_tail_ribbon_tail_ribbon"});
+
+        // endregion
+
+        // region Items Initialization
+
+        itemsMap.put(ItemType.ITEM, new String[]{"charisma_race_spider_chocolate_coated_cocoa_beans", "charisma_race_spider_jet_black_coffee", "dsg_quest_hazmat_rat_card", "dsg_race_bear_honey_bread", "dsg_race_bear_vodka", "dsg_race_dragon_draft_green", "dsg_race_dragon_draft_orange", "dsg_race_dragon_draft_pink", "dsg_race_dragon_dragonfruit_pink", "dsg_race_dragon_dragonfruit_red", "dsg_race_dragon_dragonfruit_yellow", "dsg_race_ferret_orange_juice", "dsg_race_ferret_sausages", "dsg_race_gryphon_pate_and_crackers", "dsg_race_gryphon_two_tone_slushie", "dsg_race_otter_berry_soda", "dsg_race_otter_fish_and_chips", "dsg_race_raccoon_cotton_candy_soda", "dsg_race_raccoon_popcorn", "dsg_race_shark_grog", "dsg_race_shark_tuna_sashimi", "dsg_wetwipes_wetwipes", "innoxia_cheat_inno_chans_gift", "innoxia_cheat_unlikely_whammer", "innoxia_food_doughnut", "innoxia_food_doughnut_iced", "innoxia_food_doughnut_iced_sprinkles", "innoxia_pills_broodmother", "innoxia_pills_fertility", "innoxia_pills_sterility", "innoxia_potions_amazonian_ambrosia", "innoxia_potions_amazons_secret", "innoxia_quest_clothing_keys", "innoxia_quest_faire_ticket", "innoxia_quest_minotallys_pass", "innoxia_quest_monica_milker", "innoxia_quest_oglix_beer_token", "innoxia_quest_recorder", "innoxia_quest_special_pass", "innoxia_quest_special_pass_elle", "innoxia_race_alligator_gators_gumbo", "innoxia_race_alligator_swamp_water", "innoxia_race_angel_angels_tears", "innoxia_race_badger_berry_trifle", "innoxia_race_badger_black_stripes_perry", "innoxia_race_bat_fruit_bats_juice_box", "innoxia_race_bat_fruit_bats_salad", "innoxia_race_cat_felines_fancy", "innoxia_race_cat_kittys_reward", "innoxia_race_cow_bubble_cream", "innoxia_race_cow_bubble_milk", "innoxia_race_deer_glade_springs", "innoxia_race_deer_tree_shoots_salad", "innoxia_race_demon_innoxias_gift", "innoxia_race_demon_liliths_gift", "innoxia_race_dog_canine_crunch", "innoxia_race_dog_canine_crush", "innoxia_race_fox_chicken_pot_pie", "innoxia_race_fox_vulpines_vineyard", "innoxia_race_goat_billys_best", "innoxia_race_goat_pans_flute", "innoxia_race_harpy_bubblegum_lollipop", "innoxia_race_harpy_harpy_perfume", "innoxia_race_horse_equine_cider", "innoxia_race_horse_sugar_carrot_cube", "innoxia_race_human_bread_roll", "innoxia_race_human_vanilla_water", "innoxia_race_imp_impish_brew", "innoxia_race_mouse_barley_water", "innoxia_race_mouse_cheese", "innoxia_race_none_mince_pie", "innoxia_race_panther_deep_roar", "innoxia_race_panther_panthers_delight", "innoxia_race_pig_oinkers_fries", "innoxia_race_pig_porcine_pop", "innoxia_race_rabbit_bunny_carrot_cake", "innoxia_race_rabbit_bunny_juice", "innoxia_race_raptor_energy_bar", "innoxia_race_raptor_energy_drink", "innoxia_race_rat_black_rats_rum", "innoxia_race_rat_brown_rats_burger", "innoxia_race_reindeer_rudolphs_egg_nog", "innoxia_race_reindeer_sugar_cookie", "innoxia_race_sheep_ewes_brew", "innoxia_race_sheep_woolly_goodness", "innoxia_race_slime_biojuice_canister", "innoxia_race_slime_slime_quencher", "innoxia_race_squirrel_round_nuts", "innoxia_race_squirrel_squirrel_java", "innoxia_race_wolf_meat_and_marrow", "innoxia_race_wolf_wolf_whiskey", "innoxia_slavery_freedom_certification", "mintychip_race_salamander_apple_pie", "mintychip_race_salamander_hot_cocoa", "mintychip_race_salamander_iced_tea", "NoStepOnSnek_race_capybara_brownie", "NoStepOnSnek_race_capybara_tea2go", "NoStepOnSnek_race_octopus_ink_vodka", "NoStepOnSnek_race_octopus_shrimp_cocktail", "NoStepOnSnek_race_snake_eggs", "NoStepOnSnek_race_snake_oil", "rfpnj_peach_peach"});
+
+        // endregion
+
+        // region Weapons Initialization
+
+        weaponsMap.put(WeaponType.RANGED, new String[]{"c4mg1rl_bows_hama_yumi", "dsg_eep_cryoprism_cryoprism", "dsg_eep_liqstungun_coomgun", "dsg_eep_liqstungun_liqstungun", "dsg_eep_pbweap_pblauncher", "dsg_eep_pbweap_pbpistol", "dsg_eep_pbweap_pbrifle", "dsg_eep_taser_taser", "dsg_eep_trqrifle_trqrifle", "dsg_hlf_weap_gbshotgun", "dsg_hlf_weap_pboltrifle", "dsg_hlf_weap_pbomb", "dsg_hlf_weap_pbrevolver", "dsg_hlf_weap_pbsmg", "innoxia_bow_pistol_crossbow", "innoxia_bow_recurve", "innoxia_bow_shortbow", "innoxia_feather_epic", "innoxia_feather_legendary", "innoxia_feather_rare", "innoxia_gun_arcane_musket", "innoxia_gun_br14", "innoxia_gun_famase", "innoxia_gun_lar1a1", "innoxia_gun_mkar", "innoxia_gun_revolver", "innoxia_gun_waspley_mk4_service", "innoxia_gun_western_ppk", "innoxia_lightningGlobe_lightning_globe", "innoxia_lightningGlobe_lightning_globe_ring", "innoxia_thrown_tennis_ball", "innoxia_thrown_yarn"});
+        weaponsMap.put(WeaponType.MELEE, new String[]{"c4mg1rl_swords_muramasa", "dsg_eep_enbaton_enbaton", "dsg_eep_riotshield_riotshield", "innoxia_arcanistStaff_arcanist_staff", "innoxia_axe_battle", "innoxia_bat_metal", "innoxia_bat_wooden", "innoxia_bat_wooden_silly", "innoxia_bdsm_riding_crop", "innoxia_blunt_morning_star", "innoxia_cleaning_feather_duster", "innoxia_cleaning_witch_broom", "innoxia_crystal_epic", "innoxia_crystal_legendary", "innoxia_crystal_rare", "innoxia_dagger_dagger", "innoxia_europeanSwords_arming_sword", "innoxia_europeanSwords_xiphos", "innoxia_europeanSwords_zweihander", "innoxia_japaneseSwords_katana", "innoxia_japaneseSwords_wakizashi", "innoxia_kerambit_kerambit", "innoxia_knuckleDusters_knuckle_dusters", "innoxia_pipe_pipe", "innoxia_scythe_scythe", "innoxia_shield_buckler", "innoxia_shield_crude_wooden", "innoxia_spear_dory", "innoxia_utility_flashlight"});
+
+        // endregion
+    }
+
     /**
      * Adds multiple identical Strings to an ArrayList to create a range of indexes that would get that String
      * @param ranges Int array of ranges for each String value
@@ -1744,9 +1824,5 @@ public class InitializeElements {
             }
         }
         return list;
-    }
-
-    public ArrayList<ObservableList<Attribute>> getJobHistories() {
-        return jobHistories;
     }
 }

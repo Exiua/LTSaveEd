@@ -25,7 +25,7 @@
 
 <!--suppress JavaFxUnresolvedFxIdReference -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" stylesheets="@LTSaveEd.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LTSaveEd.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2160.0" prefWidth="3840.0" stylesheets="@LTSaveEd.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LTSaveEd.Controller">
     <TabPane fx:id="tabPane" prefHeight="700.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Tab text="Core">
             <AnchorPane>
@@ -33,141 +33,121 @@
                     <HBox>
                         <VBox spacing="10.0">
                             <HBox alignment="TOP_RIGHT" spacing="10.0">
-                                <Label text="Character:"/>
-                                <ComboBox fx:id="characterSelector" onAction="#selectCharacter" prefWidth="150.0"/>
-                                <Button fx:id="deleteCharacter" mnemonicParsing="false" onAction="#deleteCharacter"
-                                        text="DELETE CHARACTER" textFill="RED">
+                                <Label text="Character:" />
+                                <ComboBox fx:id="characterSelector" onAction="#selectCharacter" prefWidth="150.0" />
+                                <Button fx:id="deleteCharacter" mnemonicParsing="false" onAction="#deleteCharacter" text="DELETE CHARACTER" textFill="RED">
                                     <font>
-                                        <Font name="Arial" size="12.0"/>
+                                        <Font name="Arial" size="12.0" />
                                     </font>
                                 </Button>
                             </HBox>
                             <HBox>
-                                <Label text="Id: "/>
-                                <TextField fx:id="core$id$value" editable="false" prefHeight="25.0" prefWidth="250.0"/>
+                                <Label text="Id: " />
+                                <TextField fx:id="core$id$value" editable="false" prefHeight="25.0" prefWidth="250.0" />
                             </HBox>
                             <HBox>
-                                <Label text="Name (A, F, M): "/>
-                                <TextField fx:id="core$name$nameAndrogynous"/>
+                                <Label text="Name (A, F, M): " />
+                                <TextField fx:id="core$name$nameAndrogynous" />
                                 <TextField fx:id="core$name$nameFeminine" layoutX="95.0" layoutY="10.0">
                                     <HBox.margin>
-                                        <Insets left="5.0" right="5.0"/>
+                                        <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </TextField>
-                                <TextField fx:id="core$name$nameMasculine" layoutX="244.0" layoutY="10.0"/>
+                                <TextField fx:id="core$name$nameMasculine" layoutX="244.0" layoutY="10.0" />
                             </HBox>
                             <HBox>
-                                <Label text="Surname: "/>
-                                <TextField fx:id="core$surname$value"/>
+                                <Label text="Surname: " />
+                                <TextField fx:id="core$surname$value" />
                             </HBox>
                             <HBox>
-                                <Label text="Description: "/>
-                                <TextArea fx:id="core$description$value" prefHeight="78.0" prefWidth="475.0"
-                                          wrapText="true"/>
+                                <Label text="Description: " />
+                                <TextArea fx:id="core$description$value" prefHeight="78.0" prefWidth="475.0" wrapText="true" />
                             </HBox>
                             <HBox spacing="5.0">
-                                <Label text="Level:"/>
-                                <TextField fx:id="core$level$value"/>
-                                <Label text="Experience:"/>
-                                <TextField fx:id="core$experience$value"/>
+                                <Label text="Level:" />
+                                <TextField fx:id="core$level$value" />
+                                <Label text="Experience:" />
+                                <TextField fx:id="core$experience$value" />
                             </HBox>
                             <HBox layoutX="10.0" layoutY="238.0">
-                                <Label text="Money: "/>
-                                <TextField fx:id="characterInventory$money$value"/>
+                                <Label text="Money: " />
+                                <TextField fx:id="characterInventory$money$value" />
                             </HBox>
                             <HBox layoutX="10.0" layoutY="45.0" spacing="10.0">
-                                <Label text="Date of Birth:"/>
-                                <TextField fx:id="core$yearOfBirth$value" text="1900"/>
-                                <ComboBox fx:id="core$monthOfBirth$value" onAction="#updateXmlComboBox"
-                                          prefWidth="150.0"/>
-                                <TextField fx:id="core$dayOfBirth$value" layoutX="232.0" layoutY="10.0" text="1"/>
+                                <Label text="Date of Birth:" />
+                                <TextField fx:id="core$yearOfBirth$value" text="1900" />
+                                <ComboBox fx:id="core$monthOfBirth$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                <TextField fx:id="core$dayOfBirth$value" layoutX="232.0" layoutY="10.0" text="1" />
                             </HBox>
                             <HBox layoutX="10.0" layoutY="343.0">
-                                <Label text="Job History: "/>
-                                <ComboBox fx:id="core$history$value" onAction="#updateXmlComboBox" prefWidth="150.0"/>
+                                <Label text="Job History: " />
+                                <ComboBox fx:id="core$history$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
                             </HBox>
                             <HBox layoutX="10.0" layoutY="115.0">
-                                <Label text="Orientation: "/>
-                                <ComboBox fx:id="core$sexualOrientation$value" onAction="#updateXmlComboBox"
-                                          prefWidth="150.0"/>
+                                <Label text="Orientation: " />
+                                <ComboBox fx:id="core$sexualOrientation$value" onAction="#updateXmlComboBox" prefWidth="150.0" />
                             </HBox>
                             <HBox layoutX="10.0" layoutY="185.0">
-                                <Label text="Obedience: "/>
-                                <TextField fx:id="core$obedience$value"/>
+                                <Label text="Obedience: " />
+                                <TextField fx:id="core$obedience$value" />
                             </HBox>
                             <HBox layoutX="10.0" layoutY="150.0">
-                                <Label text="Gender Identity: "/>
-                                <ComboBox fx:id="core$genderIdentity$value" onAction="#updateXmlComboBox"
-                                          prefHeight="25.0" prefWidth="200.0"/>
+                                <Label text="Gender Identity: " />
+                                <ComboBox fx:id="core$genderIdentity$value" onAction="#updateXmlComboBox" prefHeight="25.0" prefWidth="200.0" />
                             </HBox>
-                            <HBox layoutX="10.0" layoutY="80.0"/>
+                            <HBox layoutX="10.0" layoutY="80.0" />
                             <HBox layoutX="10.0" layoutY="220.0">
-                                <Label text="Perk Points: "/>
-                                <TextField fx:id="core$perkPoints$value"/>
+                                <Label text="Perk Points: " />
+                                <TextField fx:id="core$perkPoints$value" />
                             </HBox>
                             <HBox>
-                                <Label text="Essence Count: "/>
-                                <TextField fx:id="characterInventory$essenceCount$value"/>
+                                <Label text="Essence Count: " />
+                                <TextField fx:id="characterInventory$essenceCount$value" />
                             </HBox>
                             <HBox layoutX="10.0" layoutY="255.0">
-                                <Label text="Health: "/>
-                                <TextField fx:id="core$health$value"/>
+                                <Label text="Health: " />
+                                <TextField fx:id="core$health$value" />
                             </HBox>
                             <HBox layoutX="10.0" layoutY="45.0">
-                                <Label text="Mana: "/>
-                                <TextField fx:id="core$mana$value"/>
+                                <Label text="Mana: " />
+                                <TextField fx:id="core$mana$value" />
                             </HBox>
                             <padding>
-                                <Insets bottom="20.0"/>
+                                <Insets bottom="20.0" />
                             </padding>
                         </VBox>
                         <VBox alignment="CENTER" prefWidth="400.0">
                             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                 <Label text="Personality">
                                     <font>
-                                        <Font name="System Bold" size="12.0"/>
+                                        <Font name="System Bold" size="12.0" />
                                     </font>
                                 </Label>
                             </HBox>
                             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
-                                <CheckBox fx:id="personalityTrait$CONFIDENT" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Confident"/>
-                                <CheckBox fx:id="personalityTrait$SHY" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Shy"/>
-                                <CheckBox fx:id="personalityTrait$KIND" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Kind"/>
-                                <CheckBox fx:id="personalityTrait$SELFISH" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Selfish"/>
-                                <CheckBox fx:id="personalityTrait$NAIVE" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Naive"/>
+                                <CheckBox fx:id="personalityTrait$CONFIDENT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Confident" />
+                                <CheckBox fx:id="personalityTrait$SHY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Shy" />
+                                <CheckBox fx:id="personalityTrait$KIND" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Kind" />
+                                <CheckBox fx:id="personalityTrait$SELFISH" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Selfish" />
+                                <CheckBox fx:id="personalityTrait$NAIVE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Naive" />
                             </HBox>
                             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
-                                <CheckBox fx:id="personalityTrait$CYNICAL" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Cynical"/>
-                                <CheckBox fx:id="personalityTrait$BRAVE" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Brave"/>
-                                <CheckBox fx:id="personalityTrait$COWARDLY" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Cowardly"/>
-                                <CheckBox fx:id="personalityTrait$LEWD" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Lewd"/>
-                                <CheckBox fx:id="personalityTrait$INNOCENT" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Innocent"/>
+                                <CheckBox fx:id="personalityTrait$CYNICAL" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Cynical" />
+                                <CheckBox fx:id="personalityTrait$BRAVE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Brave" />
+                                <CheckBox fx:id="personalityTrait$COWARDLY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Cowardly" />
+                                <CheckBox fx:id="personalityTrait$LEWD" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Lewd" />
+                                <CheckBox fx:id="personalityTrait$INNOCENT" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Innocent" />
                             </HBox>
                             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
-                                <CheckBox fx:id="personalityTrait$PRUDE" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Prude"/>
-                                <CheckBox fx:id="personalityTrait$LISP" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Lisp"/>
-                                <CheckBox fx:id="personalityTrait$STUTTER" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Stutter"/>
-                                <CheckBox fx:id="personalityTrait$MUTE" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Mute"/>
-                                <CheckBox fx:id="personalityTrait$SLOVENLY" mnemonicParsing="false"
-                                          onAction="#updateXmlCheckBoxPersonality" text="Slovenly"/>
+                                <CheckBox fx:id="personalityTrait$PRUDE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Prude" />
+                                <CheckBox fx:id="personalityTrait$LISP" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Lisp" />
+                                <CheckBox fx:id="personalityTrait$STUTTER" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Stutter" />
+                                <CheckBox fx:id="personalityTrait$MUTE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Mute" />
+                                <CheckBox fx:id="personalityTrait$SLOVENLY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPersonality" text="Slovenly" />
                             </HBox>
                         </VBox>
                         <padding>
-                            <Insets left="14.0" top="44.0"/>
+                            <Insets left="14.0" top="44.0" />
                         </padding>
                     </HBox>
                 </ScrollPane>
@@ -176,7 +156,7 @@
         <Tab text="Attributes">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <ScrollPane hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <GridPane alignment="CENTER" minHeight="671.0" minWidth="1024.0">
+                    <GridPane alignment="CENTER" minHeight="671.0" minWidth="1024.0" prefWidth="1115.0">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -2464,7 +2444,7 @@
                         </VBox>
                         <VBox GridPane.rowIndex="20">
                             <HBox prefHeight="100.0" prefWidth="200.0">
-                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Bimbo">
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Bimbo/Bro">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
@@ -2646,12 +2626,13 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                             <CheckBox fx:id="perks$5$RUNNER_2" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Cardio King" />
-                            <CheckBox fx:id="perks$5$UNARMED_TRAINING" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Martial Artist" />
+                            <CheckBox fx:id="perks$5$UNARMED_TRAINING" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Brawler" />
                             <CheckBox fx:id="perks$5$CRITICAL_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
                             <CheckBox fx:id="perks$5$UNARMED_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Hand-to-Hand" />
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
                             <CheckBox fx:id="perks$6$PHYSIQUE_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Physically Fit" />
+                     <CheckBox fx:id="perks$6$HYPERMOBILITY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Hypermobility" />
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                             <CheckBox fx:id="perks$7$PHYSICAL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Striker" />
@@ -3013,7 +2994,7 @@
                     <Tab text="Clothing">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <ScrollPane hbarPolicy="NEVER" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <VBox fx:id="clothingInInventory" prefWidth="1023.0" spacing="10.0">
+                                <VBox fx:id="clothingInInventory" spacing="10.0">
                                     <padding>
                                         <Insets bottom="20.0" left="14.0" top="28.0" />
                                     </padding>
@@ -3153,9 +3134,8 @@
             <MenuItem mnemonicParsing="false" onAction="#saveFileOverwrite" text="Overwrite" />
             <MenuItem mnemonicParsing="false" onAction="#saveFileExport" text="Export..." />
         </Menu>
-        <Menu fx:id="updateButton" mnemonicParsing="false" onShowing="#checkForUpdate" onShown="#hideMenu"
-              text="Update?">
-            <SeparatorMenuItem mnemonicParsing="false"/>
+        <Menu fx:id="updateButton" mnemonicParsing="false" onShowing="#checkForUpdate" onShown="#hideMenu" text="Update?">
+            <SeparatorMenuItem mnemonicParsing="false" />
         </Menu>
     </MenuBar>
 </AnchorPane>

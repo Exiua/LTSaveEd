@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
  * and genital arrangements with a leg type as those three's possible values are dependant on the leg type value
  * @author Exiua
  */
-public class LegTypeAttr extends Attribute {
+public class LegTypeAttribute extends Attribute {
 
     /**
      * Leg configurations associated with this leg type
@@ -52,8 +52,8 @@ public class LegTypeAttr extends Attribute {
      * @param genitalArrange
      *   Genital arrangements associated with this leg type
      */
-    public LegTypeAttr(String name, String value, ObservableList<Attribute> legConfig,
-                       ObservableList<Attribute> footStruct, ObservableList<Attribute> genitalArrange){
+    public LegTypeAttribute(String name, String value, ObservableList<Attribute> legConfig,
+                            ObservableList<Attribute> footStruct, ObservableList<Attribute> genitalArrange){
         super(name, value);
         legConfiguration = legConfig;
         footStructure = footStruct;
@@ -78,9 +78,9 @@ public class LegTypeAttr extends Attribute {
      * @param defaultFootStruct
      *   Default foot structure Attribute
      */
-    public LegTypeAttr(String name, String value, ObservableList<Attribute> legConfig,
-                       ObservableList<Attribute> footStruct, ObservableList<Attribute> genitalArrange,
-                       String defaultFootStruct){
+    public LegTypeAttribute(String name, String value, ObservableList<Attribute> legConfig,
+                            ObservableList<Attribute> footStruct, ObservableList<Attribute> genitalArrange,
+                            String defaultFootStruct){
         this(name, value, legConfig, footStruct, genitalArrange);
         for (Attribute attribute : footStructure) {
             if (attribute.equals(defaultFootStruct)) {
