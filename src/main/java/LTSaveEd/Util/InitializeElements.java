@@ -1436,7 +1436,7 @@ public class InitializeElements {
         legTypes.addAll(FXCollections.observableArrayList(
                 new LegTypeAttribute("Alligator", "ALLIGATOR_MORPH", legConfigurationsBQ, footStructuresP, genitalArrangementsNCR),
                 new LegTypeAttribute("Angel", "ANGEL", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttribute("Badger", "innoxia_badger_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Badger", "innoxia_badger_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
                 new LegTypeAttribute("Bat", "BAT_MORPH", legConfigurationsB, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
                 new LegTypeAttribute("Bear", "dsg_bear_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
                 new LegTypeAttribute("Capybara", "NoStepOnSnek_capybara_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
@@ -1540,19 +1540,20 @@ public class InitializeElements {
         PerkNode p5_8 = new PerkNode(p5_9, "5", "FERTILITY_MAJOR_BOOST", "Fertile");
 
         PerkNode p6_1 = new PerkNode(p5_1, p5_4, "6", "PHYSIQUE_BOOST_MAJOR", "Physically Fit");
-        PerkNode p6_3 = new PerkNode(p5_7, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
-        PerkNode p6_2 = new PerkNode(p6_3, "6", "MALE_ATTRACTION", "Minx");
-        PerkNode p6_4 = new PerkNode(p6_3, "6", "FEMALE_ATTRACTION", "Ladykiller");
+        PerkNode p6_2 = new PerkNode(p6_1, "6", "HYPERMOBILITY", "Hypermobility");
+        PerkNode p6_4 = new PerkNode(p5_7, "6", "SEDUCTION_BOOST_MAJOR", "Seductive");
+        PerkNode p6_3 = new PerkNode(p6_4, "6", "MALE_ATTRACTION", "Minx");
+        PerkNode p6_5 = new PerkNode(p6_4, "6", "FEMALE_ATTRACTION", "Ladykiller");
         PerkNode p6_6 = new PerkNode(p5_10, p5_13, "6", "ARCANE_BOOST_MAJOR", "Arcane Affinity");
 
         PerkNode p7_1 = new PerkNode(p6_1, "7", "PHYSICAL_DAMAGE", "Striker");
-        PerkNode p7_6 = new PerkNode(p6_3, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
-        PerkNode p7_5 = new PerkNode(p6_3, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
+        PerkNode p7_6 = new PerkNode(p6_4, "7", "SEDUCTION_BOOST_ALT", "Seductive"); //Middle Branch
+        PerkNode p7_5 = new PerkNode(p6_4, "7", "SEDUCTION_BOOST", "Seductive"); //Left Branch
         PerkNode p7_2 = new PerkNode(p7_1, "7", "UNARMED_DAMAGE", "Hand-to-Hand");
         PerkNode p7_8 = new PerkNode(p6_6, "7", "AURA_BOOST", "Aura Reserves");
         PerkNode p7_4 = new PerkNode(p6_1, "7", "ENERGY_BOOST", "Energy Reserves");
         PerkNode p7_3 = new PerkNode(p7_4, "7", "ENERGY_BOOST_DRAIN_DAMAGE", "Aura Shielding");
-        PerkNode p7_7 = new PerkNode(p6_3, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
+        PerkNode p7_7 = new PerkNode(p6_4, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance");
         PerkNode p7_9 = new PerkNode(p6_6, "7", "SPELL_EFFICIENCY", "Spell Efficiency");
         PerkNode p7_10 = new PerkNode(p7_9, "7", "SPELL_DAMAGE", "Spell Power");
 
@@ -1605,13 +1606,13 @@ public class InitializeElements {
         perks.addAll(FXCollections.observableArrayList(p1_1, p1_2, p1_3, p2_11, p2_10, p2_2, p2_6, p2_7, p2_1, p2_4,
                 p2_5, p2_8, p2_3, p2_9, p3_3, p3_11, p3_7, p3_12, p3_5, p3_8, p3_13, p3_1, p3_6, p3_2, p3_9, p3_4, p3_10,
                 p4_3, p4_1, p4_11, p4_6, p4_4, p4_9, p4_12, p4_2, p4_10, p4_5, p4_8, p4_13, p4_7, p5_13, p5_9, p5_4,
-                p5_10, p5_3, p5_7, p5_11, p5_12, p5_2, p5_1, p5_5, p5_6, p5_8, p6_1, p6_3, p6_2, p6_4, p6_6, p7_1, p7_6,
-                p7_5, p7_2, p7_8, p7_4, p7_3, p7_7, p7_9, p7_10, p8_1, p8_3, p8_12, p8_5, p8_10, p8_4, p8_2, p8_7, p8_6,
-                p8_8, p8_9, p8_11, p9_1, p9_3, p9_6, p9_5, p9_4, p9_2, p9_10, p9_7, p9_9, p9_8, p10_5, p10_7, p10_3,
+                p5_10, p5_3, p5_7, p5_11, p5_12, p5_2, p5_1, p5_5, p5_6, p5_8, p6_1, p6_2, p6_4, p6_3, p6_5, p6_6, p7_1,
+                p7_6, p7_5, p7_2, p7_8, p7_4, p7_3, p7_7, p7_9, p7_10, p8_1, p8_3, p8_12, p8_5, p8_10, p8_4, p8_2, p8_7,
+                p8_6, p8_8, p8_9, p8_11, p9_1, p9_3, p9_6, p9_5, p9_4, p9_2, p9_10, p9_7, p9_9, p9_8, p10_5, p10_7, p10_3,
                 p10_1, p10_6, p10_4, p10_2, p10_8, p10_9, p11_2, p11_6, p11_5, p11_1, p11_4, p11_3, p11_7, p12_1, p12_2,
                 p12_3));
     }
-    //I'm probably dumb and there was an easier way to do this
+    // I'm probably dumb and there was an easier way to do this
 
     /**
      * Initializes and completes the breastSizes ArrayList

@@ -2626,12 +2626,13 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                             <CheckBox fx:id="perks$5$RUNNER_2" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Cardio King" />
-                            <CheckBox fx:id="perks$5$UNARMED_TRAINING" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Martial Artist" />
+                            <CheckBox fx:id="perks$5$UNARMED_TRAINING" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Brawler" />
                             <CheckBox fx:id="perks$5$CRITICAL_BOOST" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Critical Power" />
                             <CheckBox fx:id="perks$5$UNARMED_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Hand-to-Hand" />
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
                             <CheckBox fx:id="perks$6$PHYSIQUE_BOOST_MAJOR" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Physically Fit" />
+                     <CheckBox fx:id="perks$6$HYPERMOBILITY" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Hypermobility" />
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                             <CheckBox fx:id="perks$7$PHYSICAL_DAMAGE" mnemonicParsing="false" onAction="#updateXmlCheckBoxPerks" text="Striker" />

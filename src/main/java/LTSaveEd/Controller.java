@@ -279,7 +279,7 @@ public class Controller {
                                                "perks$3$PHYSICAL_DEFENCE", "perks$3$ENERGY_BOOST", "perks$3$PHYSICAL_DAMAGE", "perks$3$ENCHANTMENT_STABILITY",
                                                "perks$4$PHYSICAL_DEFENCE", "perks$4$ENERGY_BOOST", "perks$4$PHYSICAL_DAMAGE", "perks$4$WEAPON_ENCHANTER",
                                                "perks$5$RUNNER_2", "perks$5$UNARMED_TRAINING", "perks$5$CRITICAL_BOOST", "perks$5$UNARMED_DAMAGE",
-                                               "perks$6$PHYSIQUE_BOOST_MAJOR", "perks$7$PHYSICAL_DAMAGE", "perks$7$UNARMED_DAMAGE",
+                                               "perks$6$PHYSIQUE_BOOST_MAJOR", "perks$6$HYPERMOBILITY", "perks$7$PHYSICAL_DAMAGE", "perks$7$UNARMED_DAMAGE",
                                                "perks$7$ENERGY_BOOST_DRAIN_DAMAGE", "perks$7$ENERGY_BOOST", "perks$8$PHYSICAL_DAMAGE", "perks$8$MELEE_DAMAGE",
                                                "perks$8$PHYSICAL_DEFENCE", "perks$8$ENERGY_BOOST", "perks$9$PHYSICAL_DAMAGE", "perks$9$RANGED_DAMAGE",
                                                "perks$9$PHYSICAL_DEFENCE", "perks$9$ENERGY_BOOST", "perks$10$FEROCIOUS_WARRIOR", "perks$10$BESERK",
@@ -1359,12 +1359,12 @@ public class Controller {
         ga.setItems(legType.getGenitalArrangement());
         ga.setValue(legType.getDefaultGenitalArrangement());
         if (!initializing) {
-            Node lcValue = getValueNode(lc.getId());
-            lcValue.setTextContent(lc.getValue().getValue());
-            Node fsValue = getValueNode(fs.getId());
-            fsValue.setTextContent(fs.getValue().getValue());
-            Node gaValue = getValueNode(ga.getId());
-            gaValue.setTextContent(ga.getValue().getValue());
+            Node legConfigurationNode = getValueNode(lc.getId());
+            legConfigurationNode.setTextContent(lc.getValue().getValue());
+            Node footStructureNode = getValueNode(fs.getId());
+            footStructureNode.setTextContent(fs.getValue().getValue());
+            Node genitalArrangementNode = getValueNode(ga.getId());
+            genitalArrangementNode.setTextContent(ga.getValue().getValue());
         }
     }
 
@@ -1396,6 +1396,46 @@ public class Controller {
             CheckBox cb = (CheckBox) namespace.get(resetCheckBoxId);
             cb.setSelected(false);
         }
+
+        // region Update leg-related Comboboxes
+
+        Node legTypeNode = getNode("body", "leg");
+        String legType = getAttributeValue(legTypeNode, "type");
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get("body$leg$type");
+        //System.out.println("LegType: " + legType);
+        Attribute legTypeAttribute = matchComboBoxItem(cb.getItems(), legType);
+        cb.setValue(legTypeAttribute);
+        updateLegTypeDependants(cb, true);
+
+        // endregion
+
+        // region Update hair combobox
+
+        Node hairNode = getNode("body", "hair");
+        int hairLength = Integer.parseInt(getAttributeValue(hairNode, "length"));
+        //noinspection unchecked
+        cb = (ComboBox<Attribute>) namespace.get("body$hair$hairStyle");
+        if (hairLength < 4) {
+            cb.setItems(hairStylesB);
+        }
+        else if (hairLength < 11) {
+            cb.setItems(hairStylesVS);
+        }
+        else if (hairLength < 22) {
+            cb.setItems(hairStylesS);
+        }
+        else if (hairLength < 45) {
+            cb.setItems(hairStylesSL);
+        }
+        else if (hairLength < 265) {
+            cb.setItems(hairStylesL);
+        }
+        else {
+            cb.setItems(hairStylesFL);
+        }
+
+        // endregion
     }
 
     /**
@@ -1597,6 +1637,7 @@ public class Controller {
                             ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(nodeId);
 
                             if (cb != null) {
+                                //System.out.println("Node: " + nodeId + ", Value: " + value);
                                 ObservableList<Attribute> itemList = cb.getItems();
                                 cb.setValue(matchComboBoxItem(itemList, value));
                             }
@@ -1939,6 +1980,7 @@ public class Controller {
     private void setFieldsPerks(@NotNull Node perksNode) {
         String idPartial = "perks$";
         NodeList perks = perksNode.getChildNodes();
+        System.out.println("Perks: " + perks.getLength());
         for (int i = 0; i < perks.getLength(); i++) {
             if (perks.item(i).getNodeType() != Node.ELEMENT_NODE) {
                 continue;
