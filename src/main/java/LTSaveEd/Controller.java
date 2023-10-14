@@ -579,7 +579,7 @@ public class Controller {
     }
 
     /**
-     * Sets stage to supplied Stage object in order for events to work properly
+     * Set stage to supplied Stage object in order for events to work properly
      *
      * @param s Stage object to be used
      */
@@ -588,7 +588,7 @@ public class Controller {
     }
 
     /**
-     * Sets namespace to the namespace of the fxml file
+     * Set namespace to the namespace of the fxml file
      *
      * @param namespace Namespace of the fxml file
      */
@@ -602,7 +602,7 @@ public class Controller {
     }
 
     /**
-     * Sets version to the current version number of this save editor
+     * Set version to the current version number of this save editor
      *
      * @param currentVersion Current version of save editor
      */
@@ -790,7 +790,7 @@ public class Controller {
     }
 
     /**
-     * Sets characterNode to the character Node of the current character that is being edited
+     * Set characterNode to the character Node of the current character that is being edited
      *
      * @param charId Character id of the character being edited
      */
@@ -891,7 +891,7 @@ public class Controller {
     }
 
     /**
-     * Sets the CheckBox of the other value to false if one CheckBox is set to true (i.e. either flared or tapered can be true, but not both)
+     * Set the CheckBox of the other value to false if one CheckBox is set to true (i.e. either flared or tapered can be true, but not both)
      *
      * @param id Id of the CheckBox set to true
      */
@@ -977,18 +977,27 @@ public class Controller {
     }
 
     /**
-     * Updates the day TextField value if the value is greater than the number of days in the given month
+     * Update the day TextField value if the value is greater than the number of days in the given month
      *
      * @param fxId  Id of the ComboBox
      * @param month Month Attribute to check against
      */
     private void updateDayTextField(@NotNull String fxId, @NotNull Attribute month) {
         boolean coreInfo = fxId.startsWith("coreInfo");
-        String dayId = coreInfo ? "coreInfo$date$dayOfMonth" : "core$dayOfBirth$value";
+        String dayId;
+        String yearId;
+        if (coreInfo) {
+            dayId = "coreInfo$date$dayOfMonth";
+            yearId = "coreInfo$date$year";
+        }
+        else {
+            dayId = "core$dayOfBirth$value";
+            yearId = "core$yearOfBirth$value";
+        }
         TextField dayField = (TextField) namespace.get(dayId);
-        TextField yearField = (TextField) namespace.get(coreInfo ? "coreInfo$date$year" : "core$yearOfBirth$value");
+        TextField yearField = (TextField) namespace.get(yearId);
         int year = Integer.parseInt(yearField.getText());
-        int monthLimit = setMonthLimit(month, year);
+        int monthLimit = getMonthLimit(month, year);
         int dayValue = Integer.parseInt(dayField.getText());
         if (dayValue > monthLimit) {
             dayField.setText(String.valueOf(monthLimit));
@@ -998,7 +1007,7 @@ public class Controller {
     }
 
     /**
-     * Gets a specific Node by supplied all nodeNames from game Node to desired Node
+     * Get a specific Node by supplied all nodeNames from game Node to desired Node
      *
      * @param args String array of nodeNames to traverse in order to get to the desired Node
      * @return Desired Node matching given Node path
@@ -1023,13 +1032,13 @@ public class Controller {
     }
 
     /**
-     * Sets the max day value based on the month
+     * Get the max day value based on the month
      *
      * @param month Month Attribute to check against
      * @param year  Year integer to check for leap year
      * @return int representing the max days based on the month
      */
-    private int setMonthLimit(@NotNull Attribute month, int year) {
+    private int getMonthLimit(@NotNull Attribute month, int year) {
         int monthLimit;
         if (month.equals("JANUARY") || month.equals("MARCH") || month.equals("MAY") ||
                 month.equals("JULY") || month.equals("AUGUST") || month.equals("OCTOBER") ||
@@ -1177,7 +1186,7 @@ public class Controller {
     }
 
     /**
-     * Gets the matching perk from the provided ArrayList
+     * Get the matching perk from the provided ArrayList
      *
      * @param perkList ArrayList of perks to check
      * @param row      Row value of the perk
@@ -1317,7 +1326,7 @@ public class Controller {
     }
 
     /**
-     * Gets the complement spell tier
+     * Get the complement spell tier
      *
      * @param tier SpellTier to check value against
      * @return String spell value ending in "3A" if SpellTier value ended in "3B" and vice versa
@@ -1684,7 +1693,7 @@ public class Controller {
     }*/
 
     /**
-     * Sets the value of fields relating to world data (i.e. data that is world/save specific, not character specific)
+     * Set the value of fields relating to world data (i.e. data that is world/save specific, not character specific)
      */
     private void setWorldFields() {
         Element coreInfo = getElementByTagName(saveFile, "coreInfo");
@@ -1791,7 +1800,7 @@ public class Controller {
     }
 
     /**
-     * Sets the value of fetish ownership CheckBoxes
+     * Set the value of fetish ownership CheckBoxes
      *
      * @param fetishesNode fetishes Node in the save file
      */
@@ -1835,7 +1844,7 @@ public class Controller {
     }
 
     /**
-     * Sets the value of SpellTier ComboBoxes based on the childNodes of the knowSpells Node
+     * Set the value of SpellTier ComboBoxes based on the childNodes of the knowSpells Node
      *
      * @param spellNode knownSpells Node in the save file
      */
@@ -1856,7 +1865,7 @@ public class Controller {
     }
 
     /**
-     * Sets the value of SpellTier ComboBoxes based on the childNodes of the spellUpgrades Node
+     * Set the value of SpellTier ComboBoxes based on the childNodes of the spellUpgrades Node
      *
      * @param spellNode spellUpgrades Node in the save file
      */
@@ -1884,7 +1893,7 @@ public class Controller {
     }
 
     /**
-     * Sets the value of spell TextFields based on the childNodes of the spellUpgradePoints Node
+     * Set the value of spell TextFields based on the childNodes of the spellUpgradePoints Node
      *
      * @param spellNode spellUpgradePoints Node in the save file
      */
@@ -1903,7 +1912,7 @@ public class Controller {
     }
 
     /**
-     * Sets the values of all attribute TextFields based on the childNodes of the attributes Node
+     * Set the values of all attribute TextFields based on the childNodes of the attributes Node
      *
      * @param attributesNode attributes Node in the save file
      */
@@ -1923,7 +1932,7 @@ public class Controller {
     }
 
     /**
-     * Sets the value of all perks CheckBoxes based on the childNodes of the perks Node
+     * Set the value of all perks CheckBoxes based on the childNodes of the perks Node
      *
      * @param perksNode perks Node in the save file
      */
@@ -1943,7 +1952,7 @@ public class Controller {
     }
 
     /**
-     * Sets the value of all personality traits CheckBoxes based on the childNodes of the personality Node
+     * Set the value of all personality traits CheckBoxes based on the childNodes of the personality Node
      *
      * @param personalityNode personality Node in the save file
      */
@@ -2174,7 +2183,7 @@ public class Controller {
     }
 
     /**
-     * Gets the name of the Npc based on the given npcId
+     * Get the name of the Npc based on the given npcId
      *
      * @param npcId Id of the npc
      * @return Name of the npc
@@ -2191,7 +2200,7 @@ public class Controller {
     }
 
     /**
-     * Gets the Attribute that matches the value from the given ObservableList
+     * Get the Attribute that matches the value from the given ObservableList
      *
      * @param list  ObservableList of Attributes to check
      * @param value Value to match
@@ -2207,7 +2216,7 @@ public class Controller {
     }
 
     /**
-     * Gets the NpcCharacter that matches the value from the given ObservableList
+     * Get the NpcCharacter that matches the value from the given ObservableList
      *
      * @param list  ObservableList of NpcCharacter to check
      * @param value Value to match
@@ -2252,7 +2261,7 @@ public class Controller {
     //region DOM Traversal Methods
 
     /**
-     * Gets the list of immediate child Nodes of the selected character's characterNode
+     * Get the list of immediate child Nodes of the selected character's characterNode
      *
      * @return NodeList of immediate child Nodes (eg. core, body, attributes, etc.)
      */
@@ -2310,7 +2319,7 @@ public class Controller {
     }
 
     /**
-     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute or parent$child$modifier$attribute)
+     * Get the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute or parent$child$modifier$attribute)
      *
      * @param event ActionEvent of the element that was interacted with
      * @return Node containing the attribute value
@@ -2336,7 +2345,7 @@ public class Controller {
     }
 
     /**
-     * Gets the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute)
+     * Get the Node of the attribute by reverse tracing the id (Id Format: parent$child$attribute)
      *
      * @param objId Id of the element that was interacted with
      * @return Node containing the attribute value
@@ -2352,7 +2361,7 @@ public class Controller {
     }
 
     /**
-     * Gets the String value of the attribute of the given Node
+     * Get the String value of the attribute of the given Node
      *
      * @param node Node to get the attribute of
      * @param attr Attribute to get
@@ -2363,7 +2372,7 @@ public class Controller {
     }
 
     /**
-     * Gets the Node of the specified attribute of the given Node
+     * Get the Node of the specified attribute of the given Node
      *
      * @param node Node to get the attribute of
      * @param attr Attribute to get
@@ -2374,7 +2383,7 @@ public class Controller {
     }
 
     /**
-     * Gets the parent Node of the Node with the attribute specified by the id
+     * Get the parent Node of the Node with the attribute specified by the id
      *
      * @param event ActionEvent of the element that was interacted with
      * @return Node that is the parent of the Node with the specified attribute
@@ -2396,7 +2405,7 @@ public class Controller {
     }
 
     /**
-     * Gets the parent Node of the Node with the attribute specified by the id
+     * Get the parent Node of the Node with the attribute specified by the id
      *
      * @param objId Id of the element that was interacted with
      * @return Node that is the parent of the Node with the specified attribute
@@ -2412,7 +2421,7 @@ public class Controller {
     }
 
     /**
-     * Gets a Node from a NodeList based on specified attribute and value of attribute
+     * Get a Node from a NodeList based on specified attribute and value of attribute
      *
      * @param children NodeList to check
      * @param args     Attribute/Value pairs to check for (must have Attribute, followed by value to match for each pair)
@@ -2839,7 +2848,7 @@ public class Controller {
         }
 
         /**
-         * Sets the value of the secondary value if the TextInputControl object has a secondary label
+         * Set the value of the secondary value if the TextInputControl object has a secondary label
          */
         private void setLabel() {
             if (hasSecondLabel) {
@@ -3026,7 +3035,7 @@ public class Controller {
                         ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(coreInfo ? "coreInfo$date$month" : "core$monthOfBirth$value");
                         TextField yearField = (TextField) namespace.get(coreInfo ? "coreInfo$date$year" : "core$yearOfBirth$value");
                         int year = Integer.parseInt(yearField.getText());
-                        int monthLimit = setMonthLimit(cb.getValue(), year);
+                        int monthLimit = getMonthLimit(cb.getValue(), year);
                         int nv = Integer.parseInt(newValue);
                         newValue = String.valueOf(nv); // Removes leading zeroes
                         if (nv < 1 || nv > monthLimit) {
@@ -3048,7 +3057,7 @@ public class Controller {
         }
 
         /**
-         * Gets the Node of the attribute value of the TextField
+         * Get the Node of the attribute value of the TextField
          *
          * @return Node containing the attribute value
          */
