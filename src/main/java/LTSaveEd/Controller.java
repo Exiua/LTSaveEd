@@ -1336,7 +1336,7 @@ public class Controller {
      * @param initializing Whether is method is supposed to just initialize the dependant ComboBoxes or edit the values in the save file as well
      */
     private void updateLegTypeDependants(@NotNull ComboBox<Attribute> cb, boolean initializing) {
-        LegTypeAttr legType = (LegTypeAttr) cb.getValue();
+        LegTypeAttribute legType = (LegTypeAttribute) cb.getValue();
         @SuppressWarnings("unchecked")
         ComboBox<Attribute> lc = (ComboBox<Attribute>) namespace.get("body$leg$configuration");
         lc.setItems(legType.getLegConfiguration());
@@ -1613,7 +1613,7 @@ public class Controller {
         updateLabels();
     }
 
-    private void setFields2() {
+    /*private void setFields2() {
         if (!fileLoaded) {
             return;
         }
@@ -1681,7 +1681,7 @@ public class Controller {
 
         node = getNode("characterInventory", "weaponsInInventory");
         setFieldsInventoryWeapons(node);
-    }
+    }*/
 
     /**
      * Sets the value of fields relating to world data (i.e. data that is world/save specific, not character specific)
@@ -2041,8 +2041,8 @@ public class Controller {
             inventoryClothing.setHBox(hBox);
             inventoryClothing.addHBoxNodes(clothingCount, enchantmentKnown, isDirty);
             ObservableList<javafx.scene.Node> hBoxChildren = hBox.getChildren();
-            hBoxChildren.addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf);
-            hBoxChildren.addAll(new Label("Count: "), clothingCount, enchantmentKnown, isDirty, btn);
+            hBoxChildren.addAll(new Label("Id: "), clothingIdTf, new Label("Name: "), nameTf,
+                    new Label("Count: "), clothingCount, enchantmentKnown, isDirty, btn);
 
             MultiColor colors = inventoryClothing.getColors();
             for(int j = 0; j < colors.getColorCount(); j++){
@@ -2148,34 +2148,6 @@ public class Controller {
         String[] idParts = id.split("\\$");
         idParts = Arrays.copyOfRange(idParts, 0, idParts.length - 1);
         return String.join("$", idParts);
-    }
-
-    private boolean matchItemByColors(Node itemNode, String @NotNull ... colors) {
-        NodeList colorList = getElementByTagName((Element) itemNode, "colours").getChildNodes();
-        int idx = 0;
-        for (int i = 0; i < colorList.getLength(); i++) {
-            Node color = colorList.item(i);
-            if (color.getNodeName().equals("colour")) {
-                if (color.getTextContent().equals(colors[idx])) {
-                    idx++;
-                }
-            }
-        }
-        return idx == colors.length - 1;
-    }
-
-    private @NotNull String getItemColors(Node itemNode) {
-        NodeList colorList = getElementByTagName((Element) itemNode, "colours").getChildNodes();
-        StringBuilder colors = new StringBuilder();
-        for (int i = 0; i < colorList.getLength(); i++) {
-            Node color = colorList.item(i);
-            if (color.getNodeName().equals("colour")) {
-                colors.append(color.getTextContent()).append("$");
-            }
-        }
-        String returnString = colors.toString();
-        int strLength = returnString.length();
-        return returnString.charAt(strLength - 1) == '$' ? returnString.substring(0, strLength - 1) : returnString;
     }
 
     private ComboBox<Attribute> createComboBox(ObservableList<Attribute> values, String value, EventHandler<ActionEvent> onAction){

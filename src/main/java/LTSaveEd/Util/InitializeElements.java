@@ -775,7 +775,7 @@ public class InitializeElements {
      */
     private final ObservableList<Attribute> legTypes = FXCollections.observableArrayList(
             //This element gets deleted when the initialization method is run
-            new LegTypeAttr("Placeholder", "Placeholder", legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR));
+            new LegTypeAttribute("Placeholder", "Placeholder", legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR));
 
     /**
      * ObservableList of all desire types in the game
@@ -1043,7 +1043,8 @@ public class InitializeElements {
             new Attribute("Writer", "WRITER"), new Attribute("Chef", "CHEF"),
             new Attribute("Construction Worker", "CONSTRUCTION_WORKER"),
             new Attribute("Soldier", "SOLDIER"), new Attribute("Athlete", "ATHLETE"),
-            new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"));
+            new Attribute("Aristocrat", "ARISTOCRAT"), new Attribute("Butler", "BUTLER"),
+            new Attribute("Tourist", "TOURIST"));
 
     private final ObservableList<Attribute> npcJobHistories = FXCollections.observableArrayList(
             new Attribute("Unemployed", "NPC_UNEMPLOYED"),
@@ -1433,47 +1434,47 @@ public class InitializeElements {
     private void initializeLegTypes(){
         legTypes.remove(0);
         legTypes.addAll(FXCollections.observableArrayList(
-                new LegTypeAttr("Alligator", "ALLIGATOR_MORPH", legConfigurationsBQ, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Angel", "ANGEL", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Badger", "innoxia_badger_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Bat", "BAT_MORPH", legConfigurationsB, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Bear", "dsg_bear_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Capybara", "NoStepOnSnek_capybara_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Cat", "CAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Cow", "COW_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Demonic", "DEMON_COMMON", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Demonic-hoofed", "DEMON_HOOFED", legConfigurationsB, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Demonic-horse", "DEMON_HORSE", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Demonic-snake", "DEMON_SNAKE", legConfigurationsS, footStructuresN, genitalArrangementsCR),
-                new LegTypeAttr("Demonic-spider", "DEMON_SPIDER", legConfigurationsAr, footStructuresA, genitalArrangementsN),
-                new LegTypeAttr("Demonic-octopus", "DEMON_OCTOPUS", legConfigurationsC, footStructuresT, genitalArrangementsC),
-                new LegTypeAttr("Demonic-fish", "DEMON_FISH", legConfigurationsM, footStructuresN, genitalArrangementsCR),
-                new LegTypeAttr("Demonic-eagle", "DEMON_EAGLE", legConfigurationsAv, footStructuresD, genitalArrangementsR),
-                new LegTypeAttr("Dog", "DOG_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Dragon", "dsg_dragon_leg", legConfigurationsBQSM, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Ferret", "dsg_ferret_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Fox", "FOX_MORPH", legConfigurationsBQ, legConfigurationsBQ, footStructuresPD, "DIGITIGRADE"),
-                new LegTypeAttr("Goat", "innoxia_goat_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Gryphon", "dsg_gryphon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Harpy", "HARPY", legConfigurationsBAv, footStructuresD, genitalArrangementsNCR),
-                new LegTypeAttr("Horse", "HORSE_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Human", "HUMAN", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Hyena", "innoxia_hyena_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Octopus", "NoStepOnSnek_octopus_leg", legConfigurationsC, footStructuresT, genitalArrangementsC),
-                new LegTypeAttr("Otter", "dsg_otter_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Panther", "innoxia_panther_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
-                new LegTypeAttr("Pig", "innoxia_pig_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Rabbit", "RABBIT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Racoon", "dsg_racoon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Rat", "RAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Reindeer", "REINDEER_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Shark", "dsg_shark_leg", legConfigurationsBM, footStructuresP, genitalArrangementsNCR),
-                new LegTypeAttr("Sheep", "innoxia_sheep_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
-                new LegTypeAttr("Snake", "NoStepOnSnek_snake_leg", legConfigurationsBS, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Furred Spider", "charisma_spider_legFluffy", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Spider", "charisma_spider_leg", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Squirrel", "SQUIRREL_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
-                new LegTypeAttr("Wolf", "WOLF_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE")));
+                new LegTypeAttribute("Alligator", "ALLIGATOR_MORPH", legConfigurationsBQ, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Angel", "ANGEL", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Badger", "innoxia_badger_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Bat", "BAT_MORPH", legConfigurationsB, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Bear", "dsg_bear_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Capybara", "NoStepOnSnek_capybara_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Cat", "CAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Cow", "COW_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Demonic", "DEMON_COMMON", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Demonic-hoofed", "DEMON_HOOFED", legConfigurationsB, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Demonic-horse", "DEMON_HORSE", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Demonic-snake", "DEMON_SNAKE", legConfigurationsS, footStructuresN, genitalArrangementsCR),
+                new LegTypeAttribute("Demonic-spider", "DEMON_SPIDER", legConfigurationsAr, footStructuresA, genitalArrangementsN),
+                new LegTypeAttribute("Demonic-octopus", "DEMON_OCTOPUS", legConfigurationsC, footStructuresT, genitalArrangementsC),
+                new LegTypeAttribute("Demonic-fish", "DEMON_FISH", legConfigurationsM, footStructuresN, genitalArrangementsCR),
+                new LegTypeAttribute("Demonic-eagle", "DEMON_EAGLE", legConfigurationsAv, footStructuresD, genitalArrangementsR),
+                new LegTypeAttribute("Dog", "DOG_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Dragon", "dsg_dragon_leg", legConfigurationsBQSM, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Ferret", "dsg_ferret_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Fox", "FOX_MORPH", legConfigurationsBQ, legConfigurationsBQ, footStructuresPD, "DIGITIGRADE"),
+                new LegTypeAttribute("Goat", "innoxia_goat_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Gryphon", "dsg_gryphon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Harpy", "HARPY", legConfigurationsBAv, footStructuresD, genitalArrangementsNCR),
+                new LegTypeAttribute("Horse", "HORSE_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Human", "HUMAN", legConfigurationsB, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Hyena", "innoxia_hyena_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Octopus", "NoStepOnSnek_octopus_leg", legConfigurationsC, footStructuresT, genitalArrangementsC),
+                new LegTypeAttribute("Otter", "dsg_otter_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Panther", "innoxia_panther_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE"),
+                new LegTypeAttribute("Pig", "innoxia_pig_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Rabbit", "RABBIT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Racoon", "dsg_racoon_leg", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Rat", "RAT_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Reindeer", "REINDEER_MORPH", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Shark", "dsg_shark_leg", legConfigurationsBM, footStructuresP, genitalArrangementsNCR),
+                new LegTypeAttribute("Sheep", "innoxia_sheep_leg", legConfigurationsBQ, footStructuresU, genitalArrangementsNCR),
+                new LegTypeAttribute("Snake", "NoStepOnSnek_snake_leg", legConfigurationsBS, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Furred Spider", "charisma_spider_legFluffy", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Spider", "charisma_spider_leg", legConfigurationsBAr, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Squirrel", "SQUIRREL_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR),
+                new LegTypeAttribute("Wolf", "WOLF_MORPH", legConfigurationsBQ, footStructuresPD, genitalArrangementsNCR, "DIGITIGRADE")));
     }
 
     /**
