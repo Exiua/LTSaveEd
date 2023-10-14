@@ -2444,7 +2444,7 @@
                         </VBox>
                         <VBox GridPane.rowIndex="20">
                             <HBox prefHeight="100.0" prefWidth="200.0">
-                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Bimbo">
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="531.0" text="Bimbo/Bro">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
