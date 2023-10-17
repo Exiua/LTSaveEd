@@ -2,10 +2,14 @@ package LTSaveEd.DataObjects.InventoryElements;
 
 import LTSaveEd.DataObjects.InventoryElements.AbstractInventoryElements.InventoryElement;
 import javafx.scene.control.CheckBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class InventoryClothing extends InventoryElement {
+    static Logger log = LogManager.getLogger(InventoryClothing.class);
+
     private boolean enchantmentKnown;
     private boolean isDirty;
     private final MultiColor colors;
@@ -30,7 +34,7 @@ public class InventoryClothing extends InventoryElement {
     public void updateDirty() {
         isDirty = ((CheckBox) hBoxNodes.get(2)).isSelected();
         node.getAttributeNode("isDirty").setValue(String.valueOf(isDirty));
-        System.out.println("Clothing is " + (isDirty ? "dirty" : "clean"));
+        log.debug("Clothing is " + (isDirty ? "dirty" : "clean"));
     }
 
     public boolean isEnchantmentKnown() {
@@ -40,7 +44,7 @@ public class InventoryClothing extends InventoryElement {
     public void updateEnchantmentKnown() {
         enchantmentKnown = ((CheckBox) hBoxNodes.get(1)).isSelected();
         node.getAttributeNode("enchantmentKnown").setValue(String.valueOf(enchantmentKnown));
-        System.out.println("Enchantment " + (enchantmentKnown ? "known" : "unknown"));
+        log.debug("Enchantment " + (enchantmentKnown ? "known" : "unknown"));
     }
 
     public MultiColor getColors() {
