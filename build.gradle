@@ -51,12 +51,12 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-core:2.21.0'
     implementation 'org.jetbrains:annotations:23.0.0'
     runtimeOnly "org.openjfx:javafx-controls:21:win"
-    //runtimeOnly "org.openjfx:javafx-controls:21:linux"
-    //runtimeOnly "org.openjfx:javafx-controls:21:mac"
+    runtimeOnly "org.openjfx:javafx-controls:21:linux"
+    runtimeOnly "org.openjfx:javafx-controls:21:mac"
     runtimeOnly "org.openjfx:javafx-fxml:21:win"
-    //runtimeOnly "org.openjfx:javafx-fxml:21:linux"
-    //runtimeOnly "org.openjfx:javafx-fxml:21:mac"
+    runtimeOnly "org.openjfx:javafx-fxml:21:linux"
+    runtimeOnly "org.openjfx:javafx-fxml:21:mac"
     runtimeOnly "org.openjfx:javafx-graphics:21:win"
-    //runtimeOnly "org.openjfx:javafx-graphics:21:linux"
-    //runtimeOnly "org.openjfx:javafx-graphics:21:mac"
+    runtimeOnly "org.openjfx:javafx-graphics:21:linux"
+    runtimeOnly "org.openjfx:javafx-graphics:21:mac"
 }

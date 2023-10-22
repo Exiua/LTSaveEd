@@ -6,16 +6,20 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
 
-        <!-- File Appender -->
-        <File name="File" fileName="output.log">
+        <!-- Rolling File Appender -->
+        <RollingFile name="RollingFile" fileName="output.log" filePattern="output-%d{MM-dd-yyyy}-%i.log">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-        </File>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
     </Appenders>
 
     <Loggers>
         <Root level="debug">
             <AppenderRef ref="Console" />
-            <AppenderRef ref="File" />
+            <AppenderRef ref="RollingFile" />
         </Root>
     </Loggers>
 </Configuration>
