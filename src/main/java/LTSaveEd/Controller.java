@@ -470,6 +470,8 @@ public class Controller {
      */
     private final ArrayList<ObservableList<Attribute>> jobHistories = new ArrayList<>();
 
+    private final ArrayList<Node> bodyCoverings = new ArrayList<>();
+
     private final Calendar baseDate = Calendar.getInstance();
 
     private final Calendar currentDate = Calendar.getInstance();
@@ -1067,7 +1069,7 @@ public class Controller {
      * @param year Year to check
      * @return True if year is a leap year else false
      */
-    public boolean isLeapYear(int year) { // Hopefully this handles all edge cases
+    private boolean isLeapYear(int year) { // Hopefully this handles all edge cases
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
         return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
@@ -1376,6 +1378,11 @@ public class Controller {
      */
     private void resetFields() {
         fieldsSet = false;
+
+        bodyCoverings.clear();
+        VBox bodyCoveringVbox = (VBox) namespace.get("bodyCoveringVbox");
+        bodyCoveringVbox.getChildren().clear();
+
         for (String resetIntTextFieldsId : resetIntTextFieldsIds) {
             TextField tf = (TextField) namespace.get(resetIntTextFieldsId);
             tf.setText("0");
@@ -1563,7 +1570,10 @@ public class Controller {
 
                         String modifierName = modifiers.getNodeName();
 
-                        if (modifierName.contains("Modifiers")) {
+                        if(modifierName.equals("bodyCovering")){
+                            addBodyCovering(modifiers);
+                        }
+                        else if (modifierName.contains("Modifiers")) {
                             NamedNodeMap mods = modifiers.getAttributes();
 
                             for (int l = 0; l < mods.getLength(); l++) {
@@ -1736,6 +1746,26 @@ public class Controller {
         setFieldsInventoryWeapons(node);
     }*/
 
+    private void addBodyCovering(Node modifiers){
+        VBox vbox = (VBox) namespace.get("bodyCoveringVbox");
+        int currentIndex = bodyCoverings.size();
+        NamedNodeMap coveringAttributes = modifiers.getAttributes();
+        String c1 = getAttributeValue(coveringAttributes, "c1");
+        String c2 = getAttributeValue(coveringAttributes, "c2");
+        String modifier = getAttributeValue(coveringAttributes, "modifier");
+        String pattern = getAttributeValue(coveringAttributes, "pattern");
+        String type = getAttributeValue(coveringAttributes, "type");
+        TextField tfC1 = createReadOnlyTextField(c1);
+        TextField tfC2 = createReadOnlyTextField(c2);
+        TextField tfModifier = createReadOnlyTextField(modifier);
+        TextField tfPattern = createReadOnlyTextField(pattern);
+        TextField tfType = createReadOnlyTextField(type);
+        HBox hBox = new HBox(10);
+        hBox.getChildren().addAll(tfC1, tfC2, tfModifier, tfPattern, tfType);
+        vbox.getChildren().add(hBox);
+        bodyCoverings.add(modifiers);
+    }
+
     /**
      * Set the value of fields relating to world data (i.e. data that is world/save specific, not character specific)
      */
@@ -1816,31 +1846,42 @@ public class Controller {
                 continue;
             }
 
-            TextField nameField = new TextField(npcName);
-            nameField.setEditable(false);
-            TextField idField = new TextField(charId);
-            idField.setEditable(false);
-            TextField valueField = new TextField(attrs.getNamedItem("value").getTextContent());
+            TextField nameField = createReadOnlyTextField(npcName);
+            TextField idField = createReadOnlyTextField(charId);
+            TextField valueField = new TextField(getAttributeValue(attrs, "value"));
             valueField.setId("characterRelationships$relationship$" + i);
             valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
-            Button btn = new Button("Goto Character");
-            btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
-            // possible catch and delete relation entry for deleted npcs
-            btn.setOnAction(event -> {
-                String[] id = getId(event).split("\\$");
-                String characterId = id[1];
-                log.debug(characterId);
-                if (characterId.charAt(0) == '_') {
-                    characterId = characterId.replaceFirst("_", "-");
-                }
-                characterId = characterId.replace("_", ",");
-                setCharacter(characterId);
-            });
+            Button btn = createButton(charId);
             HBox hBox = new HBox(10);
             hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
                     new Label("Value: "), valueField, btn); // Id: <Id TextField> Name: <Name TextField> Value: <Value TextField> <GoTo Button>
             relationBox.getChildren().add(hBox);
         }
+    }
+
+    @NotNull
+    private TextField createReadOnlyTextField(String text){
+        TextField tf = new TextField(text);
+        tf.setEditable(false);
+        return tf;
+    }
+
+    @NotNull
+    private Button createButton(String charId) {
+        Button btn = new Button("Goto Character");
+        btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
+        // possible to catch and delete relation entry for deleted npcs
+        btn.setOnAction(event -> {
+            String[] id = getId(event).split("\\$");
+            String characterId = id[1];
+            log.debug(characterId);
+            if (characterId.charAt(0) == '_') {
+                characterId = characterId.replaceFirst("_", "-");
+            }
+            characterId = characterId.replace("_", ",");
+            setCharacter(characterId);
+        });
+        return btn;
     }
 
     /**
@@ -2414,6 +2455,10 @@ public class Controller {
      */
     private String getAttributeValue(@NotNull Node node, String attr) {
         return node.getAttributes().getNamedItem(attr).getTextContent();
+    }
+
+    private String getAttributeValue(@NotNull NamedNodeMap node, String attr) {
+        return node.getNamedItem(attr).getTextContent();
     }
 
     /**
