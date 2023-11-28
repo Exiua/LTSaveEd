@@ -1,7 +1,10 @@
 package LTSaveEd.DataObjects;
 
+import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import javafx.collections.ObservableMap;
 import javafx.scene.control.CheckBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.*;
 
 import java.util.ArrayList;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
  * @author Exiua
  */
 public class PerkNode {
+    static Logger log = LogManager.getLogger(InventoryClothing.class);
 
     /**
      * Namespace of the fxml file
@@ -174,13 +178,13 @@ public class PerkNode {
     public void setActive(boolean value){
         CheckBox cb = (CheckBox) namespace.get(id);
         cb.setSelected(value);
-        System.out.println("Setting active: " + value);
+        log.debug("Setting active: " + value);
         if(!value){
             active = false;
             Node perk = getPerkNode();
             if(perk != null){
                 perk.getParentNode().removeChild(perk);
-                System.out.println("Removed node: " + this);
+                log.debug("Removed node: " + this);
             }
             deactivate();
         }
@@ -188,7 +192,7 @@ public class PerkNode {
             active = true;
             Element perk = createPerkNode();
             perksNode.appendChild(perk);
-            System.out.println("Created node: " + this);
+            log.debug("Created node: " + this);
             activate();
         }
     }
@@ -232,7 +236,7 @@ public class PerkNode {
         }
         for (PerkNode perkNode : parent) {
             perkNode.setActive(true);
-            System.out.println(perkNode);
+            log.debug(perkNode);
         }
     }
 

@@ -322,55 +322,261 @@
                     <Tab text="Body Core">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="28.0" prefHeight="642.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0">
-                                    <HBox>
-                                        <Label text="Body Material: " />
-                                        <ComboBox fx:id="body$bodyCore$bodyMaterial" onAction="#updateXmlComboBox" prefWidth="150.0" />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
-                                        <Label text="Body Size:" />
-                                        <TextField fx:id="body$bodyCore$bodySize" />
-                                        <Label fx:id="body$bodyCore$bodySize$label" text="Label" />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
-                                        <Label text="Femininity:" />
-                                        <TextField fx:id="body$bodyCore$femininity" />
-                                        <Label fx:id="body$bodyCore$femininity$label" text="Label" />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="60.0">
-                                        <CheckBox fx:id="body$bodyCore$feral" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Feral: " />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="85.0">
-                                        <Label text="Genital Arrangement: " />
-                                        <ComboBox fx:id="body$bodyCore$genitalArrangement" onAction="#updateXmlComboBox" prefWidth="150.0" />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="110.0">
-                                        <Label text="Height: " />
-                                        <TextField fx:id="body$bodyCore$height" />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
-                                        <Label text="Muscle:" />
-                                        <TextField fx:id="body$bodyCore$muscle" />
-                                        <Label fx:id="body$bodyCore$muscle$label" text="Label" />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="160.0">
-                                        <CheckBox fx:id="body$bodyCore$piercedStomach" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Stomach: " />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="185.0">
-                                        <Label text="Pubic Hair: " />
-                                        <ComboBox fx:id="body$bodyCore$pubicHair" onAction="#updateXmlComboBox" prefWidth="150.0" />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="210.0">
-                                        <Label text="Subspecies Override: " />
-                                        <ComboBox fx:id="body$bodyCore$subspeciesOverride" onAction="#updateXmlComboBox" prefWidth="150.0" />
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="235.0">
-                                        <CheckBox fx:id="body$bodyCore$takesAfterMother" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Takes After Mother: " />
-                                    </HBox>
-                           <padding>
-                              <Insets left="14.0" top="44.0" />
-                           </padding>
-                                </VBox>
+                                <HBox prefHeight="901.0" prefWidth="1258.0">
+                                    <VBox prefHeight="587.0" prefWidth="938.0" spacing="10.0">
+                                        <HBox>
+                                            <Label text="Body Material: " />
+                                            <ComboBox fx:id="body$bodyCore$bodyMaterial" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="10.0" spacing="5.0">
+                                            <Label text="Body Size:" />
+                                            <TextField fx:id="body$bodyCore$bodySize" />
+                                            <Label fx:id="body$bodyCore$bodySize$label" text="Label" />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="35.0" spacing="5.0">
+                                            <Label text="Femininity:" />
+                                            <TextField fx:id="body$bodyCore$femininity" />
+                                            <Label fx:id="body$bodyCore$femininity$label" text="Label" />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="60.0">
+                                            <CheckBox fx:id="body$bodyCore$feral" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Feral: " />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="85.0">
+                                            <Label text="Genital Arrangement: " />
+                                            <ComboBox fx:id="body$bodyCore$genitalArrangement" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="110.0">
+                                            <Label text="Height: " />
+                                            <TextField fx:id="body$bodyCore$height" />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="135.0" spacing="5.0">
+                                            <Label text="Muscle:" />
+                                            <TextField fx:id="body$bodyCore$muscle" />
+                                            <Label fx:id="body$bodyCore$muscle$label" text="Label" />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="160.0">
+                                            <CheckBox fx:id="body$bodyCore$piercedStomach" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Pierced Stomach: " />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="185.0">
+                                            <Label text="Pubic Hair: " />
+                                            <ComboBox fx:id="body$bodyCore$pubicHair" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="210.0">
+                                            <Label text="Subspecies Override: " />
+                                            <ComboBox fx:id="body$bodyCore$subspeciesOverride" onAction="#updateXmlComboBox" prefWidth="150.0" />
+                                        </HBox>
+                                        <HBox layoutX="10.0" layoutY="235.0">
+                                            <CheckBox fx:id="body$bodyCore$takesAfterMother" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#updateXmlBoolean" text="Takes After Mother: " />
+                                        </HBox>
+                                        <padding>
+                                            <Insets left="14.0" top="44.0" />
+                                        </padding>
+                                    </VBox>
+                                    <VBox fx:id="bodyCoveringVbox" prefHeight="901.0" prefWidth="1562.0" spacing="10.0" visible="false">
+                                        <padding>
+                                            <Insets left="14.0" top="44.0" />
+                                        </padding>
+                                        <HBox alignment="TOP_CENTER">
+                                            <Label text="Body Coverings" underline="true">
+                                                <font>
+                                                    <Font name="System Bold" size="12.0" />
+                                                </font>
+                                            </Label>
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$skin" spacing="10.0">
+                                            <Label text="Skin:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$PENIS" spacing="10.0">
+                                            <Label text="Penis:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$ANUS" spacing="10.0">
+                                            <Label text="Anus:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$MOUTH" spacing="10.0">
+                                            <Label text="Mouth:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$NIPPLES" spacing="10.0">
+                                            <Label text="Nipples:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$NIPPLES_CROTCH" spacing="10.0">
+                                            <Label text="Nipples Crotch:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$VAGINA" spacing="10.0">
+                                            <Label text="Vagina:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$SPINNERET" spacing="10.0">
+                                            <Label text="Spinneret:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$ANTENNA" spacing="10.0">
+                                            <Label text="Antenna:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$HORN" spacing="10.0">
+                                            <Label text="Horn:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$TONGUE" spacing="10.0">
+                                            <Label text="Tongue:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$EYE_IRISES" spacing="10.0">
+                                            <Label text="Irises:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$EYE_PUPILS" spacing="10.0">
+                                            <Label text="Pupils:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$EYE_SCLERA" spacing="10.0">
+                                            <Label text="Sclera:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$CUM" spacing="10.0">
+                                            <Label text="Cum:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$GIRL_CUM" spacing="10.0">
+                                            <Label text="Girl Cum:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$MILK" spacing="10.0">
+                                            <Label text="Milk:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$BODY_HAIR" spacing="10.0">
+                                            <Label text="Body Hair:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$body_hair" spacing="10.0">
+                                            <Label text="Body Hair2:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$fur_face" spacing="10.0">
+                                            <Label text="Face Fur:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$fur" spacing="10.0">
+                                            <Label text="Fur:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$hair" spacing="10.0">
+                                            <Label text="Hair:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$eye" spacing="10.0">
+                                            <Label text="Eyes:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                        <HBox fx:id="bodyCovering$scales" spacing="10.0">
+                                            <Label text="Scales:" />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                            <TextField />
+                                        </HBox>
+                                    </VBox>
+                                </HBox>
                             </ScrollPane>
                         </AnchorPane>
                     </Tab>
@@ -3084,6 +3290,20 @@
                 </GridPane>
             </AnchorPane>
         </Tab>
+        <Tab text="Offsprings">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+               <ScrollPane prefHeight="2131.0" prefWidth="3840.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+                 <content>
+                   <AnchorPane>
+                        <children>
+                           <VBox fx:id="offspringVbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        </children>
+                     </AnchorPane>
+                 </content>
+               </ScrollPane>
+            </children></AnchorPane>
+        </Tab>
         <Tab text="World">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <VBox layoutX="191.0" layoutY="79.0" prefHeight="502.0" prefWidth="527.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="28.0">
@@ -3121,9 +3341,6 @@
                 <Button layoutX="78.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteOffsprings" text="Remove All Offsprings" />
                 <Button layoutX="286.0" layoutY="80.0" mnemonicParsing="false" onAction="#revealMap" text="Reveal All Map Tiles" />
             </AnchorPane>
-        </Tab>
-        <Tab disable="true" text="Pregnancy">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </Tab>
     </TabPane>
     <MenuBar layoutX="810.0" layoutY="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">

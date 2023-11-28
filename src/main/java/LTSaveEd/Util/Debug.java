@@ -1,8 +1,12 @@
 package LTSaveEd.Util;
 
+import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.BufferedReader;
@@ -10,136 +14,108 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class Debug {
+    static Logger log = LogManager.getLogger(InventoryClothing.class.getName());
 
-    @SuppressWarnings("DuplicatedCode")
     public static void printList(NodeList nodes){
         if(nodes == null){
-            System.out.println("null");
+            log.debug("null");
             return;
         }
         if(nodes.getLength() == 0){
-            System.out.println("List Length = 0");
+            log.debug("List Length = 0");
             return;
         }
         if(nodes.getLength() == 1){
-            System.out.println("[" + nodes.item(0).getNodeName() + "]");
+            log.debug("[" + nodes.item(0).getNodeName() + "]");
             return;
         }
+
+        StringBuilder out = new StringBuilder();
         for(int i = 0; i < nodes.getLength(); i++){
             if(i == 0){
-                System.out.print("[" + nodes.item(i).getNodeName() + ", ");
+                out.append("[").append(nodes.item(i).getNodeName()).append(", ");
             }
             else if(i == nodes.getLength() - 1){
-                System.out.println(nodes.item(i).getNodeName() + "]");
+                out.append(nodes.item(i).getNodeName()).append("]");
             }
             else {
-                System.out.print(nodes.item(i).getNodeName() + ", ");
+                out.append(nodes.item(i).getNodeName()).append(", ");
             }
         }
+
+        log.debug(out);
     }
 
-    public static void printListValue(NodeList nodes, String value){
-        if(nodes == null){
-            System.out.println("null");
-            return;
-        }
-        if(nodes.getLength() == 0){
-            System.out.println("List Length = 0");
-            return;
-        }
-        if(nodes.getLength() == 1){
-            System.out.println("[" + nodes.item(0).getAttributes().getNamedItem(value).getTextContent() + "]");
-            return;
-        }
-        for(int i = 0; i < nodes.getLength(); i++){
-            if(i == 0){
-                if(nodes.item(i).getNodeType() != Node.ELEMENT_NODE){
-                    System.out.print("[" + nodes.item(i).getNodeName() + ", ");
-                }
-                else{
-                    System.out.print("[" + nodes.item(i).getAttributes().getNamedItem(value).getTextContent() + ", ");
-                }
-            }
-            else if(i == nodes.getLength() - 1){
-                if(nodes.item(i).getNodeType() != Node.ELEMENT_NODE){
-                    System.out.print(nodes.item(i).getNodeName() + "]");
-                }
-                else{
-                    System.out.println(nodes.item(i).getAttributes().getNamedItem(value).getTextContent() + "]");
-                }
-            }
-            else {
-                if(nodes.item(i).getNodeType() != Node.ELEMENT_NODE){
-                    System.out.print(nodes.item(i).getNodeName() + ", ");
-                }
-                else{
-                    System.out.print(nodes.item(i).getAttributes().getNamedItem(value).getTextContent() + ", ");
-                }
-            }
-        }
-    }
-
-    @SuppressWarnings("DuplicatedCode")
     public static void printList(NamedNodeMap nodes){
         if(nodes == null){
-            System.out.println("null");
+            log.debug("null");
             return;
         }
         if(nodes.getLength() == 0){
-            System.out.println("List Length = 0");
+            log.debug("List Length = 0");
             return;
         }
         if(nodes.getLength() == 1){
-            System.out.println("[" + nodes.item(0).getNodeName() + "]");
+            log.debug("[" + nodes.item(0).getNodeName() + "]");
             return;
         }
+
+        StringBuilder out = new StringBuilder();
         for(int i = 0; i < nodes.getLength(); i++){
             if(i == 0){
-                System.out.print("[" + nodes.item(i).getNodeName() + ", ");
+                out.append("[").append(nodes.item(i).getNodeName()).append(", ");
             }
             else if(i == nodes.getLength() - 1){
-                System.out.println(nodes.item(i).getNodeName() + "]");
+                out.append(nodes.item(i).getNodeName()).append("]");
             }
             else {
-                System.out.print(nodes.item(i).getNodeName() + ", ");
+                out.append(nodes.item(i).getNodeName()).append(", ");
             }
         }
+
+        log.debug(out);
     }
 
-    public static void printList(ArrayList<?> nodes){
-        if(nodes == null){
-            System.out.println("null");
+    public static void printMap(ObservableMap<?, ?> map){
+        if(map == null){
+            log.debug("null");
             return;
         }
-        if(nodes.size() == 0){
-            System.out.println("List Length = 0");
+        if(map.isEmpty()){
+            log.debug("Map is empty");
             return;
         }
-        if(nodes.size() == 1){
-            System.out.println("[" + nodes.get(0) + "]");
+        if(map.size() == 1){
+            var entry = map.entrySet().iterator().next();
+            log.debug("{" + entry.getKey() + ": " + entry.getValue() + "}");
             return;
         }
-        for(int i = 0; i < nodes.size(); i++){
+
+        StringBuilder out = new StringBuilder();
+        int i = 0;
+        for (var entry : map.entrySet()) {
             if(i == 0){
-                System.out.print("[" + nodes.get(i) + ", ");
+                out.append("{").append(entry.getKey()).append(": ").append(entry.getValue()).append(",\n");
             }
-            else if(i == nodes.size() - 1){
-                System.out.println(nodes.get(i) + "]");
+            else if(i == map.size() - 1){
+                out.append(entry.getKey()).append(": ").append(entry.getValue()).append("}");
             }
             else {
-                System.out.print(nodes.get(i) + ", ");
+                out.append(entry.getKey()).append(": ").append(entry.getValue()).append(",\n");
             }
+            i++;
         }
+
+        log.debug(out);
     }
 
     public static String listToString(ObservableList<?> list, int length){
         if(list == null){
             return "null";
         }
-        if(list.size() == 0){
+        if(list.isEmpty()){
             return "[]";
         }
         if(list.size() == 1){
@@ -158,21 +134,23 @@ public class Debug {
         return out.toString();
     }
 
-    public static void printArr(String[] arr){
-        for(int i = 0; i < arr.length; i++){
-            if(i == 0){
-                System.out.print("[" + arr[i] + ", ");
-            }
-            else if(i == arr.length - 1){
-                System.out.println(arr[i] + "]");
-            }
-            else {
-                System.out.print(arr[i] + ", ");
+    public static void versionCompare() throws IOException{
+        String jsonStr = getJsonString();
+        String[] jsonArr = jsonStr.replace("{", "").replace("}", "").split(",");
+        String test = "";
+        for(String s : jsonArr) {
+            if(s.startsWith("\"tag_name\"")) {
+                test = s.split(":")[1].replace("\"", "");
+                log.debug(test);
+                break;
             }
         }
+        log.debug("v0.1.0".compareTo(test));
+        log.debug(compareVersions("v1.10.0", "v1.9.0"));
     }
 
-    public static void versionCompare() throws IOException{
+    @NotNull
+    private static String getJsonString() throws IOException {
         StringBuilder result = new StringBuilder();
         URL url = new URL("https://api.github.com/repos/Exiua/LTSaveEd/releases/latest");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -183,18 +161,7 @@ public class Debug {
                 result.append(line);
             }
         }
-        String jsonStr = result.toString();
-        String[] jsonArr = jsonStr.replace("{", "").replace("}", "").split(",");
-        String test = "";
-        for(String s : jsonArr) {
-            if(s.startsWith("\"tag_name\"")) {
-                test = s.split(":")[1].replace("\"", "");
-                System.out.println(test);
-                break;
-            }
-        }
-        System.out.println("v0.1.0".compareTo(test));
-        System.out.println(compareVersions("v1.10.0", "v1.9.0"));
+        return result.toString();
     }
 
     public static int compareVersions(String version1, String version2){
@@ -213,9 +180,5 @@ public class Debug {
             }
         }
         return 0; //Version strings must be equal at this point
-    }
-
-    public static void main(String[] args) throws IOException {
-        versionCompare();
     }
 }

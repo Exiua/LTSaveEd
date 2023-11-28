@@ -1,23 +1,27 @@
 package LTSaveEd;
 
+import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Class that initializes and starts the program
  * @author Exiua
  */
 public class LTSaveEd extends Application {
+    static Logger log = LogManager.getLogger(InventoryClothing.class.getName());
 
     private static HostServices hostServices;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        String version = "v1.4.2";
+        String version = "v1.5.0";
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LTSaveEd.fxml"));
         Parent root = loader.load();
@@ -31,6 +35,11 @@ public class LTSaveEd extends Application {
         primaryStage.setMaximized(true);
         hostServices = getHostServices();
         primaryStage.show();
+    }
+
+    @Override
+    public void init() {
+        Thread.setDefaultUncaughtExceptionHandler((t, e) -> log.error("An unhandled exception has occurred.", e));
     }
 
     public static void openLinkInBrowser(String url){
