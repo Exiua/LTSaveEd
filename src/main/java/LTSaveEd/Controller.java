@@ -6,10 +6,7 @@ import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import LTSaveEd.DataObjects.InventoryElements.InventoryItem;
 import LTSaveEd.DataObjects.InventoryElements.InventoryWeapon;
 import LTSaveEd.DataObjects.InventoryElements.MultiColor;
-import LTSaveEd.Util.Debug;
-import LTSaveEd.Util.InitializeElements;
-import LTSaveEd.Util.TextFieldType;
-import LTSaveEd.Util.Utility;
+import LTSaveEd.Util.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -472,6 +469,8 @@ public class Controller {
 
     private final ArrayList<Node> bodyCoverings = new ArrayList<>();
 
+    private final ArrayList<OffspringData> offsprings = new ArrayList<>();
+
     private final Calendar baseDate = Calendar.getInstance();
 
     private final Calendar currentDate = Calendar.getInstance();
@@ -522,7 +521,7 @@ public class Controller {
     /**
      * Boolean tracking whether world fields have been set
      */
-    private boolean worldFieldsSet = false;
+    private boolean singleInitializeFieldsSet = false;
 
     private final StringConverter<Attribute> attributeStringConverter = new StringConverter<>() {
         @Override
@@ -681,7 +680,7 @@ public class Controller {
             PersonalityTrait.setSaveFile(saveFile);
             log.debug(f);
             fileLoaded = true;
-            worldFieldsSet = false;
+            singleInitializeFieldsSet = false;
             TabPane tb = (TabPane) namespace.get("tabPane");
             tb.setDisable(false);
         }
@@ -1380,8 +1379,6 @@ public class Controller {
         fieldsSet = false;
 
         bodyCoverings.clear();
-        VBox bodyCoveringVbox = (VBox) namespace.get("bodyCoveringVbox");
-        bodyCoveringVbox.getChildren().clear();
 
         for (String resetIntTextFieldsId : resetIntTextFieldsIds) {
             TextField tf = (TextField) namespace.get(resetIntTextFieldsId);
@@ -1468,9 +1465,10 @@ public class Controller {
         resetFields();
         log.debug("Fields Reset");
 
-        if (!worldFieldsSet) {
+        if (!singleInitializeFieldsSet) {
             setWorldFields();
-            worldFieldsSet = true;
+            setOffspringFields();
+            singleInitializeFieldsSet = true;
         }
 
         NodeList attributeNodes = getAttributeNodes();
@@ -1747,23 +1745,176 @@ public class Controller {
     }*/
 
     private void addBodyCovering(Node modifiers){
-        VBox vbox = (VBox) namespace.get("bodyCoveringVbox");
-        int currentIndex = bodyCoverings.size();
-        NamedNodeMap coveringAttributes = modifiers.getAttributes();
-        String c1 = getAttributeValue(coveringAttributes, "c1");
-        String c2 = getAttributeValue(coveringAttributes, "c2");
-        String modifier = getAttributeValue(coveringAttributes, "modifier");
-        String pattern = getAttributeValue(coveringAttributes, "pattern");
-        String type = getAttributeValue(coveringAttributes, "type");
-        TextField tfC1 = createReadOnlyTextField(c1);
-        TextField tfC2 = createReadOnlyTextField(c2);
-        TextField tfModifier = createReadOnlyTextField(modifier);
-        TextField tfPattern = createReadOnlyTextField(pattern);
-        TextField tfType = createReadOnlyTextField(type);
-        HBox hBox = new HBox(10);
-        hBox.getChildren().addAll(tfC1, tfC2, tfModifier, tfPattern, tfType);
-        vbox.getChildren().add(hBox);
-        bodyCoverings.add(modifiers);
+        return;
+        // TODO:
+//        NamedNodeMap coveringAttributes = modifiers.getAttributes();
+//        String c1 = getAttributeValue(coveringAttributes, "c1");
+//        String c2 = getAttributeValue(coveringAttributes, "c2");
+//        String modifier = getAttributeValue(coveringAttributes, "modifier");
+//        String pattern = getAttributeValue(coveringAttributes, "pattern");
+//        String type = getAttributeValue(coveringAttributes, "type");
+//        String id = getBodyCoveringId(type);
+//        System.out.println(id);
+//        HBox hBox = (HBox) namespace.get(id);
+//        ObservableList<javafx.scene.Node> children = hBox.getChildren();
+//        TextField tfC1 = (TextField) children.get(1);
+//        tfC1.setText(c1);
+//        TextField tfC2 = (TextField) children.get(2);
+//        tfC2.setText(c2);
+//        TextField tfModifier = (TextField) children.get(3);
+//        tfModifier.setText(modifier);
+//        TextField tfPattern = (TextField) children.get(4);
+//        tfPattern.setText(pattern);
+//        TextField tfType = (TextField) children.get(5);
+//        tfType.setText(type);
+//        int currentIndex = bodyCoverings.size();
+//        bodyCoverings.add(modifiers);
+    }
+
+    private String getBodyCoveringId(String type){
+        String id = switch(type){
+            case "PENIS" -> "bodyCovering$PENIS";
+            case "ANUS" -> "bodyCovering$ANUS";
+            case "MOUTH" -> "bodyCovering$MOUTH";
+            case "NIPPLES" -> "bodyCovering$NIPPLES";
+            case "NIPPLES_CROTCH" -> "bodyCovering$NIPPLES_CROTCH";
+            case "VAGINA" -> "bodyCovering$VAGINA";
+            case "SPINNERET" -> "bodyCovering$SPINNERET";
+            case "ANTENNA" -> "bodyCovering$ANTENNA";
+            case "HORN" -> "bodyCovering$HORN";
+            case "TONGUE" -> "bodyCovering$TONGUE";
+            case "EYE_PUPILS" -> "bodyCovering$EYE_PUPILS";
+            case "EYE_SCLERA" -> "bodyCovering$EYE_SCLERA";
+            case "CUM" -> "bodyCovering$CUM";
+            case "GIRL_CUM" -> "bodyCovering$GIRL_CUM";
+            case "MILK" -> "bodyCovering$MILK";
+            default -> null;
+        };
+
+        if(id == null){
+            if(type.startsWith("BODY_HAIR")){
+                id = "bodyCovering$BODY_HAIR";
+            }
+            else if(type.startsWith("EYE_")){
+                id = "bodyCovering$EYE_IRISES";
+            }
+            else if(type.endsWith("body_hair")){
+                id = "bodyCovering$body_hair";
+            }
+            else if(type.endsWith("fur_face")){
+                id = "bodyCovering$fur_face";
+            }
+            else if(type.endsWith("fur")){
+                id = "bodyCovering$fur";
+            }
+            else if(type.endsWith("hair")){
+                id = "bodyCovering$hair";
+            }
+            else if(type.endsWith("eye")){
+                id = "bodyCovering$eye";
+            }
+            else if(type.endsWith("scales")){
+                id = "bodyCovering$scales";
+            }
+            else{
+                log.debug("Guessing body covering is skin: " + type);
+                id = "bodyCovering$skin";
+                //throw new RuntimeException("Invalid body covering type: " + type);
+            }
+        }
+
+        return id;
+    }
+
+    private void setOffspringFields(){
+        VBox vbox = (VBox) namespace.get("offspringVbox");
+        vbox.getChildren().clear();
+        offsprings.clear();
+        NodeList offspringList = saveFile.getElementsByTagName("OffspringSeed");
+        for (int i = 0; i < offspringList.getLength(); i++) {
+            Node offspringNode = offspringList.item(i);
+            if(offspringNode.getNodeType() != Node.ELEMENT_NODE){
+                continue;
+            }
+
+            OffspringData offspring = new OffspringData(offspringNode);
+            NameTriplet name = offspring.getName();
+            TextField androField = createReadOnlyTextField(name.getAndrogynous());
+            TextField femField = createReadOnlyTextField(name.getFeminine());
+            TextField mascField = createReadOnlyTextField(name.getMasculine());
+            TextField surnameField = createReadOnlyTextField(name.getSurname());
+            TextField motherField = createReadOnlyTextField(offspring.getMotherName());
+            TextField fatherField = createReadOnlyTextField(offspring.getFatherName());
+            CheckBox fromPlayerCheckbox = createCheckBox("Player's Child: ", offspring.isFromPlayer(), null);
+            fromPlayerCheckbox.setDisable(true);
+            CheckBox isBornCheckbox = createCheckBox("Is Born: ", offspring.isBorn(), null);
+            isBornCheckbox.setDisable(true);
+            Button deleteButton = new Button("Delete");
+            deleteButton.setId("deleteOffspring$" + i);
+            deleteButton.setOnAction(this::deleteOffspring);
+            HBox hBox = new HBox(10);
+            hBox.setId("offspringHBox$" + i);
+            hBox.getChildren().addAll(new Label("Name (A, F, M): "), androField, femField, mascField,
+                    new Label("Surname: "), surnameField, new Label("Mother: "), motherField,
+                    new Label("Father: "), fatherField, fromPlayerCheckbox, isBornCheckbox, deleteButton);
+            vbox.getChildren().add(hBox);
+            offsprings.add(offspring);
+        }
+    }
+
+    private void deleteOffspring(ActionEvent actionEvent) {
+        String id = getId(actionEvent);
+        int index = Integer.parseInt(id.split("\\$")[1]);
+        HBox offspringHbox = (HBox) ((javafx.scene.Node) actionEvent.getSource()).getParent();
+        OffspringData offspring = offsprings.get(index);
+        String offspringId = offspring.getOffspringId();
+        Node offspringNode = getOffspringNode(offspringId);
+        removeOffspringFromCharacterNode(offspring.getMotherId(), offspringId);
+        removeOffspringFromCharacterNode(offspring.getFatherId(), offspringId);
+        removeNode(offspringNode.getParentNode().getParentNode()); // id > data > OffspringSeed
+        ((VBox) offspringHbox.getParent()).getChildren().remove(offspringHbox);
+    }
+
+    private void removeOffspringFromCharacterNode(String characterId, String offspringId){
+        Node characterNode;
+        try {
+            characterNode = getCharacterNode(characterId).getParentNode().getParentNode();
+        }
+        catch (NoSuchElementException e){
+            // Parent no longer exists
+            return;
+        }
+        Node pregnancyNode = getNode(characterNode, "pregnancy");
+        String[] litterNodeNames = {"pregnantLitter", "birthedLitters", "littersFathered"};
+        for(String nodeName : litterNodeNames){
+            Node littersNode = getElementByTagName((Element) pregnancyNode, nodeName);
+            if(littersNode == null){
+                continue;
+            }
+
+            if(removeOffspringNodeFromLittersNode(littersNode, offspringId)){
+                return;
+            }
+        }
+
+        log.warn("Offspring {" + offspringId + "}not found under character {" + characterId + "}");
+    }
+
+    private boolean removeOffspringNodeFromLittersNode(Node littersNode, String offspringId){
+        // Handles littersFathered, birthedLitters, and pregnantLitter nodes
+        IterableNodeChildren litters = new IterableNodeChildren(littersNode);
+        for (Node litter : litters) {
+            Node offspringList = getNode(litter, "offspringList");
+            IterableNodeChildren offspringNodes = new IterableNodeChildren(offspringList);
+            for(Node offspringNode : offspringNodes){
+                String offspringNodeId = getAttributeValue(offspringNode, "id");
+                if(offspringNodeId.equals(offspringId)){
+                    removeNode(offspringNode);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -1781,6 +1932,7 @@ public class Controller {
         int seconds = Integer.parseInt(coreInfo.getAttribute("secondsPassed"));
         baseDate.clear();
         currentDate.clear();
+        // Library uses MagicConstants instead of Enums
         //noinspection MagicConstant
         baseDate.set(year, month - 1, day);
         //noinspection MagicConstant
@@ -1851,7 +2003,17 @@ public class Controller {
             TextField valueField = new TextField(getAttributeValue(attrs, "value"));
             valueField.setId("characterRelationships$relationship$" + i);
             valueField.focusedProperty().addListener(new TextObjectListener(valueField, TextFieldType.DOUBLE, false));
-            Button btn = createButton(charId);
+            Button btn = createButton(charId, event -> {
+                String[] id = getId(event).split("\\$");
+                String characterId = id[1];
+                log.debug(characterId);
+                if (characterId.charAt(0) == '_') {
+                    characterId = characterId.replaceFirst("_", "-");
+                }
+                characterId = characterId.replace("_", ",");
+                setCharacter(characterId);
+            });
+            btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
             HBox hBox = new HBox(10);
             hBox.getChildren().addAll(new Label("Id: "), idField, new Label("Name: "), nameField,
                     new Label("Value: "), valueField, btn); // Id: <Id TextField> Name: <Name TextField> Value: <Value TextField> <GoTo Button>
@@ -1864,24 +2026,6 @@ public class Controller {
         TextField tf = new TextField(text);
         tf.setEditable(false);
         return tf;
-    }
-
-    @NotNull
-    private Button createButton(String charId) {
-        Button btn = new Button("Goto Character");
-        btn.setId("GoToCharBtn$" + charId.replace("-", "_").replace(",", "_"));
-        // possible to catch and delete relation entry for deleted npcs
-        btn.setOnAction(event -> {
-            String[] id = getId(event).split("\\$");
-            String characterId = id[1];
-            log.debug(characterId);
-            if (characterId.charAt(0) == '_') {
-                characterId = characterId.replaceFirst("_", "-");
-            }
-            characterId = characterId.replace("_", ",");
-            setCharacter(characterId);
-        });
-        return btn;
     }
 
     /**
@@ -2254,6 +2398,7 @@ public class Controller {
         return comboBox;
     }
 
+    @NotNull
     private Button createButton(String text, EventHandler<ActionEvent> onAction){
         Button btn = new Button(text);
         btn.setOnAction(onAction);
@@ -2264,7 +2409,9 @@ public class Controller {
         CheckBox checkBox = new CheckBox(text);
         checkBox.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         checkBox.setSelected(selected);
-        checkBox.setOnAction(onAction);
+        if(onAction != null) {
+            checkBox.setOnAction(onAction);
+        }
         return checkBox;
     }
 
@@ -2453,11 +2600,11 @@ public class Controller {
      * @param attr Attribute to get
      * @return String containing the attribute value
      */
-    private String getAttributeValue(@NotNull Node node, String attr) {
+    public static String getAttributeValue(@NotNull Node node, String attr) {
         return node.getAttributes().getNamedItem(attr).getTextContent();
     }
 
-    private String getAttributeValue(@NotNull NamedNodeMap node, String attr) {
+    public static String getAttributeValue(@NotNull NamedNodeMap node, String attr) {
         return node.getNamedItem(attr).getTextContent();
     }
 
@@ -2580,6 +2727,18 @@ public class Controller {
         throw new NoSuchElementException("Node not found by given path");
     }
 
+    private Node getNode(Node start, String... nodeNames){
+        Element current = (Element) start;
+        for(String nodeName : nodeNames){
+            //System.out.println(current.getNodeName());
+            current = getElementByTagName(current, nodeName);
+            if(current == null){
+                throw new NoSuchElementException("Node not found by given path. Failed section: " + nodeName);
+            }
+        }
+        return current;
+    }
+
     /**
      * Finds id tags by their corresponding value attribute
      *
@@ -2603,8 +2762,23 @@ public class Controller {
                     return idNode; // npcNode > characterNode > coreNode > idNode
                 }
             }
-            throw new NoSuchElementException("Node with given ID not found");
+            throw new NoSuchElementException("Node with given ID not found: " + id);
         }
+    }
+
+    private Node getOffspringNode(@NotNull String id){
+        NodeList nodes = saveFile.getElementsByTagName("OffspringSeed");
+        IterableNodeChildren offspringNodes = new IterableNodeChildren(nodes);
+        for(Node offspringNode : offspringNodes){
+            Node idNode = getNode(offspringNode, "data", "id");
+            NamedNodeMap attributes = idNode.getAttributes();
+            Node value = attributes.getNamedItem("value");
+            if (value != null && value.getTextContent().equals(id)) {
+                return idNode; // offspringSeedNode > dataNode > idNode
+            }
+        }
+
+        throw new NoSuchElementException("Node with given ID not found: " + id);
     }
 
     /**

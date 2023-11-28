@@ -21,7 +21,7 @@ public class LTSaveEd extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        String version = "v1.4.2";
+        String version = "v1.5.0";
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LTSaveEd.fxml"));
         Parent root = loader.load();

@@ -2,8 +2,10 @@ package LTSaveEd.Util;
 
 import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
@@ -76,11 +78,44 @@ public class Debug {
         log.debug(out);
     }
 
+    public static void printMap(ObservableMap<?, ?> map){
+        if(map == null){
+            log.debug("null");
+            return;
+        }
+        if(map.isEmpty()){
+            log.debug("Map is empty");
+            return;
+        }
+        if(map.size() == 1){
+            var entry = map.entrySet().iterator().next();
+            log.debug("{" + entry.getKey() + ": " + entry.getValue() + "}");
+            return;
+        }
+
+        StringBuilder out = new StringBuilder();
+        int i = 0;
+        for (var entry : map.entrySet()) {
+            if(i == 0){
+                out.append("{").append(entry.getKey()).append(": ").append(entry.getValue()).append(",\n");
+            }
+            else if(i == map.size() - 1){
+                out.append(entry.getKey()).append(": ").append(entry.getValue()).append("}");
+            }
+            else {
+                out.append(entry.getKey()).append(": ").append(entry.getValue()).append(",\n");
+            }
+            i++;
+        }
+
+        log.debug(out);
+    }
+
     public static String listToString(ObservableList<?> list, int length){
         if(list == null){
             return "null";
         }
-        if(list.size() == 0){
+        if(list.isEmpty()){
             return "[]";
         }
         if(list.size() == 1){
@@ -100,17 +135,7 @@ public class Debug {
     }
 
     public static void versionCompare() throws IOException{
-        StringBuilder result = new StringBuilder();
-        URL url = new URL("https://api.github.com/repos/Exiua/LTSaveEd/releases/latest");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-            for (String line; (line = reader.readLine()) != null; ) {
-                result.append(line);
-            }
-        }
-        String jsonStr = result.toString();
+        String jsonStr = getJsonString();
         String[] jsonArr = jsonStr.replace("{", "").replace("}", "").split(",");
         String test = "";
         for(String s : jsonArr) {
@@ -122,6 +147,21 @@ public class Debug {
         }
         log.debug("v0.1.0".compareTo(test));
         log.debug(compareVersions("v1.10.0", "v1.9.0"));
+    }
+
+    @NotNull
+    private static String getJsonString() throws IOException {
+        StringBuilder result = new StringBuilder();
+        URL url = new URL("https://api.github.com/repos/Exiua/LTSaveEd/releases/latest");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            for (String line; (line = reader.readLine()) != null; ) {
+                result.append(line);
+            }
+        }
+        return result.toString();
     }
 
     public static int compareVersions(String version1, String version2){
@@ -140,9 +180,5 @@ public class Debug {
             }
         }
         return 0; //Version strings must be equal at this point
-    }
-
-    public static void main(String[] args) throws IOException {
-        versionCompare();
     }
 }
