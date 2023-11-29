@@ -55,7 +55,9 @@ import java.util.*;
  * @version 1.3.1
  */
 public class Controller {
-    static Logger log = LogManager.getLogger(InventoryClothing.class.getName());
+    static Logger log = LogManager.getLogger(Controller.class.getName());
+
+    public static String configPath = "";
 
     //region Instance Variables
 
@@ -2445,7 +2447,11 @@ public class Controller {
                 return attribute;
             }
         }
-        throw new NoSuchElementException("Attribute with value {" + value + "} not found in list " + Debug.listToString(list, 5));
+        //throw new NoSuchElementException("Attribute with value {" + value + "} not found in list " + Debug.listToString(list, list.size()));
+        log.warn("Attribute with value {" + value + "} not found in list " + Debug.listToString(list, list.size()));
+        Attribute attribute = new Attribute(value, value);
+        list.add(attribute);
+        return attribute;
     }
 
     /**
@@ -2822,30 +2828,30 @@ public class Controller {
     @FXML
     private void deleteOffsprings() {
         log.debug("Starting Offspring Removal");
-        NodeList npcList = saveFile.getElementsByTagName("NPC");
-        @SuppressWarnings("unchecked")
-        ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
-        ObservableList<NpcCharacter> npcObservableList = cb.getItems();
-        for (int i = 0; i < npcList.getLength(); i++) {
-            Element character = getElementByTagName((Element) npcList.item(i), "character");
-            Element core = getElementByTagName(character, "core");
-            Element pathname = getElementByTagName(core, "pathName");
-            Element locationInfo = getElementByTagName(character, "locationInformation");
-            Element worldLoc = getElementByTagName(locationInfo, "worldLocation");
-            if (pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")) { // Npc is an Offspring
-                if (worldLoc.getAttribute("value").equals("EMPTY")) { // Npc is not on the map
-                    String npcId = getElementByTagName(core, "id").getAttribute("value");
-                    log.debug("Deleted " + npcId);
-                    NpcCharacter npc = matchNpc(npcObservableList, npcId);
-                    if (npc == cb.getValue()) { // If character selector on an offspring that will be deleted, switch to the previous character
-                        int index = npcObservableList.indexOf(npc);
-                        cb.setValue(npcObservableList.get(index - 1));
-                    }
-                    npcObservableList.remove(npc);
-                    removeNode(npcList.item(i));
-                }
-            }
-        }
+//        NodeList npcList = saveFile.getElementsByTagName("NPC");
+//        @SuppressWarnings("unchecked")
+//        ComboBox<NpcCharacter> cb = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
+//        ObservableList<NpcCharacter> npcObservableList = cb.getItems();
+//        for (int i = 0; i < npcList.getLength(); i++) {
+//            Element character = getElementByTagName((Element) npcList.item(i), "character");
+//            Element core = getElementByTagName(character, "core");
+//            Element pathname = getElementByTagName(core, "pathName");
+//            Element locationInfo = getElementByTagName(character, "locationInformation");
+//            Element worldLoc = getElementByTagName(locationInfo, "worldLocation");
+//            if (pathname.getAttribute("value").equals("com.lilithsthrone.game.character.npc.misc.NPCOffspring")) { // Npc is an Offspring
+//                if (worldLoc.getAttribute("value").equals("EMPTY")) { // Npc is not on the map
+//                    String npcId = getElementByTagName(core, "id").getAttribute("value");
+//                    log.debug("Deleted " + npcId);
+//                    NpcCharacter npc = matchNpc(npcObservableList, npcId);
+//                    if (npc == cb.getValue()) { // If character selector on an offspring that will be deleted, switch to the previous character
+//                        int index = npcObservableList.indexOf(npc);
+//                        cb.setValue(npcObservableList.get(index - 1));
+//                    }
+//                    npcObservableList.remove(npc);
+//                    removeNode(npcList.item(i));
+//                }
+//            }
+//        }
         // This is the new way offsprings are handled
         NodeList offspringList = saveFile.getElementsByTagName("OffspringSeed");
         while (offspringList.getLength() > 0) {

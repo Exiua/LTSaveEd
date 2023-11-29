@@ -60,7 +60,7 @@ public class InitializeElements {
             new Attribute("Cow", "COW_MORPH"), new Attribute("Demonic", "DEMON_COMMON"),
             new Attribute("Floppy Dog", "DOG_MORPH"),
             new Attribute("Pointed Dog", "DOG_MORPH_POINTED"),
-            new Attribute("Folded Dog", "DOG_MORPH_FOLDED"),
+            new Attribute("Folded Dog", "DOG_MORPH_FOLDED"), new Attribute("Deer", "innoxia_deer_ear"),
             new Attribute("Dragon", "dsg_dragon_ear"),
             new Attribute("Dragon external", "dsg_dragon_earExternal"),
             new Attribute("Ferret", "dsg_ferret_ear"), new Attribute("Fox", "FOX_MORPH"),
@@ -120,7 +120,8 @@ public class InitializeElements {
             new Attribute("Bear", "dsg_bear_eye"),
             new Attribute("Capybara", "NoStepOnSnek_capybara_eye"),
             new Attribute("Cat", "CAT_MORPH"), new Attribute("Cow", "COW_MORPH"),
-            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Dog", "DOG_MORPH"),
+            new Attribute("Demonic", "DEMON_COMMON"), new Attribute("Deer", "innoxia_deer_eye"),
+            new Attribute("Dog", "DOG_MORPH"),
             new Attribute("Dragon", "dsg_dragon_eye"), new Attribute("Ferret", "dsg_ferret_eye"),
             new Attribute("Fox", "FOX_MORPH"), new Attribute("Goat", "innoxia_goat_eye"),
             new Attribute("Gryphon", "dsg_gryphon_eye"), new Attribute("Harpy", "HARPY"),
@@ -147,6 +148,7 @@ public class InitializeElements {
             new Attribute("Cat", "CAT_MORPH"),
             new Attribute("Cat (sidefluff)", "CAT_MORPH_SIDEFLUFF"),
             new Attribute("Cow", "COW_MORPH"), new Attribute("Demonic", "DEMON"),
+            new Attribute("Deer", "innoxia_deer_hair"),
             new Attribute("Dog", "DOG_MORPH"),
             new Attribute("Dragon head feathers", "dsg_dragon_hairFeathers"),
             new Attribute("Dragon mane", "dsg_dragon_hairMane"),
@@ -170,7 +172,8 @@ public class InitializeElements {
      * ObservableList of all horn types in the game
      */
     private final ObservableList<Attribute> hornTypes = FXCollections.observableArrayList(
-            new Attribute("None", "NONE"), new Attribute("Dragon", "dsg_dragon_horn"),
+            new Attribute("None", "NONE"), new Attribute("Antlers", "ANTLERS"),
+            new Attribute("Dragon", "dsg_dragon_horn"),
             new Attribute("Dragon antler", "dsg_dragon_hornAntlers"),
             new Attribute("Dragon curled", "dsg_dragon_hornCurled"),
             new Attribute("Dragon curved", "dsg_dragon_hornCurved"),

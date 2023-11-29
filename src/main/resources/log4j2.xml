@@ -7,7 +7,7 @@
         </Console>
 
         <!-- Rolling File Appender -->
-        <RollingFile name="RollingFile" fileName="output.log" filePattern="output-%d{MM-dd-yyyy}-%i.log">
+        <RollingFile name="RollingFile" fileName="${sys:log4j.logFilePath:-output.log}" filePattern="output-%d{MM-dd-yyyy}-%i.log">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
             <Policies>
                 <SizeBasedTriggeringPolicy size="10 MB" />
