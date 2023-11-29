@@ -1,6 +1,5 @@
 package LTSaveEd;
 
-import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
@@ -10,18 +9,52 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Class that initializes and starts the program
  * @author Exiua
  */
 public class LTSaveEd extends Application {
-    static Logger log = LogManager.getLogger(InventoryClothing.class.getName());
+    static {
+        String logFilePath = "output.log";
+        //System.out.println(System.getProperty("user.dir"));
+        File file = new File(logFilePath);
+        for(var i = 0; i < 10; i++){
+            if(file.exists()){
+                break;
+            }
+            try {
+                //noinspection ResultOfMethodCallIgnored
+                file.createNewFile();
+                break;
+            }
+            catch (IOException e) {
+                logFilePath = "../" + logFilePath;
+                //System.out.println("Can't write path: " + logFilePath);
+                file = new File(logFilePath);
+            }
+        }
+        try {
+            logFilePath = file.getCanonicalPath();
+            Controller.configPath = file.getParent();
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //System.out.println("Log Path: " + logFilePath);
+        System.setProperty("log4j.logFilePath", logFilePath);
+    }
+
+    static Logger log = LogManager.getLogger(LTSaveEd.class);
 
     private static HostServices hostServices;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        String version = "v1.5.0";
+        String version = "v1.5.1";
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LTSaveEd.fxml"));
         Parent root = loader.load();

@@ -1,11 +1,13 @@
 package LTSaveEd.DataObjects;
 
-import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import javafx.collections.ObservableMap;
 import javafx.scene.control.CheckBox;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  * @author Exiua
  */
 public class PerkNode {
-    static Logger log = LogManager.getLogger(InventoryClothing.class);
+    static Logger log = LogManager.getLogger(PerkNode.class);
 
     /**
      * Namespace of the fxml file

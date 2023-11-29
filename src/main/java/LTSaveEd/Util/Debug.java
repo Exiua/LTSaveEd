@@ -1,6 +1,5 @@
 package LTSaveEd.Util;
 
-import LTSaveEd.DataObjects.InventoryElements.InventoryClothing;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Debug {
-    static Logger log = LogManager.getLogger(InventoryClothing.class.getName());
+    static Logger log = LogManager.getLogger(Debug.class.getName());
 
     public static void printList(NodeList nodes){
         if(nodes == null){
