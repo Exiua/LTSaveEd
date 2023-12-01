@@ -1323,6 +1323,18 @@ public class InitializeElements {
         return weaponsMap;
     }
 
+    public ObservableList<Attribute> getLegConfigurationsMaster(){
+        return legConfigurationsMaster;
+    }
+
+    public ObservableList<Attribute> getFootStructuresMaster(){
+        return footStructuresMaster;
+    }
+
+    public ObservableList<Attribute> getGenitalArrangementsNCR(){
+        return genitalArrangementsNCR;
+    }
+
     @SafeVarargs
     public final void initializeHairStyles(ObservableList<Attribute>... hairStyles){
         for(int i = 0; i < hairStyles.length; i++) {

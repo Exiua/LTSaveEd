@@ -390,6 +390,11 @@ public class Controller {
      * ObservableList of hairstyles for floor-length hair length (all the hairstyles in the game)
      */
     private final ObservableList<Attribute> hairStylesFL = FXCollections.observableArrayList();
+
+    private final ObservableList<Attribute> legConfigurationsMaster = FXCollections.observableArrayList();
+    private final ObservableList<Attribute> footStructuresMaster = FXCollections.observableArrayList();
+    private final ObservableList<Attribute> genitalArrangementsNCR = FXCollections.observableArrayList();
+
     /**
      * ObservableList of all desire types in the game
      */
@@ -561,6 +566,9 @@ public class Controller {
         InitializeElements initializer = new InitializeElements();
         initializer.getLabelMap().forEach(labelMap::putIfAbsent);
         initializer.getPersonalityTraits().forEach(personalityTraits::putIfAbsent);
+        legConfigurationsMaster.addAll(initializer.getLegConfigurationsMaster());
+        footStructuresMaster.addAll(initializer.getFootStructuresMaster());
+        genitalArrangementsNCR.addAll(initializer.getGenitalArrangementsNCR());
         comboBoxValues.addAll(initializer.getComboBoxValues());
         jobHistories.addAll(initializer.getJobHistories());
         perks.addAll(initializer.getPerks());
@@ -713,7 +721,7 @@ public class Controller {
         ComboBox<NpcCharacter> fatherIds = (ComboBox<NpcCharacter>) namespace.get("family$fatherId$value");
         fatherIds.setItems(parentList);
         fatherIds.setValue(player);
-        setCharacterNode("PlayerCharacter");
+        //setCharacterNode("PlayerCharacter");
         @SuppressWarnings("unchecked")
         ComboBox<NpcCharacter> characterSelector = (ComboBox<NpcCharacter>) namespace.get("characterSelector");
         characterSelector.setItems(characterList);
@@ -2090,6 +2098,10 @@ public class Controller {
             String id = partialId + type;
             @SuppressWarnings("unchecked")
             ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(id);
+            if(cb == null){
+                log.warn("Encountered unrecognized spell: " + id);
+                return;
+            }
             ObservableList<Attribute> spellTiers = cb.getItems();
             cb.setValue(spellTiers.get(1));
         }
@@ -2449,7 +2461,17 @@ public class Controller {
         }
         //throw new NoSuchElementException("Attribute with value {" + value + "} not found in list " + Debug.listToString(list, list.size()));
         log.warn("Attribute with value {" + value + "} not found in list " + Debug.listToString(list, list.size()));
-        Attribute attribute = new Attribute(value, value);
+        Attribute attribute;
+        Attribute firstAttribute = list.get(0);
+        if(firstAttribute instanceof LegTypeAttribute){
+            attribute = new LegTypeAttribute(value, value, legConfigurationsMaster, footStructuresMaster, genitalArrangementsNCR);
+        }
+        else if(firstAttribute instanceof SpellTier){
+            attribute = new SpellTier(value, value);
+        }
+        else{
+            attribute = new Attribute(value, value);
+        }
         list.add(attribute);
         return attribute;
     }
