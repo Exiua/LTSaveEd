@@ -1,0 +1,68 @@
+﻿@page "/core"
+@using LTSaveEd.Models
+@inject NavigationManager NavigationManager
+@inject SaveData SaveData
+<h3>Core</h3>
+
+@*<MudPaper Class="d-flex align-center mr-10 pa-4" Elevation="0">
+    <MudElement>Id:</MudElement>
+    <MudTextField @bind-Value="@CoreData.Id" ReadOnly="true" Variant="Variant.Outlined" Style="width: 150px"/>
+</MudPaper>*@
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTextField @bind-Value="@CoreData.Id.Value" ReadOnly="true" Label="Id"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTextField @bind-Value="@CoreData.Name.Androgynous.Value" Label="Androgynous Name"/>
+                <MudTextField @bind-Value="@CoreData.Name.Feminine.Value" Label="Feminine Name"/>
+                <MudTextField @bind-Value="@CoreData.Name.Masculine.Value" Label="Masculine Name"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTextField @bind-Value="@CoreData.Name.Surname.Value" Label="Surname"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTextField @bind-Value="@CoreData.Description.Value" Label="Description" Lines="3" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.Level.Value" Label="Level" />
+                <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.Experience.Value" Label="Experience" />
+            </MudPaper>
+            @*TODO: Money*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudDatePicker Label="Date of Birth" Editable="true" @bind-Date="@CoreData.DateOfBirth.Value" Placeholder="Select Date" />
+            </MudPaper>
+            @*TODO: Job History*@
+            @*TODO: Orientation*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.Obedience.Value" Label="Obedience" />
+            </MudPaper>
+            @*TODO: Gender Identity*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.PerkPoints.Value" Label="Perk Points" />
+            </MudPaper>
+            @*TODO: Essence Count*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.Health.Value" Label="Health" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.Mana.Value" Label="Mana" />
+            </MudPaper>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private LTSaveEd.Models.Core CoreData => SaveData.CurrentCharacter.Core;
+
+    protected override void OnInitialized()
+    {
+        if (!SaveData.Initialized)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+}

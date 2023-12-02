@@ -1,6 +1,6 @@
-﻿namespace LTSaveEd;
+﻿namespace LTSaveEd.ExtensionMethods;
 
-public static class ExtensionMethods
+public static class GeneralExtensionMethods
 {
     public static string ToFormattedString<T>(this IEnumerable<T> list)
     {

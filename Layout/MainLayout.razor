@@ -1,9 +1,12 @@
-﻿@using MudBlazor
-@using LTSaveEd.Models
+﻿@using LTSaveEd.Models
+@using System.Text
 @inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
 @inject SaveData SaveData
 
 <MudThemeProvider />
+<MudSnackbarProvider />
 
 <MudLayout>
     <MudAppBar Elevation="1">
@@ -34,14 +37,7 @@
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <MudPaper Width="250px" Elevation="0" Class="py-3">
             <MudNavMenu Bordered="true">
-                <MudNavLink Href="/">Dashboard</MudNavLink>
-                <MudNavLink Match="NavLinkMatch.Prefix" Href="/components/navmenu">Servers</MudNavLink>
-                <MudNavLink Href="/billing" Disabled="true">Billing</MudNavLink>
-                <MudNavGroup Title="Settings" Expanded="true">
-                    <MudNavLink Href="/users">Users</MudNavLink>
-                    <MudNavLink Href="/security">Security</MudNavLink>
-                </MudNavGroup>
-                <MudNavLink Href="/about">About</MudNavLink>
+                <MudNavLink Href="/core">Core</MudNavLink>
             </MudNavMenu>
         </MudPaper>
     </MudDrawer>
@@ -74,12 +70,30 @@
         await using var stream = file.OpenReadStream(file.Size + 1);
         await SaveData.Initialize(stream);
         StateHasChanged();
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
+        Snackbar.Add("Save Data Loaded!", Severity.Success);
     }
     
     private async Task SaveFile()
     {
         _processing = true;
-        await Task.Delay(2000);
-        _processing = false;
+
+        try
+        {
+            var xmlString = SaveData.SaveDataXml.ToString();
+
+            var byteArray = Encoding.UTF8.GetBytes(xmlString);
+
+            await JSRuntime.InvokeVoidAsync("saveAsFile", Filename, byteArray);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving file: {ex.Message}");
+        }
+        finally
+        {
+            _processing = false;
+        }
     }
 }

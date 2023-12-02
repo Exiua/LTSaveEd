@@ -1,14 +1,18 @@
 ﻿using System.Xml.Linq;
+using LTSaveEd.ExtensionMethods;
 
 namespace LTSaveEd.Models;
 
 public class SaveData
 {
     public bool Initialized { get; private set; }
+    public Character CurrentCharacter { get; private set; }= null!;
 
-    private XDocument SaveDataXml { get; set; } = null!;
+    internal XDocument SaveDataXml { get; private set; } = null!;
 
-    public List<string> CharacterIds { get; } = new(){ "PlayerCharacter" };
+    private List<string> CharacterIds { get; } = new(){ "PlayerCharacter" };
+    private Dictionary<string, Character> CharacterCache { get; } = new();
+    
     
     public async Task Initialize(Stream data)
     {
@@ -27,5 +31,19 @@ public class SaveData
             CharacterIds.Add(id.Value);
         }
         Console.WriteLine(CharacterIds.ToFormattedString());
+        LoadCharacter(CharacterIds[0]);
+    }
+
+    private void LoadCharacter(string characterId)
+    {
+        if (CharacterCache.TryGetValue(characterId, out var character))
+        {
+            CurrentCharacter = character;
+            return;
+        }
+        
+        var characterNode = SaveDataXml.FindCharacterById(characterId);
+        CurrentCharacter = new Character(characterNode);
+        CharacterCache.Add(characterId, CurrentCharacter);
     }
 }
