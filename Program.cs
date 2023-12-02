@@ -1,22 +1,14 @@
-﻿using Avalonia;
-using Avalonia.ReactiveUI;
-using System;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using LTSaveEd;
 
-namespace LTSaveEd;
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
 
-class Program
+builder.Services.AddScoped(sp => new HttpClient
 {
-    // Initialization code. Don't use any Avalonia, third-party APIs or any
-    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
-    [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+});
 
-    // Avalonia configuration, don't remove; also used by visual designer.
-    public static AppBuilder BuildAvaloniaApp()
-        => AppBuilder.Configure<App>()
-            .UsePlatformDetect()
-            .LogToTrace()
-            .UseReactiveUI();
-}
+await builder.Build().RunAsync();
