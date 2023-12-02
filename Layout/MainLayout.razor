@@ -1,16 +1,85 @@
-﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
+﻿@using MudBlazor
+@using LTSaveEd.Models
+@inherits LayoutComponentBase
+@inject SaveData SaveData
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+<MudThemeProvider />
 
-        <article class="content px-4">
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
+        <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"  />
+        <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
+            <ButtonTemplate>
+                <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary" for="@context.Id">
+                    LOAD
+                </MudButton>
+            </ButtonTemplate>
+        </MudFileUpload>
+        <MudButton Disabled="@_processing" OnClick="@SaveFile" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+            @if (_processing)
+            {
+                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                <MudText Class="ms-2">Processing</MudText>
+            }
+            else
+            {
+                <div>Save</div>
+            }
+        </MudButton>
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <MudPaper Width="250px" Elevation="0" Class="py-3">
+            <MudNavMenu Bordered="true">
+                <MudNavLink Href="/">Dashboard</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.Prefix" Href="/components/navmenu">Servers</MudNavLink>
+                <MudNavLink Href="/billing" Disabled="true">Billing</MudNavLink>
+                <MudNavGroup Title="Settings" Expanded="true">
+                    <MudNavLink Href="/users">Users</MudNavLink>
+                    <MudNavLink Href="/security">Security</MudNavLink>
+                </MudNavGroup>
+                <MudNavLink Href="/about">About</MudNavLink>
+            </MudNavMenu>
+        </MudPaper>
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer Style="margin-left: 10px;">
             @Body
-        </article>
-    </main>
-</div>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _drawerOpen;
+    private bool _processing;
+    private string Filename { get; set; } = "";
+
+    private void DrawerToggle()
+    {
+        if (!SaveData.Initialized)
+        {
+            return;
+        }
+        
+        _drawerOpen = !_drawerOpen;
+        StateHasChanged();
+    }
+    
+    private async Task LoadSave(IBrowserFile file)
+    {
+        Filename = file.Name;
+        await using var stream = file.OpenReadStream(file.Size + 1);
+        await SaveData.Initialize(stream);
+        StateHasChanged();
+    }
+    
+    private async Task SaveFile()
+    {
+        _processing = true;
+        await Task.Delay(2000);
+        _processing = false;
+    }
+}
