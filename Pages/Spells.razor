@@ -1,0 +1,15 @@
+﻿@page "/spells"
+@using LTSaveEd.Models
+@inject NavigationManager NavigationManager
+@inject SaveData SaveData
+<h3>Spells</h3>
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (!SaveData.Initialized)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+}

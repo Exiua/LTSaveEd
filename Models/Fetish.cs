@@ -36,13 +36,16 @@ public class Fetish
         }
     }
 
-    public Fetish(XElement fetishNode)
+    public Fetish(XElement fetishNode, bool suppressDesire = false)
     {
         var desireNode = fetishNode.Attribute("desire");
         if (desireNode == null)
         {
             desireNode = new XAttribute("desire", 2);
-            fetishNode.Add(desireNode);
+            if(!suppressDesire)
+            {
+                fetishNode.Add(desireNode);
+            }
         }
         Desire = new XmlAttribute<int>(desireNode);
         

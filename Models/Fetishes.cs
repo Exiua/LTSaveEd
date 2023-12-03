@@ -49,6 +49,10 @@ public class Fetishes
     public Fetish Masturbation { get; } = null!;
     public Fetish Incest { get; } = null!;
     public Fetish SizeQueen { get; } = null!;
+    public Fetish Switch { get; } = null!;
+    public Fetish Breeder { get; } = null!;
+    public Fetish Sadomasochist { get; } = null!;
+    public Fetish LustyMaiden { get; } = null!;
 
     public Fetishes(XElement fetishesNode)
     {
@@ -242,6 +246,25 @@ public class Fetishes
                     fetishTypes |= FetishType.SizeQueen;
                     SizeQueen = new Fetish(fetish);
                     break;
+                case "FETISH_SWITCH":
+                    fetishTypes |= FetishType.Switch;
+                    Switch = new Fetish(fetish, true);
+                    break;
+                case "FETISH_BREEDER":
+                    fetishTypes |= FetishType.Breeder;
+                    Breeder = new Fetish(fetish, true);
+                    break;
+                case "FETISH_SADOMASOCHIST":
+                    fetishTypes |= FetishType.Sadomasochist;
+                    Sadomasochist = new Fetish(fetish, true);
+                    break;
+                case "FETISH_LUSTY_MAIDEN":
+                    fetishTypes |= FetishType.LustyMaiden;
+                    LustyMaiden = new Fetish(fetish, true);
+                    break;
+                default:
+                    Console.WriteLine($"Unknown Fetish: {fetish.Value}");
+                    break;
             }
         }
         
@@ -429,18 +452,34 @@ public class Fetishes
         {
             SizeQueen = CreateFetish("FETISH_SIZE_QUEEN", fetishesNode);
         }
+        if ((fetishTypes & FetishType.Switch) == 0)
+        {
+            SizeQueen = CreateFetish("FETISH_SWITCH", fetishesNode);
+        }
+        if ((fetishTypes & FetishType.Breeder) == 0)
+        {
+            SizeQueen = CreateFetish("FETISH_BREEDER", fetishesNode);
+        }
+        if ((fetishTypes & FetishType.Sadomasochist) == 0)
+        {
+            SizeQueen = CreateFetish("FETISH_SADOMASOCHIST", fetishesNode);
+        }
+        if ((fetishTypes & FetishType.LustyMaiden) == 0)
+        {
+            SizeQueen = CreateFetish("FETISH_LUSTY_MAIDEN", fetishesNode);
+        }
         
         #endregion
     }
 
-    private static Fetish CreateFetish(string fetishName, XElement fetishesNode)
+    private static Fetish CreateFetish(string fetishName, XElement fetishesNode, bool suppressDesire = false)
     {
         var fetishNode = new XElement("f", new XAttribute("desire", 2), new XAttribute("o", false), new XAttribute("xp", 0))
         {
             Value = fetishName
         };
         fetishesNode.Add(fetishNode);
-        var fetish = new Fetish(fetishesNode);
+        var fetish = new Fetish(fetishesNode, suppressDesire);
         return fetish;
     }
 }
@@ -493,5 +532,9 @@ internal enum FetishType : ulong
     CrossDressing = 1L << 41,
     Masturbation = 1L << 42,
     Incest = 1L << 43,
-    SizeQueen = 1L << 44
+    SizeQueen = 1L << 44,
+    Switch = 1L << 45,
+    Breeder = 1L << 46,
+    Sadomasochist = 1L << 47,
+    LustyMaiden = 1L << 48
 }
