@@ -30,7 +30,9 @@
                 <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.Level.Value" Label="Level" />
                 <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.Experience.Value" Label="Experience" />
             </MudPaper>
-            @*TODO: Money*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@Inventory.Money.Value" Label="Money" />
+            </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <MudDatePicker Label="Date of Birth" Editable="true" @bind-Date="@CoreData.DateOfBirth.Value" Placeholder="Select Date" />
             </MudPaper>
@@ -43,7 +45,9 @@
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.PerkPoints.Value" Label="Perk Points" />
             </MudPaper>
-            @*TODO: Essence Count*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@Inventory.EssenceCount.Value" Label="Essence Count" />
+            </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <MudNumericField HideSpinButtons="true" @bind-Value="@CoreData.Health.Value" Label="Health" />
             </MudPaper>
@@ -56,6 +60,7 @@
 
 @code {
     private LTSaveEd.Models.Core CoreData => SaveData.CurrentCharacter.Core;
+    private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
 
     protected override void OnInitialized()
     {

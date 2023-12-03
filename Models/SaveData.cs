@@ -10,7 +10,7 @@ public class SaveData
 
     internal XDocument SaveDataXml { get; private set; } = null!;
 
-    private List<string> CharacterIds { get; } = new(){ "PlayerCharacter" };
+    private List<ValueDisplayPair> CharacterIds { get; } = new(){ new ValueDisplayPair("Player", "PlayerCharacter") };
     private Dictionary<string, Character> CharacterCache { get; } = new();
     
     
@@ -28,14 +28,25 @@ public class SaveData
         foreach (var idNode in characterIdNodes)
         {
             var id = idNode.Attribute("value")!;
-            CharacterIds.Add(id.Value);
+            var character = id.Parent!.Parent!; // id > core > character
+            var nameElement = character.Descendants("name").First();
+            var femininityString = character.Descendants("bodyCore").First().Attribute("femininity")!.Value;
+            var femininity = int.Parse(femininityString);
+            var name = femininity switch
+            {
+                < 40 => nameElement.Attribute("nameMasculine")!.Value,
+                >= 40 and <= 60 => nameElement.Attribute("nameAndrogynous")!.Value,
+                > 60 => nameElement.Attribute("nameFeminine")!.Value
+            };
+            CharacterIds.Add(new ValueDisplayPair(name, id.Value));
         }
-        Console.WriteLine(CharacterIds.ToFormattedString());
+        Console.WriteLine(CharacterIds.Select(id => id.Value).ToFormattedString());
         LoadCharacter(CharacterIds[0]);
     }
 
-    private void LoadCharacter(string characterId)
+    private void LoadCharacter(ValueDisplayPair characterIdPair)
     {
+        var characterId = characterIdPair.Value;
         if (CharacterCache.TryGetValue(characterId, out var character))
         {
             CurrentCharacter = character;
