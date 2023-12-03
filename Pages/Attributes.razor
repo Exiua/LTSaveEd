@@ -9,17 +9,86 @@
         <MudCardContent>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.HealthCore.Value" Label="Health Core"/>
-                <MudSpacer />
+                <MudSpacer/>
                 <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.EnergyShielding.Value" Label="Energy Shielding"/>
             </MudPaper>
-            
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.ManaCore.Value" Label="Mana Core"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.PhysicalResistance.Value" Label="Physical Resistance"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.Experience.Value" Label="Experience"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.LustResistance.Value" Label="Lust Resistance"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.ActionPoints.Value" Label="Action Points"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.FireResistance.Value" Label="Fire Resistance"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.Arousal.Value" Label="Arousal"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.IceResistance.Value" Label="Ice Resistance"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.LustCore.Value" Label="Lust Core"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.PoisonResistance.Value" Label="Poison Resistance"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.RestingLust.Value" Label="Resting Lust"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.UnarmedDamage.Value" Label="Unarmed Damage"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.PhysiqueCore.Value" Label="Physique Core"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.MeleeDamage.Value" Label="Melee Damage"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.ArcaneCore.Value" Label="Arcane Core"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.RangedDamage.Value" Label="Ranged Damage"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.CorruptionCore.Value" Label="Corruption Core"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.SpellDamage.Value" Label="Spell Damage"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.EnchantmentLimit.Value" Label="Enchantment Limit"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.PhysicalDamage.Value" Label="Physical Damage"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.Fertility.Value" Label="Fertility"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.LustDamage.Value" Label="Lust Damage"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.Virility.Value" Label="Virility"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.FireDamage.Value" Label="Fire Damage"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.SpellCostModifier.Value" Label="Spell Cost Modifier"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.IceDamage.Value" Label="Ice Damage"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.CriticalDamage.Value" Label="Critical Damage"/>
+                <MudSpacer/>
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.PoisonDamage.Value" Label="Poison Damage"/>
+            </MudPaper>
         </MudCardContent>
     </MudForm>
 </MudCard>
 
 @code {
     private LTSaveEd.Models.Attributes AttributesData => SaveData.CurrentCharacter.Attributes;
-    
+
     protected override void OnInitialized()
     {
         if (!SaveData.Initialized)
