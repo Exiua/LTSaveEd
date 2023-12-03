@@ -11,9 +11,9 @@ public class XmlAttribute<T>
         _attribute = attribute ?? throw new ArgumentNullException(nameof(attribute));
 
         // Validate the type at construction
-        if (typeof(T) != typeof(int) && typeof(T) != typeof(float) && typeof(T) != typeof(string))
+        if (typeof(T) != typeof(int) && typeof(T) != typeof(float) && typeof(T) != typeof(bool) && typeof(T) != typeof(string))
         {
-            throw new ArgumentException("Invalid type. Only int, float, and string are supported.");
+            throw new ArgumentException("Invalid type. Only int, float, bool, and string are supported.");
         }
     }
 
@@ -28,6 +28,10 @@ public class XmlAttribute<T>
             if (typeof(T) == typeof(float))
             {
                 return (T)(object)float.Parse(_attribute.Value);
+            }
+            if (typeof(T) == typeof(bool))
+            {
+                return (T)(object)bool.Parse(_attribute.Value);
             }
             return (T)(object)_attribute.Value;
         }

@@ -1,0 +1,36 @@
+﻿@using LTSaveEd.Models
+<MudPaper Class="p-4">
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12">
+            <MudText Typo="Typo.h6" Align="Align.Center">@Label</MudText>
+        </MudItem>
+    </MudGrid>
+    <MudGrid Justify="Justify.Center" Spacing="4">
+        <MudItem xs="2" Class="d-flex align-center justify-center mt-3">
+            <MudText>Desire:</MudText>
+        </MudItem>
+        <MudItem xs="2">
+            <MudSelect @bind-Value="Fetish.DesireValue" T="string" Style="width: 150px;">
+                <MudSelectItem Value="@("Love")">Love</MudSelectItem>
+                <MudSelectItem Value="@("Like")">Like</MudSelectItem>
+                <MudSelectItem Value="@("Indifferent")">Indifferent</MudSelectItem>
+                <MudSelectItem Value="@("Dislike")">Dislike</MudSelectItem>
+                <MudSelectItem Value="@("Hate")">Hate</MudSelectItem>
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="2" Class="d-flex align-center justify-center mt-3">
+            <MudText>Exp:</MudText>
+        </MudItem>
+        <MudItem xs="2">
+            <MudNumericField HideSpinButtons="true" @bind-Value="@Fetish.Xp.Value" Label="Experience"/>
+        </MudItem>
+        <MudItem xs="2" Class="d-flex align-center justify-center mt-3">
+            <MudCheckBox @bind-Checked="Fetish.Owned.Value" Label="Owned:" />
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+@code {
+    [Parameter] public required Fetish Fetish { get; set; }
+    [Parameter] public required string Label { get; set; }
+}

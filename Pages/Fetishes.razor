@@ -1,0 +1,28 @@
+﻿@page "/fetishes"
+@using LTSaveEd.Models
+@inject NavigationManager NavigationManager
+@inject SaveData SaveData
+<h3>Fetishes</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <FetishField Label="Dominant" Fetish="FetishesData.Dominant"/>
+            <MudSpacer />
+            <FetishField Label="Submissive" Fetish="FetishesData.Submissive"/>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private LTSaveEd.Models.Fetishes FetishesData => SaveData.CurrentCharacter.Fetishes;
+
+    protected override void OnInitialized()
+    {
+        if (!SaveData.Initialized)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+}
