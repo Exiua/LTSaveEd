@@ -28,9 +28,22 @@ public class SaveData
         foreach (var idNode in characterIdNodes)
         {
             var id = idNode.Attribute("value")!;
-            var character = id.Parent!.Parent!; // id > core > character
+            var character = idNode.Parent!.Parent!; // id > core > character
             var nameElement = character.Descendants("name").First();
-            var femininityString = character.Descendants("bodyCore").First().Attribute("femininity")!.Value;
+            /*foreach (var element in character.Elements())
+            {
+                Console.WriteLine(element.Name);
+                if (element.Name != "body")
+                {
+                    continue;
+                }
+                
+                foreach (var e in element.Elements())
+                {
+                    Console.WriteLine(e.Name);
+                }
+            }*/
+            var femininityString = character.GetAttributeByChildSequence("body", "bodyCore", "femininity").Value;
             var femininity = int.Parse(femininityString);
             var name = femininity switch
             {

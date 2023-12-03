@@ -38,4 +38,27 @@ public static class XDocumentExtensionMethods
 
         return node;
     }
+
+    public static T GetAttributeValue<T>(this XElement element, string attributeName = "value")
+    {
+        var value = element.Attribute(attributeName)?.Value ?? throw new InvalidOperationException($"Attribute not found: {attributeName}");
+
+        if (typeof(T) == typeof(string))
+        {
+            return (T)(object)value; // Cast string to object, then to T
+        }
+        
+        return (T)Convert.ChangeType(value, typeof(T));
+    }
+
+    public static XElement GetElementByChildSequence(this XElement element, params string[] childNames)
+    {
+        return childNames.Aggregate(element, (current, childName) => current.Element(childName) ?? throw new Exception($"Child element not found: {childName}"));
+    }
+
+    public static XAttribute GetAttributeByChildSequence(this XElement element, params string[] childNames)
+    {
+        var current = element.GetElementByChildSequence(childNames[..^1]);
+        return current.Attribute(childNames[^1]) ?? throw new Exception($"Attribute not found: {childNames[^1]}");
+    }
 }

@@ -1,0 +1,31 @@
+﻿@page "/attributes"
+@using LTSaveEd.Models
+@inject NavigationManager NavigationManager
+@inject SaveData SaveData
+<h3>Attributes</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.HealthCore.Value" Label="Health Core"/>
+                <MudSpacer />
+                <MudNumericField HideSpinButtons="true" @bind-Value="@AttributesData.EnergyShielding.Value" Label="Energy Shielding"/>
+            </MudPaper>
+            
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private LTSaveEd.Models.Attributes AttributesData => SaveData.CurrentCharacter.Attributes;
+    
+    protected override void OnInitialized()
+    {
+        if (!SaveData.Initialized)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+}
