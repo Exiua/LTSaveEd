@@ -86,8 +86,8 @@ public class Perks
 
     public PerkNode PhysicallyFitPlus { get;}
     public PerkNode Hypermobility { get; }
-    public PerkNode SeductivePlusx3 { get; }
     public PerkNode Minx { get; }
+    public PerkNode SeductivePlusx3 { get; }
     public PerkNode Ladykiller { get; }
     public PerkNode ArcaneAffinity { get; }
 
@@ -298,9 +298,9 @@ public class Perks
         ElementalDefender = new PerkNode(ArcaneAffinityPlus, "11", "ELEMENTAL_DEFENCE_BOOST", "Elemental Defender", perksNode); // 11_5
         ElementalStrikerPlus = new PerkNode(ArcaneAffinityPlus, "11", "ELEMENTAL_BOOST", "Elemental Striker", perksNode);
         
-        ElementalStrikerPhysical = new PerkNode(PhysicallyFit, "12", "ELEMENTAL_BOOST", "Elemental Striker", perksNode);        //Physical
-        ElementalStrikerSeductive = new PerkNode(Seductive, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker", perksNode);       //Seductive
-        ElementalStrikerArcane = new PerkNode(ArcaneAffinity, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker", perksNode);   // Arcane
+        ElementalStrikerPhysical = new PerkNode(PhysicallyFitPlusPlus, "12", "ELEMENTAL_BOOST", "Elemental Striker", perksNode);  //Physical
+        ElementalStrikerSeductive = new PerkNode(SeductivePlusx4, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker", perksNode);   //Seductive
+        ElementalStrikerArcane = new PerkNode(ArcaneAffinityPlus, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker", perksNode); // Arcane
         
         #endregion
 

@@ -11,4 +11,6 @@ public class Character(XElement characterNode)
     public Fetishes Fetishes { get; } = new(characterNode.Element("fetishes")!);
     public Perks Perks { get; } = new(characterNode.Element("perks")!);
     public Family Family { get; } = new(characterNode.Element("family")!);
+
+    public bool IsPlayer => Core.Id.Value == "PlayerCharacter";
 }

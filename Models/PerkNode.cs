@@ -4,6 +4,8 @@ namespace LTSaveEd.Models;
 
 public class PerkNode : NullableXmlAttribute
 {
+    public static event Action? OnActivenessChanged;
+    
     private readonly XElement _parentNode;
     public string DisplayName { get; }
     public string Row { get; }
@@ -21,12 +23,13 @@ public class PerkNode : NullableXmlAttribute
             Exists = value;
             if (value)
             {
-                Activate();
+                ActivateParents();
             }
             else
             {
-                Deactivate();
+                DeactivateChildren();
             }
+            OnActivenessChanged?.Invoke();
         }
     }
     
@@ -82,7 +85,7 @@ public class PerkNode : NullableXmlAttribute
         return perkNode;
     }
 
-    private void Activate()
+    private void ActivateParents()
     {
         if(Parents.Count == 0){
             return;
@@ -91,11 +94,10 @@ public class PerkNode : NullableXmlAttribute
         foreach (var parent in Parents)
         {
             parent.Active = true;
-            Console.WriteLine(parent);
         }
     }
 
-    private void Deactivate()
+    private void DeactivateChildren()
     {
         if(Children.Count == 0){
             return;
@@ -103,7 +105,7 @@ public class PerkNode : NullableXmlAttribute
 
         foreach (var child in Children.Where(child => !child.CanBeActive))
         {
-            child.Active = true;
+            child.Active = false;
         }
     }
 

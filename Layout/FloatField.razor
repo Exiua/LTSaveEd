@@ -1,0 +1,9 @@
+﻿@using LTSaveEd.Models
+<MudNumericField HideSpinButtons="true" @bind-Value="@Attribute.Value" Label="@Label" Max="@Max" Min="@Min" />
+
+@code {
+    [Parameter] public required XmlAttribute<float> Attribute { get; set; }
+    [Parameter] public required string Label { get; set; }
+    [Parameter] public float Max { get; set; } = float.MaxValue;
+    [Parameter] public float Min { get; set; } = float.MinValue;
+}

@@ -4,193 +4,241 @@
 @inject SaveData SaveData
 <h3>Perks</h3>
 
-<MudGrid>
-    <MudItem xs="4"> @*Physical Branch*@
-        <MudGrid>
-            @*Row 1*@
-            <MudItem xs="12">
-                <PerkCheckbox Perk="@PerksData.NaturalFitness"/>
-            </MudItem>
-            
-            @*Row 2*@
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.PhysicallyFit"/>
-            </MudItem>
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.Observant"/>
-            </MudItem>
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.StableEnchantmentsPhysical"/>
-            </MudItem>
-            
-            @*Row 3*@
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.Defender"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.EnergyReserves"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.Striker"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.StableEnchantmentsPhysicalPlus"/>
-            </MudItem>
-            
-            @*Row 4*@
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.DefenderPlus"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.EnergyReservesPlus"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.StrikerPlus"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.ArcaneSmith"/>
-            </MudItem>
-            
-            @*Row 5*@
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.CardioKing"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.MartialArtist"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.CriticalPowerPhysical"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.HandToHand"/>
-            </MudItem>
-            
-            @*Row 6*@
-            <MudItem xs="6">
-                <PerkCheckbox Perk="@PerksData.PhysicallyFitPlus"/>
-            </MudItem>
-            <MudItem xs="6">
-                <PerkCheckbox Perk="@PerksData.Hypermobility"/>
-            </MudItem>
-            
-            @*Row 7*@
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.StrikerPlusPlus"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.HandToHandPlus"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.AuraShielding"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.EnergyReservesPlusPlus"/>
-            </MudItem>
-            
-            @*Row 8*@
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.StrikerPlusx3"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.MeleeWeaponsExpert"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.DefenderPlusPlus"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.EnergyReservesPlusx3"/>
-            </MudItem>
-            
-            @*Row 9*@
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.StrikerPlusx4"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.SharpShooter"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.DefenderPlusx3"/>
-            </MudItem>
-            <MudItem xs="3">
-                <PerkCheckbox Perk="@PerksData.EnergyReservesPlusx4"/>
-            </MudItem>
-            
-            @*Row 10*@
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.FerociousWarrior"/>
-            </MudItem>
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.Berserk"/>
-            </MudItem>
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.CombatRegeneration"/>
-            </MudItem>
-            
-            @*Row 11*@
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.MeleeWeaponsExpertPlus"/>
-            </MudItem>
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.PhysicallyFitPlusPlus"/>
-            </MudItem>
-            <MudItem xs="4">
-                <PerkCheckbox Perk="@PerksData.SharpShooterPlus"/>
-            </MudItem>
-            
-            @*Row 12*@
-            <MudItem xs="12">
-                <PerkCheckbox Perk="@PerksData.ElementalStrikerPhysical"/>
-            </MudItem>
-        </MudGrid>
-    </MudItem>
-    <MudItem xs="4"> @*Seductive Branch*@
-        <MudGrid>
-            @*Row 1*@
-            <MudItem xs="12">
-                <PerkCheckbox Perk="@PerksData.LewdKnowledge" />
-            </MudItem>
-            @*Row 2*@
-            @*Row 3*@
-            @*Row 4*@
-            @*Row 5*@
-            @*Row 6*@
-            @*Row 7*@
-            @*Row 8*@
-            @*Row 9*@
-            @*Row 10*@
-            @*Row 11*@
-            @*Row 12*@
-        </MudGrid>
-    </MudItem>
-    <MudItem xs="4"> @*Arcane Branch*@
-        <MudGrid>
-            @*Row 1*@
-            <MudItem xs="12">
-                <PerkCheckbox Perk="@PerksData.NaturalArcanePower" />
-            </MudItem>
-            @*Row 2*@
-            @*Row 3*@
-            @*Row 4*@
-            @*Row 5*@
-            @*Row 6*@
-            @*Row 7*@
-            @*Row 8*@
-            @*Row 9*@
-            @*Row 10*@
-            @*Row 11*@
-            @*Row 12*@
-        </MudGrid>
-    </MudItem>
-</MudGrid>
+<MudSimpleTable Style="overflow-x: auto;">
+<tbody>
+<tr>
+    @*Row 1*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.NaturalFitness"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.LewdKnowledge"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.NaturalArcanePower"/>
+    </td>
+</tr>
+<tr>
+    @*Row 2*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.PhysicallyFit"/>
+        <PerkCheckbox Perk="@PerksData.Observant"/>
+        <PerkCheckbox Perk="@PerksData.StableEnchantmentsPhysical"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.Sterile"/>
+        <PerkCheckbox Perk="@PerksData.Virile"/>
+        <PerkCheckbox Perk="@PerksData.Seductive"/>
+        <PerkCheckbox Perk="@PerksData.Fertile"/>
+        <PerkCheckbox Perk="@PerksData.Barren"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.StableEnchantmentsArcane"/>
+        <PerkCheckbox Perk="@PerksData.ArcanePrecision"/>
+        <PerkCheckbox Perk="@PerksData.ArcaneTraining"/>
+    </td>
+</tr>
+<tr>
+    @*Row 3*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.Defender"/>
+        <PerkCheckbox Perk="@PerksData.EnergyReserves"/>
+        <PerkCheckbox Perk="@PerksData.Striker"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.VirilePlus"/>
+        <PerkCheckbox Perk="@PerksData.SeductivePlus"/>
+        <PerkCheckbox Perk="@PerksData.OrgasmicLevelDrain"/>
+        <PerkCheckbox Perk="@PerksData.Resistance"/>
+        <PerkCheckbox Perk="@PerksData.FertilePlus"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.StableEnchantmentsArcanePlus"/>
+        <PerkCheckbox Perk="@PerksData.SpellPower"/>
+        <PerkCheckbox Perk="@PerksData.AuraReserves"/>
+        <PerkCheckbox Perk="@PerksData.SpellEfficiency"/>
+    </td>
+</tr>
+<tr>
+    @*Row 4*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.DefenderPlus"/>
+        <PerkCheckbox Perk="@PerksData.EnergyReservesPlus"/>
+        <PerkCheckbox Perk="@PerksData.StrikerPlus"/>
+        <PerkCheckbox Perk="@PerksData.ArcaneSmith"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.Seeder"/>
+        <PerkCheckbox Perk="@PerksData.SeductivePlusPlus"/>
+        <PerkCheckbox Perk="@PerksData.Ahegao"/>
+        <PerkCheckbox Perk="@PerksData.ResistancePlus"/>
+        <PerkCheckbox Perk="@PerksData.Broodmother"/>
+
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.ArcaneWeaver"/>
+        <PerkCheckbox Perk="@PerksData.SpellPowerPlus"/>
+        <PerkCheckbox Perk="@PerksData.AuraReservesPlus"/>
+        <PerkCheckbox Perk="@PerksData.SpellEfficiencyPlus"/>
+    </td>
+</tr>
+<tr>
+    @*Row 5*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.CardioKing"/>
+        <PerkCheckbox Perk="@PerksData.MartialArtist"/>
+        <PerkCheckbox Perk="@PerksData.CriticalPowerPhysical"/>
+        <PerkCheckbox Perk="@PerksData.HandToHand"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.VirilePlusPlus"/>
+        <PerkCheckbox Perk="@PerksData.VirilePlusx3"/>
+        <PerkCheckbox Perk="@PerksData.CriticalPowerLust"/>
+        <PerkCheckbox Perk="@PerksData.FertilePlusx3"/>
+        <PerkCheckbox Perk="@PerksData.FertilePlusPlus"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.ElementalStriker"/>
+        <PerkCheckbox Perk="@PerksData.CriticalPowerArcane"/>
+        <PerkCheckbox Perk="@PerksData.Chuuni"/>
+        <PerkCheckbox Perk="@PerksData.ArcaneCombatant"/>
+    </td>
+</tr>
+<tr>
+    @*Row 6*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.PhysicallyFitPlus"/>
+        <PerkCheckbox Perk="@PerksData.Hypermobility"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.Minx"/>
+        <PerkCheckbox Perk="@PerksData.SeductivePlusx3"/>
+        <PerkCheckbox Perk="@PerksData.Ladykiller"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.ArcaneAffinity"/>
+    </td>
+</tr>
+<tr>
+    @*Row 7*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.StrikerPlusPlus"/>
+        <PerkCheckbox Perk="@PerksData.HandToHandPlus"/>
+        <PerkCheckbox Perk="@PerksData.AuraShielding"/>
+        <PerkCheckbox Perk="@PerksData.EnergyReservesPlusPlus"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.SeductiveLeftBranch"/>
+        <PerkCheckbox Perk="@PerksData.SeductiveMiddleBranch"/>
+        <PerkCheckbox Perk="@PerksData.ResistancePlusPlus"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.AuraReservesPlusPlus"/>
+        <PerkCheckbox Perk="@PerksData.SpellEfficiencyPlusPlus"/>
+        <PerkCheckbox Perk="@PerksData.SpellPowerPlusPlus"/>
+    </td>
+</tr>
+<tr>
+    @*Row 8*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.StrikerPlusx3"/>
+        <PerkCheckbox Perk="@PerksData.MeleeWeaponsExpert"/>
+        <PerkCheckbox Perk="@PerksData.DefenderPlusPlus"/>
+        <PerkCheckbox Perk="@PerksData.EnergyReservesPlusx3"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.SeductivePlusLeftBranch"/>
+        <PerkCheckbox Perk="@PerksData.IrresistibleAppeals"/>
+        <PerkCheckbox Perk="@PerksData.SeductivePlusMiddleBranch"/>
+        <PerkCheckbox Perk="@PerksData.ObjectOfDesire"/>
+        <PerkCheckbox Perk="@PerksData.ResistancePlusx3"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.AuraReservesPlusx3"/>
+        <PerkCheckbox Perk="@PerksData.SpellEfficiencyPlusx3"/>
+        <PerkCheckbox Perk="@PerksData.SpellPowerPlusx3"/>
+    </td>
+</tr>
+<tr>
+    @*Row 9*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.StrikerPlusx4"/>
+        <PerkCheckbox Perk="@PerksData.SharpShooter"/>
+        <PerkCheckbox Perk="@PerksData.DefenderPlusx3"/>
+        <PerkCheckbox Perk="@PerksData.EnergyReservesPlusx4"/>
+
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.SeductivePlusPlusLeftBranch"/>
+        <PerkCheckbox Perk="@PerksData.SeductivePlusPlusMiddleBranch"/>
+        <PerkCheckbox Perk="@PerksData.ResistancePlusx4"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.AuraReservesPlusx4"/>
+        <PerkCheckbox Perk="@PerksData.SpellEfficiencyPlusx4"/>
+        <PerkCheckbox Perk="@PerksData.SpellMastery"/>
+    </td>
+</tr>
+<tr>
+    @*Row 10*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.FerociousWarrior"/>
+        <PerkCheckbox Perk="@PerksData.Berserk"/>
+        <PerkCheckbox Perk="@PerksData.CombatRegeneration"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.Lustpyre"/>
+        <PerkCheckbox Perk="@PerksData.Nymphomaniac"/>
+        <PerkCheckbox Perk="@PerksData.PureThoughts"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.SacrificialShielding"/>
+        <PerkCheckbox Perk="@PerksData.SpellEfficiencyPlusx5"/>
+        <PerkCheckbox Perk="@PerksData.ArcaneVampyrism"/>
+    </td>
+</tr>
+<tr>
+    @*Row 11*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.MeleeWeaponsExpertPlus"/>
+        <PerkCheckbox Perk="@PerksData.PhysicallyFitPlusPlus"/>
+        <PerkCheckbox Perk="@PerksData.SharpShooterPlus"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.SeductivePlusx4"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.ElementalDefender"/>
+        <PerkCheckbox Perk="@PerksData.ArcaneAffinityPlus"/>
+        <PerkCheckbox Perk="@PerksData.ElementalStrikerPlus"/>
+    </td>
+</tr>
+<tr>
+    @*Row 12*@
+    <td>
+        <PerkCheckbox Perk="@PerksData.ElementalStrikerPhysical"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.ElementalStrikerSeductive"/>
+    </td>
+    <td>
+        <PerkCheckbox Perk="@PerksData.ElementalStrikerArcane"/>
+    </td>
+</tr>
+</tbody>
+</MudSimpleTable>
 
 @code {
     private LTSaveEd.Models.Perks PerksData => SaveData.CurrentCharacter.Perks;
-    
+
     protected override void OnInitialized()
     {
         if (!SaveData.Initialized)
         {
             NavigationManager.NavigateTo("/");
         }
+
+        PerkNode.OnActivenessChanged += StateHasChanged;
     }
+
 }

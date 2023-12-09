@@ -22,7 +22,7 @@
             <MudText>Exp:</MudText>
         </MudItem>
         <MudItem xs="2">
-            <MudNumericField HideSpinButtons="true" @bind-Value="@Fetish.Xp.Value" Label="Experience"/>
+            <IntField Attribute="@Fetish.Xp" Label="Experience" Max="200"/>
         </MudItem>
         <MudItem xs="3" Class="d-flex align-center justify-center mt-3">
             <MudCheckBox @bind-Checked="Fetish.Owned.Value" Label="Owned:" LabelPosition="LabelPosition.Start" />

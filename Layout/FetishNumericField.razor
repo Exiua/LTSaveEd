@@ -10,7 +10,7 @@
             <MudText>Exp:</MudText>
         </MudItem>
         <MudItem xs="2">
-            <MudNumericField HideSpinButtons="true" @bind-Value="@Fetish.Xp.Value" Label="Experience"/>
+            <IntField @Attribute="@Fetish.Xp" Label="Experience" Max="200"/>
         </MudItem>
     </MudGrid>
 </MudPaper>

@@ -12,12 +12,12 @@ public class Core(XElement coreNode)
     public XmlAttribute<int> Experience { get; } = new(coreNode.GetChildsAttributeNode("experience"));
     // public int Money { get; set; } // Part of Character Inventory
     public XmlDate DateOfBirth { get; } = new(coreNode);
-    // TODO: Job History
-    // TODO: Orientation
+    public XmlAttribute<string> JobHistory { get; } = new(coreNode.GetChildsAttributeNode("history"));
+    public XmlAttribute<string> SexualOrientation { get; } = new(coreNode.GetChildsAttributeNode("sexualOrientation"));
     public XmlAttribute<float> Obedience { get; } = new(coreNode.GetChildsAttributeNode("obedience"));
-    // TODO: Gender Identity
+
+    public XmlAttribute<string> GenderIdentity { get; } = new(coreNode.GetChildsAttributeNode("genderIdentity"));
     public XmlAttribute<int> PerkPoints { get; } = new(coreNode.GetChildsAttributeNode("perkPoints"));
-    //public int EssenceCount { get; set; } // Part of Character Inventory
     public XmlAttribute<float> Health { get; } = new(coreNode.GetChildsAttributeNode("health"));
     public XmlAttribute<float> Mana { get; } = new(coreNode.GetChildsAttributeNode("mana"));
 }
