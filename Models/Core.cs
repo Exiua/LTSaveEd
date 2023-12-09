@@ -11,7 +11,7 @@ public class Core(XElement coreNode)
     public XmlAttribute<int> Level { get; } = new(coreNode.GetChildsAttributeNode("level"));
     public XmlAttribute<int> Experience { get; } = new(coreNode.GetChildsAttributeNode("experience"));
     // public int Money { get; set; } // Part of Character Inventory
-    public DateOfBirth DateOfBirth { get; } = new(coreNode);
+    public XmlDate DateOfBirth { get; } = new(coreNode);
     // TODO: Job History
     // TODO: Orientation
     public XmlAttribute<float> Obedience { get; } = new(coreNode.GetChildsAttributeNode("obedience"));

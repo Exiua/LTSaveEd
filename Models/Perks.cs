@@ -84,6 +84,7 @@ public class Perks
     
     #region Sixth Row Perks
 
+    public PerkNode PhysicallyFitPlus { get;}
     public PerkNode Hypermobility { get; }
     public PerkNode SeductivePlusx3 { get; }
     public PerkNode Minx { get; }
@@ -94,42 +95,91 @@ public class Perks
     
     #region Seventh Row Perks
 
-    
+    public PerkNode StrikerPlusPlus { get; }
+    public PerkNode HandToHandPlus { get; }
+    public PerkNode AuraShielding { get; }
+    public PerkNode EnergyReservesPlusPlus { get; }
+    public PerkNode SeductiveLeftBranch { get; }
+    public PerkNode SeductiveMiddleBranch { get; }
+    public PerkNode ResistancePlusPlus { get; }
+    public PerkNode AuraReservesPlusPlus { get; }
+    public PerkNode SpellEfficiencyPlusPlus { get; }
+    public PerkNode SpellPowerPlusPlus { get; }
 
     #endregion
     
     #region Eighth Row Perks
 
-    
+    public PerkNode StrikerPlusx3  { get; }
+    public PerkNode MeleeWeaponsExpert  { get; }
+    public PerkNode DefenderPlusPlus  { get; }
+    public PerkNode EnergyReservesPlusx3  { get; }
+    public PerkNode SeductivePlusLeftBranch  { get; }
+    public PerkNode IrresistibleAppeals  { get; }
+    public PerkNode SeductivePlusMiddleBranch  { get; }
+    public PerkNode ObjectOfDesire  { get; }
+    public PerkNode ResistancePlusx3  { get; }
+    public PerkNode AuraReservesPlusx3  { get; }
+    public PerkNode SpellEfficiencyPlusx3  { get; }
+    public PerkNode SpellPowerPlusx3  { get; }
 
     #endregion
     
     #region Nineth Row Perks
 
-    
+    public PerkNode StrikerPlusx4  { get; }
+    public PerkNode SharpShooter  { get; }
+    public PerkNode DefenderPlusx3  { get; }
+    public PerkNode EnergyReservesPlusx4  { get; }
+    public PerkNode SeductivePlusPlusLeftBranch  { get; }
+    public PerkNode SeductivePlusPlusMiddleBranch  { get; }
+    public PerkNode ResistancePlusx4  { get; }
+    public PerkNode AuraReservesPlusx4  { get; }
+    public PerkNode SpellEfficiencyPlusx4  { get; }
+    public PerkNode SpellMastery  { get; }
 
     #endregion
     
     #region Tenth Row Perks
 
-    
+    public PerkNode FerociousWarrior  { get; }
+    public PerkNode Berserk  { get; }
+    public PerkNode CombatRegeneration  { get; }
+    public PerkNode Lustpyre  { get; }
+    public PerkNode Nymphomaniac  { get; }
+    public PerkNode PureThoughts  { get; }
+    public PerkNode SacrificialShielding  { get; }
+    public PerkNode SpellEfficiencyPlusx5  { get; }
+    public PerkNode ArcaneVampyrism  { get; }
 
     #endregion
     
     #region Eleventh Row Perks
 
-    
+    public PerkNode MeleeWeaponsExpertPlus  { get; }
+    public PerkNode PhysicallyFitPlusPlus  { get; }
+    public PerkNode SharpShooterPlus  { get; }
+    public PerkNode SeductivePlusx4  { get; }
+    public PerkNode ElementalDefender  { get; }
+    public PerkNode ArcaneAffinityPlus  { get; }
+    public PerkNode ElementalStrikerPlus  { get; }
 
     #endregion
     
     #region Twelveth Row Perks
 
-    
+    public PerkNode ElementalStrikerPhysical  { get; }
+    public PerkNode ElementalStrikerSeductive  { get; }
+    public PerkNode ElementalStrikerArcane  { get; }
 
     #endregion
+
+    private Dictionary<string, PerkNode[]> LookupCache { get; }
     
     public Perks(XElement perksNode)
     {
+        #region Property Fields Intialization
+        
         NaturalFitness = new PerkNode("1", "PHYSICAL_BASE", "Natural Fitness", perksNode);
         NaturalArcanePower = new PerkNode("1", "ARCANE_BASE", "Natural Arcane Power", perksNode);
         LewdKnowledge = new PerkNode("1", "LEWD_KNOWLEDGE", "Lewd Knowledge", perksNode);
@@ -194,5 +244,163 @@ public class Perks
         Minx = new PerkNode(SeductivePlusx3, "6", "MALE_ATTRACTION", "Minx", perksNode);                            // 6_3
         Ladykiller = new PerkNode(SeductivePlusx3, "6", "FEMALE_ATTRACTION", "Ladykiller", perksNode);
         ArcaneAffinity = new PerkNode(ElementalStriker, ArcaneCombatant, "6", "ARCANE_BOOST_MAJOR", "Arcane Affinity", perksNode);
+        
+        StrikerPlusPlus = new PerkNode(PhysicallyFitPlus, "7", "PHYSICAL_DAMAGE", "Striker", perksNode);
+        HandToHandPlus = new PerkNode(StrikerPlusPlus, "7", "UNARMED_DAMAGE", "Hand-to-Hand", perksNode);
+        EnergyReservesPlusPlus = new PerkNode(PhysicallyFitPlus, "7", "ENERGY_BOOST", "Energy Reserves", perksNode);         // 7_4
+        AuraShielding = new PerkNode(EnergyReservesPlusPlus, "7", "ENERGY_BOOST_DRAIN_DAMAGE", "Aura Shielding", perksNode); // 7_3
+        SeductiveLeftBranch = new PerkNode(SeductivePlusx3, "7", "SEDUCTION_BOOST", "Seductive", perksNode);                 // Left Branch
+        SeductiveMiddleBranch = new PerkNode(SeductivePlusx3, "7", "SEDUCTION_BOOST_ALT", "Seductive", perksNode);           // Middle Branch
+        ResistancePlusPlus = new PerkNode(SeductivePlusx3, "7", "SEDUCTION_DEFENCE_BOOST", "Resistance", perksNode);
+        AuraReservesPlusPlus = new PerkNode(ArcaneAffinity, "7", "AURA_BOOST", "Aura Reserves", perksNode);
+        SpellEfficiencyPlusPlus = new PerkNode(ArcaneAffinity, "7", "SPELL_EFFICIENCY", "Spell Efficiency", perksNode);
+        SpellPowerPlusPlus = new PerkNode(SpellEfficiencyPlusPlus, "7", "SPELL_DAMAGE", "Spell Power", perksNode);
+        
+        StrikerPlusx3 = new PerkNode(StrikerPlusPlus, "8", "PHYSICAL_DAMAGE", "Striker", perksNode);
+        MeleeWeaponsExpert = new PerkNode(StrikerPlusx3, "8", "MELEE_DAMAGE", "Melee Weapons Expert", perksNode);
+        DefenderPlusPlus = new PerkNode(EnergyReservesPlusPlus, "8", "PHYSICAL_DEFENCE", "Defender", perksNode);
+        EnergyReservesPlusx3 = new PerkNode(EnergyReservesPlusPlus, "8", "ENERGY_BOOST", "Energy Reserves", perksNode);
+        SeductivePlusLeftBranch = new PerkNode(SeductiveLeftBranch, "8", "SEDUCTION_BOOST", "Seductive", perksNode);
+        SeductivePlusMiddleBranch = new PerkNode(SeductiveMiddleBranch, "8", "SEDUCTION_BOOST_MAJOR", "Seductive", perksNode);        // 8_7
+        IrresistibleAppeals = new PerkNode(SeductivePlusMiddleBranch, "8", "CONVINCING_REQUESTS", "Irresistible Appeals", perksNode); // 8_6
+        ObjectOfDesire = new PerkNode(SeductivePlusMiddleBranch, "8", "OBJECT_OF_DESIRE", "Object of Desire", perksNode);
+        ResistancePlusx3 = new PerkNode(ResistancePlusPlus, "8", "SEDUCTION_DEFENCE_BOOST", "Resistance", perksNode);
+        AuraReservesPlusx3 = new PerkNode(AuraReservesPlusPlus, "8", "AURA_BOOST", "Aura Reserves", perksNode);
+        SpellEfficiencyPlusx3 = new PerkNode(SpellEfficiencyPlusPlus, "8", "SPELL_EFFICIENCY", "Spell Efficiency", perksNode);
+        SpellPowerPlusx3 = new PerkNode(SpellPowerPlusPlus, "8", "SPELL_DAMAGE", "Spell Power", perksNode);
+        
+        StrikerPlusx4 = new PerkNode(StrikerPlusx3, "9", "PHYSICAL_DAMAGE", "Striker", perksNode);
+        SharpShooter = new PerkNode(StrikerPlusx4, "9", "RANGED_DAMAGE", "Sharp-shooter", perksNode);
+        DefenderPlusx3 = new PerkNode(DefenderPlusPlus, "9", "PHYSICAL_DEFENCE", "Defender", perksNode);
+        EnergyReservesPlusx4 = new PerkNode(EnergyReservesPlusx3, "9", "ENERGY_BOOST", "Energy Reserves", perksNode);
+        SeductivePlusPlusLeftBranch = new PerkNode(SeductivePlusLeftBranch, "9", "SEDUCTION_BOOST", "Seductive", perksNode);         //Left Branch
+        SeductivePlusPlusMiddleBranch = new PerkNode(SeductivePlusMiddleBranch, "9", "SEDUCTION_BOOST_ALT", "Seductive", perksNode); //Middle Branch
+        ResistancePlusx4 = new PerkNode(ResistancePlusx3, "9", "SEDUCTION_DEFENCE_BOOST", "Resistance", perksNode);
+        SpellEfficiencyPlusx4 = new PerkNode(SpellEfficiencyPlusx3, "9", "SPELL_EFFICIENCY", "Spell Efficiency", perksNode); // 9_9
+        AuraReservesPlusx4 = new PerkNode(SpellEfficiencyPlusx4, "9", "AURA_BOOST", "Aura Reserves", perksNode);             // 9_8
+        SpellMastery = new PerkNode(SpellPowerPlusx3, "9", "SPELL_DAMAGE_MAJOR", "Spell Mastery", perksNode);
+        
+        FerociousWarrior = new PerkNode(StrikerPlusx4, "10", "FEROCIOUS_WARRIOR", "Ferocious Warrior", perksNode);
+        Berserk = new PerkNode(FerociousWarrior, "10", "BESERK", "Berserk", perksNode);
+        CombatRegeneration = new PerkNode(DefenderPlusx3, EnergyReservesPlusx4, "10", "COMBAT_REGENERATION", "Combat Regeneration", perksNode);
+        Lustpyre = new PerkNode(SeductivePlusPlusLeftBranch, "10", "LUSTPYRE", "Lustpyre", perksNode);
+        Nymphomaniac = new PerkNode(SeductivePlusPlusMiddleBranch, "10", "NYMPHOMANIAC", "Nymphomaniac", perksNode);
+        PureThoughts = new PerkNode(ResistancePlusx4, "10", "PURE_MIND", "Pure Thoughts", perksNode);
+        SacrificialShielding = new PerkNode(AuraReservesPlusx4, "10", "SACRIFICIAL_SHIELDING", "Sacrificial Shielding", perksNode);
+        SpellEfficiencyPlusx5 = new PerkNode(SpellEfficiencyPlusx4, "10", "SPELL_EFFICIENCY", "Spell Efficiency", perksNode);
+        ArcaneVampyrism = new PerkNode(SpellMastery, "10", "ARCANE_VAMPYRISM", "Arcane Vampyrism", perksNode);
+        
+        PhysicallyFitPlusPlus = new PerkNode(FerociousWarrior, CombatRegeneration, "11", "PHYSIQUE_BOOST_MAJOR", "Physically Fit", perksNode); // 11_2
+        MeleeWeaponsExpertPlus = new PerkNode(PhysicallyFitPlusPlus, "11", "MELEE_DAMAGE", "Melee Weapons Expert", perksNode);                                  // 11_1
+        SharpShooterPlus = new PerkNode(PhysicallyFitPlusPlus, "11", "RANGED_DAMAGE", "Sharp-shooter", perksNode);
+        SeductivePlusx4 = new PerkNode(Lustpyre, PureThoughts, "11", "SEDUCTION_BOOST_MAJOR", "Seductive", perksNode);
+        ArcaneAffinityPlus = new PerkNode(SpellEfficiencyPlusx5, "11", "ARCANE_BOOST_MAJOR", "Arcane Affinity", perksNode);     // 11_6
+        ElementalDefender = new PerkNode(ArcaneAffinityPlus, "11", "ELEMENTAL_DEFENCE_BOOST", "Elemental Defender", perksNode); // 11_5
+        ElementalStrikerPlus = new PerkNode(ArcaneAffinityPlus, "11", "ELEMENTAL_BOOST", "Elemental Striker", perksNode);
+        
+        ElementalStrikerPhysical = new PerkNode(PhysicallyFit, "12", "ELEMENTAL_BOOST", "Elemental Striker", perksNode);        //Physical
+        ElementalStrikerSeductive = new PerkNode(Seductive, "12", "ELEMENTAL_BOOST_ALT", "Elemental Striker", perksNode);       //Seductive
+        ElementalStrikerArcane = new PerkNode(ArcaneAffinity, "12", "ELEMENTAL_BOOST_ALT_2", "Elemental Striker", perksNode);   // Arcane
+        
+        #endregion
+
+        LookupCache = new Dictionary<string, PerkNode[]>
+        {
+            {
+                "1", new[]
+                {
+                    NaturalFitness, LewdKnowledge, NaturalArcanePower
+                }
+            },
+            {
+                "2", new[]
+                {
+                    PhysicallyFit, Observant, StableEnchantmentsPhysical, Sterile, Virile, Seductive, Fertile, Barren, StableEnchantmentsArcane, ArcanePrecision, ArcaneTraining
+                }
+            },
+            {
+                "3", new[]
+                {
+                    Defender, EnergyReserves, Striker, StableEnchantmentsPhysicalPlus, VirilePlus, SeductivePlus, OrgasmicLevelDrain, Resistance, FertilePlus, StableEnchantmentsArcanePlus,
+                    SpellPower, AuraReserves, SpellEfficiency
+                }
+            },
+            {
+                "4", new[]
+                {
+                    DefenderPlus, EnergyReservesPlus, StrikerPlus, ArcaneSmith, Seeder, SeductivePlusPlus, Ahegao, ResistancePlus, Broodmother, ArcaneWeaver, SpellPowerPlus, AuraReservesPlus,
+                    SpellEfficiencyPlus
+                }
+            },
+            {
+                "5", new[]
+                {
+                    CardioKing, MartialArtist, CriticalPowerPhysical, HandToHand, VirilePlusPlus, VirilePlusx3, CriticalPowerLust, FertilePlusx3, FertilePlusPlus, ElementalStriker,
+                    CriticalPowerArcane, Chuuni, ArcaneCombatant
+                }
+            },
+            {
+                "6", new[]
+                {
+                    PhysicallyFitPlus, Hypermobility, SeductivePlusx3, Minx, Ladykiller, ArcaneAffinity
+                }
+            },
+            {
+                "7", new[]
+                {
+                    StrikerPlusPlus, HandToHandPlus, AuraShielding, EnergyReservesPlusPlus, SeductiveLeftBranch, SeductiveMiddleBranch, ResistancePlusPlus, AuraReservesPlusPlus,
+                    SpellEfficiencyPlusPlus, SpellPowerPlusPlus
+                }
+            },
+            {
+                "8", new[]
+                {
+                    StrikerPlusx3, MeleeWeaponsExpert, DefenderPlusPlus, EnergyReservesPlusx3, SeductivePlusLeftBranch, IrresistibleAppeals, SeductivePlusMiddleBranch, ObjectOfDesire,
+                    ResistancePlusx3, AuraReservesPlusx3, SpellEfficiencyPlusx3, SpellPowerPlusx3
+                }
+            },
+            {
+                "9", new[]
+                {
+                    StrikerPlusx4, SharpShooter, DefenderPlusx3, EnergyReservesPlusx4, SeductivePlusPlusLeftBranch, SeductivePlusPlusMiddleBranch, ResistancePlusx4, AuraReservesPlusx4,
+                    SpellEfficiencyPlusx4, SpellMastery
+                }
+            },
+            {
+                "10", new[]
+                {
+                    FerociousWarrior, Berserk, CombatRegeneration, Lustpyre, Nymphomaniac, PureThoughts, SacrificialShielding, SpellEfficiencyPlusx5, ArcaneVampyrism
+                }
+            },
+            {
+                "11", new[]
+                {
+                    MeleeWeaponsExpertPlus, PhysicallyFitPlusPlus, SharpShooterPlus, SeductivePlusx4, ElementalDefender, ArcaneAffinityPlus, ElementalStrikerPlus
+                }
+            },
+            {
+                "12", new[]
+                {
+                    ElementalStrikerPhysical, ElementalStrikerSeductive, ElementalStrikerArcane
+                }
+            }
+        };
+
+        var perks = perksNode.Elements();
+        foreach (var perk in perks)
+        {
+            var row = perk.Attribute("row")!.Value;
+            var type = perk.Attribute("type")!.Value;
+            foreach (var perkNode in LookupCache[row])
+            {
+                if (perkNode.Type != type)
+                {
+                    continue;
+                }
+                
+                perkNode.InitializeNode(perk);
+                break;
+            }
+        }
     }
 }

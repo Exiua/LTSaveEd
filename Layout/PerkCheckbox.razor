@@ -1,0 +1,7 @@
+﻿@using LTSaveEd.Models
+
+<MudCheckBox @bind-Checked="@Perk.Active" LabelPosition="LabelPosition.Start" Label="@Perk.DisplayName"/>
+
+@code {
+    [Parameter] public required PerkNode Perk { get; set; }
+}

@@ -2,10 +2,10 @@
 
 namespace LTSaveEd.Models;
 
-public abstract class NullableXmlAttribute(XElement parent, XElement? element = null)
+public abstract class NullableXmlAttribute(XElement parent)
 {
     private XElement Parent { get; } = parent;
-    protected XElement? Element { get; set; } = element;
+    protected XElement? Element { get; set; }
 
     public bool Exists
     {
@@ -24,11 +24,20 @@ public abstract class NullableXmlAttribute(XElement parent, XElement? element = 
                 }
                 
                 DeleteElement();
-                Element = null;
             }
         }
     }
 
+    protected void Initialize(XElement element)
+    {
+        Element = element;
+    }
+
     protected abstract XElement CreateElement();
-    protected abstract void DeleteElement();
+
+    protected virtual void DeleteElement()
+    {
+        Element?.Remove();
+        Element = null;
+    }
 }
