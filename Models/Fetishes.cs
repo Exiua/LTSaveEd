@@ -454,19 +454,19 @@ public class Fetishes
         }
         if ((fetishTypes & FetishType.Switch) == 0)
         {
-            Switch = CreateFetish("FETISH_SWITCH", fetishesNode);
+            Switch = CreateFetish("FETISH_SWITCH", fetishesNode, suppressDesire: true);
         }
         if ((fetishTypes & FetishType.Breeder) == 0)
         {
-            Breeder = CreateFetish("FETISH_BREEDER", fetishesNode);
+            Breeder = CreateFetish("FETISH_BREEDER", fetishesNode, suppressDesire: true);
         }
         if ((fetishTypes & FetishType.Sadomasochist) == 0)
         {
-            Sadomasochist = CreateFetish("FETISH_SADOMASOCHIST", fetishesNode);
+            Sadomasochist = CreateFetish("FETISH_SADOMASOCHIST", fetishesNode, suppressDesire: true);
         }
         if ((fetishTypes & FetishType.LustyMaiden) == 0)
         {
-            LustyMaiden = CreateFetish("FETISH_LUSTY_MAIDEN", fetishesNode);
+            LustyMaiden = CreateFetish("FETISH_LUSTY_MAIDEN", fetishesNode, suppressDesire: true);
         }
         
         #endregion

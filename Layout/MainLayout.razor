@@ -5,7 +5,7 @@
 @inject ISnackbar Snackbar
 @inject SaveData SaveData
 
-<MudThemeProvider />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="@_theme"/>
 <MudSnackbarProvider />
 
 <MudLayout>
@@ -13,8 +13,9 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd</MudText>
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
-        <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"  />
+        <MudIconButton Icon="@(_isDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
+                       Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
+        <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined" />
         <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
             <ButtonTemplate>
                 <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary" for="@context.Id">
@@ -62,6 +63,8 @@
 @code {
     private bool _drawerOpen;
     private bool _processing;
+    private bool _isDarkMode;
+    private readonly MudTheme _theme = null!;
     private string Filename { get; set; } = "";
 
     private void DrawerToggle()
@@ -106,5 +109,11 @@
         {
             _processing = false;
         }
+    }
+
+    private void ToggleTheme()
+    {
+        _isDarkMode = !_isDarkMode;
+        StateHasChanged();
     }
 }

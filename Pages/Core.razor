@@ -32,18 +32,35 @@
                 <MudDatePicker Label="Date of Birth" Editable="true" @bind-Date="@CoreData.DateOfBirth.Value" Placeholder="Select Date" />
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <MudSelect T="ValueDisplayPair" Label="Job History" AnchorOrigin="Origin.BottomCenter">
+                <MudSelect T="ValueDisplayPair" @bind-Value="@CurrentJobHistory" Label="Job History"
+                           AnchorOrigin="Origin.BottomCenter">
                     @foreach (var jobHistory in AvailableJobs)
                     {
                         <MudSelectItem Value="@jobHistory"/>
                     }
                 </MudSelect>
             </MudPaper>
-            @*TODO: Orientation*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudSelect T="ValueDisplayPair" @bind-Value="@CurrentSexualOrientation" Label="Sexual Orientation"
+                           AnchorOrigin="Origin.BottomCenter">
+                    @foreach (var sexualOrientation in SexualOrientations)
+                    {
+                        <MudSelectItem Value="@sexualOrientation"/>
+                    }
+                </MudSelect>
+            </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <FloatField Attribute="@CoreData.Obedience" Label="Obedience" />
             </MudPaper>
-            @*TODO: Gender Identity*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                 <MudSelect T="ValueDisplayPair" @bind-Value="@CurrentGenderIdentity" Label="Gender Identity"
+                            AnchorOrigin="Origin.BottomCenter">
+                     @foreach (var genderIdentity in GenderIdentities)
+                     {
+                         <MudSelectItem Value="@genderIdentity"/>
+                     }
+                 </MudSelect>
+             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <IntField Attribute="@CoreData.PerkPoints" Label="Perk Points" />
             </MudPaper>
@@ -61,7 +78,11 @@
 </MudCard>
 
 @code {
-    private ValueDisplayPair _currentJobHistory;private ValueDisplayPair[] PlayerJobHistories { get; } = [
+    private ValueDisplayPair _currentJobHistory = null!;
+    private ValueDisplayPair _currentSexualOrientation = null!;
+    private ValueDisplayPair _currentGenderIdentity = null!;
+
+    private ValueDisplayPair[] PlayerJobHistories { get; } = [
         new ValueDisplayPair("Unemployed", "UNEMPLOYED"),
         new ValueDisplayPair("Office Worker", "OFFICE_WORKER"), new ValueDisplayPair("Student", "STUDENT"),
         new ValueDisplayPair("Musician", "MUSICIAN"), new ValueDisplayPair("Teacher", "TEACHER"),
@@ -115,6 +136,29 @@
         new ValueDisplayPair("Maid", "NPC_MAID"),
         new ValueDisplayPair("Elder Lilin", "NPC_ELDER_LILIN")];
     
+    private ValueDisplayPair[] SexualOrientations { get; } = [
+    new ValueDisplayPair("Androphilic", "ANDROPHILIC"), new ValueDisplayPair("Ambiphilic", "AMBIPHILIC"),
+    new ValueDisplayPair("Gynephilic", "GYNEPHILIC")];
+
+    private ValueDisplayPair[] GenderIdentities { get; } = [
+        new ValueDisplayPair("M_P_V_B_HERMAPHRODITE", "M_P_V_B_HERMAPHRODITE"),
+        new ValueDisplayPair("M_P_V_HERMAPHRODITE", "M_P_V_HERMAPHRODITE"),
+        new ValueDisplayPair("M_P_B_BUSTYBOY", "M_P_B_BUSTYBOY"), new ValueDisplayPair("M_P_MALE", "M_P_MALE"),
+        new ValueDisplayPair("M_V_B_BUTCH", "M_V_B_BUTCH"), new ValueDisplayPair("M_V_CUNTBOY", "M_V_CUNTBOY"),
+        new ValueDisplayPair("M_B_MANNEQUIN", "M_B_MANNEQUIN"),
+        new ValueDisplayPair("M_MANNEQUIN", "M_MANNEQUIN"),
+        new ValueDisplayPair("F_P_V_B_FUTANARI", "F_P_V_B_FUTANARI"),
+        new ValueDisplayPair("F_P_V_FUTANARI", "F_P_V_FUTANARI"),
+        new ValueDisplayPair("F_P_B_SHEMALE", "F_P_B_SHEMALE"),
+        new ValueDisplayPair("F_P_TRAP", "F_P_TRAP"),
+        new ValueDisplayPair("F_V_B_FEMALE", "F_V_B_FEMALE"), new ValueDisplayPair("F_V_FEMALE", "F_V_FEMALE"),
+        new ValueDisplayPair("F_B_DOLL", "F_B_DOLL"), new ValueDisplayPair("F_DOLL", "F_DOLL"),
+        new ValueDisplayPair("N_P_V_B_HERMAPHRODITE", "N_P_V_B_HERMAPHRODITE"),
+        new ValueDisplayPair("N_P_V_HERMAPHRODITE", "N_P_V_HERMAPHRODITE"),
+        new ValueDisplayPair("N_P_B_SHEMALE", "N_P_B_SHEMALE"), new ValueDisplayPair("N_P_TRAP", "N_P_TRAP"),
+        new ValueDisplayPair("N_V_B_TOMBOY", "N_V_B_TOMBOY"), new ValueDisplayPair("N_V_TOMBOY", "N_V_TOMBOY"),
+        new ValueDisplayPair("N_B_DOLL", "N_B_DOLL"), new ValueDisplayPair("N_NEUTER", "N_NEUTER")];
+
     private LTSaveEd.Models.Core CoreData => SaveData.CurrentCharacter.Core;
     private LTSaveEd.Models.Inventory Inventory => SaveData.CurrentCharacter.Inventory;
     private ValueDisplayPair[] AvailableJobs => SaveData.CurrentCharacter.IsPlayer ? PlayerJobHistories : NpcJobHistories;
@@ -129,11 +173,51 @@
         }
     }
 
+    private ValueDisplayPair CurrentSexualOrientation
+    {
+        get => _currentSexualOrientation;
+        set
+        {
+            _currentSexualOrientation = value;
+            CoreData.SexualOrientation.Value = _currentSexualOrientation.Value;
+        }
+    }
+
+    private ValueDisplayPair CurrentGenderIdentity
+    {
+        get => _currentGenderIdentity;
+        set
+        {
+            _currentGenderIdentity = value;
+            CoreData.GenderIdentity.Value = _currentGenderIdentity.Value;
+        }
+    }
+
     protected override void OnInitialized()
     {
         if (!SaveData.Initialized)
         {
             NavigationManager.NavigateTo("/");
+        }
+
+        FindMatchingValue(AvailableJobs, CoreData.JobHistory.Value, ref _currentJobHistory);
+        FindMatchingValue(SexualOrientations, CoreData.SexualOrientation.Value, ref _currentSexualOrientation);
+        FindMatchingValue(GenderIdentities, CoreData.GenderIdentity.Value, ref _currentGenderIdentity);
+        
+        StateHasChanged();
+    }
+
+    private static void FindMatchingValue(IEnumerable<ValueDisplayPair> values, string targetValue, ref ValueDisplayPair assignmentTarget)
+    {
+        foreach (var value in values)
+        {
+            if (targetValue != value.Value)
+            {
+                continue;
+            }
+
+            assignmentTarget = value;
+            break;
         }
     }
 
