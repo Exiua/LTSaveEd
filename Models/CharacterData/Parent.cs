@@ -1,4 +1,4 @@
-﻿namespace LTSaveEd.Models;
+﻿namespace LTSaveEd.Models.CharacterData;
 
 public class Parent(string id, string name, string femininity, string subspecies)
 {

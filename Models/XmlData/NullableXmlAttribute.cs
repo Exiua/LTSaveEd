@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace LTSaveEd.Models;
+namespace LTSaveEd.Models.XmlData;
 
 public abstract class NullableXmlAttribute(XElement parent)
 {

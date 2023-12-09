@@ -1,8 +1,7 @@
-﻿using System.Xml;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
 
-namespace LTSaveEd.Models;
+namespace LTSaveEd.Models.XmlData;
 
 public class XmlDate
 {

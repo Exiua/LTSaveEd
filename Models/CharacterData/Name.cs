@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
+using LTSaveEd.Models.XmlData;
 
-namespace LTSaveEd.Models;
+namespace LTSaveEd.Models.CharacterData;
 
 public class Name(XElement nameNode, XElement surnameNode)
 {

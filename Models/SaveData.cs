@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
+using LTSaveEd.Models.CharacterData;
 
 namespace LTSaveEd.Models;
 

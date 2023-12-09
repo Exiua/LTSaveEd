@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
 
-namespace LTSaveEd.Models;
+namespace LTSaveEd.Models.CharacterData;
 
 public class CharacterShort
 {

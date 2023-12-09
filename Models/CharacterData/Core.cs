@@ -1,7 +1,8 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
+using LTSaveEd.Models.XmlData;
 
-namespace LTSaveEd.Models;
+namespace LTSaveEd.Models.CharacterData;
 
 public class Core(XElement coreNode)
 {

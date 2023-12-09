@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace LTSaveEd.Models;
+namespace LTSaveEd.Models.CharacterData;
 
 public class Fetishes
 {

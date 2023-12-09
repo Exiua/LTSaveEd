@@ -159,8 +159,8 @@
         new ValueDisplayPair("N_V_B_TOMBOY", "N_V_B_TOMBOY"), new ValueDisplayPair("N_V_TOMBOY", "N_V_TOMBOY"),
         new ValueDisplayPair("N_B_DOLL", "N_B_DOLL"), new ValueDisplayPair("N_NEUTER", "N_NEUTER")];
 
-    private LTSaveEd.Models.Core CoreData => SaveData.CurrentCharacter.Core;
-    private LTSaveEd.Models.Inventory Inventory => SaveData.CurrentCharacter.Inventory;
+    private Models.CharacterData.Core CoreData => SaveData.CurrentCharacter.Core;
+    private Models.CharacterData.Inventory Inventory => SaveData.CurrentCharacter.Inventory;
     private ValueDisplayPair[] AvailableJobs => SaveData.CurrentCharacter.IsPlayer ? PlayerJobHistories : NpcJobHistories;
 
     private ValueDisplayPair CurrentJobHistory
