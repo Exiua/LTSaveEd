@@ -1,19 +1,18 @@
-﻿@page "/spells/earth"
-@using LTSaveEd.Models
-@using LTSaveEd.Models.CharacterData
-@using LTSaveEd.Models.CharacterData.SpellData
-<h3>Earth</h3>
+﻿using System.Xml.Linq;
 
-@code {
+namespace LTSaveEd.Models.CharacterData.SpellData;
 
-    private SpellTier[] SlamSpellTiers { get; } =
+public class EarthSpells : ElementalSpells
+{
+
+    private static SpellTier[] SlamSpellTiers { get; } =
     [
         new SpellTier("Unowned", "SLAM_UNOWNED"), new SpellTier("Base", "SLAM"),
         new SpellTier("Ground Shake", "SLAM_1"), new SpellTier("Aftershock", "SLAM_2"),
         new SpellTier("Earthquake", "SLAM_3")
     ];
 
-    private SpellTier[] TelekineticShowerSpellTiers { get; } =
+    private static SpellTier[] TelekineticShowerSpellTiers { get; } =
     [
         // Yes, that is how telekinetic is spelt in the save file
         new SpellTier("Unowned", "TELEKENETIC_SHOWER_UNOWNED"),
@@ -23,7 +22,7 @@
         new SpellTier("Unseen Force", "TELEKENETIC_SHOWER_3")
     ];
 
-    private SpellTier[] StoneShellSpellTiers { get; } =
+    private static SpellTier[] StoneShellSpellTiers { get; } =
     [
         new SpellTier("Unowned", "STONE_SHELL_UNOWNED"), new SpellTier("Base", "STONE_SHELL"),
         new SpellTier("Shifting Sands", "STONE_SHELL_1"),
@@ -31,7 +30,7 @@
         new SpellTier("Explosive Finish", "STONE_SHELL_3")
     ];
 
-    private SpellTier[] ElementalEarthSpellTiers { get; } =
+    private static SpellTier[] ElementalEarthSpellTiers { get; } =
     [
         new SpellTier("Unowned", "ELEMENTAL_EARTH_UNOWNED"),
         new SpellTier("Base", "ELEMENTAL_EARTH"),
@@ -41,4 +40,18 @@
         new SpellTier("Binding of Earth", "ELEMENTAL_EARTH_3B")
     ];
 
+    public Spell Slam { get; }
+    public Spell TelekineticShower { get; }
+    public Spell StoneShell { get; }
+    public Spell EarthElemental { get; }
+    
+    
+    public EarthSpells(XElement knownSpellsNode, XElement spellUpgradesNode, XElement spellUpgradePointsNode) : base(knownSpellsNode, spellUpgradesNode)
+    {
+        Slam = new Spell(SlamSpellTiers, knownSpellsNode, spellUpgradesNode);
+        TelekineticShower = new Spell(TelekineticShowerSpellTiers, knownSpellsNode, spellUpgradesNode);
+        StoneShell = new Spell(StoneShellSpellTiers, knownSpellsNode, spellUpgradesNode);
+        EarthElemental = new Spell(ElementalEarthSpellTiers, knownSpellsNode, spellUpgradesNode);
+        UpgradePoints = GetUpgradePointNode(spellUpgradePointsNode, "EARTH");
+    }
 }

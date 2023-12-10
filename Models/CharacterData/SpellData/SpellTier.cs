@@ -1,4 +1,4 @@
-﻿namespace LTSaveEd.Models.CharacterData;
+﻿namespace LTSaveEd.Models.CharacterData.SpellData;
 
 public class SpellTier(string name, string value) : ValueDisplayPair(name, value)
 {
