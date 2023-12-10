@@ -1,5 +1,9 @@
 ﻿@page "/core"
+
 @using LTSaveEd.Models
+
+@inherits BasePage
+
 @inject NavigationManager NavigationManager
 @inject SaveData SaveData
 <h3>Core</h3>
@@ -195,10 +199,7 @@
 
     protected override void OnInitialized()
     {
-        if (!SaveData.Initialized)
-        {
-            NavigationManager.NavigateTo("/");
-        }
+        base.OnInitialized();
 
         FindMatchingValue(AvailableJobs, CoreData.JobHistory.Value, ref _currentJobHistory);
         FindMatchingValue(SexualOrientations, CoreData.SexualOrientation.Value, ref _currentSexualOrientation);

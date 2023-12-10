@@ -1,8 +1,13 @@
 ﻿@page "/perks"
+
 @using LTSaveEd.Models
 @using LTSaveEd.Models.CharacterData
+
+@inherits BasePage
+
 @inject NavigationManager NavigationManager
 @inject SaveData SaveData
+
 <h3>Perks</h3>
 
 <MudSimpleTable Style="overflow-x: auto;">
@@ -234,10 +239,7 @@
 
     protected override void OnInitialized()
     {
-        if (!SaveData.Initialized)
-        {
-            NavigationManager.NavigateTo("/");
-        }
+        base.OnInitialized();
 
         PerkNode.OnActivenessChanged += StateHasChanged;
     }

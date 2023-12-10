@@ -1,16 +1,14 @@
 ﻿@page "/Inventory"
+
 @using LTSaveEd.Models
+
+@inherits BasePage
+
 @inject NavigationManager NavigationManager
 @inject SaveData SaveData
+
 <h3>Inventory</h3>
 
 @code {
-    protected override void OnInitialized()
-    {
-        if (!SaveData.Initialized)
-        {
-            NavigationManager.NavigateTo("/");
-        }
-    }
 
 }

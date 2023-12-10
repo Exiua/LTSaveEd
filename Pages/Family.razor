@@ -1,17 +1,15 @@
 ﻿@page "/family"
+
 @using LTSaveEd.Models
+
+@inherits BasePage
+
 @inject NavigationManager NavigationManager
 @inject SaveData SaveData
+
 <h3>Family</h3>
 
 @code {
     private Models.CharacterData.Family FamilyData => SaveData.CurrentCharacter.Family;
     
-    protected override void OnInitialized()
-    {
-        if (!SaveData.Initialized)
-        {
-            NavigationManager.NavigateTo("/");
-        }
-    }
 }

@@ -1,7 +1,11 @@
 ﻿@page "/fetishes"
+
 @using LTSaveEd.Models
-@inject NavigationManager NavigationManager
+
+@inherits BasePage
+
 @inject SaveData SaveData
+
 <h3>Fetishes</h3>
 
 <MudCard>
@@ -213,13 +217,4 @@
 
 @code {
     private Models.CharacterData.Fetishes FetishesData => SaveData.CurrentCharacter.Fetishes;
-
-    protected override void OnInitialized()
-    {
-        if (!SaveData.Initialized)
-        {
-            NavigationManager.NavigateTo("/");
-        }
-    }
-
 }

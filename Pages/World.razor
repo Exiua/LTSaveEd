@@ -1,15 +1,14 @@
 ﻿@page "/world"
+
 @using LTSaveEd.Models
+
+@inherits BasePage
+
 @inject NavigationManager NavigationManager
 @inject SaveData SaveData
+
 <h3>World</h3>
 
 @code {
-    protected override void OnInitialized()
-    {
-        if (!SaveData.Initialized)
-        {
-            NavigationManager.NavigateTo("/");
-        }
-    }
+    
 }
