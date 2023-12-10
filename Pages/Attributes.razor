@@ -1,5 +1,9 @@
 ﻿@page "/attributes"
+
 @using LTSaveEd.Models
+
+@inherits BasePage
+
 @inject NavigationManager NavigationManager
 @inject SaveData SaveData
 <h3>Attributes</h3>
@@ -88,13 +92,4 @@
 
 @code {
     private Models.CharacterData.Attributes AttributesData => SaveData.CurrentCharacter.Attributes;
-
-    protected override void OnInitialized()
-    {
-        if (!SaveData.Initialized)
-        {
-            NavigationManager.NavigateTo("/");
-        }
-    }
-
 }
