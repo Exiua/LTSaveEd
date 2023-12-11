@@ -398,7 +398,7 @@ public class Perks
                     continue;
                 }
                 
-                perkNode.InitializeNode(perk);
+                perkNode.Initialize(perk);
                 break;
             }
         }

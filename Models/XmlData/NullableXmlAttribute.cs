@@ -28,14 +28,14 @@ public abstract class NullableXmlAttribute(XElement parent)
         }
     }
 
-    protected void Initialize(XElement element)
+    public void Initialize(XElement element)
     {
         Element = element;
     }
 
     protected abstract XElement CreateElement();
 
-    protected virtual void DeleteElement()
+    protected void DeleteElement()
     {
         Element?.Remove();
         Element = null;

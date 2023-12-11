@@ -11,8 +11,6 @@ public class Spell
         
     public SpellTier[] Tiers { get; }
 
-    public int CurrentTier => _currentSpellTier.Tier;
-
     public SpellTier CurrentSpellTier
     {
         get => _currentSpellTier;
@@ -104,12 +102,17 @@ public class Spell
                         continue;
                     }
 
-                    tier = highestTier;
+                    highestTier = tier;
                     _currentSpellTier = tiers[tier + 1];
                     break;
                 }
             }
         }
+    }
+
+    public override string ToString()
+    {
+        return CurrentSpellTier.DisplayValue;
     }
 
     private void RemoveSpellNode(SpellTier spellTier)

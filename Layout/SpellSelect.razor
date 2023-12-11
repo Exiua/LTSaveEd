@@ -1,0 +1,13 @@
+﻿@using LTSaveEd.Models.CharacterData.SpellData
+
+<MudSelect T="SpellTier" Label="@Label" @bind-Value="@Spell.CurrentSpellTier" AnchorOrigin="Origin.BottomCenter">
+    @foreach (var spellTier in Spell.Tiers)
+    {
+        <MudSelectItem Value="@spellTier"/>
+    }
+</MudSelect>
+
+@code {
+    [Parameter] public required Spell Spell { get; set; }
+    [Parameter] public required string Label { get; set; }
+}

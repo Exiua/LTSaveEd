@@ -109,11 +109,6 @@ public class PerkNode : NullableXmlAttribute
             child.Active = false;
         }
     }
-
-    public void InitializeNode(XElement element)
-    {
-        Initialize(element);
-    }
     
     /*public static bool operator ==(PerkNode perkNode, XElement element)
     {

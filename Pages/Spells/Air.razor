@@ -1,6 +1,33 @@
 ﻿@page "/spells/air"
+@using LTSaveEd.Models.CharacterData.SpellData
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
 <h3>Air</h3>
 
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.PoisonVapours" Label="Poison Vapours"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.Vacuum" Label="Vacuum"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.ProtectiveGusts" Label="Protective Gusts"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.AirElemental" Label="Air Elemental"/>
+        </MudItem>
+        <MudItem xs="3">
+            <IntField Attribute="@Spells.UpgradePoints" Label="Spell Points"/>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
 @code {
-    
+    private AirSpells Spells => SaveData.CurrentCharacter.Spells.Air;
 }

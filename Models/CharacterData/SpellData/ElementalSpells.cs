@@ -8,7 +8,7 @@ public abstract class ElementalSpells(XElement knownSpellsNode, XElement spellUp
 {
     protected XElement KnownSpellsNode { get; } = knownSpellsNode;
     protected XElement SpellUpgradesNode { get; } = spellUpgradesNode;
-    public XmlAttribute<int> UpgradePoints { get; init; }
+    public XmlAttribute<int> UpgradePoints { get; protected init; } = null!;
 
     protected static XmlAttribute<int> GetUpgradePointNode(XElement spellUpgradePointsNode, string schoolName)
     {

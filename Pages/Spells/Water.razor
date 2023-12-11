@@ -1,6 +1,50 @@
 ﻿@page "/spells/water"
+
+@using LTSaveEd.Models.CharacterData.SpellData
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
 <h3>Water</h3>
 
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.IceShard" Label="Ice Shard"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.RainCloud" Label="Rain Cloud"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.SoothingWaters" Label="Soothing Waters"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.WaterElemental" Label="Water Elemental"/>
+        </MudItem>
+        <MudItem xs="3">
+            <IntField Attribute="@Spells.UpgradePoints" Label="Spell Points"/>
+        </MudItem>
+        <MudItem xs="12" />
+        <MudItem xs="6" Style="justify-content: center; align-content: center;">
+            <MudSimpleTable Elevation="0">
+                <tbody>
+                <tr>
+                    <td>Soothing Waters Optional Spells:</td>
+                    <td>
+                        <MudCheckBox @bind-Checked="@Spells.CleansingWaters.Exists" LabelPosition="LabelPosition.Start" Label="Cleansing Waters:"/>
+                    </td>
+                    <td>
+                        <MudCheckBox @bind-Checked="@Spells.DeepClean.Exists" LabelPosition="LabelPosition.Start" Label="Deep Clean:"/>
+                    </td>
+                </tr>
+                </tbody>
+            </MudSimpleTable>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
 @code {
-    
+    private WaterSpells Spells => SaveData.CurrentCharacter.Spells.Water;
 }

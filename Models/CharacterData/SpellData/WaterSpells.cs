@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using LTSaveEd.ExtensionMethods;
 
 namespace LTSaveEd.Models.CharacterData.SpellData;
 
@@ -41,6 +42,8 @@ public class WaterSpells : ElementalSpells
     public Spell RainCloud { get; }
     public Spell SoothingWaters { get; }
     public Spell WaterElemental { get; }
+    public NullableSpell CleansingWaters { get; }
+    public NullableSpell DeepClean { get; }
 
     public WaterSpells(XElement knownSpellsNode, XElement spellUpgradesNode, XElement spellUpgradePointsNode) : base(knownSpellsNode, spellUpgradesNode)
     {
@@ -48,6 +51,32 @@ public class WaterSpells : ElementalSpells
         RainCloud = new Spell(RainCloudSpellTiers, knownSpellsNode, spellUpgradesNode);
         SoothingWaters= new Spell(SoothingWatersSpellTiers, knownSpellsNode, spellUpgradesNode);
         WaterElemental = new Spell(ElementalWaterSpellTiers, knownSpellsNode, spellUpgradesNode);
+        CleansingWaters = new NullableSpell(spellUpgradesNode, "SOOTHING_WATERS_1_CLEAN");
+        DeepClean = new NullableSpell(spellUpgradesNode, "SOOTHING_WATERS_2_CLEAN");
         UpgradePoints = GetUpgradePointNode(spellUpgradePointsNode, "WATER");
+
+        var spellUpgrades = spellUpgradesNode.Elements();
+        foreach (var spell in spellUpgrades)
+        {
+            var spellType = spell.GetAttributeValue<string>("type");
+            if (!spellType.EndsWith("CLEAN"))
+            {
+                continue;
+            }
+            
+            // SOOTHING_WATERS_2 < index: 16
+            switch (spellType[16])
+            {
+                case '1':
+                    CleansingWaters.Initialize(spell);
+                    break;
+                case '2':
+                    DeepClean.Initialize(spell);
+                    break;
+                default:
+                    Console.WriteLine($"Unknown Cleaning Spell Encountered: {spellType}");
+                    break;
+            }
+        }
     }
 }

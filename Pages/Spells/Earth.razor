@@ -1,44 +1,34 @@
 ﻿@page "/spells/earth"
+
 @using LTSaveEd.Models
-@using LTSaveEd.Models.CharacterData
 @using LTSaveEd.Models.CharacterData.SpellData
+
+@inherits BasePage
+
+@inject SaveData SaveData;
+
 <h3>Earth</h3>
 
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.Slam" Label="Slam"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.TelekineticShower" Label="Telekinetic Shower"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.StoneShell" Label="Stone Shell"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.EarthElemental" Label="Earth Elemental"/>
+        </MudItem>
+        <MudItem xs="3">
+            <IntField Attribute="@Spells.UpgradePoints" Label="Spell Points"/>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
 @code {
-
-    private SpellTier[] SlamSpellTiers { get; } =
-    [
-        new SpellTier("Unowned", "SLAM_UNOWNED"), new SpellTier("Base", "SLAM"),
-        new SpellTier("Ground Shake", "SLAM_1"), new SpellTier("Aftershock", "SLAM_2"),
-        new SpellTier("Earthquake", "SLAM_3")
-    ];
-
-    private SpellTier[] TelekineticShowerSpellTiers { get; } =
-    [
-        // Yes, that is how telekinetic is spelt in the save file
-        new SpellTier("Unowned", "TELEKENETIC_SHOWER_UNOWNED"),
-        new SpellTier("Base", "TELEKENETIC_SHOWER"),
-        new SpellTier("Mind Over Matter", "TELEKENETIC_SHOWER_1"),
-        new SpellTier("Precision Strikes", "TELEKENETIC_SHOWER_2"),
-        new SpellTier("Unseen Force", "TELEKENETIC_SHOWER_3")
-    ];
-
-    private SpellTier[] StoneShellSpellTiers { get; } =
-    [
-        new SpellTier("Unowned", "STONE_SHELL_UNOWNED"), new SpellTier("Base", "STONE_SHELL"),
-        new SpellTier("Shifting Sands", "STONE_SHELL_1"),
-        new SpellTier("Hardened Carapace", "STONE_SHELL_2"),
-        new SpellTier("Explosive Finish", "STONE_SHELL_3")
-    ];
-
-    private SpellTier[] ElementalEarthSpellTiers { get; } =
-    [
-        new SpellTier("Unowned", "ELEMENTAL_EARTH_UNOWNED"),
-        new SpellTier("Base", "ELEMENTAL_EARTH"),
-        new SpellTier("Rolling Stone", "ELEMENTAL_EARTH_1"),
-        new SpellTier("Hardening", "ELEMENTAL_EARTH_2"),
-        new SpellTier("Servant of Earth", "ELEMENTAL_EARTH_3A"),
-        new SpellTier("Binding of Earth", "ELEMENTAL_EARTH_3B")
-    ];
-
+    private EarthSpells Spells => SaveData.CurrentCharacter.Spells.Earth;
 }
