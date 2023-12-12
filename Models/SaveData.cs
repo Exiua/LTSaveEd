@@ -41,7 +41,7 @@ public class SaveData
             };
             CharacterIds.Add(new ValueDisplayPair(name, id.Value));
         }
-        Console.WriteLine(CharacterIds.Select(id => id.Value).ToFormattedString());
+        //Console.WriteLine(CharacterIds.Select(id => id.Value).ToFormattedString());
         LoadCharacter(CharacterIds[0]);
     }
 
