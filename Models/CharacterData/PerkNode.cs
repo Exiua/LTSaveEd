@@ -6,8 +6,7 @@ namespace LTSaveEd.Models.CharacterData;
 public class PerkNode : NullableXmlAttribute
 {
     public static event Action? OnActivenessChanged;
-    
-    private readonly XElement _parentNode;
+
     public string DisplayName { get; }
     public string Row { get; }
     public string Type { get; }
@@ -36,7 +35,6 @@ public class PerkNode : NullableXmlAttribute
     
     public PerkNode(string row, string type, string displayName, XElement parentNode) : base(parentNode)
     {
-        _parentNode = parentNode;
         DisplayName = displayName;
         Row = row;
         Type = type;
@@ -79,10 +77,10 @@ public class PerkNode : NullableXmlAttribute
         #endif
     }
 
-    protected override XElement CreateElement()
+    protected override XElement CreateNode()
     {
         var perkNode = new XElement("perk", new XAttribute("row", Row), new XAttribute("type", Type));
-        _parentNode.Add(perkNode);
+        Parent.Add(perkNode);
         return perkNode;
     }
 
@@ -109,23 +107,6 @@ public class PerkNode : NullableXmlAttribute
             child.Active = false;
         }
     }
-    
-    /*public static bool operator ==(PerkNode perkNode, XElement element)
-    {
-        var row = element.Attribute("row")?.Value;
-        var type = element.Attribute("type")?.Value;
-        if (row is null || type is null)
-        {
-            return false;
-        }
-        
-        return perkNode.Row == row && perkNode.Type == type;
-    }
-
-    public static bool operator !=(PerkNode perkNode, XElement element)
-    {
-        return !(perkNode == element);
-    }*/
 
     public override string ToString(){
         return $"PerkNode{{row={Row}, type='{Type}'}}";

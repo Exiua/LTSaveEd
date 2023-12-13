@@ -2,7 +2,7 @@
 
 namespace LTSaveEd.Models.CharacterData;
 
-public class Character(XElement characterNode)
+public class Character(XContainer characterNode)
 {
     public Core Core { get; } = new(characterNode.Element("core")!);
     public Attributes Attributes { get; } = new(characterNode.Element("attributes")!);

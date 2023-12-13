@@ -10,7 +10,7 @@ public class Family
     public CharacterShort Father { get; set; }
     public XmlDate DateOfConception { get; }
     
-    public Family(XElement familyNode)
+    public Family(XContainer familyNode)
     {
         Mother = new CharacterShort(familyNode, true);
         Father = new CharacterShort(familyNode, false);

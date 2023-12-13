@@ -7,11 +7,13 @@ public class Body
 {
     public BodyCore BodyCore { get; }
     public Head Head { get; }
+    public Face Face { get; }
 
 
     public Body(XElement bodyNode)
     {
         BodyCore = new BodyCore(bodyNode.Element("bodyCore")!, this);
         Head = new Head(bodyNode, this);
+        Face = new Face(bodyNode, this);
     }
 }

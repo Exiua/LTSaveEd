@@ -4,40 +4,48 @@ namespace LTSaveEd.Models.XmlData;
 
 public abstract class NullableXmlAttribute(XElement parent)
 {
-    private XElement Parent { get; } = parent;
-    protected XElement? Element { get; set; }
+    protected XElement Parent { get; } = parent;
+    protected XObject? Node { get; set; }
 
     public bool Exists
     {
-        get => Element is not null;
+        get => Node is not null;
         set
         {
             if (value)
             {
-                Element ??= CreateElement();
+                Node ??= CreateNode();
             }
             else
             {
-                if (Element is null)
+                if (Node is null)
                 {
                     return;
                 }
                 
-                DeleteElement();
+                DeleteNode();
             }
         }
     }
 
-    public void Initialize(XElement element)
+    public void Initialize(XObject element)
     {
-        Element = element;
+        Node = element;
     }
 
-    protected abstract XElement CreateElement();
+    protected abstract XObject CreateNode();
 
-    protected void DeleteElement()
+    private void DeleteNode()
     {
-        Element?.Remove();
-        Element = null;
+        switch (Node)
+        {
+            case XElement element:
+                element.Remove();
+                break;
+            case XAttribute attribute:
+                attribute.Remove();
+                break;
+        }
+        Node = null;
     }
 }

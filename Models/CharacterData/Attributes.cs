@@ -37,7 +37,7 @@ public class Attributes
     public XmlAttribute<float> IceDamage { get; } = null!;
     public XmlAttribute<float> PoisonDamage { get; } = null!;
 
-    public Attributes(XElement attributesNode)
+    public Attributes(XContainer attributesNode)
     {
         var attributes = attributesNode.Elements("attribute");
         var typesSet = AttributeType.None;
@@ -291,7 +291,7 @@ public class Attributes
         }
     }
 
-    private static XmlAttribute<float> CreateAttribute(string type, XElement attributesNode)
+    private static XmlAttribute<float> CreateAttribute(string type, XContainer attributesNode)
     {
         var valueAttribute = new XAttribute("value", "0.0");
         var element = new XElement("attribute", new XAttribute("type", type), valueAttribute);

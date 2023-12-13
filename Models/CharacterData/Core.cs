@@ -4,7 +4,7 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData;
 
-public class Core(XElement coreNode)
+public class Core(XContainer coreNode)
 {
     public XmlAttribute<string> Id { get; } = new(coreNode.GetChildsAttributeNode("id"));
     public Name Name { get; } = new(coreNode.Element("name")!, coreNode.Element("surname")!);

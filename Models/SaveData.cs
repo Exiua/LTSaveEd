@@ -6,20 +6,38 @@ namespace LTSaveEd.Models;
 
 public class SaveData
 {
-    public bool Initialized { get; private set; }
+    private bool _initialized;
+
+    public bool Initialized
+    {
+        get => _initialized;
+        private set
+        {
+            _initialized = value;
+            if (!value)
+            {
+                CharacterIds.Clear();
+                CharacterIds.Add(new ValueDisplayPair("Player", "PlayerCharacter"));
+                CharacterCache.Clear();
+            }
+        }
+    }
+
     public Character CurrentCharacter { get; private set; }= null!;
 
     internal XDocument SaveDataXml { get; private set; } = null!;
 
-    private List<ValueDisplayPair> CharacterIds { get; } = new(){ new ValueDisplayPair("Player", "PlayerCharacter") };
+    private List<ValueDisplayPair> CharacterIds { get; } = [new ValueDisplayPair("Player", "PlayerCharacter")];
     private Dictionary<string, Character> CharacterCache { get; } = new();
     
     
     public async Task Initialize(Stream data)
     {
+        Initialized = false;
         var cancellationToken = new CancellationToken();
         SaveDataXml = await XDocument.LoadAsync(data, LoadOptions.None, cancellationToken);
         PopulateCharacterIds();
+        LoadCharacter(CharacterIds[0]);
         Initialized = true;
     }
 
@@ -42,7 +60,6 @@ public class SaveData
             CharacterIds.Add(new ValueDisplayPair(name, id.Value));
         }
         //Console.WriteLine(CharacterIds.Select(id => id.Value).ToFormattedString());
-        LoadCharacter(CharacterIds[0]);
     }
 
     private void LoadCharacter(ValueDisplayPair characterIdPair)

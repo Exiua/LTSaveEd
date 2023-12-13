@@ -14,13 +14,7 @@ public class BodyCore : BodyComponent
         new ValueDisplayPair("Energy", "ENERGY")
     ];
 
-    public ValueDisplayPair[] PubicHairTypes { get;  } =
-    [
-        new ValueDisplayPair("None", "ZERO_NONE"), new ValueDisplayPair("Stubble", "ONE_STUBBLE"),
-        new ValueDisplayPair("Manicured", "TWO_MANICURED"), new ValueDisplayPair("Trimmed", "THREE_TRIMMED"),
-        new ValueDisplayPair("Natural", "FOUR_NATURAL"), new ValueDisplayPair("Unkempt", "FIVE_UNKEMPT"),
-        new ValueDisplayPair("Bushy", "SIX_BUSHY"), new ValueDisplayPair("Wild", "SEVEN_WILD")
-    ];
+    public ValueDisplayPair[] PubicHairTypes => Collections.HairTypes;
 
     public ValueDisplayPair[] SubspeciesOverrides { get; } =
     [

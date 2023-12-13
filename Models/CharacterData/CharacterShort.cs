@@ -18,7 +18,7 @@ public class CharacterShort
         Subspecies = subspecies;
     }
 
-    public CharacterShort(XElement familyNode, bool mother)
+    public CharacterShort(XContainer familyNode, bool mother)
     {
         string id;
         string name;

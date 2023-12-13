@@ -31,7 +31,7 @@ public class XmlDate
         }
     }
     
-    public XmlDate(XElement coreNode)
+    public XmlDate(XContainer coreNode)
     {
         Year = new XmlAttribute<int>(coreNode.GetChildsAttributeNode("yearOfBirth"));
         Month = new XmlAttribute<string>(coreNode.GetChildsAttributeNode("monthOfBirth"));

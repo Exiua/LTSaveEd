@@ -18,7 +18,7 @@ public static class XDocumentExtensionMethods
     /// <param name="childName">Name of child element to get</param>
     /// <param name="attributeName">Name of attribute of child element to get value of</param>
     /// <returns>Value of specified attribute</returns>
-    public static T GetChildsAttribute<T>(this XElement element, string childName, string attributeName = "value")
+    public static T GetChildsAttribute<T>(this XContainer element, string childName, string attributeName = "value")
     {
         var childElement = element.Element(childName) ?? throw new InvalidOperationException($"Child element not found: {childName}");
         var value = childElement.Attribute(attributeName)?.Value ?? throw new InvalidOperationException($"Attribute not found: {attributeName}");
@@ -31,7 +31,7 @@ public static class XDocumentExtensionMethods
         return (T)Convert.ChangeType(value, typeof(T));
     }
     
-    public static XAttribute GetChildsAttributeNode(this XElement element, string childName, string attributeName = "value")
+    public static XAttribute GetChildsAttributeNode(this XContainer element, string childName, string attributeName = "value")
     {
         var childElement = element.Element(childName) ?? throw new InvalidOperationException($"Child element not found: {childName}");
         var node = childElement.Attribute(attributeName) ?? throw new InvalidOperationException($"Attribute not found: {attributeName}");
@@ -60,5 +60,10 @@ public static class XDocumentExtensionMethods
     {
         var current = element.GetElementByChildSequence(childNames[..^1]);
         return current.Attribute(childNames[^1]) ?? throw new Exception($"Attribute not found: {childNames[^1]}");
+    }
+
+    public static IEnumerable<XAttribute> GetChildAttributes(this XElement element, string childName)
+    {
+        return element.Element(childName)!.Attributes();
     }
 }
