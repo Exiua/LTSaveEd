@@ -101,13 +101,20 @@
         await using var stream = file.OpenReadStream(file.Size + 1);
         var stopwatch = new Stopwatch();
         stopwatch.Start();
-        await SaveData.Initialize(stream);
+        var success = await SaveData.Initialize(stream);
         stopwatch.Stop();
         Console.WriteLine($"Loaded Save in {stopwatch.ElapsedMilliseconds} ms");
         StateHasChanged();
         Snackbar.Clear();
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
-        Snackbar.Add("Save Data Loaded!", Severity.Success);
+        if(success)
+        {
+            Snackbar.Add("Save Data Loaded!", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("Failed to Load Data!", Severity.Error);
+        }
     }
     
     private async Task SaveFile()

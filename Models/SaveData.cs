@@ -31,14 +31,14 @@ public class SaveData
     private Dictionary<string, Character> CharacterCache { get; } = new();
     
     
-    public async Task Initialize(Stream data)
+    public async Task<bool> Initialize(Stream data)
     {
         Initialized = false;
         var cancellationToken = new CancellationToken();
         SaveDataXml = await XDocument.LoadAsync(data, LoadOptions.None, cancellationToken);
         PopulateCharacterIds();
-        LoadCharacter(CharacterIds[0]);
-        Initialized = true;
+        Initialized = LoadCharacter(CharacterIds[0]);;
+        return Initialized;
     }
 
     private void PopulateCharacterIds()
@@ -62,17 +62,27 @@ public class SaveData
         //Console.WriteLine(CharacterIds.Select(id => id.Value).ToFormattedString());
     }
 
-    private void LoadCharacter(ValueDisplayPair characterIdPair)
+    private bool LoadCharacter(ValueDisplayPair characterIdPair)
     {
         var characterId = characterIdPair.Value;
         if (CharacterCache.TryGetValue(characterId, out var character))
         {
             CurrentCharacter = character;
-            return;
+            return true;
         }
-        
-        var characterNode = SaveDataXml.FindCharacterById(characterId);
-        CurrentCharacter = new Character(characterNode);
-        CharacterCache.Add(characterId, CurrentCharacter);
+
+        var previousCharacter = CurrentCharacter;
+        try
+        {
+            var characterNode = SaveDataXml.FindCharacterById(characterId);
+            CurrentCharacter = new Character(characterNode);
+            CharacterCache.Add(characterId, CurrentCharacter);
+            return true;
+        }
+        catch (Exception)
+        {
+            CurrentCharacter = previousCharacter;
+            return false;
+        }
     }
 }
