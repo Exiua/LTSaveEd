@@ -13,4 +13,8 @@
         <PackageReference Include="MudBlazor" Version="6.11.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\CharacterData\BodyData\TorsoData\" />
+    </ItemGroup>
+
 </Project>
