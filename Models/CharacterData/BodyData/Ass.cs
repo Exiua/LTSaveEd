@@ -1,6 +1,11 @@
-﻿namespace LTSaveEd.Models.CharacterData.BodyData;
+﻿using System.Xml.Linq;
 
-public class Ass
+namespace LTSaveEd.Models.CharacterData.BodyData;
+
+public class Ass : BodyComponent
 {
-    
+    public Ass(XElement bodyNode, Body body) : base(body)
+    {
+        
+    }
 }

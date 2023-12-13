@@ -1,6 +1,11 @@
-﻿namespace LTSaveEd.Models.CharacterData.BodyData;
+﻿using System.Xml.Linq;
 
-public class Vagina
+namespace LTSaveEd.Models.CharacterData.BodyData;
+
+public class Vagina : BodyComponent
 {
-    
+    public Vagina(XElement bodyNode, Body body) : base(body)
+    {
+        
+    }
 }

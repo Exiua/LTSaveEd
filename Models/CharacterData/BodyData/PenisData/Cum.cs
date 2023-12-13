@@ -1,12 +1,12 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.Models.XmlData;
 
-namespace LTSaveEd.Models.CharacterData.BodyData.BreastsData;
+namespace LTSaveEd.Models.CharacterData.BodyData.PenisData;
 
-public class Milk
+public class Cum
 {
-    public static ValueDisplayPair[] MilkFlavours => Collections.BodyFluidFlavours;
-
+    public static ValueDisplayPair[] CumFlavours => Collections.BodyFluidFlavours;
+    
     public XmlAttribute<string> Flavour { get; }
 
     #region Modifiers
@@ -23,22 +23,22 @@ public class Milk
 
     #endregion
     
-    public Milk(XElement milkNode)
+    public Cum(XElement cumNode)
     {
-        Flavour = new XmlAttribute<string>(milkNode.Attribute("flavour")!);
-
-        var milkModifiersNode = milkNode.Element("milkModifiers")!;
-        Musky = new BodyComponentModifier(milkModifiersNode, "MUSKY");
-        Viscous = new BodyComponentModifier(milkModifiersNode, "VISCOUS");
-        Sticky = new BodyComponentModifier(milkModifiersNode, "STICKY");
-        Slimy = new BodyComponentModifier(milkModifiersNode, "SLIMY");
-        Bubbling = new BodyComponentModifier(milkModifiersNode, "BUBBLING");
-        MineralOil = new BodyComponentModifier(milkModifiersNode, "MINERAL_OIL");
-        Alcoholic = new BodyComponentModifier(milkModifiersNode, "ALCOHOLIC");
-        Addictive = new BodyComponentModifier(milkModifiersNode, "ADDICTIVE");
-        Psychoactive = new BodyComponentModifier(milkModifiersNode, "HALLUCINOGENIC");
-
-        var modifiers = milkModifiersNode.Attributes();
+        Flavour = new XmlAttribute<string>(cumNode.Attribute("flavour")!);
+        
+        var cumModifiersNode = cumNode.Element("cumModifiers")!;
+        Musky = new BodyComponentModifier(cumModifiersNode, "MUSKY");
+        Viscous = new BodyComponentModifier(cumModifiersNode, "VISCOUS");
+        Sticky = new BodyComponentModifier(cumModifiersNode, "STICKY");
+        Slimy = new BodyComponentModifier(cumModifiersNode, "SLIMY");
+        Bubbling = new BodyComponentModifier(cumModifiersNode, "BUBBLING");
+        MineralOil = new BodyComponentModifier(cumModifiersNode, "MINERAL_OIL");
+        Alcoholic = new BodyComponentModifier(cumModifiersNode, "ALCOHOLIC");
+        Addictive = new BodyComponentModifier(cumModifiersNode, "ADDICTIVE");
+        Psychoactive = new BodyComponentModifier(cumModifiersNode, "HALLUCINOGENIC");
+        
+        var modifiers = cumModifiersNode.Attributes();
         foreach (var modifier in modifiers)
         {
             switch (modifier.Name.LocalName)
