@@ -1,0 +1,15 @@
+﻿@page "/body/breastscrotch"
+
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>BreastsCrotch</h3>
+
+<BreastsLayout Breasts="@BreastsCrotchData"/>
+
+@code {
+    private Models.CharacterData.BodyData.Breasts BreastsCrotchData => SaveData.CurrentCharacter.Body.BreastsCrotch;
+}
