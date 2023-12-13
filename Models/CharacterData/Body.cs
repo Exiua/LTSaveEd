@@ -10,6 +10,7 @@ public class Body
     public Face Face { get; }
     public Breasts Breasts { get; }
     public Breasts BreastsCrotch { get; }
+    public Torso Torso { get; }
 
 
     public Body(XElement bodyNode)
@@ -19,5 +20,6 @@ public class Body
         Face = new Face(bodyNode, this);
         Breasts = new Breasts(bodyNode.Element("breasts")!, bodyNode.Element("nipples")!, bodyNode.Element("milk")!, this, false);
         BreastsCrotch = new Breasts(bodyNode.Element("breastsCrotch")!, bodyNode.Element("nipplesCrotch")!, bodyNode.Element("milkCrotch")!, this, true);
+        Torso = new Torso(bodyNode, this);
     }
 }

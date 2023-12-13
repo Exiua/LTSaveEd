@@ -1,0 +1,116 @@
+﻿@page "/body/torso"
+             
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Torso</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudSimpleTable Elevation="0">
+                <tbody>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Torso</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@TorsoData.TorsoComponent.TorsoTypes"
+                                                        Attribute="@TorsoData.TorsoComponent.Type" Label="Type"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Tail</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Tail.Count" Label="Count"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Tail.Girth" Label="Girth"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@TorsoData.Tail.Length" Label="Length"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@TorsoData.Tail.TailTypes"
+                                                        Attribute="@TorsoData.Tail.Type" Label="Type"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Tentacle</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Tentacle.Count" Label="Count"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Tentacle.Girth" Label="Girth"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@TorsoData.Tentacle.Length" Label="Length"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@TorsoData.Tentacle.TentacleTypes"
+                                                        Attribute="@TorsoData.Tentacle.Type" Label="Type"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Eye</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Wing.Size" Label="Size"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@TorsoData.Wing.WingTypes"
+                                                        Attribute="@TorsoData.Wing.Type" Label="Type"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Spinneret</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@TorsoData.Spinneret.Capacity" Label="Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Spinneret.Depth" Label="Depth"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Spinneret.Elasticity" Label="Elasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Spinneret.Plasticity" Label="Plasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@TorsoData.Spinneret.StretchedCapacity" Label="Stretched Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Spinneret.Wetness" Label="Wetness"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@TorsoData.Spinneret.Virgin.Value"
+                                             Label="Virgin" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Arm</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@TorsoData.Arm.Rows" Label="Rows"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@TorsoData.Arm.ArmTypes"
+                                                        Attribute="@TorsoData.Arm.Type" Label="Type"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@TorsoData.Arm.UnderArmHairTypes"
+                                                        Attribute="@TorsoData.Arm.UnderarmHair" Label="Underarm Hair"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                </tbody>
+            </MudSimpleTable>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Models.CharacterData.BodyData.Torso TorsoData => SaveData.CurrentCharacter.Body.Torso;
+}
