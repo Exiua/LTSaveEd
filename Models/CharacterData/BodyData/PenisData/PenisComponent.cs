@@ -106,7 +106,7 @@ public class PenisComponent
         Pierced = new XmlAttribute<bool>(penisNode.Attribute("pierced")!);
         UrethraVirgin = new XmlAttribute<bool>(penisNode.Attribute("urethraVirgin")!);
         Virgin = new XmlAttribute<bool>(penisNode.Attribute("virgin")!);
-
+        
         var penisModifiersNode = penisNode.Element("penisModifiers")!;
         Sheathed = new BodyComponentModifier(penisModifiersNode, "SHEATHED");
         Ribbed = new BodyComponentModifier(penisModifiersNode, "RIBBED");

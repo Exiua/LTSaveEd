@@ -11,8 +11,8 @@ public class Penis : BodyComponent
     
     public Penis(XElement bodyNode, Body body) : base(body)
     {
-        PenisComponent = new PenisComponent(bodyNode);
-        Testicles = new Testicles(bodyNode);
-        Cum = new Cum(bodyNode);
+        PenisComponent = new PenisComponent(bodyNode.Element("penis")!);
+        Testicles = new Testicles(bodyNode.Element("testicles")!);
+        Cum = new Cum(bodyNode.Element("cum")!);
     }
 }

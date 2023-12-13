@@ -43,7 +43,7 @@ public class VaginaComponent
     public XmlAttribute<int> UrethraDepth { get; }
     public XmlAttribute<int> UrethraElasticity { get; }
     public XmlAttribute<int> UrethraPlasticity { get; }
-    public XmlAttribute<int> UrethraStretchedCapacity { get; }
+    public XmlAttribute<float> UrethraStretchedCapacity { get; }
     public XmlAttribute<int> Wetness { get; }
     public XmlAttribute<string> Type { get; }
     public XmlAttribute<bool> EggLayer { get; }
@@ -127,7 +127,7 @@ public class VaginaComponent
         UrethraDepth = new XmlAttribute<int>(vaginaNode.Attribute("urethraDepth")!);
         UrethraElasticity = new XmlAttribute<int>(vaginaNode.Attribute("urethraElasticity")!);
         UrethraPlasticity = new XmlAttribute<int>(vaginaNode.Attribute("urethraPlasticity")!);
-        UrethraStretchedCapacity = new XmlAttribute<int>(vaginaNode.Attribute("urethraStretchedCapacity")!);
+        UrethraStretchedCapacity = new XmlAttribute<float>(vaginaNode.Attribute("urethraStretchedCapacity")!);
         Wetness = new XmlAttribute<int>(vaginaNode.Attribute("wetness")!);
         Type = new XmlAttribute<string>(vaginaNode.Attribute("type")!);
         EggLayer = new XmlAttribute<bool>(vaginaNode.Attribute("eggLayer")!);
