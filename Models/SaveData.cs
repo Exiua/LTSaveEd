@@ -19,6 +19,7 @@ public class SaveData
                 CharacterIds.Clear();
                 CharacterIds.Add(new ValueDisplayPair("Player", "PlayerCharacter"));
                 CharacterCache.Clear();
+                IdNameLookup.Clear();
             }
         }
     }
@@ -27,8 +28,9 @@ public class SaveData
 
     internal XDocument SaveDataXml { get; private set; } = null!;
 
-    private List<ValueDisplayPair> CharacterIds { get; } = [new ValueDisplayPair("Player", "PlayerCharacter")];
+    public List<ValueDisplayPair> CharacterIds { get; } = [new ValueDisplayPair("Player", "PlayerCharacter")];
     private Dictionary<string, Character> CharacterCache { get; } = new();
+    private Dictionary<string, string> IdNameLookup { get; } = new();
     
     
     public async Task<bool> Initialize(Stream data)
@@ -37,7 +39,7 @@ public class SaveData
         var cancellationToken = new CancellationToken();
         SaveDataXml = await XDocument.LoadAsync(data, LoadOptions.None, cancellationToken);
         PopulateCharacterIds();
-        Initialized = LoadCharacter(CharacterIds[0]);;
+        Initialized = LoadCharacter(CharacterIds[0]);
         return Initialized;
     }
 
@@ -58,6 +60,7 @@ public class SaveData
                 > 60 => nameElement.Attribute("nameFeminine")!.Value
             };
             CharacterIds.Add(new ValueDisplayPair(name, id.Value));
+            IdNameLookup.Add(id.Value, name);
         }
         //Console.WriteLine(CharacterIds.Select(id => id.Value).ToFormattedString());
     }
@@ -75,7 +78,7 @@ public class SaveData
         try
         {
             var characterNode = SaveDataXml.FindCharacterById(characterId);
-            CurrentCharacter = new Character(characterNode);
+            CurrentCharacter = new Character(characterNode, IdNameLookup);
             CharacterCache.Add(characterId, CurrentCharacter);
             return true;
         }
@@ -84,5 +87,10 @@ public class SaveData
             CurrentCharacter = previousCharacter;
             return false;
         }
+    }
+
+    public string GetCharacterName(string characterId)
+    {
+        return IdNameLookup[characterId];
     }
 }
