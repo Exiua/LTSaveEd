@@ -14,7 +14,7 @@
     [Parameter] public required string Label { get; set; }
     [Parameter] public required XmlAttribute<string> Attribute { get; set; }
 
-    private ValueDisplayPair CurrentValue
+    protected ValueDisplayPair CurrentValue
     {
         get => _currentValue;
         set

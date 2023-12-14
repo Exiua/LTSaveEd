@@ -1,4 +1,4 @@
-﻿namespace LTSaveEd.Models.CharacterData;
+﻿namespace LTSaveEd.Models.CharacterData.BodyData;
 
 public class LegTypeValueDisplayPair(string displayValue, string value, ValueDisplayPair[] legConfigurations, ValueDisplayPair[] footStructures,
     ValueDisplayPair[] genitalArrangements) : ValueDisplayPair(displayValue, value)

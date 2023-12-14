@@ -1,0 +1,44 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.BodyData.AssData
+
+@inherits ValueDisplayPairSelect
+
+@code {
+    [Parameter] public required Leg Leg { get; set; }
+    [Parameter] public LegComponentType LegComponentType { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Leg.OnLegTypeChanged += LegTypeUpdated;
+    }
+
+    private void LegTypeUpdated(ValueDisplayPair? newLegConfiguration, ValueDisplayPair? newFootStructure, ValueDisplayPair? newGenitalArrangement)
+    {
+        switch (LegComponentType)
+        {
+            case LegComponentType.None:
+                break;
+            case LegComponentType.LegConfiguration:
+                if (newLegConfiguration is not null)
+                {
+                    CurrentValue = newLegConfiguration;
+                }
+                break;
+            case LegComponentType.FootStructure:
+                if (newFootStructure is not null)
+                {
+                    CurrentValue = newFootStructure;
+                }
+                break;
+            case LegComponentType.GenitalArrangement:
+                if (newGenitalArrangement is not null)
+                {
+                    CurrentValue = newGenitalArrangement;
+                }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+}

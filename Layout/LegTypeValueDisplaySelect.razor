@@ -1,0 +1,14 @@
+﻿@using LTSaveEd.Models.CharacterData.BodyData
+
+<MudSelect T="LegTypeValueDisplayPair" @bind-Value="@Attribute" Label="@Label" AnchorOrigin="Origin.BottomCenter">
+    @foreach (var value in Values)
+    {
+        <MudSelectItem Value="@value"/>
+    }
+</MudSelect>
+
+@code {
+    [Parameter] public required IEnumerable<LegTypeValueDisplayPair> Values { get; set; }
+    [Parameter] public required string Label { get; set; }
+    [Parameter] public required LegTypeValueDisplayPair Attribute { get; set; }
+}
