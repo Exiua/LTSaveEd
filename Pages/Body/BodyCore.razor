@@ -1,6 +1,7 @@
 ﻿@page "/body/bodycore"
 
 @using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.BodyData.AssData
 
 @inherits BasePage
 
@@ -24,7 +25,9 @@
                 <MudCheckBox @bind-Checked="@BodyCoreData.Feral.Value" Label="Feral" LabelPosition="LabelPosition.Start"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                @*<ValueDisplayPairSelect Values="@BodyCoreData.G" Attribute="@BodyCoreData.BodyMaterial" Label="Body Material"/>*@
+                <LegRelatedValueDisplayPairSelect Values="@Leg.GenitalArrangements"
+                                                  Attribute="@BodyCoreData.GenitalArrangement" Label="Genital Arrangement"
+                                                  Leg="@Leg" LegComponentType="LegComponentType.GenitalArrangement"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <IntField Attribute="@BodyCoreData.Height" Label="Height"/>
@@ -50,4 +53,5 @@
 
 @code {
     private Models.CharacterData.BodyData.BodyCore BodyCoreData => SaveData.CurrentCharacter.Body.BodyCore;
+    private Leg Leg => SaveData.CurrentCharacter.Body.Ass.Leg;
 }

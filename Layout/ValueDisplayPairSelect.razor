@@ -10,6 +10,7 @@
 
 @code {
     private ValueDisplayPair _currentValue = null!;
+    
     [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
     [Parameter] public required string Label { get; set; }
     [Parameter] public required XmlAttribute<string> Attribute { get; set; }

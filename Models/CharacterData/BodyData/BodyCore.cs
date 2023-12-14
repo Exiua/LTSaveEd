@@ -25,7 +25,7 @@ public class BodyCore : BodyComponent
         new ValueDisplayPair("Cow Morph", "COW_MORPH"), new ValueDisplayPair("Dog Morph", "DOG_MORPH"),
         new ValueDisplayPair("Dog Morph Border Collie", "DOG_MORPH_BORDER_COLLIE"),
         new ValueDisplayPair("Dog Morph Dobermann", "DOG_MORPH_DOBERMANN"),
-        new ValueDisplayPair("Dog Morph German Shepherd", "DOG_MORPH_GERMAN_SHEPHERD"),
+        new ValueDisplayPair("Dog Morph German Shepherd", "DOG_MORPH_GERMAN_SHEPHERD"), new ValueDisplayPair("Dragon Morph", "dsg_dragon_subspecies_dragon"),
         new ValueDisplayPair("Wolf Morph", "WOLF_MORPH"), new ValueDisplayPair("Fox Morph", "FOX_MORPH"),
         new ValueDisplayPair("Fox Morph Arctic", "FOX_MORPH_ARCTIC"),
         new ValueDisplayPair("Fox Morph Fennec", "FOX_MORPH_FENNEC"),

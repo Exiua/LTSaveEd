@@ -18,6 +18,9 @@
                         <td style="border-bottom: none; vertical-align: top;">
                             <h4 style="text-decoration: underline; text-align: center"><b>Leg</b></h4>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@AssData.Leg.TailLength" Label="Tail Length"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                                 <LegRelatedValueDisplayPairSelect Values="@AssData.Leg.LegConfigurations"
                                                                   Attribute="@AssData.Leg.Configuration" Label="Configuration"
                                                                   Leg="@AssData.Leg" LegComponentType="LegComponentType.LegConfiguration"/>
@@ -29,7 +32,8 @@
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                                 <LegTypeValueDisplaySelect Values="@Leg.LegTypes"
-                                                           Attribute="@AssData.Leg.LegType" Label="Type"/>
+                                                           @bind-Attribute="@AssData.Leg.LegType" 
+                                                           Label="Type"/>
                             </MudPaper>
                         </td>
                         <td style="border-bottom: none; vertical-align: top;">

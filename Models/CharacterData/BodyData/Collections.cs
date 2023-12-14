@@ -127,7 +127,7 @@ public static class Collections
             new LegTypeValueDisplayPair("Dog", "DOG_MORPH", _legConfigurationsBQ, _footStructuresPD, GenitalArrangementsNCR, "DIGITIGRADE"),
             new LegTypeValueDisplayPair("Dragon", "dsg_dragon_leg", _legConfigurationsBQSM, _footStructuresPD, GenitalArrangementsNCR, "DIGITIGRADE"),
             new LegTypeValueDisplayPair("Ferret", "dsg_ferret_leg", _legConfigurationsBQ, _footStructuresPD, GenitalArrangementsNCR),
-            new LegTypeValueDisplayPair("Fox", "FOX_MORPH", _legConfigurationsBQ, _legConfigurationsBQ, _footStructuresPD, "DIGITIGRADE"),
+            new LegTypeValueDisplayPair("Fox", "FOX_MORPH", _legConfigurationsBQ, _footStructuresPD, GenitalArrangementsNCR, "DIGITIGRADE"),
             new LegTypeValueDisplayPair("Goat", "innoxia_goat_leg", _legConfigurationsBQ, _footStructuresU, GenitalArrangementsNCR),
             new LegTypeValueDisplayPair("Gryphon", "dsg_gryphon_leg", _legConfigurationsBQ, _footStructuresPD, GenitalArrangementsNCR, "DIGITIGRADE"),
             new LegTypeValueDisplayPair("Harpy", "HARPY", _legConfigurationsBAv, _footStructuresD, GenitalArrangementsNCR),
