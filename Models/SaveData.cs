@@ -25,6 +25,7 @@ public class SaveData
     }
 
     public Character CurrentCharacter { get; private set; }= null!;
+    public World WorldData { get; private set; } = null!;
 
     internal XDocument SaveDataXml { get; private set; } = null!;
 
@@ -39,6 +40,9 @@ public class SaveData
         Initialized = false;
         var cancellationToken = new CancellationToken();
         SaveDataXml = await XDocument.LoadAsync(data, LoadOptions.None, cancellationToken);
+        var coreInfoNode = SaveDataXml.Descendants("coreInfo").First();
+        var dialogueFlagsNode = SaveDataXml.Descendants("dialogueFlags").First();
+        WorldData = new World(coreInfoNode, dialogueFlagsNode);
         PopulateCharacterIds();
         Initialized = LoadCharacter(CharacterIds[0]);
         return Initialized;
