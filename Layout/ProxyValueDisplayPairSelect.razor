@@ -1,7 +1,6 @@
 ﻿@using LTSaveEd.Models
-@using LTSaveEd.Models.XmlData
 
-<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="@Label" ReadOnly="@ReadOnly" AnchorOrigin="Origin.BottomCenter">
+<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
     @foreach (var value in Values)
     {
         <MudSelectItem Value="@value"/>
@@ -13,8 +12,8 @@
     
     [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
     [Parameter] public required string Label { get; set; }
-    [Parameter] public required XmlAttribute<string> Attribute { get; set; }
-    [Parameter] public bool ReadOnly { get; set; }
+    [Parameter] public required string Attribute { get; set; }
+    [Parameter] public EventCallback<string> AttributeChanged { get; set; }
 
     protected ValueDisplayPair CurrentValue
     {
@@ -22,7 +21,8 @@
         set
         {
             _currentValue = value;
-            Attribute.Value = _currentValue.Value;
+            Attribute = _currentValue.Value;
+            AttributeChanged.InvokeAsync(_currentValue.Value);
         }
     }
 
@@ -30,7 +30,7 @@
     {
         foreach (var value in Values)
         {
-            if (value.Value != Attribute.Value)
+            if (value.Value != Attribute)
             {
                 continue;
             }

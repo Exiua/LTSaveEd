@@ -31,6 +31,7 @@ public class SaveData
     public List<ValueDisplayPair> CharacterIds { get; } = [new ValueDisplayPair("Player", "PlayerCharacter")];
     private Dictionary<string, Character> CharacterCache { get; } = new();
     private Dictionary<string, string> IdNameLookup { get; } = new();
+    private Dictionary<string, XElement> IdCharacterLookup { get; } = new();
     
     
     public async Task<bool> Initialize(Stream data)
@@ -45,6 +46,10 @@ public class SaveData
 
     private void PopulateCharacterIds()
     {
+        var playerNode = SaveDataXml.Descendants("playerCharacter").First().Element("character")!;
+        IdNameLookup.Add("PlayerCharacter", "Player");
+        IdCharacterLookup.Add("PlayerCharacter", playerNode);
+        
         var characterIdNodes = SaveDataXml.Descendants("NPC").Select(npc => npc.Descendants("id").First());
         foreach (var idNode in characterIdNodes)
         {
@@ -59,12 +64,29 @@ public class SaveData
                 >= 40 and <= 60 => nameElement.Attribute("nameAndrogynous")!.Value,
                 > 60 => nameElement.Attribute("nameFeminine")!.Value
             };
-            CharacterIds.Add(new ValueDisplayPair(name, id.Value));
-            IdNameLookup.Add(id.Value, name);
+            var idValue = id.Value;
+            CharacterIds.Add(new ValueDisplayPair(name, idValue));
+            IdNameLookup.Add(idValue, name);
+            IdCharacterLookup.Add(idValue, character);
         }
         //Console.WriteLine(CharacterIds.Select(id => id.Value).ToFormattedString());
     }
 
+    private XElement GetCharacterNode(string characterId)
+    {
+        return IdCharacterLookup[characterId];
+    }
+
+    public CharacterShortData GetCharacterShortData(string characterId)
+    {
+        if (CharacterCache.TryGetValue(characterId, out var character))
+        {
+            return character.Shorten();
+        }
+        var characterNode = GetCharacterNode(characterId);
+        return new CharacterShortData(characterNode);
+    }
+    
     private bool LoadCharacter(ValueDisplayPair characterIdPair)
     {
         var characterId = characterIdPair.Value;
@@ -77,13 +99,14 @@ public class SaveData
         var previousCharacter = CurrentCharacter;
         try
         {
-            var characterNode = SaveDataXml.FindCharacterById(characterId);
+            var characterNode = GetCharacterNode(characterId);
             CurrentCharacter = new Character(characterNode, IdNameLookup);
             CharacterCache.Add(characterId, CurrentCharacter);
             return true;
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            Console.WriteLine(e);
             CurrentCharacter = previousCharacter;
             return false;
         }

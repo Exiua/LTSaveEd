@@ -1,24 +1,17 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
+using LTSaveEd.Models.XmlData;
 
-namespace LTSaveEd.Models.CharacterData;
+namespace LTSaveEd.Models;
 
 public class CharacterShort
 {
-    public string Id { get; set; }
-    public string Name { get; set; }
-    public string Femininity { get; set; }
-    public string Subspecies { get; set; }
+    public XmlAttribute<string> Id { get; set; }
+    public XmlAttribute<string> Name { get; set; }
+    public XmlAttribute<string> Femininity { get; set; }
+    public XmlAttribute<string> Subspecies { get; set; }
 
-    public CharacterShort(string id, string name, string femininity, string subspecies)
-    {
-        Id = id;
-        Name = name;
-        Femininity = femininity;
-        Subspecies = subspecies;
-    }
-
-    public CharacterShort(XContainer familyNode, bool mother)
+    public CharacterShort(XElement familyNode, bool mother)
     {
         string id;
         string name;
@@ -38,9 +31,9 @@ public class CharacterShort
             femininity = "fatherFemininity";
             subspecies = "fatherSubspecies";
         }
-        Id = familyNode.GetChildsAttribute<string>(id);
-        Name = familyNode.GetChildsAttribute<string>(name);
-        Femininity = familyNode.GetChildsAttribute<string>(femininity);
-        Subspecies = familyNode.GetChildsAttribute<string>(subspecies);
+        Id = new XmlAttribute<string>(familyNode.GetChildsAttributeNode(id));
+        Name = new XmlAttribute<string>(familyNode.GetChildsAttributeNode(name));
+        Femininity = new XmlAttribute<string>(familyNode.GetChildsAttributeNode(femininity));
+        Subspecies = new XmlAttribute<string>(familyNode.GetChildsAttributeNode(subspecies));
     }
 }

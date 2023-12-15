@@ -75,7 +75,61 @@ public static class Collections
     private static ValueDisplayPair[]  genitalArrangementsR;
     
     public static LegTypeValueDisplayPair[] LegTypes { get; }
+
+    public static ValueDisplayPair[] FemininityValues { get; } =
+    [
+        new ValueDisplayPair("Very Masculine", "VERY_MASCULINE"),
+        new ValueDisplayPair("Masculine", "MASCULINE"), new ValueDisplayPair("Androgynous", "ANDROGYNOUS"),
+        new ValueDisplayPair("Feminine", "FEMININE"), new ValueDisplayPair("Very Feminine", "VERY_FEMININE")
+    ];
     
+    public static ValueDisplayPair[] SubspeciesOverrides { get; } =
+    [
+        new ValueDisplayPair("Human", "HUMAN"), new ValueDisplayPair("Angel", "ANGEL"),
+        new ValueDisplayPair("Elder Lilin", "ELDER_LILIN"), new ValueDisplayPair("Lilin", "LILIN"),
+        new ValueDisplayPair("Demon", "DEMON"), new ValueDisplayPair("Half Demon", "HALF_DEMON"),
+        new ValueDisplayPair("Imp", "IMP"), new ValueDisplayPair("Imp Alpha", "IMP_ALPHA"),
+        new ValueDisplayPair("Cow Morph", "COW_MORPH"), new ValueDisplayPair("Dog Morph", "DOG_MORPH"),
+        new ValueDisplayPair("Dog Morph Border Collie", "DOG_MORPH_BORDER_COLLIE"),
+        new ValueDisplayPair("Dog Morph Dobermann", "DOG_MORPH_DOBERMANN"),
+        new ValueDisplayPair("Dog Morph German Shepherd", "DOG_MORPH_GERMAN_SHEPHERD"), new ValueDisplayPair("Dragon Morph", "dsg_dragon_subspecies_dragon"),
+        new ValueDisplayPair("Wolf Morph", "WOLF_MORPH"), new ValueDisplayPair("Fox Morph", "FOX_MORPH"),
+        new ValueDisplayPair("Fox Morph Arctic", "FOX_MORPH_ARCTIC"),
+        new ValueDisplayPair("Fox Morph Fennec", "FOX_MORPH_FENNEC"),
+        new ValueDisplayPair("Fox Ascendant", "FOX_ASCENDANT"),
+        new ValueDisplayPair("Fox Ascendant Arctic", "FOX_ASCENDANT_ARCTIC"),
+        new ValueDisplayPair("Fox Ascendant Fennec", "FOX_ASCENDANT_FENNEC"),
+        new ValueDisplayPair("Cat Morph", "CAT_MORPH"),
+        new ValueDisplayPair("Cat Morph Lynx", "CAT_MORPH_LYNX"),
+        new ValueDisplayPair("Cat Morph Cheetah", "CAT_MORPH_CHEETAH"),
+        new ValueDisplayPair("Cat Morph Caracal", "CAT_MORPH_CARACAL"),
+        new ValueDisplayPair("Cat Morph Leopard Snow", "CAT_MORPH_LEOPARD_SNOW"),
+        new ValueDisplayPair("Cat Morph Leopard", "CAT_MORPH_LEOPARD"),
+        new ValueDisplayPair("Cat Morph Lion", "CAT_MORPH_LION"),
+        new ValueDisplayPair("Cat Morph Tiger", "CAT_MORPH_TIGER"),
+        new ValueDisplayPair("Horse Morph", "HORSE_MORPH"),
+        new ValueDisplayPair("Horse Morph Unicorn", "HORSE_MORPH_UNICORN"),
+        new ValueDisplayPair("Horse Morph Pegasus", "HORSE_MORPH_PEGASUS"),
+        new ValueDisplayPair("Horse Morph Alicorn", "HORSE_MORPH_ALICORN"),
+        new ValueDisplayPair("Centaur", "CENTAUR"), new ValueDisplayPair("Pegataur", "PEGATAUR"),
+        new ValueDisplayPair("Unitaur", "UNITAUR"), new ValueDisplayPair("Alitaur", "ALITAUR"),
+        new ValueDisplayPair("Horse Morph Zebra", "HORSE_MORPH_ZEBRA"),
+        new ValueDisplayPair("Reindeer Morph", "REINDEER_MORPH"),
+        new ValueDisplayPair("Alligator Morph", "ALLIGATOR_MORPH"), new ValueDisplayPair("Slime", "SLIME"),
+        new ValueDisplayPair("Squirrel Morph", "SQUIRREL_MORPH"),
+        new ValueDisplayPair("Rat Morph", "RAT_MORPH"), new ValueDisplayPair("Rabbit Morph", "RABBIT_MORPH"),
+        new ValueDisplayPair("Rabbit Morph Lop", "RABBIT_MORPH_LOP"),
+        new ValueDisplayPair("Bat Morph", "BAT_MORPH"), new ValueDisplayPair("Harpy", "HARPY"),
+        new ValueDisplayPair("Harpy Raven", "HARPY_RAVEN"),
+        new ValueDisplayPair("Harpy Bald Eagle", "HARPY_BALD_EAGLE"),
+        new ValueDisplayPair("Harpy Phoenix", "HARPY_PHOENIX"),
+        new ValueDisplayPair("Elemental Fire", "ELEMENTAL_FIRE"),
+        new ValueDisplayPair("Elemental Earth", "ELEMENTAL_EARTH"),
+        new ValueDisplayPair("Elemental Water", "ELEMENTAL_WATER"),
+        new ValueDisplayPair("Elemental Air", "ELEMENTAL_AIR"),
+        new ValueDisplayPair("Elemental Arcane", "ELEMENTAL_ARCANE"), new ValueDisplayPair("Badger", "innoxia_badger_subspecies_badger")
+    ]; //TODO Check if these are all subspecies in the game
+
     static Collections()
     {
         #region Leg Configuration Initialization

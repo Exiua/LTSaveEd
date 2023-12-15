@@ -39,10 +39,10 @@
                 <MudCheckBox @bind-Checked="@BodyCoreData.PiercedStomach.Value" Label="Pierced Stomach" LabelPosition="LabelPosition.Start"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <ValueDisplayPairSelect Values="@BodyCoreData.PubicHairTypes" Attribute="@BodyCoreData.PubicHair" Label="Pubic Hair"/>
+                <ValueDisplayPairSelect Values="@Models.CharacterData.BodyData.BodyCore.PubicHairTypes" Attribute="@BodyCoreData.PubicHair" Label="Pubic Hair"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <ValueDisplayPairSelect Values="@BodyCoreData.SubspeciesOverrides" Attribute="@BodyCoreData.SubspeciesOverride" Label="Subspecies Override"/>
+                <ValueDisplayPairSelect Values="@Models.CharacterData.BodyData.BodyCore.SubspeciesOverrides" Attribute="@BodyCoreData.SubspeciesOverride" Label="Subspecies Override"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <MudCheckBox @bind-Checked="@BodyCoreData.TakesAfterMother.Value" Label="Takes After Mother" LabelPosition="LabelPosition.Start"/>

@@ -4,12 +4,56 @@
 
 @inherits BasePage
 
-@inject NavigationManager NavigationManager
 @inject SaveData SaveData
 
 <h3>Family</h3>
 
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudSimpleTable Elevation="0">
+                <tbody>
+                <tr>
+                    <td>
+                        <ParentField Parents="@_availableParents" ParentData="@FamilyData.Mother" Mother="true"
+                                     LoadCharacterAction="@LoadCharacterAsParent" />
+                    </td>
+                    <td>
+                        <ParentField Parents="@_availableParents" ParentData="@FamilyData.Father" Mother="false"
+                                     LoadCharacterAction="@LoadCharacterAsParent" />
+                    </td>
+                </tr>
+                </tbody>
+            </MudSimpleTable>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
 @code {
     private Models.CharacterData.Family FamilyData => SaveData.CurrentCharacter.Family;
-    
+    private ValueDisplayPair[] _availableParents = [];
+
+    protected override void OnInitialized()
+    {
+        _availableParents = [new ValueDisplayPair("Unknown", ""), ..SaveData.CharacterIds];
+    }
+
+    private void LoadCharacterAsParent(string characterId, bool mother)
+    {
+        var characterData = SaveData.GetCharacterShortData(characterId);
+        if (mother)
+        {
+            FamilyData.Mother.Id.Value = characterData.Id;
+            FamilyData.Mother.Name.Value = characterData.Name;
+            FamilyData.Mother.Femininity.Value = characterData.Femininity;
+            FamilyData.Mother.Subspecies.Value = characterData.Subspecies;
+        }
+        else
+        {
+            FamilyData.Father.Id.Value = characterData.Id;
+            FamilyData.Father.Name.Value = characterData.Name;
+            FamilyData.Father.Femininity.Value = characterData.Femininity;
+            FamilyData.Father.Subspecies.Value = characterData.Subspecies;
+        }
+    }
 }

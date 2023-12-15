@@ -16,4 +16,38 @@ public class Character(XContainer characterNode, Dictionary<string, string> idNa
     public Family Family { get; } = new(characterNode.Element("family")!);
 
     public bool IsPlayer => Core.Id.Value == "PlayerCharacter";
+
+    public CharacterShortData Shorten()
+    {
+        var id = Core.Id.Value;
+        var femininityValue = Body.BodyCore.Femininity.Value;
+        var names = Core.Name;
+        var subspecies = Body.BodyCore.SubspeciesOverride.Value;
+        string femininity;
+        string name;
+        switch (femininityValue)
+        {
+            case < 20:
+                femininity = "VERY_MASCULINE";
+                name = names.Masculine.Value;
+                break;
+            case >= 20 and < 40:
+                femininity = "MASCULINE";
+                name = names.Masculine.Value;
+                break;
+            case >= 40 and < 60:
+                femininity = "ANDROGYNOUS";
+                name = names.Androgynous.Value;
+                break;
+            case >= 60 and < 80:
+                femininity = "FEMININE";
+                name = names.Feminine.Value;
+                break;
+            case >= 80:
+                femininity = "VERY_FEMININE";
+                name = names.Feminine.Value;
+                break;
+        }
+        return new CharacterShortData(id, name, femininity, subspecies);
+    }
 }
