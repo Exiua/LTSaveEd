@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
-using LTSaveEd.Models.CharacterData;
 
 namespace LTSaveEd.Models;
 
@@ -26,7 +25,8 @@ public class SaveData
 
     public Character CurrentCharacter { get; private set; }= null!;
     public World WorldData { get; private set; } = null!;
-
+    public Offsprings Offsprings { get; private set; } = null!;
+    
     internal XDocument SaveDataXml { get; private set; } = null!;
 
     public List<ValueDisplayPair> CharacterIds { get; } = [new ValueDisplayPair("Player", "PlayerCharacter")];
@@ -43,6 +43,7 @@ public class SaveData
         var coreInfoNode = SaveDataXml.Descendants("coreInfo").First();
         var dialogueFlagsNode = SaveDataXml.Descendants("dialogueFlags").First();
         WorldData = new World(coreInfoNode, dialogueFlagsNode);
+        Offsprings = new Offsprings(SaveDataXml.Descendants("OffspringSeed"), GetCharacterNode);
         PopulateCharacterIds();
         Initialized = LoadCharacter(CharacterIds[0]);
         return Initialized;
@@ -110,6 +111,9 @@ public class SaveData
         }
         catch (Exception e)
         {
+            #if DEBUG
+            throw;
+            #endif
             Console.WriteLine(e);
             CurrentCharacter = previousCharacter;
             return false;
