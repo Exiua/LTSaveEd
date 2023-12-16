@@ -4,11 +4,39 @@
 
 @inherits BasePage
 
-@inject NavigationManager NavigationManager
 @inject SaveData SaveData
 
 <h3>Extra</h3>
 
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudPaper Class="d-flex gap-4 mr-10 pa-4" Elevation="0">
+                <MudButton Color="Color.Default" Variant="Variant.Filled"
+                           OnClick="@Offsprings.RemoveAllOffsprings">Delete All Offsprings</MudButton>
+                <MudButton Color="Color.Default" Variant="Variant.Filled"
+                           OnClick="@RevealMap">Reveal All Map Tiles</MudButton>
+            </MudPaper>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
 @code {
+    private Models.Offsprings Offsprings => SaveData.Offsprings;
     
+    private void RevealMap() {
+        var mapsNode = SaveData.GetElement("maps");
+        var worlds = mapsNode.Elements();
+        foreach (var world in worlds)
+        {
+            var grid = world.Element("grid")!;
+            var cells = grid.Elements();
+            foreach (var cell in cells)
+            {
+                cell.Attribute("discovered")!.Value = "true";
+                cell.Attribute("travelledTo")!.Value = "true";
+            }
+        }
+        Console.WriteLine("Revealed all map tiles");
+    }
 }

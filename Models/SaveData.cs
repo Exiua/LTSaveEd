@@ -124,4 +124,9 @@ public class SaveData
     {
         return IdNameLookup[characterId];
     }
+
+    public XElement GetElement(string elementName)
+    {
+        return SaveDataXml.Descendants(elementName).First();
+    }
 }
