@@ -1,6 +1,6 @@
-﻿using LTSaveEd.Models.XmlData;
+﻿using LTSaveEd.Models.CharacterData.BodyData;
 
-namespace LTSaveEd.Models.CharacterData.BodyData;
+namespace LTSaveEd.Models.CharacterData;
 
 public static class Collections
 {

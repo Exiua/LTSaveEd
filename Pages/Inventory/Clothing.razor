@@ -1,0 +1,38 @@
+﻿@page "/inventory/clothing"
+                        
+@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData
+@using LTSaveEd.Models.CharacterData.InventoryData
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Clothing</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            @for (var i = 0; i < Inventory.Clothes.Count; i++)
+            {
+                var localIndex = i;
+                var clothing = Inventory.Clothes[localIndex];
+                <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                    <MudTextField @bind-Value="@clothing.Id.Value" ReadOnly="true" Label="Id"/>
+                    <MudTextField @bind-Value="@clothing.Name.Value" ReadOnly="true" Label="Name"/>
+                    <IntField Attribute="@clothing.Count" Label="Count"/>
+                    <MudCheckBox @bind-Checked="@clothing.EnchantmentKnown.Value" Label="Enchantment Known"
+                                 LabelPosition="LabelPosition.Start" />
+                    <MudCheckBox @bind-Checked="@clothing.IsDirty.Value" Label="Is Dirty"
+                                 LabelPosition="LabelPosition.Start" />
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary"
+                               OnClick="@(() => Inventory.Delete(localIndex, InventoryElementType.Clothing))">Delete</MudButton>
+                </MudPaper>
+            }
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
+}
