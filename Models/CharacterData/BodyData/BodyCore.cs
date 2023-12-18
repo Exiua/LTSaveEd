@@ -19,7 +19,7 @@ public class BodyCore : BodyComponent
     public static ValueDisplayPair[] SubspeciesOverrides => Collections.SubspeciesOverrides;
 
     public XmlAttribute<string> BodyMaterial { get; }
-    public XmlAttribute<int> BodySize { get; }
+    public LabeledXmlAttribute BodySize { get; }
     public XmlAttribute<int> Femininity { get; }
     public XmlAttribute<bool> Feral { get; }
     public XmlAttribute<string> GenitalArrangement { get; }
@@ -34,7 +34,7 @@ public class BodyCore : BodyComponent
     public BodyCore(XElement bodyCoreNode, Body body) : base(body)
     {
         BodyMaterial = new XmlAttribute<string>(bodyCoreNode.Attribute("bodyMaterial")!);
-        BodySize = new XmlAttribute<int>(bodyCoreNode.Attribute("bodySize")!);
+        BodySize = new LabeledXmlAttribute(bodyCoreNode.Attribute("bodySize")!, GetBodySizeLabel);
         Femininity = new XmlAttribute<int>(bodyCoreNode.Attribute("femininity")!);
         Feral = new XmlAttribute<bool>(bodyCoreNode.Attribute("feral")!);
         GenitalArrangement = new XmlAttribute<string>(bodyCoreNode.Attribute("genitalArrangement")!);
@@ -44,5 +44,17 @@ public class BodyCore : BodyComponent
         PubicHair = new XmlAttribute<string>(bodyCoreNode.Attribute("pubicHair")!);
         SubspeciesOverride = new XmlAttribute<string>(bodyCoreNode.Attribute("subspecies")!);
         TakesAfterMother = new XmlAttribute<bool>(bodyCoreNode.Attribute("takesAfterMother")!);
+    }
+
+    private static string GetBodySizeLabel(int value)
+    {
+        return value switch
+        {
+            < 20 => "Skinny",
+            >= 20 and < 40 => "Slender",
+            >= 40 and < 60 => "Average",
+            >= 60 and < 80 => "Large",
+            >= 80 => "Huge"
+        };
     }
 }
