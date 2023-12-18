@@ -5,7 +5,7 @@ namespace LTSaveEd.Models.XmlData;
 public abstract class NullableXmlAttribute(XElement parent)
 {
     protected XElement Parent { get; } = parent;
-    protected XObject? Node { get; set; }
+    private XObject? Node { get; set; }
 
     public bool Exists
     {

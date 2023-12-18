@@ -15,7 +15,7 @@ public class Leg
     
     public XmlAttribute<string> Configuration { get; }
     public XmlAttribute<string> FootStructure { get; }
-    public XmlAttribute<float> TailLength { get; }
+    //public XmlAttribute<float> TailLength { get; }
     private XmlAttribute<string> Type { get; }
 
     public LegTypeValueDisplayPair LegType
@@ -55,7 +55,7 @@ public class Leg
     {
         Configuration = new XmlAttribute<string>(legNode.Attribute("configuration")!);
         FootStructure = new XmlAttribute<string>(legNode.Attribute("footStructure")!);
-        TailLength = new XmlAttribute<float>(legNode.Attribute("tailLength")!);
+        //TailLength = new XmlAttribute<float>(legNode.Attribute("tailLength")!);
         Type = new XmlAttribute<string>(legNode.Attribute("type")!);
 
         foreach (var legType in LegTypes)

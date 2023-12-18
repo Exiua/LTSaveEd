@@ -65,7 +65,7 @@
                     <MudNavLink Href="/inventory/items">Items</MudNavLink>
                     <MudNavLink Href="/inventory/clothing">Clothing</MudNavLink>
                     <MudNavLink Href="/inventory/weapons">Weapons</MudNavLink>
-                    <MudNavLink Href="/inventory/equipped">Equipped</MudNavLink>
+                    <MudNavLink Href="/inventory/equipped" Disabled="true">Equipped</MudNavLink>
                 </MudNavGroup>
                 <MudNavLink Href="/relationships">Relationships</MudNavLink>
                 <MudNavLink Href="/family">Family</MudNavLink>
@@ -126,6 +126,7 @@
     {
         _processing = true;
 
+        StateHasChanged();
         try
         {
             var xmlString = SaveData.SaveDataXml.ToString();
