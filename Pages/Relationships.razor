@@ -19,7 +19,7 @@
                 <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                     <MudTextField T="string" @bind-Text="@relationShip.CharacterName" ReadOnly="true" Label="Character Name"/>
                     <MudTextField T="string" @bind-Text="@relationShip.CharacterId.Value" ReadOnly="true" Label="Character Id"/>
-                    <FloatField Attribute="@relationShip.Value" Label="Value"/>
+                    <FloatField Attribute="@relationShip.Value" Label="Value" PositiveOnly="false" Min="-100" Max="100"/>
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary" 
                                OnClick="@(() => RelationshipsData.RemoveRelationship(localIndex))">Delete</MudButton>
                 </MudPaper>

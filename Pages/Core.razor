@@ -43,7 +43,7 @@
                 <ValueDisplayPairSelect Values="@CoreData.SexualOrientations" Attribute="@CoreData.SexualOrientation" Label="Sexual Orientations"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <FloatField Attribute="@CoreData.Obedience" Label="Obedience"/>
+                <FloatField Attribute="@CoreData.Obedience" Label="Obedience" PositiveOnly="false" Min="-100" Max="100"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <ValueDisplayPairSelect Values="@CoreData.GenderIdentities" Attribute="@CoreData.GenderIdentity" Label="Gender Identity"/>
