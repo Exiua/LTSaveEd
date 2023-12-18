@@ -1,0 +1,45 @@
+﻿@page "/spells/arcane"
+@using LTSaveEd.Models.CharacterData.SpellData
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Arcane</h3>
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.ArcaneArousal" Label="Arcane Arousal"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.TelepathicCommunication" Label="Telepathic Communication"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.ArcaneCloud" Label="Arcane Cloud"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.Cleanse" Label="Cleanse"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.Steal" Label="Steal"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.Teleport" Label="Teleport"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.LilithsCommand" Label="Lilith's Command"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.ArcaneElemental" Label="Arcane Elemental"/>
+        </MudItem>
+        <MudItem xs="3">
+            <IntField Attribute="@Spells.UpgradePoints" Label="Spell Points"/>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private ArcaneSpells Spells => SaveData.CurrentCharacter.Spells.Arcane;
+}

@@ -1,0 +1,140 @@
+﻿@using LTSaveEd.Models.CharacterData.BodyData
+@using LTSaveEd.Models.CharacterData.BodyData.BreastsData
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudSimpleTable Elevation="0">
+                <tbody>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>@(BreastsCrotch ? "Breasts Crotch" : "Breasts")</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.BreastsComponent.MilkRegeneration" Label="Milk Regeneration"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.BreastsComponent.MilkStorage" Label="Milk Storage"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.BreastsComponent.NippleCountPerBreast" Label="Nipple Count per Breast"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.BreastsComponent.Rows" Label="Rows"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.BreastsComponent.Size" Label="Size"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@Breasts.BreastsComponent.StoredMilk" Label="Stored Milk"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@Breasts.BreastsComponent.AvailableShapes"
+                                                        Attribute="@Breasts.BreastsComponent.Shape" Label="Shape"/>
+                           </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@Breasts.BreastsComponent.AvailableTypes"
+                                                        Attribute="@Breasts.BreastsComponent.Type" Label="Type"/>
+                           </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>@(BreastsCrotch ? "Nipples Crotch" : "Nipples")</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@Breasts.Nipples.AreolaeShapes"
+                                                        Attribute="@Breasts.Nipples.AreolaeShape" Label="Areolae Shape"/>
+                           </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.Nipples.AreolaeSize" Label="Areolae Size"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@Breasts.Nipples.Capacity" Label="Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.Nipples.Depth" Label="Depth"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.Nipples.Elasticity" Label="Elasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.Nipples.NippleSize" Label="Nipple Size"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@Breasts.Nipples.Plasticity" Label="Plasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@Breasts.Nipples.StretchedCapacity" Label="Stretched Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@Breasts.Nipples.nippleShapes"
+                                                        Attribute="@Breasts.Nipples.NippleShape" Label="Nipple Shape"/>
+                           </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@Breasts.Nipples.Pierced.Value"
+                                             Label="Pierced" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Nipples.Virgin.Value"
+                                             Label="Virgin" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>@(BreastsCrotch ? "Milk Crotch" : "Milk")</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@Milk.MilkFlavours"
+                                                        Attribute="@Breasts.Milk.Flavour" Label="Flavour"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;"></td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>@(BreastsCrotch ? "Nipple Crotch Modifiers" : "Nipple Modifiers")</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@Breasts.Nipples.Puffy.Exists"
+                                             Label="Puffy" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Nipples.InternallyRibbed.Exists"
+                                             Label="Internally-ribbed" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@Breasts.Nipples.Tentacled.Exists"
+                                             Label="Tentacled" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Nipples.InternallyMuscled.Exists"
+                                             Label="Internally-muscled" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>@(BreastsCrotch ? "Milk Crotch Modifiers" : "Milk Modifiers")</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.Musky.Exists"
+                                             Label="Musky" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.Viscous.Exists"
+                                             Label="Viscous" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.Sticky.Exists"
+                                             Label="Sticky" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.Slimy.Exists"
+                                             Label="Slimy" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.Bubbling.Exists"
+                                             Label="Bubbling" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.MineralOil.Exists"
+                                             Label="Mineral Oil" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.Alcoholic.Exists"
+                                             Label="Alcoholic" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.Addictive.Exists"
+                                             Label="Addictive" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@Breasts.Milk.Psychoactive.Exists"
+                                             Label="Psychoactive" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                </tbody>
+            </MudSimpleTable>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    [Parameter] public required Breasts Breasts { get; set; }
+    
+    private bool BreastsCrotch => Breasts.BreastsCrotch;
+}

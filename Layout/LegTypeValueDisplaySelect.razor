@@ -1,0 +1,38 @@
+﻿@using LTSaveEd.Models.CharacterData.BodyData
+@using System.Diagnostics.CodeAnalysis
+@using LTSaveEd.Models.CharacterData.BodyData.AssData
+
+<MudSelect T="LegTypeValueDisplayPair" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
+    @foreach (var value in Values)
+    {
+        <MudSelectItem Value="@value"/>
+    }
+</MudSelect>
+
+@code {
+    private LegTypeValueDisplayPair _currentValue = null!;
+    
+    [Parameter] public required IEnumerable<LegTypeValueDisplayPair> Values { get; set; }
+    [Parameter] public required string Label { get; set; }
+
+    [Parameter] public required LegTypeValueDisplayPair Attribute { get; set; }
+    [Parameter] public EventCallback<LegTypeValueDisplayPair> AttributeChanged { get; set; }
+    [Parameter] public Action? OnAttributeChanged { get; set; }
+
+    private LegTypeValueDisplayPair CurrentValue // Proxy property to prevent infinite Attribute update
+    {
+        get => _currentValue;
+        set
+        {
+            _currentValue = value;
+            AttributeChanged.InvokeAsync(value);
+            OnAttributeChanged?.Invoke();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        _currentValue = Attribute;
+    }
+    
+}

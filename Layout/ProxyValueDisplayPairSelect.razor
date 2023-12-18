@@ -1,0 +1,42 @@
+﻿@using LTSaveEd.Models
+
+<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
+    @foreach (var value in Values)
+    {
+        <MudSelectItem Value="@value"/>
+    }
+</MudSelect>
+
+@code {
+    private ValueDisplayPair _currentValue = null!;
+    
+    [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    [Parameter] public required string Label { get; set; }
+    [Parameter] public required string Attribute { get; set; }
+    [Parameter] public EventCallback<string> AttributeChanged { get; set; }
+
+    protected ValueDisplayPair CurrentValue
+    {
+        get => _currentValue;
+        set
+        {
+            _currentValue = value;
+            Attribute = _currentValue.Value;
+            AttributeChanged.InvokeAsync(_currentValue.Value);
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        foreach (var value in Values)
+        {
+            if (value.Value != Attribute)
+            {
+                continue;
+            }
+            
+            _currentValue = value;
+            break;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+﻿@page "/world"
+
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>World</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudDatePicker Label="Current Date" Editable="true" @bind-Date="@WorldData.CurrentDate" Placeholder="Select Date" />
+                <MudTimePicker Label="Current Time" Editable="true" @bind-Time="@WorldData.CurrentTime" Placeholder="Select Time" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@WorldData.RalphDiscount" Label="Ralph Discount" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@WorldData.ScarlettPrice" Label="Scarlett Price" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@WorldData.EponaStamps" Label="Epona Stamps" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@WorldData.HelenaSlaveOrderDay" Label="Helena Slave Order Day" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@WorldData.NatalyaPoints" Label="Natalya Points" />
+            </MudPaper>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Models.World WorldData => SaveData.WorldData;
+}

@@ -1,0 +1,22 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData
+<MudPaper Class="p-4" Elevation="0">
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12">
+            <MudText Typo="Typo.h6" Align="Align.Center">@Label</MudText>
+        </MudItem>
+    </MudGrid>
+    <MudGrid Justify="Justify.Center" Spacing="4">
+        <MudItem xs="1" Class="d-flex align-center justify-center mt-3">
+            <MudText>Exp:</MudText>
+        </MudItem>
+        <MudItem xs="2">
+            <IntField Attribute="@Fetish.Xp" Label="Experience" Max="200"/>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+@code {
+    [Parameter] public required Fetish Fetish { get; set; }
+    [Parameter] public required string Label { get; set; }
+}

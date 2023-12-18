@@ -1,0 +1,26 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.XmlData
+
+<MudNumericField HideSpinButtons="true" @bind-Value="@Value" Label="@Label" Max="@Max" Min="@Min"/>
+
+@code {
+    [Parameter] public required XmlAttribute<int> Attribute { get; set; }
+    [Parameter] public required string Label { get; set; }
+    [Parameter] public bool PositiveOnly { get; set; } = true;
+    [Parameter] public int Max { get; set; } = int.MaxValue;
+    [Parameter] public int Min { get; set; } = int.MinValue;
+        
+    private float Value
+    {
+        get => Attribute.Value;
+        set
+        {
+            if (PositiveOnly && value < 0)
+            {
+                return;
+            }
+            Attribute.Value = (int)value;
+        }
+    }
+
+}

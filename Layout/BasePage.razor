@@ -1,0 +1,13 @@
+﻿@using LTSaveEd.Models
+@inject NavigationManager NavigationManager
+@inject SaveData SaveData
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (!SaveData.Initialized)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+}

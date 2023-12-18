@@ -1,0 +1,49 @@
+﻿@page "/relationships"
+
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject NavigationManager NavigationManager
+@inject SaveData SaveData
+
+<h3>Relationships</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            @for (var i = 0; i < RelationshipsData.RelationshipsData.Count; i++)
+            {
+                var localIndex = i;
+                var relationShip = RelationshipsData.RelationshipsData[localIndex];
+                <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                    <MudTextField T="string" @bind-Text="@relationShip.CharacterName" ReadOnly="true" Label="Character Name"/>
+                    <MudTextField T="string" @bind-Text="@relationShip.CharacterId.Value" ReadOnly="true" Label="Character Id"/>
+                    <FloatField Attribute="@relationShip.Value" Label="Value"/>
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" 
+                               OnClick="@(() => RelationshipsData.RemoveRelationship(localIndex))">Delete</MudButton>
+                </MudPaper>
+            }
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <CharacterSelect Values="@SaveData.CharacterIds" @bind-CharacterId="@SelectedCharacter" />
+                    <MudButton Variant="Variant.Filled" Color="Color.Tertiary" OnClick="@AddRelationship">Add</MudButton>
+            </MudPaper>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Models.CharacterData.Relationships RelationshipsData => SaveData.CurrentCharacter.Relationships;
+    private ValueDisplayPair SelectedCharacter { get; set; } = null!;
+
+    protected override void OnInitialized()
+    {
+        SelectedCharacter = SaveData.CharacterIds[0];
+    }
+
+    private void AddRelationship()
+    {
+        RelationshipsData.AddRelationship(SaveData.GetCharacterName(SelectedCharacter.Value), SelectedCharacter.Value);
+    }
+    
+}

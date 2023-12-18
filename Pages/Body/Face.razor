@@ -1,0 +1,141 @@
+﻿@page "/body/face"
+             
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Face</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudSimpleTable Elevation="0">
+                <tbody>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Face</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@FaceData.FaceComponent.FacialHairTypes"
+                                                        Attribute="@FaceData.FaceComponent.FacialHair" Label="Facial Hair"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.FaceComponent.PiercedNose.Value"
+                                             Label="Pierced Nose" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@FaceData.FaceComponent.FaceTypes"
+                                                        Attribute="@FaceData.FaceComponent.Type" Label="Type"/>
+                           </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Mouth</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@FaceData.Mouth.Capacity" Label="Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@FaceData.Mouth.Depth" Label="Depth"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@FaceData.Mouth.Elasticity" Label="Elasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@FaceData.Mouth.LipSize" Label="Lip Size"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.Mouth.PiercedLip.Value"
+                                             Label="Pierced Lip" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@FaceData.Mouth.Plasticity" Label="Plasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@FaceData.Mouth.StretchedCapacity" Label="Stretched Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.Mouth.Virgin.Value"
+                                             Label="Virgin" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@FaceData.Mouth.Wetness" Label="Wetness"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Tongue</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.Tongue.PiercedTongue.Value"
+                                             Label="Pierced Tongue" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@FaceData.Tongue.Length" Label="Length"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Eye</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@FaceData.Eye.EyePairs" Label="Eye Pairs"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@FaceData.Eye.IrisShapes"
+                                                        Attribute="@FaceData.Eye.IrisShape" Label="Iris Shape"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@FaceData.Eye.PupilShapes"
+                                                        Attribute="@FaceData.Eye.PupilShape" Label="Pupil Shape"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@FaceData.Eye.EyeTypes"
+                                                        Attribute="@FaceData.Eye.Type" Label="Type"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Lip & Throat Modifiers</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.Mouth.Puffy.Exists"
+                                             Label="Puffy" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@FaceData.Mouth.InternallyRibbed.Exists"
+                                             Label="Internally-ribbed" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.Mouth.Tentacled.Exists"
+                                             Label="Tentacled" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@FaceData.Mouth.InternallyMuscled.Exists"
+                                             Label="Internally-muscled" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Tongue Modifiers</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.Tongue.Ribbed.Exists"
+                                             Label="Ribbed" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@FaceData.Tongue.Tentacled.Exists"
+                                             Label="Tentacled" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@FaceData.Tongue.Bifurcated.Exists"
+                                             Label="Bifurcated" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.Tongue.Wide.Exists"
+                                             Label="Wide" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@FaceData.Tongue.Flat.Exists"
+                                             Label="Flat" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@FaceData.Tongue.Strong.Exists"
+                                             Label="Strong" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@FaceData.Tongue.Tapered.Exists"
+                                             Label="Tapered" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                </tbody>
+            </MudSimpleTable>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    Models.CharacterData.BodyData.Face FaceData => SaveData.CurrentCharacter.Body.Face;
+}

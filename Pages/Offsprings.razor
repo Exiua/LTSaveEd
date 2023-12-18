@@ -1,0 +1,39 @@
+﻿@page "/offsprings"
+
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Offsprings</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            @for (var i = 0; i < OffspringsData.NumOffsprings; i++)
+            {
+                var localIndex = i;
+                var offspring = OffspringsData.OffspringsList[localIndex];
+                <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                    <MudTextField @bind-Value="@offspring.Name.Androgynous.Value" ReadOnly="true" Label="Androgynous Name"/>
+                    <MudTextField @bind-Value="@offspring.Name.Feminine.Value" ReadOnly="true" Label="Feminine Name"/>
+                    <MudTextField @bind-Value="@offspring.Name.Masculine.Value" ReadOnly="true" Label="Masculine Name"/>
+                    <MudTextField @bind-Value="@offspring.Name.Surname.Value" ReadOnly="true" Label="Surname"/>
+                    <MudTextField @bind-Value="@offspring.Family.Mother.Name.Value" ReadOnly="true" Label="Mother"/>
+                    <MudTextField @bind-Value="@offspring.Family.Father.Name.Value" ReadOnly="true" Label="Father"/>
+                    <MudCheckBox @bind-Checked="@offspring.FromPlayer.Value" ReadOnly="true" Label="From Player"
+                                 LabelPosition="LabelPosition.Start"/>
+                    <MudCheckBox @bind-Checked="@offspring.Born.Value" ReadOnly="true" Label="Is Born"
+                                 LabelPosition="LabelPosition.Start"/>
+                    <MudButton Color="Color.Secondary" Variant="Variant.Filled"
+                               OnClick="@(() => OffspringsData.RemoveOffspring(localIndex))">Delete</MudButton>
+                </MudPaper>
+            }
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Models.Offsprings OffspringsData => SaveData.Offsprings;
+}

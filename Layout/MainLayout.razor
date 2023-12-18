@@ -1,0 +1,147 @@
+﻿@using LTSaveEd.Models
+@using System.Text
+@using System.Diagnostics
+@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+@inject SaveData SaveData
+
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="@_theme"/>
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
+        <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@(_isDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
+                       Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
+        <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined" />
+        <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
+            <ButtonTemplate>
+                <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary" for="@context.Id">
+                    LOAD
+                </MudButton>
+            </ButtonTemplate>
+        </MudFileUpload>
+        <MudButton Disabled="@_processing" OnClick="@SaveFile" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+            @if (_processing)
+            {
+                <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                <MudText Class="ms-2">Processing</MudText>
+            }
+            else
+            {
+                <div>Save</div>
+            }
+        </MudButton>
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <MudPaper Width="250px" Elevation="0" Class="py-3">
+            <MudNavMenu Bordered="true">
+                <MudNavLink Href="/core">Core</MudNavLink>
+                <MudNavLink Href="/attributes">Attributes</MudNavLink>
+                <MudNavGroup Title="Body">
+                    <MudNavLink Href="/body/bodycore">Body Core</MudNavLink>
+                    <MudNavLink Href="/body/head">Head</MudNavLink>
+                    <MudNavLink Href="/body/face">Face</MudNavLink>
+                    <MudNavLink Href="/body/breasts">Breasts</MudNavLink>
+                    <MudNavLink Href="/body/breastscrotch">Breasts Crotch</MudNavLink>
+                    <MudNavLink Href="/body/torso">Torso</MudNavLink>
+                    <MudNavLink Href="/body/penis">Penis</MudNavLink>
+                    <MudNavLink Href="/body/vagina">Vagina</MudNavLink>
+                    <MudNavLink Href="/body/ass">Ass</MudNavLink>
+                </MudNavGroup>
+                <MudNavLink Href="/fetishes">Fetishes</MudNavLink>
+                <MudNavLink Href="/perks">Perks</MudNavLink>
+                <MudNavGroup Title="Spells">
+                    <MudNavLink Href="/spells/earth">Earth</MudNavLink>
+                    <MudNavLink Href="/spells/water">Water</MudNavLink>
+                    <MudNavLink Href="/spells/fire">Fire</MudNavLink>
+                    <MudNavLink Href="/spells/air">Air</MudNavLink>
+                    <MudNavLink Href="/spells/arcane">Arcane</MudNavLink>
+                </MudNavGroup>
+                <MudNavLink Href="/inventory" Disabled="true">Inventory</MudNavLink>
+                <MudNavLink Href="/relationships">Relationships</MudNavLink>
+                <MudNavLink Href="/family">Family</MudNavLink>
+                <MudNavLink Href="/offsprings">Offsprings</MudNavLink>
+                <MudNavLink Href="/world">World</MudNavLink>
+                <MudNavLink Href="/extra">Extra</MudNavLink>
+            </MudNavMenu>
+        </MudPaper>
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer Style="margin-left: 10px;">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _drawerOpen;
+    private bool _processing;
+    private bool _isDarkMode;
+    private readonly MudTheme _theme = null!;
+    private string Filename { get; set; } = "";
+
+    private void DrawerToggle()
+    {
+        if (!SaveData.Initialized)
+        {
+            return;
+        }
+        
+        _drawerOpen = !_drawerOpen;
+        StateHasChanged();
+    }
+    
+    private async Task LoadSave(IBrowserFile file)
+    {
+        Filename = file.Name;
+        await using var stream = file.OpenReadStream(file.Size + 1);
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+        var success = await SaveData.Initialize(stream);
+        stopwatch.Stop();
+        Console.WriteLine($"Loaded Save in {stopwatch.ElapsedMilliseconds} ms");
+        StateHasChanged();
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
+        if(success)
+        {
+            Snackbar.Add("Save Data Loaded!", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("Failed to Load Data!", Severity.Error);
+        }
+    }
+    
+    private async Task SaveFile()
+    {
+        _processing = true;
+
+        try
+        {
+            var xmlString = SaveData.SaveDataXml.ToString();
+
+            var byteArray = Encoding.UTF8.GetBytes(xmlString);
+
+            await JSRuntime.InvokeVoidAsync("saveAsFile", Filename, byteArray);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving file: {ex.Message}");
+        }
+        finally
+        {
+            _processing = false;
+        }
+    }
+
+    private void ToggleTheme()
+    {
+        _isDarkMode = !_isDarkMode;
+        StateHasChanged();
+    }
+}

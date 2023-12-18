@@ -1,0 +1,111 @@
+﻿@page "/body/ass"
+             
+@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.BodyData.AssData
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Ass</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudSimpleTable Elevation="0">
+                <tbody>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Leg</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@AssData.Leg.TailLength" Label="Tail Length"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <LegRelatedValueDisplayPairSelect Values="@AssData.Leg.LegConfigurations"
+                                                                  Attribute="@AssData.Leg.Configuration" Label="Configuration"
+                                                                  Leg="@AssData.Leg" LegComponentType="LegComponentType.LegConfiguration"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <LegRelatedValueDisplayPairSelect Values="@AssData.Leg.FootStructures"
+                                                                  Attribute="@AssData.Leg.FootStructure" Label="Foot Structure"
+                                                                  Leg="@AssData.Leg" LegComponentType="LegComponentType.FootStructure"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <LegTypeValueDisplaySelect Values="@Leg.LegTypes"
+                                                           @bind-Attribute="@AssData.Leg.LegType" 
+                                                           Label="Type"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                             <h4 style="text-decoration: underline; text-align: center"><b>Ass</b></h4>
+                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                 <IntField Attribute="@AssData.AssComponent.AssSize" Label="Ass Size"/>
+                             </MudPaper>
+                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                 <IntField Attribute="@AssData.AssComponent.HipSize" Label="Hip Size"/>
+                             </MudPaper>
+                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                 <ValueDisplayPairSelect Values="@AssData.AssComponent.AssTypes"
+                                                         Attribute="@AssData.AssComponent.Type" Label="Type"/>
+                             </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Anus</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@AssData.Anus.Capacity" Label="Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@AssData.Anus.Depth" Label="Depth"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@AssData.Anus.Elasticity" Label="Elasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@AssData.Anus.Plasticity" Label="Plasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@AssData.Anus.StretchedCapacity" Label="Stretched Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@AssData.Anus.Wetness" Label="Wetness"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@Anus.AssHairTypes"
+                                                        Attribute="@AssData.Anus.AssHair" Label="Ass Hair"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@AssData.Anus.Bleached.Value" Label="Bleached"
+                                             LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@AssData.Anus.Virgin.Value" Label="Virgin"
+                                             LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;"></td>
+                        <td style="border-bottom: none; vertical-align: top;"></td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Anus Modifiers</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@AssData.Anus.Puffy.Exists" Label="Puffy"
+                                             LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@AssData.Anus.InternallyRibbed.Exists" Label="Internally Ribbed"
+                                             LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@AssData.Anus.Tentacled.Exists" Label="Tentacled"
+                                             LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@AssData.Anus.InternallyMuscled.Exists" Label="Internally Muscled"
+                                             LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                </tbody>
+            </MudSimpleTable>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Models.CharacterData.BodyData.Ass AssData => SaveData.CurrentCharacter.Body.Ass;
+}

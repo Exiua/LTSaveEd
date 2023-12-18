@@ -1,0 +1,42 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.XmlData
+
+<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="@Label" ReadOnly="@ReadOnly" AnchorOrigin="Origin.BottomCenter">
+    @foreach (var value in Values)
+    {
+        <MudSelectItem Value="@value"/>
+    }
+</MudSelect>
+
+@code {
+    private ValueDisplayPair _currentValue = null!;
+    
+    [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    [Parameter] public required string Label { get; set; }
+    [Parameter] public required XmlAttribute<string> Attribute { get; set; }
+    [Parameter] public bool ReadOnly { get; set; }
+
+    protected ValueDisplayPair CurrentValue
+    {
+        get => _currentValue;
+        set
+        {
+            _currentValue = value;
+            Attribute.Value = _currentValue.Value;
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        foreach (var value in Values)
+        {
+            if (value.Value != Attribute.Value)
+            {
+                continue;
+            }
+            
+            _currentValue = value;
+            break;
+        }
+    }
+}

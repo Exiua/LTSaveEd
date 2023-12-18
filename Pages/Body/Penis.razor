@@ -1,0 +1,172 @@
+﻿@page "/body/penis"
+             
+@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.BodyData.PenisData
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Penis</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudSimpleTable Elevation="0">
+                <tbody>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Penis</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@PenisData.PenisComponent.Capacity" Label="Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.PenisComponent.Depth" Label="Depth"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.PenisComponent.Elasticity" Label="Elasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.PenisComponent.Girth" Label="Girth"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.PenisComponent.Plasticity" Label="Plasticity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.PenisComponent.Size" Label="Size"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@PenisData.PenisComponent.StretchedCapacity" Label="Stretched Capacity"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@PenisData.PenisComponent.PenisTypes"
+                                                        Attribute="@PenisData.PenisComponent.Type" Label="Type"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Pierced.Value"
+                                             Label="Pierced" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.UrethraVirgin.Value"
+                                             Label="Urethra Virgin" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Virgin.Value"
+                                             Label="Virgin" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Testicles</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.Testicles.CumExpulsion" Label="Cum Expulsion"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.Testicles.CumRegeneration" Label="Cum Regeneration"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.Testicles.CumStorage" Label="Cum Storage"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.Testicles.NumberOfTesticles" Label="Number of Testicles"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <FloatField Attribute="@PenisData.Testicles.StoredCum" Label="Stored Cum"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@PenisData.Testicles.TesticleSize" Label="Testicle Size"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.Testicles.Internal.Value"
+                                             Label="Internal" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Cum</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@Cum.CumFlavours"
+                                                        Attribute="@PenisData.Cum.Flavour" Label="Flavour"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Penis Modifiers</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Sheathed.Exists"
+                                             Label="Sheathed" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Ribbed.Exists"
+                                             Label="Ribbed" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Tentacled.Exists"
+                                             Label="Tentacled" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Knotted.Exists"
+                                             Label="Knotted" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Blunt.Exists"
+                                             Label="Blunt" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.IsTapered"
+                                             Label="Tapered" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.IsFlared"
+                                             Label="Flared" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Barbed.Exists"
+                                             Label="Barbed" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Veiny.Exists"
+                                             Label="Veiny" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Prehensile.Exists"
+                                             Label="Prehensile" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Ovipositor.Exists"
+                                             Label="Ovipositor" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Urethra Modifiers</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Puffy.Exists"
+                                             Label="Puffy" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.InternallyRibbed.Exists"
+                                             Label="Internally-ribbed" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.UrethraTentacled.Exists"
+                                             Label="Tentacled" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.InternallyMuscled.Exists"
+                                             Label="Internally-muscled" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Cum Modifiers</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.Musky.Exists"
+                                             Label="Musky" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.Viscous.Exists"
+                                             Label="Viscous" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.Sticky.Exists"
+                                             Label="Sticky" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.Slimy.Exists"
+                                             Label="Slimy" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.Bubbling.Exists"
+                                             Label="Bubbling" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.MineralOil.Exists"
+                                             Label="Mineral Oil" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.Alcoholic.Exists"
+                                             Label="Alcoholic" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.Addictive.Exists"
+                                             Label="Addictive" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Checked="@PenisData.Cum.Psychoactive.Exists"
+                                             Label="Psychoactive" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                </tbody>
+            </MudSimpleTable>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Models.CharacterData.BodyData.Penis PenisData => SaveData.CurrentCharacter.Body.Penis;
+}

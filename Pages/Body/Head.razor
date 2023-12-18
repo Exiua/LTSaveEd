@@ -1,0 +1,87 @@
+﻿@page "/body/head"
+             
+@using LTSaveEd.Models
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Head</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudSimpleTable Elevation="0">
+                <tbody>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Antennae</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@HeadData.Antennae.AntennaePerRow" Label="Antennae per Row"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@HeadData.Antennae.Length" Label="Length"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@HeadData.Antennae.Rows" Label="Rows"/>
+                           </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@HeadData.Antennae.AntennaeTypes"
+                                                        Attribute="@HeadData.Antennae.Type" Label="Type"/>
+                            </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Ear</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@HeadData.Ear.Pierced.Value" Label="Pierced" LabelPosition="LabelPosition.Start"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@HeadData.Ear.EarTypes"
+                                                        Attribute="@HeadData.Ear.Type" Label="Type"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Hair</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@HeadData.Hair.AvailableHairStyles"
+                                                        Attribute="@HeadData.Hair.HairStyle" Label="Hair Style"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@HeadData.Hair.Length" Label="Length"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@HeadData.Hair.HairTypes"
+                                                        Attribute="@HeadData.Hair.Type" Label="Type"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <MudCheckBox @bind-Checked="@HeadData.Hair.NeckFluff.Value" Label="Neck Fluff" LabelPosition="LabelPosition.Start"/>
+                           </MudPaper>
+                        </td>
+                        <td style="border-bottom: none; vertical-align: top;">
+                            <h4 style="text-decoration: underline; text-align: center"><b>Horn</b></h4>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@HeadData.Horn.HornsPerRow" Label="Horns per Row"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@HeadData.Horn.Length" Label="Length"/>
+                            </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <IntField Attribute="@HeadData.Horn.Rows" Label="Rows"/>
+                           </MudPaper>
+                            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                                <ValueDisplayPairSelect Values="@HeadData.Horn.HornTypes"
+                                                        Attribute="@HeadData.Horn.Type" Label="Type"/>
+                            </MudPaper>
+                        </td>
+                    </tr>
+                </tbody>
+            </MudSimpleTable>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Models.CharacterData.BodyData.Head HeadData => SaveData.CurrentCharacter.Body.Head;
+}

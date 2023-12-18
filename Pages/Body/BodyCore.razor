@@ -1,0 +1,57 @@
+﻿@page "/body/bodycore"
+
+@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.BodyData.AssData
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>BodyCore</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <ValueDisplayPairSelect Values="@BodyCoreData.BodyMaterials" Attribute="@BodyCoreData.BodyMaterial" Label="Body Material" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@BodyCoreData.BodySize" Label="Body Size"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@BodyCoreData.Femininity" Label="Femininity"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudCheckBox @bind-Checked="@BodyCoreData.Feral.Value" Label="Feral" LabelPosition="LabelPosition.Start"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <LegRelatedValueDisplayPairSelect Values="@Leg.GenitalArrangements"
+                                                  Attribute="@BodyCoreData.GenitalArrangement" Label="Genital Arrangement"
+                                                  Leg="@Leg" LegComponentType="LegComponentType.GenitalArrangement"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@BodyCoreData.Height" Label="Height"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <IntField Attribute="@BodyCoreData.Muscle" Label="Muscle"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudCheckBox @bind-Checked="@BodyCoreData.PiercedStomach.Value" Label="Pierced Stomach" LabelPosition="LabelPosition.Start"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <ValueDisplayPairSelect Values="@Models.CharacterData.BodyData.BodyCore.PubicHairTypes" Attribute="@BodyCoreData.PubicHair" Label="Pubic Hair"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <ValueDisplayPairSelect Values="@Models.CharacterData.BodyData.BodyCore.SubspeciesOverrides" Attribute="@BodyCoreData.SubspeciesOverride" Label="Subspecies Override"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudCheckBox @bind-Checked="@BodyCoreData.TakesAfterMother.Value" Label="Takes After Mother" LabelPosition="LabelPosition.Start"/>
+             </MudPaper>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Models.CharacterData.BodyData.BodyCore BodyCoreData => SaveData.CurrentCharacter.Body.BodyCore;
+    private Leg Leg => SaveData.CurrentCharacter.Body.Ass.Leg;
+}

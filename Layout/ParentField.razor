@@ -1,0 +1,48 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.BodyData
+
+<MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+    <ProxyValueDisplayPairSelect Values="@Parents" @bind-Attribute="@CurrentId" Label="@(Mother ? "Mother Id" : "Father Id")" />
+    <MudTextField T="string" @bind-Text="@ParentData.Name.Value" ReadOnly="@ReadOnly" Label="@(Mother ? "Mother Name" : "Father Name")"/>
+    <ValueDisplayPairSelect Values="@FemininityValues" Attribute="@ParentData.Femininity" ReadOnly="@ReadOnly"
+                            Label="@(Mother ? "Mother Femininity" : "Father Femininity")" />
+    <ValueDisplayPairSelect Values="@Subspecies" Attribute="@ParentData.Subspecies" ReadOnly="@ReadOnly"
+                            Label="@(Mother ? "Mother Subspecies" : "Father Subspecies")" />
+</MudPaper> @*TODO: Fix bug where VDPS don't update when Parent changes*@
+
+@code {
+    private string _currentId = null!;
+    private static ValueDisplayPair[] FemininityValues => Collections.FemininityValues;
+    private static ValueDisplayPair[] Subspecies => Collections.SubspeciesOverrides;
+    
+    [Parameter] public required ValueDisplayPair[] Parents { get; set; }
+    [Parameter] public required CharacterShort ParentData { get; set; }
+    [Parameter] public bool Mother { get; set; }
+    [Parameter] public required Action<string, bool> LoadCharacterAction { get; set; }
+    private bool ReadOnly { get; set; }
+
+    private string CurrentId
+    {
+        get => _currentId;
+        set
+        {
+            _currentId = value;
+            if (value != "")
+            {
+                LoadCharacterAction(value, Mother);
+                ReadOnly = true;
+            }
+            else
+            {
+                ReadOnly = false;
+            }
+            StateHasChanged();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        _currentId = ParentData.Id.Value;
+        ReadOnly = _currentId != "";
+    }
+}
