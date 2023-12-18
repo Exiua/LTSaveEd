@@ -12,7 +12,7 @@
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd</MudText>
+        <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd @Version</MudText>
         <MudSpacer />
         <MudIconButton Icon="@(_isDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
                        Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
@@ -83,6 +83,8 @@
 </MudLayout>
 
 @code {
+    private const string Version = "v2.0.0-alpha";
+    
     private bool _drawerOpen;
     private bool _processing;
     private bool _isDarkMode;
