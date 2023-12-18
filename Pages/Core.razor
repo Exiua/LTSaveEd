@@ -1,6 +1,7 @@
 ﻿@page "/core"
 
 @using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData
 
 @inherits BasePage
 
@@ -12,6 +13,8 @@
     <MudForm>
         <MudCardContent>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <CharacterSelect Values="SaveData.CharacterIds" CharacterId="_selectedCharacter"
+                                 CharacterIdChanged="@ChangeSelectedCharacter" />
                 <MudTextField @bind-Value="@CoreData.Id.Value" ReadOnly="true" Label="Id"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
@@ -23,42 +26,87 @@
                 <MudTextField @bind-Value="@CoreData.Name.Surname.Value" Label="Surname"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <MudTextField @bind-Value="@CoreData.Description.Value" Label="Description" Lines="3" />
+                <MudTextField @bind-Value="@CoreData.Description.Value" Label="Description" AutoGrow MaxLines="3"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <IntField Attribute="@CoreData.Level" Label="Level" />
-                <IntField Attribute="@CoreData.Experience" Label="Experience" />
+                <IntField Attribute="@CoreData.Level" Label="Level"/>
+                <IntField Attribute="@CoreData.Experience" Label="Experience"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <IntField Attribute="@Inventory.Money" Label="Money" />
+                <IntField Attribute="@Inventory.Money" Label="Money"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <MudDatePicker Label="Date of Birth" Editable="true" @bind-Date="@CoreData.DateOfBirth.Value" Placeholder="Select Date" />
+                <MudDatePicker Label="Date of Birth" Editable="true" @bind-Date="@CoreData.DateOfBirth.Value" Placeholder="Select Date"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <ValueDisplayPairSelect Values="@AvailableJobs" Attribute="@CoreData.JobHistory" Label="Job History" />
+                <ValueDisplayPairSelect Values="@AvailableJobs" Attribute="@CoreData.JobHistory" Label="Job History"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <ValueDisplayPairSelect Values="@CoreData.SexualOrientations" Attribute="@CoreData.SexualOrientation" Label="Sexual Orientations" />
+                <ValueDisplayPairSelect Values="@CoreData.SexualOrientations" Attribute="@CoreData.SexualOrientation" Label="Sexual Orientations"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <FloatField Attribute="@CoreData.Obedience" Label="Obedience" />
+                <FloatField Attribute="@CoreData.Obedience" Label="Obedience" PositiveOnly="false" Min="-100" Max="100"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <ValueDisplayPairSelect Values="@CoreData.GenderIdentities" Attribute="@CoreData.GenderIdentity" Label="Gender Identity" />
-             </MudPaper>
-            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <IntField Attribute="@CoreData.PerkPoints" Label="Perk Points" />
+                <ValueDisplayPairSelect Values="@CoreData.GenderIdentities" Attribute="@CoreData.GenderIdentity" Label="Gender Identity"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <IntField Attribute="@Inventory.EssenceCount" Label="Essence Count" />
+                <IntField Attribute="@CoreData.PerkPoints" Label="Perk Points"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <FloatField Attribute="@CoreData.Health" Label="Health" />
+                <IntField Attribute="@Inventory.EssenceCount" Label="Essence Count"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <FloatField Attribute="@CoreData.Mana" Label="Mana" />
+                <FloatField Attribute="@CoreData.Health" Label="Health"/>
             </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <FloatField Attribute="@CoreData.Mana" Label="Mana"/>
+            </MudPaper>
+            <h4 style="text-align: center"><b>Personality</b></h4>
+            <MudPaper Class="d-flex justify-content-center mr-10 pa-4" Elevation="0">
+                <MudCheckBox @bind-Checked="@Personality.Confident.Exists" Label="Confident"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Shy.Exists" Label="Shy"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Kind.Exists" Label="Kind"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Selfish.Exists" Label="Selfish"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Naive.Exists" Label="Naive"
+                             LabelPosition="LabelPosition.Start" />
+            </MudPaper>
+            <MudPaper Class="d-flex justify-content-center mr-10 pa-4" Elevation="0">
+                <MudCheckBox @bind-Checked="@Personality.Cynical.Exists" Label="Cynical"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Brave.Exists" Label="Brave"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Cowardly.Exists" Label="Cowardly"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Lewd.Exists" Label="Lewd"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Innocent.Exists" Label="Innocent"
+                             LabelPosition="LabelPosition.Start" />
+            </MudPaper>
+            <MudPaper Class="d-flex justify-content-center mr-10 pa-4" Elevation="0">
+                <MudCheckBox @bind-Checked="@Personality.Prude.Exists" Label="Prude"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Lisp.Exists" Label="Lisp"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Stutter.Exists" Label="Stutter"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Mute.Exists" Label="Mute"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Checked="@Personality.Slovenly.Exists" Label="Slovenly"
+                             LabelPosition="LabelPosition.Start" />
+            </MudPaper>
+            @*Cannot delete player or special NPCs*@
+            @if (CoreData.Id.Value != "PlayerCharacter" && !CoreData.Id.Value.StartsWith("-1")) 
+            {
+                <MudPaper Class="d-flex justify-content-center mr-10 pa-4" Elevation="0">
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary"
+                               OnClick="@DeleteCurrentCharacter">Delete</MudButton>
+                </MudPaper>
+            }
         </MudCardContent>
     </MudForm>
 </MudCard>
@@ -69,4 +117,28 @@
         : CoreData.NpcJobHistories;
     private Models.CharacterData.Core CoreData => SaveData.CurrentCharacter.Core;
     private Models.CharacterData.Inventory Inventory => SaveData.CurrentCharacter.Inventory;
+    private Personality Personality => CoreData.Personality;
+    private ValueDisplayPair _selectedCharacter = null!;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _selectedCharacter = SaveData.CurrentCharacterIdNamePair;
+    }
+
+    private void ChangeSelectedCharacter(ValueDisplayPair newCharacter)
+    {
+        var success = SaveData.LoadCharacter(newCharacter);
+        if (success)
+        {
+            _selectedCharacter = newCharacter;
+        }
+    }
+
+    private void DeleteCurrentCharacter()
+    {
+        SaveData.DeleteCurrentCharacter();
+        _selectedCharacter = SaveData.CurrentCharacterIdNamePair;
+        StateHasChanged();
+    }
 }

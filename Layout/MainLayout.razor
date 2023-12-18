@@ -12,7 +12,7 @@
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd</MudText>
+        <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd @Version</MudText>
         <MudSpacer />
         <MudIconButton Icon="@(_isDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
                        Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
@@ -39,34 +39,39 @@
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <MudPaper Width="250px" Elevation="0" Class="py-3">
             <MudNavMenu Bordered="true">
-                <MudNavLink Href="/core">Core</MudNavLink>
-                <MudNavLink Href="/attributes">Attributes</MudNavLink>
+                <MudNavLink Href="core">Core</MudNavLink>
+                <MudNavLink Href="attributes">Attributes</MudNavLink>
                 <MudNavGroup Title="Body">
-                    <MudNavLink Href="/body/bodycore">Body Core</MudNavLink>
-                    <MudNavLink Href="/body/head">Head</MudNavLink>
-                    <MudNavLink Href="/body/face">Face</MudNavLink>
-                    <MudNavLink Href="/body/breasts">Breasts</MudNavLink>
-                    <MudNavLink Href="/body/breastscrotch">Breasts Crotch</MudNavLink>
-                    <MudNavLink Href="/body/torso">Torso</MudNavLink>
-                    <MudNavLink Href="/body/penis">Penis</MudNavLink>
-                    <MudNavLink Href="/body/vagina">Vagina</MudNavLink>
-                    <MudNavLink Href="/body/ass">Ass</MudNavLink>
+                    <MudNavLink Href="body/bodycore">Body Core</MudNavLink>
+                    <MudNavLink Href="body/head">Head</MudNavLink>
+                    <MudNavLink Href="body/face">Face</MudNavLink>
+                    <MudNavLink Href="body/breasts">Breasts</MudNavLink>
+                    <MudNavLink Href="body/breastscrotch">Breasts Crotch</MudNavLink>
+                    <MudNavLink Href="body/torso">Torso</MudNavLink>
+                    <MudNavLink Href="body/penis">Penis</MudNavLink>
+                    <MudNavLink Href="body/vagina">Vagina</MudNavLink>
+                    <MudNavLink Href="body/ass">Ass</MudNavLink>
                 </MudNavGroup>
-                <MudNavLink Href="/fetishes">Fetishes</MudNavLink>
-                <MudNavLink Href="/perks">Perks</MudNavLink>
+                <MudNavLink Href="fetishes">Fetishes</MudNavLink>
+                <MudNavLink Href="perks">Perks</MudNavLink>
                 <MudNavGroup Title="Spells">
-                    <MudNavLink Href="/spells/earth">Earth</MudNavLink>
-                    <MudNavLink Href="/spells/water">Water</MudNavLink>
-                    <MudNavLink Href="/spells/fire">Fire</MudNavLink>
-                    <MudNavLink Href="/spells/air">Air</MudNavLink>
-                    <MudNavLink Href="/spells/arcane">Arcane</MudNavLink>
+                    <MudNavLink Href="spells/earth">Earth</MudNavLink>
+                    <MudNavLink Href="spells/water">Water</MudNavLink>
+                    <MudNavLink Href="spells/fire">Fire</MudNavLink>
+                    <MudNavLink Href="spells/air">Air</MudNavLink>
+                    <MudNavLink Href="spells/arcane">Arcane</MudNavLink>
                 </MudNavGroup>
-                <MudNavLink Href="/inventory" Disabled="true">Inventory</MudNavLink>
-                <MudNavLink Href="/relationships">Relationships</MudNavLink>
-                <MudNavLink Href="/family">Family</MudNavLink>
-                <MudNavLink Href="/offsprings">Offsprings</MudNavLink>
-                <MudNavLink Href="/world">World</MudNavLink>
-                <MudNavLink Href="/extra">Extra</MudNavLink>
+                <MudNavGroup Title="Inventory">
+                    <MudNavLink Href="inventory/items">Items</MudNavLink>
+                    <MudNavLink Href="inventory/clothing">Clothing</MudNavLink>
+                    <MudNavLink Href="inventory/weapons">Weapons</MudNavLink>
+                    <MudNavLink Href="inventory/equipped" Disabled="true">Equipped</MudNavLink>
+                </MudNavGroup>
+                <MudNavLink Href="relationships">Relationships</MudNavLink>
+                <MudNavLink Href="family">Family</MudNavLink>
+                <MudNavLink Href="offsprings">Offsprings</MudNavLink>
+                <MudNavLink Href="world">World</MudNavLink>
+                <MudNavLink Href="extra">Extra</MudNavLink>
             </MudNavMenu>
         </MudPaper>
     </MudDrawer>
@@ -78,6 +83,8 @@
 </MudLayout>
 
 @code {
+    private const string Version = "v2.1.0-alpha";
+    
     private bool _drawerOpen;
     private bool _processing;
     private bool _isDarkMode;
@@ -121,6 +128,7 @@
     {
         _processing = true;
 
+        StateHasChanged();
         try
         {
             var xmlString = SaveData.SaveDataXml.ToString();

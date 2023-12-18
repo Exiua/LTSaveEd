@@ -1,0 +1,34 @@
+﻿@page "/inventory/items"
+                        
+@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData
+@using LTSaveEd.Models.CharacterData.InventoryData
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Items</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            @for (var i = 0; i < Inventory.Items.Count; i++)
+            {
+                var localIndex = i;
+                var item = Inventory.Items[localIndex];
+                <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                    <MudTextField @bind-Value="@item.Id.Value" ReadOnly="true" Label="Id"/>
+                    <MudTextField @bind-Value="@item.Name.Value" ReadOnly="true" Label="Name"/>
+                    <IntField Attribute="@item.Count" Label="Count"/>
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary"
+                               OnClick="@(() => Inventory.Delete(localIndex, InventoryElementType.Item))">Delete</MudButton>
+                </MudPaper>
+            }
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
+}
