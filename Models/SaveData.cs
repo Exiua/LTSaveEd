@@ -24,6 +24,7 @@ public class SaveData
     }
 
     public Character CurrentCharacter { get; private set; }= null!;
+    public ValueDisplayPair CurrentCharacterIdNamePair { get; private set; } = null!;
     public World WorldData { get; private set; } = null!;
     public Offsprings Offsprings { get; private set; } = null!;
     
@@ -92,7 +93,7 @@ public class SaveData
         return new CharacterShortData(characterNode);
     }
     
-    private bool LoadCharacter(ValueDisplayPair characterIdPair)
+    public bool LoadCharacter(ValueDisplayPair characterIdPair)
     {
         var characterId = characterIdPair.Value;
         if (CharacterCache.TryGetValue(characterId, out var character))
@@ -101,11 +102,13 @@ public class SaveData
             return true;
         }
 
+        // ReSharper disable once RedundantAssignment
         var previousCharacter = CurrentCharacter;
         try
         {
             var characterNode = GetCharacterNode(characterId);
             CurrentCharacter = new Character(characterNode, IdNameLookup);
+            CurrentCharacterIdNamePair = characterIdPair;
             CharacterCache.Add(characterId, CurrentCharacter);
             return true;
         }
@@ -120,6 +123,29 @@ public class SaveData
         }
     }
 
+    public void DeleteCurrentCharacter()
+    {
+        var characterIndex = CharacterIds.IndexOf(CurrentCharacterIdNamePair);
+        var deletedCharacterId = CurrentCharacterIdNamePair.Value;
+        var currentCharacterNpcNode = GetCharacterNode(deletedCharacterId).Parent!;
+        currentCharacterNpcNode.Remove();
+        CharacterIds.RemoveAt(characterIndex);
+        CharacterCache.Remove(deletedCharacterId);
+        IdNameLookup.Remove(deletedCharacterId);
+        IdCharacterLookup.Remove(deletedCharacterId);
+        var success = LoadCharacter(CharacterIds[--characterIndex]); // Decrement index first, then retrieve
+        while (!success)
+        {
+            characterIndex--;
+            if (characterIndex < 0) // Should never happen since player should always be loadable or save is modded
+            {
+                throw new Exception("Failed to load characters");
+            }
+            
+            success = LoadCharacter(CharacterIds[characterIndex]);
+        }
+    }
+    
     public string GetCharacterName(string characterId)
     {
         return IdNameLookup[characterId];
