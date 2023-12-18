@@ -233,7 +233,7 @@ public class PerkNode {
      * Activates all parent perks if they exist
      */
     private void activate(){
-        if(parent.size() == 0){
+        if(parent.isEmpty()){
             return;
         }
         for (PerkNode perkNode : parent) {
@@ -246,7 +246,7 @@ public class PerkNode {
      * Deactivates all children perks if they exist
      */
     private void deactivate(){
-        if(children.size() == 0){
+        if(children.isEmpty()){
             return;
         }
         for (PerkNode perkNode : children) {

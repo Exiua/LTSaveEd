@@ -1091,49 +1091,52 @@ public class Controller {
      */
     @FXML
     private void updateXmlComboBoxSpells(@NotNull ActionEvent event) {
-        if (fieldsSet) {
-            String fxId = getId(event);
-            @SuppressWarnings("unchecked")
-            ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
-            SpellTier tier = (SpellTier) cb.getValue();
-            switch (tier.getTier()) {
-                case -1 -> { // Unowned Spell
-                    NodeList knownSpells = getNode("knownSpells").getChildNodes(); // Removes base spells
-                    for (int i = 0; i < knownSpells.getLength(); i++) {
-                        if (knownSpells.item(i).getNodeType() != Node.ELEMENT_NODE) {
-                            continue;
-                        }
-                        Node spell = knownSpells.item(i);
-                        log.debug(spell);
-                        Debug.printList(spell.getAttributes());
-                        if (getAttributeValue(spell, "type").equals(tier.getType())) {
-                            removeNode(spell);
-                            break;
-                        }
+        if (!fieldsSet) {
+            event.consume();
+            return;
+        }
+
+        String fxId = getId(event);
+        @SuppressWarnings("unchecked")
+        ComboBox<Attribute> cb = (ComboBox<Attribute>) namespace.get(fxId);
+        SpellTier tier = (SpellTier) cb.getValue();
+        switch (tier.getTier()) {
+            case -1 -> { // Unowned Spell
+                NodeList knownSpells = getNode("knownSpells").getChildNodes(); // Removes base spells
+                for (int i = 0; i < knownSpells.getLength(); i++) {
+                    if (knownSpells.item(i).getNodeType() != Node.ELEMENT_NODE) {
+                        continue;
                     }
-                    removeHigherTierSpells(tier, false);
+                    Node spell = knownSpells.item(i);
+                    log.debug(spell);
+                    Debug.printList(spell.getAttributes());
+                    if (getAttributeValue(spell, "type").equals(tier.getType())) {
+                        removeNode(spell);
+                        break;
+                    }
                 }
-                case 0 -> { // Base Spell
-                    addBaseSpell(tier);
+                removeHigherTierSpells(tier, false);
+            }
+            case 0 -> { // Base Spell
+                addBaseSpell(tier);
+                removeHigherTierSpells(tier, true);
+            }
+            case 1, 2 -> { // Upgrades 1 and 2
+                addBaseSpell(tier);
+                removeHigherTierSpells(tier, true);
+                addLowerTierSpells(tier);
+            }
+            case 3 -> { // Upgrade 3 (branching in the case of Elemental spell or 3A in the case of Steal spell)
+                addBaseSpell(tier);
+                if (tier.getType().equals("STEAL")) {
                     removeHigherTierSpells(tier, true);
                 }
-                case 1, 2 -> { // Upgrades 1 and 2
-                    addBaseSpell(tier);
-                    removeHigherTierSpells(tier, true);
-                    addLowerTierSpells(tier);
-                }
-                case 3 -> { // Upgrade 3 (branching in the case of Elemental spell or 3A in the case of Steal spell)
-                    addBaseSpell(tier);
-                    if (tier.getType().equals("STEAL")) {
-                        removeHigherTierSpells(tier, true);
-                    }
-                    addLowerTierSpells(tier);
-                    changeWithinTierSpells(tier);
-                }
-                case 4 -> { // Upgrade 3B only used by Steal spell
-                    addBaseSpell(tier);
-                    addLowerTierSpells(tier);
-                }
+                addLowerTierSpells(tier);
+                changeWithinTierSpells(tier);
+            }
+            case 4 -> { // Upgrade 3B only used by Steal spell
+                addBaseSpell(tier);
+                addLowerTierSpells(tier);
             }
         }
         event.consume();
@@ -1257,7 +1260,7 @@ public class Controller {
             Node spell = spellUpgrades.item(i);
             String spellType = getAttributeValue(spell, "type");
             if (spellType.startsWith(tier.getType())) {
-                int upgradeTier = SpellTier.readTier(getAttributeValue(spellUpgrades.item(i), "type"));
+                int upgradeTier = SpellTier.readTier(spellType);
                 if (tier.getTier() < upgradeTier) {
                     if (owned && !spellType.endsWith("CLEAN")) {
                         removeNode(spell);

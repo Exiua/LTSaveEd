@@ -799,7 +799,7 @@ public class InitializeElements {
     /**
      * ObservableList of all tiers of the Telekinetic Shower spell
      */
-    private final ObservableList<Attribute> telekeneticShowerSpellTiers = FXCollections.observableArrayList(
+    private final ObservableList<Attribute> telekineticShowerSpellTiers = FXCollections.observableArrayList(
             // Yes, that is how telekinetic is spelt in the save file
             new SpellTier("Unowned", "TELEKENETIC_SHOWER_UNOWNED"),
             new SpellTier("Base", "TELEKENETIC_SHOWER"),
@@ -1368,7 +1368,7 @@ public class InitializeElements {
         for(int i = 0; i < 45; i++){ //The 45 fetishes uses the same values for desire
             comboBoxValues.add(desireTypes);
         }
-        comboBoxValues.addAll(Arrays.asList(slamSpellTiers, telekeneticShowerSpellTiers, stoneShellSpellTiers,
+        comboBoxValues.addAll(Arrays.asList(slamSpellTiers, telekineticShowerSpellTiers, stoneShellSpellTiers,
                 elementalEarthSpellTiers, iceShardSpellTiers, rainCloudSpellTiers, soothingWatersSpellTiers,
                 elementalWaterSpellTiers, fireballSpellTiers, flashSpellTiers, cloakOfFlamesSpellTiers,
                 elementalFireSpellTiers, poisonVapoursSpellTiers, vacuumSpellTiers, protectiveGustsSpellTiers,
