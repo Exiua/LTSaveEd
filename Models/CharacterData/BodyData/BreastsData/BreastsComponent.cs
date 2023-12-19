@@ -77,11 +77,11 @@ public class BreastsComponent
     public ValueDisplayPair[] AvailableShapes => _breastsCrotch ? _breastCrotchShapes : _breastShapes;
     public ValueDisplayPair[] AvailableTypes => _breastsCrotch ? _breastsCrotchTypes : _breastsTypes;
     
-    public XmlAttribute<int> MilkRegeneration { get; }
-    public XmlAttribute<int> MilkStorage { get; }
+    public LabeledXmlAttribute<int> MilkRegeneration { get; }
+    public LabeledXmlAttribute<int> MilkStorage { get; }
     public XmlAttribute<int> NippleCountPerBreast { get; }
     public XmlAttribute<int> Rows { get; }
-    public XmlAttribute<int> Size { get; }
+    public LabeledXmlAttribute<int> Size { get; }
     public XmlAttribute<float> StoredMilk { get; }
     public XmlAttribute<string> Shape { get; }
     public XmlAttribute<string> Type { get; }
@@ -90,13 +90,127 @@ public class BreastsComponent
     public BreastsComponent(XElement breastsNode, bool breastsCrotch)
     {
         _breastsCrotch = breastsCrotch;
-        MilkRegeneration = new XmlAttribute<int>(breastsNode.Attribute("milkRegeneration")!);
-        MilkStorage = new XmlAttribute<int>(breastsNode.Attribute("milkStorage")!);
+        MilkRegeneration = new LabeledXmlAttribute<int>(breastsNode.Attribute("milkRegeneration")!, Collections.GetFluidRegenerationLabel);
+        MilkStorage = new LabeledXmlAttribute<int>(breastsNode.Attribute("milkStorage")!, GetMilkStorageLabel);
         NippleCountPerBreast = new XmlAttribute<int>(breastsNode.Attribute("nippleCountPerBreast")!);
         Rows = new XmlAttribute<int>(breastsNode.Attribute("rows")!);
-        Size = new XmlAttribute<int>(breastsNode.Attribute("size")!);
+        Size = new LabeledXmlAttribute<int>(breastsNode.Attribute("size")!, GetBreastsSizeLabel);
         StoredMilk = new XmlAttribute<float>(breastsNode.Attribute("storedMilk")!);
         Shape = new XmlAttribute<string>(breastsNode.Attribute("shape")!);
         Type = new XmlAttribute<string>(breastsNode.Attribute("type")!);
+    }
+
+    private static string GetMilkStorageLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "None",
+            > 0 and < 30 => "Trickle",
+            >= 30 and < 100 => "Small",
+            >= 100 and < 600 => "Decent",
+            >= 600 and < 1000 => "Large",
+            >= 1000 and < 2000 => "Huge",
+            >= 2000 and < 10000 => "Extreme",
+            >= 10000 => "Monstrous",
+        };
+    }
+
+    private static string GetBreastsSizeLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Flat",
+            1 => "Training-AAA-cup",
+            2 => "Training-AA-cup",
+            3 => "Training-A-cup",
+            4 => "AA-cup",
+            5 => "A-cup",
+            6 => "B-cup",
+            7 => "C-cup",
+            8 => "D-cup",
+            9 => "DD-cup",
+            10 => "E-cup",
+            11 => "F-cup",
+            12 => "FF-cup",
+            13 => "G-cup",
+            14 => "GG-cup",
+            15 => "H-cup",
+            16 => "HH-cup",
+            17 => "J-cup",
+            18 => "JJ-cup",
+            19 => "K-cup",
+            20 => "KK-cup",
+            21 => "L-cup",
+            22 => "LL-cup",
+            23 => "M-cup",
+            24 => "MM-cup",
+            25 => "N-cup",
+            26 => "X-AA-cup",
+            27 => "X-A-cup",
+            28 => "X-B-cup",
+            29 => "X-C-cup",
+            30 => "X-D-cup",
+            31 => "X-DD-cup",
+            32 => "X-E-cup",
+            33 => "X-F-cup",
+            34 => "X-FF-cup",
+            35 => "X-G-cup",
+            36 => "X-GG-cup",
+            37 => "X-H-cup",
+            38 => "X-HH-cup",
+            39 => "X-J-cup",
+            40 => "X-JJ-cup",
+            41 => "X-K-cup",
+            42 => "X-KK-cup",
+            43 => "X-L-cup",
+            44 => "X-LL-cup",
+            45 => "X-M-cup",
+            46 => "X-MM-cup",
+            47 => "X-N-cup",
+            48 => "XX-AA-cup",
+            49 => "XX-A-cup",
+            50 => "XX-B-cup",
+            51 => "XX-C-cup",
+            52 => "XX-D-cup",
+            53 => "XX-DD-cup",
+            54 => "XX-E-cup",
+            55 => "XX-F-cup",
+            56 => "XX-FF-cup",
+            57 => "XX-G-cup",
+            58 => "XX-GG-cup",
+            59 => "XX-H-cup",
+            60 => "XX-HH-cup",
+            61 => "XX-J-cup",
+            62 => "XX-JJ-cup",
+            63 => "XX-K-cup",
+            64 => "XX-KK-cup",
+            65 => "XX-L-cup",
+            66 => "XX-LL-cup",
+            67 => "XX-M-cup",
+            68 => "XX-MM-cup",
+            69 => "XX-N-cup",
+            70 => "XXX-AA-cup",
+            71 => "XXX-A-cup",
+            72 => "XXX-B-cup",
+            73 => "XXX-C-cup",
+            74 => "XXX-D-cup",
+            75 => "XXX-DD-cup",
+            76 => "XXX-E-cup",
+            77 => "XXX-F-cup",
+            78 => "XXX-FF-cup",
+            79 => "XXX-G-cup",
+            80 => "XXX-GG-cup",
+            81 => "XXX-H-cup",
+            82 => "XXX-HH-cup",
+            83 => "XXX-J-cup",
+            84 => "XXX-JJ-cup",
+            85 => "XXX-K-cup",
+            86 => "XXX-KK-cup",
+            87 => "XXX-L-cup",
+            88 => "XXX-LL-cup",
+            89 => "XXX-M-cup",
+            90 => "XXX-MM-cup",
+            >= 91 => "XXX-N-cup"
+        };
     }
 }

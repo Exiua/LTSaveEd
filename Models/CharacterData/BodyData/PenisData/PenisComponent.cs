@@ -30,13 +30,13 @@ public class PenisComponent
         new ValueDisplayPair("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair("Wolf", "WOLF_MORPH")
     ];
 
-    public XmlAttribute<float> Capacity { get; }
-    public XmlAttribute<int> Depth { get; }
-    public XmlAttribute<int> Elasticity { get; }
-    public XmlAttribute<int> Girth { get; }
-    public XmlAttribute<int> Plasticity { get; }
-    public XmlAttribute<int> Size { get; }
-    public XmlAttribute<float> StretchedCapacity { get; }
+    public LabeledXmlAttribute<float> Capacity { get; }
+    public LabeledXmlAttribute<int> Depth { get; }
+    public LabeledXmlAttribute<int> Elasticity { get; }
+    public LabeledXmlAttribute<int> Girth { get; }
+    public LabeledXmlAttribute<int> Plasticity { get; }
+    public LabeledXmlAttribute<int> Size { get; }
+    public LabeledXmlAttribute<float> StretchedCapacity { get; }
     public XmlAttribute<string> Type { get; }
     public XmlAttribute<bool> Pierced { get; }
     public XmlAttribute<bool> UrethraVirgin { get; }
@@ -95,13 +95,13 @@ public class PenisComponent
     
     public PenisComponent(XElement penisNode)
     {
-        Capacity = new XmlAttribute<float>(penisNode.Attribute("capacity")!);
-        Depth = new XmlAttribute<int>(penisNode.Attribute("depth")!);
-        Elasticity = new XmlAttribute<int>(penisNode.Attribute("elasticity")!);
-        Girth = new XmlAttribute<int>(penisNode.Attribute("girth")!);
-        Plasticity = new XmlAttribute<int>(penisNode.Attribute("plasticity")!);
-        Size = new XmlAttribute<int>(penisNode.Attribute("size")!);
-        StretchedCapacity = new XmlAttribute<float>(penisNode.Attribute("stretchedCapacity")!);
+        Capacity = new LabeledXmlAttribute<float>(penisNode.Attribute("capacity")!, Collections.GetCapacityLabel);
+        Depth = new LabeledXmlAttribute<int>(penisNode.Attribute("depth")!, Collections.GetDepthLabel);
+        Elasticity = new LabeledXmlAttribute<int>(penisNode.Attribute("elasticity")!, Collections.GetElasticityLabel);
+        Girth = new LabeledXmlAttribute<int>(penisNode.Attribute("girth")!, Collections.GetPenisClitGirthLabel);
+        Plasticity = new LabeledXmlAttribute<int>(penisNode.Attribute("plasticity")!, Collections.GetPlasticityLabel);
+        Size = new LabeledXmlAttribute<int>(penisNode.Attribute("size")!, GetPenisSizeLabel);
+        StretchedCapacity = new LabeledXmlAttribute<float>(penisNode.Attribute("stretchedCapacity")!, Collections.GetCapacityLabel);
         Type = new XmlAttribute<string>(penisNode.Attribute("type")!);
         Pierced = new XmlAttribute<bool>(penisNode.Attribute("pierced")!);
         UrethraVirgin = new XmlAttribute<bool>(penisNode.Attribute("urethraVirgin")!);
@@ -186,5 +186,20 @@ public class PenisComponent
                     break;
             }
         }
+    }
+
+    private static string GetPenisSizeLabel(int value)
+    {
+        return value switch
+        {
+            < 5 => "Tiny",
+            >= 5 and < 10 => "Small",
+            >= 10 and < 20 => "Average-sized",
+            >= 20 and < 30 => "Large",
+            >= 30 and < 40 => "Huge",
+            >= 40 and < 50 => "Enormous",
+            >= 50 and < 60 => "Gigantic",
+            >= 60 => "Stallion-sized"
+        };
     }
 }

@@ -6,15 +6,15 @@ namespace LTSaveEd.Models.CharacterData.BodyData.FaceData;
 
 public class Mouth
 {
-    public XmlAttribute<float> Capacity { get; }
-    public XmlAttribute<int> Depth { get; }
-    public XmlAttribute<int> Elasticity { get; }
-    public XmlAttribute<int> LipSize { get; }
+    public LabeledXmlAttribute<float> Capacity { get; }
+    public LabeledXmlAttribute<int> Depth { get; }
+    public LabeledXmlAttribute<int> Elasticity { get; }
+    public LabeledXmlAttribute<int> LipSize { get; }
     public XmlAttribute<bool> PiercedLip { get; }
-    public XmlAttribute<int> Plasticity { get; }
-    public XmlAttribute<float> StretchedCapacity { get; }
+    public LabeledXmlAttribute<int> Plasticity { get; }
+    public LabeledXmlAttribute<float> StretchedCapacity { get; }
     public XmlAttribute<bool> Virgin { get; }
-    public XmlAttribute<int> Wetness { get; }
+    public LabeledXmlAttribute<int> Wetness { get; }
     
     #region Modifiers
     
@@ -27,15 +27,15 @@ public class Mouth
     
     public Mouth(XElement mouthNode)
     {
-        Capacity = new XmlAttribute<float>(mouthNode.Attribute("capacity")!);
-        Depth = new XmlAttribute<int>(mouthNode.Attribute("depth")!);
-        Elasticity = new XmlAttribute<int>(mouthNode.Attribute("elasticity")!);
-        LipSize = new XmlAttribute<int>(mouthNode.Attribute("lipSize")!);
+        Capacity = new LabeledXmlAttribute<float>(mouthNode.Attribute("capacity")!, Collections.GetCapacityLabel);
+        Depth = new LabeledXmlAttribute<int>(mouthNode.Attribute("depth")!, Collections.GetDepthLabel);
+        Elasticity = new LabeledXmlAttribute<int>(mouthNode.Attribute("elasticity")!, Collections.GetElasticityLabel);
+        LipSize = new LabeledXmlAttribute<int>(mouthNode.Attribute("lipSize")!, GetLipSizeLabel);
         PiercedLip = new XmlAttribute<bool>(mouthNode.Attribute("piercedLip")!);
-        Plasticity = new XmlAttribute<int>(mouthNode.Attribute("plasticity")!);
-        StretchedCapacity = new XmlAttribute<float>(mouthNode.Attribute("stretchedCapacity")!);
+        Plasticity = new LabeledXmlAttribute<int>(mouthNode.Attribute("plasticity")!, Collections.GetPlasticityLabel);
+        StretchedCapacity = new LabeledXmlAttribute<float>(mouthNode.Attribute("stretchedCapacity")!, Collections.GetCapacityLabel);
         Virgin = new XmlAttribute<bool>(mouthNode.Attribute("virgin")!);
-        Wetness = new XmlAttribute<int>(mouthNode.Attribute("wetness")!);
+        Wetness = new LabeledXmlAttribute<int>(mouthNode.Attribute("wetness")!, Collections.GetWetnessLabel);
 
         var modifiersNode = mouthNode.Element("mouthModifiers")!;
         Puffy = new BodyComponentModifier(modifiersNode, "PUFFY");
@@ -62,5 +62,20 @@ public class Mouth
                     break;
             }
         }
+    }
+
+    private static string GetLipSizeLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Thin",
+            1 => "Average-sized",
+            2 => "Full",
+            3 => "Plump",
+            4 => "Huge",
+            5 => "Massive",
+            6 => "Gigantic",
+            >= 7 => "Absurdly Colossal",
+        };
     }
 }

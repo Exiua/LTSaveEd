@@ -6,7 +6,7 @@ namespace LTSaveEd.Models.CharacterData.BodyData.FaceData;
 public class Tongue
 {
     public XmlAttribute<bool> PiercedTongue { get; }
-    public XmlAttribute<int> Length { get; }
+    public LabeledXmlAttribute<int> Length { get; }
 
     #region Modifiers
 
@@ -23,7 +23,7 @@ public class Tongue
     public Tongue(XElement tongueNode)
     {
         PiercedTongue = new XmlAttribute<bool>(tongueNode.Attribute("piercedTongue")!);
-        Length = new XmlAttribute<int>(tongueNode.Attribute("tongueLength")!);
+        Length = new LabeledXmlAttribute<int>(tongueNode.Attribute("tongueLength")!, GetTongueLengthLabel);
 
         var modifiersNode = tongueNode.Element("tongueModifiers")!;
         Ribbed = new BodyComponentModifier(modifiersNode, "RIBBED");
@@ -62,5 +62,17 @@ public class Tongue
                     break;
             }
         }
+    }
+
+    private static string GetTongueLengthLabel(int value)
+    {
+        return value switch
+        {
+            < 7 => "Normal-sized",
+            >= 7 and < 15 => "Long",
+            >= 15 and < 25 => "Very Long",
+            >= 25 and < 45 => "Extremely Long",
+            >= 45 => "Absurdly Long"
+        };
     }
 }
