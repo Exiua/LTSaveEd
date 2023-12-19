@@ -7,12 +7,12 @@ public class Anus
 {
     public static ValueDisplayPair[] AssHairTypes => Collections.HairTypes;
     
-    public XmlAttribute<float> Capacity { get; }
-    public XmlAttribute<int> Depth { get; }
-    public XmlAttribute<int> Elasticity { get; }
-    public XmlAttribute<int> Plasticity { get; }
-    public XmlAttribute<float> StretchedCapacity { get; }
-    public XmlAttribute<int> Wetness { get; }
+    public LabeledXmlAttribute<float> Capacity { get; }
+    public LabeledXmlAttribute<int> Depth { get; }
+    public LabeledXmlAttribute<int> Elasticity { get; }
+    public LabeledXmlAttribute<int> Plasticity { get; }
+    public LabeledXmlAttribute<float> StretchedCapacity { get; }
+    public LabeledXmlAttribute<int> Wetness { get; }
     public XmlAttribute<string> AssHair { get; }
     public XmlAttribute<bool> Bleached { get; }
     public XmlAttribute<bool> Virgin { get; }
@@ -28,12 +28,12 @@ public class Anus
     
     public Anus(XElement anusNode)
     {
-        Capacity = new XmlAttribute<float>(anusNode.Attribute("capacity")!);
-        Depth = new XmlAttribute<int>(anusNode.Attribute("depth")!);
-        Elasticity = new XmlAttribute<int>(anusNode.Attribute("elasticity")!);
-        Plasticity = new XmlAttribute<int>(anusNode.Attribute("plasticity")!);
-        StretchedCapacity = new XmlAttribute<float>(anusNode.Attribute("stretchedCapacity")!);
-        Wetness = new XmlAttribute<int>(anusNode.Attribute("wetness")!);
+        Capacity = new LabeledXmlAttribute<float>(anusNode.Attribute("capacity")!, Collections.GetCapacityLabel);
+        Depth = new LabeledXmlAttribute<int>(anusNode.Attribute("depth")!, Collections.GetDepthLabel);
+        Elasticity = new LabeledXmlAttribute<int>(anusNode.Attribute("elasticity")!, Collections.GetElasticityLabel);
+        Plasticity = new LabeledXmlAttribute<int>(anusNode.Attribute("plasticity")!, Collections.GetPlasticityLabel);
+        StretchedCapacity = new LabeledXmlAttribute<float>(anusNode.Attribute("stretchedCapacity")!, Collections.GetCapacityLabel);
+        Wetness = new LabeledXmlAttribute<int>(anusNode.Attribute("wetness")!, Collections.GetWetnessLabel);
         AssHair = new XmlAttribute<string>(anusNode.Attribute("assHair")!);
         Bleached = new XmlAttribute<bool>(anusNode.Attribute("bleached")!);
         Virgin = new XmlAttribute<bool>(anusNode.Attribute("virgin")!);

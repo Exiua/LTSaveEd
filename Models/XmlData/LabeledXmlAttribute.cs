@@ -2,7 +2,7 @@
 
 namespace LTSaveEd.Models.XmlData;
 
-public class LabeledXmlAttribute(XAttribute attribute, Func<int, string> labelGenerator) : XmlAttribute<int>(attribute)
+public class LabeledXmlAttribute<T>(XAttribute attribute, Func<T, string> labelGenerator) : XmlAttribute<T>(attribute)
 {
     public string Label => labelGenerator(Value);
 }

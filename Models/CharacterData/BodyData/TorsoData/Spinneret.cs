@@ -5,22 +5,22 @@ namespace LTSaveEd.Models.CharacterData.BodyData.TorsoData;
 
 public class Spinneret
 {
-    public XmlAttribute<float> Capacity { get; }
-    public XmlAttribute<int> Depth { get; }
-    public XmlAttribute<int> Elasticity { get; }
-    public XmlAttribute<int> Plasticity { get; }
-    public XmlAttribute<float> StretchedCapacity { get; }
-    public XmlAttribute<int> Wetness { get; }
+    public LabeledXmlAttribute<float> Capacity { get; }
+    public LabeledXmlAttribute<int> Depth { get; }
+    public LabeledXmlAttribute<int> Elasticity { get; }
+    public LabeledXmlAttribute<int> Plasticity { get; }
+    public LabeledXmlAttribute<float> StretchedCapacity { get; }
+    public LabeledXmlAttribute<int> Wetness { get; }
     public XmlAttribute<bool> Virgin { get; }
 
     public Spinneret(XElement spinneretNode)
     {
-        Capacity = new XmlAttribute<float>(spinneretNode.Attribute("capacity")!);
-        Depth = new XmlAttribute<int>(spinneretNode.Attribute("depth")!);
-        Elasticity = new XmlAttribute<int>(spinneretNode.Attribute("elasticity")!);
-        Plasticity = new XmlAttribute<int>(spinneretNode.Attribute("plasticity")!);
-        StretchedCapacity = new XmlAttribute<float>(spinneretNode.Attribute("stretchedCapacity")!);
-        Wetness = new XmlAttribute<int>(spinneretNode.Attribute("wetness")!);
+        Capacity = new LabeledXmlAttribute<float>(spinneretNode.Attribute("capacity")!, Collections.GetCapacityLabel);
+        Depth = new LabeledXmlAttribute<int>(spinneretNode.Attribute("depth")!, Collections.GetDepthLabel);
+        Elasticity = new LabeledXmlAttribute<int>(spinneretNode.Attribute("elasticity")!, Collections.GetElasticityLabel);
+        Plasticity = new LabeledXmlAttribute<int>(spinneretNode.Attribute("plasticity")!, Collections.GetPlasticityLabel);
+        StretchedCapacity = new LabeledXmlAttribute<float>(spinneretNode.Attribute("stretchedCapacity")!, Collections.GetCapacityLabel);
+        Wetness = new LabeledXmlAttribute<int>(spinneretNode.Attribute("wetness")!, Collections.GetWetnessLabel);
         Virgin = new XmlAttribute<bool>(spinneretNode.Attribute("virgin")!);
     }
 }

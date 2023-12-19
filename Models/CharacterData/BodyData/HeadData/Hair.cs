@@ -62,7 +62,7 @@ public class Hair
     ];
 
     public XmlAttribute<string> HairStyle { get; }
-    public XmlAttribute<int> Length { get; }
+    public LabeledXmlAttribute<int> Length { get; }
     public XmlAttribute<string> Type { get; }
     public XmlAttribute<bool> NeckFluff { get; }
 
@@ -91,7 +91,7 @@ public class Hair
     public Hair(XElement hairNode)
     {
         HairStyle = new XmlAttribute<string>(hairNode.Attribute("hairStyle")!);
-        Length = new XmlAttribute<int>(hairNode.Attribute("length")!);
+        Length = new LabeledXmlAttribute<int>(hairNode.Attribute("length")!, GetHairLengthLabel);
         Type = new XmlAttribute<string>(hairNode.Attribute("type")!);
         NeckFluff = new XmlAttribute<bool>(hairNode.Attribute("neckFluff")!);
         HairStylesL = HairStylesFL[..25];
@@ -100,5 +100,20 @@ public class Hair
         HairStylesVS = HairStylesFL.Take(6).Concat(HairStylesFL.Skip(9).Take(1)).ToArray(); // 0-6 and 9
         HairStylesB = HairStylesFL[..1];
         _initalized = true;
+    }
+
+    private static string GetHairLengthLabel(int value)
+    {
+        return value switch
+        {
+            < 4 => "Bald",
+            >= 4 and < 11 => "Very Short",
+            >= 11 and < 22 => "Short",
+            >= 22 and < 45 => "Shoulder-length",
+            >= 45 and < 80 => "Long",
+            >= 80 and < 140 => "Very Long",
+            >= 140 and < 265 => "Incredibly Long",
+            >= 265 => "Floor-length"
+        };
     }
 }

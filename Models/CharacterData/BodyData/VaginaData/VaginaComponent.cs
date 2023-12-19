@@ -31,20 +31,20 @@ public class VaginaComponent
         new ValueDisplayPair("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair("Wolf", "WOLF_MORPH")
     ];
 
-    public XmlAttribute<float> Capacity { get; }
-    public XmlAttribute<int> ClitGirth { get; }
-    public XmlAttribute<int> ClitSize { get; }
-    public XmlAttribute<int> Depth { get; }
-    public XmlAttribute<int> Elasticity { get; }
-    public XmlAttribute<int> LabiaSize { get; }
-    public XmlAttribute<int> Plasticity { get; }
-    public XmlAttribute<float> StretchedCapacity { get; }
-    public XmlAttribute<float> UrethraCapacity { get; }
-    public XmlAttribute<int> UrethraDepth { get; }
-    public XmlAttribute<int> UrethraElasticity { get; }
-    public XmlAttribute<int> UrethraPlasticity { get; }
-    public XmlAttribute<float> UrethraStretchedCapacity { get; }
-    public XmlAttribute<int> Wetness { get; }
+    public LabeledXmlAttribute<float> Capacity { get; }
+    public LabeledXmlAttribute<int> ClitGirth { get; }
+    public LabeledXmlAttribute<int> ClitSize { get; }
+    public LabeledXmlAttribute<int> Depth { get; }
+    public LabeledXmlAttribute<int> Elasticity { get; }
+    public LabeledXmlAttribute<int> LabiaSize { get; }
+    public LabeledXmlAttribute<int> Plasticity { get; }
+    public LabeledXmlAttribute<float> StretchedCapacity { get; }
+    public LabeledXmlAttribute<float> UrethraCapacity { get; }
+    public LabeledXmlAttribute<int> UrethraDepth { get; }
+    public LabeledXmlAttribute<int> UrethraElasticity { get; }
+    public LabeledXmlAttribute<int> UrethraPlasticity { get; }
+    public LabeledXmlAttribute<float> UrethraStretchedCapacity { get; }
+    public LabeledXmlAttribute<int> Wetness { get; }
     public XmlAttribute<string> Type { get; }
     public XmlAttribute<bool> EggLayer { get; }
     public XmlAttribute<bool> Hymen { get; }
@@ -115,20 +115,20 @@ public class VaginaComponent
 
     public VaginaComponent(XElement vaginaNode)
     {
-        Capacity = new XmlAttribute<float>(vaginaNode.Attribute("capacity")!);
-        ClitGirth = new XmlAttribute<int>(vaginaNode.Attribute("clitGirth")!);
-        ClitSize = new XmlAttribute<int>(vaginaNode.Attribute("clitSize")!);
-        Depth = new XmlAttribute<int>(vaginaNode.Attribute("depth")!);
-        Elasticity = new XmlAttribute<int>(vaginaNode.Attribute("elasticity")!);
-        LabiaSize = new XmlAttribute<int>(vaginaNode.Attribute("labiaSize")!);
-        Plasticity = new XmlAttribute<int>(vaginaNode.Attribute("plasticity")!);
-        StretchedCapacity = new XmlAttribute<float>(vaginaNode.Attribute("stretchedCapacity")!);
-        UrethraCapacity = new XmlAttribute<float>(vaginaNode.Attribute("urethraCapacity")!);
-        UrethraDepth = new XmlAttribute<int>(vaginaNode.Attribute("urethraDepth")!);
-        UrethraElasticity = new XmlAttribute<int>(vaginaNode.Attribute("urethraElasticity")!);
-        UrethraPlasticity = new XmlAttribute<int>(vaginaNode.Attribute("urethraPlasticity")!);
-        UrethraStretchedCapacity = new XmlAttribute<float>(vaginaNode.Attribute("urethraStretchedCapacity")!);
-        Wetness = new XmlAttribute<int>(vaginaNode.Attribute("wetness")!);
+        Capacity = new LabeledXmlAttribute<float>(vaginaNode.Attribute("capacity")!, Collections.GetCapacityLabel);
+        ClitGirth = new LabeledXmlAttribute<int>(vaginaNode.Attribute("clitGirth")!, Collections.GetPenisClitGirthLabel);
+        ClitSize = new LabeledXmlAttribute<int>(vaginaNode.Attribute("clitSize")!, GetClitSizeLabel);
+        Depth = new LabeledXmlAttribute<int>(vaginaNode.Attribute("depth")!, Collections.GetDepthLabel);
+        Elasticity = new LabeledXmlAttribute<int>(vaginaNode.Attribute("elasticity")!, Collections.GetElasticityLabel);
+        LabiaSize = new LabeledXmlAttribute<int>(vaginaNode.Attribute("labiaSize")!, Collections.GetBodyPartSizeLabel);
+        Plasticity = new LabeledXmlAttribute<int>(vaginaNode.Attribute("plasticity")!, Collections.GetPlasticityLabel);
+        StretchedCapacity = new LabeledXmlAttribute<float>(vaginaNode.Attribute("stretchedCapacity")!, Collections.GetCapacityLabel);
+        UrethraCapacity = new LabeledXmlAttribute<float>(vaginaNode.Attribute("urethraCapacity")!, Collections.GetCapacityLabel);
+        UrethraDepth = new LabeledXmlAttribute<int>(vaginaNode.Attribute("urethraDepth")!, Collections.GetDepthLabel);
+        UrethraElasticity = new LabeledXmlAttribute<int>(vaginaNode.Attribute("urethraElasticity")!, Collections.GetElasticityLabel);
+        UrethraPlasticity = new LabeledXmlAttribute<int>(vaginaNode.Attribute("urethraPlasticity")!, Collections.GetPlasticityLabel);
+        UrethraStretchedCapacity = new LabeledXmlAttribute<float>(vaginaNode.Attribute("urethraStretchedCapacity")!, Collections.GetCapacityLabel);
+        Wetness = new LabeledXmlAttribute<int>(vaginaNode.Attribute("wetness")!, Collections.GetWetnessLabel);
         Type = new XmlAttribute<string>(vaginaNode.Attribute("type")!);
         EggLayer = new XmlAttribute<bool>(vaginaNode.Attribute("eggLayer")!);
         Hymen = new XmlAttribute<bool>(vaginaNode.Attribute("hymen")!);
@@ -242,5 +242,20 @@ public class VaginaComponent
                     break;
             }
         }
+    }
+
+    private static string GetClitSizeLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Small",
+            > 0 and < 5 => "Big",
+            >= 5 and < 10 => "Large",
+            >= 10 and < 25 => "Huge",
+            >= 25 and < 40 => "Massive",
+            >= 40 and < 50 => "Enormous",
+            >= 50 and < 60 => "Gigantic",
+            >= 60 => "Absurdly Colossal"
+        };
     }
 }

@@ -40,14 +40,14 @@ public class Tail
     ];
 
     public XmlAttribute<int> Count { get; }
-    public XmlAttribute<int> Girth { get; }
+    public LabeledXmlAttribute<int> Girth { get; }
     public XmlAttribute<float> Length { get; }
     public XmlAttribute<string> Type { get; }
 
     public Tail(XElement tailNode)
     {
         Count = new XmlAttribute<int>(tailNode.Attribute("count")!);
-        Girth = new XmlAttribute<int>(tailNode.Attribute("girth")!);
+        Girth = new LabeledXmlAttribute<int>(tailNode.Attribute("girth")!, Collections.GetAppendageGirthLabel);
         Length = new XmlAttribute<float>(tailNode.Attribute("length")!);
         Type = new XmlAttribute<string>(tailNode.Attribute("type")!);
     }

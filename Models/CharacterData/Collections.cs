@@ -207,4 +207,146 @@ public static class Collections
         
         #endregion
     }
+
+    public static string GetExtremityLabel(int value)
+    {
+        return value switch
+        {
+            < 10 => "Tiny",
+            >= 10 and < 22 => "Small",
+            >= 22 and < 40 => "Long",
+            >= 40 and < 62 => "Huge",
+            >= 62 => "Massive"
+        };
+    }
+
+    public static string GetCapacityLabel(float value)
+    {
+        return value switch
+        {
+            < 7 => "Very Shallow",
+            >= 7 and < 15 => "Shallow",
+            >= 15 and < 25 => "Average-depth",
+            >= 25 and < 35 => "Spacious",
+            >= 35 and < 45 => "Deep",
+            >= 45 and < 55 => "Very Deep",
+            >= 55 and < 80 => "Cavernous",
+            >= 80 => "Fathomless",
+            _ => "Invalid"
+        };
+    }
+
+    public static string GetDepthLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Very Shallow",
+            1 => "Shallow",
+            2 => "Average-depth",
+            3 => "Spacious",
+            4 => "Deep",
+            5 => "Very Deep",
+            6 => "Cavernous",
+            >=7 => "Fathomless"
+        };
+    }
+
+    public static string GetElasticityLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Rigid",
+            1 => "Stiff",
+            2 => "Firm",
+            3 => "Flexible",
+            4 => "Limber",
+            5 => "Stretchy",
+            6 => "Supple",
+            >=7 => "Elastic"
+        };
+    }
+
+    public static string GetPlasticityLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Rubbery",
+            1 => "Springy",
+            2 => "Tensile",
+            3 => "Resilient",
+            4 => "Accommodating",
+            5 => "Yielding",
+            6 => "Malleable",
+            >=7 => "Moldable"
+        };
+    }
+
+    public static string GetWetnessLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Dry",
+            1 => "Slightly Moist",
+            2 => "Moist",
+            3 => "Wet",
+            4 => "Slimy",
+            5 => "Sloppy",
+            6 => "Sopping Wet",
+            >=7 => "Drooling"
+        };
+    }
+
+    public static string GetFluidRegenerationLabel(int value)
+    {
+        return value switch
+        {
+            < 300 => "Slow",
+            >= 300 and < 800 => "Average",
+            >= 800 and < 5000 => "Fast",
+            >= 5000 and < 10000 => "Rapid",
+            >= 10000 => "Very Rapid"
+        };
+    }
+
+    public static string GetBodyPartSizeLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Tiny",
+            1 => "Small",
+            2 => "Average-sized",
+            3 => "Large",
+            >= 4 => "Massive"
+        };
+    }
+
+    public static string GetAppendageGirthLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Thin",
+            1 => "Slender",
+            2 => "Narrow",
+            3 => "Average",
+            4 => "Thick",
+            5 => "Extra-thick",
+            6 => "Extremely-thick",
+            >= 7 => "Unbelievable-thick"
+        };
+    }
+
+    public static string GetPenisClitGirthLabel(int value)
+    {
+        return value switch
+        {
+            <= 0 => "Thin",
+            1 => "Slender",
+            2 => "Narrow",
+            3 => "Averagely-girthed",
+            4 => "Girthy",
+            5 => "Thick",
+            6 => "Chubby",
+            >= 7 => "Fat"
+        };
+    }
 }

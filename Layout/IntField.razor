@@ -26,10 +26,10 @@
         }
     }
 
-    private string HelperLabel => _generateHelperLabels ? ((LabeledXmlAttribute)Attribute).Label : "";
+    private string HelperLabel => _generateHelperLabels ? ((LabeledXmlAttribute<int>)Attribute).Label : "";
 
     protected override void OnInitialized()
     {
-        _generateHelperLabels = Attribute is LabeledXmlAttribute;
+        _generateHelperLabels = Attribute is LabeledXmlAttribute<int>;
     }
 }

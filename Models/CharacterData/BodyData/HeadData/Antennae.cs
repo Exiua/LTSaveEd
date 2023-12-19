@@ -11,7 +11,7 @@ public class Antennae(XElement antennaeNode)
     ]; // TODO: Find antennae types
     
     public XmlAttribute<int> AntennaePerRow { get; } = new(antennaeNode.Attribute("antennaePerRow")!);
-    public XmlAttribute<int> Length { get; } = new(antennaeNode.Attribute("length")!);
+    public LabeledXmlAttribute<int> Length { get; } = new(antennaeNode.Attribute("length")!, Collections.GetExtremityLabel);
     public XmlAttribute<int> Rows { get; } = new(antennaeNode.Attribute("rows")!);
     public XmlAttribute<string> Type { get; } = new(antennaeNode.Attribute("type")!);
 

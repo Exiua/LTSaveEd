@@ -18,13 +18,13 @@ public class Nipples
     ];
 
     public XmlAttribute<string> AreolaeShape { get; }
-    public XmlAttribute<int> AreolaeSize { get; }
-    public XmlAttribute<float> Capacity { get; }
-    public XmlAttribute<int> Depth { get; }
-    public XmlAttribute<int> Elasticity { get; }
-    public XmlAttribute<int> NippleSize { get; }
-    public XmlAttribute<int> Plasticity { get; }
-    public XmlAttribute<float> StretchedCapacity { get; }
+    public LabeledXmlAttribute<int> AreolaeSize { get; }
+    public LabeledXmlAttribute<float> Capacity { get; }
+    public LabeledXmlAttribute<int> Depth { get; }
+    public LabeledXmlAttribute<int> Elasticity { get; }
+    public LabeledXmlAttribute<int> NippleSize { get; }
+    public LabeledXmlAttribute<int> Plasticity { get; }
+    public LabeledXmlAttribute<float> StretchedCapacity { get; }
     public XmlAttribute<string> NippleShape { get; }
     public XmlAttribute<bool> Pierced { get; }
     public XmlAttribute<bool> Virgin { get; }
@@ -41,13 +41,13 @@ public class Nipples
     public Nipples(XElement nipplesNode)
     {
         AreolaeShape = new XmlAttribute<string>(nipplesNode.Attribute("areolaeShape")!);
-        AreolaeSize = new XmlAttribute<int>(nipplesNode.Attribute("areolaeSize")!);
-        Capacity = new XmlAttribute<float>(nipplesNode.Attribute("capacity")!);
-        Depth = new XmlAttribute<int>(nipplesNode.Attribute("depth")!);
-        Elasticity = new XmlAttribute<int>(nipplesNode.Attribute("elasticity")!);
-        NippleSize = new XmlAttribute<int>(nipplesNode.Attribute("nippleSize")!);
-        Plasticity = new XmlAttribute<int>(nipplesNode.Attribute("plasticity")!);
-        StretchedCapacity = new XmlAttribute<float>(nipplesNode.Attribute("stretchedCapacity")!);
+        AreolaeSize = new LabeledXmlAttribute<int>(nipplesNode.Attribute("areolaeSize")!, Collections.GetBodyPartSizeLabel);
+        Capacity = new LabeledXmlAttribute<float>(nipplesNode.Attribute("capacity")!, Collections.GetCapacityLabel);
+        Depth = new LabeledXmlAttribute<int>(nipplesNode.Attribute("depth")!, Collections.GetDepthLabel);
+        Elasticity = new LabeledXmlAttribute<int>(nipplesNode.Attribute("elasticity")!, Collections.GetElasticityLabel);
+        NippleSize = new LabeledXmlAttribute<int>(nipplesNode.Attribute("nippleSize")!, Collections.GetBodyPartSizeLabel);
+        Plasticity = new LabeledXmlAttribute<int>(nipplesNode.Attribute("plasticity")!, Collections.GetPlasticityLabel);
+        StretchedCapacity = new LabeledXmlAttribute<float>(nipplesNode.Attribute("stretchedCapacity")!, Collections.GetCapacityLabel);
         NippleShape = new XmlAttribute<string>(nipplesNode.Attribute("nippleShape")!);
         Pierced = new XmlAttribute<bool>(nipplesNode.Attribute("pierced")!);
         Virgin = new XmlAttribute<bool>(nipplesNode.Attribute("virgin")!);
