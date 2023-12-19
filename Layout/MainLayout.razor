@@ -1,10 +1,11 @@
 ﻿@using LTSaveEd.Models
-@using System.Text
 @using System.Diagnostics
+@using System.Xml.Linq
+@using LTSaveEd.Models.JSWrappers
 @inherits LayoutComponentBase
-@inject IJSRuntime JSRuntime
 @inject ISnackbar Snackbar
 @inject SaveData SaveData
+@inject FileHandler FileHandler
 
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="@_theme"/>
 <MudSnackbarProvider />
@@ -131,11 +132,12 @@
         StateHasChanged();
         try
         {
-            var xmlString = SaveData.SaveDataXml.ToString();
+            var memoryStream = new MemoryStream();
+            await SaveData.SaveDataXml.SaveAsync(memoryStream, SaveOptions.None, new CancellationToken());
 
-            var byteArray = Encoding.UTF8.GetBytes(xmlString);
+            var byteArray = memoryStream.ToArray();
 
-            await JSRuntime.InvokeVoidAsync("saveAsFile", Filename, byteArray);
+            await FileHandler.DownloadFileFromByteArrayAsync(byteArray, Filename);
         }
         catch (Exception ex)
         {
