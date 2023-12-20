@@ -9,6 +9,6 @@ public class FileHandler(IJSRuntime jsRuntime) : JsWrapper(jsRuntime)
     public async Task DownloadFileFromByteArrayAsync(byte[] data, string fileName)
     {
         await WaitForReference();
-        await AccessorJsRef.Value.InvokeVoidAsync("downloadFileFromByteArray", data, fileName);
+        await AccessorJsRef.Value.InvokeVoidAsync("saveFile", data, fileName);
     }
 }

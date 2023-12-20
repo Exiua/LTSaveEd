@@ -15,7 +15,14 @@ builder.Services.AddScoped(_ => new HttpClient
 });
 builder.Services.AddMudServices();
 builder.Services.AddSingleton<SaveData>();
+builder.Services.AddSingleton<Settings>();
 builder.Services.AddScoped<LocalStorageAccessor>();
 builder.Services.AddScoped<FileHandler>();
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+var localStorageAccessor = host.Services.GetRequiredService<LocalStorageAccessor>();
+var settings = host.Services.GetRequiredService<Settings>();
+await settings.InitializeAsync(localStorageAccessor);
+
+await host.RunAsync();
