@@ -90,7 +90,7 @@ public class ArcaneSpells : ElementalSpells
         Steal = new Spell(StealSpellTiers, knownSpellsNode, spellUpgradesNode);
         Teleport = new Spell(TeleportSpellTiers, knownSpellsNode, spellUpgradesNode);
         LilithsCommand = new Spell(LilithsCommandSpellTiers, knownSpellsNode, spellUpgradesNode);
-        ArcaneElemental = new Spell(ArcaneArousalSpellTiers, knownSpellsNode, spellUpgradesNode);
+        ArcaneElemental = new Spell(ElementalArcaneSpellTiers, knownSpellsNode, spellUpgradesNode);
         UpgradePoints = GetUpgradePointNode(spellUpgradePointsNode, "ARCANE");
     }
 }

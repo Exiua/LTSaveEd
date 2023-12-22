@@ -1,18 +1,14 @@
 ﻿@using LTSaveEd.Models
 
-<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="Character" AnchorOrigin="Origin.BottomCenter">
-    @foreach (var value in Values)
-    {
-        <MudSelectItem Value="@value"/>
-    }
-</MudSelect>
+<MudAutocomplete T="ValueDisplayPair" Label="Character" @bind-Value="@CurrentValue" SearchFunc="@Search"
+                 CoerceText="true" Strict="false" MaxItems="null"/>
 
-@code {
+@code{
     private ValueDisplayPair _currentValue = null!;
     [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
     [Parameter] public required ValueDisplayPair CharacterId { get; set; }
     [Parameter] public EventCallback<ValueDisplayPair> CharacterIdChanged { get; set; }
-
+    
     private ValueDisplayPair CurrentValue
     {
         get => _currentValue;
@@ -22,9 +18,19 @@
             CharacterIdChanged.InvokeAsync(value);
         }
     }
-
+    
     protected override void OnInitialized()
     {
         _currentValue = CharacterId;
+    }
+    
+    private Task<IEnumerable<ValueDisplayPair>> Search(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return Task.FromResult(Values);
+        }
+
+        return Task.FromResult(Values.Where(x => x.DisplayValue.Contains(value, StringComparison.InvariantCultureIgnoreCase)));
     }
 }

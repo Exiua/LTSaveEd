@@ -1,12 +1,14 @@
 ﻿@using LTSaveEd.Models
-@using System.Text
 @using System.Diagnostics
+@using System.Xml.Linq
+@using LTSaveEd.Models.JSWrappers
 @inherits LayoutComponentBase
-@inject IJSRuntime JSRuntime
 @inject ISnackbar Snackbar
 @inject SaveData SaveData
+@inject FileHandler FileHandler
+@inject Settings Settings
 
-<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="@_theme"/>
+<MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="@_theme"/>
 <MudSnackbarProvider />
 
 <MudLayout>
@@ -14,7 +16,7 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd @Version</MudText>
         <MudSpacer />
-        <MudIconButton Icon="@(_isDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
+        <MudIconButton Icon="@(IsDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
                        Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
         <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined" />
         <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
@@ -83,13 +85,18 @@
 </MudLayout>
 
 @code {
-    private const string Version = "v2.2.0-alpha";
+    private const string Version = "v2.3.0-alpha";
     
     private bool _drawerOpen;
     private bool _processing;
-    private bool _isDarkMode;
+
     private readonly MudTheme _theme = null!;
     private string Filename { get; set; } = "";
+    private bool IsDarkMode
+    {
+        get => Settings.DarkMode;
+        set => Settings.DarkMode = value;
+    }
 
     private void DrawerToggle()
     {
@@ -127,15 +134,16 @@
     private async Task SaveFile()
     {
         _processing = true;
+        await Task.Delay(1);
 
-        StateHasChanged();
         try
         {
-            var xmlString = SaveData.SaveDataXml.ToString();
+            var memoryStream = new MemoryStream();
+            await SaveData.SaveDataXml.SaveAsync(memoryStream, SaveOptions.None, new CancellationToken());
 
-            var byteArray = Encoding.UTF8.GetBytes(xmlString);
+            var byteArray = memoryStream.ToArray();
 
-            await JSRuntime.InvokeVoidAsync("saveAsFile", Filename, byteArray);
+            await FileHandler.DownloadFileFromByteArrayAsync(byteArray, Filename);
         }
         catch (Exception ex)
         {
@@ -149,7 +157,7 @@
 
     private void ToggleTheme()
     {
-        _isDarkMode = !_isDarkMode;
+        IsDarkMode = !IsDarkMode;
         StateHasChanged();
     }
 }

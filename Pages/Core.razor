@@ -13,7 +13,7 @@
     <MudForm>
         <MudCardContent>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <CharacterSelect Values="SaveData.CharacterIds" CharacterId="_selectedCharacter"
+                <SearchableCharacterSelect Values="SaveData.CharacterIds" CharacterId="_selectedCharacter"
                                  CharacterIdChanged="@ChangeSelectedCharacter" />
                 <MudTextField @bind-Value="@CoreData.Id.Value" ReadOnly="true" Label="Id"/>
             </MudPaper>
