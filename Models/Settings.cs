@@ -20,7 +20,7 @@ public class Settings
     public async Task InitializeAsync(LocalStorageAccessor localStorageAccessor)
     {
         _localStorageAccessor = localStorageAccessor;
-        _darkMode = await ReadSettingAsync<bool>(SettingsKey.DarkMode);
+        _darkMode = await ReadOrSetDefaultSettingAsync(SettingsKey.DarkMode, false);
     }
     
     private async void SaveSettingAsync<T>(SettingsKey key, T value) where T : struct
@@ -36,8 +36,15 @@ public class Settings
         }
     }
 
-    private Task<T> ReadSettingAsync<T>(SettingsKey key) where T : struct
+    private async Task<T> ReadOrSetDefaultSettingAsync<T>(SettingsKey key, T defaultValue) where T : struct
     {
-        return _localStorageAccessor.GetValueAsync<T>(key.ToString());
+        var keyString = key.ToString();
+        if (await _localStorageAccessor.CheckValueExistsAsync(keyString))
+        {
+            return await _localStorageAccessor.GetValueAsync<T>(key.ToString());
+        }
+
+        await _localStorageAccessor.SetValueAsync(keyString, defaultValue);
+        return defaultValue;
     }
 }
