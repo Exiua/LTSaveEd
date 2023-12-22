@@ -474,7 +474,8 @@ public class Fetishes
 
     private static Fetish CreateFetish(string fetishName, XElement fetishesNode, bool suppressDesire = false)
     {
-        var fetishNode = new XElement("f", new XAttribute("desire", 2), new XAttribute("o", false), new XAttribute("xp", 0))
+        var fetishNode = new XElement("f", new XAttribute("desire", 2), new XAttribute("o", false),
+            new XAttribute("xp", 0))
         {
             Value = fetishName
         };
