@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace LTSaveEd.Models;
+namespace LTSaveEd.Models.JSWrappers;
 
 public abstract class JsWrapper(IJSRuntime jsRuntime) : IAsyncDisposable
 {
@@ -18,6 +18,7 @@ public abstract class JsWrapper(IJSRuntime jsRuntime) : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
+        GC.SuppressFinalize(this);
         if (AccessorJsRef.IsValueCreated)
         {
             await AccessorJsRef.Value.DisposeAsync();

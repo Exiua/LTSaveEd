@@ -36,12 +36,12 @@ public class Settings
         }
     }
 
-    private async Task<T> ReadOrSetDefaultSettingAsync<T>(SettingsKey key, T defaultValue) where T : struct
+    private async Task<T> ReadOrSetDefaultSettingAsync<T>(SettingsKey key, T defaultValue)
     {
         var keyString = key.ToString();
         if (await _localStorageAccessor.CheckValueExistsAsync(keyString))
         {
-            return await _localStorageAccessor.GetValueAsync<T>(key.ToString());
+            return await _localStorageAccessor.GetValueAsync<T>(keyString);
         }
 
         await _localStorageAccessor.SetValueAsync(keyString, defaultValue);

@@ -9,17 +9,26 @@ public class LocalStorageAccessor(IJSRuntime jsRuntime) : JsWrapper(jsRuntime)
     public async Task<T> GetValueAsync<T>(string key)
     {
         await WaitForReference();
-        var result = await AccessorJsRef.Value.InvokeAsync<T>("get", key);
-
-        return result;
+        var result =  await AccessorJsRef.Value.InvokeAsync<string>("get", key);
+        if (typeof(T) == typeof(int))
+        {
+            return (T)(object)int.Parse(result);
+        }
+        if (typeof(T) == typeof(float))
+        {
+            return (T)(object)float.Parse(result);
+        }
+        if (typeof(T) == typeof(bool))
+        {
+            return (T)(object)bool.Parse(result);
+        }
+        return (T)(object)result;
     }
 
     public async Task<bool> CheckValueExistsAsync(string key)
     {
         await WaitForReference();
-        var result = await AccessorJsRef.Value.InvokeAsync<bool>("exists", key);
-
-        return result;
+        return await AccessorJsRef.Value.InvokeAsync<bool>("exists", key);
     }
 
     public async Task SetValueAsync<T>(string key, T value)

@@ -5,9 +5,9 @@ namespace LTSaveEd.Models.CharacterData;
 
 public class Fetish
 {
-    public XmlAttribute<int> Desire { get; }
+    private XmlAttribute<int> Desire { get; }
     public XmlAttribute<int> Xp { get; }
-    public XmlAttribute<bool> Owned { get; }
+    public FetishOwnedAttribute Owned { get; }
 
     public string DesireValue
     {
@@ -40,7 +40,7 @@ public class Fetish
     public Fetish(XElement fetishNode, bool suppressDesire = false)
     {
         var desireNode = fetishNode.Attribute("desire");
-        if (desireNode == null)
+        if (desireNode is null)
         {
             desireNode = new XAttribute("desire", 2);
             if(!suppressDesire)
@@ -51,19 +51,18 @@ public class Fetish
         Desire = new XmlAttribute<int>(desireNode);
         
         var xpNode = fetishNode.Attribute("xp");
-        if (xpNode == null)
+        if (xpNode is null)
         {
             xpNode = new XAttribute("xp", 0);
             fetishNode.Add(xpNode);
         }
         Xp = new XmlAttribute<int>(xpNode);
-        
+
+        Owned = new FetishOwnedAttribute(fetishNode);
         var ownedNode = fetishNode.Attribute("o");
-        if (ownedNode == null)
+        if (ownedNode is not null)
         {
-            ownedNode = new XAttribute("o", false);
-            fetishNode.Add(ownedNode);
+            Owned.Initialize(ownedNode);
         }
-        Owned = new XmlAttribute<bool>(ownedNode);
     }
 }
