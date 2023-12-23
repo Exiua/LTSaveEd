@@ -11,7 +11,13 @@ jobs:
             # uses GitHub's checkout action to checkout code form the Blazor branch
             - uses: actions/checkout@v4
 
-            # sets up .NET Core SDK 3.1
+            # fix js interop paths
+            - name: Fix JS Filepaths
+              run: |
+                sed -i 's|/js/LocalStorageAccessor.js|/LTSaveEd/js/LocalStorageAccessor.js|' ./Models/JSWrapper/LocalStorageAccessor.cs
+                sed -i 's|/js/FileHandler.js|/LTSaveEd/js/FileHandler.js|' ./Models/JSWrapper/FileHandler.cs
+          
+          # sets up .NET Core SDK 3.1
             - name: Setup .NET Core SDK
               uses: actions/setup-dotnet@v3
               with:
