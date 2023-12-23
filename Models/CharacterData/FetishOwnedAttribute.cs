@@ -7,6 +7,8 @@ public class FetishOwnedAttribute(XElement parent) : NullableXmlAttribute(parent
 {
     protected override XAttribute CreateNode()
     {
-        return new XAttribute("o", true);
+        var ownedAttribute =  new XAttribute("o", true);
+        Parent.Add(ownedAttribute);
+        return ownedAttribute;
     }
 }
