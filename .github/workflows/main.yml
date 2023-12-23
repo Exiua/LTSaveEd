@@ -14,6 +14,7 @@ jobs:
             # fix js interop paths
             - name: Fix JS Filepaths
               run: |
+                ls
                 sed -i 's|/js/LocalStorageAccessor.js|/LTSaveEd/js/LocalStorageAccessor.js|' ./Models/JSWrapper/LocalStorageAccessor.cs
                 sed -i 's|/js/FileHandler.js|/LTSaveEd/js/FileHandler.js|' ./Models/JSWrapper/FileHandler.cs
           
