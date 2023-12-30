@@ -8,7 +8,7 @@ namespace LTSaveEd.Models.CharacterData.BodyData.BreastsData;
 /// </summary>
 public class Milk
 {
-    public static ValueDisplayPair[] MilkFlavours => Collections.BodyFluidFlavours;
+    public static ValueDisplayPair<string>[] MilkFlavours => Collections.BodyFluidFlavours;
 
     public XmlAttribute<string> Flavour { get; }
 

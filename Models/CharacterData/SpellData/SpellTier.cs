@@ -1,6 +1,6 @@
 ﻿namespace LTSaveEd.Models.CharacterData.SpellData;
 
-public class SpellTier(string name, string value) : ValueDisplayPair(name, value)
+public class SpellTier(string name, string value) : ValueDisplayPair<string>(name, value)
 {
     private static string[] Endings { get; } = ["_UNOWNED", "_3A", "_3B", "_3", "_2", "_1"];
 

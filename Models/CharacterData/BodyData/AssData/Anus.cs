@@ -8,7 +8,7 @@ namespace LTSaveEd.Models.CharacterData.BodyData.AssData;
 /// </summary>
 public class Anus
 {
-    public static ValueDisplayPair[] AssHairTypes => Collections.HairTypes;
+    public static ValueDisplayPair<string>[] AssHairTypes => Collections.HairTypes;
     
     public LabeledXmlAttribute<float> Capacity { get; }
     public LabeledXmlAttribute<int> Depth { get; }

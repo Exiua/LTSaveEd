@@ -1,27 +1,27 @@
 ﻿@using LTSaveEd.Models
 
-<MudAutocomplete T="ValueDisplayPair" Label="Character" @bind-Value="@CurrentValue" SearchFunc="@Search"
+<MudAutocomplete T="ValueDisplayPair<string>" Label="Character" @bind-Value="@CurrentValue" SearchFunc="@Search"
                  CoerceText="true" Strict="false" MaxItems="null"/>
 
 @code{
-    private ValueDisplayPair _currentValue = null!;
+    private ValueDisplayPair<string> _currentValue = null!;
     
     /// <summary>
     ///     The list of values to search from.
     /// </summary>
-    [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    [Parameter] public required IEnumerable<ValueDisplayPair<string>> Values { get; set; }
     
     /// <summary>
     ///    The currently selected character.
     /// </summary>
-    [Parameter] public required ValueDisplayPair CharacterId { get; set; }
+    [Parameter] public required ValueDisplayPair<string> CharacterId { get; set; }
     
     /// <summary>
     ///     The event that is called when the selected character changes.
     /// </summary>
-    [Parameter] public EventCallback<ValueDisplayPair> CharacterIdChanged { get; set; }
+    [Parameter] public EventCallback<ValueDisplayPair<string>> CharacterIdChanged { get; set; }
     
-    private ValueDisplayPair CurrentValue
+    private ValueDisplayPair<string> CurrentValue
     {
         get => _currentValue;
         set
@@ -36,7 +36,7 @@
         _currentValue = CharacterId;
     }
     
-    private Task<IEnumerable<ValueDisplayPair>> Search(string value)
+    private Task<IEnumerable<ValueDisplayPair<string>>> Search(string value)
     {
         if (string.IsNullOrEmpty(value))
         {

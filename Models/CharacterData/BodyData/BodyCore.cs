@@ -5,18 +5,18 @@ namespace LTSaveEd.Models.CharacterData.BodyData;
 
 public class BodyCore : BodyComponent
 {
-    public ValueDisplayPair[] BodyMaterials { get; } =
+    public ValueDisplayPair<string>[] BodyMaterials { get; } =
     [
-        new ValueDisplayPair("Flesh", "FLESH"), new ValueDisplayPair("Slime", "SLIME"),
-        new ValueDisplayPair("Fire", "FIRE"), new ValueDisplayPair("Water", "WATER"),
-        new ValueDisplayPair("Ice", "ICE"), new ValueDisplayPair("Storm-clouds", "AIR"),
-        new ValueDisplayPair("Stone", "STONE"), new ValueDisplayPair("Rubber", "RUBBER"),
-        new ValueDisplayPair("Energy", "ENERGY")
+        new ValueDisplayPair<string>("Flesh", "FLESH"), new ValueDisplayPair<string>("Slime", "SLIME"),
+        new ValueDisplayPair<string>("Fire", "FIRE"), new ValueDisplayPair<string>("Water", "WATER"),
+        new ValueDisplayPair<string>("Ice", "ICE"), new ValueDisplayPair<string>("Storm-clouds", "AIR"),
+        new ValueDisplayPair<string>("Stone", "STONE"), new ValueDisplayPair<string>("Rubber", "RUBBER"),
+        new ValueDisplayPair<string>("Energy", "ENERGY")
     ];
 
-    public static ValueDisplayPair[] PubicHairTypes => Collections.HairTypes;
+    public static ValueDisplayPair<string>[] PubicHairTypes => Collections.HairTypes;
 
-    public static ValueDisplayPair[] SubspeciesOverrides => Collections.SubspeciesOverrides;
+    public static ValueDisplayPair<string>[] SubspeciesOverrides => Collections.SubspeciesOverrides;
 
     public XmlAttribute<string> BodyMaterial { get; }
     public LabeledXmlAttribute<int> BodySize { get; }

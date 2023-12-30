@@ -34,7 +34,7 @@
 
 @code {
     private Models.CharacterData.Relationships RelationshipsData => SaveData.CurrentCharacter.Relationships;
-    private ValueDisplayPair SelectedCharacter { get; set; } = null!;
+    private ValueDisplayPair<string> SelectedCharacter { get; set; } = null!;
 
     protected override void OnInitialized()
     {

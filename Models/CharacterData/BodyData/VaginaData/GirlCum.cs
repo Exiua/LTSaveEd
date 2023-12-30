@@ -5,7 +5,7 @@ namespace LTSaveEd.Models.CharacterData.BodyData.VaginaData;
 
 public class GirlCum
 {
-    public static ValueDisplayPair[] GirlCumFlavours => Collections.BodyFluidFlavours;
+    public static ValueDisplayPair<string>[] GirlCumFlavours => Collections.BodyFluidFlavours;
     
     public XmlAttribute<string> Flavour { get; }
     

@@ -1,6 +1,7 @@
 ﻿@page "/body/torso"
              
 @using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.BodyData.TorsoData
 
 @inherits BasePage
 
@@ -100,7 +101,7 @@
                                                         Attribute="@TorsoData.Arm.Type" Label="Type"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <ValueDisplayPairSelect Values="@TorsoData.Arm.UnderArmHairTypes"
+                                <ValueDisplayPairSelect Values="@Arm.UnderArmHairTypes"
                                                         Attribute="@TorsoData.Arm.UnderarmHair" Label="Underarm Hair"/>
                             </MudPaper>
                         </td>

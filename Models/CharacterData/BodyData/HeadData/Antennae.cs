@@ -9,9 +9,9 @@ namespace LTSaveEd.Models.CharacterData.BodyData.HeadData;
 /// <param name="antennaeNode">XElement of the antennae node</param>
 public class Antennae(XElement antennaeNode)
 {
-    public ValueDisplayPair[] AntennaeTypes { get; } =
+    public ValueDisplayPair<string>[] AntennaeTypes { get; } =
     [
-        new ValueDisplayPair("None", "NONE")
+        new ValueDisplayPair<string>("None", "NONE")
     ]; // TODO: Find antennae types
     
     public XmlAttribute<int> AntennaePerRow { get; } = new(antennaeNode.Attribute("antennaePerRow")!);

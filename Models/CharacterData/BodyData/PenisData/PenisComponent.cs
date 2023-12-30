@@ -8,29 +8,29 @@ namespace LTSaveEd.Models.CharacterData.BodyData.PenisData;
 /// </summary>
 public class PenisComponent
 {
-    public ValueDisplayPair[] PenisTypes { get; } =
+    public ValueDisplayPair<string>[] PenisTypes { get; } =
     [
-        new ValueDisplayPair("None", "NONE"), new ValueDisplayPair("Alligator", "ALLIGATOR_MORPH"),
-        new ValueDisplayPair("Angel", "ANGEL"), new ValueDisplayPair("Badger", "innoxia_badger_penis"),
-        new ValueDisplayPair("Bat", "BAT_MORPH"), new ValueDisplayPair("Bear", "dsg_bear_penis"),
-        new ValueDisplayPair("Capybara", "NoStepOnSnek_capybara_penis"),
-        new ValueDisplayPair("Cat", "CAT_MORPH"), new ValueDisplayPair("Cow", "COW_MORPH"),
-        new ValueDisplayPair("Demonic", "DEMON_COMMON"), new ValueDisplayPair("Dog", "DOG_MORPH"),
-        new ValueDisplayPair("Dragon", "dsg_dragon_penis"), new ValueDisplayPair("Ferret", "dsg_ferret_penis"),
-        new ValueDisplayPair("Fox", "FOX_MORPH"), new ValueDisplayPair("Goat", "innoxia_goat_penis"),
-        new ValueDisplayPair("Gryphon", "dsg_gryphon_penis"), new ValueDisplayPair("Harpy", "HARPY"),
-        new ValueDisplayPair("Horse", "EQUINE"), new ValueDisplayPair("Human", "HUMAN"),
-        new ValueDisplayPair("Hyena", "innoxia_hyena_penis"),
-        new ValueDisplayPair("Octopus", "NoStepOnSnek_octopus_penis"),
-        new ValueDisplayPair("Otter", "dsg_otter_penis"),
-        new ValueDisplayPair("Panther", "innoxia_panther_penis"),
-        new ValueDisplayPair("Pig", "innoxia_pig_penis"), new ValueDisplayPair("Rabbit", "RABBIT_MORPH"),
-        new ValueDisplayPair("Racoon", "dsg_raccoon_penis"), new ValueDisplayPair("Rat", "RAT_MORPH"),
-        new ValueDisplayPair("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair("Shark", "dsg_shark_penis"),
-        new ValueDisplayPair("Sheep", "innoxia_sheep_penis"),
-        new ValueDisplayPair("Snake", "NoStepOnSnek_snake_penis"),
-        new ValueDisplayPair("Spider", "charisma_spider_penis"),
-        new ValueDisplayPair("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair("Wolf", "WOLF_MORPH")
+        new ValueDisplayPair<string>("None", "NONE"), new ValueDisplayPair<string>("Alligator", "ALLIGATOR_MORPH"),
+        new ValueDisplayPair<string>("Angel", "ANGEL"), new ValueDisplayPair<string>("Badger", "innoxia_badger_penis"),
+        new ValueDisplayPair<string>("Bat", "BAT_MORPH"), new ValueDisplayPair<string>("Bear", "dsg_bear_penis"),
+        new ValueDisplayPair<string>("Capybara", "NoStepOnSnek_capybara_penis"),
+        new ValueDisplayPair<string>("Cat", "CAT_MORPH"), new ValueDisplayPair<string>("Cow", "COW_MORPH"),
+        new ValueDisplayPair<string>("Demonic", "DEMON_COMMON"), new ValueDisplayPair<string>("Dog", "DOG_MORPH"),
+        new ValueDisplayPair<string>("Dragon", "dsg_dragon_penis"), new ValueDisplayPair<string>("Ferret", "dsg_ferret_penis"),
+        new ValueDisplayPair<string>("Fox", "FOX_MORPH"), new ValueDisplayPair<string>("Goat", "innoxia_goat_penis"),
+        new ValueDisplayPair<string>("Gryphon", "dsg_gryphon_penis"), new ValueDisplayPair<string>("Harpy", "HARPY"),
+        new ValueDisplayPair<string>("Horse", "EQUINE"), new ValueDisplayPair<string>("Human", "HUMAN"),
+        new ValueDisplayPair<string>("Hyena", "innoxia_hyena_penis"),
+        new ValueDisplayPair<string>("Octopus", "NoStepOnSnek_octopus_penis"),
+        new ValueDisplayPair<string>("Otter", "dsg_otter_penis"),
+        new ValueDisplayPair<string>("Panther", "innoxia_panther_penis"),
+        new ValueDisplayPair<string>("Pig", "innoxia_pig_penis"), new ValueDisplayPair<string>("Rabbit", "RABBIT_MORPH"),
+        new ValueDisplayPair<string>("Racoon", "dsg_raccoon_penis"), new ValueDisplayPair<string>("Rat", "RAT_MORPH"),
+        new ValueDisplayPair<string>("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair<string>("Shark", "dsg_shark_penis"),
+        new ValueDisplayPair<string>("Sheep", "innoxia_sheep_penis"),
+        new ValueDisplayPair<string>("Snake", "NoStepOnSnek_snake_penis"),
+        new ValueDisplayPair<string>("Spider", "charisma_spider_penis"),
+        new ValueDisplayPair<string>("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair<string>("Wolf", "WOLF_MORPH")
     ];
 
     public LabeledXmlAttribute<float> Capacity { get; }

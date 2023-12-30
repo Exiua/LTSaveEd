@@ -13,13 +13,13 @@
 
 @code {
     private string _currentId = null!;
-    private static ValueDisplayPair[] FemininityValues => Collections.FemininityValues;
-    private static ValueDisplayPair[] Subspecies => Collections.SubspeciesOverrides;
+    private static ValueDisplayPair<string>[] FemininityValues => Collections.FemininityValues;
+    private static ValueDisplayPair<string>[] Subspecies => Collections.SubspeciesOverrides;
     
     /// <summary>
     ///     The list of parents to choose from.
     /// </summary>
-    [Parameter] public required ValueDisplayPair[] Parents { get; set; }
+    [Parameter] public required ValueDisplayPair<string>[] Parents { get; set; }
     
     /// <summary>
     ///    The parent data to display.

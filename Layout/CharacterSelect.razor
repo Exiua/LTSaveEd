@@ -1,6 +1,6 @@
 ﻿@using LTSaveEd.Models
 
-<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="Character" AnchorOrigin="Origin.BottomCenter">
+<MudSelect T="ValueDisplayPair<string>" @bind-Value="@CurrentValue" Label="Character" AnchorOrigin="Origin.BottomCenter">
     @foreach (var value in Values)
     {
         <MudSelectItem Value="@value"/>
@@ -9,24 +9,24 @@
 
 @code {
     // Used as a intermediary to allow proper two-way binding.
-    private ValueDisplayPair _currentValue = null!;
+    private ValueDisplayPair<string> _currentValue = null!;
     
     /// <summary>
     ///     The list of character Name-Id pairs to display in the select.
     /// </summary>
-    [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    [Parameter] public required IEnumerable<ValueDisplayPair<string>> Values { get; set; }
     
     /// <summary>
     ///    The currently selected character Name-Id pair.
     /// </summary>
-    [Parameter] public required ValueDisplayPair CharacterId { get; set; }
+    [Parameter] public required ValueDisplayPair<string> CharacterId { get; set; }
     
     /// <summary>
     ///     The event that is fired when the selected character Name-Id pair changes.
     /// </summary>
-    [Parameter] public EventCallback<ValueDisplayPair> CharacterIdChanged { get; set; }
+    [Parameter] public EventCallback<ValueDisplayPair<string>> CharacterIdChanged { get; set; }
     
-    private ValueDisplayPair CurrentValue
+    private ValueDisplayPair<string> CurrentValue
     {
         get => _currentValue;
         set

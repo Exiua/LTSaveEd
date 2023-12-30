@@ -9,17 +9,17 @@ namespace LTSaveEd.Models.CharacterData.BodyData.HeadData;
 /// <param name="hornNode">XElement of the horn node</param>
 public class Horn(XElement hornNode)
 {
-    public ValueDisplayPair[] HornTypes { get; } =
+    public ValueDisplayPair<string>[] HornTypes { get; } =
     [
-        new ValueDisplayPair("None", "NONE"), new ValueDisplayPair("Antlers", "ANTLERS"),
-        new ValueDisplayPair("Dragon", "dsg_dragon_horn"),
-        new ValueDisplayPair("Dragon antler", "dsg_dragon_hornAntlers"),
-        new ValueDisplayPair("Dragon curled", "dsg_dragon_hornCurled"),
-        new ValueDisplayPair("Dragon curved", "dsg_dragon_hornCurved"),
-        new ValueDisplayPair("Unicorn", "HORSE_STRAIGHT"), new ValueDisplayPair("Curled", "CURLED"),
-        new ValueDisplayPair("Curved", "CURVED"), new ValueDisplayPair("Spiral", "SPIRAL"),
-        new ValueDisplayPair("Straight", "STRAIGHT"), new ValueDisplayPair("Swept-back", "SWEPT_BACK"),
-        new ValueDisplayPair("Multi-branched", "REINDEER_RACK")
+        new ValueDisplayPair<string>("None", "NONE"), new ValueDisplayPair<string>("Antlers", "ANTLERS"),
+        new ValueDisplayPair<string>("Dragon", "dsg_dragon_horn"),
+        new ValueDisplayPair<string>("Dragon antler", "dsg_dragon_hornAntlers"),
+        new ValueDisplayPair<string>("Dragon curled", "dsg_dragon_hornCurled"),
+        new ValueDisplayPair<string>("Dragon curved", "dsg_dragon_hornCurved"),
+        new ValueDisplayPair<string>("Unicorn", "HORSE_STRAIGHT"), new ValueDisplayPair<string>("Curled", "CURLED"),
+        new ValueDisplayPair<string>("Curved", "CURVED"), new ValueDisplayPair<string>("Spiral", "SPIRAL"),
+        new ValueDisplayPair<string>("Straight", "STRAIGHT"), new ValueDisplayPair<string>("Swept-back", "SWEPT_BACK"),
+        new ValueDisplayPair<string>("Multi-branched", "REINDEER_RACK")
     ];
     
     public XmlAttribute<int> HornsPerRow { get; } = new(hornNode.Attribute("hornsPerRow")!);

@@ -8,7 +8,7 @@ namespace LTSaveEd.Models.CharacterData.BodyData.PenisData;
 /// </summary>
 public class Cum
 {
-    public static ValueDisplayPair[] CumFlavours => Collections.BodyFluidFlavours;
+    public static ValueDisplayPair<string>[] CumFlavours => Collections.BodyFluidFlavours;
     
     public XmlAttribute<string> Flavour { get; }
 

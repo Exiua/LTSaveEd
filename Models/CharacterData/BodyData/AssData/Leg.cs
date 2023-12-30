@@ -12,9 +12,9 @@ public class Leg
     
     private LegTypeValueDisplayPair _legType = null!;
 
-    public ValueDisplayPair[] LegConfigurations => LegType.LegConfigurations;
-    public ValueDisplayPair[] FootStructures => LegType.FootStructures;
-    public ValueDisplayPair[] GenitalArrangements => LegType.GenitalArrangements;
+    public ValueDisplayPair<string>[] LegConfigurations => LegType.LegConfigurations;
+    public ValueDisplayPair<string>[] FootStructures => LegType.FootStructures;
+    public ValueDisplayPair<string>[] GenitalArrangements => LegType.GenitalArrangements;
     
     public XmlAttribute<string> Configuration { get; }
     public XmlAttribute<string> FootStructure { get; }
@@ -33,9 +33,9 @@ public class Leg
             Type.Value = _legType.Value;
 
             // Check if leg configurations, foot structures, or genital arrangements are valid for the new leg type.
-            ValueDisplayPair? newLegConfiguration = null;
-            ValueDisplayPair? newFootStructure = null;
-            ValueDisplayPair? newGenitalArrangement = null;
+            ValueDisplayPair<string>? newLegConfiguration = null;
+            ValueDisplayPair<string>? newFootStructure = null;
+            ValueDisplayPair<string>? newGenitalArrangement = null;
             if (!ReferenceEquals(currentLegConfigurations, LegConfigurations))
             {
                 newLegConfiguration = _legType.DefaultLegConfiguration;
@@ -53,7 +53,7 @@ public class Leg
         }
     }
 
-    public event Action<ValueDisplayPair?, ValueDisplayPair?, ValueDisplayPair?>? OnLegTypeChanged; 
+    public event Action<ValueDisplayPair<string>?, ValueDisplayPair<string>?, ValueDisplayPair<string>?>? OnLegTypeChanged; 
 
     public Leg(XElement legNode)
     {

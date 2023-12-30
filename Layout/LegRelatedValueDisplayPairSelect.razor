@@ -4,7 +4,7 @@
 
 @*Future Idea: Use inheritance to avoid duplicating ValueDisplayPairSelect code*@
 
-<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
+<MudSelect T="ValueDisplayPair<string>" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
     @foreach (var value in Values)
     {
         <MudSelectItem Value="@value"/>
@@ -12,12 +12,12 @@
 </MudSelect>
 
 @code {
-    private ValueDisplayPair _currentValue = null!;
+    private ValueDisplayPair<string> _currentValue = null!;
     
     /// <summary>
     ///     The values to display in the select.
     /// </summary>
-    [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    [Parameter] public required IEnumerable<ValueDisplayPair<string>> Values { get; set; }
     
     /// <summary>
     ///    The label to display for this component.
@@ -39,7 +39,7 @@
     /// </summary>
     [Parameter] public LegComponentType LegComponentType { get; set; }
     
-    protected ValueDisplayPair CurrentValue
+    protected ValueDisplayPair<string> CurrentValue
     {
         get => _currentValue;
         set
@@ -72,7 +72,7 @@
     /// <param name="newLegConfiguration">The new leg configuration</param>
     /// <param name="newFootStructure">The new foot structure</param>
     /// <param name="newGenitalArrangement">The new genital arrangement</param>
-    private void LegTypeUpdated(ValueDisplayPair? newLegConfiguration, ValueDisplayPair? newFootStructure, ValueDisplayPair? newGenitalArrangement)
+    private void LegTypeUpdated(ValueDisplayPair<string>? newLegConfiguration, ValueDisplayPair<string>? newFootStructure, ValueDisplayPair<string>? newGenitalArrangement)
     {
         switch (LegComponentType)
         {
