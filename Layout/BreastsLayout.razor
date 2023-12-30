@@ -64,7 +64,7 @@
                                 <FloatField Attribute="@Breasts.Nipples.StretchedCapacity" Label="Stretched Capacity"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <ValueDisplayPairSelect Values="@Breasts.Nipples.nippleShapes"
+                                <ValueDisplayPairSelect Values="@Breasts.Nipples.NippleShapes"
                                                         Attribute="@Breasts.Nipples.NippleShape" Label="Nipple Shape"/>
                            </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
@@ -134,6 +134,9 @@
 </MudCard>
 
 @code {
+    /// <summary>
+    ///     The breasts component of the character being edited.
+    /// </summary>
     [Parameter] public required Breasts Breasts { get; set; }
     
     private bool BreastsCrotch => Breasts.BreastsCrotch;

@@ -8,6 +8,14 @@
 </MudSelect>
 
 @code {
+    
+    /// <summary>
+    ///     The spell component of the character being edited.
+    /// </summary>
     [Parameter] public required Spell Spell { get; set; }
+    
+    /// <summary>
+    ///    The label to display for the current spell.
+    /// </summary>
     [Parameter] public required string Label { get; set; }
 }

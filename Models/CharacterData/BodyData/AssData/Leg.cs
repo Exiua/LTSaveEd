@@ -3,6 +3,9 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.AssData;
 
+/// <summary>
+///     Class models the leg node of the character's body data. Part of the <see cref="Ass" /> model.
+/// </summary>
 public class Leg
 {
     public static LegTypeValueDisplayPair[] LegTypes => Collections.LegTypes;
@@ -15,7 +18,7 @@ public class Leg
     
     public XmlAttribute<string> Configuration { get; }
     public XmlAttribute<string> FootStructure { get; }
-    //public XmlAttribute<float> TailLength { get; }
+    //public XmlAttribute<float> TailLength { get; }  // TODO: Figure out if all saves have this attribute
     private XmlAttribute<string> Type { get; }
 
     public LegTypeValueDisplayPair LegType
@@ -29,6 +32,7 @@ public class Leg
             _legType = value;
             Type.Value = _legType.Value;
 
+            // Check if leg configurations, foot structures, or genital arrangements are valid for the new leg type.
             ValueDisplayPair? newLegConfiguration = null;
             ValueDisplayPair? newFootStructure = null;
             ValueDisplayPair? newGenitalArrangement = null;

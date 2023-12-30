@@ -5,8 +5,20 @@
 
 @code{
     private ValueDisplayPair _currentValue = null!;
+    
+    /// <summary>
+    ///     The list of values to search from.
+    /// </summary>
     [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    
+    /// <summary>
+    ///    The currently selected character.
+    /// </summary>
     [Parameter] public required ValueDisplayPair CharacterId { get; set; }
+    
+    /// <summary>
+    ///     The event that is called when the selected character changes.
+    /// </summary>
     [Parameter] public EventCallback<ValueDisplayPair> CharacterIdChanged { get; set; }
     
     private ValueDisplayPair CurrentValue
@@ -31,6 +43,7 @@
             return Task.FromResult(Values);
         }
 
+        // Search for similar values to the search term in the list of values.
         return Task.FromResult(Values.Where(x => x.DisplayValue.Contains(value, StringComparison.InvariantCultureIgnoreCase)));
     }
 }

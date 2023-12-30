@@ -1,6 +1,7 @@
 ﻿@page "/body/face"
              
 @using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.BodyData.FaceData
 
 @inherits BasePage
 
@@ -17,7 +18,7 @@
                         <td style="border-bottom: none; vertical-align: top;">
                             <h4 style="text-decoration: underline; text-align: center"><b>Face</b></h4>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <ValueDisplayPairSelect Values="@FaceData.FaceComponent.FacialHairTypes"
+                                <ValueDisplayPairSelect Values="@FaceComponent.FacialHairTypes"
                                                         Attribute="@FaceData.FaceComponent.FacialHair" Label="Facial Hair"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">

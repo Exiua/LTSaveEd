@@ -3,11 +3,15 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.FaceData;
 
+/// <summary>
+///     Class models the face node of the character's body data. Part of the <see cref="Face" /> model.
+/// </summary>
+/// <param name="faceNode">XElement of the face node</param>
 public class FaceComponent(XElement faceNode)
 {
-    public ValueDisplayPair[] FacialHairTypes => Collections.HairTypes;
-    
-    public ValueDisplayPair[] FaceTypes =
+    public static ValueDisplayPair[] FacialHairTypes => Collections.HairTypes;
+
+    public ValueDisplayPair[] FaceTypes { get; } =
     [
         new ValueDisplayPair("Alligator", "ALLIGATOR_MORPH"), new ValueDisplayPair("Angel", "ANGEL"),
         new ValueDisplayPair("Badger", "innoxia_badger_face"), new ValueDisplayPair("Bat", "BAT_MORPH"),
@@ -38,5 +42,4 @@ public class FaceComponent(XElement faceNode)
     public XmlAttribute<string> FacialHair { get; } = new(faceNode.Attribute("facialHair")!);
     public XmlAttribute<bool> PiercedNose { get; } = new(faceNode.Attribute("piercedNose")!);
     public XmlAttribute<string> Type { get; } = new(faceNode.Attribute("type")!);
-
 }

@@ -3,6 +3,9 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.BreastsData;
 
+/// <summary>
+///     Class models the nipples(Crotch) node of the character's body data. Part of the <see cref="Breasts" /> model.
+/// </summary>
 public class Nipples
 {
     public ValueDisplayPair[] AreolaeShapes { get; } =
@@ -11,7 +14,7 @@ public class Nipples
         new ValueDisplayPair("Star-shaped", "STAR")
     ];
 
-    public ValueDisplayPair[] nippleShapes { get; } =
+    public ValueDisplayPair[] NippleShapes { get; } =
     [
         new ValueDisplayPair("Normal", "NORMAL"), new ValueDisplayPair("Inverted", "INVERTED"),
         new ValueDisplayPair("Nipple-cunts", "VAGINA"), new ValueDisplayPair("Lipples", "LIPS")

@@ -98,6 +98,9 @@
         set => Settings.DarkMode = value;
     }
 
+    /// <summary>
+    ///     Toggles the drawer open/closed
+    /// </summary>
     private void DrawerToggle()
     {
         if (!SaveData.Initialized)
@@ -109,6 +112,9 @@
         StateHasChanged();
     }
     
+    /// <summary>
+    ///    Loads the save data from the file
+    /// </summary>
     private async Task LoadSave(IBrowserFile file)
     {
         Filename = file.Name;
@@ -131,6 +137,9 @@
         }
     }
     
+    /// <summary>
+    ///    Saves the save data to a file
+    /// </summary>
     private async Task SaveFile()
     {
         _processing = true;
@@ -155,6 +164,9 @@
         }
     }
 
+    /// <summary>
+    ///   Toggles the theme between light and dark
+    /// </summary>
     private void ToggleTheme()
     {
         IsDarkMode = !IsDarkMode;

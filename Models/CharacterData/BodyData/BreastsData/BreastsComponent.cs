@@ -3,10 +3,13 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.BreastsData;
 
-public class BreastsComponent
+/// <summary>
+///     Class models the breasts(Crotch) node of the character's body data. Part of the <see cref="Breasts" /> model.
+/// </summary>
+/// <param name="breastsNode">XElement of the breasts(Crotch) node</param>
+/// <param name="breastsCrotch">Whether the breasts are crotch breasts or not</param>
+public class BreastsComponent(XElement breastsNode, bool breastsCrotch)
 {
-    private readonly bool _breastsCrotch;
-    
     private readonly ValueDisplayPair[] _breastShapes =
     [
         new ValueDisplayPair("Round", "ROUND"), new ValueDisplayPair("Pointy", "POINTY"),
@@ -74,32 +77,24 @@ public class BreastsComponent
         new ValueDisplayPair("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair("Wolf", "WOLF_MORPH")
     ];
     
-    public ValueDisplayPair[] AvailableShapes => _breastsCrotch ? _breastCrotchShapes : _breastShapes;
-    public ValueDisplayPair[] AvailableTypes => _breastsCrotch ? _breastsCrotchTypes : _breastsTypes;
+    public ValueDisplayPair[] AvailableShapes => breastsCrotch ? _breastCrotchShapes : _breastShapes;
+    public ValueDisplayPair[] AvailableTypes => breastsCrotch ? _breastsCrotchTypes : _breastsTypes;
     
-    public LabeledXmlAttribute<int> MilkRegeneration { get; }
-    public LabeledXmlAttribute<int> MilkStorage { get; }
-    public XmlAttribute<int> NippleCountPerBreast { get; }
-    public XmlAttribute<int> Rows { get; }
-    public LabeledXmlAttribute<int> Size { get; }
-    public XmlAttribute<float> StoredMilk { get; }
-    public XmlAttribute<string> Shape { get; }
-    public XmlAttribute<string> Type { get; }
-    
-    
-    public BreastsComponent(XElement breastsNode, bool breastsCrotch)
-    {
-        _breastsCrotch = breastsCrotch;
-        MilkRegeneration = new LabeledXmlAttribute<int>(breastsNode.Attribute("milkRegeneration")!, Collections.GetFluidRegenerationLabel);
-        MilkStorage = new LabeledXmlAttribute<int>(breastsNode.Attribute("milkStorage")!, GetMilkStorageLabel);
-        NippleCountPerBreast = new XmlAttribute<int>(breastsNode.Attribute("nippleCountPerBreast")!);
-        Rows = new XmlAttribute<int>(breastsNode.Attribute("rows")!);
-        Size = new LabeledXmlAttribute<int>(breastsNode.Attribute("size")!, GetBreastsSizeLabel);
-        StoredMilk = new XmlAttribute<float>(breastsNode.Attribute("storedMilk")!);
-        Shape = new XmlAttribute<string>(breastsNode.Attribute("shape")!);
-        Type = new XmlAttribute<string>(breastsNode.Attribute("type")!);
-    }
+    public LabeledXmlAttribute<int> MilkRegeneration { get; } = new(breastsNode.Attribute("milkRegeneration")!, Collections.GetFluidRegenerationLabel);
+    public LabeledXmlAttribute<int> MilkStorage { get; } = new(breastsNode.Attribute("milkStorage")!, GetMilkStorageLabel);
+    public XmlAttribute<int> NippleCountPerBreast { get; } = new(breastsNode.Attribute("nippleCountPerBreast")!);
+    public XmlAttribute<int> Rows { get; } = new(breastsNode.Attribute("rows")!);
+    public LabeledXmlAttribute<int> Size { get; } = new(breastsNode.Attribute("size")!, GetBreastsSizeLabel);
+    public XmlAttribute<float> StoredMilk { get; } = new(breastsNode.Attribute("storedMilk")!);
+    public XmlAttribute<string> Shape { get; } = new(breastsNode.Attribute("shape")!);
+    public XmlAttribute<string> Type { get; } = new(breastsNode.Attribute("type")!);
 
+
+    /// <summary>
+    ///     Get the label for the milk storage attribute based on the given value.
+    /// </summary>
+    /// <param name="value">Value to get the corresponding label of</param>
+    /// <returns>Label corresponding to the provided value</returns>
     private static string GetMilkStorageLabel(int value)
     {
         return value switch
@@ -115,6 +110,11 @@ public class BreastsComponent
         };
     }
 
+    /// <summary>
+    ///     Get the label for the breasts size attribute based on the given value.
+    /// </summary>
+    /// <param name="value">Value to get the corresponding label of</param>
+    /// <returns>Label corresponding to the provided value</returns>
     private static string GetBreastsSizeLabel(int value)
     {
         return value switch

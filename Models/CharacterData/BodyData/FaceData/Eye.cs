@@ -3,18 +3,21 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.FaceData;
 
+/// <summary>
+///     Class models the eye node of the character's body data. Part of the <see cref="Face" /> model.
+/// </summary>
 public class Eye
 {
-    public ValueDisplayPair[] IrisShapes =
+    public ValueDisplayPair[] IrisShapes { get; } =
     [
         new ValueDisplayPair("Round", "ROUND"), new ValueDisplayPair("Horizontal", "HORIZONTAL"),
         new ValueDisplayPair("Vertical", "VERTICAL"), new ValueDisplayPair("Heart-shaped", "HEART"),
         new ValueDisplayPair("Star-shaped", "STAR")
     ];
 
-    public ValueDisplayPair[] PupilShapes;
+    public ValueDisplayPair[] PupilShapes { get; }
 
-    public ValueDisplayPair[] EyeTypes =
+    public ValueDisplayPair[] EyeTypes { get; } =
     [
         new ValueDisplayPair("Alligator", "ALLIGATOR_MORPH"), new ValueDisplayPair("Angel", "ANGEL"),
         new ValueDisplayPair("Badger", "innoxia_badger_eye"), new ValueDisplayPair("Bat", "BAT_MORPH"),
@@ -38,7 +41,7 @@ public class Eye
         new ValueDisplayPair("Spider", "charisma_spider_eye"),
         new ValueDisplayPair("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair("Wolf", "WOLF_MORPH")
     ];
-    
+
     public XmlAttribute<int> EyePairs { get; }
     public XmlAttribute<string> IrisShape { get; }
     public XmlAttribute<string> PupilShape { get; }

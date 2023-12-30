@@ -11,9 +11,24 @@
 @code {
     private ValueDisplayPair _currentValue = null!;
     
+    /// <summary>
+    ///     The values to display in the select.
+    /// </summary>
     [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    
+    /// <summary>
+    ///    The label to display above the select.
+    /// </summary>
     [Parameter] public required string Label { get; set; }
+    
+    /// <summary>
+    ///    The XmlAttribute to bind to.
+    /// </summary>
     [Parameter] public required XmlAttribute<string> Attribute { get; set; }
+    
+    /// <summary>
+    ///   Whether the select is read only.
+    /// </summary>
     [Parameter] public bool ReadOnly { get; set; }
 
     protected ValueDisplayPair CurrentValue
@@ -28,6 +43,7 @@
 
     protected override void OnInitialized()
     {
+        // Set the current value to the value of the attribute.
         foreach (var value in Values)
         {
             if (value.Value != Attribute.Value)

@@ -4,6 +4,9 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.FaceData;
 
+/// <summary>
+///     Class models the mouth node of the character's body data. Part of the <see cref="Face" /> model.
+/// </summary>
 public class Mouth
 {
     public LabeledXmlAttribute<float> Capacity { get; }
@@ -64,6 +67,11 @@ public class Mouth
         }
     }
 
+    /// <summary>
+    ///     Returns the label for the lip size attribute.
+    /// </summary>
+    /// <param name="value">Value to get the corresponding label of</param>
+    /// <returns>Label corresponding to the provided value</returns>
     private static string GetLipSizeLabel(int value)
     {
         return value switch

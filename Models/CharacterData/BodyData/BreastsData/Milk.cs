@@ -3,6 +3,9 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.BreastsData;
 
+/// <summary>
+///     Class models the milk(Crotch) node of the character's body data. Part of the <see cref="Breasts" /> model.
+/// </summary>
 public class Milk
 {
     public static ValueDisplayPair[] MilkFlavours => Collections.BodyFluidFlavours;
