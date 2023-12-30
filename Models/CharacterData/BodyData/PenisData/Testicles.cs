@@ -3,27 +3,25 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.PenisData;
 
-public class Testicles
+/// <summary>
+///     Class models the testicles node of the character's body data. Part of the <see cref="Penis" /> model.
+/// </summary>
+/// <param name="testiclesNode">XElement of the testicles node</param>
+public class Testicles(XElement testiclesNode)
 {
-    public XmlAttribute<int> CumExpulsion { get; }
-    public LabeledXmlAttribute<int> CumRegeneration { get; }
-    public LabeledXmlAttribute<int> CumStorage { get; }
-    public XmlAttribute<int> NumberOfTesticles { get; }
-    public XmlAttribute<float> StoredCum { get; }
-    public LabeledXmlAttribute<int> TesticleSize { get; }
-    public XmlAttribute<bool> Internal { get; }
+    public XmlAttribute<int> CumExpulsion { get; } = new(testiclesNode.Attribute("cumExpulsion")!);
+    public LabeledXmlAttribute<int> CumRegeneration { get; } = new(testiclesNode.Attribute("cumRegeneration")!, Collections.GetFluidRegenerationLabel);
+    public LabeledXmlAttribute<int> CumStorage { get; } = new(testiclesNode.Attribute("cumStorage")!, GetCumStorageLabel);
+    public XmlAttribute<int> NumberOfTesticles { get; } = new(testiclesNode.Attribute("numberOfTesticles")!);
+    public XmlAttribute<float> StoredCum { get; } = new(testiclesNode.Attribute("storedCum")!);
+    public LabeledXmlAttribute<int> TesticleSize { get; } = new(testiclesNode.Attribute("testicleSize")!, GetTesticleSizeLabel);
+    public XmlAttribute<bool> Internal { get; } = new(testiclesNode.Attribute("internal")!);
 
-    public Testicles(XElement testiclesNode)
-    {
-        CumExpulsion = new XmlAttribute<int>(testiclesNode.Attribute("cumExpulsion")!);
-        CumRegeneration = new LabeledXmlAttribute<int>(testiclesNode.Attribute("cumRegeneration")!, Collections.GetFluidRegenerationLabel);
-        CumStorage = new LabeledXmlAttribute<int>(testiclesNode.Attribute("cumStorage")!, GetCumStorageLabel);
-        NumberOfTesticles = new XmlAttribute<int>(testiclesNode.Attribute("numberOfTesticles")!);
-        StoredCum = new XmlAttribute<float>(testiclesNode.Attribute("storedCum")!);
-        TesticleSize = new LabeledXmlAttribute<int>(testiclesNode.Attribute("testicleSize")!, GetTesticleSizeLabel);
-        Internal = new XmlAttribute<bool>(testiclesNode.Attribute("internal")!);
-    }
-
+    /// <summary>
+    ///     Get label based on the given cum storage value.
+    /// </summary>
+    /// <param name="value">Value to get the corresponding label of</param>
+    /// <returns>Label corresponding to the provided value</returns>
     private static string GetCumStorageLabel(int value)
     {
         return value switch
@@ -38,6 +36,11 @@ public class Testicles
         };
     }
 
+    /// <summary>
+    ///     Get label based on the given testicle size value.
+    /// </summary>
+    /// <param name="value">Value to get the corresponding label of</param>
+    /// <returns>Label corresponding to the provided value</returns>
     private static string GetTesticleSizeLabel(int value)
     {
         return value switch

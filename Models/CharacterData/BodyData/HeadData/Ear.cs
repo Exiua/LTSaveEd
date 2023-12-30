@@ -3,6 +3,10 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.HeadData;
 
+/// <summary>
+///     Class models the ear node of the character's body data. Part of the <see cref="Head" /> model.
+/// </summary>
+/// <param name="earNode">XElement of the ear node</param>
 public class Ear(XElement earNode)
 {
     public ValueDisplayPair[] EarTypes { get; } =

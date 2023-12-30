@@ -3,6 +3,9 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.PenisData;
 
+/// <summary>
+///     Class models the penis node of the character's body data. Part of the <see cref="Penis" /> model.
+/// </summary>
 public class PenisComponent
 {
     public ValueDisplayPair[] PenisTypes { get; } =
@@ -188,6 +191,11 @@ public class PenisComponent
         }
     }
 
+    /// <summary>
+    ///     Get the penis size label corresponding to the provided value.
+    /// </summary>
+    /// <param name="value">Value to get the corresponding label of</param>
+    /// <returns>Label corresponding to the provided value</returns>
     private static string GetPenisSizeLabel(int value)
     {
         return value switch

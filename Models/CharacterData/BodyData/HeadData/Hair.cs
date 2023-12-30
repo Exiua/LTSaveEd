@@ -5,8 +5,8 @@ namespace LTSaveEd.Models.CharacterData.BodyData.HeadData;
 
 public class Hair
 {
-    private ValueDisplayPair[] _availableHairStyles = [];
-    private bool _initalized;
+    private readonly ValueDisplayPair[] _availableHairStyles = [];
+    private readonly bool _initialized;
     
     private ValueDisplayPair[] HairStylesB { get;}
     private ValueDisplayPair[] HairStylesVS { get;}
@@ -70,7 +70,7 @@ public class Hair
     {
         get
         {
-            if (!_initalized)
+            if (!_initialized)
             {
                 return _availableHairStyles;
             }
@@ -87,7 +87,6 @@ public class Hair
         }
     }
     
-    
     public Hair(XElement hairNode)
     {
         HairStyle = new XmlAttribute<string>(hairNode.Attribute("hairStyle")!);
@@ -99,9 +98,14 @@ public class Hair
         HairStylesS = HairStylesFL.Take(10).Concat(HairStylesFL.Skip(11).Take(1)).ToArray(); // 0-9 and 11
         HairStylesVS = HairStylesFL.Take(6).Concat(HairStylesFL.Skip(9).Take(1)).ToArray(); // 0-6 and 9
         HairStylesB = HairStylesFL[..1];
-        _initalized = true;
+        _initialized = true;
     }
 
+    /// <summary>
+    ///     Returns the label for the hair length.
+    /// </summary>
+    /// <param name="value">Value to get the corresponding label of</param>
+    /// <returns>Label corresponding to the provided value</returns>
     private static string GetHairLengthLabel(int value)
     {
         return value switch

@@ -3,6 +3,10 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.HeadData;
 
+/// <summary>
+///     Class models the horn node of the character's body data. Part of the <see cref="Head" /> model.
+/// </summary>
+/// <param name="hornNode">XElement of the horn node</param>
 public class Horn(XElement hornNode)
 {
     public ValueDisplayPair[] HornTypes { get; } =
@@ -22,5 +26,4 @@ public class Horn(XElement hornNode)
     public LabeledXmlAttribute<int>Length { get; } = new(hornNode.Attribute("length")!, Collections.GetExtremityLabel);
     public XmlAttribute<int> Rows { get; } = new(hornNode.Attribute("rows")!);
     public XmlAttribute<string> Type { get; } = new(hornNode.Attribute("type")!);
-
 }
