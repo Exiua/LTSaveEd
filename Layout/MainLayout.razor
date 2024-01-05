@@ -26,8 +26,8 @@
                 </MudButton>
             </ButtonTemplate>
         </MudFileUpload>
-        <MudButton Disabled="@_processing" OnClick="@SaveFile" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
-            @if (_processing)
+        <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveFile" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+            @if (_currentState == EditorState.Saving)
             {
                 <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
                 <MudText Class="ms-2">Processing</MudText>
@@ -79,7 +79,7 @@
     </MudDrawer>
     <MudMainContent>
         <MudContainer Style="margin-left: 10px;">
-            @if (_processing)
+            @if (_currentState == EditorState.Loading)
             {
                 <MudProgressCircular Class="ms-n1" Size="Size.Medium" Indeterminate="true"/>
                 <MudText Class="ms-2">Loading Save...</MudText>
@@ -96,7 +96,7 @@
     private const string Version = "v2.3.3";
     
     private bool _drawerOpen;
-    private bool _processing;
+    private EditorState _currentState = EditorState.Idle;
 
     private readonly MudTheme _theme = null!;
     private string Filename { get; set; } = "";
@@ -125,6 +125,8 @@
     /// </summary>
     private async Task LoadSave(IBrowserFile file)
     {
+        _currentState = EditorState.Loading;
+        await Task.Delay(100);
         Filename = file.Name;
         await using var stream = file.OpenReadStream(file.Size + 1);
         var stopwatch = new Stopwatch();
@@ -143,6 +145,8 @@
         {
             Snackbar.Add("Failed to Load Data!", Severity.Error);
         }
+
+        _currentState = EditorState.Idle;
     }
     
     /// <summary>
@@ -150,7 +154,7 @@
     /// </summary>
     private async Task SaveFile()
     {
-        _processing = true;
+        _currentState = EditorState.Saving;
         await Task.Delay(1);
 
         try
@@ -168,7 +172,7 @@
         }
         finally
         {
-            _processing = false;
+            _currentState = EditorState.Idle;
         }
     }
 
@@ -179,5 +183,12 @@
     {
         IsDarkMode = !IsDarkMode;
         StateHasChanged();
+    }
+
+    private enum EditorState
+    {
+        Idle,
+        Loading,
+        Saving
     }
 }

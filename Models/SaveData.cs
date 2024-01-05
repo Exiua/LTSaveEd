@@ -15,10 +15,7 @@ public class SaveData
             _initialized = value;
             if (!value)
             {
-                CharacterIds.Clear();
-                CharacterIds.Add(new ValueDisplayPair<string>("Player", "PlayerCharacter"));
-                CharacterCache.Clear();
-                IdNameLookup.Clear();
+                ResetCaches();
             }
         }
     }
@@ -48,6 +45,15 @@ public class SaveData
         PopulateCharacterIds();
         Initialized = LoadCharacter(CharacterIds[0]);
         return Initialized;
+    }
+
+    private void ResetCaches()
+    {
+        CharacterIds.Clear();
+        CharacterIds.Add(new ValueDisplayPair<string>("Player", "PlayerCharacter"));
+        CharacterCache.Clear();
+        IdNameLookup.Clear();
+        IdCharacterLookup.Clear();
     }
 
     private void PopulateCharacterIds()
@@ -115,6 +121,7 @@ public class SaveData
         catch (Exception e)
         {
             #if DEBUG
+            Console.WriteLine(e);
             throw;
             #endif
             Console.WriteLine(e);
