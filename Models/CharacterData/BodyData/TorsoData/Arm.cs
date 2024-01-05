@@ -3,45 +3,42 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.TorsoData;
 
-public class Arm
+/// <summary>
+///     Class models the arm node of the character's body data. Part of the <see cref="Torso" /> model.
+/// </summary>
+/// <param name="armNode">XElement of the arm node</param>
+public class Arm(XElement armNode)
 {
-    public ValueDisplayPair[] ArmTypes { get; } =
+    public ValueDisplayPair<string>[] ArmTypes { get; } =
     [
-        new ValueDisplayPair("Alligator", "ALLIGATOR_MORPH"), new ValueDisplayPair("Angel", "ANGEL"),
-        new ValueDisplayPair("Badger", "innoxia_badger_arm"), new ValueDisplayPair("Bat", "BAT_MORPH"),
-        new ValueDisplayPair("Bear", "dsg_bear_arm"),
-        new ValueDisplayPair("Capybara", "NoStepOnSnek_capybara_arm"),
-        new ValueDisplayPair("Cat", "CAT_MORPH"), new ValueDisplayPair("Cow", "COW_MORPH"),
-        new ValueDisplayPair("Demonic", "DEMON_COMMON"), new ValueDisplayPair("Dog", "DOG_MORPH"),
-        new ValueDisplayPair("Dragon", "dsg_dragon_arm"),
-        new ValueDisplayPair("Dragon winged", "dsg_dragon_armWings"),
-        new ValueDisplayPair("Ferret", "dsg_ferret_arm"), new ValueDisplayPair("Fox", "FOX_MORPH"),
-        new ValueDisplayPair("Goat", "innoxia_goat_arm"), new ValueDisplayPair("Gryphon", "dsg_gryphon_arm"),
-        new ValueDisplayPair("Harpy", "HARPY"), new ValueDisplayPair("Horse", "HORSE_MORPH"),
-        new ValueDisplayPair("Human", "HUMAN"), new ValueDisplayPair("Hyena", "innoxia_hyena_arm"),
-        new ValueDisplayPair("Octopus", "NoStepOnSnek_octopus_arm"),
-        new ValueDisplayPair("Otter", "dsg_otter_arm"), new ValueDisplayPair("Panther", "innoxia_panther_arm"),
-        new ValueDisplayPair("Pig", "innoxia_pig_arm"), new ValueDisplayPair("Rabbit", "RABBIT_MORPH"),
-        new ValueDisplayPair("Racoon", "dsg_raccoon_arm"), new ValueDisplayPair("Rat", "RAT_MORPH"),
-        new ValueDisplayPair("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair("Shark", "dsg_shark_arm"),
-        new ValueDisplayPair("Shark finned", "dsg_shark_armFin"),
-        new ValueDisplayPair("Sheep", "innoxia_sheep_arm"),
-        new ValueDisplayPair("Snake", "NoStepOnSnek_snake_arm"),
-        new ValueDisplayPair("Spider", "charisma_spider_arm"),
-        new ValueDisplayPair("Furred Spider", "charisma_spider_armFluffy"),
-        new ValueDisplayPair("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair("Wolf", "WOLF_MORPH")
+        new ValueDisplayPair<string>("Alligator", "ALLIGATOR_MORPH"), new ValueDisplayPair<string>("Angel", "ANGEL"),
+        new ValueDisplayPair<string>("Badger", "innoxia_badger_arm"), new ValueDisplayPair<string>("Bat", "BAT_MORPH"),
+        new ValueDisplayPair<string>("Bear", "dsg_bear_arm"),
+        new ValueDisplayPair<string>("Capybara", "NoStepOnSnek_capybara_arm"),
+        new ValueDisplayPair<string>("Cat", "CAT_MORPH"), new ValueDisplayPair<string>("Cow", "COW_MORPH"),
+        new ValueDisplayPair<string>("Demonic", "DEMON_COMMON"), new ValueDisplayPair<string>("Dog", "DOG_MORPH"),
+        new ValueDisplayPair<string>("Dragon", "dsg_dragon_arm"),
+        new ValueDisplayPair<string>("Dragon winged", "dsg_dragon_armWings"),
+        new ValueDisplayPair<string>("Ferret", "dsg_ferret_arm"), new ValueDisplayPair<string>("Fox", "FOX_MORPH"),
+        new ValueDisplayPair<string>("Goat", "innoxia_goat_arm"), new ValueDisplayPair<string>("Gryphon", "dsg_gryphon_arm"),
+        new ValueDisplayPair<string>("Harpy", "HARPY"), new ValueDisplayPair<string>("Horse", "HORSE_MORPH"),
+        new ValueDisplayPair<string>("Human", "HUMAN"), new ValueDisplayPair<string>("Hyena", "innoxia_hyena_arm"),
+        new ValueDisplayPair<string>("Octopus", "NoStepOnSnek_octopus_arm"),
+        new ValueDisplayPair<string>("Otter", "dsg_otter_arm"), new ValueDisplayPair<string>("Panther", "innoxia_panther_arm"),
+        new ValueDisplayPair<string>("Pig", "innoxia_pig_arm"), new ValueDisplayPair<string>("Rabbit", "RABBIT_MORPH"),
+        new ValueDisplayPair<string>("Racoon", "dsg_raccoon_arm"), new ValueDisplayPair<string>("Rat", "RAT_MORPH"),
+        new ValueDisplayPair<string>("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair<string>("Shark", "dsg_shark_arm"),
+        new ValueDisplayPair<string>("Shark finned", "dsg_shark_armFin"),
+        new ValueDisplayPair<string>("Sheep", "innoxia_sheep_arm"),
+        new ValueDisplayPair<string>("Snake", "NoStepOnSnek_snake_arm"),
+        new ValueDisplayPair<string>("Spider", "charisma_spider_arm"),
+        new ValueDisplayPair<string>("Furred Spider", "charisma_spider_armFluffy"),
+        new ValueDisplayPair<string>("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair<string>("Wolf", "WOLF_MORPH")
     ];
 
-    public ValueDisplayPair[] UnderArmHairTypes { get; } = Collections.HairTypes;
+    public static ValueDisplayPair<string>[] UnderArmHairTypes => Collections.HairTypes;
 
-    public XmlAttribute<int> Rows { get; }
-    public XmlAttribute<string> Type { get; }
-    public XmlAttribute<string> UnderarmHair { get; }
-
-    public Arm(XElement armNode)
-    {
-        Rows = new XmlAttribute<int>(armNode.Attribute("rows")!);
-        Type = new XmlAttribute<string>(armNode.Attribute("type")!);
-        UnderarmHair = new XmlAttribute<string>(armNode.Attribute("underarmHair")!);
-    }
+    public XmlAttribute<int> Rows { get; } = new(armNode.Attribute("rows")!);
+    public XmlAttribute<string> Type { get; } = new(armNode.Attribute("type")!);
+    public XmlAttribute<string> UnderarmHair { get; } = new(armNode.Attribute("underarmHair")!);
 }

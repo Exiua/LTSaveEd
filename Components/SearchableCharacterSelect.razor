@@ -1,0 +1,49 @@
+﻿@using LTSaveEd.Models
+
+<MudAutocomplete T="ValueDisplayPair<string>" Label="Character" @bind-Value="@CurrentValue" SearchFunc="@Search"
+                 CoerceText="true" Strict="false" MaxItems="null"/>
+
+@code{
+    private ValueDisplayPair<string> _currentValue = null!;
+    
+    /// <summary>
+    ///     The list of values to search from.
+    /// </summary>
+    [Parameter] public required IEnumerable<ValueDisplayPair<string>> Values { get; set; }
+    
+    /// <summary>
+    ///    The currently selected character.
+    /// </summary>
+    [Parameter] public required ValueDisplayPair<string> CharacterId { get; set; }
+    
+    /// <summary>
+    ///     The event that is called when the selected character changes.
+    /// </summary>
+    [Parameter] public EventCallback<ValueDisplayPair<string>> CharacterIdChanged { get; set; }
+    
+    private ValueDisplayPair<string> CurrentValue
+    {
+        get => _currentValue;
+        set
+        {
+            _currentValue = value;
+            CharacterIdChanged.InvokeAsync(value);
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        _currentValue = CharacterId;
+    }
+    
+    private Task<IEnumerable<ValueDisplayPair<string>>> Search(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return Task.FromResult(Values);
+        }
+
+        // Search for similar values to the search term in the list of values.
+        return Task.FromResult(Values.Where(x => x.DisplayValue.Contains(value, StringComparison.InvariantCultureIgnoreCase)));
+    }
+}

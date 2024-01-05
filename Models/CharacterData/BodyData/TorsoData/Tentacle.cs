@@ -5,9 +5,9 @@ namespace LTSaveEd.Models.CharacterData.BodyData.TorsoData;
 
 public class Tentacle
 {
-    public ValueDisplayPair[] TentacleTypes { get; } =
+    public ValueDisplayPair<string>[] TentacleTypes { get; } =
     [
-        new ValueDisplayPair("None", "NONE")
+        new ValueDisplayPair<string>("None", "NONE")
     ]; // TODO: Find tentacle types
 
     public XmlAttribute<int> Count { get; }

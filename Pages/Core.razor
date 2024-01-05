@@ -2,6 +2,7 @@
 
 @using LTSaveEd.Models
 @using LTSaveEd.Models.CharacterData
+@using LTSaveEd.Components
 
 @inherits BasePage
 
@@ -112,13 +113,13 @@
 </MudCard>
 
 @code {
-    private ValueDisplayPair[] AvailableJobs => SaveData.CurrentCharacter.IsPlayer
+    private ValueDisplayPair<string>[] AvailableJobs => SaveData.CurrentCharacter.IsPlayer
         ? CoreData.PlayerJobHistories
         : CoreData.NpcJobHistories;
     private Models.CharacterData.Core CoreData => SaveData.CurrentCharacter.Core;
     private Models.CharacterData.Inventory Inventory => SaveData.CurrentCharacter.Inventory;
     private Personality Personality => CoreData.Personality;
-    private ValueDisplayPair _selectedCharacter = null!;
+    private ValueDisplayPair<string> _selectedCharacter = null!;
 
     protected override void OnInitialized()
     {
@@ -126,7 +127,7 @@
         _selectedCharacter = SaveData.CurrentCharacterIdNamePair;
     }
 
-    private void ChangeSelectedCharacter(ValueDisplayPair newCharacter)
+    private void ChangeSelectedCharacter(ValueDisplayPair<string> newCharacter)
     {
         var success = SaveData.LoadCharacter(newCharacter);
         if (success)

@@ -1,6 +1,6 @@
 ﻿@using LTSaveEd.Models
 
-<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
+<MudSelect T="ValueDisplayPair<string>" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
     @foreach (var value in Values)
     {
         <MudSelectItem Value="@value"/>
@@ -8,14 +8,29 @@
 </MudSelect>
 
 @code {
-    private ValueDisplayPair _currentValue = null!;
+    private ValueDisplayPair<string> _currentValue = null!;
     
-    [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    /// <summary>
+    ///     The values to display in the select.
+    /// </summary>
+    [Parameter] public required IEnumerable<ValueDisplayPair<string>> Values { get; set; }
+    
+    /// <summary>
+    ///    The label to display above the select.
+    /// </summary>
     [Parameter] public required string Label { get; set; }
+    
+    /// <summary>
+    ///     The attribute to bind to.
+    /// </summary>
     [Parameter] public required string Attribute { get; set; }
+    
+    /// <summary>
+    ///     The callback to invoke when the attribute changes.
+    /// </summary>
     [Parameter] public EventCallback<string> AttributeChanged { get; set; }
 
-    protected ValueDisplayPair CurrentValue
+    protected ValueDisplayPair<string> CurrentValue
     {
         get => _currentValue;
         set
@@ -28,6 +43,7 @@
 
     protected override void OnInitialized()
     {
+        // Set the current value to the value of the attribute.
         foreach (var value in Values)
         {
             if (value.Value != Attribute)

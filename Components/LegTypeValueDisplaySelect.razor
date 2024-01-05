@@ -12,11 +12,29 @@
 @code {
     private LegTypeValueDisplayPair _currentValue = null!;
     
+    /// <summary>
+    ///     List of possible values for the leg type.
+    /// </summary>
     [Parameter] public required IEnumerable<LegTypeValueDisplayPair> Values { get; set; }
+    
+    /// <summary>
+    ///     Label for the select.
+    /// </summary>
     [Parameter] public required string Label { get; set; }
-
+    
+    /// <summary>
+    ///    The attribute of the leg type to bind to.
+    /// </summary>
     [Parameter] public required LegTypeValueDisplayPair Attribute { get; set; }
+    
+    /// <summary>
+    ///    Callback for when the leg type is changed to update the bound attribute.
+    /// </summary>
     [Parameter] public EventCallback<LegTypeValueDisplayPair> AttributeChanged { get; set; }
+    
+    /// <summary>
+    ///   Callback for when the leg type is changed.
+    /// </summary>
     [Parameter] public Action? OnAttributeChanged { get; set; }
 
     private LegTypeValueDisplayPair CurrentValue // Proxy property to prevent infinite Attribute update
@@ -34,5 +52,4 @@
     {
         _currentValue = Attribute;
     }
-    
 }

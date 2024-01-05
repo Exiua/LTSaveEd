@@ -5,15 +5,15 @@ namespace LTSaveEd.Models.CharacterData.InventoryData;
 
 public class Weapon : InventoryElement
 {
-    private readonly ValueDisplayPair[] _damageTypes =
+    private readonly ValueDisplayPair<string>[] _damageTypes =
     [
-        new ValueDisplayPair("Physical", "PHYSICAL"), new ValueDisplayPair("Fire", "FIRE"),
-        new ValueDisplayPair("Ice", "ICE"), new ValueDisplayPair("Poison", "POISON")
+        new ValueDisplayPair<string>("Physical", "PHYSICAL"), new ValueDisplayPair<string>("Fire", "FIRE"),
+        new ValueDisplayPair<string>("Ice", "ICE"), new ValueDisplayPair<string>("Poison", "POISON")
     ];
     
-    private readonly ValueDisplayPair[] _damageTypesAlt = [new ValueDisplayPair("Lust", "LUST")];
+    private readonly ValueDisplayPair<string>[] _damageTypesAlt = [new ValueDisplayPair<string>("Lust", "LUST")];
 
-    public ValueDisplayPair[] AvailableDamageTypes => DamageType.Value == "LUST"
+    public ValueDisplayPair<string>[] AvailableDamageTypes => DamageType.Value == "LUST"
         ? _damageTypesAlt
         : _damageTypes;
     

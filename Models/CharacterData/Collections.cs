@@ -4,130 +4,130 @@ namespace LTSaveEd.Models.CharacterData;
 
 public static class Collections
 {
-    public static ValueDisplayPair[] HairTypes { get; } =
+    public static ValueDisplayPair<string>[] HairTypes { get; } =
     [
-        new ValueDisplayPair("None", "ZERO_NONE"), new ValueDisplayPair("Stubble", "ONE_STUBBLE"),
-        new ValueDisplayPair("Manicured", "TWO_MANICURED"), new ValueDisplayPair("Trimmed", "THREE_TRIMMED"),
-        new ValueDisplayPair("Natural", "FOUR_NATURAL"), new ValueDisplayPair("Unkempt", "FIVE_UNKEMPT"),
-        new ValueDisplayPair("Bushy", "SIX_BUSHY"), new ValueDisplayPair("Wild", "SEVEN_WILD")
+        new ValueDisplayPair<string>("None", "ZERO_NONE"), new ValueDisplayPair<string>("Stubble", "ONE_STUBBLE"),
+        new ValueDisplayPair<string>("Manicured", "TWO_MANICURED"), new ValueDisplayPair<string>("Trimmed", "THREE_TRIMMED"),
+        new ValueDisplayPair<string>("Natural", "FOUR_NATURAL"), new ValueDisplayPair<string>("Unkempt", "FIVE_UNKEMPT"),
+        new ValueDisplayPair<string>("Bushy", "SIX_BUSHY"), new ValueDisplayPair<string>("Wild", "SEVEN_WILD")
     ];
 
-    public static ValueDisplayPair[] BodyFluidFlavours { get; } =
+    public static ValueDisplayPair<string>[] BodyFluidFlavours { get; } =
     [
-        new ValueDisplayPair("Cum", "CUM"), new ValueDisplayPair("Milk", "MILK"),
-        new ValueDisplayPair("Girlcum", "GIRL_CUM"), new ValueDisplayPair("Bubblegum", "BUBBLEGUM"),
-        new ValueDisplayPair("Beer", "BEER"), new ValueDisplayPair("Vanilla", "VANILLA"),
-        new ValueDisplayPair("Strawberry", "STRAWBERRY"), new ValueDisplayPair("Chocolate", "CHOCOLATE"),
-        new ValueDisplayPair("Pineapple", "PINEAPPLE"), new ValueDisplayPair("Honey", "HONEY"),
-        new ValueDisplayPair("Mint", "MINT"), new ValueDisplayPair("Cherry", "CHERRY"),
-        new ValueDisplayPair("Coffee", "COFFEE"), new ValueDisplayPair("Tea", "TEA"),
-        new ValueDisplayPair("Maple", "MAPLE"), new ValueDisplayPair("Cinnamon", "CINNAMON"),
-        new ValueDisplayPair("Lemon", "LEMON"), new ValueDisplayPair("Orange", "ORANGE"),
-        new ValueDisplayPair("Grape", "GRAPE"), new ValueDisplayPair("Melon", "MELON"),
-        new ValueDisplayPair("Coconut", "COCONUT"), new ValueDisplayPair("Blueberry", "BLUEBERRY")
+        new ValueDisplayPair<string>("Cum", "CUM"), new ValueDisplayPair<string>("Milk", "MILK"),
+        new ValueDisplayPair<string>("Girlcum", "GIRL_CUM"), new ValueDisplayPair<string>("Bubblegum", "BUBBLEGUM"),
+        new ValueDisplayPair<string>("Beer", "BEER"), new ValueDisplayPair<string>("Vanilla", "VANILLA"),
+        new ValueDisplayPair<string>("Strawberry", "STRAWBERRY"), new ValueDisplayPair<string>("Chocolate", "CHOCOLATE"),
+        new ValueDisplayPair<string>("Pineapple", "PINEAPPLE"), new ValueDisplayPair<string>("Honey", "HONEY"),
+        new ValueDisplayPair<string>("Mint", "MINT"), new ValueDisplayPair<string>("Cherry", "CHERRY"),
+        new ValueDisplayPair<string>("Coffee", "COFFEE"), new ValueDisplayPair<string>("Tea", "TEA"),
+        new ValueDisplayPair<string>("Maple", "MAPLE"), new ValueDisplayPair<string>("Cinnamon", "CINNAMON"),
+        new ValueDisplayPair<string>("Lemon", "LEMON"), new ValueDisplayPair<string>("Orange", "ORANGE"),
+        new ValueDisplayPair<string>("Grape", "GRAPE"), new ValueDisplayPair<string>("Melon", "MELON"),
+        new ValueDisplayPair<string>("Coconut", "COCONUT"), new ValueDisplayPair<string>("Blueberry", "BLUEBERRY")
     ];
     
-    private static readonly ValueDisplayPair[] LegConfigurationsMaster =
+    private static readonly ValueDisplayPair<string>[] LegConfigurationsMaster =
     [
-        new ValueDisplayPair("Bipedal", "BIPEDAL"), new ValueDisplayPair("Quadrupedal", "QUADRUPEDAL"),
-        new ValueDisplayPair("Serpent-tailed", "TAIL_LONG"), new ValueDisplayPair("Arachnid", "ARACHNID"),
-        new ValueDisplayPair("Cephalopod", "CEPHALOPOD"), new ValueDisplayPair("Mer-tailed", "TAIL"),
-        new ValueDisplayPair("Avian", "AVIAN")
+        new ValueDisplayPair<string>("Bipedal", "BIPEDAL"), new ValueDisplayPair<string>("Quadrupedal", "QUADRUPEDAL"),
+        new ValueDisplayPair<string>("Serpent-tailed", "TAIL_LONG"), new ValueDisplayPair<string>("Arachnid", "ARACHNID"),
+        new ValueDisplayPair<string>("Cephalopod", "CEPHALOPOD"), new ValueDisplayPair<string>("Mer-tailed", "TAIL"),
+        new ValueDisplayPair<string>("Avian", "AVIAN")
     ];
     
-    private static ValueDisplayPair[] _legConfigurationsBQ;
-    private static ValueDisplayPair[] _legConfigurationsB;
-    private static ValueDisplayPair[] _legConfigurationsS;
-    private static ValueDisplayPair[] _legConfigurationsAr;
-    private static ValueDisplayPair[] _legConfigurationsC;
-    private static ValueDisplayPair[] _legConfigurationsM;
-    private static ValueDisplayPair[] _legConfigurationsAv;
-    private static ValueDisplayPair[] _legConfigurationsBQSM;
-    private static ValueDisplayPair[] _legConfigurationsBAv;
-    private static ValueDisplayPair[] _legConfigurationsBM;
-    private static ValueDisplayPair[] _legConfigurationsBS;
-    private static ValueDisplayPair[] _legConfigurationsBAr;
+    private static ValueDisplayPair<string>[] _legConfigurationsBQ;
+    private static ValueDisplayPair<string>[] _legConfigurationsB;
+    private static ValueDisplayPair<string>[] _legConfigurationsS;
+    private static ValueDisplayPair<string>[] _legConfigurationsAr;
+    private static ValueDisplayPair<string>[] _legConfigurationsC;
+    private static ValueDisplayPair<string>[] _legConfigurationsM;
+    private static ValueDisplayPair<string>[] _legConfigurationsAv;
+    private static ValueDisplayPair<string>[] _legConfigurationsBQSM;
+    private static ValueDisplayPair<string>[] _legConfigurationsBAv;
+    private static ValueDisplayPair<string>[] _legConfigurationsBM;
+    private static ValueDisplayPair<string>[] _legConfigurationsBS;
+    private static ValueDisplayPair<string>[] _legConfigurationsBAr;
 
-    private static readonly ValueDisplayPair[] FootStructuresMaster =
+    private static readonly ValueDisplayPair<string>[] FootStructuresMaster =
     [
-        new ValueDisplayPair("None", "NONE"), new ValueDisplayPair("Plantigrade", "PLANTIGRADE"),
-        new ValueDisplayPair("Unguligrade", "UNGULIGRADE"), new ValueDisplayPair("Digitigrade", "DIGITIGRADE"),
-        new ValueDisplayPair("Arachnoid", "ARACHNOID"), new ValueDisplayPair("Tentacled", "TENTACLED")
+        new ValueDisplayPair<string>("None", "NONE"), new ValueDisplayPair<string>("Plantigrade", "PLANTIGRADE"),
+        new ValueDisplayPair<string>("Unguligrade", "UNGULIGRADE"), new ValueDisplayPair<string>("Digitigrade", "DIGITIGRADE"),
+        new ValueDisplayPair<string>("Arachnoid", "ARACHNOID"), new ValueDisplayPair<string>("Tentacled", "TENTACLED")
     ];
     
-    private static ValueDisplayPair[] _footStructuresP;
-    private static ValueDisplayPair[] _footStructuresU;
-    private static ValueDisplayPair[] _footStructuresN;
-    private static ValueDisplayPair[] _footStructuresA;
-    private static ValueDisplayPair[] _footStructuresT;
-    private static ValueDisplayPair[] _footStructuresPD;
-    private static ValueDisplayPair[] _footStructuresD;
+    private static ValueDisplayPair<string>[] _footStructuresP;
+    private static ValueDisplayPair<string>[] _footStructuresU;
+    private static ValueDisplayPair<string>[] _footStructuresN;
+    private static ValueDisplayPair<string>[] _footStructuresA;
+    private static ValueDisplayPair<string>[] _footStructuresT;
+    private static ValueDisplayPair<string>[] _footStructuresPD;
+    private static ValueDisplayPair<string>[] _footStructuresD;
 
-    private static readonly ValueDisplayPair[] GenitalArrangementsNCR =
+    private static readonly ValueDisplayPair<string>[] GenitalArrangementsNCR =
     [
-        new ValueDisplayPair("Normal", "NORMAL"), new ValueDisplayPair("Cloaca", "CLOACA"),
-        new ValueDisplayPair("Rear-facing cloaca", "CLOACA_BEHIND")
+        new ValueDisplayPair<string>("Normal", "NORMAL"), new ValueDisplayPair<string>("Cloaca", "CLOACA"),
+        new ValueDisplayPair<string>("Rear-facing cloaca", "CLOACA_BEHIND")
     ];
     
-    private static ValueDisplayPair[]  genitalArrangementsCR;
-    private static ValueDisplayPair[]  genitalArrangementsN;
-    private static ValueDisplayPair[]  genitalArrangementsC;
-    private static ValueDisplayPair[]  genitalArrangementsR;
+    private static ValueDisplayPair<string>[]  genitalArrangementsCR;
+    private static ValueDisplayPair<string>[]  genitalArrangementsN;
+    private static ValueDisplayPair<string>[]  genitalArrangementsC;
+    private static ValueDisplayPair<string>[]  genitalArrangementsR;
     
     public static LegTypeValueDisplayPair[] LegTypes { get; }
 
-    public static ValueDisplayPair[] FemininityValues { get; } =
+    public static ValueDisplayPair<string>[] FemininityValues { get; } =
     [
-        new ValueDisplayPair("Very Masculine", "VERY_MASCULINE"),
-        new ValueDisplayPair("Masculine", "MASCULINE"), new ValueDisplayPair("Androgynous", "ANDROGYNOUS"),
-        new ValueDisplayPair("Feminine", "FEMININE"), new ValueDisplayPair("Very Feminine", "VERY_FEMININE")
+        new ValueDisplayPair<string>("Very Masculine", "VERY_MASCULINE"),
+        new ValueDisplayPair<string>("Masculine", "MASCULINE"), new ValueDisplayPair<string>("Androgynous", "ANDROGYNOUS"),
+        new ValueDisplayPair<string>("Feminine", "FEMININE"), new ValueDisplayPair<string>("Very Feminine", "VERY_FEMININE")
     ];
     
-    public static ValueDisplayPair[] SubspeciesOverrides { get; } =
+    public static ValueDisplayPair<string>[] SubspeciesOverrides { get; } =
     [
-        new ValueDisplayPair("Human", "HUMAN"), new ValueDisplayPair("Angel", "ANGEL"),
-        new ValueDisplayPair("Elder Lilin", "ELDER_LILIN"), new ValueDisplayPair("Lilin", "LILIN"),
-        new ValueDisplayPair("Demon", "DEMON"), new ValueDisplayPair("Half Demon", "HALF_DEMON"),
-        new ValueDisplayPair("Imp", "IMP"), new ValueDisplayPair("Imp Alpha", "IMP_ALPHA"),
-        new ValueDisplayPair("Cow Morph", "COW_MORPH"), new ValueDisplayPair("Dog Morph", "DOG_MORPH"),
-        new ValueDisplayPair("Dog Morph Border Collie", "DOG_MORPH_BORDER_COLLIE"),
-        new ValueDisplayPair("Dog Morph Dobermann", "DOG_MORPH_DOBERMANN"),
-        new ValueDisplayPair("Dog Morph German Shepherd", "DOG_MORPH_GERMAN_SHEPHERD"), new ValueDisplayPair("Dragon Morph", "dsg_dragon_subspecies_dragon"),
-        new ValueDisplayPair("Wolf Morph", "WOLF_MORPH"), new ValueDisplayPair("Fox Morph", "FOX_MORPH"),
-        new ValueDisplayPair("Fox Morph Arctic", "FOX_MORPH_ARCTIC"),
-        new ValueDisplayPair("Fox Morph Fennec", "FOX_MORPH_FENNEC"),
-        new ValueDisplayPair("Fox Ascendant", "FOX_ASCENDANT"),
-        new ValueDisplayPair("Fox Ascendant Arctic", "FOX_ASCENDANT_ARCTIC"),
-        new ValueDisplayPair("Fox Ascendant Fennec", "FOX_ASCENDANT_FENNEC"),
-        new ValueDisplayPair("Cat Morph", "CAT_MORPH"),
-        new ValueDisplayPair("Cat Morph Lynx", "CAT_MORPH_LYNX"),
-        new ValueDisplayPair("Cat Morph Cheetah", "CAT_MORPH_CHEETAH"),
-        new ValueDisplayPair("Cat Morph Caracal", "CAT_MORPH_CARACAL"),
-        new ValueDisplayPair("Cat Morph Leopard Snow", "CAT_MORPH_LEOPARD_SNOW"),
-        new ValueDisplayPair("Cat Morph Leopard", "CAT_MORPH_LEOPARD"),
-        new ValueDisplayPair("Cat Morph Lion", "CAT_MORPH_LION"),
-        new ValueDisplayPair("Cat Morph Tiger", "CAT_MORPH_TIGER"),
-        new ValueDisplayPair("Horse Morph", "HORSE_MORPH"),
-        new ValueDisplayPair("Horse Morph Unicorn", "HORSE_MORPH_UNICORN"),
-        new ValueDisplayPair("Horse Morph Pegasus", "HORSE_MORPH_PEGASUS"),
-        new ValueDisplayPair("Horse Morph Alicorn", "HORSE_MORPH_ALICORN"),
-        new ValueDisplayPair("Centaur", "CENTAUR"), new ValueDisplayPair("Pegataur", "PEGATAUR"),
-        new ValueDisplayPair("Unitaur", "UNITAUR"), new ValueDisplayPair("Alitaur", "ALITAUR"),
-        new ValueDisplayPair("Horse Morph Zebra", "HORSE_MORPH_ZEBRA"),
-        new ValueDisplayPair("Reindeer Morph", "REINDEER_MORPH"),
-        new ValueDisplayPair("Alligator Morph", "ALLIGATOR_MORPH"), new ValueDisplayPair("Slime", "SLIME"),
-        new ValueDisplayPair("Squirrel Morph", "SQUIRREL_MORPH"),
-        new ValueDisplayPair("Rat Morph", "RAT_MORPH"), new ValueDisplayPair("Rabbit Morph", "RABBIT_MORPH"),
-        new ValueDisplayPair("Rabbit Morph Lop", "RABBIT_MORPH_LOP"),
-        new ValueDisplayPair("Bat Morph", "BAT_MORPH"), new ValueDisplayPair("Harpy", "HARPY"),
-        new ValueDisplayPair("Harpy Raven", "HARPY_RAVEN"),
-        new ValueDisplayPair("Harpy Bald Eagle", "HARPY_BALD_EAGLE"),
-        new ValueDisplayPair("Harpy Phoenix", "HARPY_PHOENIX"),
-        new ValueDisplayPair("Elemental Fire", "ELEMENTAL_FIRE"),
-        new ValueDisplayPair("Elemental Earth", "ELEMENTAL_EARTH"),
-        new ValueDisplayPair("Elemental Water", "ELEMENTAL_WATER"),
-        new ValueDisplayPair("Elemental Air", "ELEMENTAL_AIR"),
-        new ValueDisplayPair("Elemental Arcane", "ELEMENTAL_ARCANE"), new ValueDisplayPair("Badger", "innoxia_badger_subspecies_badger")
+        new ValueDisplayPair<string>("Human", "HUMAN"), new ValueDisplayPair<string>("Angel", "ANGEL"),
+        new ValueDisplayPair<string>("Elder Lilin", "ELDER_LILIN"), new ValueDisplayPair<string>("Lilin", "LILIN"),
+        new ValueDisplayPair<string>("Demon", "DEMON"), new ValueDisplayPair<string>("Half Demon", "HALF_DEMON"),
+        new ValueDisplayPair<string>("Imp", "IMP"), new ValueDisplayPair<string>("Imp Alpha", "IMP_ALPHA"),
+        new ValueDisplayPair<string>("Cow Morph", "COW_MORPH"), new ValueDisplayPair<string>("Dog Morph", "DOG_MORPH"),
+        new ValueDisplayPair<string>("Dog Morph Border Collie", "DOG_MORPH_BORDER_COLLIE"),
+        new ValueDisplayPair<string>("Dog Morph Dobermann", "DOG_MORPH_DOBERMANN"),
+        new ValueDisplayPair<string>("Dog Morph German Shepherd", "DOG_MORPH_GERMAN_SHEPHERD"), new ValueDisplayPair<string>("Dragon Morph", "dsg_dragon_subspecies_dragon"),
+        new ValueDisplayPair<string>("Wolf Morph", "WOLF_MORPH"), new ValueDisplayPair<string>("Fox Morph", "FOX_MORPH"),
+        new ValueDisplayPair<string>("Fox Morph Arctic", "FOX_MORPH_ARCTIC"),
+        new ValueDisplayPair<string>("Fox Morph Fennec", "FOX_MORPH_FENNEC"),
+        new ValueDisplayPair<string>("Fox Ascendant", "FOX_ASCENDANT"),
+        new ValueDisplayPair<string>("Fox Ascendant Arctic", "FOX_ASCENDANT_ARCTIC"),
+        new ValueDisplayPair<string>("Fox Ascendant Fennec", "FOX_ASCENDANT_FENNEC"),
+        new ValueDisplayPair<string>("Cat Morph", "CAT_MORPH"),
+        new ValueDisplayPair<string>("Cat Morph Lynx", "CAT_MORPH_LYNX"),
+        new ValueDisplayPair<string>("Cat Morph Cheetah", "CAT_MORPH_CHEETAH"),
+        new ValueDisplayPair<string>("Cat Morph Caracal", "CAT_MORPH_CARACAL"),
+        new ValueDisplayPair<string>("Cat Morph Leopard Snow", "CAT_MORPH_LEOPARD_SNOW"),
+        new ValueDisplayPair<string>("Cat Morph Leopard", "CAT_MORPH_LEOPARD"),
+        new ValueDisplayPair<string>("Cat Morph Lion", "CAT_MORPH_LION"),
+        new ValueDisplayPair<string>("Cat Morph Tiger", "CAT_MORPH_TIGER"),
+        new ValueDisplayPair<string>("Horse Morph", "HORSE_MORPH"),
+        new ValueDisplayPair<string>("Horse Morph Unicorn", "HORSE_MORPH_UNICORN"),
+        new ValueDisplayPair<string>("Horse Morph Pegasus", "HORSE_MORPH_PEGASUS"),
+        new ValueDisplayPair<string>("Horse Morph Alicorn", "HORSE_MORPH_ALICORN"),
+        new ValueDisplayPair<string>("Centaur", "CENTAUR"), new ValueDisplayPair<string>("Pegataur", "PEGATAUR"),
+        new ValueDisplayPair<string>("Unitaur", "UNITAUR"), new ValueDisplayPair<string>("Alitaur", "ALITAUR"),
+        new ValueDisplayPair<string>("Horse Morph Zebra", "HORSE_MORPH_ZEBRA"),
+        new ValueDisplayPair<string>("Reindeer Morph", "REINDEER_MORPH"),
+        new ValueDisplayPair<string>("Alligator Morph", "ALLIGATOR_MORPH"), new ValueDisplayPair<string>("Slime", "SLIME"),
+        new ValueDisplayPair<string>("Squirrel Morph", "SQUIRREL_MORPH"),
+        new ValueDisplayPair<string>("Rat Morph", "RAT_MORPH"), new ValueDisplayPair<string>("Rabbit Morph", "RABBIT_MORPH"),
+        new ValueDisplayPair<string>("Rabbit Morph Lop", "RABBIT_MORPH_LOP"),
+        new ValueDisplayPair<string>("Bat Morph", "BAT_MORPH"), new ValueDisplayPair<string>("Harpy", "HARPY"),
+        new ValueDisplayPair<string>("Harpy Raven", "HARPY_RAVEN"),
+        new ValueDisplayPair<string>("Harpy Bald Eagle", "HARPY_BALD_EAGLE"),
+        new ValueDisplayPair<string>("Harpy Phoenix", "HARPY_PHOENIX"),
+        new ValueDisplayPair<string>("Elemental Fire", "ELEMENTAL_FIRE"),
+        new ValueDisplayPair<string>("Elemental Earth", "ELEMENTAL_EARTH"),
+        new ValueDisplayPair<string>("Elemental Water", "ELEMENTAL_WATER"),
+        new ValueDisplayPair<string>("Elemental Air", "ELEMENTAL_AIR"),
+        new ValueDisplayPair<string>("Elemental Arcane", "ELEMENTAL_ARCANE"), new ValueDisplayPair<string>("Badger", "innoxia_badger_subspecies_badger")
     ]; //TODO Check if these are all subspecies in the game
 
     static Collections()

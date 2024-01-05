@@ -1,6 +1,7 @@
 ﻿@page "/family"
 
 @using LTSaveEd.Models
+@using LTSaveEd.Components
 
 @inherits BasePage
 
@@ -31,11 +32,11 @@
 
 @code {
     private Models.CharacterData.Family FamilyData => SaveData.CurrentCharacter.Family;
-    private ValueDisplayPair[] _availableParents = [];
+    private ValueDisplayPair<string>[] _availableParents = [];
 
     protected override void OnInitialized()
     {
-        _availableParents = [new ValueDisplayPair("Unknown", ""), ..SaveData.CharacterIds];
+        _availableParents = [new ValueDisplayPair<string>("Unknown", ""), ..SaveData.CharacterIds];
     }
 
     private void LoadCharacterAsParent(string characterId, bool mother)

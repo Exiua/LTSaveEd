@@ -1,0 +1,45 @@
+﻿@using LTSaveEd.Models
+
+<MudSelect T="ValueDisplayPair<string>" @bind-Value="@CurrentValue" Label="Character" AnchorOrigin="Origin.BottomCenter">
+    @foreach (var value in Values)
+    {
+        <MudSelectItem Value="@value"/>
+    }
+</MudSelect>
+
+@code {
+    // Used as a intermediary to allow proper two-way binding.
+    private ValueDisplayPair<string> _currentValue = null!;
+    
+    /// <summary>
+    ///     The list of character Name-Id pairs to display in the select.
+    /// </summary>
+    [Parameter] public required IEnumerable<ValueDisplayPair<string>> Values { get; set; }
+    
+    /// <summary>
+    ///    The currently selected character Name-Id pair.
+    /// </summary>
+    [Parameter] public required ValueDisplayPair<string> CharacterId { get; set; }
+    
+    /// <summary>
+    ///     The event that is fired when the selected character Name-Id pair changes.
+    /// </summary>
+    [Parameter] public EventCallback<ValueDisplayPair<string>> CharacterIdChanged { get; set; }
+    
+    private ValueDisplayPair<string> CurrentValue
+    {
+        get => _currentValue;
+        set
+        {
+            // Update the internal value and fire the event to update the bound value.
+            _currentValue = value;
+            CharacterIdChanged.InvokeAsync(value);
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        // Set the initial value to the parameter value.
+        _currentValue = CharacterId;
+    }
+}

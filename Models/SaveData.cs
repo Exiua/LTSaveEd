@@ -15,22 +15,19 @@ public class SaveData
             _initialized = value;
             if (!value)
             {
-                CharacterIds.Clear();
-                CharacterIds.Add(new ValueDisplayPair("Player", "PlayerCharacter"));
-                CharacterCache.Clear();
-                IdNameLookup.Clear();
+                ResetCaches();
             }
         }
     }
 
     public Character CurrentCharacter { get; private set; }= null!;
-    public ValueDisplayPair CurrentCharacterIdNamePair { get; private set; } = null!;
+    public ValueDisplayPair<string> CurrentCharacterIdNamePair { get; private set; } = null!;
     public World WorldData { get; private set; } = null!;
     public Offsprings Offsprings { get; private set; } = null!;
     
     internal XDocument SaveDataXml { get; private set; } = null!;
 
-    public List<ValueDisplayPair> CharacterIds { get; } = [new ValueDisplayPair("Player", "PlayerCharacter")];
+    public List<ValueDisplayPair<string>> CharacterIds { get; } = [new ValueDisplayPair<string>("Player", "PlayerCharacter")];
     private Dictionary<string, Character> CharacterCache { get; } = new();
     private Dictionary<string, string> IdNameLookup { get; } = new();
     private Dictionary<string, XElement> IdCharacterLookup { get; } = new();
@@ -48,6 +45,15 @@ public class SaveData
         PopulateCharacterIds();
         Initialized = LoadCharacter(CharacterIds[0]);
         return Initialized;
+    }
+
+    private void ResetCaches()
+    {
+        CharacterIds.Clear();
+        CharacterIds.Add(new ValueDisplayPair<string>("Player", "PlayerCharacter"));
+        CharacterCache.Clear();
+        IdNameLookup.Clear();
+        IdCharacterLookup.Clear();
     }
 
     private void PopulateCharacterIds()
@@ -71,7 +77,7 @@ public class SaveData
                 > 60 => nameElement.Attribute("nameFeminine")!.Value
             };
             var idValue = id.Value;
-            CharacterIds.Add(new ValueDisplayPair(name, idValue));
+            CharacterIds.Add(new ValueDisplayPair<string>(name, idValue));
             IdNameLookup.Add(idValue, name);
             IdCharacterLookup.Add(idValue, character);
         }
@@ -93,7 +99,7 @@ public class SaveData
         return new CharacterShortData(characterNode);
     }
     
-    public bool LoadCharacter(ValueDisplayPair characterIdPair)
+    public bool LoadCharacter(ValueDisplayPair<string> characterIdPair)
     {
         var characterId = characterIdPair.Value;
         if (CharacterCache.TryGetValue(characterId, out var character))
@@ -115,6 +121,7 @@ public class SaveData
         catch (Exception e)
         {
             #if DEBUG
+            Console.WriteLine(e);
             throw;
             #endif
             Console.WriteLine(e);

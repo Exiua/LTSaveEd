@@ -9,17 +9,36 @@
                             Label="@(Mother ? "Mother Femininity" : "Father Femininity")" />
     <ValueDisplayPairSelect Values="@Subspecies" Attribute="@ParentData.Subspecies" ReadOnly="@ReadOnly"
                             Label="@(Mother ? "Mother Subspecies" : "Father Subspecies")" />
-</MudPaper> @*TODO: Fix bug where VDPS don't update when Parent changes*@
+</MudPaper> @*TODO: Fix bug where ValueDisplayPairSelect doesn't update when Parent changes*@
 
 @code {
     private string _currentId = null!;
-    private static ValueDisplayPair[] FemininityValues => Collections.FemininityValues;
-    private static ValueDisplayPair[] Subspecies => Collections.SubspeciesOverrides;
+    private static ValueDisplayPair<string>[] FemininityValues => Collections.FemininityValues;
+    private static ValueDisplayPair<string>[] Subspecies => Collections.SubspeciesOverrides;
     
-    [Parameter] public required ValueDisplayPair[] Parents { get; set; }
+    /// <summary>
+    ///     The list of parents to choose from.
+    /// </summary>
+    [Parameter] public required ValueDisplayPair<string>[] Parents { get; set; }
+    
+    /// <summary>
+    ///    The parent data to display.
+    /// </summary>
     [Parameter] public required CharacterShort ParentData { get; set; }
+    
+    /// <summary>
+    ///    Whether this is the mother or father.
+    /// </summary>
     [Parameter] public bool Mother { get; set; }
+    
+    /// <summary>
+    ///    The action to call when a new character is loaded.
+    /// </summary>
     [Parameter] public required Action<string, bool> LoadCharacterAction { get; set; }
+    
+    /// <summary>
+    ///   Whether the fields are read only.
+    /// </summary>
     private bool ReadOnly { get; set; }
 
     private string CurrentId
@@ -28,13 +47,14 @@
         set
         {
             _currentId = value;
-            if (value != "")
+            if (value != "") // If parent is not unknown
             {
                 LoadCharacterAction(value, Mother);
                 ReadOnly = true;
             }
             else
             {
+                // Unknown parents don't exist, so we can edit their properties
                 ReadOnly = false;
             }
             StateHasChanged();
@@ -43,6 +63,7 @@
 
     protected override void OnInitialized()
     {
+        // Sets initial state
         _currentId = ParentData.Id.Value;
         ReadOnly = _currentId != "";
     }

@@ -3,6 +3,9 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.FaceData;
 
+/// <summary>
+///     Class models the tongue node of the character's body data. Part of the <see cref="Face" /> model.
+/// </summary>
 public class Tongue
 {
     public XmlAttribute<bool> PiercedTongue { get; }
@@ -64,6 +67,11 @@ public class Tongue
         }
     }
 
+    /// <summary>
+    ///     Returns the tongue length label based on the tongue length value.
+    /// </summary>
+    /// <param name="value">Value to get the corresponding label of</param>
+    /// <returns>Label corresponding to the provided value</returns>
     private static string GetTongueLengthLabel(int value)
     {
         return value switch

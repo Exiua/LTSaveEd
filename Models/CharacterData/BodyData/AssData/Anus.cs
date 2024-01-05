@@ -3,9 +3,12 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.AssData;
 
+/// <summary>
+///     Class models the anus node of the character's body data. Part of the <see cref="Ass" /> model.
+/// </summary>
 public class Anus
 {
-    public static ValueDisplayPair[] AssHairTypes => Collections.HairTypes;
+    public static ValueDisplayPair<string>[] AssHairTypes => Collections.HairTypes;
     
     public LabeledXmlAttribute<float> Capacity { get; }
     public LabeledXmlAttribute<int> Depth { get; }

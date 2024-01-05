@@ -5,10 +5,29 @@
                  HelperText="@HelperLabel"/>
 
 @code {
+    /// <summary>
+    ///     The float XmlAttribute to bind to.
+    /// </summary>
     [Parameter] public required XmlAttribute<float> Attribute { get; set; }
+    
+    /// <summary>
+    ///    The label of this component to display.
+    /// </summary>
     [Parameter] public required string Label { get; set; }
+    
+    /// <summary>
+    ///    Whether to only allow values >= 0.
+    /// </summary>
     [Parameter] public bool PositiveOnly { get; set; } = true;
+    
+    /// <summary>
+    ///   The maximum value allowed.
+    /// </summary>
     [Parameter] public float Max { get; set; } = float.MaxValue;
+    
+    /// <summary>
+    ///  The minimum value allowed.
+    /// </summary>
     [Parameter] public float Min { get; set; } = float.MinValue;
     
     private bool _generateHelperLabels;
@@ -31,6 +50,7 @@
 
     protected override void OnInitialized()
     {
+        // Label is only generated if the attribute is a LabeledXmlAttribute<float>
         _generateHelperLabels = Attribute is LabeledXmlAttribute<float>;
     }
 }

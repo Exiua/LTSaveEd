@@ -3,9 +3,12 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.PenisData;
 
+/// <summary>
+///     Class models the cum node of the character's body data. Part of the <see cref="Penis" /> model.
+/// </summary>
 public class Cum
 {
-    public static ValueDisplayPair[] CumFlavours => Collections.BodyFluidFlavours;
+    public static ValueDisplayPair<string>[] CumFlavours => Collections.BodyFluidFlavours;
     
     public XmlAttribute<string> Flavour { get; }
 

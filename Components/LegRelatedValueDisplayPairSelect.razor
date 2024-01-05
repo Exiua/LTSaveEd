@@ -4,7 +4,7 @@
 
 @*Future Idea: Use inheritance to avoid duplicating ValueDisplayPairSelect code*@
 
-<MudSelect T="ValueDisplayPair" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
+<MudSelect T="ValueDisplayPair<string>" @bind-Value="@CurrentValue" Label="@Label" AnchorOrigin="Origin.BottomCenter">
     @foreach (var value in Values)
     {
         <MudSelectItem Value="@value"/>
@@ -12,15 +12,34 @@
 </MudSelect>
 
 @code {
-    private ValueDisplayPair _currentValue = null!;
+    private ValueDisplayPair<string> _currentValue = null!;
     
-    [Parameter] public required IEnumerable<ValueDisplayPair> Values { get; set; }
+    /// <summary>
+    ///     The values to display in the select.
+    /// </summary>
+    [Parameter] public required IEnumerable<ValueDisplayPair<string>> Values { get; set; }
+    
+    /// <summary>
+    ///    The label to display for this component.
+    /// </summary>
     [Parameter] public required string Label { get; set; }
+    
+    /// <summary>
+    ///    The attribute to bind to.
+    /// </summary>
     [Parameter] public required XmlAttribute<string> Attribute { get; set; }
+    
+    /// <summary>
+    ///   The leg component of the character being edited.
+    /// </summary>
     [Parameter] public required Leg Leg { get; set; }
+    
+    /// <summary>
+    ///  The type of leg component being edited.
+    /// </summary>
     [Parameter] public LegComponentType LegComponentType { get; set; }
     
-    protected ValueDisplayPair CurrentValue
+    protected ValueDisplayPair<string> CurrentValue
     {
         get => _currentValue;
         set
@@ -32,6 +51,8 @@
     
     protected override void OnInitialized()
     {
+        // Set the current value to the value of the attribute.
+        // May fail for modded saves.
         foreach (var value in Values)
         {
             if (value.Value != Attribute.Value)
@@ -44,8 +65,14 @@
         }
         Leg.OnLegTypeChanged += LegTypeUpdated;
     }
-    
-    private void LegTypeUpdated(ValueDisplayPair? newLegConfiguration, ValueDisplayPair? newFootStructure, ValueDisplayPair? newGenitalArrangement)
+
+    /// <summary>
+    ///    Updates the current value when the leg type changes. If value is null, the current value is not updated.
+    /// </summary>
+    /// <param name="newLegConfiguration">The new leg configuration</param>
+    /// <param name="newFootStructure">The new foot structure</param>
+    /// <param name="newGenitalArrangement">The new genital arrangement</param>
+    private void LegTypeUpdated(ValueDisplayPair<string>? newLegConfiguration, ValueDisplayPair<string>? newFootStructure, ValueDisplayPair<string>? newGenitalArrangement)
     {
         switch (LegComponentType)
         {

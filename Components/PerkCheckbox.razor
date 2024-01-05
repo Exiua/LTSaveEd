@@ -4,5 +4,9 @@
 <MudCheckBox @bind-Checked="@Perk.Active" LabelPosition="LabelPosition.Start" Label="@Perk.DisplayName"/>
 
 @code {
+    
+    /// <summary>
+    ///     The PerkNode to bind to.
+    /// </summary>
     [Parameter] public required PerkNode Perk { get; set; }
 }
