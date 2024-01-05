@@ -5,11 +5,9 @@
 @code {
     protected override void OnInitialized()
     {
-        // If the save data hasn't been initialized, redirect to the home page as many pages break if the save data
-        //      isn't initialized
         if (!SaveData.Initialized)
         {
-            NavigationManager.NavigateTo("/");
+            //NavigationManager.NavigateTo("/");
         }
     }
 }

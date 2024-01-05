@@ -79,13 +79,21 @@
     </MudDrawer>
     <MudMainContent>
         <MudContainer Style="margin-left: 10px;">
-            @Body
+            @if (_processing)
+            {
+                <MudProgressCircular Class="ms-n1" Size="Size.Medium" Indeterminate="true"/>
+                <MudText Class="ms-2">Loading Save...</MudText>
+            }
+            else
+            {
+                @Body
+            }
         </MudContainer>
     </MudMainContent>
 </MudLayout>
 
 @code {
-    private const string Version = "v2.3.2";
+    private const string Version = "v2.3.3";
     
     private bool _drawerOpen;
     private bool _processing;
