@@ -1,0 +1,49 @@
+﻿@using LTSaveEd.Models.CharacterData.InventoryData
+
+<MudAutocomplete T="InventoryElementData" Label="@Label" @bind-Value="@CurrentValue" SearchFunc="@Search"
+                 CoerceText="true" Strict="false" MaxItems="MaxDisplayedItems"/>
+
+@code {
+    private InventoryElementData _currentValue = null!;
+    
+    [Parameter] public required string Label { get; set; }
+    [Parameter] public required IEnumerable<InventoryElementData> Values { get; set; }
+    [Parameter] public required string ElementId { get; set; }
+    [Parameter] public EventCallback<string> ElementIdChanged { get; set; }
+    [Parameter] public int? MaxDisplayedItems { get; set; } = 20;
+    
+    private InventoryElementData CurrentValue
+    {
+        get => _currentValue;
+        set
+        {
+            _currentValue = value;
+            ElementIdChanged.InvokeAsync(_currentValue.Value);
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        foreach (var value in Values)
+        {
+            if (value.Value != ElementId)
+            {
+                continue;
+            }
+
+            _currentValue = value;
+            break;
+        }
+    }
+    
+    private Task<IEnumerable<InventoryElementData>> Search(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return Task.FromResult(Values);
+        }
+
+        // Search for similar values to the search term in the list of values.
+        return Task.FromResult(Values.Where(x => x.DisplayValue.Contains(value, StringComparison.InvariantCultureIgnoreCase)));
+    }
+}

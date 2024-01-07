@@ -127,6 +127,7 @@
     {
         _currentState = EditorState.Loading;
         await Task.Delay(100);
+        var oldName = Filename;
         Filename = file.Name;
         await using var stream = file.OpenReadStream(file.Size + 1);
         var stopwatch = new Stopwatch();
@@ -144,6 +145,7 @@
         else
         {
             Snackbar.Add("Failed to Load Data!", Severity.Error);
+            Filename = oldName;
         }
 
         _currentState = EditorState.Idle;

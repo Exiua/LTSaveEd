@@ -19,13 +19,14 @@
                 var localIndex = i;
                 var clothing = Inventory.Clothes[localIndex];
                 <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                    <InventoryElementSelect @bind-ElementId="@clothing.Id.Value" Values="Collections.AllClothing" Label="Id"/>
                     <MudTextField @bind-Value="@clothing.Id.Value" ReadOnly="true" Label="Id"/>
-                    <MudTextField @bind-Value="@clothing.Name.Value" ReadOnly="true" Label="Name"/>
+                    <MudTextField @bind-Value="@clothing.Name.Value" Label="Name"/>
                     <IntField Attribute="@clothing.Count" Label="Count"/>
                     <MudCheckBox @bind-Checked="@clothing.EnchantmentKnown.Value" Label="Enchantment Known"
-                                 LabelPosition="LabelPosition.Start" />
+                                 LabelPosition="LabelPosition.Start"/>
                     <MudCheckBox @bind-Checked="@clothing.IsDirty.Value" Label="Is Dirty"
-                                 LabelPosition="LabelPosition.Start" />
+                                 LabelPosition="LabelPosition.Start"/>
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary"
                                OnClick="@(() => Inventory.Delete(localIndex, InventoryElementType.Clothing))">Delete</MudButton>
                 </MudPaper>
