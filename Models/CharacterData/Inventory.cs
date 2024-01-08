@@ -19,7 +19,11 @@ public class Inventory
     public List<Weapon> Weapons { get; } = [];
     
     public int Count => Clothes.Count + Items.Count + Weapons.Count;
+    public bool Full => Count >= MaxInventorySize;
 
+    private readonly XElement _clothingInInventoryNode;
+    private readonly XElement _itemsInInventoryNode;
+    private readonly XElement _weaponsInInventoryNode;
     private readonly List<XElement> _clothingNodes = [];
     private readonly List<XElement> _itemNodes = [];
     private readonly List<XElement> _weaponNodes = [];
@@ -29,30 +33,118 @@ public class Inventory
         Money = new XmlAttribute<int>(inventoryNode.GetChildsAttributeNode("money"));
         EssenceCount = new XmlAttribute<int>(inventoryNode.GetChildsAttributeNode("essenceCount"));
 
-        AddInventoryElements(inventoryNode, "itemsInInventory", Items, _itemNodes, element => new Item(element));
-        AddInventoryElements(inventoryNode, "clothingInInventory", Clothes, _clothingNodes, element => new Clothing(element));
-        AddInventoryElements(inventoryNode, "weaponsInInventory", Weapons, _weaponNodes, element => new Weapon(element));
+        _clothingInInventoryNode = GetOrCreateElement(inventoryNode, "clothingInInventory");
+        _itemsInInventoryNode = GetOrCreateElement(inventoryNode, "itemsInInventory");
+        _weaponsInInventoryNode = GetOrCreateElement(inventoryNode, "weaponsInInventory");
+        
+        AddInventoryElements(_itemsInInventoryNode, Items, _itemNodes, element => new Item(element));
+        AddInventoryElements(_clothingInInventoryNode, Clothes, _clothingNodes, element => new Clothing(element));
+        AddInventoryElements(_weaponsInInventoryNode, Weapons, _weaponNodes, element => new Weapon(element));
     }
 
-    public void Add(InventoryElement element, XElement elementNode)
+    private static XElement GetOrCreateElement(XElement parent, string childName)
     {
-        switch (element)
+        var node = parent.Element(childName);
+        if (node is not null)
         {
-            case Clothing clothing:
-                Clothes.Add(clothing);
-                _clothingNodes.Add(elementNode);
+            return node;
+        }
+
+        node = new XElement(childName);
+        parent.Add(node);
+
+        return node;
+    }
+    
+    public void Add(InventoryElementData elementData)
+    {
+        switch (elementData)
+        {
+            case ClothingData clothing:
+                CreateClothing(clothing);
                 break;
-            case Item item:
-                Items.Add(item);
-                _itemNodes.Add(elementNode);
+            case ItemData item:
+                CreateItem(item);
                 break;
-            case Weapon weapon:
-                Weapons.Add(weapon);
-                _weaponNodes.Add(elementNode);
+            case WeaponData weapon:
+                CreateWeapon(weapon);
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(element), element, null);
+                throw new ArgumentOutOfRangeException(nameof(elementData), elementData, null);
         }
+    }
+
+    private void CreateClothing(ClothingData clothingData)
+    {
+        var colors = new XElement("colours");
+        for (var i = 0; i < clothingData.ColorCount; i++)
+        {
+            var color = new XElement("colour", new XAttribute("i", i))
+            {
+                Value = "CLOTHING_BLACK"
+            };
+            colors.Add(color);
+        }
+        var clothingNode = new XElement("clothing",
+            new XAttribute("count", 1),
+            new XAttribute("enchantmentKnown", true),
+            new XAttribute("id", clothingData.Value),
+            new XAttribute("isDirty", false),
+            new XAttribute("name", clothingData.DisplayValue),
+            new XAttribute("sealed", false));
+        clothingNode.Add(colors);
+        
+        _clothingInInventoryNode.Add(clothingNode);
+        var clothing = new Clothing(clothingNode);
+        Clothes.Add(clothing);
+        _clothingNodes.Add(clothingNode);
+    }
+
+    private void CreateItem(ItemData itemData)
+    {
+        var itemNode = new XElement("item",
+            new XAttribute("colour", "BASE_TAN"), // TODO: Maybe fix, cause item colors are a mess in-game
+            new XAttribute("count", 1),
+            new XAttribute("id", itemData.Value),
+            new XAttribute("name", itemData.DisplayValue));
+        
+        _itemsInInventoryNode.Add(itemNode);
+        var item = new Item(itemNode);
+        Items.Add(item);
+        _itemNodes.Add(itemNode);
+    }
+
+    private void CreateWeapon(WeaponData weaponData)
+    {
+        var colors = new XElement("colours");
+        for (var i = 0; i < weaponData.ColorCount; i++)
+        {
+            var color = new XElement("colour", new XAttribute("i", i))
+            {
+                Value = "CLOTHING_BLACK"
+            };
+            colors.Add(color);
+        }
+
+        var damageType = weaponData.CoreEnchantment switch
+        {
+            "DAMAGE_MELEE_WEAPON" => new XAttribute("damageType", "PHYSICAL"),
+            "DAMAGE_LUST" => new XAttribute("damageType", "LUST"),
+            _ => new XAttribute("damageType", "FIRE")
+        };
+        
+        var weaponNode = new XElement("weapon",
+            new XAttribute("coreEnchantment", weaponData.CoreEnchantment),
+            new XAttribute("count", 1),
+            damageType,
+            new XAttribute("id", weaponData.Value),
+            new XAttribute("name", weaponData.DisplayValue));
+        weaponNode.Add(colors);
+        
+        _weaponsInInventoryNode.Add(weaponNode);
+        var weapon = new Weapon(weaponNode);
+        Weapons.Add(weapon);
+        _weaponNodes.Add(weaponNode);
     }
     
     public void Delete(int index, InventoryElementType type)
@@ -81,16 +173,10 @@ public class Inventory
         }
     }
 
-    private static void AddInventoryElements<T>(XElement inventoryNode, string childName, List<T> elementsList,
+    private static void AddInventoryElements<T>(XElement inventoryElementNode, List<T> elementsList,
         List<XElement> elementNodesList, Func<XElement, T> constructor) where T : InventoryElement
     {
-        var elementsInInventory = inventoryNode.Element(childName);
-        if (elementsInInventory is null)
-        {
-            return;
-        }
-
-        var elements = elementsInInventory.Elements();
+        var elements = inventoryElementNode.Elements();
         foreach (var element in elements)
         {
             var elementObject = constructor(element);

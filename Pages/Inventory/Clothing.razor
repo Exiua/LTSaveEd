@@ -19,7 +19,6 @@
                 var localIndex = i;
                 var clothing = Inventory.Clothes[localIndex];
                 <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                    <InventoryElementSelect @bind-ElementId="@clothing.Id.Value" Values="Collections.AllClothing" Label="Id"/>
                     <MudTextField @bind-Value="@clothing.Id.Value" ReadOnly="true" Label="Id"/>
                     <MudTextField @bind-Value="@clothing.Name.Value" Label="Name"/>
                     <IntField Attribute="@clothing.Count" Label="Count"/>
