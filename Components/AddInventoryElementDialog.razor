@@ -1,0 +1,55 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.InventoryData
+
+@typeparam TEnum where TEnum : Enum
+@typeparam TElement where TElement : InventoryElementData
+
+<MudDialog>
+    <DialogContent>
+        <MudSelect T="ValueDisplayPair<TEnum>" @bind-Value="@SelectedType" Label="Type" AnchorOrigin="Origin.BottomCenter">
+            @foreach(var type in Types)
+            {
+                <MudSelectItem Value="@type" />
+            }
+        </MudSelect>
+        <MudSelect T="TElement" @bind-Value="@SelectedElement" Label="Item" AnchorOrigin="Origin.BottomCenter">
+            @foreach(var item in TypeMap[SelectedType.Value])
+            {
+                <MudSelectItem Value="@item" />
+            }
+        </MudSelect>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="@Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="@Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    private ValueDisplayPair<TEnum> _selectedType = null!;
+
+    [CascadingParameter] public required MudDialogInstance MudDialog { get; set; }
+    [Parameter] public required ValueDisplayPair<TEnum>[] Types { get; set; }
+    [Parameter] public required Dictionary<TEnum, TElement[]> TypeMap { get; set; }
+
+    private ValueDisplayPair<TEnum> SelectedType
+    {
+        get => _selectedType;
+        set
+        {
+            _selectedType = value;
+            SelectedElement = TypeMap[_selectedType.Value][0];
+        }
+    }
+
+    private TElement SelectedElement { get; set; } = null!;
+
+    protected override void OnInitialized()
+    {
+        _selectedType = Types[0];
+        SelectedElement = TypeMap[SelectedType.Value][0];
+    }
+
+    private void Submit() => MudDialog.Close(DialogResult.Ok(SelectedElement));
+    private void Cancel() => MudDialog.Cancel();
+}

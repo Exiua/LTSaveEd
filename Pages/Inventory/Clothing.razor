@@ -4,10 +4,13 @@
 @using LTSaveEd.Models.CharacterData
 @using LTSaveEd.Models.CharacterData.InventoryData
 @using LTSaveEd.Components
+@using LTSaveEd.Models.CharacterData.InventoryData.Clothes
 
 @inherits BasePage
 
 @inject SaveData SaveData
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
 
 <h3>Clothing</h3>
 
@@ -30,10 +33,35 @@
                                OnClick="@(() => Inventory.Delete(localIndex, InventoryElementType.Clothing))">Delete</MudButton>
                 </MudPaper>
             }
+            <MudButton Color="Color.Tertiary" Variant="Variant.Filled" OnClick="@Add">Add</MudButton>
         </MudCardContent>
     </MudForm>
 </MudCard>
 
 @code {
     private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
+
+    private async void Add()
+    {
+        if (Inventory.Full)
+        {
+            Snackbar.Add("Inventory Full", Severity.Error);
+            return;
+        }
+        
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        var parameters = new DialogParameters
+        {
+            ["Types"] = Collections.ClothingTypes,
+            ["TypeMap"] = Collections.ClothingMap
+        };
+        
+        var dialog = await DialogService.ShowAsync<AddInventoryElementDialog<ClothingType, ClothingData>>("Add Clothing", options: options, parameters: parameters);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            Inventory.Add((ClothingData)result.Data);
+            StateHasChanged();
+        }
+    }
 }

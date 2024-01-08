@@ -17,8 +17,8 @@ public class Inventory
     public List<Clothing> Clothes { get; } = [];
     public List<Item> Items { get; } = [];
     public List<Weapon> Weapons { get; } = [];
-    
-    public int Count => Clothes.Count + Items.Count + Weapons.Count;
+
+    private int Count => Clothes.Count + Items.Count + Weapons.Count;
     public bool Full => Count >= MaxInventorySize;
 
     private readonly XElement _clothingInInventoryNode;
@@ -125,18 +125,11 @@ public class Inventory
             };
             colors.Add(color);
         }
-
-        var damageType = weaponData.CoreEnchantment switch
-        {
-            "DAMAGE_MELEE_WEAPON" => new XAttribute("damageType", "PHYSICAL"),
-            "DAMAGE_LUST" => new XAttribute("damageType", "LUST"),
-            _ => new XAttribute("damageType", "FIRE")
-        };
         
         var weaponNode = new XElement("weapon",
             new XAttribute("coreEnchantment", weaponData.CoreEnchantment),
             new XAttribute("count", 1),
-            damageType,
+            new XAttribute("damageType", weaponData.DefaultEnchantment),
             new XAttribute("id", weaponData.Value),
             new XAttribute("name", weaponData.DisplayValue));
         weaponNode.Add(colors);
