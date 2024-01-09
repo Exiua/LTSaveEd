@@ -26,7 +26,8 @@
                     <MudTextField @bind-Value="@weapon.Name.Value" ReadOnly="true" Label="Name"/>
                     <IntField Attribute="@weapon.Count" Label="Count"/>
                     <ValueDisplayPairSelect Values="@weapon.AvailableDamageTypes" Attribute="@weapon.DamageType"
-                                            Label="Damage Type"/>
+                                            Label="Damage Type"
+                                            CurrentValueChanged="@(newValue => UpdateCoreEnchantment(weapon, newValue))"/>
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary"
                                OnClick="@(() => Inventory.Delete(localIndex, InventoryElementType.Weapon))">Delete</MudButton>
                 </MudPaper>
@@ -62,4 +63,18 @@
             StateHasChanged();
         }
     }
+    
+    private static void UpdateCoreEnchantment(Weapon weapon, ValueDisplayPair<string> newValue)
+    {
+        var coreEnchantment = weapon.CoreEnchantment.Value;
+        if (coreEnchantment.StartsWith("DAMAGE_"))
+        {
+            weapon.CoreEnchantment.Value = $"DAMAGE_{newValue.Value}";
+        }
+        else if (coreEnchantment.StartsWith("RESISTANCE_"))
+        {
+            weapon.CoreEnchantment.Value = $"RESISTANCE_{newValue.Value}";
+        }
+    }
+
 }

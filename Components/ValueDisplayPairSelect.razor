@@ -30,6 +30,8 @@
     ///   Whether the select is read only.
     /// </summary>
     [Parameter] public bool ReadOnly { get; set; }
+    
+    [Parameter] public Action<ValueDisplayPair<string>>? CurrentValueChanged { get; set; }
 
     protected ValueDisplayPair<string> CurrentValue
     {
@@ -38,6 +40,7 @@
         {
             _currentValue = value;
             Attribute.Value = _currentValue.Value;
+            CurrentValueChanged?.Invoke(_currentValue);
         }
     }
 

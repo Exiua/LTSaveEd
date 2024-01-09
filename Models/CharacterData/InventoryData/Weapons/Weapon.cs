@@ -11,12 +11,23 @@ public class Weapon : InventoryElement
         new ValueDisplayPair<string>("Ice", "ICE"), new ValueDisplayPair<string>("Poison", "POISON")
     ];
     
-    private readonly ValueDisplayPair<string>[] _damageTypesAlt = [new ValueDisplayPair<string>("Lust", "LUST")];
+    private readonly Dictionary<string, ValueDisplayPair<string>[]> _damageTypeLookup = new()
+    {
+        {"PHYSICAL", [new ValueDisplayPair<string>("Physical", "PHYSICAL")]},
+        {"FIRE", [new ValueDisplayPair<string>("Fire", "FIRE")]},
+        {"ICE", [new ValueDisplayPair<string>("Ice", "ICE")]},
+        {"POISON", [new ValueDisplayPair<string>("Poison", "POISON")]},
+        {"LUST", [new ValueDisplayPair<string>("Lust", "LUST")]}
+    };
 
-    public ValueDisplayPair<string>[] AvailableDamageTypes => DamageType.Value == "LUST"
-        ? _damageTypesAlt
-        : _damageTypes;
-    
+    public ValueDisplayPair<string>[] AvailableDamageTypes =>
+        CoreEnchantment.Value switch
+        {
+            "null" => _damageTypeLookup[DamageType.Value],
+            "DAMAGE_LUST" => _damageTypeLookup["LUST"],
+            _ => _damageTypes
+        };
+
     public XmlAttribute<string> CoreEnchantment { get; }
     public XmlAttribute<string> DamageType { get; }
     

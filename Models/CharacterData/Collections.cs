@@ -190,9 +190,9 @@ public static class Collections
     public static ValueDisplayPair<ItemType>[] ItemTypes { get; } =
     [
         new ValueDisplayPair<ItemType>("Item", ItemType.Item),
-        new ValueDisplayPair<ItemType>("Essence", ItemType.Essence),
+        /*new ValueDisplayPair<ItemType>("Essence", ItemType.Essence),
         new ValueDisplayPair<ItemType>("Book", ItemType.Book),
-        new ValueDisplayPair<ItemType>("Spell", ItemType.Spell)
+        new ValueDisplayPair<ItemType>("Spell", ItemType.Spell)*/ // TODO: Implement
     ];
     
     public static ValueDisplayPair<WeaponType>[] WeaponTypes { get; } =

@@ -91,8 +91,8 @@ public class Inventory
             new XAttribute("id", clothingData.Value),
             new XAttribute("isDirty", false),
             new XAttribute("name", clothingData.DisplayValue),
-            new XAttribute("sealed", false));
-        clothingNode.Add(colors);
+            new XAttribute("sealed", false),
+            colors);
         
         _clothingInInventoryNode.Add(clothingNode);
         var clothing = new Clothing(clothingNode);
@@ -131,8 +131,11 @@ public class Inventory
             new XAttribute("count", 1),
             new XAttribute("damageType", weaponData.DefaultEnchantment),
             new XAttribute("id", weaponData.Value),
-            new XAttribute("name", weaponData.DisplayValue));
-        weaponNode.Add(colors);
+            new XAttribute("name", weaponData.DisplayValue),
+            colors,
+            new XElement("effects"),
+            new XElement("spells"),
+            new XElement("combatMoves"));
         
         _weaponsInInventoryNode.Add(weaponNode);
         var weapon = new Weapon(weaponNode);
