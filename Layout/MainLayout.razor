@@ -9,7 +9,8 @@
 @inject Settings Settings
 
 <MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="@_theme"/>
-<MudSnackbarProvider />
+<MudSnackbarProvider/>
+<MudDialogProvider/>
 
 <MudLayout>
     <MudAppBar Elevation="1">
@@ -93,7 +94,7 @@
 </MudLayout>
 
 @code {
-    private const string Version = "v2.3.3";
+    private const string Version = "v2.4.0";
     
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;
@@ -127,6 +128,7 @@
     {
         _currentState = EditorState.Loading;
         await Task.Delay(100);
+        var oldName = Filename;
         Filename = file.Name;
         await using var stream = file.OpenReadStream(file.Size + 1);
         var stopwatch = new Stopwatch();
@@ -144,6 +146,7 @@
         else
         {
             Snackbar.Add("Failed to Load Data!", Severity.Error);
+            Filename = oldName;
         }
 
         _currentState = EditorState.Idle;

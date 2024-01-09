@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.Models.XmlData;
 
-namespace LTSaveEd.Models.CharacterData.InventoryData;
+namespace LTSaveEd.Models.CharacterData.InventoryData.Items;
 
 public class Item : InventoryElement
 {

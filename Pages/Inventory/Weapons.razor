@@ -4,10 +4,13 @@
 @using LTSaveEd.Models.CharacterData
 @using LTSaveEd.Models.CharacterData.InventoryData
 @using LTSaveEd.Components
+@using LTSaveEd.Models.CharacterData.InventoryData.Weapons
 
 @inherits BasePage
 
 @inject SaveData SaveData
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
 
 <h3>Weapons</h3>
 
@@ -23,15 +26,55 @@
                     <MudTextField @bind-Value="@weapon.Name.Value" ReadOnly="true" Label="Name"/>
                     <IntField Attribute="@weapon.Count" Label="Count"/>
                     <ValueDisplayPairSelect Values="@weapon.AvailableDamageTypes" Attribute="@weapon.DamageType"
-                                            Label="Damage Type"/>
+                                            Label="Damage Type"
+                                            CurrentValueChanged="@(newValue => UpdateCoreEnchantment(weapon, newValue))"/>
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary"
                                OnClick="@(() => Inventory.Delete(localIndex, InventoryElementType.Weapon))">Delete</MudButton>
                 </MudPaper>
             }
+            <MudButton Color="Color.Tertiary" Variant="Variant.Filled" OnClick="@Add">Add</MudButton>
         </MudCardContent>
     </MudForm>
 </MudCard>
 
 @code {
     private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
+    
+    private async void Add()
+    {
+        if (Inventory.Full)
+        {
+            Snackbar.Add("Inventory Full", Severity.Error);
+            return;
+        }
+        
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        var parameters = new DialogParameters
+        {
+            ["Types"] = Collections.WeaponTypes,
+            ["TypeMap"] = Collections.WeaponsMap
+        };
+        
+        var dialog = await DialogService.ShowAsync<AddInventoryElementDialog<WeaponType, WeaponData>>("Add Weapon", options: options, parameters: parameters);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            Inventory.Add((WeaponData)result.Data);
+            StateHasChanged();
+        }
+    }
+    
+    private static void UpdateCoreEnchantment(Weapon weapon, ValueDisplayPair<string> newValue)
+    {
+        var coreEnchantment = weapon.CoreEnchantment.Value;
+        if (coreEnchantment.StartsWith("DAMAGE_"))
+        {
+            weapon.CoreEnchantment.Value = $"DAMAGE_{newValue.Value}";
+        }
+        else if (coreEnchantment.StartsWith("RESISTANCE_"))
+        {
+            weapon.CoreEnchantment.Value = $"RESISTANCE_{newValue.Value}";
+        }
+    }
+
 }
