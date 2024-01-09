@@ -1,10 +1,10 @@
 ﻿import sys
-import os
 import json
 from pathlib import Path
 
 from lxml import etree
 from titlecase import titlecase
+
 
 class InventoryElement:
     def __init__(self, name: str, id_: str):
@@ -17,6 +17,7 @@ class InventoryElement:
     def __repr__(self):
         return self.__str__()
 
+
 class ClothingData(InventoryElement):
     def __init__(self, name: str, id_: str, color_count: int):
         super().__init__(name, id_)
@@ -28,6 +29,7 @@ class ClothingData(InventoryElement):
     def __repr__(self):
         return self.__str__()
 
+
 class ItemData(InventoryElement):
     def __init__(self, name: str, id_: str):
         super().__init__(name, id_)
@@ -37,7 +39,8 @@ class ItemData(InventoryElement):
 
     def __repr__(self):
         return self.__str__()
-    
+
+
 class WeaponData(InventoryElement):
     def __init__(self, name: str, id_: str, color_count: int, damage_type: str, default_type: str):
         super().__init__(name, id_)
@@ -51,9 +54,11 @@ class WeaponData(InventoryElement):
     def __repr__(self):
         return self.__str__()
 
+
 def main(filepath: str):
     path = Path(filepath)
-    if not any(ext in str(file) for file in path.iterdir() for ext in ("LT.exe", ".jar")):  # Basic sanity check for game dir
+    if not any(ext in str(file) for file in path.iterdir() for ext in
+               ("LT.exe", ".jar")):  # Basic sanity check for game dir
         raise Exception("Filepath to game not provided: " + filepath)
     res_dir_path = path / "res"
     clothing_dir_path = res_dir_path / "clothing"
@@ -67,7 +72,9 @@ def main(filepath: str):
     write("scripts2/weapons.json", weapon_ids)
     write_csharp(clothing_ids, item_ids, weapon_ids)
 
-def write_csharp(clothes_dict: dict[str, list[str]], items_dict: dict[str, list[str]], weapons_dict: dict[str, list[str]]):
+
+def write_csharp(clothes_dict: dict[str, list[InventoryElement]], items_dict: dict[str, list[InventoryElement]],
+                 weapons_dict: dict[str, list[InventoryElement]]):
     with open("scripts2/c#.txt", "w") as f:
         f.write("#region Clothes Initialization\n\n")
 
@@ -92,16 +99,19 @@ def write_csharp(clothes_dict: dict[str, list[str]], items_dict: dict[str, list[
 
         f.write("\n#endregion")
 
-def construct_items(items: list[InventoryElement]) -> list[str]:
+
+def construct_items(items: list[InventoryElement]) -> str:
     items = [str(item) for item in items]
     items = ", ".join(items)
     return items
+
 
 def construct_key(key: str) -> str:
     key = key.split("_")
     key = [w.title() for w in key]
     key = "".join(key)
     return key
+
 
 def construct_item_name(item: str) -> str:
     c = item.count("_")
@@ -115,6 +125,7 @@ def construct_item_name(item: str) -> str:
             item = item.split("_")
             return f"{item[-2].title()} {item[-1].title()}"
 
+
 def get_item_ids(path: Path) -> dict[str, list[InventoryElement]]:
     item_ids: dict[str, list[InventoryElement]] = {}
     for file in path.rglob("*.xml"):
@@ -126,7 +137,7 @@ def get_item_ids(path: Path) -> dict[str, list[InventoryElement]]:
         root: etree.ElementBase = etree.parse(file).getroot()
         name = root.find(".//name").text
         name = titlecase(name).replace('"', r'\"')
-        #print(item_id)
+        # print(item_id)
         match root.tag:
             case "clothing":
                 # Check if the value attribute exists for the secondaryColours element
@@ -152,7 +163,8 @@ def get_item_ids(path: Path) -> dict[str, list[InventoryElement]]:
                 add_element(item_ids, "ITEM", item)
             case "weapon":
                 secondary_colors: etree.ElementBase = root.find(".//secondaryColours")
-                if secondary_colors is not None and (secondary_colors.get("values") is not None or secondary_colors.getchildren()):
+                if secondary_colors is not None and (
+                        secondary_colors.get("values") is not None or secondary_colors.getchildren()):
                     colors = 2
                 else:
                     colors = 1
@@ -184,10 +196,12 @@ def get_item_ids(path: Path) -> dict[str, list[InventoryElement]]:
                         add_element(item_ids, "RANGED", item)
     return item_ids
 
+
 def add_element(dictionary: dict[str, list[InventoryElement]], key: str, value: InventoryElement):
     if key not in dictionary:
         dictionary[key] = []
     dictionary[key].append(value)
+
 
 def write(filepath: str, data: dict[str, list[InventoryElement]]):
     path = Path(filepath)
@@ -197,6 +211,7 @@ def write(filepath: str, data: dict[str, list[InventoryElement]]):
         serializable_data[key] = [str(item) for item in data[key]]
     with open(filepath, "w") as f:
         json.dump(serializable_data, f, indent=4)
+
 
 if __name__ == "__main__":
     main(sys.argv[1])
