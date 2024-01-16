@@ -3061,7 +3061,7 @@ public class Controller {
             log.debug("Saved to file");
         }
         catch (TransformerException | XPathExpressionException e) {
-            e.printStackTrace();
+            log.fatal(e);
         }
     }
 
