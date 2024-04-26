@@ -6,15 +6,17 @@ namespace LTSaveEd.Models.CharacterData.BodyData;
 public class BodyComponentModifier : NullableXmlAttribute
 {
     private string AttributeName { get; }
+    private string ModifierName { get; }
 
-    public BodyComponentModifier(XElement parent, string attributeName) : base(parent)
+    public BodyComponentModifier(XElement parent, string attributeName, string modifierName = "mod") : base(parent)
     {
         AttributeName = attributeName;
+        ModifierName = modifierName;
     }
     
-    protected override XAttribute CreateNode()
+    protected override XElement CreateNode()
     {
-        var attribute = new XAttribute(AttributeName, true);
+        var attribute = new XElement(ModifierName, AttributeName);
         Parent.Add(attribute);
         return attribute;
     }

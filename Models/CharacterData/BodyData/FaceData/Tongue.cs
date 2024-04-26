@@ -28,19 +28,18 @@ public class Tongue
         PiercedTongue = new XmlAttribute<bool>(tongueNode.Attribute("piercedTongue")!);
         Length = new LabeledXmlAttribute<int>(tongueNode.Attribute("tongueLength")!, GetTongueLengthLabel);
 
-        var modifiersNode = tongueNode.Element("tongueModifiers")!;
-        Ribbed = new BodyComponentModifier(modifiersNode, "RIBBED");
-        Tentacled = new BodyComponentModifier(modifiersNode, "TENTACLED");
-        Bifurcated = new BodyComponentModifier(modifiersNode, "BIFURCATED");
-        Wide = new BodyComponentModifier(modifiersNode, "WIDE");
-        Flat = new BodyComponentModifier(modifiersNode, "FLAT");
-        Strong = new BodyComponentModifier(modifiersNode, "STRONG");
-        Tapered = new BodyComponentModifier(modifiersNode, "TAPERED");
+        Ribbed = new BodyComponentModifier(tongueNode, "RIBBED");
+        Tentacled = new BodyComponentModifier(tongueNode, "TENTACLED");
+        Bifurcated = new BodyComponentModifier(tongueNode, "BIFURCATED");
+        Wide = new BodyComponentModifier(tongueNode, "WIDE");
+        Flat = new BodyComponentModifier(tongueNode, "FLAT");
+        Strong = new BodyComponentModifier(tongueNode, "STRONG");
+        Tapered = new BodyComponentModifier(tongueNode, "TAPERED");
 
-        var modifiers = modifiersNode.Attributes();
+        var modifiers = tongueNode.Elements();
         foreach (var modifier in modifiers)
         {
-            switch (modifier.Name.LocalName)
+            switch (modifier.Value)
             {
                 case "RIBBED":
                     Ribbed.Initialize(modifier);

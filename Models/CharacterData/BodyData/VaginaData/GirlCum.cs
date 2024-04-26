@@ -27,21 +27,20 @@ public class GirlCum
     {
         Flavour = new XmlAttribute<string>(girlCumNode.Attribute("flavour")!);
         
-        var girlCumModifiersNode = girlCumNode.Element("girlcumModifiers")!;
-        Musky = new BodyComponentModifier(girlCumModifiersNode, "MUSKY");
-        Viscous = new BodyComponentModifier(girlCumModifiersNode, "VISCOUS");
-        Sticky = new BodyComponentModifier(girlCumModifiersNode, "STICKY");
-        Slimy = new BodyComponentModifier(girlCumModifiersNode, "SLIMY");
-        Bubbling = new BodyComponentModifier(girlCumModifiersNode, "BUBBLING");
-        MineralOil = new BodyComponentModifier(girlCumModifiersNode, "MINERAL_OIL");
-        Alcoholic = new BodyComponentModifier(girlCumModifiersNode, "ALCOHOLIC");
-        Addictive = new BodyComponentModifier(girlCumModifiersNode, "ADDICTIVE");
-        Psychoactive = new BodyComponentModifier(girlCumModifiersNode, "HALLUCINOGENIC");
+        Musky = new BodyComponentModifier(girlCumNode, "MUSKY");
+        Viscous = new BodyComponentModifier(girlCumNode, "VISCOUS");
+        Sticky = new BodyComponentModifier(girlCumNode, "STICKY");
+        Slimy = new BodyComponentModifier(girlCumNode, "SLIMY");
+        Bubbling = new BodyComponentModifier(girlCumNode, "BUBBLING");
+        MineralOil = new BodyComponentModifier(girlCumNode, "MINERAL_OIL");
+        Alcoholic = new BodyComponentModifier(girlCumNode, "ALCOHOLIC");
+        Addictive = new BodyComponentModifier(girlCumNode, "ADDICTIVE");
+        Psychoactive = new BodyComponentModifier(girlCumNode, "HALLUCINOGENIC");
         
-        var modifiers = girlCumModifiersNode.Attributes();
+        var modifiers = girlCumNode.Attributes();
         foreach (var modifier in modifiers)
         {
-            switch (modifier.Name.LocalName)
+            switch (modifier.Value)
             {
                 case "MUSKY":
                     Musky.Initialize(modifier);

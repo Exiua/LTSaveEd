@@ -23,3 +23,9 @@ Go to [https://exiua.github.io/LTSaveEd/](https://exiua.github.io/LTSaveEd/) to 
 - Adjust global values (ingame date, stamps, etc.)
 - Remove all non-encountered offsprings
 - Reveal the map
+
+## Bugs
+
+If you encounter a problem with the save editor, please open an issue on the GitHub page. Provide as much information as 
+you can about the issue and how to replicate the issue. Also, please provide the save file that you are trying to edit 
+when the issue occurred.

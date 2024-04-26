@@ -55,16 +55,15 @@ public class Nipples
         Pierced = new XmlAttribute<bool>(nipplesNode.Attribute("pierced")!);
         Virgin = new XmlAttribute<bool>(nipplesNode.Attribute("virgin")!);
 
-        var nippleModifiersNode = nipplesNode.Element("nippleModifiers")!;
-        Puffy = new BodyComponentModifier(nippleModifiersNode, "PUFFY");
-        InternallyRibbed = new BodyComponentModifier(nippleModifiersNode, "RIBBED");
-        Tentacled = new BodyComponentModifier(nippleModifiersNode, "TENTACLED");
-        InternallyMuscled = new BodyComponentModifier(nippleModifiersNode, "MUSCLE_CONTROL");
+        Puffy = new BodyComponentModifier(nipplesNode, "PUFFY");
+        InternallyRibbed = new BodyComponentModifier(nipplesNode, "RIBBED");
+        Tentacled = new BodyComponentModifier(nipplesNode, "TENTACLED");
+        InternallyMuscled = new BodyComponentModifier(nipplesNode, "MUSCLE_CONTROL");
 
-        var modifiers = nippleModifiersNode.Attributes();
+        var modifiers = nipplesNode.Elements();
         foreach (var modifier in modifiers)
         {
-            switch (modifier.Name.LocalName)
+            switch (modifier.Value)
             {
                 case "PUFFY":
                     Puffy.Initialize(modifier);

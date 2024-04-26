@@ -110,38 +110,50 @@ public class PenisComponent
         UrethraVirgin = new XmlAttribute<bool>(penisNode.Attribute("urethraVirgin")!);
         Virgin = new XmlAttribute<bool>(penisNode.Attribute("virgin")!);
         
-        var penisModifiersNode = penisNode.Element("penisModifiers")!;
-        Sheathed = new BodyComponentModifier(penisModifiersNode, "SHEATHED");
-        Ribbed = new BodyComponentModifier(penisModifiersNode, "RIBBED");
-        Tentacled = new BodyComponentModifier(penisModifiersNode, "TENTACLED");
-        Knotted = new BodyComponentModifier(penisModifiersNode, "KNOTTED");
-        Blunt = new BodyComponentModifier(penisModifiersNode, "BLUNT");
-        Tapered = new BodyComponentModifier(penisModifiersNode, "TAPERED");
-        Flared = new BodyComponentModifier(penisModifiersNode, "FLARED");
-        Barbed = new BodyComponentModifier(penisModifiersNode, "BARBED");
-        Veiny = new BodyComponentModifier(penisModifiersNode, "VEINY");
-        Prehensile = new BodyComponentModifier(penisModifiersNode, "PREHENSILE");
-        Ovipositor = new BodyComponentModifier(penisModifiersNode, "OVIPOSITOR");
+        Sheathed = new BodyComponentModifier(penisNode, "SHEATHED");
+        Ribbed = new BodyComponentModifier(penisNode, "RIBBED");
+        Tentacled = new BodyComponentModifier(penisNode, "TENTACLED");
+        Knotted = new BodyComponentModifier(penisNode, "KNOTTED");
+        Blunt = new BodyComponentModifier(penisNode, "BLUNT");
+        Tapered = new BodyComponentModifier(penisNode, "TAPERED");
+        Flared = new BodyComponentModifier(penisNode, "FLARED");
+        Barbed = new BodyComponentModifier(penisNode, "BARBED");
+        Veiny = new BodyComponentModifier(penisNode, "VEINY");
+        Prehensile = new BodyComponentModifier(penisNode, "PREHENSILE");
+        Ovipositor = new BodyComponentModifier(penisNode, "OVIPOSITOR");
 
-        var urethraModifiersNode = penisNode.Element("urethraModifiers")!;
-        Puffy = new BodyComponentModifier(urethraModifiersNode, "PUFFY");
-        InternallyRibbed = new BodyComponentModifier(urethraModifiersNode, "RIBBED");
-        UrethraTentacled = new BodyComponentModifier(urethraModifiersNode, "TENTACLED");
-        InternallyMuscled = new BodyComponentModifier(urethraModifiersNode, "MUSCLE_CONTROL");
+        Puffy = new BodyComponentModifier(penisNode, "PUFFY", "modUrethra");
+        InternallyRibbed = new BodyComponentModifier(penisNode, "RIBBED", "modUrethra");
+        UrethraTentacled = new BodyComponentModifier(penisNode, "TENTACLED", "modUrethra");
+        InternallyMuscled = new BodyComponentModifier(penisNode, "MUSCLE_CONTROL", "modUrethra");
         
-        var modifiers = penisModifiersNode.Attributes();
+        var modifiers = penisNode.Attributes();
         foreach (var modifier in modifiers)
         {
-            switch (modifier.Name.LocalName)
+            switch (modifier.Value)
             {
                 case "SHEATHED":
                     Sheathed.Initialize(modifier);
                     break;
                 case "RIBBED":
-                    Ribbed.Initialize(modifier);
+                    if(modifier.Name.LocalName == "mod")
+                    {
+                        Ribbed.Initialize(modifier);
+                    }
+                    else
+                    {
+                        InternallyRibbed.Initialize(modifier);
+                    }
                     break;
                 case "TENTACLED":
-                    Tentacled.Initialize(modifier);
+                    if (modifier.Name.LocalName == "mod")
+                    {
+                        Tentacled.Initialize(modifier);
+                    }
+                    else
+                    {
+                        UrethraTentacled.Initialize(modifier);
+                    }
                     break;
                 case "KNOTTED":
                     Knotted.Initialize(modifier);
@@ -167,22 +179,8 @@ public class PenisComponent
                 case "OVIPOSITOR":
                     Ovipositor.Initialize(modifier);
                     break;
-            }
-        }
-        
-        modifiers = urethraModifiersNode.Attributes();
-        foreach (var modifier in modifiers)
-        {
-            switch (modifier.Name.LocalName)
-            {
                 case "PUFFY":
                     Puffy.Initialize(modifier);
-                    break;
-                case "RIBBED":
-                    InternallyRibbed.Initialize(modifier);
-                    break;
-                case "TENTACLED":
-                    UrethraTentacled.Initialize(modifier);
                     break;
                 case "MUSCLE_CONTROL":
                     InternallyMuscled.Initialize(modifier);
