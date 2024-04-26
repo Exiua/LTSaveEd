@@ -16,6 +16,7 @@ public class Perks
     
     public PerkNode PhysicallyFit { get; }
     public PerkNode Observant { get; }
+    public PerkNode HeavySleeper { get; }
     public PerkNode StableEnchantmentsPhysical { get; }
     public PerkNode Sterile { get; }
     public PerkNode Virile { get; }
@@ -186,6 +187,7 @@ public class Perks
         
         PhysicallyFit = new PerkNode(NaturalFitness, "2", "PHYSIQUE_BOOST", "Physically Fit", perksNode);
         Observant = new PerkNode(NaturalFitness, "2", "OBSERVANT", "Observant", perksNode);
+        HeavySleeper = new PerkNode(NaturalFitness, "2", "HEAVY_SLEEPER", "Heavy Sleeper", perksNode);
         StableEnchantmentsPhysical = new PerkNode(NaturalFitness, "2", "ENCHANTMENT_STABILITY", "Stable Enchantments", perksNode);
         Sterile = new PerkNode(LewdKnowledge, "2", "FIRING_BLANKS", "Sterile", perksNode);
         Virile = new PerkNode(LewdKnowledge, "2", "VIRILITY_BOOST", "Virile", perksNode);
@@ -307,82 +309,70 @@ public class Perks
         LookupCache = new Dictionary<string, PerkNode[]>
         {
             {
-                "1", new[]
-                {
+                "1", [
                     NaturalFitness, LewdKnowledge, NaturalArcanePower
-                }
+                ]
             },
             {
-                "2", new[]
-                {
-                    PhysicallyFit, Observant, StableEnchantmentsPhysical, Sterile, Virile, Seductive, Fertile, Barren, StableEnchantmentsArcane, ArcanePrecision, ArcaneTraining
-                }
+                "2", [
+                    PhysicallyFit, Observant, HeavySleeper, StableEnchantmentsPhysical, Sterile, Virile, Seductive, Fertile, Barren, StableEnchantmentsArcane, ArcanePrecision, ArcaneTraining
+                ]
             },
             {
-                "3", new[]
-                {
+                "3", [
                     Defender, EnergyReserves, Striker, StableEnchantmentsPhysicalPlus, VirilePlus, SeductivePlus, OrgasmicLevelDrain, Resistance, FertilePlus, StableEnchantmentsArcanePlus,
                     SpellPower, AuraReserves, SpellEfficiency
-                }
+                ]
             },
             {
-                "4", new[]
-                {
+                "4", [
                     DefenderPlus, EnergyReservesPlus, StrikerPlus, ArcaneSmith, Seeder, SeductivePlusPlus, Ahegao, ResistancePlus, Broodmother, ArcaneWeaver, SpellPowerPlus, AuraReservesPlus,
                     SpellEfficiencyPlus
-                }
+                ]
             },
             {
-                "5", new[]
-                {
+                "5", [
                     CardioKing, MartialArtist, CriticalPowerPhysical, HandToHand, VirilePlusPlus, VirilePlusx3, CriticalPowerLust, FertilePlusx3, FertilePlusPlus, ElementalStriker,
                     CriticalPowerArcane, Chuuni, ArcaneCombatant
-                }
+                ]
             },
             {
-                "6", new[]
-                {
+                "6", [
                     PhysicallyFitPlus, Hypermobility, SeductivePlusx3, Minx, Ladykiller, ArcaneAffinity
-                }
+                ]
             },
             {
-                "7", new[]
-                {
+                "7", [
                     StrikerPlusPlus, HandToHandPlus, AuraShielding, EnergyReservesPlusPlus, SeductiveLeftBranch, SeductiveMiddleBranch, ResistancePlusPlus, AuraReservesPlusPlus,
                     SpellEfficiencyPlusPlus, SpellPowerPlusPlus
-                }
+                ]
             },
             {
-                "8", new[]
-                {
+                "8", [
                     StrikerPlusx3, MeleeWeaponsExpert, DefenderPlusPlus, EnergyReservesPlusx3, SeductivePlusLeftBranch, IrresistibleAppeals, SeductivePlusMiddleBranch, ObjectOfDesire,
                     ResistancePlusx3, AuraReservesPlusx3, SpellEfficiencyPlusx3, SpellPowerPlusx3
-                }
+                ]
             },
             {
-                "9", new[]
-                {
+                "9", [
                     StrikerPlusx4, SharpShooter, DefenderPlusx3, EnergyReservesPlusx4, SeductivePlusPlusLeftBranch, SeductivePlusPlusMiddleBranch, ResistancePlusx4, AuraReservesPlusx4,
                     SpellEfficiencyPlusx4, SpellMastery
-                }
+                ]
             },
             {
-                "10", new[]
-                {
+                "10", [
                     FerociousWarrior, Berserk, CombatRegeneration, Lustpyre, Nymphomaniac, PureThoughts, SacrificialShielding, SpellEfficiencyPlusx5, ArcaneVampyrism
-                }
+                ]
             },
             {
-                "11", new[]
-                {
+                "11", [
                     MeleeWeaponsExpertPlus, PhysicallyFitPlusPlus, SharpShooterPlus, SeductivePlusx4, ElementalDefender, ArcaneAffinityPlus, ElementalStrikerPlus
-                }
+                ]
             },
             {
-                "12", new[]
-                {
+                "12", [
                     ElementalStrikerPhysical, ElementalStrikerSeductive, ElementalStrikerArcane
-                }
+                ]
             }
         };
 
