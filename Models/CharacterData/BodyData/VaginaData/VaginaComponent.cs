@@ -137,64 +137,83 @@ public class VaginaComponent
         UrethraVirgin = new XmlAttribute<bool>(vaginaNode.Attribute("urethraVirgin")!);
         Virgin = new XmlAttribute<bool>(vaginaNode.Attribute("virgin")!);
             
-        var vaginaModifiersNode = vaginaNode.Element("vaginaModifiers")!;
-        Puffy = new BodyComponentModifier(vaginaModifiersNode, "PUFFY");
-        InternallyRibbed = new BodyComponentModifier(vaginaModifiersNode, "RIBBED");
-        Tentacled = new BodyComponentModifier(vaginaModifiersNode, "TENTACLED");
-        InternallyMuscled = new BodyComponentModifier(vaginaModifiersNode, "MUSCLE_CONTROL");
+        Puffy = new BodyComponentModifier(vaginaNode, "PUFFY");
+        InternallyRibbed = new BodyComponentModifier(vaginaNode, "RIBBED");
+        Tentacled = new BodyComponentModifier(vaginaNode, "TENTACLED");
+        InternallyMuscled = new BodyComponentModifier(vaginaNode, "MUSCLE_CONTROL");
         
-        var clitModifiersNode = vaginaNode.Element("clitModifiers")!;
-        Sheathed = new BodyComponentModifier(clitModifiersNode, "SHEATHED");
-        Ribbed = new BodyComponentModifier(clitModifiersNode, "RIBBED");
-        ClitTentacled = new BodyComponentModifier(clitModifiersNode, "TENTACLED");
-        Knotted = new BodyComponentModifier(clitModifiersNode, "KNOTTED");
-        Blunt = new BodyComponentModifier(clitModifiersNode, "BLUNT");
-        Tapered = new BodyComponentModifier(clitModifiersNode, "TAPERED");
-        Flared = new BodyComponentModifier(clitModifiersNode, "FLARED");
-        Barbed = new BodyComponentModifier(clitModifiersNode, "BARBED");
-        Veiny = new BodyComponentModifier(clitModifiersNode, "VEINY");
-        Prehensile = new BodyComponentModifier(clitModifiersNode, "PREHENSILE");
-        Ovipositor = new BodyComponentModifier(clitModifiersNode, "OVIPOSITOR");
+        Sheathed = new BodyComponentModifier(vaginaNode, "SHEATHED", "modClit");
+        Ribbed = new BodyComponentModifier(vaginaNode, "RIBBED", "modClit");
+        ClitTentacled = new BodyComponentModifier(vaginaNode, "TENTACLED", "modClit");
+        Knotted = new BodyComponentModifier(vaginaNode, "KNOTTED", "modClit");
+        Blunt = new BodyComponentModifier(vaginaNode, "BLUNT", "modClit");
+        Tapered = new BodyComponentModifier(vaginaNode, "TAPERED", "modClit");
+        Flared = new BodyComponentModifier(vaginaNode, "FLARED", "modClit");
+        Barbed = new BodyComponentModifier(vaginaNode, "BARBED", "modClit");
+        Veiny = new BodyComponentModifier(vaginaNode, "VEINY", "modClit");
+        Prehensile = new BodyComponentModifier(vaginaNode, "PREHENSILE", "modClit");
+        Ovipositor = new BodyComponentModifier(vaginaNode, "OVIPOSITOR", "modClit");
         
-        var urethraModifiersNode = vaginaNode.Element("urethraModifiers")!;
-        UrethraPuffy = new BodyComponentModifier(urethraModifiersNode, "PUFFY");
-        UrethraInternallyRibbed = new BodyComponentModifier(urethraModifiersNode, "RIBBED");
-        UrethraTentacled = new BodyComponentModifier(urethraModifiersNode, "TENTACLED");
-        UrethraInternallyMuscled = new BodyComponentModifier(urethraModifiersNode, "MUSCLE_CONTROL");
+        UrethraPuffy = new BodyComponentModifier(vaginaNode, "PUFFY", "modUrethra");
+        UrethraInternallyRibbed = new BodyComponentModifier(vaginaNode, "RIBBED", "modUrethra");
+        UrethraTentacled = new BodyComponentModifier(vaginaNode, "TENTACLED", "modUrethra");
+        UrethraInternallyMuscled = new BodyComponentModifier(vaginaNode, "MUSCLE_CONTROL", "modUrethra");
         
-        var modifiers = vaginaModifiersNode.Attributes();
+        var modifiers = vaginaNode.Elements();
         foreach (var modifier in modifiers)
         {
-            switch (modifier.Name.LocalName)
+            switch (modifier.Value)
             {
                 case "PUFFY":
-                    Puffy.Initialize(modifier);
+                    if(modifier.Name.LocalName == "mod")
+                    {
+                        Puffy.Initialize(modifier);
+                    }
+                    else
+                    {
+                        UrethraPuffy.Initialize(modifier);
+                    }
                     break;
                 case "RIBBED":
-                    InternallyRibbed.Initialize(modifier);
+                    switch (modifier.Name.LocalName)
+                    {
+                        case "mod":
+                            InternallyRibbed.Initialize(modifier);
+                            break;
+                        case "modClit":
+                            Ribbed.Initialize(modifier);
+                            break;
+                        default:
+                            UrethraInternallyRibbed.Initialize(modifier);
+                            break;
+                    }
                     break;
                 case "TENTACLED":
-                    Tentacled.Initialize(modifier);
+                    switch (modifier.Name.LocalName)
+                    {
+                        case "mod":
+                            Tentacled.Initialize(modifier);
+                            break;
+                        case "modClit":
+                            ClitTentacled.Initialize(modifier);
+                            break;
+                        default:
+                            UrethraTentacled.Initialize(modifier);
+                            break;
+                    }
                     break;
                 case "MUSCLE_CONTROL":
-                    InternallyMuscled.Initialize(modifier);
+                    if(modifier.Name.LocalName == "mod")
+                    {
+                        InternallyMuscled.Initialize(modifier);
+                    }
+                    else
+                    {
+                        UrethraInternallyMuscled.Initialize(modifier);
+                    }
                     break;
-            }
-        }
-        
-        modifiers = clitModifiersNode.Attributes();
-        foreach (var modifier in modifiers)
-        {
-            switch (modifier.Name.LocalName)
-            {
                 case "SHEATHED":
                     Sheathed.Initialize(modifier);
-                    break;
-                case "RIBBED":
-                    Ribbed.Initialize(modifier);
-                    break;
-                case "TENTACLED":
-                    ClitTentacled.Initialize(modifier);
                     break;
                 case "KNOTTED":
                     Knotted.Initialize(modifier);
@@ -220,25 +239,8 @@ public class VaginaComponent
                 case "OVIPOSITOR":
                     Ovipositor.Initialize(modifier);
                     break;
-            }
-        }
-        
-        modifiers = urethraModifiersNode.Attributes();
-        foreach (var modifier in modifiers)
-        {
-            switch (modifier.Name.LocalName)
-            {
-                case "PUFFY":
-                    UrethraPuffy.Initialize(modifier);
-                    break;
-                case "RIBBED":
-                    UrethraInternallyRibbed.Initialize(modifier);
-                    break;
-                case "TENTACLED":
-                    UrethraTentacled.Initialize(modifier);
-                    break;
-                case "MUSCLE_CONTROL":
-                    UrethraInternallyMuscled.Initialize(modifier);
+                default:
+                    Console.Error.WriteLine($"Unknown modifier: {modifier.Name.LocalName} : {modifier.Value}");
                     break;
             }
         }

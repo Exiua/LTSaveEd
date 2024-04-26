@@ -30,21 +30,20 @@ public class Cum
     {
         Flavour = new XmlAttribute<string>(cumNode.Attribute("flavour")!);
         
-        var cumModifiersNode = cumNode.Element("cumModifiers")!;
-        Musky = new BodyComponentModifier(cumModifiersNode, "MUSKY");
-        Viscous = new BodyComponentModifier(cumModifiersNode, "VISCOUS");
-        Sticky = new BodyComponentModifier(cumModifiersNode, "STICKY");
-        Slimy = new BodyComponentModifier(cumModifiersNode, "SLIMY");
-        Bubbling = new BodyComponentModifier(cumModifiersNode, "BUBBLING");
-        MineralOil = new BodyComponentModifier(cumModifiersNode, "MINERAL_OIL");
-        Alcoholic = new BodyComponentModifier(cumModifiersNode, "ALCOHOLIC");
-        Addictive = new BodyComponentModifier(cumModifiersNode, "ADDICTIVE");
-        Psychoactive = new BodyComponentModifier(cumModifiersNode, "HALLUCINOGENIC");
+        Musky = new BodyComponentModifier(cumNode, "MUSKY");
+        Viscous = new BodyComponentModifier(cumNode, "VISCOUS");
+        Sticky = new BodyComponentModifier(cumNode, "STICKY");
+        Slimy = new BodyComponentModifier(cumNode, "SLIMY");
+        Bubbling = new BodyComponentModifier(cumNode, "BUBBLING");
+        MineralOil = new BodyComponentModifier(cumNode, "MINERAL_OIL");
+        Alcoholic = new BodyComponentModifier(cumNode, "ALCOHOLIC");
+        Addictive = new BodyComponentModifier(cumNode, "ADDICTIVE");
+        Psychoactive = new BodyComponentModifier(cumNode, "HALLUCINOGENIC");
         
-        var modifiers = cumModifiersNode.Attributes();
+        var modifiers = cumNode.Elements();
         foreach (var modifier in modifiers)
         {
-            switch (modifier.Name.LocalName)
+            switch (modifier.Value)
             {
                 case "MUSKY":
                     Musky.Initialize(modifier);

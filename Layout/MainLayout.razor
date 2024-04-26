@@ -16,9 +16,9 @@
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd @Version</MudText>
-        <MudSpacer />
         <MudIconButton Icon="@(IsDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
                        Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
+        <MudSpacer />
         <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined" />
         <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
             <ButtonTemplate>
@@ -94,7 +94,7 @@
 </MudLayout>
 
 @code {
-    private const string Version = "v2.4.1";
+    private const string Version = "v2.5.0";
     
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;
@@ -124,8 +124,13 @@
     /// <summary>
     ///    Loads the save data from the file
     /// </summary>
-    private async Task LoadSave(IBrowserFile file)
+    private async Task LoadSave(IBrowserFile? file)
     {
+        if (file == null)
+        {
+            return;
+        }
+        
         _currentState = EditorState.Loading;
         await Task.Delay(100);
         var oldName = Filename;

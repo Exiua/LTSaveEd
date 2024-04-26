@@ -40,16 +40,15 @@ public class Mouth
         Virgin = new XmlAttribute<bool>(mouthNode.Attribute("virgin")!);
         Wetness = new LabeledXmlAttribute<int>(mouthNode.Attribute("wetness")!, Collections.GetWetnessLabel);
 
-        var modifiersNode = mouthNode.Element("mouthModifiers")!;
-        Puffy = new BodyComponentModifier(modifiersNode, "PUFFY");
-        InternallyRibbed = new BodyComponentModifier(modifiersNode, "RIBBED");
-        Tentacled = new BodyComponentModifier(modifiersNode, "TENTACLED");
-        InternallyMuscled = new BodyComponentModifier(modifiersNode, "MUSCLE_CONTROL");
-        
-        var modifiers = modifiersNode.Attributes();
+        Puffy = new BodyComponentModifier(mouthNode, "PUFFY");
+        InternallyRibbed = new BodyComponentModifier(mouthNode, "RIBBED");
+        Tentacled = new BodyComponentModifier(mouthNode, "TENTACLED");
+        InternallyMuscled = new BodyComponentModifier(mouthNode, "MUSCLE_CONTROL");
+
+        var modifiers = mouthNode.Elements();
         foreach (var modifier in modifiers)
         {
-            switch (modifier.Name.LocalName)
+            switch (modifier.Value)
             {
                 case "PUFFY":
                     Puffy.Initialize(modifier);

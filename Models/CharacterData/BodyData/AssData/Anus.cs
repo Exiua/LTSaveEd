@@ -41,16 +41,15 @@ public class Anus
         Bleached = new XmlAttribute<bool>(anusNode.Attribute("bleached")!);
         Virgin = new XmlAttribute<bool>(anusNode.Attribute("virgin")!);
         
-        var anusModifiersNode = anusNode.Element("anusModifiers")!;
-        Puffy = new BodyComponentModifier(anusModifiersNode, "PUFFY");
-        InternallyRibbed = new BodyComponentModifier(anusModifiersNode, "RIBBED");
-        Tentacled = new BodyComponentModifier(anusModifiersNode, "TENTACLED");
-        InternallyMuscled = new BodyComponentModifier(anusModifiersNode, "MUSCLE_CONTROL");
+        Puffy = new BodyComponentModifier(anusNode, "PUFFY");
+        InternallyRibbed = new BodyComponentModifier(anusNode, "RIBBED");
+        Tentacled = new BodyComponentModifier(anusNode, "TENTACLED");
+        InternallyMuscled = new BodyComponentModifier(anusNode, "MUSCLE_CONTROL");
         
-        var modifiers = anusModifiersNode.Attributes();
+        var modifiers = anusNode.Elements();
         foreach (var modifier in modifiers)
         {
-            switch (modifier.Name.LocalName)
+            switch (modifier.Value)
             {
                 case "PUFFY":
                     Puffy.Initialize(modifier);

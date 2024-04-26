@@ -30,18 +30,17 @@ public class Milk
     {
         Flavour = new XmlAttribute<string>(milkNode.Attribute("flavour")!);
 
-        var milkModifiersNode = milkNode.Element("milkModifiers")!;
-        Musky = new BodyComponentModifier(milkModifiersNode, "MUSKY");
-        Viscous = new BodyComponentModifier(milkModifiersNode, "VISCOUS");
-        Sticky = new BodyComponentModifier(milkModifiersNode, "STICKY");
-        Slimy = new BodyComponentModifier(milkModifiersNode, "SLIMY");
-        Bubbling = new BodyComponentModifier(milkModifiersNode, "BUBBLING");
-        MineralOil = new BodyComponentModifier(milkModifiersNode, "MINERAL_OIL");
-        Alcoholic = new BodyComponentModifier(milkModifiersNode, "ALCOHOLIC");
-        Addictive = new BodyComponentModifier(milkModifiersNode, "ADDICTIVE");
-        Psychoactive = new BodyComponentModifier(milkModifiersNode, "HALLUCINOGENIC");
+        Musky = new BodyComponentModifier(milkNode, "MUSKY");
+        Viscous = new BodyComponentModifier(milkNode, "VISCOUS");
+        Sticky = new BodyComponentModifier(milkNode, "STICKY");
+        Slimy = new BodyComponentModifier(milkNode, "SLIMY");
+        Bubbling = new BodyComponentModifier(milkNode, "BUBBLING");
+        MineralOil = new BodyComponentModifier(milkNode, "MINERAL_OIL");
+        Alcoholic = new BodyComponentModifier(milkNode, "ALCOHOLIC");
+        Addictive = new BodyComponentModifier(milkNode, "ADDICTIVE");
+        Psychoactive = new BodyComponentModifier(milkNode, "HALLUCINOGENIC");
 
-        var modifiers = milkModifiersNode.Attributes();
+        var modifiers = milkNode.Attributes();
         foreach (var modifier in modifiers)
         {
             switch (modifier.Name.LocalName)
