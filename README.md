@@ -18,7 +18,7 @@ Go to [https://exiua.github.io/LTSaveEd/](https://exiua.github.io/LTSaveEd/) to 
 - Adjust stats and attributes (level, money, health, etc.)
 - Modify body configuration
 - Adjust Fetishes, Perks, and Spells
-- Remove/Modify inventory (cannot add items yet)
+- Add/Remove/Modify items in inventory
 - Modify relationships and family
 - Adjust global values (ingame date, stamps, etc.)
 - Remove all non-encountered offsprings
