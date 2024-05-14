@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "LTSaveEd",
   "resources": {
-    "hash": "sha256-LFBnjCqesJiw5WvOegx0YLuqzabfKqT5G7k034IIMC8=",
+    "hash": "sha256-f/2foaCU3+kHu2pfhWJeVPGLt+0A/49kyy0ojgoIxKA=",
     "jsModuleNative": {
       "dotnet.native.8.0.4.6vlmefabfv.js": "sha256-ju0+XWE0ihz554eKEj0HQ8Opa61xpbUIaX5/MNo8we4="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "LTSaveEd.wasm": "sha256-hlut1OdQP6SywS2wiad0Ty1nGPQ3yhSIbWUQuHJPT2g=",
+      "LTSaveEd.wasm": "sha256-GfZWWCfi2/MyqiR6YZLfuFk7bUOyUWEmDrFYzMZTkD4=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-mD/Kkid5kAbCd8FTvX7nRa1Zrwyztxc16j0tUjgwvKc=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-QXpMz08JQeFwurMuRxgsWjQ3oUaY+m9+Ktg55P7Z8+0=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-FfM3m9sMC/12fsEFhQ4AOD+5X9W7e/WtzgeR6AqrgHM=",
