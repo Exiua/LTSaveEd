@@ -12,69 +12,69 @@ public class BreastsComponent(XElement breastsNode, bool breastsCrotch)
 {
     private readonly ValueDisplayPair<string>[] _breastShapes =
     [
-        new ValueDisplayPair<string>("Round", "ROUND"), new ValueDisplayPair<string>("Pointy", "POINTY"),
-        new ValueDisplayPair<string>("Perky", "PERKY"), new ValueDisplayPair<string>("Side-set", "SIDE_SET"),
-        new ValueDisplayPair<string>("Wide", "WIDE"), new ValueDisplayPair<string>("Narrow", "NARROW")
+        new("Round", "ROUND"), new("Pointy", "POINTY"),
+        new("Perky", "PERKY"), new("Side-set", "SIDE_SET"),
+        new("Wide", "WIDE"), new("Narrow", "NARROW")
     ];
 
     private readonly ValueDisplayPair<string>[] _breastCrotchShapes =
     [
-        new ValueDisplayPair<string>("Udders", "UDDERS"), new ValueDisplayPair<string>("Round", "ROUND"),
-        new ValueDisplayPair<string>("Pointy", "POINTY"), new ValueDisplayPair<string>("Perky", "PERKY"),
-        new ValueDisplayPair<string>("Side-set", "SIDE_SET"), new ValueDisplayPair<string>("Wide", "WIDE"),
-        new ValueDisplayPair<string>("Narrow", "NARROW")
+        new("Udders", "UDDERS"), new("Round", "ROUND"),
+        new("Pointy", "POINTY"), new("Perky", "PERKY"),
+        new("Side-set", "SIDE_SET"), new("Wide", "WIDE"),
+        new("Narrow", "NARROW")
     ];
 
     private readonly ValueDisplayPair<string>[] _breastsTypes =
     [
-        new ValueDisplayPair<string>("Alligator", "ALLIGATOR_MORPH"), new ValueDisplayPair<string>("Angel", "ANGEL"),
-        new ValueDisplayPair<string>("Badger", "innoxia_badger_breast"), new ValueDisplayPair<string>("Bat", "BAT_MORPH"),
-        new ValueDisplayPair<string>("Bear", "dsg_bear_breast"),
-        new ValueDisplayPair<string>("Capybara", "NoStepOnSnek_capybara_breast"),
-        new ValueDisplayPair<string>("Cat", "CAT_MORPH"), new ValueDisplayPair<string>("Cow", "COW_MORPH"),
-        new ValueDisplayPair<string>("Demonic", "DEMON_COMMON"), new ValueDisplayPair<string>("Dog", "DOG_MORPH"),
-        new ValueDisplayPair<string>("Dragon", "dsg_dragon_breast"),
-        new ValueDisplayPair<string>("Ferret", "dsg_ferret_breast"), new ValueDisplayPair<string>("Fox", "FOX_MORPH"),
-        new ValueDisplayPair<string>("Goat", "innoxia_goat_breast"),
-        new ValueDisplayPair<string>("Gryphon", "dsg_gryphon_breast"), new ValueDisplayPair<string>("Harpy", "HARPY"),
-        new ValueDisplayPair<string>("Horse", "HORSE_MORPH"), new ValueDisplayPair<string>("Human", "HUMAN"),
-        new ValueDisplayPair<string>("Hyena", "innoxia_hyena_breast"),
-        new ValueDisplayPair<string>("Octopus", "NoStepOnSnek_octopus_breast"),
-        new ValueDisplayPair<string>("Otter", "dsg_otter_breast"),
-        new ValueDisplayPair<string>("Panther", "innoxia_panther_breast"),
-        new ValueDisplayPair<string>("Pig", "innoxia_pig_breast"), new ValueDisplayPair<string>("Rabbit", "RABBIT_MORPH"),
-        new ValueDisplayPair<string>("Racoon", "dsg_raccoon_breast"), new ValueDisplayPair<string>("Rat", "RAT_MORPH"),
-        new ValueDisplayPair<string>("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair<string>("Shark", "dsg_shark_breast"),
-        new ValueDisplayPair<string>("Sheep", "innoxia_sheep_breast"),
-        new ValueDisplayPair<string>("Snake", "NoStepOnSnek_snake_breast"),
-        new ValueDisplayPair<string>("Spider", "charisma_spider_breast"),
-        new ValueDisplayPair<string>("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair<string>("Wolf", "WOLF_MORPH")
+        new("Alligator", "ALLIGATOR_MORPH"), new("Angel", "ANGEL"),
+        new("Badger", "innoxia_badger_breast"), new("Bat", "BAT_MORPH"),
+        new("Bear", "dsg_bear_breast"),
+        new("Capybara", "NoStepOnSnek_capybara_breast"),
+        new("Cat", "CAT_MORPH"), new("Cow", "COW_MORPH"),
+        new("Demonic", "DEMON_COMMON"), new("Dog", "DOG_MORPH"),
+        new("Dragon", "dsg_dragon_breast"),
+        new("Ferret", "dsg_ferret_breast"), new("Fox", "FOX_MORPH"),
+        new("Goat", "innoxia_goat_breast"),
+        new("Gryphon", "dsg_gryphon_breast"), new("Harpy", "HARPY"),
+        new("Horse", "HORSE_MORPH"), new("Human", "HUMAN"),
+        new("Hyena", "innoxia_hyena_breast"),
+        new("Octopus", "NoStepOnSnek_octopus_breast"),
+        new("Otter", "dsg_otter_breast"),
+        new("Panther", "innoxia_panther_breast"),
+        new("Pig", "innoxia_pig_breast"), new("Rabbit", "RABBIT_MORPH"),
+        new("Racoon", "dsg_raccoon_breast"), new("Rat", "RAT_MORPH"),
+        new("Reindeer", "REINDEER_MORPH"), new("Shark", "dsg_shark_breast"),
+        new("Sheep", "innoxia_sheep_breast"),
+        new("Snake", "NoStepOnSnek_snake_breast"),
+        new("Spider", "charisma_spider_breast"),
+        new("Squirrel", "SQUIRREL_MORPH"), new("Wolf", "WOLF_MORPH")
     ];
 
     private readonly ValueDisplayPair<string>[] _breastsCrotchTypes =
     [
-        new ValueDisplayPair<string>("None", "NONE"), new ValueDisplayPair<string>("Alligator", "ALLIGATOR_MORPH"),
-        new ValueDisplayPair<string>("Angel", "ANGEL"), new ValueDisplayPair<string>("Badger", "innoxia_badger_breast"),
-        new ValueDisplayPair<string>("Bat", "BAT_MORPH"), new ValueDisplayPair<string>("Bear", "dsg_bear_breast"),
-        new ValueDisplayPair<string>("Capybara", "NoStepOnSnek_capybara_breast"),
-        new ValueDisplayPair<string>("Cat", "CAT_MORPH"), new ValueDisplayPair<string>("Cow", "COW_MORPH"),
-        new ValueDisplayPair<string>("Demonic", "DEMON_COMMON"), new ValueDisplayPair<string>("Dog", "DOG_MORPH"),
-        new ValueDisplayPair<string>("Dragon", "dsg_dragon_breast"),
-        new ValueDisplayPair<string>("Ferret", "dsg_ferret_breast"), new ValueDisplayPair<string>("Fox", "FOX_MORPH"),
-        new ValueDisplayPair<string>("Goat", "innoxia_goat_breast"),
-        new ValueDisplayPair<string>("Gryphon", "dsg_gryphon_breast"), new ValueDisplayPair<string>("Harpy", "HARPY"),
-        new ValueDisplayPair<string>("Horse", "HORSE_MORPH"), new ValueDisplayPair<string>("Human", "HUMAN"),
-        new ValueDisplayPair<string>("Hyena", "innoxia_hyena_breast"),
-        new ValueDisplayPair<string>("Octopus", "NoStepOnSnek_octopus_breast"),
-        new ValueDisplayPair<string>("Otter", "dsg_otter_breast"),
-        new ValueDisplayPair<string>("Panther", "innoxia_panther_breast"),
-        new ValueDisplayPair<string>("Pig", "innoxia_pig_breast"), new ValueDisplayPair<string>("Rabbit", "RABBIT_MORPH"),
-        new ValueDisplayPair<string>("Racoon", "dsg_raccoon_breast"), new ValueDisplayPair<string>("Rat", "RAT_MORPH"),
-        new ValueDisplayPair<string>("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair<string>("Shark", "dsg_shark_breast"),
-        new ValueDisplayPair<string>("Sheep", "innoxia_sheep_breast"),
-        new ValueDisplayPair<string>("Snake", "NoStepOnSnek_snake_breast"),
-        new ValueDisplayPair<string>("Spider", "charisma_spider_breast"),
-        new ValueDisplayPair<string>("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair<string>("Wolf", "WOLF_MORPH")
+        new("None", "NONE"), new("Alligator", "ALLIGATOR_MORPH"),
+        new("Angel", "ANGEL"), new("Badger", "innoxia_badger_breast"),
+        new("Bat", "BAT_MORPH"), new("Bear", "dsg_bear_breast"),
+        new("Capybara", "NoStepOnSnek_capybara_breast"),
+        new("Cat", "CAT_MORPH"), new("Cow", "COW_MORPH"),
+        new("Demonic", "DEMON_COMMON"), new("Dog", "DOG_MORPH"),
+        new("Dragon", "dsg_dragon_breast"),
+        new("Ferret", "dsg_ferret_breast"), new("Fox", "FOX_MORPH"),
+        new("Goat", "innoxia_goat_breast"),
+        new("Gryphon", "dsg_gryphon_breast"), new("Harpy", "HARPY"),
+        new("Horse", "HORSE_MORPH"), new("Human", "HUMAN"),
+        new("Hyena", "innoxia_hyena_breast"),
+        new("Octopus", "NoStepOnSnek_octopus_breast"),
+        new("Otter", "dsg_otter_breast"),
+        new("Panther", "innoxia_panther_breast"),
+        new("Pig", "innoxia_pig_breast"), new("Rabbit", "RABBIT_MORPH"),
+        new("Racoon", "dsg_raccoon_breast"), new("Rat", "RAT_MORPH"),
+        new("Reindeer", "REINDEER_MORPH"), new("Shark", "dsg_shark_breast"),
+        new("Sheep", "innoxia_sheep_breast"),
+        new("Snake", "NoStepOnSnek_snake_breast"),
+        new("Spider", "charisma_spider_breast"),
+        new("Squirrel", "SQUIRREL_MORPH"), new("Wolf", "WOLF_MORPH")
     ];
     
     public ValueDisplayPair<string>[] AvailableShapes => breastsCrotch ? _breastCrotchShapes : _breastShapes;
@@ -100,12 +100,12 @@ public class BreastsComponent(XElement breastsNode, bool breastsCrotch)
         return value switch
         {
             <= 0 => "None",
-            > 0 and < 30 => "Trickle",
-            >= 30 and < 100 => "Small",
-            >= 100 and < 600 => "Decent",
-            >= 600 and < 1000 => "Large",
-            >= 1000 and < 2000 => "Huge",
-            >= 2000 and < 10000 => "Extreme",
+            < 30 => "Trickle",
+            < 100 => "Small",
+            < 600 => "Decent",
+            < 1000 => "Large",
+            < 2000 => "Huge",
+            < 10000 => "Extreme",
             >= 10000 => "Monstrous",
         };
     }

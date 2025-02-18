@@ -27,7 +27,7 @@ public class SaveData
     
     internal XDocument SaveDataXml { get; private set; } = null!;
 
-    public List<ValueDisplayPair<string>> CharacterIds { get; } = [new ValueDisplayPair<string>("Player", "PlayerCharacter")];
+    public List<ValueDisplayPair<string>> CharacterIds { get; } = [new("Player", "PlayerCharacter")];
     private Dictionary<string, Character> CharacterCache { get; } = new();
     private Dictionary<string, string> IdNameLookup { get; } = new();
     private Dictionary<string, XElement> IdCharacterLookup { get; } = new();
@@ -36,8 +36,7 @@ public class SaveData
     public async Task<bool> Initialize(Stream data)
     {
         Initialized = false;
-        var cancellationToken = new CancellationToken();
-        SaveDataXml = await XDocument.LoadAsync(data, LoadOptions.None, cancellationToken);
+        SaveDataXml = await XDocument.LoadAsync(data, LoadOptions.None, CancellationToken.None);
         var coreInfoNode = SaveDataXml.Descendants("coreInfo").First();
         var dialogueFlagsNode = SaveDataXml.Descendants("dialogueFlags").First();
         WorldData = new World(coreInfoNode, dialogueFlagsNode);
@@ -73,7 +72,7 @@ public class SaveData
             var name = femininity switch
             {
                 < 40 => nameElement.Attribute("nameMasculine")!.Value,
-                >= 40 and <= 60 => nameElement.Attribute("nameAndrogynous")!.Value,
+                <= 60 => nameElement.Attribute("nameAndrogynous")!.Value,
                 > 60 => nameElement.Attribute("nameFeminine")!.Value
             };
             var idValue = id.Value;
@@ -123,10 +122,11 @@ public class SaveData
             #if DEBUG
             Console.WriteLine(e);
             throw;
-            #endif
+            #else
             Console.WriteLine(e);
             CurrentCharacter = previousCharacter;
             return false;
+            #endif
         }
     }
 

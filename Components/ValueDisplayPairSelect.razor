@@ -1,7 +1,7 @@
 ﻿@using LTSaveEd.Models
 @using LTSaveEd.Models.XmlData
 
-<MudSelect T="ValueDisplayPair<string>" @bind-Value="@CurrentValue" Label="@Label" ReadOnly="@ReadOnly" AnchorOrigin="Origin.BottomCenter">
+<MudSelect T="ValueDisplayPair<string>" @bind-Value="@CurrentValue" Label="@Label" ReadOnly="@ReadOnly" >
     @foreach (var value in Values)
     {
         <MudSelectItem Value="@value"/>

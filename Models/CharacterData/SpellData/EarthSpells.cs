@@ -7,37 +7,37 @@ public class EarthSpells : ElementalSpells
 
     private static SpellTier[] SlamSpellTiers { get; } =
     [
-        new SpellTier("Unowned", "SLAM_UNOWNED"), new SpellTier("Base", "SLAM"),
-        new SpellTier("Ground Shake", "SLAM_1"), new SpellTier("Aftershock", "SLAM_2"),
-        new SpellTier("Earthquake", "SLAM_3")
+        new("Unowned", "SLAM_UNOWNED"), new("Base", "SLAM"),
+        new("Ground Shake", "SLAM_1"), new("Aftershock", "SLAM_2"),
+        new("Earthquake", "SLAM_3")
     ];
 
     private static SpellTier[] TelekineticShowerSpellTiers { get; } =
     [
         // Yes, that is how telekinetic is spelt in the save file
-        new SpellTier("Unowned", "TELEKENETIC_SHOWER_UNOWNED"),
-        new SpellTier("Base", "TELEKENETIC_SHOWER"),
-        new SpellTier("Mind Over Matter", "TELEKENETIC_SHOWER_1"),
-        new SpellTier("Precision Strikes", "TELEKENETIC_SHOWER_2"),
-        new SpellTier("Unseen Force", "TELEKENETIC_SHOWER_3")
+        new("Unowned", "TELEKENETIC_SHOWER_UNOWNED"),
+        new("Base", "TELEKENETIC_SHOWER"),
+        new("Mind Over Matter", "TELEKENETIC_SHOWER_1"),
+        new("Precision Strikes", "TELEKENETIC_SHOWER_2"),
+        new("Unseen Force", "TELEKENETIC_SHOWER_3")
     ];
 
     private static SpellTier[] StoneShellSpellTiers { get; } =
     [
-        new SpellTier("Unowned", "STONE_SHELL_UNOWNED"), new SpellTier("Base", "STONE_SHELL"),
-        new SpellTier("Shifting Sands", "STONE_SHELL_1"),
-        new SpellTier("Hardened Carapace", "STONE_SHELL_2"),
-        new SpellTier("Explosive Finish", "STONE_SHELL_3")
+        new("Unowned", "STONE_SHELL_UNOWNED"), new("Base", "STONE_SHELL"),
+        new("Shifting Sands", "STONE_SHELL_1"),
+        new("Hardened Carapace", "STONE_SHELL_2"),
+        new("Explosive Finish", "STONE_SHELL_3")
     ];
 
     private static SpellTier[] ElementalEarthSpellTiers { get; } =
     [
-        new SpellTier("Unowned", "ELEMENTAL_EARTH_UNOWNED"),
-        new SpellTier("Base", "ELEMENTAL_EARTH"),
-        new SpellTier("Rolling Stone", "ELEMENTAL_EARTH_1"),
-        new SpellTier("Hardening", "ELEMENTAL_EARTH_2"),
-        new SpellTier("Servant of Earth", "ELEMENTAL_EARTH_3A"),
-        new SpellTier("Binding of Earth", "ELEMENTAL_EARTH_3B")
+        new("Unowned", "ELEMENTAL_EARTH_UNOWNED"),
+        new("Base", "ELEMENTAL_EARTH"),
+        new("Rolling Stone", "ELEMENTAL_EARTH_1"),
+        new("Hardening", "ELEMENTAL_EARTH_2"),
+        new("Servant of Earth", "ELEMENTAL_EARTH_3A"),
+        new("Binding of Earth", "ELEMENTAL_EARTH_3B")
     ];
 
     public Spell Slam { get; }

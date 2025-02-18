@@ -2,7 +2,9 @@
 @using System.Diagnostics
 @using System.Xml.Linq
 @using LTSaveEd.Models.JSWrappers
+
 @inherits LayoutComponentBase
+
 @inject ISnackbar Snackbar
 @inject SaveData SaveData
 @inject FileHandler FileHandler
@@ -11,6 +13,7 @@
 <MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="@_theme"/>
 <MudSnackbarProvider/>
 <MudDialogProvider/>
+<MudPopoverProvider/>
 
 <MudLayout>
     <MudAppBar Elevation="1">
@@ -21,11 +24,11 @@
         <MudSpacer />
         <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined" />
         <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
-            <ButtonTemplate>
-                <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary" for="@context.Id">
+            <ActivatorContent>
+                <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary">
                     LOAD
                 </MudButton>
-            </ButtonTemplate>
+            </ActivatorContent>
         </MudFileUpload>
         <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveFile" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
             @if (_currentState == EditorState.Saving)
@@ -63,6 +66,7 @@
                     <MudNavLink Href="spells/fire">Fire</MudNavLink>
                     <MudNavLink Href="spells/air">Air</MudNavLink>
                     <MudNavLink Href="spells/arcane">Arcane</MudNavLink>
+                    <MudNavLink Href="spells/misc">Misc</MudNavLink>
                 </MudNavGroup>
                 <MudNavGroup Title="Inventory">
                     <MudNavLink Href="inventory/items">Items</MudNavLink>
@@ -94,8 +98,9 @@
 </MudLayout>
 
 @code {
-    private const string Version = "v2.5.0";
-    
+    // Make sure to also update .csproj file with the correct version
+    private const string Version = "v2.6.0";
+
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;
 

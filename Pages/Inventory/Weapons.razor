@@ -57,9 +57,9 @@
         
         var dialog = await DialogService.ShowAsync<AddInventoryElementDialog<WeaponType, WeaponData>>("Add Weapon", options: options, parameters: parameters);
         var result = await dialog.Result;
-        if (!result.Canceled)
+        if (!result!.Canceled)
         {
-            Inventory.Add((WeaponData)result.Data);
+            Inventory.Add((WeaponData)result.Data!);
             StateHasChanged();
         }
     }

@@ -11,7 +11,7 @@ public class Antennae(XElement antennaeNode)
 {
     public ValueDisplayPair<string>[] AntennaeTypes { get; } =
     [
-        new ValueDisplayPair<string>("None", "NONE")
+        new("None", "NONE")
     ]; // TODO: Find antennae types
     
     public XmlAttribute<int> AntennaePerRow { get; } = new(antennaeNode.Attribute("antennaePerRow")!);

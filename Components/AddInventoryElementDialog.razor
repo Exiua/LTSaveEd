@@ -28,7 +28,7 @@
 @code {
     private ValueDisplayPair<TEnum> _selectedType = null!;
 
-    [CascadingParameter] public required MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] public required IMudDialogInstance MudDialog { get; set; }
     [Parameter] public required ValueDisplayPair<TEnum>[] Types { get; set; }
     [Parameter] public required Dictionary<TEnum, TElement[]> TypeMap { get; set; }
 

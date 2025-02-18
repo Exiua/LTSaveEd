@@ -10,27 +10,27 @@ public class PenisComponent
 {
     public ValueDisplayPair<string>[] PenisTypes { get; } =
     [
-        new ValueDisplayPair<string>("None", "NONE"), new ValueDisplayPair<string>("Alligator", "ALLIGATOR_MORPH"),
-        new ValueDisplayPair<string>("Angel", "ANGEL"), new ValueDisplayPair<string>("Badger", "innoxia_badger_penis"),
-        new ValueDisplayPair<string>("Bat", "BAT_MORPH"), new ValueDisplayPair<string>("Bear", "dsg_bear_penis"),
-        new ValueDisplayPair<string>("Capybara", "NoStepOnSnek_capybara_penis"),
-        new ValueDisplayPair<string>("Cat", "CAT_MORPH"), new ValueDisplayPair<string>("Cow", "COW_MORPH"),
-        new ValueDisplayPair<string>("Demonic", "DEMON_COMMON"), new ValueDisplayPair<string>("Dog", "DOG_MORPH"),
-        new ValueDisplayPair<string>("Dragon", "dsg_dragon_penis"), new ValueDisplayPair<string>("Ferret", "dsg_ferret_penis"),
-        new ValueDisplayPair<string>("Fox", "FOX_MORPH"), new ValueDisplayPair<string>("Goat", "innoxia_goat_penis"),
-        new ValueDisplayPair<string>("Gryphon", "dsg_gryphon_penis"), new ValueDisplayPair<string>("Harpy", "HARPY"),
-        new ValueDisplayPair<string>("Horse", "EQUINE"), new ValueDisplayPair<string>("Human", "HUMAN"),
-        new ValueDisplayPair<string>("Hyena", "innoxia_hyena_penis"),
-        new ValueDisplayPair<string>("Octopus", "NoStepOnSnek_octopus_penis"),
-        new ValueDisplayPair<string>("Otter", "dsg_otter_penis"),
-        new ValueDisplayPair<string>("Panther", "innoxia_panther_penis"),
-        new ValueDisplayPair<string>("Pig", "innoxia_pig_penis"), new ValueDisplayPair<string>("Rabbit", "RABBIT_MORPH"),
-        new ValueDisplayPair<string>("Racoon", "dsg_raccoon_penis"), new ValueDisplayPair<string>("Rat", "RAT_MORPH"),
-        new ValueDisplayPair<string>("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair<string>("Shark", "dsg_shark_penis"),
-        new ValueDisplayPair<string>("Sheep", "innoxia_sheep_penis"),
-        new ValueDisplayPair<string>("Snake", "NoStepOnSnek_snake_penis"),
-        new ValueDisplayPair<string>("Spider", "charisma_spider_penis"),
-        new ValueDisplayPair<string>("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair<string>("Wolf", "WOLF_MORPH")
+        new("None", "NONE"), new("Alligator", "ALLIGATOR_MORPH"),
+        new("Angel", "ANGEL"), new("Badger", "innoxia_badger_penis"),
+        new("Bat", "BAT_MORPH"), new("Bear", "dsg_bear_penis"),
+        new("Capybara", "NoStepOnSnek_capybara_penis"),
+        new("Cat", "CAT_MORPH"), new("Cow", "COW_MORPH"),
+        new("Demonic", "DEMON_COMMON"), new("Dog", "DOG_MORPH"),
+        new("Dragon", "dsg_dragon_penis"), new("Ferret", "dsg_ferret_penis"),
+        new("Fox", "FOX_MORPH"), new("Goat", "innoxia_goat_penis"),
+        new("Gryphon", "dsg_gryphon_penis"), new("Harpy", "HARPY"),
+        new("Horse", "EQUINE"), new("Human", "HUMAN"),
+        new("Hyena", "innoxia_hyena_penis"),
+        new("Octopus", "NoStepOnSnek_octopus_penis"),
+        new("Otter", "dsg_otter_penis"),
+        new("Panther", "innoxia_panther_penis"),
+        new("Pig", "innoxia_pig_penis"), new("Rabbit", "RABBIT_MORPH"),
+        new("Racoon", "dsg_raccoon_penis"), new("Rat", "RAT_MORPH"),
+        new("Reindeer", "REINDEER_MORPH"), new("Shark", "dsg_shark_penis"),
+        new("Sheep", "innoxia_sheep_penis"),
+        new("Snake", "NoStepOnSnek_snake_penis"),
+        new("Spider", "charisma_spider_penis"),
+        new("Squirrel", "SQUIRREL_MORPH"), new("Wolf", "WOLF_MORPH")
     ];
 
     public LabeledXmlAttribute<float> Capacity { get; }
@@ -199,12 +199,12 @@ public class PenisComponent
         return value switch
         {
             < 5 => "Tiny",
-            >= 5 and < 10 => "Small",
-            >= 10 and < 20 => "Average-sized",
-            >= 20 and < 30 => "Large",
-            >= 30 and < 40 => "Huge",
-            >= 40 and < 50 => "Enormous",
-            >= 50 and < 60 => "Gigantic",
+            < 10 => "Small",
+            < 20 => "Average-sized",
+            < 30 => "Large",
+            < 40 => "Huge",
+            < 50 => "Enormous",
+            < 60 => "Gigantic",
             >= 60 => "Stallion-sized"
         };
     }

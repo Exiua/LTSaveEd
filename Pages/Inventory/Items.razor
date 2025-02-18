@@ -37,7 +37,7 @@
 @code {
     private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
     
-    private async void Add()
+    private async Task Add()
     {
         if (Inventory.Full)
         {
@@ -54,9 +54,9 @@
         
         var dialog = await DialogService.ShowAsync<AddInventoryElementDialog<ItemType, ItemData>>("Add Item", options: options, parameters: parameters);
         var result = await dialog.Result;
-        if (!result.Canceled)
+        if (!result!.Canceled)
         {
-            Inventory.Add((ItemData)result.Data);
+            Inventory.Add((ItemData)result.Data!);
             StateHasChanged();
         }
     }

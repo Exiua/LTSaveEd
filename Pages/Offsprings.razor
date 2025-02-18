@@ -22,10 +22,10 @@
                     <MudTextField @bind-Value="@offspring.Name.Surname.Value" ReadOnly="true" Label="Surname"/>
                     <MudTextField @bind-Value="@offspring.Family.Mother.Name.Value" ReadOnly="true" Label="Mother"/>
                     <MudTextField @bind-Value="@offspring.Family.Father.Name.Value" ReadOnly="true" Label="Father"/>
-                    <MudCheckBox @bind-Checked="@offspring.FromPlayer.Value" ReadOnly="true" Label="From Player"
-                                 LabelPosition="LabelPosition.Start"/>
-                    <MudCheckBox @bind-Checked="@offspring.Born.Value" ReadOnly="true" Label="Is Born"
-                                 LabelPosition="LabelPosition.Start"/>
+                    <MudCheckBox @bind-Value="@offspring.FromPlayer.Value" ReadOnly="true" Label="From Player"
+                                 LabelPlacement="Placement.Start"/>
+                    <MudCheckBox @bind-Value="@offspring.Born.Value" ReadOnly="true" Label="Is Born"
+                                 LabelPlacement="Placement.Start"/>
                     <MudButton Color="Color.Secondary" Variant="Variant.Filled"
                                OnClick="@(() => OffspringsData.RemoveOffspring(localIndex))">Delete</MudButton>
                 </MudPaper>

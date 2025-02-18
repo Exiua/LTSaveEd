@@ -34,7 +34,7 @@
                         <td style="border-bottom: none; vertical-align: top;">
                             <h4 style="text-decoration: underline; text-align: center"><b>Ear</b></h4>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@HeadData.Ear.Pierced.Value" Label="Pierced" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Value="@HeadData.Ear.Pierced.Value" Label="Pierced" LabelPlacement="Placement.Start"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                                 <ValueDisplayPairSelect Values="@HeadData.Ear.EarTypes"
@@ -57,7 +57,7 @@
                                                         Attribute="@HeadData.Hair.Type" Label="Type"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@HeadData.Hair.NeckFluff.Value" Label="Neck Fluff" LabelPosition="LabelPosition.Start"/>
+                                <MudCheckBox @bind-Value="@HeadData.Hair.NeckFluff.Value" Label="Neck Fluff" LabelPlacement="Placement.Start"/>
                            </MudPaper>
                         </td>
                         <td style="border-bottom: none; vertical-align: top;">

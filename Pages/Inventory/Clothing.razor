@@ -25,10 +25,10 @@
                     <MudTextField @bind-Value="@clothing.Id.Value" ReadOnly="true" Label="Id"/>
                     <MudTextField @bind-Value="@clothing.Name.Value" Label="Name"/>
                     <IntField Attribute="@clothing.Count" Label="Count"/>
-                    <MudCheckBox @bind-Checked="@clothing.EnchantmentKnown.Value" Label="Enchantment Known"
-                                 LabelPosition="LabelPosition.Start"/>
-                    <MudCheckBox @bind-Checked="@clothing.IsDirty.Value" Label="Is Dirty"
-                                 LabelPosition="LabelPosition.Start"/>
+                    <MudCheckBox @bind-Value="@clothing.EnchantmentKnown.Value" Label="Enchantment Known"
+                                 LabelPlacement="Placement.Start"/>
+                    <MudCheckBox @bind-Value="@clothing.IsDirty.Value" Label="Is Dirty"
+                                 LabelPlacement="Placement.Start"/>
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary"
                                OnClick="@(() => Inventory.Delete(localIndex, InventoryElementType.Clothing))">Delete</MudButton>
                 </MudPaper>
@@ -41,7 +41,7 @@
 @code {
     private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
 
-    private async void Add()
+    private async Task Add()
     {
         if (Inventory.Full)
         {
@@ -58,9 +58,9 @@
         
         var dialog = await DialogService.ShowAsync<AddInventoryElementDialog<ClothingType, ClothingData>>("Add Clothing", options: options, parameters: parameters);
         var result = await dialog.Result;
-        if (!result.Canceled)
+        if (!result!.Canceled)
         {
-            Inventory.Add((ClothingData)result.Data);
+            Inventory.Add((ClothingData)result.Data!);
             StateHasChanged();
         }
     }

@@ -1,5 +1,5 @@
-﻿@using LTSaveEd.Models
-@using LTSaveEd.Models.CharacterData
+﻿@using LTSaveEd.Models.CharacterData
+
 <MudPaper Class="p-4" Elevation="0">
     <MudGrid Justify="Justify.Center">
         <MudItem xs="12">
@@ -26,7 +26,7 @@
             <IntField Attribute="@Fetish.Xp" Label="Experience" Max="200"/>
         </MudItem>
         <MudItem xs="3" Class="d-flex align-center justify-center mt-3">
-            <MudCheckBox @bind-Checked="Fetish.Owned.Exists" Label="Owned:" LabelPosition="LabelPosition.Start" />
+            <MudCheckBox @bind-Value="Fetish.Owned.Exists" Label="Owned:" LabelPlacement="Placement.Start" />
         </MudItem>
     </MudGrid>
 </MudPaper>

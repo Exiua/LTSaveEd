@@ -10,36 +10,36 @@ public class Eye
 {
     public ValueDisplayPair<string>[] IrisShapes { get; } =
     [
-        new ValueDisplayPair<string>("Round", "ROUND"), new ValueDisplayPair<string>("Horizontal", "HORIZONTAL"),
-        new ValueDisplayPair<string>("Vertical", "VERTICAL"), new ValueDisplayPair<string>("Heart-shaped", "HEART"),
-        new ValueDisplayPair<string>("Star-shaped", "STAR")
+        new("Round", "ROUND"), new("Horizontal", "HORIZONTAL"),
+        new("Vertical", "VERTICAL"), new("Heart-shaped", "HEART"),
+        new("Star-shaped", "STAR")
     ];
 
     public ValueDisplayPair<string>[] PupilShapes { get; }
 
     public ValueDisplayPair<string>[] EyeTypes { get; } =
     [
-        new ValueDisplayPair<string>("Alligator", "ALLIGATOR_MORPH"), new ValueDisplayPair<string>("Angel", "ANGEL"),
-        new ValueDisplayPair<string>("Badger", "innoxia_badger_eye"), new ValueDisplayPair<string>("Bat", "BAT_MORPH"),
-        new ValueDisplayPair<string>("Bear", "dsg_bear_eye"),
-        new ValueDisplayPair<string>("Capybara", "NoStepOnSnek_capybara_eye"),
-        new ValueDisplayPair<string>("Cat", "CAT_MORPH"), new ValueDisplayPair<string>("Cow", "COW_MORPH"),
-        new ValueDisplayPair<string>("Demonic", "DEMON_COMMON"), new ValueDisplayPair<string>("Deer", "innoxia_deer_eye"),
-        new ValueDisplayPair<string>("Dog", "DOG_MORPH"),
-        new ValueDisplayPair<string>("Dragon", "dsg_dragon_eye"), new ValueDisplayPair<string>("Ferret", "dsg_ferret_eye"),
-        new ValueDisplayPair<string>("Fox", "FOX_MORPH"), new ValueDisplayPair<string>("Goat", "innoxia_goat_eye"),
-        new ValueDisplayPair<string>("Gryphon", "dsg_gryphon_eye"), new ValueDisplayPair<string>("Harpy", "HARPY"),
-        new ValueDisplayPair<string>("Horse", "HORSE_MORPH"), new ValueDisplayPair<string>("Human", "HUMAN"),
-        new ValueDisplayPair<string>("Hyena", "innoxia_hyena_eye"),
-        new ValueDisplayPair<string>("Octopus", "NoStepOnSnek_octopus_eye"),
-        new ValueDisplayPair<string>("Otter", "dsg_otter_eye"), new ValueDisplayPair<string>("Panther", "innoxia_panther_eye"),
-        new ValueDisplayPair<string>("Pig", "innoxia_pig_eye"), new ValueDisplayPair<string>("Rabbit", "RABBIT_MORPH"),
-        new ValueDisplayPair<string>("Racoon", "dsg_raccoon_eye"), new ValueDisplayPair<string>("Rat", "RAT_MORPH"),
-        new ValueDisplayPair<string>("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair<string>("Shark", "dsg_shark_eye"),
-        new ValueDisplayPair<string>("Sheep", "innoxia_sheep_eye"),
-        new ValueDisplayPair<string>("Snake", "NoStepOnSnek_snake_eye"),
-        new ValueDisplayPair<string>("Spider", "charisma_spider_eye"),
-        new ValueDisplayPair<string>("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair<string>("Wolf", "WOLF_MORPH")
+        new("Alligator", "ALLIGATOR_MORPH"), new("Angel", "ANGEL"),
+        new("Badger", "innoxia_badger_eye"), new("Bat", "BAT_MORPH"),
+        new("Bear", "dsg_bear_eye"),
+        new("Capybara", "NoStepOnSnek_capybara_eye"),
+        new("Cat", "CAT_MORPH"), new("Cow", "COW_MORPH"),
+        new("Demonic", "DEMON_COMMON"), new("Deer", "innoxia_deer_eye"),
+        new("Dog", "DOG_MORPH"),
+        new("Dragon", "dsg_dragon_eye"), new("Ferret", "dsg_ferret_eye"),
+        new("Fox", "FOX_MORPH"), new("Goat", "innoxia_goat_eye"),
+        new("Gryphon", "dsg_gryphon_eye"), new("Harpy", "HARPY"),
+        new("Horse", "HORSE_MORPH"), new("Human", "HUMAN"),
+        new("Hyena", "innoxia_hyena_eye"),
+        new("Octopus", "NoStepOnSnek_octopus_eye"),
+        new("Otter", "dsg_otter_eye"), new("Panther", "innoxia_panther_eye"),
+        new("Pig", "innoxia_pig_eye"), new("Rabbit", "RABBIT_MORPH"),
+        new("Racoon", "dsg_raccoon_eye"), new("Rat", "RAT_MORPH"),
+        new("Reindeer", "REINDEER_MORPH"), new("Shark", "dsg_shark_eye"),
+        new("Sheep", "innoxia_sheep_eye"),
+        new("Snake", "NoStepOnSnek_snake_eye"),
+        new("Spider", "charisma_spider_eye"),
+        new("Squirrel", "SQUIRREL_MORPH"), new("Wolf", "WOLF_MORPH")
     ];
 
     public XmlAttribute<int> EyePairs { get; }

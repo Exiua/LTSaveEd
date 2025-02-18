@@ -7,11 +7,11 @@ public class BodyCore : BodyComponent
 {
     public ValueDisplayPair<string>[] BodyMaterials { get; } =
     [
-        new ValueDisplayPair<string>("Flesh", "FLESH"), new ValueDisplayPair<string>("Slime", "SLIME"),
-        new ValueDisplayPair<string>("Fire", "FIRE"), new ValueDisplayPair<string>("Water", "WATER"),
-        new ValueDisplayPair<string>("Ice", "ICE"), new ValueDisplayPair<string>("Storm-clouds", "AIR"),
-        new ValueDisplayPair<string>("Stone", "STONE"), new ValueDisplayPair<string>("Rubber", "RUBBER"),
-        new ValueDisplayPair<string>("Energy", "ENERGY")
+        new("Flesh", "FLESH"), new("Slime", "SLIME"),
+        new("Fire", "FIRE"), new("Water", "WATER"),
+        new("Ice", "ICE"), new("Storm-clouds", "AIR"),
+        new("Stone", "STONE"), new("Rubber", "RUBBER"),
+        new("Energy", "ENERGY")
     ];
 
     public static ValueDisplayPair<string>[] PubicHairTypes => Collections.HairTypes;
@@ -51,9 +51,9 @@ public class BodyCore : BodyComponent
         return value switch
         {
             < 20 => "Skinny",
-            >= 20 and < 40 => "Slender",
-            >= 40 and < 60 => "Average",
-            >= 60 and < 80 => "Large",
+            < 40 => "Slender",
+            < 60 => "Average",
+            < 80 => "Large",
             >= 80 => "Huge"
         };
     }
@@ -63,9 +63,9 @@ public class BodyCore : BodyComponent
         return value switch
         {
             < 20 => "Very Masculine",
-            >= 20 and < 40 => "Masculine",
-            >= 40 and < 60 => "Androgynous",
-            >= 60 and < 80 => "Feminine",
+            < 40 => "Masculine",
+            < 60 => "Androgynous",
+            < 80 => "Feminine",
             >= 80 => "Very Feminine"
         };
     }
@@ -75,9 +75,9 @@ public class BodyCore : BodyComponent
         return value switch
         {
             < 20 => "Soft",
-            >= 20 and < 40 => "Lightly Muscled",
-            >= 40 and < 60 => "Toned",
-            >= 60 and < 80 => "Muscular",
+            < 40 => "Lightly Muscled",
+            < 60 => "Toned",
+            < 80 => "Muscular",
             >= 80 => "Ripped"
         };
     }

@@ -10,14 +10,14 @@ public class Nipples
 {
     public ValueDisplayPair<string>[] AreolaeShapes { get; } =
     [
-        new ValueDisplayPair<string>("Normal", "NORMAL"), new ValueDisplayPair<string>("Heart-shaped", "HEART"),
-        new ValueDisplayPair<string>("Star-shaped", "STAR")
+        new("Normal", "NORMAL"), new("Heart-shaped", "HEART"),
+        new("Star-shaped", "STAR")
     ];
 
     public ValueDisplayPair<string>[] NippleShapes { get; } =
     [
-        new ValueDisplayPair<string>("Normal", "NORMAL"), new ValueDisplayPair<string>("Inverted", "INVERTED"),
-        new ValueDisplayPair<string>("Nipple-cunts", "VAGINA"), new ValueDisplayPair<string>("Lipples", "LIPS")
+        new("Normal", "NORMAL"), new("Inverted", "INVERTED"),
+        new("Nipple-cunts", "VAGINA"), new("Lipples", "LIPS")
     ];
 
     public XmlAttribute<string> AreolaeShape { get; }

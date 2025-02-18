@@ -31,15 +31,15 @@ public class Character(XContainer characterNode, Dictionary<string, string> idNa
                 femininity = "VERY_MASCULINE";
                 name = names.Masculine.Value;
                 break;
-            case >= 20 and < 40:
+            case < 40:
                 femininity = "MASCULINE";
                 name = names.Masculine.Value;
                 break;
-            case >= 40 and < 60:
+            case < 60:
                 femininity = "ANDROGYNOUS";
                 name = names.Androgynous.Value;
                 break;
-            case >= 60 and < 80:
+            case < 80:
                 femininity = "FEMININE";
                 name = names.Feminine.Value;
                 break;

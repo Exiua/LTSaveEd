@@ -23,6 +23,7 @@ public class Settings
         _darkMode = await ReadOrSetDefaultSettingAsync(SettingsKey.DarkMode, false);
     }
     
+    // ReSharper disable once AsyncVoidMethod
     private async void SaveSettingAsync<T>(SettingsKey key, T value) where T : struct
     {
         var keyString = key.ToString(); 

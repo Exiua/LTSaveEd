@@ -1,7 +1,6 @@
-﻿@using LTSaveEd.Models
-@using LTSaveEd.Models.CharacterData
+﻿@using LTSaveEd.Models.CharacterData
 
-<MudCheckBox @bind-Checked="@Perk.Active" LabelPosition="LabelPosition.Start" Label="@Perk.DisplayName"/>
+<MudCheckBox @bind-Value="@Perk.Active" LabelPlacement="Placement.Start" Label="@Perk.DisplayName"/>
 
 @code {
     

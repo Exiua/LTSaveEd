@@ -21,12 +21,9 @@ public abstract class InventoryElement
         {
             nameNode = new XAttribute("name", Id);
             inventoryElementNode.Add(nameNode);
-            Name = new XmlAttribute<string>(nameNode);
         }
-        else
-        {
-            Name = new XmlAttribute<string>(nameNode);
-        }
+
+        Name = new XmlAttribute<string>(nameNode);
         Count = new XmlAttribute<int>(inventoryElementNode.Attribute("count")!);
     }
 }
