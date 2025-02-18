@@ -1,7 +1,7 @@
 # LTSaveEd [![Licensed under the MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Exiua/LTSaveEd/blob/master/LICENSE)
 [![Release Version](https://img.shields.io/github/v/release/Exiua/LTSaveEd?include_prereleases)](https://github.com/Exiua/LTSaveEd/releases) ![GitHub all releases](https://img.shields.io/github/downloads/Exiua/LTSaveEd/total) ![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=Exiua.LTSaveEd&format=true&query_only=true)
 
-LTSaveEd is a save editor for the game _Lilith's Throne_ built using Blazor WebAssembly (WASM) and .NET Core 8.0.
+LTSaveEd is a save editor for the game _Lilith's Throne_ built using Blazor WebAssembly (WASM) and .NET Core 9.0.
 
 ## Requirements
 
