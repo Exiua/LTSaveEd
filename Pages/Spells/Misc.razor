@@ -1,0 +1,41 @@
+﻿@page "/spells/misc"
+
+@using LTSaveEd.Models.CharacterData.SpellData
+@using LTSaveEd.Models
+@using LTSaveEd.Components
+
+@inherits BasePage
+
+@inject SaveData SaveData
+
+<h3>Misc</h3>
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="3">
+            <MudCheckBox @bind-Value="@Spells.WitchsSeal.Exists" LabelPlacement="Placement.Start" Label="Witch's Seal:"/>
+        </MudItem>
+        <MudItem xs="3">
+            <MudCheckBox @bind-Value="@Spells.WitchsCharm.Exists" LabelPlacement="Placement.Start" Label="Witch's Charm:"/>
+        </MudItem>
+        <MudItem xs="3">
+            <MudCheckBox @bind-Value="@Spells.SirensCall.Exists" LabelPlacement="Placement.Start" Label="Siren's Call:"/>
+        </MudItem>
+        <MudItem xs="3">
+            <MudCheckBox @bind-Value="@Spells.LightningDischarge.Exists" LabelPlacement="Placement.Start" Label="Lightning Discharge:"/>
+        </MudItem>
+        <MudItem xs="3">
+            <MudCheckBox @bind-Value="@Spells.LightningOvercharge.Exists" LabelPlacement="Placement.Start" Label="Lightning Overcharge:"/>
+        </MudItem>
+        <MudItem xs="3">
+            <MudCheckBox @bind-Value="@Spells.ChainLightning.Exists" LabelPlacement="Placement.Start" Label="Chain Lightning:"/>
+        </MudItem>
+        <MudItem xs="3">
+            <MudCheckBox @bind-Value="@Spells.LightningSuperbolt.Exists" LabelPlacement="Placement.Start" Label="Lightning Superbolt:"/>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private MiscSpells Spells => SaveData.CurrentCharacter.Spells.Misc;
+}
