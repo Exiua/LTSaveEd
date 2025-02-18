@@ -7,8 +7,8 @@ public class Weapon : InventoryElement
 {
     private readonly ValueDisplayPair<string>[] _damageTypes =
     [
-        new ValueDisplayPair<string>("Physical", "PHYSICAL"), new ValueDisplayPair<string>("Fire", "FIRE"),
-        new ValueDisplayPair<string>("Ice", "ICE"), new ValueDisplayPair<string>("Poison", "POISON")
+        new("Physical", "PHYSICAL"), new("Fire", "FIRE"),
+        new("Ice", "ICE"), new("Poison", "POISON")
     ];
     
     private readonly Dictionary<string, ValueDisplayPair<string>[]> _damageTypeLookup = new()

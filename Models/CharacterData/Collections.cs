@@ -10,37 +10,37 @@ public static class Collections
 {
     public static ValueDisplayPair<string>[] HairTypes { get; } =
     [
-        new ValueDisplayPair<string>("None", "ZERO_NONE"), new ValueDisplayPair<string>("Stubble", "ONE_STUBBLE"),
-        new ValueDisplayPair<string>("Manicured", "TWO_MANICURED"),
-        new ValueDisplayPair<string>("Trimmed", "THREE_TRIMMED"),
-        new ValueDisplayPair<string>("Natural", "FOUR_NATURAL"),
-        new ValueDisplayPair<string>("Unkempt", "FIVE_UNKEMPT"),
-        new ValueDisplayPair<string>("Bushy", "SIX_BUSHY"), new ValueDisplayPair<string>("Wild", "SEVEN_WILD")
+        new("None", "ZERO_NONE"), new("Stubble", "ONE_STUBBLE"),
+        new("Manicured", "TWO_MANICURED"),
+        new("Trimmed", "THREE_TRIMMED"),
+        new("Natural", "FOUR_NATURAL"),
+        new("Unkempt", "FIVE_UNKEMPT"),
+        new("Bushy", "SIX_BUSHY"), new("Wild", "SEVEN_WILD")
     ];
 
     public static ValueDisplayPair<string>[] BodyFluidFlavours { get; } =
     [
-        new ValueDisplayPair<string>("Cum", "CUM"), new ValueDisplayPair<string>("Milk", "MILK"),
-        new ValueDisplayPair<string>("Girlcum", "GIRL_CUM"), new ValueDisplayPair<string>("Bubblegum", "BUBBLEGUM"),
-        new ValueDisplayPair<string>("Beer", "BEER"), new ValueDisplayPair<string>("Vanilla", "VANILLA"),
-        new ValueDisplayPair<string>("Strawberry", "STRAWBERRY"),
-        new ValueDisplayPair<string>("Chocolate", "CHOCOLATE"),
-        new ValueDisplayPair<string>("Pineapple", "PINEAPPLE"), new ValueDisplayPair<string>("Honey", "HONEY"),
-        new ValueDisplayPair<string>("Mint", "MINT"), new ValueDisplayPair<string>("Cherry", "CHERRY"),
-        new ValueDisplayPair<string>("Coffee", "COFFEE"), new ValueDisplayPair<string>("Tea", "TEA"),
-        new ValueDisplayPair<string>("Maple", "MAPLE"), new ValueDisplayPair<string>("Cinnamon", "CINNAMON"),
-        new ValueDisplayPair<string>("Lemon", "LEMON"), new ValueDisplayPair<string>("Orange", "ORANGE"),
-        new ValueDisplayPair<string>("Grape", "GRAPE"), new ValueDisplayPair<string>("Melon", "MELON"),
-        new ValueDisplayPair<string>("Coconut", "COCONUT"), new ValueDisplayPair<string>("Blueberry", "BLUEBERRY")
+        new("Cum", "CUM"), new("Milk", "MILK"),
+        new("Girlcum", "GIRL_CUM"), new("Bubblegum", "BUBBLEGUM"),
+        new("Beer", "BEER"), new("Vanilla", "VANILLA"),
+        new("Strawberry", "STRAWBERRY"),
+        new("Chocolate", "CHOCOLATE"),
+        new("Pineapple", "PINEAPPLE"), new("Honey", "HONEY"),
+        new("Mint", "MINT"), new("Cherry", "CHERRY"),
+        new("Coffee", "COFFEE"), new("Tea", "TEA"),
+        new("Maple", "MAPLE"), new("Cinnamon", "CINNAMON"),
+        new("Lemon", "LEMON"), new("Orange", "ORANGE"),
+        new("Grape", "GRAPE"), new("Melon", "MELON"),
+        new("Coconut", "COCONUT"), new("Blueberry", "BLUEBERRY")
     ];
 
     private static readonly ValueDisplayPair<string>[] LegConfigurationsMaster =
     [
-        new ValueDisplayPair<string>("Bipedal", "BIPEDAL"), new ValueDisplayPair<string>("Quadrupedal", "QUADRUPEDAL"),
-        new ValueDisplayPair<string>("Serpent-tailed", "TAIL_LONG"),
-        new ValueDisplayPair<string>("Arachnid", "ARACHNID"),
-        new ValueDisplayPair<string>("Cephalopod", "CEPHALOPOD"), new ValueDisplayPair<string>("Mer-tailed", "TAIL"),
-        new ValueDisplayPair<string>("Avian", "AVIAN")
+        new("Bipedal", "BIPEDAL"), new("Quadrupedal", "QUADRUPEDAL"),
+        new("Serpent-tailed", "TAIL_LONG"),
+        new("Arachnid", "ARACHNID"),
+        new("Cephalopod", "CEPHALOPOD"), new("Mer-tailed", "TAIL"),
+        new("Avian", "AVIAN")
     ];
 
     private static ValueDisplayPair<string>[] _legConfigurationsBQ;
@@ -58,10 +58,10 @@ public static class Collections
 
     private static readonly ValueDisplayPair<string>[] FootStructuresMaster =
     [
-        new ValueDisplayPair<string>("None", "NONE"), new ValueDisplayPair<string>("Plantigrade", "PLANTIGRADE"),
-        new ValueDisplayPair<string>("Unguligrade", "UNGULIGRADE"),
-        new ValueDisplayPair<string>("Digitigrade", "DIGITIGRADE"),
-        new ValueDisplayPair<string>("Arachnoid", "ARACHNOID"), new ValueDisplayPair<string>("Tentacled", "TENTACLED")
+        new("None", "NONE"), new("Plantigrade", "PLANTIGRADE"),
+        new("Unguligrade", "UNGULIGRADE"),
+        new("Digitigrade", "DIGITIGRADE"),
+        new("Arachnoid", "ARACHNOID"), new("Tentacled", "TENTACLED")
     ];
 
     private static ValueDisplayPair<string>[] _footStructuresP;
@@ -74,8 +74,8 @@ public static class Collections
 
     private static readonly ValueDisplayPair<string>[] GenitalArrangementsNCR =
     [
-        new ValueDisplayPair<string>("Normal", "NORMAL"), new ValueDisplayPair<string>("Cloaca", "CLOACA"),
-        new ValueDisplayPair<string>("Rear-facing cloaca", "CLOACA_BEHIND")
+        new("Normal", "NORMAL"), new("Cloaca", "CLOACA"),
+        new("Rear-facing cloaca", "CLOACA_BEHIND")
     ];
 
     private static ValueDisplayPair<string>[] genitalArrangementsCR;
@@ -87,63 +87,63 @@ public static class Collections
 
     public static ValueDisplayPair<string>[] FemininityValues { get; } =
     [
-        new ValueDisplayPair<string>("Very Masculine", "VERY_MASCULINE"),
-        new ValueDisplayPair<string>("Masculine", "MASCULINE"),
-        new ValueDisplayPair<string>("Androgynous", "ANDROGYNOUS"),
-        new ValueDisplayPair<string>("Feminine", "FEMININE"),
-        new ValueDisplayPair<string>("Very Feminine", "VERY_FEMININE")
+        new("Very Masculine", "VERY_MASCULINE"),
+        new("Masculine", "MASCULINE"),
+        new("Androgynous", "ANDROGYNOUS"),
+        new("Feminine", "FEMININE"),
+        new("Very Feminine", "VERY_FEMININE")
     ];
 
     public static ValueDisplayPair<string>[] SubspeciesOverrides { get; } =
     [
-        new ValueDisplayPair<string>("Human", "HUMAN"), new ValueDisplayPair<string>("Angel", "ANGEL"),
-        new ValueDisplayPair<string>("Elder Lilin", "ELDER_LILIN"), new ValueDisplayPair<string>("Lilin", "LILIN"),
-        new ValueDisplayPair<string>("Demon", "DEMON"), new ValueDisplayPair<string>("Half Demon", "HALF_DEMON"),
-        new ValueDisplayPair<string>("Imp", "IMP"), new ValueDisplayPair<string>("Imp Alpha", "IMP_ALPHA"),
-        new ValueDisplayPair<string>("Cow Morph", "COW_MORPH"), new ValueDisplayPair<string>("Dog Morph", "DOG_MORPH"),
-        new ValueDisplayPair<string>("Dog Morph Border Collie", "DOG_MORPH_BORDER_COLLIE"),
-        new ValueDisplayPair<string>("Dog Morph Dobermann", "DOG_MORPH_DOBERMANN"),
-        new ValueDisplayPair<string>("Dog Morph German Shepherd", "DOG_MORPH_GERMAN_SHEPHERD"),
-        new ValueDisplayPair<string>("Dragon Morph", "dsg_dragon_subspecies_dragon"),
-        new ValueDisplayPair<string>("Wolf Morph", "WOLF_MORPH"),
-        new ValueDisplayPair<string>("Fox Morph", "FOX_MORPH"),
-        new ValueDisplayPair<string>("Fox Morph Arctic", "FOX_MORPH_ARCTIC"),
-        new ValueDisplayPair<string>("Fox Morph Fennec", "FOX_MORPH_FENNEC"),
-        new ValueDisplayPair<string>("Fox Ascendant", "FOX_ASCENDANT"),
-        new ValueDisplayPair<string>("Fox Ascendant Arctic", "FOX_ASCENDANT_ARCTIC"),
-        new ValueDisplayPair<string>("Fox Ascendant Fennec", "FOX_ASCENDANT_FENNEC"),
-        new ValueDisplayPair<string>("Cat Morph", "CAT_MORPH"),
-        new ValueDisplayPair<string>("Cat Morph Lynx", "CAT_MORPH_LYNX"),
-        new ValueDisplayPair<string>("Cat Morph Cheetah", "CAT_MORPH_CHEETAH"),
-        new ValueDisplayPair<string>("Cat Morph Caracal", "CAT_MORPH_CARACAL"),
-        new ValueDisplayPair<string>("Cat Morph Leopard Snow", "CAT_MORPH_LEOPARD_SNOW"),
-        new ValueDisplayPair<string>("Cat Morph Leopard", "CAT_MORPH_LEOPARD"),
-        new ValueDisplayPair<string>("Cat Morph Lion", "CAT_MORPH_LION"),
-        new ValueDisplayPair<string>("Cat Morph Tiger", "CAT_MORPH_TIGER"),
-        new ValueDisplayPair<string>("Horse Morph", "HORSE_MORPH"),
-        new ValueDisplayPair<string>("Horse Morph Unicorn", "HORSE_MORPH_UNICORN"),
-        new ValueDisplayPair<string>("Horse Morph Pegasus", "HORSE_MORPH_PEGASUS"),
-        new ValueDisplayPair<string>("Horse Morph Alicorn", "HORSE_MORPH_ALICORN"),
-        new ValueDisplayPair<string>("Centaur", "CENTAUR"), new ValueDisplayPair<string>("Pegataur", "PEGATAUR"),
-        new ValueDisplayPair<string>("Unitaur", "UNITAUR"), new ValueDisplayPair<string>("Alitaur", "ALITAUR"),
-        new ValueDisplayPair<string>("Horse Morph Zebra", "HORSE_MORPH_ZEBRA"),
-        new ValueDisplayPair<string>("Reindeer Morph", "REINDEER_MORPH"),
-        new ValueDisplayPair<string>("Alligator Morph", "ALLIGATOR_MORPH"),
-        new ValueDisplayPair<string>("Slime", "SLIME"),
-        new ValueDisplayPair<string>("Squirrel Morph", "SQUIRREL_MORPH"),
-        new ValueDisplayPair<string>("Rat Morph", "RAT_MORPH"),
-        new ValueDisplayPair<string>("Rabbit Morph", "RABBIT_MORPH"),
-        new ValueDisplayPair<string>("Rabbit Morph Lop", "RABBIT_MORPH_LOP"),
-        new ValueDisplayPair<string>("Bat Morph", "BAT_MORPH"), new ValueDisplayPair<string>("Harpy", "HARPY"),
-        new ValueDisplayPair<string>("Harpy Raven", "HARPY_RAVEN"),
-        new ValueDisplayPair<string>("Harpy Bald Eagle", "HARPY_BALD_EAGLE"),
-        new ValueDisplayPair<string>("Harpy Phoenix", "HARPY_PHOENIX"),
-        new ValueDisplayPair<string>("Elemental Fire", "ELEMENTAL_FIRE"),
-        new ValueDisplayPair<string>("Elemental Earth", "ELEMENTAL_EARTH"),
-        new ValueDisplayPair<string>("Elemental Water", "ELEMENTAL_WATER"),
-        new ValueDisplayPair<string>("Elemental Air", "ELEMENTAL_AIR"),
-        new ValueDisplayPair<string>("Elemental Arcane", "ELEMENTAL_ARCANE"),
-        new ValueDisplayPair<string>("Badger", "innoxia_badger_subspecies_badger")
+        new("Human", "HUMAN"), new("Angel", "ANGEL"),
+        new("Elder Lilin", "ELDER_LILIN"), new("Lilin", "LILIN"),
+        new("Demon", "DEMON"), new("Half Demon", "HALF_DEMON"),
+        new("Imp", "IMP"), new("Imp Alpha", "IMP_ALPHA"),
+        new("Cow Morph", "COW_MORPH"), new("Dog Morph", "DOG_MORPH"),
+        new("Dog Morph Border Collie", "DOG_MORPH_BORDER_COLLIE"),
+        new("Dog Morph Dobermann", "DOG_MORPH_DOBERMANN"),
+        new("Dog Morph German Shepherd", "DOG_MORPH_GERMAN_SHEPHERD"),
+        new("Dragon Morph", "dsg_dragon_subspecies_dragon"),
+        new("Wolf Morph", "WOLF_MORPH"),
+        new("Fox Morph", "FOX_MORPH"),
+        new("Fox Morph Arctic", "FOX_MORPH_ARCTIC"),
+        new("Fox Morph Fennec", "FOX_MORPH_FENNEC"),
+        new("Fox Ascendant", "FOX_ASCENDANT"),
+        new("Fox Ascendant Arctic", "FOX_ASCENDANT_ARCTIC"),
+        new("Fox Ascendant Fennec", "FOX_ASCENDANT_FENNEC"),
+        new("Cat Morph", "CAT_MORPH"),
+        new("Cat Morph Lynx", "CAT_MORPH_LYNX"),
+        new("Cat Morph Cheetah", "CAT_MORPH_CHEETAH"),
+        new("Cat Morph Caracal", "CAT_MORPH_CARACAL"),
+        new("Cat Morph Leopard Snow", "CAT_MORPH_LEOPARD_SNOW"),
+        new("Cat Morph Leopard", "CAT_MORPH_LEOPARD"),
+        new("Cat Morph Lion", "CAT_MORPH_LION"),
+        new("Cat Morph Tiger", "CAT_MORPH_TIGER"),
+        new("Horse Morph", "HORSE_MORPH"),
+        new("Horse Morph Unicorn", "HORSE_MORPH_UNICORN"),
+        new("Horse Morph Pegasus", "HORSE_MORPH_PEGASUS"),
+        new("Horse Morph Alicorn", "HORSE_MORPH_ALICORN"),
+        new("Centaur", "CENTAUR"), new("Pegataur", "PEGATAUR"),
+        new("Unitaur", "UNITAUR"), new("Alitaur", "ALITAUR"),
+        new("Horse Morph Zebra", "HORSE_MORPH_ZEBRA"),
+        new("Reindeer Morph", "REINDEER_MORPH"),
+        new("Alligator Morph", "ALLIGATOR_MORPH"),
+        new("Slime", "SLIME"),
+        new("Squirrel Morph", "SQUIRREL_MORPH"),
+        new("Rat Morph", "RAT_MORPH"),
+        new("Rabbit Morph", "RABBIT_MORPH"),
+        new("Rabbit Morph Lop", "RABBIT_MORPH_LOP"),
+        new("Bat Morph", "BAT_MORPH"), new("Harpy", "HARPY"),
+        new("Harpy Raven", "HARPY_RAVEN"),
+        new("Harpy Bald Eagle", "HARPY_BALD_EAGLE"),
+        new("Harpy Phoenix", "HARPY_PHOENIX"),
+        new("Elemental Fire", "ELEMENTAL_FIRE"),
+        new("Elemental Earth", "ELEMENTAL_EARTH"),
+        new("Elemental Water", "ELEMENTAL_WATER"),
+        new("Elemental Air", "ELEMENTAL_AIR"),
+        new("Elemental Arcane", "ELEMENTAL_ARCANE"),
+        new("Badger", "innoxia_badger_subspecies_badger")
     ]; //TODO Check if these are all subspecies in the game
 
     public static Dictionary<ClothingType, ClothingData[]> ClothingMap { get; } = new();
@@ -152,53 +152,53 @@ public static class Collections
     
     public static ValueDisplayPair<ClothingType>[] ClothingTypes { get; } =
     [
-        new ValueDisplayPair<ClothingType>("Head", ClothingType.Head),
-        new ValueDisplayPair<ClothingType>("Eyes", ClothingType.Eyes),
-        new ValueDisplayPair<ClothingType>("Hair", ClothingType.Hair),
-        new ValueDisplayPair<ClothingType>("Mouth", ClothingType.Mouth),
-        new ValueDisplayPair<ClothingType>("Neck", ClothingType.Neck),
-        new ValueDisplayPair<ClothingType>("Over-torso", ClothingType.TorsoOver),
-        new ValueDisplayPair<ClothingType>("Torso", ClothingType.TorsoUnder),
-        new ValueDisplayPair<ClothingType>("Chest", ClothingType.Chest),
-        new ValueDisplayPair<ClothingType>("Nipple", ClothingType.Nipple),
-        new ValueDisplayPair<ClothingType>("Stomach", ClothingType.Stomach),
-        new ValueDisplayPair<ClothingType>("Hand", ClothingType.Hand),
-        new ValueDisplayPair<ClothingType>("Wrist", ClothingType.Wrist),
-        new ValueDisplayPair<ClothingType>("Finger", ClothingType.Finger),
-        new ValueDisplayPair<ClothingType>("Hips", ClothingType.Hips),
-        new ValueDisplayPair<ClothingType>("Anus", ClothingType.Anus),
-        new ValueDisplayPair<ClothingType>("Leg", ClothingType.Leg),
-        new ValueDisplayPair<ClothingType>("Groin", ClothingType.Groin),
-        new ValueDisplayPair<ClothingType>("Foot", ClothingType.Foot),
-        new ValueDisplayPair<ClothingType>("Sock", ClothingType.Sock),
-        new ValueDisplayPair<ClothingType>("Ankle", ClothingType.Ankle),
-        new ValueDisplayPair<ClothingType>("Horns", ClothingType.Horns),
-        new ValueDisplayPair<ClothingType>("Wings", ClothingType.Wings),
-        new ValueDisplayPair<ClothingType>("Tail", ClothingType.Tail),
-        new ValueDisplayPair<ClothingType>("Penis", ClothingType.Penis),
-        new ValueDisplayPair<ClothingType>("Vagina", ClothingType.Vagina),
-        new ValueDisplayPair<ClothingType>("Ear Piercing", ClothingType.PiercingEar),
-        new ValueDisplayPair<ClothingType>("Nose Piercing", ClothingType.PiercingNose),
-        new ValueDisplayPair<ClothingType>("Tongue Piercing", ClothingType.PiercingTongue),
-        new ValueDisplayPair<ClothingType>("Lip Piercing", ClothingType.PiercingLip),
-        new ValueDisplayPair<ClothingType>("Stomach Piercing", ClothingType.PiercingStomach),
-        new ValueDisplayPair<ClothingType>("Nipple Piercing", ClothingType.PiercingNipple),
-        new ValueDisplayPair<ClothingType>("Vagina Piercing", ClothingType.PiercingVagina),
-        new ValueDisplayPair<ClothingType>("Penis Piercing", ClothingType.PiercingPenis)
+        new("Head", ClothingType.Head),
+        new("Eyes", ClothingType.Eyes),
+        new("Hair", ClothingType.Hair),
+        new("Mouth", ClothingType.Mouth),
+        new("Neck", ClothingType.Neck),
+        new("Over-torso", ClothingType.TorsoOver),
+        new("Torso", ClothingType.TorsoUnder),
+        new("Chest", ClothingType.Chest),
+        new("Nipple", ClothingType.Nipple),
+        new("Stomach", ClothingType.Stomach),
+        new("Hand", ClothingType.Hand),
+        new("Wrist", ClothingType.Wrist),
+        new("Finger", ClothingType.Finger),
+        new("Hips", ClothingType.Hips),
+        new("Anus", ClothingType.Anus),
+        new("Leg", ClothingType.Leg),
+        new("Groin", ClothingType.Groin),
+        new("Foot", ClothingType.Foot),
+        new("Sock", ClothingType.Sock),
+        new("Ankle", ClothingType.Ankle),
+        new("Horns", ClothingType.Horns),
+        new("Wings", ClothingType.Wings),
+        new("Tail", ClothingType.Tail),
+        new("Penis", ClothingType.Penis),
+        new("Vagina", ClothingType.Vagina),
+        new("Ear Piercing", ClothingType.PiercingEar),
+        new("Nose Piercing", ClothingType.PiercingNose),
+        new("Tongue Piercing", ClothingType.PiercingTongue),
+        new("Lip Piercing", ClothingType.PiercingLip),
+        new("Stomach Piercing", ClothingType.PiercingStomach),
+        new("Nipple Piercing", ClothingType.PiercingNipple),
+        new("Vagina Piercing", ClothingType.PiercingVagina),
+        new("Penis Piercing", ClothingType.PiercingPenis)
     ];
 
     public static ValueDisplayPair<ItemType>[] ItemTypes { get; } =
     [
-        new ValueDisplayPair<ItemType>("Item", ItemType.Item),
-        /*new ValueDisplayPair<ItemType>("Essence", ItemType.Essence),
-        new ValueDisplayPair<ItemType>("Book", ItemType.Book),
-        new ValueDisplayPair<ItemType>("Spell", ItemType.Spell)*/ // TODO: Implement
+        new("Item", ItemType.Item),
+        /*new("Essence", ItemType.Essence),
+        new("Book", ItemType.Book),
+        new("Spell", ItemType.Spell)*/ // TODO: Implement
     ];
     
     public static ValueDisplayPair<WeaponType>[] WeaponTypes { get; } =
     [
-        new ValueDisplayPair<WeaponType>("Melee", WeaponType.Melee),
-        new ValueDisplayPair<WeaponType>("Ranged", WeaponType.Ranged)
+        new("Melee", WeaponType.Melee),
+        new("Ranged", WeaponType.Ranged)
     ];
 
 
@@ -1085,9 +1085,9 @@ public static class Collections
         return value switch
         {
             < 10 => "Tiny",
-            >= 10 and < 22 => "Small",
-            >= 22 and < 40 => "Long",
-            >= 40 and < 62 => "Huge",
+            < 22 => "Small",
+            < 40 => "Long",
+            < 62 => "Huge",
             >= 62 => "Massive"
         };
     }
@@ -1173,9 +1173,9 @@ public static class Collections
         return value switch
         {
             < 300 => "Slow",
-            >= 300 and < 800 => "Average",
-            >= 800 and < 5000 => "Fast",
-            >= 5000 and < 10000 => "Rapid",
+            < 800 => "Average",
+            < 5000 => "Fast",
+            < 10000 => "Rapid",
             >= 10000 => "Very Rapid"
         };
     }

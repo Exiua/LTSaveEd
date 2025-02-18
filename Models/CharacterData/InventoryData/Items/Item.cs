@@ -5,7 +5,6 @@ namespace LTSaveEd.Models.CharacterData.InventoryData.Items;
 
 public class Item : InventoryElement
 {
-
     public XmlAttribute<string> Color { get; }
     
     public Item(XElement itemNode) : base(itemNode)

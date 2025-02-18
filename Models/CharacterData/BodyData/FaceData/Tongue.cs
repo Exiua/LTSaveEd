@@ -76,9 +76,9 @@ public class Tongue
         return value switch
         {
             < 7 => "Normal-sized",
-            >= 7 and < 15 => "Long",
-            >= 15 and < 25 => "Very Long",
-            >= 25 and < 45 => "Extremely Long",
+            < 15 => "Long",
+            < 25 => "Very Long",
+            < 45 => "Extremely Long",
             >= 45 => "Absurdly Long"
         };
     }

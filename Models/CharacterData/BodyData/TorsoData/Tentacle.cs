@@ -7,7 +7,7 @@ public class Tentacle
 {
     public ValueDisplayPair<string>[] TentacleTypes { get; } =
     [
-        new ValueDisplayPair<string>("None", "NONE")
+        new("None", "NONE")
     ]; // TODO: Find tentacle types
 
     public XmlAttribute<int> Count { get; }

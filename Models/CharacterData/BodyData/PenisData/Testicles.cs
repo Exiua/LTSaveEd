@@ -27,11 +27,11 @@ public class Testicles(XElement testiclesNode)
         return value switch
         {
             <= 0 => "None",
-            > 0 and < 10 => "Trickle",
-            >= 10 and < 20 => "Average",
-            >= 20 and < 30 => "Large",
-            >= 30 and < 100 => "Huge",
-            >= 100 and < 1000 => "Extreme",
+            < 10 => "Trickle",
+            < 20 => "Average",
+            < 30 => "Large",
+            < 100 => "Huge",
+            < 1000 => "Extreme",
             >= 1000 => "Monstrous"
         };
     }

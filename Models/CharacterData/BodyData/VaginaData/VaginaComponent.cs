@@ -7,28 +7,28 @@ public class VaginaComponent
 {
     public ValueDisplayPair<string>[] VaginaTypes { get; } =
     [
-        new ValueDisplayPair<string>("None", "NONE"), new ValueDisplayPair<string>("Alligator", "ALLIGATOR_MORPH"),
-        new ValueDisplayPair<string>("Angel", "ANGEL"), new ValueDisplayPair<string>("Badger", "innoxia_badger_vagina"),
-        new ValueDisplayPair<string>("Bat", "BAT_MORPH"), new ValueDisplayPair<string>("Bear", "dsg_bear_vagina"),
-        new ValueDisplayPair<string>("Capybara", "NoStepOnSnek_capybara_vagina"),
-        new ValueDisplayPair<string>("Cat", "CAT_MORPH"), new ValueDisplayPair<string>("Cow", "COW_MORPH"),
-        new ValueDisplayPair<string>("Demonic", "DEMON_COMMON"), new ValueDisplayPair<string>("Dog", "DOG_MORPH"),
-        new ValueDisplayPair<string>("Dragon", "dsg_dragon_vagina"),
-        new ValueDisplayPair<string>("Ferret", "dsg_ferret_vagina"), new ValueDisplayPair<string>("Fox", "FOX_MORPH"),
-        new ValueDisplayPair<string>("Goat", "innoxia_goat_vagina"),
-        new ValueDisplayPair<string>("Gryphon", "dsg_gryphon_vagina"), new ValueDisplayPair<string>("Harpy", "HARPY"),
-        new ValueDisplayPair<string>("Horse", "HORSE_MORPH"), new ValueDisplayPair<string>("Human", "HUMAN"),
-        new ValueDisplayPair<string>("Hyena", "innoxia_hyena_vagina"),
-        new ValueDisplayPair<string>("Octopus", "NoStepOnSnek_octopus_vagina"),
-        new ValueDisplayPair<string>("Otter", "dsg_otter_vagina"),
-        new ValueDisplayPair<string>("Panther", "innoxia_panther_vagina"),
-        new ValueDisplayPair<string>("Pig", "innoxia_pig_vagina"), new ValueDisplayPair<string>("Rabbit", "RABBIT_MORPH"),
-        new ValueDisplayPair<string>("Racoon", "dsg_raccoon_vagina"), new ValueDisplayPair<string>("Rat", "RAT_MORPH"),
-        new ValueDisplayPair<string>("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair<string>("Shark", "dsg_shark_vagina"),
-        new ValueDisplayPair<string>("Sheep", "innoxia_sheep_vagina"),
-        new ValueDisplayPair<string>("Snake", "NoStepOnSnek_snake_vagina"),
-        new ValueDisplayPair<string>("Spider", "charisma_spider_vagina"),
-        new ValueDisplayPair<string>("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair<string>("Wolf", "WOLF_MORPH")
+        new("None", "NONE"), new("Alligator", "ALLIGATOR_MORPH"),
+        new("Angel", "ANGEL"), new("Badger", "innoxia_badger_vagina"),
+        new("Bat", "BAT_MORPH"), new("Bear", "dsg_bear_vagina"),
+        new("Capybara", "NoStepOnSnek_capybara_vagina"),
+        new("Cat", "CAT_MORPH"), new("Cow", "COW_MORPH"),
+        new("Demonic", "DEMON_COMMON"), new("Dog", "DOG_MORPH"),
+        new("Dragon", "dsg_dragon_vagina"),
+        new("Ferret", "dsg_ferret_vagina"), new("Fox", "FOX_MORPH"),
+        new("Goat", "innoxia_goat_vagina"),
+        new("Gryphon", "dsg_gryphon_vagina"), new("Harpy", "HARPY"),
+        new("Horse", "HORSE_MORPH"), new("Human", "HUMAN"),
+        new("Hyena", "innoxia_hyena_vagina"),
+        new("Octopus", "NoStepOnSnek_octopus_vagina"),
+        new("Otter", "dsg_otter_vagina"),
+        new("Panther", "innoxia_panther_vagina"),
+        new("Pig", "innoxia_pig_vagina"), new("Rabbit", "RABBIT_MORPH"),
+        new("Racoon", "dsg_raccoon_vagina"), new("Rat", "RAT_MORPH"),
+        new("Reindeer", "REINDEER_MORPH"), new("Shark", "dsg_shark_vagina"),
+        new("Sheep", "innoxia_sheep_vagina"),
+        new("Snake", "NoStepOnSnek_snake_vagina"),
+        new("Spider", "charisma_spider_vagina"),
+        new("Squirrel", "SQUIRREL_MORPH"), new("Wolf", "WOLF_MORPH")
     ];
 
     public LabeledXmlAttribute<float> Capacity { get; }
@@ -251,12 +251,12 @@ public class VaginaComponent
         return value switch
         {
             <= 0 => "Small",
-            > 0 and < 5 => "Big",
-            >= 5 and < 10 => "Large",
-            >= 10 and < 25 => "Huge",
-            >= 25 and < 40 => "Massive",
-            >= 40 and < 50 => "Enormous",
-            >= 50 and < 60 => "Gigantic",
+            < 5 => "Big",
+            < 10 => "Large",
+            < 25 => "Huge",
+            < 40 => "Massive",
+            < 50 => "Enormous",
+            < 60 => "Gigantic",
             >= 60 => "Absurdly Colossal"
         };
     }

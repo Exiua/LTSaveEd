@@ -28,16 +28,16 @@ public class CharacterShortData
         Femininity = femininity switch
         {
             < 20 => "VERY_MASCULINE",
-            >= 20 and < 40 => "MASCULINE",
-            >= 40 and < 60 => "ANDROGYNOUS",
-            >= 60 and < 80 => "FEMININE",
+            < 40 => "MASCULINE",
+            < 60 => "ANDROGYNOUS",
+            < 80 => "FEMININE",
             >= 80 => "VERY_FEMININE"
         };
         Subspecies = bodyCoreNode.Attribute("subspecies")!.Value;
         Name = femininity switch
         {
             < 40 => nameNode.Attribute("nameMasculine")!.Value,
-            >= 40 and <= 60 => nameNode.Attribute("nameAndrogynous")!.Value,
+            <= 60 => nameNode.Attribute("nameAndrogynous")!.Value,
             > 60 => nameNode.Attribute("nameFeminine")!.Value
         };
     }

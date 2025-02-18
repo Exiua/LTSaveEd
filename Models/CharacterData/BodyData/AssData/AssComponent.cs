@@ -10,26 +10,26 @@ public class AssComponent
 {
     public ValueDisplayPair<string>[] AssTypes { get; } =
     [
-        new ValueDisplayPair<string>("Alligator", "ALLIGATOR_MORPH"), new ValueDisplayPair<string>("Angel", "ANGEL"),
-        new ValueDisplayPair<string>("Badger", "innoxia_badger_ass"), new ValueDisplayPair<string>("Bat", "BAT_MORPH"),
-        new ValueDisplayPair<string>("Bear", "dsg_bear_ass"),
-        new ValueDisplayPair<string>("Capybara", "NoStepOnSnek_capybara_ass"),
-        new ValueDisplayPair<string>("Cat", "CAT_MORPH"), new ValueDisplayPair<string>("Cow", "COW_MORPH"),
-        new ValueDisplayPair<string>("Demonic", "DEMON_COMMON"), new ValueDisplayPair<string>("Dog", "DOG_MORPH"),
-        new ValueDisplayPair<string>("Dragon", "dsg_dragon_ass"), new ValueDisplayPair<string>("Ferret", "dsg_ferret_ass"),
-        new ValueDisplayPair<string>("Fox", "FOX_MORPH"), new ValueDisplayPair<string>("Goat", "innoxia_goat_ass"),
-        new ValueDisplayPair<string>("Gryphon", "dsg_gryphon_ass"), new ValueDisplayPair<string>("Harpy", "HARPY"),
-        new ValueDisplayPair<string>("Horse", "HORSE_MORPH"), new ValueDisplayPair<string>("Human", "HUMAN"),
-        new ValueDisplayPair<string>("Hyena", "innoxia_hyena_ass"),
-        new ValueDisplayPair<string>("Octopus", "NoStepOnSnek_octopus_ass"),
-        new ValueDisplayPair<string>("Otter", "dsg_otter_ass"), new ValueDisplayPair<string>("Panther", "innoxia_panther_ass"),
-        new ValueDisplayPair<string>("Pig", "innoxia_pig_ass"), new ValueDisplayPair<string>("Rabbit", "RABBIT_MORPH"),
-        new ValueDisplayPair<string>("Racoon", "dsg_raccoon_ass"), new ValueDisplayPair<string>("Rat", "RAT_MORPH"),
-        new ValueDisplayPair<string>("Reindeer", "REINDEER_MORPH"), new ValueDisplayPair<string>("Shark", "dsg_shark_ass"),
-        new ValueDisplayPair<string>("Sheep", "innoxia_sheep_ass"),
-        new ValueDisplayPair<string>("Snake", "NoStepOnSnek_snake_ass"),
-        new ValueDisplayPair<string>("Spider", "charisma_spider_ass"),
-        new ValueDisplayPair<string>("Squirrel", "SQUIRREL_MORPH"), new ValueDisplayPair<string>("Wolf", "WOLF_MORPH")
+        new("Alligator", "ALLIGATOR_MORPH"), new("Angel", "ANGEL"),
+        new("Badger", "innoxia_badger_ass"), new("Bat", "BAT_MORPH"),
+        new("Bear", "dsg_bear_ass"),
+        new("Capybara", "NoStepOnSnek_capybara_ass"),
+        new("Cat", "CAT_MORPH"), new("Cow", "COW_MORPH"),
+        new("Demonic", "DEMON_COMMON"), new("Dog", "DOG_MORPH"),
+        new("Dragon", "dsg_dragon_ass"), new("Ferret", "dsg_ferret_ass"),
+        new("Fox", "FOX_MORPH"), new("Goat", "innoxia_goat_ass"),
+        new("Gryphon", "dsg_gryphon_ass"), new("Harpy", "HARPY"),
+        new("Horse", "HORSE_MORPH"), new("Human", "HUMAN"),
+        new("Hyena", "innoxia_hyena_ass"),
+        new("Octopus", "NoStepOnSnek_octopus_ass"),
+        new("Otter", "dsg_otter_ass"), new("Panther", "innoxia_panther_ass"),
+        new("Pig", "innoxia_pig_ass"), new("Rabbit", "RABBIT_MORPH"),
+        new("Racoon", "dsg_raccoon_ass"), new("Rat", "RAT_MORPH"),
+        new("Reindeer", "REINDEER_MORPH"), new("Shark", "dsg_shark_ass"),
+        new("Sheep", "innoxia_sheep_ass"),
+        new("Snake", "NoStepOnSnek_snake_ass"),
+        new("Spider", "charisma_spider_ass"),
+        new("Squirrel", "SQUIRREL_MORPH"), new("Wolf", "WOLF_MORPH")
     ];
 
     public LabeledXmlAttribute<int> AssSize { get; }
