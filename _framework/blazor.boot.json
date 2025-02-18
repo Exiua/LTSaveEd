@@ -1,9 +1,9 @@
 {
   "mainAssemblyName": "LTSaveEd",
   "resources": {
-    "hash": "sha256-r2Ls3xOarQTIOXBYlae9boWlcuYw8P5+vSH+cuYWnGY=",
+    "hash": "sha256-/hgoPKCZd4nVfqvpKTjgjVBYqEJD1bzPB23QNr5b+wk=",
     "fingerprinting": {
-      "LTSaveEd.iah8vewuih.wasm": "LTSaveEd.wasm",
+      "LTSaveEd.lw3afnc075.wasm": "LTSaveEd.wasm",
       "Microsoft.AspNetCore.Components.Forms.r053fjs4u7.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
       "Microsoft.AspNetCore.Components.k3knzr5q8c.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Web.6uis2dp59m.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
@@ -81,7 +81,7 @@
       "System.Runtime.InteropServices.JavaScript.f4ln4hfftw.wasm": "sha256-r+LQmgoVdHgFKWJvUNAR7HQZAtSw+xvBIQ6siSPsBNM="
     },
     "assembly": {
-      "LTSaveEd.iah8vewuih.wasm": "sha256-igCpeJSHXntIDaM0Q2MQ/yw3MyeQKFFOd7wqidcXVMk=",
+      "LTSaveEd.lw3afnc075.wasm": "sha256-RR2s2QNY2goiNeiW2P04Uz9uwHkLe+0xOb0k5DWjXUQ=",
       "Microsoft.AspNetCore.Components.Forms.r053fjs4u7.wasm": "sha256-1Wiq2wQ7WCjo9fKkL/AUSia899+a8zbR6QRquH8nWRM=",
       "Microsoft.AspNetCore.Components.k3knzr5q8c.wasm": "sha256-gOQm5EZbbG5IoOewx/aNIs7SKJRIn9OOtw1zMJZcCCI=",
       "Microsoft.AspNetCore.Components.Web.6uis2dp59m.wasm": "sha256-XrSyvQLyoxg7WWRqydtogLoRu67WYXHs6HQqCSDSgTo=",
