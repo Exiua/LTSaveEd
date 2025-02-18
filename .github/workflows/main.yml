@@ -17,7 +17,7 @@ jobs:
                 sed -i 's|/js/LocalStorageAccessor.js|/LTSaveEd/js/LocalStorageAccessor.js|' ./Models/JSWrappers/LocalStorageAccessor.cs
                 sed -i 's|/js/FileHandler.js|/LTSaveEd/js/FileHandler.js|' ./Models/JSWrappers/FileHandler.cs
           
-          # sets up .NET Core SDK 8.0
+            # sets up .NET Core SDK 8.0
             - name: Setup .NET Core SDK
               uses: actions/setup-dotnet@v4
               with:

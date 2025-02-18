@@ -2,7 +2,9 @@
 @using System.Diagnostics
 @using System.Xml.Linq
 @using LTSaveEd.Models.JSWrappers
+
 @inherits LayoutComponentBase
+
 @inject ISnackbar Snackbar
 @inject SaveData SaveData
 @inject FileHandler FileHandler
@@ -94,8 +96,8 @@
 </MudLayout>
 
 @code {
-    private const string Version = "v2.5.0";
-    
+    private static string Version { get; } = FileVersionInfo.GetVersionInfo(typeof(Program).Assembly.Location).ProductVersion!;
+
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;
 
