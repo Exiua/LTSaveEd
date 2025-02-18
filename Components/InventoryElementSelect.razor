@@ -36,7 +36,7 @@
         }
     }
     
-    private Task<IEnumerable<InventoryElementData>> Search(string value)
+    private Task<IEnumerable<InventoryElementData>> Search(string value, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(value))
         {

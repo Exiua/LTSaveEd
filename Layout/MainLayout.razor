@@ -13,6 +13,7 @@
 <MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="@_theme"/>
 <MudSnackbarProvider/>
 <MudDialogProvider/>
+<MudPopoverProvider/>
 
 <MudLayout>
     <MudAppBar Elevation="1">
@@ -23,11 +24,11 @@
         <MudSpacer />
         <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined" />
         <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
-            <ButtonTemplate>
-                <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary" for="@context.Id">
+            <ActivatorContent>
+                <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary">
                     LOAD
                 </MudButton>
-            </ButtonTemplate>
+            </ActivatorContent>
         </MudFileUpload>
         <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveFile" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
             @if (_currentState == EditorState.Saving)

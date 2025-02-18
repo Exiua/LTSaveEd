@@ -36,7 +36,7 @@
         _currentValue = CharacterId;
     }
     
-    private Task<IEnumerable<ValueDisplayPair<string>>> Search(string value)
+    private Task<IEnumerable<ValueDisplayPair<string>>> Search(string value, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(value))
         {

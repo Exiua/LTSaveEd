@@ -23,9 +23,9 @@
                     <MudTextField @bind-Value="@offspring.Family.Mother.Name.Value" ReadOnly="true" Label="Mother"/>
                     <MudTextField @bind-Value="@offspring.Family.Father.Name.Value" ReadOnly="true" Label="Father"/>
                     <MudCheckBox @bind-Value="@offspring.FromPlayer.Value" ReadOnly="true" Label="From Player"
-                                 LabelPosition="LabelPosition.Start"/>
+                                 LabelPlacement="Placement.Start"/>
                     <MudCheckBox @bind-Value="@offspring.Born.Value" ReadOnly="true" Label="Is Born"
-                                 LabelPosition="LabelPosition.Start"/>
+                                 LabelPlacement="Placement.Start"/>
                     <MudButton Color="Color.Secondary" Variant="Variant.Filled"
                                OnClick="@(() => OffspringsData.RemoveOffspring(localIndex))">Delete</MudButton>
                 </MudPaper>
