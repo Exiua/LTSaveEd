@@ -123,10 +123,11 @@ public class SaveData
             #if DEBUG
             Console.WriteLine(e);
             throw;
-            #endif
+            #else
             Console.WriteLine(e);
             CurrentCharacter = previousCharacter;
             return false;
+            #endif
         }
     }
 

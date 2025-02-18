@@ -44,11 +44,11 @@
                                                         Attribute="@PenisData.PenisComponent.Type" Label="Type"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Pierced.Value"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Pierced.Value"
                                              Label="Pierced" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.UrethraVirgin.Value"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.UrethraVirgin.Value"
                                              Label="Urethra Virgin" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Virgin.Value"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Virgin.Value"
                                              Label="Virgin" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                         </td>
@@ -73,7 +73,7 @@
                                 <IntField Attribute="@PenisData.Testicles.TesticleSize" Label="Testicle Size"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.Testicles.Internal.Value"
+                                <MudCheckBox @bind-Value="@PenisData.Testicles.Internal.Value"
                                              Label="Internal" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                         </td>
@@ -89,75 +89,75 @@
                         <td style="border-bottom: none; vertical-align: top;">
                             <h4 style="text-decoration: underline; text-align: center"><b>Penis Modifiers</b></h4>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Sheathed.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Sheathed.Exists"
                                              Label="Sheathed" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Ribbed.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Ribbed.Exists"
                                              Label="Ribbed" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Tentacled.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Tentacled.Exists"
                                              Label="Tentacled" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Knotted.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Knotted.Exists"
                                              Label="Knotted" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Blunt.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Blunt.Exists"
                                              Label="Blunt" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.IsTapered"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.IsTapered"
                                              Label="Tapered" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.IsFlared"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.IsFlared"
                                              Label="Flared" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Barbed.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Barbed.Exists"
                                              Label="Barbed" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Veiny.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Veiny.Exists"
                                              Label="Veiny" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Prehensile.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Prehensile.Exists"
                                              Label="Prehensile" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Ovipositor.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Ovipositor.Exists"
                                              Label="Ovipositor" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                         </td>
                         <td style="border-bottom: none; vertical-align: top;">
                             <h4 style="text-decoration: underline; text-align: center"><b>Urethra Modifiers</b></h4>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.Puffy.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.Puffy.Exists"
                                              Label="Puffy" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.InternallyRibbed.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.InternallyRibbed.Exists"
                                              Label="Internally-ribbed" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.UrethraTentacled.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.UrethraTentacled.Exists"
                                              Label="Tentacled" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.PenisComponent.InternallyMuscled.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.PenisComponent.InternallyMuscled.Exists"
                                              Label="Internally-muscled" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                         </td>
                         <td style="border-bottom: none; vertical-align: top;">
                             <h4 style="text-decoration: underline; text-align: center"><b>Cum Modifiers</b></h4>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.Musky.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.Musky.Exists"
                                              Label="Musky" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.Viscous.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.Viscous.Exists"
                                              Label="Viscous" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.Sticky.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.Sticky.Exists"
                                              Label="Sticky" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.Slimy.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.Slimy.Exists"
                                              Label="Slimy" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.Bubbling.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.Bubbling.Exists"
                                              Label="Bubbling" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.MineralOil.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.MineralOil.Exists"
                                              Label="Mineral Oil" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.Alcoholic.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.Alcoholic.Exists"
                                              Label="Alcoholic" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.Addictive.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.Addictive.Exists"
                                              Label="Addictive" LabelPosition="LabelPosition.Start"/>
-                                <MudCheckBox @bind-Checked="@PenisData.Cum.Psychoactive.Exists"
+                                <MudCheckBox @bind-Value="@PenisData.Cum.Psychoactive.Exists"
                                              Label="Psychoactive" LabelPosition="LabelPosition.Start"/>
                             </MudPaper>
                         </td>

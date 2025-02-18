@@ -96,7 +96,8 @@
 </MudLayout>
 
 @code {
-    private static string Version { get; } = FileVersionInfo.GetVersionInfo(typeof(Program).Assembly.Location).ProductVersion!;
+    // Make sure to also update .csproj file with the correct version
+    private const string Version = "v2.6.0";
 
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;

@@ -65,39 +65,39 @@
             </MudPaper>
             <h4 style="text-align: center"><b>Personality</b></h4>
             <MudPaper Class="d-flex justify-content-center mr-10 pa-4" Elevation="0">
-                <MudCheckBox @bind-Checked="@Personality.Confident.Exists" Label="Confident"
+                <MudCheckBox @bind-Value="@Personality.Confident.Exists" Label="Confident"
                              LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Shy.Exists" Label="Shy"
+                <MudCheckBox @bind-Value="@Personality.Shy.Exists" Label="Shy"
                              LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Kind.Exists" Label="Kind"
+                <MudCheckBox @bind-Value="@Personality.Kind.Exists" Label="Kind"
                              LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Selfish.Exists" Label="Selfish"
+                <MudCheckBox @bind-Value="@Personality.Selfish.Exists" Label="Selfish"
                              LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Naive.Exists" Label="Naive"
-                             LabelPosition="LabelPosition.Start" />
-            </MudPaper>
-            <MudPaper Class="d-flex justify-content-center mr-10 pa-4" Elevation="0">
-                <MudCheckBox @bind-Checked="@Personality.Cynical.Exists" Label="Cynical"
-                             LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Brave.Exists" Label="Brave"
-                             LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Cowardly.Exists" Label="Cowardly"
-                             LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Lewd.Exists" Label="Lewd"
-                             LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Innocent.Exists" Label="Innocent"
+                <MudCheckBox @bind-Value="@Personality.Naive.Exists" Label="Naive"
                              LabelPosition="LabelPosition.Start" />
             </MudPaper>
             <MudPaper Class="d-flex justify-content-center mr-10 pa-4" Elevation="0">
-                <MudCheckBox @bind-Checked="@Personality.Prude.Exists" Label="Prude"
+                <MudCheckBox @bind-Value="@Personality.Cynical.Exists" Label="Cynical"
                              LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Lisp.Exists" Label="Lisp"
+                <MudCheckBox @bind-Value="@Personality.Brave.Exists" Label="Brave"
                              LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Stutter.Exists" Label="Stutter"
+                <MudCheckBox @bind-Value="@Personality.Cowardly.Exists" Label="Cowardly"
                              LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Mute.Exists" Label="Mute"
+                <MudCheckBox @bind-Value="@Personality.Lewd.Exists" Label="Lewd"
                              LabelPosition="LabelPosition.Start" />
-                <MudCheckBox @bind-Checked="@Personality.Slovenly.Exists" Label="Slovenly"
+                <MudCheckBox @bind-Value="@Personality.Innocent.Exists" Label="Innocent"
+                             LabelPosition="LabelPosition.Start" />
+            </MudPaper>
+            <MudPaper Class="d-flex justify-content-center mr-10 pa-4" Elevation="0">
+                <MudCheckBox @bind-Value="@Personality.Prude.Exists" Label="Prude"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Value="@Personality.Lisp.Exists" Label="Lisp"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Value="@Personality.Stutter.Exists" Label="Stutter"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Value="@Personality.Mute.Exists" Label="Mute"
+                             LabelPosition="LabelPosition.Start" />
+                <MudCheckBox @bind-Value="@Personality.Slovenly.Exists" Label="Slovenly"
                              LabelPosition="LabelPosition.Start" />
             </MudPaper>
             @*Cannot delete player or special NPCs*@
