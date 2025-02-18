@@ -5,7 +5,7 @@ LTSaveEd is a save editor for the game _Lilith's Throne_ built using Blazor WebA
 
 ## Requirements
 
-Requires a browser that supports WASM (most modern browsers do) if you want to run the save editor. Requires .NET Core 8.0
+Requires a browser that supports WASM (most modern browsers do) if you want to run the save editor. Requires .NET Core 9.0
 if you want to compile and run the program yourself.
 
 ## How To Use
