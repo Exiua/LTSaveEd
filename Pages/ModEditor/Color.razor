@@ -199,7 +199,7 @@
     private const int TooltipDelay = 500; // Delay for tooltips in milliseconds
     
     private bool _separateCoveringIconColor;
-    private ColorMod ColorMod { get; set; } = ColorMod.New();
+    private ColorMod ColorMod { get; set; } = Mod.New<ColorMod>();
     
     private ColorTagsElement ColorTagsElement => ColorMod.ColorTags;
 
@@ -247,7 +247,7 @@
 
     protected override bool LoadModDataHandler(XDocument doc)
     {
-        ColorMod = ColorMod.Load(doc);
+        ColorMod = Mod.Load<ColorMod>(doc);
         SeparateCoveringIconColor = ColorMod.CoveringIconColour.Exists;
         StateHasChanged();
         return true;

@@ -16,6 +16,12 @@ public class ColorMod : Mod
     
     private XElement FormattingNamesElement { get; set; }
 
+    // Internal use only, to create a new mod document.
+    public ColorMod()
+    {
+        
+    }
+    
     private ColorMod(XDocument root) : base(root)
     {
         if (root.Root is null || root.Root.Name.LocalName != "colour")
@@ -87,7 +93,7 @@ public class ColorMod : Mod
                                              .Select(e => new XmlCData<string>(e.GetCData()))
                                              .ToList();
         
-        // QUickly print all values
+        #if DEBUG
         Console.WriteLine("Metallic: " + Metallic.Value);
         Console.WriteLine("Name: " + Name.Value);
         Console.WriteLine("Colour: " + Colour.Value);
@@ -95,9 +101,10 @@ public class ColorMod : Mod
         Console.WriteLine("CoveringIconColour: " + CoveringIconColour.Value);
         Console.WriteLine("FormattingNames: " + FormattingNames.Select(fn => fn.Value).ToFormattedString());
         Console.WriteLine("ColorTags: " + ColorTags);
+        #endif
     }
-    
-    public static ColorMod New()
+
+    protected override XDocument CreateNewModDocument()
     {
         var root = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
             new XElement("colour",
@@ -112,12 +119,7 @@ public class ColorMod : Mod
             )
         );
         
-        return new ColorMod(root);
-    }
-    
-    public static ColorMod Load(XDocument root)
-    {
-        return new ColorMod(root);
+        return root;
     }
 
     public void AddNewFormattingName()
