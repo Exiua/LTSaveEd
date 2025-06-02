@@ -10,6 +10,8 @@ public class ApplicationState
     public ApplicationStateLocation Location { get; set; } = ApplicationStateLocation.SaveEditor;
     public Func<Task<MemoryStream>>? SaveModDataHandler { get; set; }
     public Func<XDocument, bool>? LoadModDataHandler { get; set; }
+    
+    public event Action? LocationChanged;
 
     public void UpdateLocation(NavigationManager navigationManager)
     {
@@ -26,6 +28,8 @@ public class ApplicationState
         {
             Location = ApplicationStateLocation.SaveEditor;
         }
+        
+        LocationChanged?.Invoke();
     }
 
     public async Task<MemoryStream> SaveMod()
