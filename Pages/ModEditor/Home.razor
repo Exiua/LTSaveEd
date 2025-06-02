@@ -1,0 +1,33 @@
+﻿@page "/mod-editor"
+
+@using System.Xml.Linq
+@using LTSaveEd.Models.ModEditor
+
+@inherits BaseModEditorPage
+
+<PageTitle>Mod Editor</PageTitle>
+
+<h1>Welcome</h1>
+
+@* <div style="display: none;"><img src="https://visitor-badge.laobi.icu/badge?page_id=Exiua.LTSaveEd&format=true" alt="visitor badge"/></div> *@
+<div>Click the three horizontal bars in the top-left corner to access the 
+    mod editor menu which shows the various mods that can be created or edited.</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        StateHasChanged();
+    }
+
+    protected override bool LoadModDataHandler(XDocument doc)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override Mod GetMod()
+    {
+        throw new NotImplementedException();
+    }
+
+}

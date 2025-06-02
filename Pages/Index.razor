@@ -1,0 +1,12 @@
+﻿@page "/"
+
+@inject NavigationManager NavigationManager
+
+<h3>Loading...</h3>
+
+@code {
+    protected override void OnInitialized()
+    {
+        NavigationManager.NavigateTo("home", replace: true);
+    }
+}

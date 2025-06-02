@@ -59,4 +59,9 @@ public class ColorTagsElement : NullableXmlObject
             Exists = false;
         }
     }
+    
+    public bool HasTag(ColorTag tag)
+    {
+        return GetTagNode(tag) is not null;
+    }
 }

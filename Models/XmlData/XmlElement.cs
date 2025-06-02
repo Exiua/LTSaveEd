@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
 namespace LTSaveEd.Models.XmlData;
 
@@ -24,9 +25,19 @@ public class XmlElement<T>
             }
             return (T)(object)_element.Value;
         }
-        set => _element.Value = value?.ToString() ?? throw new InvalidOperationException();
+        set => _element.Value = GetValueAsString(value);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static string GetValueAsString(T value)
+    {
+        return value switch
+        {
+            bool boolValue => boolValue.ToString().ToLower(),
+            _ => value?.ToString() ?? throw new InvalidOperationException("Value cannot be null.")
+        };
+    }
+    
     public XmlElement(XElement element)
     {
         _element = element;

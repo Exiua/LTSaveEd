@@ -11,8 +11,7 @@
         ApplicationState.UpdateLocation(NavigationManager);
         if (!SaveData.Initialized)
         {
-            // TODO: Uncomment this line to redirect to the home page if SaveData is not initialized
-            //NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("home", replace: true);
         }
     }
 }

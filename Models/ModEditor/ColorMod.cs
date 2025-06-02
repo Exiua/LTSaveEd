@@ -1,22 +1,29 @@
 ﻿using System.Xml.Linq;
+using LTSaveEd.ExtensionMethods;
 using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.ModEditor;
 
-public class ColorMod
+public class ColorMod : Mod
 {
     public XmlElement<bool> Metallic { get; }
-    public XmlElement<string> Name { get; }
+    public XmlCData<string> Name { get; }
     public XmlElement<string> Colour { get; }
     public XmlElement<string> LightColour { get; }
     public NullableXmlElement<string> CoveringIconColour { get; }
-    public List<XmlElement<string>> FormattingNames { get; }
+    public List<XmlCData<string>> FormattingNames { get; }
+    public ColorTagsElement ColorTags { get; }
     
-    private XElement ColorElement { get; set; }
+    private XElement FormattingNamesElement { get; set; }
 
-    private ColorMod(XElement element)
+    private ColorMod(XDocument root) : base(root)
     {
-        ColorElement = element;
+        if (root.Root is null || root.Root.Name.LocalName != "colour")
+        {
+            throw new InvalidOperationException("Invalid XML structure: Root element must be 'colour'.");
+        }
+        
+        var element = root.Root;
         // TODO: Finish the rest of the properties
         XElement? metallicNode = null;
         XElement? nameNode = null;
@@ -24,6 +31,7 @@ public class ColorMod
         XElement? lightColourNode = null;
         XElement? coveringIconColourNode = null;
         XElement? formattingNamesNode = null;
+        XElement? colorTags = null;
         var children = element.Elements();
         foreach (var child in children)
         {
@@ -47,17 +55,20 @@ public class ColorMod
                 case "formattingNames":
                     formattingNamesNode = child;
                     break;
+                case "tags":
+                    colorTags = child;
+                    break;
             }
         }
         
         // Throw exception if any of the required nodes are missing
-        if (metallicNode is null || nameNode is null || colourNode is null || lightColourNode is null)
+        if (metallicNode is null || nameNode is null || colourNode is null || lightColourNode is null || formattingNamesNode is null)
         {
             throw new InvalidOperationException("Missing required nodes in the XML element.");
         }
         
         Metallic = new XmlElement<bool>(metallicNode);
-        Name = new XmlElement<string>(nameNode);
+        Name = new XmlCData<string>(nameNode.GetCData());
         Colour = new XmlElement<string>(colourNode);
         LightColour = new XmlElement<string>(lightColourNode);
         CoveringIconColour = new NullableXmlElement<string>(element, "coveringIconColour");
@@ -66,30 +77,54 @@ public class ColorMod
             CoveringIconColour.Initialize(coveringIconColourNode);
         }
         
-        FormattingNames = formattingNamesNode?.Elements("name")
-            .Select(e => new XmlElement<string>(e))
-            .ToList() ?? [];
+        ColorTags = new ColorTagsElement(element);
+        if (colorTags is not null)
+        {
+            ColorTags.Initialize(colorTags);
+        }
+        
+        FormattingNamesElement = formattingNamesNode;
+        FormattingNames = formattingNamesNode.Elements("name")
+                                             .Select(e => new XmlCData<string>(e.GetCData()))
+                                             .ToList();
     }
     
     public static ColorMod New()
     {
-        var root = new XElement("colour",
-            new XDeclaration("1.0", "UTF-8", "no"),
-            new XElement("metallic", "false"),
-            new XElement("name", new XCData("white")),
-            new XElement("colour", "ffffff"),
-            new XElement("lightColour", "ffffff"),
-            new XElement("coveringIconColour", "ffffff"),
-            new XElement("formattingNames", 
-                new XElement("name", new XCData("white"))
+        var root = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
+            new XElement("colour",
+                new XElement("metallic", "false"),
+                new XElement("name", new XCData("white")),
+                new XElement("colour", "ffffff"),
+                new XElement("lightColour", "ffffff"),
+                new XElement("coveringIconColour", "ffffff"),
+                new XElement("formattingNames",
+                    new XElement("name", new XCData("white"))
+                )
             )
         );
         
         return new ColorMod(root);
     }
     
-    public static ColorMod Load(XElement element)
+    public static ColorMod Load(XDocument root)
     {
-        return new ColorMod(element);
+        return new ColorMod(root);
+    }
+
+    public void AddNewFormattingName()
+    {
+        var cdata = new XCData("NewFormattingName");
+        var newNameElement = new XElement("name", cdata);
+        FormattingNamesElement.Add(newNameElement);
+        FormattingNames.Add(new XmlCData<string>(cdata));
+    }
+
+    public void PopFormattingName()
+    {
+        if (FormattingNames.Count > 1)
+        {
+            FormattingNames.Pop();
+        }
     }
 }

@@ -1,4 +1,11 @@
-﻿@page "/"
+﻿@page "/home"
+
+@using LTSaveEd.Models
+
+@inherits BaseSaveEditorPage
+
+@inject ApplicationState ApplicationState
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 
@@ -11,5 +18,11 @@
 
 @code
 {
-    
+    protected override void OnInitialized()
+    {
+        // Do not call base.OnInitialized() here, as it will cause an infinite redirect loop to the home page
+        //base.OnInitialized();
+        ApplicationState.UpdateLocation(NavigationManager);
+        StateHasChanged();
+    }
 }

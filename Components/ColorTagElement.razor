@@ -1,0 +1,35 @@
+﻿@using LTSaveEd.Models.ModEditor
+
+<MudCheckBox Label="@Label" @bind-Value="Checked"/>
+
+@code {
+    private bool _checked;
+    
+    [Parameter] public required string Label { get; set; }
+    [Parameter] public required ColorTag ColorTag { get; set; }
+    [Parameter] public required ColorTagsElement ColorTagsElement { get; set; }
+
+    public bool Checked
+    {
+        get => _checked;
+        set
+        {
+            _checked = value;
+            if (value)
+            {
+                ColorTagsElement.AddTag(ColorTag);
+            }
+            else
+            {
+                ColorTagsElement.RemoveTag(ColorTag);
+            }
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Checked = ColorTagsElement.HasTag(ColorTag);
+    }
+
+}

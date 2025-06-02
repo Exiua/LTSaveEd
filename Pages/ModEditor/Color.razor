@@ -1,7 +1,10 @@
 ﻿@page "/mod-editor/color"
 
+@using System.Xml.Linq
 @using LTSaveEd.Models.ModEditor
 @using LTSaveEd.Components
+
+@inherits BaseModEditorPage
 
 <h3>Color</h3>
 
@@ -24,6 +27,110 @@
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <ColorPicker @bind-Value="ColorMod.CoveringIconColour.Value" Label="Covering Icon Colour" Disabled="@(!SeparateCoveringIconColor)"/>
             </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudSimpleTable Elevation="0">
+                    <tbody>
+                    <tr class="d-flex flex-row">
+                        <td class="d-flex flex-column">
+                            <MudText>Formatting Names</MudText>
+                            <MudPaper Class="d-flex flex-column overflow-x-auto">
+                                <MudSimpleTable Elevation="0">
+                                    <tbody>
+                                    @foreach (var name in ColorMod.FormattingNames)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <MudTextField @bind-Value="@name.Value"/>
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </MudSimpleTable>
+                            </MudPaper>
+                        </td>
+                        <td class="d-flex flex-column">
+                            <MudIconButton Icon="@Icons.Material.Filled.Add" OnClick="AddFormattingName"/>
+                            <MudIconButton Icon="@Icons.Material.Filled.Remove" OnClick="RemoveFormattingName"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </MudSimpleTable>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4 flex-column" Elevation="0">
+                <MudText>Color Tags</MudText>
+                <MudSimpleTable>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <ColorTagElement Label="Skin" ColorTag="ColorTag.Skin" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Slime" ColorTag="ColorTag.SlimeNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Slime" ColorTag="ColorTag.SlimeDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Feather" ColorTag="ColorTag.FeatherNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Feather" ColorTag="ColorTag.FeatherDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ColorTagElement Label="Fur" ColorTag="ColorTag.Fur" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Scale" ColorTag="ColorTag.Scale" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Horn" ColorTag="ColorTag.Horn" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Antler" ColorTag="ColorTag.Antler" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Hair" ColorTag="ColorTag.Hair" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ColorTagElement Label="Generic Covering" ColorTag="ColorTag.GenericCovering" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Makeup" ColorTag="ColorTag.Makeup" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Iris" ColorTag="ColorTag.IrisNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Iris" ColorTag="ColorTag.IrisDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Predator Iris" ColorTag="ColorTag.IrisPredatorNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ColorTagElement Label="Dyed Predator Iris" ColorTag="ColorTag.IrisPredatorDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Pupil" ColorTag="ColorTag.PupilNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Pupil" ColorTag="ColorTag.PupilDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Sclera" ColorTag="ColorTag.ScleraNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Sclera" ColorTag="ColorTag.ScleraDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </MudSimpleTable>
+            </MudPaper>
         </MudCardContent>
     </MudForm>
 </MudCard>
@@ -31,6 +138,8 @@
 @code {
     private bool _separateCoveringIconColor;
     private ColorMod ColorMod { get; set; } = ColorMod.New();
+    
+    private ColorTagsElement ColorTagsElement => ColorMod.ColorTags;
 
     private bool SeparateCoveringIconColor
     {
@@ -56,10 +165,30 @@
                 ColorMod.CoveringIconColour.Value = value;
                 StateHasChanged();
             }
-
-            Console.WriteLine("Color changed to: " + value);
-            Console.WriteLine("Covering Icon Color: " + ColorMod.CoveringIconColour.Value);
         }
+    }
+    
+    private void AddFormattingName()
+    {
+        ColorMod.AddNewFormattingName();
+    }
+    
+    private void RemoveFormattingName()
+    {
+        ColorMod.PopFormattingName();
+    }
+
+    protected override Mod GetMod()
+    {
+        return ColorMod;
+    }
+
+    protected override bool LoadModDataHandler(XDocument doc)
+    {
+        ColorMod = ColorMod.Load(doc);
+        SeparateCoveringIconColor = ColorMod.CoveringIconColour.Value != ColorMod.Colour.Value;
+        StateHasChanged();
+        return true;
     }
 
 }
