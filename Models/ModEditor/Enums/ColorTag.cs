@@ -1,4 +1,4 @@
-﻿namespace LTSaveEd.Models.ModEditor;
+﻿namespace LTSaveEd.Models.ModEditor.Enums;
 
 public enum ColorTag
 {

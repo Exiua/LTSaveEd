@@ -1,7 +1,8 @@
 ﻿using System.Xml.Linq;
+using LTSaveEd.Models.ModEditor.Enums;
 using LTSaveEd.Models.XmlData;
 
-namespace LTSaveEd.Models.ModEditor;
+namespace LTSaveEd.Models.ModEditor.Xml;
 
 public class ColorTagsElement : NullableXmlObject
 {
