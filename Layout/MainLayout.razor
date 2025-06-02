@@ -6,7 +6,7 @@
 @inherits LayoutComponentBase
 
 @inject ISnackbar Snackbar
-@inject SaveData SaveData
+@inject ApplicationState ApplicationState
 @inject FileHandler FileHandler
 @inject Settings Settings
 
@@ -111,6 +111,7 @@
         get => Settings.DarkMode;
         set => Settings.DarkMode = value;
     }
+    private SaveData SaveData => ApplicationState.SaveData;
 
     /// <summary>
     ///     Toggles the drawer open/closed

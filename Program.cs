@@ -14,7 +14,7 @@ builder.Services.AddScoped(_ => new HttpClient
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 });
 builder.Services.AddMudServices();
-builder.Services.AddSingleton<SaveData>();
+builder.Services.AddSingleton<ApplicationState>();
 builder.Services.AddSingleton<Settings>();
 builder.Services.AddScoped<LocalStorageAccessor>();
 builder.Services.AddScoped<FileHandler>();

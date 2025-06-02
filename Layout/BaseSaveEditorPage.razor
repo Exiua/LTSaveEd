@@ -1,0 +1,18 @@
+﻿@using LTSaveEd.Models
+
+@inject NavigationManager NavigationManager
+@inject ApplicationState ApplicationState
+
+@code {
+    protected SaveData SaveData => ApplicationState.SaveData;
+    
+    protected override void OnInitialized()
+    {
+        ApplicationState.UpdateLocation(NavigationManager);
+        if (!SaveData.Initialized)
+        {
+            // TODO: Uncomment this line to redirect to the home page if SaveData is not initialized
+            //NavigationManager.NavigateTo("/");
+        }
+    }
+}
