@@ -253,7 +253,9 @@
             return;
         }
         
-        _currentState = EditorState.Loading;
+        // Changing the view to show loading icon reloads the page's state, so we don't change _currentState here otherwise
+        // it causes the page to lose the loaded mod data
+        //_currentState = EditorState.Loading;
         await Task.Delay(100);
         var oldName = Filename;
         Filename = file.Name;

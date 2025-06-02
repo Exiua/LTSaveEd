@@ -24,7 +24,6 @@ public class ColorMod : Mod
         }
         
         var element = root.Root;
-        // TODO: Finish the rest of the properties
         XElement? metallicNode = null;
         XElement? nameNode = null;
         XElement? colourNode = null;
@@ -87,6 +86,15 @@ public class ColorMod : Mod
         FormattingNames = formattingNamesNode.Elements("name")
                                              .Select(e => new XmlCData<string>(e.GetCData()))
                                              .ToList();
+        
+        // QUickly print all values
+        Console.WriteLine("Metallic: " + Metallic.Value);
+        Console.WriteLine("Name: " + Name.Value);
+        Console.WriteLine("Colour: " + Colour.Value);
+        Console.WriteLine("LightColour: " + LightColour.Value);
+        Console.WriteLine("CoveringIconColour: " + CoveringIconColour.Value);
+        Console.WriteLine("FormattingNames: " + FormattingNames.Select(fn => fn.Value).ToFormattedString());
+        Console.WriteLine("ColorTags: " + ColorTags);
     }
     
     public static ColorMod New()

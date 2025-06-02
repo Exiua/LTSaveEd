@@ -64,4 +64,11 @@ public class ColorTagsElement : NullableXmlObject
     {
         return GetTagNode(tag) is not null;
     }
+
+    public override string ToString()
+    {
+        return TagsNode is null 
+            ? "[]" 
+            : "[" + string.Join(", ", TagsNode.Elements("tag").Select(t => t.Value)) + "]";
+    }
 }

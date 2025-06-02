@@ -186,7 +186,7 @@
     protected override bool LoadModDataHandler(XDocument doc)
     {
         ColorMod = ColorMod.Load(doc);
-        SeparateCoveringIconColor = ColorMod.CoveringIconColour.Value != ColorMod.Colour.Value;
+        SeparateCoveringIconColor = ColorMod.CoveringIconColour.Exists;
         StateHasChanged();
         return true;
     }

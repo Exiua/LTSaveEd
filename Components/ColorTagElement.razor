@@ -32,4 +32,11 @@
         Checked = ColorTagsElement.HasTag(ColorTag);
     }
 
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        // Ensure the checkbox reflects the current state of the ColorTagsElement
+        Checked = ColorTagsElement.HasTag(ColorTag);
+    }
+
 }
