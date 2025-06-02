@@ -8,31 +8,81 @@
 
 <h3>Color</h3>
 
+@*Tooltips are adapted from the example mods help text from the game files*@
 <MudCard>
     <MudForm>
         <MudCardContent>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <MudTextField @bind-Value="ColorMod.Name.Value" Label="Name"/>
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudTextField @bind-Value="ColorMod.Name.Value" Label="Name"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The name of this colour.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <MudCheckBox Label="Metallic" @bind-Value="ColorMod.Metallic.Value"/>
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudCheckBox Label="Metallic" @bind-Value="ColorMod.Metallic.Value"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>Whether this is a metallic colour or not.</MudText>
+                        <MudText>If metallic, the game generates a metallic effect for this colour's icon.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
                 <MudCheckBox Label="Separate Covering Icon Color" @bind-Value="SeparateCoveringIconColor"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <ColorPicker @bind-Value="Colour" Label="Color" />
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <ColorPicker @bind-Value="Colour" Label="Color"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>This colour's hex code, which is used when the game is set in the default 'dark' theme.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <ColorPicker @bind-Value="ColorMod.LightColour.Value" Label="Light Colour"/>
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <ColorPicker @bind-Value="ColorMod.LightColour.Value" Label="Light Colour"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>This colour's hex code, which is used when the game is set in the 'light' theme.</MudText>
+                        <MudText>In the case of colours intended for item or race recolouring, this will almost always be the same as the 'colour' value above.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <ColorPicker @bind-Value="ColorMod.CoveringIconColour.Value" Label="Covering Icon Colour" Disabled="@(!SeparateCoveringIconColor)"/>
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <ColorPicker @bind-Value="ColorMod.CoveringIconColour.Value" Label="Covering Icon Colour" Disabled="@(!SeparateCoveringIconColor)"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>This colour's hex code to be used when displaying this colour's icon in covering transformation screens.</MudText>
+                        <MudText>You can omit this field entirely by unchecking the 'Separate Covering Icon Color' checkbox (will use the color value)</MudText>
+                    </TooltipContent>
+                </MudTooltip>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <MudSimpleTable Elevation="0">
                     <tbody>
                     <tr class="d-flex flex-row">
                         <td class="d-flex flex-column">
-                            <MudText>Formatting Names</MudText>
+                            <MudPaper Class="d-flex flex-row gap-2" Elevation="0">
+                                <MudText>Formatting Names</MudText>
+                                <MudTooltip>
+                                    <ChildContent>
+                                        <MudIcon Icon="@Icons.Material.Filled.Help" />
+                                    </ChildContent>
+                                    <TooltipContent>
+                                        <MudText>Here you can define names to be recognised by the parser for formatting.</MudText>
+                                        <MudText>For example, after defining a colour's formattingNames as 'fuchsia', the parsing command '[style.colourFuchsia(This is coloured text!)]' will now work.</MudText>
+                                    </TooltipContent>
+                                </MudTooltip>
+                            </MudPaper>
                             <MudPaper Class="d-flex flex-column overflow-x-auto">
                                 <MudSimpleTable Elevation="0">
                                     <tbody>
@@ -57,7 +107,17 @@
                 </MudSimpleTable>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4 flex-column" Elevation="0">
-                <MudText>Color Tags</MudText>
+                <MudPaper Class="d-flex flex-row gap-2" Elevation="0">
+                    <MudText>Color Tags</MudText>
+                    <MudTooltip>
+                        <ChildContent>
+                            <MudIcon Icon="@Icons.Material.Filled.Help" />
+                        </ChildContent>
+                        <TooltipContent>
+                            <MudText>Tags which determine whether or not this colour is added to the game's covering colours (for fur, eyes, skin, etc.)</MudText>
+                        </TooltipContent>
+                    </MudTooltip>
+                </MudPaper>
                 <MudSimpleTable>
                     <tbody>
                     <tr>
@@ -136,6 +196,8 @@
 </MudCard>
 
 @code {
+    private const int TooltipDelay = 500; // Delay for tooltips in milliseconds
+    
     private bool _separateCoveringIconColor;
     private ColorMod ColorMod { get; set; } = ColorMod.New();
     

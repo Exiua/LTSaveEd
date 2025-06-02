@@ -7,8 +7,8 @@ namespace LTSaveEd.Layout;
 
 public abstract class BaseModEditorPage : ComponentBase
 {
-    [Inject] protected NavigationManager NavigationManager { get; set; }
-    [Inject] protected ApplicationState ApplicationState { get; set; }
+    [Inject] protected NavigationManager NavigationManager { get; set; } = null!;
+    [Inject] protected ApplicationState ApplicationState { get; set; } = null!;
     
     protected override void OnInitialized()
     {
