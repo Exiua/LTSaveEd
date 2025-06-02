@@ -3,7 +3,7 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.SpellData;
 
-public class NullableSpell(XElement spellUpgradesNode, string type, string nodeName = "upgrade") : NullableXmlAttribute(spellUpgradesNode)
+public class NullableSpell(XElement spellUpgradesNode, string type, string nodeName = "upgrade") : NullableXmlObject(spellUpgradesNode)
 {
     private string Type { get; } = type;
     private string NodeName { get; } = nodeName;

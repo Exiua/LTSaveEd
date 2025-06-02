@@ -3,7 +3,7 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData;
 
-public class FetishOwnedAttribute(XElement parent) : NullableXmlAttribute(parent)
+public class FetishOwnedAttribute(XElement parent) : NullableXmlObject(parent)
 {
     protected override XAttribute CreateNode()
     {

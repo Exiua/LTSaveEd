@@ -7,7 +7,7 @@ public class Clothing : InventoryElement
 {
     public XmlAttribute<bool> EnchantmentKnown { get; }
     public XmlAttribute<bool> IsDirty { get; }
-    public XmlText[] Colors { get; }
+    public XmlElement<string>[] Colors { get; }
     
     public Clothing(XElement clothingNode) : base(clothingNode)
     {
@@ -15,11 +15,11 @@ public class Clothing : InventoryElement
         IsDirty = new XmlAttribute<bool>(clothingNode.Attribute("isDirty")!);
         var colorsNode = clothingNode.Element("colours")!;
         var colors = colorsNode.Elements().ToArray();
-        Colors = new XmlText[colors.Length];
+        Colors = new XmlElement<string>[colors.Length];
         for (var i = 0; i < colors.Length; i++)
         {
             var color = colors[i];
-            Colors[i] = new XmlText(color);
+            Colors[i] = new XmlElement<string>(color);
         }
     }
 }

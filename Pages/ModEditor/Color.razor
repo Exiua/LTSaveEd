@@ -1,0 +1,65 @@
+﻿@page "/mod-editor/color"
+
+@using LTSaveEd.Models.ModEditor
+@using LTSaveEd.Components
+
+<h3>Color</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTextField @bind-Value="ColorMod.Name.Value" Label="Name"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudCheckBox Label="Metallic" @bind-Value="ColorMod.Metallic.Value"/>
+                <MudCheckBox Label="Separate Covering Icon Color" @bind-Value="SeparateCoveringIconColor"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <ColorPicker @bind-Value="Colour" Label="Color" />
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <ColorPicker @bind-Value="ColorMod.LightColour.Value" Label="Light Colour"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <ColorPicker @bind-Value="ColorMod.CoveringIconColour.Value" Label="Covering Icon Colour" Disabled="@(!SeparateCoveringIconColor)"/>
+            </MudPaper>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private bool _separateCoveringIconColor;
+    private ColorMod ColorMod { get; set; } = ColorMod.New();
+
+    private bool SeparateCoveringIconColor
+    {
+        get => _separateCoveringIconColor;
+        set
+        {
+            _separateCoveringIconColor = value;
+            if (!value)
+            {
+                ColorMod.CoveringIconColour.Value = Colour; // Sync covering icon color with main color
+            }
+        }
+    }
+
+    private string Colour
+    {
+        get => ColorMod.Colour.Value;
+        set
+        {
+            ColorMod.Colour.Value = value;
+            if (!SeparateCoveringIconColor)
+            {
+                ColorMod.CoveringIconColour.Value = value;
+                StateHasChanged();
+            }
+
+            Console.WriteLine("Color changed to: " + value);
+            Console.WriteLine("Covering Icon Color: " + ColorMod.CoveringIconColour.Value);
+        }
+    }
+
+}
