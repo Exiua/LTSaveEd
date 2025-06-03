@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using LTSaveEd.Models.ModEditor.Enums;
+using LTSaveEd.Models.Enums.Game;
 using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.ModEditor.Xml;

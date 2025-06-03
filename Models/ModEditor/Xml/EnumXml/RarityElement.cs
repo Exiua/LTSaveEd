@@ -4,11 +4,11 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.ModEditor.Xml.EnumXml;
 
-public class CombatMoveTypeElement(XElement element) : XmlEnum<XElement, CombatMoveType>(element)
+public class RarityElement(XElement element) : XmlEnum<XElement, Rarity>(element)
 {
-    public override CombatMoveType Value
+    public override Rarity Value
     {
-        get => CombatMoveTypeExtensions.FromValue(Element.Value);
+        get => RarityExtensions.FromValue(Element.Value);
         set => Element.Value = value.GetValue();
     }
 }

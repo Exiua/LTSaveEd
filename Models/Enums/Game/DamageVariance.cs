@@ -1,4 +1,4 @@
-﻿namespace LTSaveEd.Models.ModEditor.Enums;
+﻿namespace LTSaveEd.Models.Enums.Game;
 
 public enum DamageVariance
 {
