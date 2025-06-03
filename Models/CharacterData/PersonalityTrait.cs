@@ -3,7 +3,7 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData;
 
-public class PersonalityTrait : NullableXmlAttribute
+public class PersonalityTrait : NullableXmlObject
 {
     private readonly string _value;
     private readonly List<PersonalityTrait> _incompatibleTraits;

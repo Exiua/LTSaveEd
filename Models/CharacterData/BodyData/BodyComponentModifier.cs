@@ -3,7 +3,7 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData.BodyData;
 
-public class BodyComponentModifier : NullableXmlAttribute
+public class BodyComponentModifier : NullableXmlObject
 {
     private string AttributeName { get; }
     private string ModifierName { get; }

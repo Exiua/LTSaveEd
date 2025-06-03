@@ -87,4 +87,9 @@ public static class XDocumentExtensionMethods
         var current = element.GetElementByChildSequence(childNames[..^1]);
         return current.Attribute(childNames[^1]) ?? throw new Exception($"Attribute not found: {childNames[^1]}");
     }
+
+    public static XCData GetCData(this XElement element)
+    {
+        return (XCData)element.FirstNode!;
+    }
 }

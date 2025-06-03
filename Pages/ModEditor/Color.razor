@@ -1,0 +1,258 @@
+﻿@page "/mod-editor/color"
+
+@using System.Xml.Linq
+@using LTSaveEd.Models.ModEditor
+@using LTSaveEd.Components
+@using LTSaveEd.Models.Enums.Game
+@using LTSaveEd.Models.ModEditor.Xml
+
+@inherits BaseModEditorPage
+
+<h3>Color</h3>
+
+@*Tooltips are adapted from the example mods help text from the game files*@
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudTextField @bind-Value="ColorMod.Name.Value" Label="Name"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The name of this colour.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudCheckBox Label="Metallic" @bind-Value="ColorMod.Metallic.Value"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>Whether this is a metallic colour or not.</MudText>
+                        <MudText>If metallic, the game generates a metallic effect for this colour's icon.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+                <MudCheckBox Label="Separate Covering Icon Color" @bind-Value="SeparateCoveringIconColor"/>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <ColorPicker @bind-Value="Colour" Label="Color"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>This colour's hex code, which is used when the game is set in the default 'dark' theme.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <ColorPicker @bind-Value="ColorMod.LightColour.Value" Label="Light Colour"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>This colour's hex code, which is used when the game is set in the 'light' theme.</MudText>
+                        <MudText>In the case of colours intended for item or race recolouring, this will almost always be the same as the 'colour' value above.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <ColorPicker @bind-Value="ColorMod.CoveringIconColour.Value" Label="Covering Icon Colour" Disabled="@(!SeparateCoveringIconColor)"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>This colour's hex code to be used when displaying this colour's icon in covering transformation screens.</MudText>
+                        <MudText>You can omit this field entirely by unchecking the 'Separate Covering Icon Color' checkbox (will use the color value)</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudSimpleTable Elevation="0">
+                    <tbody>
+                    <tr class="d-flex flex-row">
+                        <td class="d-flex flex-column">
+                            <MudPaper Class="d-flex flex-row gap-2" Elevation="0">
+                                <MudText>Formatting Names</MudText>
+                                <MudTooltip>
+                                    <ChildContent>
+                                        <MudIcon Icon="@Icons.Material.Filled.Help" />
+                                    </ChildContent>
+                                    <TooltipContent>
+                                        <MudText>Here you can define names to be recognised by the parser for formatting.</MudText>
+                                        <MudText>For example, after defining a colour's formattingNames as 'fuchsia', the parsing command '[style.colourFuchsia(This is coloured text!)]' will now work.</MudText>
+                                    </TooltipContent>
+                                </MudTooltip>
+                            </MudPaper>
+                            <MudPaper Class="d-flex flex-column overflow-x-auto">
+                                <MudSimpleTable Elevation="0">
+                                    <tbody>
+                                    @foreach (var name in ColorMod.FormattingNames)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <MudTextField @bind-Value="@name.Value"/>
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </MudSimpleTable>
+                            </MudPaper>
+                        </td>
+                        <td class="d-flex flex-column">
+                            <MudIconButton Icon="@Icons.Material.Filled.Add" OnClick="AddFormattingName"/>
+                            <MudIconButton Icon="@Icons.Material.Filled.Remove" OnClick="RemoveFormattingName"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </MudSimpleTable>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4 flex-column" Elevation="0">
+                <MudPaper Class="d-flex flex-row gap-2" Elevation="0">
+                    <MudText>Color Tags</MudText>
+                    <MudTooltip>
+                        <ChildContent>
+                            <MudIcon Icon="@Icons.Material.Filled.Help" />
+                        </ChildContent>
+                        <TooltipContent>
+                            <MudText>Tags which determine whether or not this colour is added to the game's covering colours (for fur, eyes, skin, etc.)</MudText>
+                        </TooltipContent>
+                    </MudTooltip>
+                </MudPaper>
+                <MudSimpleTable>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <ColorTagElement Label="Skin" ColorTag="ColorTag.Skin" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Slime" ColorTag="ColorTag.SlimeNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Slime" ColorTag="ColorTag.SlimeDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Feather" ColorTag="ColorTag.FeatherNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Feather" ColorTag="ColorTag.FeatherDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ColorTagElement Label="Fur" ColorTag="ColorTag.Fur" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Scale" ColorTag="ColorTag.Scale" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Horn" ColorTag="ColorTag.Horn" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Antler" ColorTag="ColorTag.Antler" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Hair" ColorTag="ColorTag.Hair" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ColorTagElement Label="Generic Covering" ColorTag="ColorTag.GenericCovering" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Makeup" ColorTag="ColorTag.Makeup" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Iris" ColorTag="ColorTag.IrisNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Iris" ColorTag="ColorTag.IrisDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Predator Iris" ColorTag="ColorTag.IrisPredatorNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ColorTagElement Label="Dyed Predator Iris" ColorTag="ColorTag.IrisPredatorDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Pupil" ColorTag="ColorTag.PupilNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Pupil" ColorTag="ColorTag.PupilDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Natural Sclera" ColorTag="ColorTag.ScleraNatural" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                        <td>
+                            <ColorTagElement Label="Dyed Sclera" ColorTag="ColorTag.ScleraDye" ColorTagsElement="ColorTagsElement"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </MudSimpleTable>
+            </MudPaper>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private const int TooltipDelay = 500; // Delay for tooltips in milliseconds
+    
+    private bool _separateCoveringIconColor;
+    private ColorMod ColorMod { get; set; } = Mod.New<ColorMod>();
+    
+    private ColorTagsElement ColorTagsElement => ColorMod.ColorTags;
+
+    private bool SeparateCoveringIconColor
+    {
+        get => _separateCoveringIconColor;
+        set
+        {
+            _separateCoveringIconColor = value;
+            if (!value)
+            {
+                ColorMod.CoveringIconColour.Value = Colour; // Sync covering icon color with main color
+            }
+        }
+    }
+
+    private string Colour
+    {
+        get => ColorMod.Colour.Value;
+        set
+        {
+            ColorMod.Colour.Value = value;
+            if (!SeparateCoveringIconColor)
+            {
+                ColorMod.CoveringIconColour.Value = value;
+                StateHasChanged();
+            }
+        }
+    }
+    
+    private void AddFormattingName()
+    {
+        ColorMod.AddNewFormattingName();
+    }
+    
+    private void RemoveFormattingName()
+    {
+        ColorMod.PopFormattingName();
+    }
+
+    protected override Mod GetMod()
+    {
+        return ColorMod;
+    }
+
+    protected override bool LoadModDataHandler(XDocument doc)
+    {
+        ColorMod = Mod.Load<ColorMod>(doc);
+        SeparateCoveringIconColor = ColorMod.CoveringIconColour.Exists;
+        StateHasChanged();
+        return true;
+    }
+
+}

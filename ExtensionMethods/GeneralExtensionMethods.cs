@@ -16,4 +16,9 @@ public static class GeneralExtensionMethods
         var output = string.Join(", ", list);
         return $"[{output}]";
     }
+
+    public static void Pop<T>(this List<T> list)
+    {
+        list.RemoveAt(list.Count - 1);
+    }
 }

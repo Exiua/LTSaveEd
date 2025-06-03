@@ -455,3 +455,6 @@ $RECYCLE.BIN/
 
 # Custom Directories
 venv/
+
+# Custom Files
+global.json

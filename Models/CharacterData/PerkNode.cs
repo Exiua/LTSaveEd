@@ -3,7 +3,7 @@ using LTSaveEd.Models.XmlData;
 
 namespace LTSaveEd.Models.CharacterData;
 
-public class PerkNode : NullableXmlAttribute
+public class PerkNode : NullableXmlObject
 {
     public static event Action? OnActivenessChanged;
 

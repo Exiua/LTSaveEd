@@ -2,10 +2,10 @@
 
 namespace LTSaveEd.Models.XmlData;
 
-public abstract class NullableXmlAttribute(XElement parent)
+public abstract class NullableXmlObject(XElement parent)
 {
     protected XElement Parent { get; } = parent;
-    private XObject? Node { get; set; }
+    protected XObject? Node { get; set; }
 
     public bool Exists
     {
