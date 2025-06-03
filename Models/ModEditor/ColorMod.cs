@@ -23,7 +23,7 @@ public class ColorMod : Mod
         
     }
     
-    private ColorMod(XDocument root) : base(root)
+    public ColorMod(XDocument root) : base(root)
     {
         if (root.Root is null || root.Root.Name.LocalName != "colour")
         {
