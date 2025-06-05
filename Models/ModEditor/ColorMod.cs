@@ -105,24 +105,6 @@ public class ColorMod : Mod
         #endif
     }
 
-    protected override XDocument CreateNewModDocument()
-    {
-        var root = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
-            new XElement("colour",
-                new XElement("metallic", "false"),
-                new XElement("name", new XCData("white")),
-                new XElement("colour", "ffffff"),
-                new XElement("lightColour", "ffffff"),
-                new XElement("coveringIconColour", "ffffff"),
-                new XElement("formattingNames",
-                    new XElement("name", new XCData("white"))
-                )
-            )
-        );
-        
-        return root;
-    }
-
     public void AddNewFormattingName()
     {
         var cdata = new XCData("NewFormattingName");

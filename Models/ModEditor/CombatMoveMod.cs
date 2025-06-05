@@ -49,9 +49,4 @@ public class CombatMoveMod : Mod
         
         var element = root.Root;
     }
-    
-    protected override XDocument CreateNewModDocument()
-    {
-        throw new NotImplementedException();
-    }
 }

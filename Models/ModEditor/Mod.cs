@@ -1,9 +1,16 @@
 ﻿using System.Xml.Linq;
+using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models.ModEditor;
 
 public abstract class Mod
 {
+    private static Dictionary<Type, XDocument> ModTemplates { get; } = new()
+    {
+        {typeof(ColorMod), EmbeddedXmlLoader.LoadXmlFromResource("LTSaveEd.Resources.white.xml")},
+        {typeof(ClothingMod), EmbeddedXmlLoader.LoadXmlFromResource("LTSaveEd.Resources.tshirt.xml")},
+    };
+    
     public XDocument Root { get; private set; } = null!;
 
     // Internal use only, to create a new mod document.
@@ -16,8 +23,6 @@ public abstract class Mod
     {
         Root = root;
     }
-
-    protected abstract XDocument CreateNewModDocument();
     
     public static T Load<T>(XDocument root) where T : Mod
     {
@@ -26,7 +31,11 @@ public abstract class Mod
     
     public static T New<T>() where T : Mod, new()
     {
-        var root = new T().CreateNewModDocument();
-        return (T)Activator.CreateInstance(typeof(T), root)!;
+        if (!ModTemplates.TryGetValue(typeof(T), out var template))
+        {
+            throw new InvalidOperationException($"No template found for mod type {typeof(T).Name}.");
+        }
+        
+        return (T)Activator.CreateInstance(typeof(T), template)!;
     }
 }
