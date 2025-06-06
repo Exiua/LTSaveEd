@@ -11,13 +11,7 @@ public abstract class Mod
         {typeof(ClothingMod), EmbeddedXmlLoader.LoadXmlFromResource("LTSaveEd.Resources.tshirt.xml")},
     };
     
-    public XDocument Root { get; private set; } = null!;
-
-    // Internal use only, to create a new mod document.
-    protected Mod()
-    {
-        
-    }
+    public XDocument Root { get; private set; }
 
     protected Mod(XDocument root)
     {
@@ -29,7 +23,7 @@ public abstract class Mod
         return (T)Activator.CreateInstance(typeof(T), root)!;
     }
     
-    public static T New<T>() where T : Mod, new()
+    public static T New<T>() where T : Mod
     {
         if (!ModTemplates.TryGetValue(typeof(T), out var template))
         {

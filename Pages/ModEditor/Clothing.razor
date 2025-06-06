@@ -1,0 +1,167 @@
+﻿@page "/mod-editor/clothing"
+
+@using System.Xml.Linq
+@using LTSaveEd.Models.ModEditor
+@using LTSaveEd.Components
+@using LTSaveEd.Models.Enums.Game
+@using LTSaveEd.Models.ModEditor.Xml.EnumXml
+
+@inherits BaseModEditorPage
+
+<h3>Clothing</h3>
+
+@*Tooltips are adapted from the example mods help text from the game files*@
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudCheckBox @bind-Value="ClothingMod.AuthorTag.Exists" Label="Use Author Tag"/>
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudTextField @bind-Value="ClothingMod.AuthorTag.Value" Label="Author Tag" Disabled="@(!ClothingMod.AuthorTag.Exists)"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>How attribution to the mod author (you!) should be displayed in the clothing's tooltip. If not used, a default attribution based on folder name will be used.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudTextField @bind-Value="ClothingMod.Determiner.Value" Label="Determiner"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The determiner which is displayed before this item's name. While usually 'a' or 'an', for things like socks or gloves, you'll want to use 'a pair of'. HTML markup can be embedded without causing issues</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudTextField @bind-Value="ClothingMod.Name.Value" Label="Name"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The <i>singular</i> name of this clothing.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudCheckBox @bind-Value="ClothingMod.AppendColorName.Value" Label="Append Color Name"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>If you never want this clothing to be described by its colour, then uncheck this box. (i.e. If not checked, this clothing would always be called without its color, for example, 'template socks' instead of 'white template socks')</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudTextField @bind-Value="ClothingMod.PluralName.Value" Label="Plural Name"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The plural form of the name.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudCheckBox @bind-Value="ClothingMod.PluralByDefault.Value" Label="Plural by Default"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>Determines whether this item is naturally referred to as a plural (use true for things like socks or gloves).</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudTextField @bind-Value="ClothingMod.Description.Value" AutoGrow="true" MaxLines="5" Label="Description"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>This is the description which is shown in tooltips and on the item's inspection page.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <IntFieldElement Element="ClothingMod.Value" Label="Value"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The base value of this clothing. Innoxia roughly bases things on 1 flame = 10p, so 10 flames = £1.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <FloatFieldElement Element="ClothingMod.PhysicalResistance" Label="Physical Resistance"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The default physical resistance for this piece of clothing. Usually use 0, but if it's armour, then values of 1 up to 5 would be fitting (any more than that might be very OP). Physical resistance is a very powerful stat, so please keep within the range of 0-5. For all normal clothing, the value should be 0. This accepts decimal values, so for things like leather jackets (which aren't really armour, but are still protective), you can use 0.5 or so.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <ValueDisplayPairElementSelect TXObject="XElement" TValue="Femininity" TXmlEnum="FemininityElement"
+                            Values="FemininityExtensions.FemininityList" XmlEnum="ClothingMod.Femininity"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>Use Feminine for if this clothing is intended for feminine characters, Masculine for masculine, and Androgynous if it's able to be worn by anyone without penalties.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <div /> @* Placeholder for equip slots *@
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The slots that this clothing is able to be fit into. The game only supports up to 4 unique slots, so if you define more than 4, the rest of them won't show up in-game. These definitions preserve ordering, so use the top one for the most common slot to be fitted into. This is especially important for NPCs, as they will use the top slot for determining which slot this clothing should fit into.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <ValueDisplayPairElementSelect TXObject="XElement" TValue="Rarity" TXmlEnum="RarityElement"
+                            Values="RarityExtensions.RarityList" XmlEnum="ClothingMod.Rarity"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The rarity of this item. Anything less than Epic may end up being modified in the code.</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+            @*Skip Clothing Set*@
+            <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                <MudTooltip Delay="TooltipDelay">
+                    <ChildContent>
+                        <MudTextField @bind-Value="ClothingMod.ImageName.Value" Label="Image Name"/>
+                    </ChildContent>
+                    <TooltipContent>
+                        <MudText>The file paths for this clothing's image. All images MUST BE .svg format. Colours to be used are described below, above the 'primaryColours' element. Innoxia uses the free program 'InkScape' to make her .svg images. .svg images scale perfectly up and down to any size, so, while it should be a square, it doesn't really matter what size your canvas is (although Innoxia uses 256x256 as a personal preference)</MudText>
+                    </TooltipContent>
+                </MudTooltip>
+            </MudPaper>
+        </MudCardContent>
+        @*Skip ImageEquippedNames*@
+        @*Skip Effects*@
+    </MudForm>
+</MudCard>
+
+@code {
+    private ClothingMod ClothingMod { get; set; } = Mod.New<ClothingMod>();
+
+    protected override Mod GetMod()
+    {
+        return ClothingMod;
+    }
+    
+    protected override bool LoadModDataHandler(XDocument doc)
+    {
+        ClothingMod = Mod.Load<ClothingMod>(doc);
+        StateHasChanged();
+        return true;
+    }
+}

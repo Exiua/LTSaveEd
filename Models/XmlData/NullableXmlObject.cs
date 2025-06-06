@@ -45,6 +45,10 @@ public abstract class NullableXmlObject(XElement parent)
             case XAttribute attribute:
                 attribute.Remove();
                 break;
+            // TODO: Check if CData can be nullable on its own
+            case XCData data:
+                data.Parent!.Remove();
+                break;
         }
         Node = null;
     }

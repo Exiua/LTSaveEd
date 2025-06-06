@@ -35,11 +35,6 @@ public class CombatMoveMod : Mod
     public XmlCData<string> MovePredictionDescriptionNoTarget { get; set; } = null!;
     // Perform move
     
-    public CombatMoveMod()
-    {
-        
-    }
-    
     private CombatMoveMod(XDocument root) : base(root)
     {
         if (root.Root is null || root.Root.Name.LocalName != "combatMove")

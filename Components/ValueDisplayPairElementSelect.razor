@@ -1,0 +1,69 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.XmlData
+
+@typeparam TXObject where TXObject : System.Xml.Linq.XObject
+@typeparam TValue where TValue : Enum
+@typeparam TXmlEnum where TXmlEnum : XmlEnum<TXObject, TValue>
+
+<MudSelect T="ValueDisplayPair<TValue>" @bind-Value="@CurrentValue" Label="@Label" ReadOnly="@ReadOnly" >
+    @foreach (var value in Values)
+    {
+        <MudSelectItem Value="@value"/>
+    }
+</MudSelect>
+
+@code {
+    private ValueDisplayPair<TValue> _currentValue = null!;
+    
+    /// <summary>
+    ///     The values to display in the select.
+    /// </summary>
+    [Parameter] public required IEnumerable<ValueDisplayPair<TValue>> Values { get; set; }
+    
+    /// <summary>
+    ///    The label to display above the select.
+    /// </summary>
+    [Parameter] public required string Label { get; set; }
+    
+    /// <summary>
+    ///    The XmlElement to bind to.
+    /// </summary>
+    [Parameter] public required TXmlEnum XmlEnum { get; set; }
+    
+    /// <summary>
+    ///   Whether the select is read only.
+    /// </summary>
+    [Parameter] public bool ReadOnly { get; set; }
+    
+    [Parameter] public Action<ValueDisplayPair<TValue>>? CurrentValueChanged { get; set; }
+
+    protected ValueDisplayPair<TValue> CurrentValue
+    {
+        get => _currentValue;
+        set
+        {
+            _currentValue = value;
+            XmlEnum.Value = _currentValue.Value;
+            CurrentValueChanged?.Invoke(_currentValue);
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        // Set the current value to the value of the attribute.
+        foreach (var value in Values)
+        {
+            // if (value.Value != Element.Value)
+            // {
+            //     continue;
+            // }
+            if (!EqualityComparer<TValue>.Default.Equals(value.Value, XmlEnum.Value))
+            {
+                continue;
+            }
+            
+            _currentValue = value;
+            break;
+        }
+    }
+}

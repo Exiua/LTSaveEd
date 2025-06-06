@@ -16,12 +16,6 @@ public class ColorMod : Mod
     public ColorTagsElement ColorTags { get; }
     
     private XElement FormattingNamesElement { get; set; }
-
-    // Internal use only, to create a new mod document.
-    public ColorMod()
-    {
-        
-    }
     
     public ColorMod(XDocument root) : base(root)
     {

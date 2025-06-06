@@ -3,11 +3,13 @@ using LTSaveEd.ExtensionMethods;
 using LTSaveEd.Models.ModEditor.Xml;
 using LTSaveEd.Models.ModEditor.Xml.EnumXml;
 using LTSaveEd.Models.XmlData;
+using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models.ModEditor;
 
 public class ClothingMod : Mod
 {
+    public NullableXmlCData AuthorTag { get; set; } = null!;
     public XmlElement<int> Value { get; set; } = null!;
     public XmlElement<string> Determiner { get; set; } = null!;
     public XmlCData<string> Name { get; set; } = null!;
@@ -15,7 +17,7 @@ public class ClothingMod : Mod
     public XmlCData<string> PluralName { get; set; } = null!;
     public XmlAttribute<bool> PluralByDefault { get; set; } = null!;
     public XmlCData<string> Description { get; set; } = null!;
-    public XmlElement<int> PhysicalResistance { get; set; } = null!;
+    public XmlElement<float> PhysicalResistance { get; set; } = null!;
     public FemininityElement Femininity { get; set; } = null!;
     public EquipSlotElements EquipSlots { get; set; } = null!;
 
@@ -23,11 +25,6 @@ public class ClothingMod : Mod
 
     // ClothingSet
     public XmlElement<string> ImageName { get; set; } = null!;
-
-    // Internal use only, do not use this constructor.
-    public ClothingMod()
-    {
-    }
 
     public ClothingMod(XDocument root) : base(root)
     {
@@ -37,33 +34,47 @@ public class ClothingMod : Mod
         }
 
         var element = root.Root;
-        var setFields = ClothingModField.None;
         var coreAttributeElement = element.Element("coreAttributes");
         if (coreAttributeElement is null)
         {
             throw new ArgumentException("Root element must contain 'coreAttributes'.", nameof(root));
         }
 
+        #region Initialize Nullable Fields
+
+        AuthorTag = new NullableXmlCData(coreAttributeElement, "authorTag");
+
+        #endregion
+
+        // List of actions that may modify the XML structure after initial parsing
+        // Modifying the XML structure while iterating over elements can lead to the "Collection was modified" exception.
+        List<Action> deferredActions = [];
+        var setFields = new Box<ClothingModField>(ClothingModField.None);
         foreach (var field in coreAttributeElement.Elements())
         {
             switch (field.Name.LocalName)
             {
+                case "authorTag":
+                {
+                    AuthorTag.Initialize(field.GetCData());
+                    break;
+                }
                 case "value":
                 {
                     Value = new XmlElement<int>(field);
-                    setFields |= ClothingModField.Value;
+                    setFields.Value |= ClothingModField.Value;
                     break;
                 }
                 case "determiner":
                 {
                     Determiner = new XmlElement<string>(field);
-                    setFields |= ClothingModField.Determiner;
+                    setFields.Value |= ClothingModField.Determiner;
                     break;
                 }
                 case "name":
                 {
                     Name = new XmlCData<string>(field.GetCData());
-                    setFields |= ClothingModField.Name;
+                    setFields.Value |= ClothingModField.Name;
                     var appendColorName = field.Attribute("appendColourName");
                     if (appendColorName is null)
                     {
@@ -72,13 +83,13 @@ public class ClothingMod : Mod
                     }
 
                     AppendColorName = new XmlAttribute<bool>(appendColorName);
-                    setFields |= ClothingModField.AppendColorName;
+                    setFields.Value |= ClothingModField.AppendColorName;
                     break;
                 }
                 case "namePlural":
                 {
                     PluralName = new XmlCData<string>(field.GetCData());
-                    setFields |= ClothingModField.PluralName;
+                    setFields.Value |= ClothingModField.PluralName;
                     var pluralByDefault = field.Attribute("pluralByDefault");
                     if (pluralByDefault is null)
                     {
@@ -87,54 +98,80 @@ public class ClothingMod : Mod
                     }
 
                     PluralByDefault = new XmlAttribute<bool>(pluralByDefault);
-                    setFields |= ClothingModField.PluralByDefault;
+                    setFields.Value |= ClothingModField.PluralByDefault;
                     break;
                 }
                 case "description":
                 {
                     Description = new XmlCData<string>(field.GetCData());
-                    setFields |= ClothingModField.Description;
+                    setFields.Value |= ClothingModField.Description;
                     break;
                 }
                 case "physicalResistance":
                 {
-                    PhysicalResistance = new XmlElement<int>(field);
-                    setFields |= ClothingModField.PhysicalResistance;
+                    PhysicalResistance = new XmlElement<float>(field);
+                    setFields.Value |= ClothingModField.PhysicalResistance;
                     break;
                 }
                 case "femininity":
                 {
                     Femininity = new FemininityElement(field);
-                    setFields |= ClothingModField.Femininity;
+                    setFields.Value |= ClothingModField.Femininity;
                     break;
                 }
                 case "equipSlots":
                 {
                     EquipSlots = new EquipSlotElements(field);
-                    setFields |= ClothingModField.EquipSlots;
+                    setFields.Value |= ClothingModField.EquipSlots;
                     break;
+                }
+                case "slot":
+                {
+                    deferredActions.Add(ConvertSlotToEquipSlots);
+                    break;
+
+                    void ConvertSlotToEquipSlots()
+                    {
+                        ModifySlotToEquipSlots(field);
+                        setFields.Value |= ClothingModField.EquipSlots;
+                    }
                 }
                 case "rarity":
                 {
                     Rarity = new RarityElement(field);
-                    setFields |= ClothingModField.Rarity;
+                    setFields.Value |= ClothingModField.Rarity;
                     break;
                 }
                 // ClothingSet
                 case "imageName":
                 {
                     ImageName = new XmlElement<string>(field);
-                    setFields |= ClothingModField.ImageName;
+                    setFields.Value |= ClothingModField.ImageName;
                     break;
                 }
             }
         }
+        
+        foreach(var action in deferredActions)
+        {
+            action();
+        }
 
         if (setFields != ClothingModField.All)
         {
+            var missingFields = ClothingModField.All & ~setFields.Value;
             throw new ArgumentException(
-                $"Missing fields in clothing mod: {setFields}. Expected: {ClothingModField.All}.", nameof(root));
+                $"Missing fields in clothing mod: {missingFields}.", nameof(root));
         }
+    }
+
+    private void ModifySlotToEquipSlots(XElement slot)
+    {
+        var value = slot.Value;
+        slot.Name = "equipSlots";
+        var childSlot = new XElement("slot", value);
+        slot.Add(childSlot);
+        EquipSlots = new EquipSlotElements(slot);
     }
 }
 

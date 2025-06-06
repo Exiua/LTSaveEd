@@ -42,4 +42,15 @@ public static class RarityExtensions
             _ => Rarity.Common // Default to Common if the value is unknown
         };
     }
+
+    public static List<ValueDisplayPair<Rarity>> RarityList { get; } =
+    [
+        new("Common", Rarity.Common),
+        new("Uncommon", Rarity.Uncommon),
+        new("Rare", Rarity.Rare),
+        new("Epic", Rarity.Epic),
+        new("Legendary", Rarity.Legendary),
+        new("Quest", Rarity.Quest),
+        new("Jinxed", Rarity.Jinxed),
+    ];
 }

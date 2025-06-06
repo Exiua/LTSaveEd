@@ -7,6 +7,8 @@ namespace LTSaveEd.Layout;
 
 public abstract class BaseModEditorPage : ComponentBase
 {
+    protected const int TooltipDelay = 500; // Delay for tooltips in milliseconds
+    
     [Inject] protected NavigationManager NavigationManager { get; set; } = null!;
     [Inject] protected ApplicationState ApplicationState { get; set; } = null!;
     

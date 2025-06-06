@@ -198,8 +198,6 @@
 </MudCard>
 
 @code {
-    private const int TooltipDelay = 500; // Delay for tooltips in milliseconds
-    
     private bool _separateCoveringIconColor;
     private ColorMod ColorMod { get; set; } = Mod.New<ColorMod>();
     
@@ -254,5 +252,4 @@
         StateHasChanged();
         return true;
     }
-
 }
