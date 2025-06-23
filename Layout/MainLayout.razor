@@ -3,6 +3,7 @@
 @using System.Xml.Linq
 @using LTSaveEd.Models.Enums
 @using LTSaveEd.Models.JSWrappers
+@using LTSaveEd.Components
 
 @inherits LayoutComponentBase
 
@@ -11,6 +12,7 @@
 @inject FileHandler FileHandler
 @inject Settings Settings
 @inject NavigationManager NavigationManager
+@inject IDialogService DialogService
 
 <MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="@_theme"/>
 <MudSnackbarProvider/>
@@ -127,6 +129,7 @@
                 else
                 {
                     <MudNavLink Href="mod-editor/color">Color</MudNavLink>
+                    <MudNavLink Href="mod-editor/clothing">Clothing</MudNavLink>
                 }
             </MudNavMenu>
         </MudPaper>
@@ -140,7 +143,14 @@
             }
             else
             {
-                @Body
+                <ErrorBoundary>
+                    <ChildContent>
+                        @Body
+                    </ChildContent>
+                    <ErrorContent>
+                        <ErrorMessageElement CurrentException="context"/>
+                    </ErrorContent>
+                </ErrorBoundary>
             }
         </MudContainer>
     </MudMainContent>
@@ -148,7 +158,7 @@
 
 @code {
     // Make sure to also update .csproj file with the correct version
-    private const string Version = "v2.7.1";
+    private const string Version = "v2.8.0";
 
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;
@@ -160,6 +170,7 @@
         get => Settings.DarkMode;
         set => Settings.DarkMode = value;
     }
+
     private SaveData SaveData => ApplicationState.SaveData;
 
     protected override void OnInitialized()

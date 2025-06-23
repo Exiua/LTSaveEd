@@ -30,4 +30,18 @@ public static class FemininityExtensions
             _ => Femininity.Androgynous, // Default to Androgynous if value is unknown
         };
     }
+    
+    /*public static List<ValueDisplayPair<string>> FemininityList { get; } =
+    [
+        new("Feminine", "FEMININE"),
+        new("Masculine", "MASCULINE"),
+        new("Androgynous", "ANDROGYNOUS"),
+    ];*/
+    
+    public static List<ValueDisplayPair<Femininity>> FemininityList { get; } =
+    [
+        new("Feminine", Femininity.Feminine),
+        new("Masculine", Femininity.Masculine),
+        new("Androgynous", Femininity.Androgynous),
+    ];
 }

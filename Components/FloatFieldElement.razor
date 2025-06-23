@@ -4,11 +4,10 @@
                  HelperText="@HelperLabel"/>
 
 @code {
-    
     /// <summary>
-    ///     The int XmlAttribute to bind to.
+    ///     The float XmlElement to bind to.
     /// </summary>
-    [Parameter] public required XmlAttribute<int> Attribute { get; set; }
+    [Parameter] public required XmlElement<float> Element { get; set; }
     
     /// <summary>
     ///    The label of this component to display.
@@ -16,41 +15,41 @@
     [Parameter] public required string Label { get; set; }
     
     /// <summary>
-    ///    Whether or not to only allow values >= 0.
+    ///    Whether to only allow values >= 0.
     /// </summary>
     [Parameter] public bool PositiveOnly { get; set; } = true;
     
     /// <summary>
     ///   The maximum value allowed.
     /// </summary>
-    [Parameter] public int Max { get; set; } = int.MaxValue;
+    [Parameter] public float Max { get; set; } = float.MaxValue;
     
     /// <summary>
     ///  The minimum value allowed.
     /// </summary>
-    [Parameter] public int Min { get; set; } = int.MinValue;
-
+    [Parameter] public float Min { get; set; } = float.MinValue;
+    
     private bool _generateHelperLabels;
-        
+    
     private float Value
     {
-        get => Attribute.Value;
+        get => Element.Value;
         set
         {
             if (PositiveOnly && value < 0)
             {
                 return;
             }
-            
-            Attribute.Value = (int)value;
+
+            Element.Value = value;
         }
     }
-
-    private string HelperLabel => _generateHelperLabels ? ((LabeledXmlAttribute<int>)Attribute).Label : "";
+    
+    private string HelperLabel => _generateHelperLabels ? "ERROR" : "";
 
     protected override void OnInitialized()
     {
-        // Label is only generated if the attribute is a LabeledXmlAttribute<int>
-        _generateHelperLabels = Attribute is LabeledXmlAttribute<int>;
+        // Placeholder in case LabeledXmlElement<float> is ever added
+        _generateHelperLabels = false;
     }
 }

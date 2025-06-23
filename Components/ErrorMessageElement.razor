@@ -1,0 +1,111 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.Enums
+
+@inject NavigationManager Navigation
+@inject IJSRuntime JsRuntime
+@inject ApplicationState ApplicationState
+
+<MudPaper Class="pa-6 ma-auto max-w-sm elevation-8" Style="margin-top: 2rem;">
+    @if (!_showDetails)
+    {
+        <MudText Typo="Typo.h6">An unexpected error has occurred.</MudText>
+        <MudText>Would you like to help us improve the application by reporting this issue?</MudText>
+
+        @if (!string.IsNullOrWhiteSpace(ErrorMessage))
+        {
+            <MudText Color="Color.Secondary"><em>@ErrorMessage</em></MudText>
+        }
+
+        <MudDivider Class="my-4" />
+
+        <MudStack Row Justify="Justify.FlexEnd" Spacing="2">
+            <MudButton Variant="Variant.Text" OnClick="Cancel">No, Refresh</MudButton>
+            <MudButton Color="Color.Primary" OnClick="ShowDetails">Yes, Report</MudButton>
+        </MudStack>
+    }
+    else
+    {
+        <MudText Typo="Typo.h6">Submit an Issue</MudText>
+
+        <MudText>
+            This error was unexpected. To help us resolve it, please consider opening an issue on our GitHub page. When reporting, include:
+        </MudText>
+
+        <ul style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+            <li>A brief description of what you were doing when the error occurred</li>
+            <li>Steps to reproduce the issue, if possible</li>
+            <li>The save file you were attempting to edit when the error occurred</li>
+        </ul>
+
+        <MudLink Href="@GitHubIssueUrl" Target="_blank">Open GitHub Issue Board</MudLink>
+        
+        <MudDivider Class="my-4" />
+
+        @if (!string.IsNullOrWhiteSpace(StackTrace))
+        {
+            <MudText><b>Stack Trace:</b></MudText>
+            <br/>
+            <MudTextField T="string" ReadOnly="true" Lines="5" Value="@StackTrace" Variant="Variant.Outlined" FullWidth="true" />
+            <MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.ContentCopy" OnClick="CopyStackTrace">
+                Copy Stack Trace
+            </MudButton>
+        }
+
+        <MudText>Once you've submitted the issue, click Done to refresh the site.</MudText>
+
+        <MudDivider Class="my-4" />
+
+        <MudStack Row Justify="Justify.FlexEnd">
+            <MudButton OnClick="Done">Done</MudButton>
+        </MudStack>
+    }
+</MudPaper>
+
+@code {
+    private const string GitHubIssueUrl = "https://github.com/Exiua/LTSaveEd/issues";
+    
+    [Parameter]
+    public required Exception CurrentException { get; set; }
+
+    private string? ErrorMessage { get; set; }
+
+    private string? StackTrace { get; set; }
+
+    private bool _showDetails;
+
+    protected override void OnInitialized()
+    {
+        ErrorMessage = CurrentException.Message;
+        StackTrace = CurrentException.ToString();
+        _showDetails = false;
+    }
+
+    private void Cancel()
+    {
+        NavigateToHome();
+    }
+
+    private void Done()
+    {
+        NavigateToHome();
+    }
+
+    private void ShowDetails()
+    {
+        _showDetails = true;
+    }
+
+    private async Task CopyStackTrace()
+    {
+        if (!string.IsNullOrEmpty(StackTrace))
+        {
+            await JsRuntime.InvokeVoidAsync("navigator.clipboard.writeText", StackTrace);
+        }
+    }
+
+    private void NavigateToHome()
+    {
+        var homeUrl = ApplicationState.Location == ApplicationStateLocation.SaveEditor ? "home" : "mod-editor";
+        Navigation.NavigateTo(homeUrl, forceLoad: true);
+    }
+}

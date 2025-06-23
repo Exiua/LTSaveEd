@@ -16,12 +16,6 @@ public class ColorMod : Mod
     public ColorTagsElement ColorTags { get; }
     
     private XElement FormattingNamesElement { get; set; }
-
-    // Internal use only, to create a new mod document.
-    public ColorMod()
-    {
-        
-    }
     
     public ColorMod(XDocument root) : base(root)
     {
@@ -103,24 +97,6 @@ public class ColorMod : Mod
         Console.WriteLine("FormattingNames: " + FormattingNames.Select(fn => fn.Value).ToFormattedString());
         Console.WriteLine("ColorTags: " + ColorTags);
         #endif
-    }
-
-    protected override XDocument CreateNewModDocument()
-    {
-        var root = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
-            new XElement("colour",
-                new XElement("metallic", "false"),
-                new XElement("name", new XCData("white")),
-                new XElement("colour", "ffffff"),
-                new XElement("lightColour", "ffffff"),
-                new XElement("coveringIconColour", "ffffff"),
-                new XElement("formattingNames",
-                    new XElement("name", new XCData("white"))
-                )
-            )
-        );
-        
-        return root;
     }
 
     public void AddNewFormattingName()
