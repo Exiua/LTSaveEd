@@ -3,6 +3,7 @@
 @using System.Xml.Linq
 @using LTSaveEd.Models.Enums
 @using LTSaveEd.Models.JSWrappers
+@using LTSaveEd.Components
 
 @inherits LayoutComponentBase
 
@@ -11,6 +12,7 @@
 @inject FileHandler FileHandler
 @inject Settings Settings
 @inject NavigationManager NavigationManager
+@inject IDialogService DialogService
 
 <MudThemeProvider @bind-IsDarkMode="@IsDarkMode" Theme="@_theme"/>
 <MudSnackbarProvider/>
@@ -141,7 +143,14 @@
             }
             else
             {
-                @Body
+                <ErrorBoundary>
+                    <ChildContent>
+                        @Body
+                    </ChildContent>
+                    <ErrorContent>
+                        <ErrorMessageElement CurrentException="context"/>
+                    </ErrorContent>
+                </ErrorBoundary>
             }
         </MudContainer>
     </MudMainContent>
@@ -161,6 +170,7 @@
         get => Settings.DarkMode;
         set => Settings.DarkMode = value;
     }
+
     private SaveData SaveData => ApplicationState.SaveData;
 
     protected override void OnInitialized()

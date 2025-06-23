@@ -49,6 +49,7 @@ public class ClothingMod : Mod
         // List of actions that may modify the XML structure after initial parsing
         // Modifying the XML structure while iterating over elements can lead to the "Collection was modified" exception.
         List<Action> deferredActions = [];
+        string? topLevelSlotValue = null;
         var setFields = new Box<ClothingModField>(ClothingModField.None);
         foreach (var field in coreAttributeElement.Elements())
         {
@@ -127,6 +128,7 @@ public class ClothingMod : Mod
                 }
                 case "slot":
                 {
+                    topLevelSlotValue = field.Value;
                     deferredActions.Add(ConvertSlotToEquipSlots);
                     break;
 

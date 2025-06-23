@@ -26,4 +26,8 @@
       </EmbeddedResource>
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Components\Dialogs\ErrorMessageDialog.razor" />
+    </ItemGroup>
+
 </Project>
