@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.Models.XmlData;
+using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models.CharacterData;
 
@@ -47,8 +48,8 @@ public class PerkNode : NullableXmlObject
         
         #if DEBUG
 
-        var parentRow = int.Parse(parent.Row);
-        var selfRow = int.Parse(row);
+        var parentRow = TypeHelper.ParseInt(parent.Row);
+        var selfRow = TypeHelper.ParseInt(row);
         if (parentRow != selfRow && parentRow != selfRow - 1)
         {
             Console.WriteLine($"Incorrect hierarchy detected: {row} {type} {displayName}");
@@ -66,9 +67,9 @@ public class PerkNode : NullableXmlObject
         
         #if DEBUG
         
-        var parentLeftRow = int.Parse(parentLeft.Row);
-        var parentRightRow = int.Parse(parentRight.Row);
-        var selfRow = int.Parse(row);
+        var parentLeftRow = TypeHelper.ParseInt(parentLeft.Row);
+        var parentRightRow = TypeHelper.ParseInt(parentRight.Row);
+        var selfRow = TypeHelper.ParseInt(row);
         if ((parentLeftRow != selfRow && parentLeftRow != selfRow - 1) || (parentRightRow != selfRow && parentRightRow != selfRow - 1))
         {
             Console.WriteLine($"Incorrect hierarchy detected: {row} {type} {displayName}");

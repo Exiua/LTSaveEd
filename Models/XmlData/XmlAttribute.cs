@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using System.Globalization;
+using System.Xml.Linq;
+using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models.XmlData;
 
@@ -12,15 +14,15 @@ public class XmlAttribute<T>
         {
             if (typeof(T) == typeof(int))
             {
-                return (T)(object)int.Parse(_attribute.Value);
+                return (T)(object)TypeHelper.ParseInt(_attribute.Value);
             }
             if (typeof(T) == typeof(float))
             {
-                return (T)(object)float.Parse(_attribute.Value);
+                return (T)(object)TypeHelper.ParseFloat(_attribute.Value);
             }
             if (typeof(T) == typeof(bool))
             {
-                return (T)(object)bool.Parse(_attribute.Value);
+                return (T)(object)TypeHelper.ParseBool(_attribute.Value);
             }
             return (T)(object)_attribute.Value;
         }

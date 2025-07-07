@@ -1,4 +1,6 @@
-﻿using Microsoft.JSInterop;
+﻿using System.Globalization;
+using LTSaveEd.Utility;
+using Microsoft.JSInterop;
 
 namespace LTSaveEd.Models.JSWrappers;
 
@@ -12,15 +14,15 @@ public class LocalStorageAccessor(IJSRuntime jsRuntime) : JsWrapper(jsRuntime)
         var result =  await AccessorJsRef.Value.InvokeAsync<string>("get", key);
         if (typeof(T) == typeof(int))
         {
-            return (T)(object)int.Parse(result);
+            return (T)(object)TypeHelper.ParseInt(result);
         }
         if (typeof(T) == typeof(float))
         {
-            return (T)(object)float.Parse(result);
+            return (T)(object)TypeHelper.ParseFloat(result);
         }
         if (typeof(T) == typeof(bool))
         {
-            return (T)(object)bool.Parse(result);
+            return (T)(object)TypeHelper.ParseBool(result);
         }
         return (T)(object)result;
     }

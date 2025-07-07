@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
+using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models;
 
@@ -23,7 +24,7 @@ public class CharacterShortData
         var coreNode = characterNode.Element("core")!;
         var nameNode = coreNode.Element("name")!;
         var bodyCoreNode = characterNode.Element("body")!.Element("bodyCore")!;
-        var femininity = int.Parse(bodyCoreNode.Attribute("femininity")!.Value);
+        var femininity = TypeHelper.ParseInt(bodyCoreNode.Attribute("femininity")!.Value);
         Id = coreNode.Element("id")!.Attribute("value")!.Value;
         Femininity = femininity switch
         {
