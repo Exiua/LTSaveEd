@@ -11,7 +11,7 @@ public static class TypeHelper
     
     public static float ParseFloat(string s)
     {
-        return int.Parse(s, CultureInfo.InvariantCulture);
+        return float.Parse(s, CultureInfo.InvariantCulture);
     }
 
     public static double ParseDouble(string s)
