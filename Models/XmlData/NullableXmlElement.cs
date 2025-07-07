@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using System.Globalization;
+using System.Xml.Linq;
+using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models.XmlData;
 
@@ -16,15 +18,15 @@ public class NullableXmlElement<T>(XElement parent, string tagName) : NullableXm
             var element = (XElement)Node;
             if (typeof(T) == typeof(int))
             {
-                return (T)(object)int.Parse(element.Value);
+                return (T)(object)TypeHelper.ParseInt(element.Value);
             }
             if (typeof(T) == typeof(float))
             {
-                return (T)(object)float.Parse(element.Value);
+                return (T)(object)TypeHelper.ParseFloat(element.Value);
             }
             if (typeof(T) == typeof(bool))
             {
-                return (T)(object)bool.Parse(element.Value);
+                return (T)(object)TypeHelper.ParseBool(element.Value);
             }
             return (T)(object)element.Value;
         }

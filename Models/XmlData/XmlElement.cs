@@ -1,5 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
+using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models.XmlData;
 
@@ -13,15 +15,15 @@ public class XmlElement<T>
         {
             if (typeof(T) == typeof(int))
             {
-                return (T)(object)int.Parse(_element.Value);
+                return (T)(object)TypeHelper.ParseInt(_element.Value);
             }
             if (typeof(T) == typeof(float))
             {
-                return (T)(object)float.Parse(_element.Value);
+                return (T)(object)TypeHelper.ParseFloat(_element.Value);
             }
             if (typeof(T) == typeof(bool))
             {
-                return (T)(object)bool.Parse(_element.Value);
+                return (T)(object)TypeHelper.ParseBool(_element.Value);
             }
             return (T)(object)_element.Value;
         }

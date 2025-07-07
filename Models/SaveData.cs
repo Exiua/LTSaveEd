@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
+using LTSaveEd.Utility;
 
 namespace LTSaveEd.Models;
 
@@ -68,7 +69,7 @@ public class SaveData
             var character = idNode.Parent!.Parent!; // id > core > character
             var nameElement = character.Descendants("name").First();
             var femininityString = character.GetAttributeByChildSequence("body", "bodyCore", "femininity").Value;
-            var femininity = int.Parse(femininityString);
+            var femininity = TypeHelper.ParseInt(femininityString);
             var name = femininity switch
             {
                 < 40 => nameElement.Attribute("nameMasculine")!.Value,
