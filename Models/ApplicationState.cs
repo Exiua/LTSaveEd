@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using LTSaveEd.Models.CharacterExporter;
 using LTSaveEd.Models.Enums;
 using Microsoft.AspNetCore.Components;
 
@@ -7,6 +8,7 @@ namespace LTSaveEd.Models;
 public class ApplicationState
 {
     public SaveData SaveData { get; set; } = new();
+    public ExportEditor ExportEditor { get; set; } = new(); 
     public ApplicationStateLocation Location { get; set; } = ApplicationStateLocation.SaveEditor;
     public Func<Task<MemoryStream>>? SaveModDataHandler { get; set; }
     public Func<XDocument, bool>? LoadModDataHandler { get; set; }
@@ -23,6 +25,10 @@ public class ApplicationState
         else if (path.EndsWith("/mod-editor"))
         {
             Location = ApplicationStateLocation.ModEditorHome;
+        }
+        else if (path.Contains("/character-exporter"))
+        {
+            Location = ApplicationStateLocation.CharacterExporter;
         }
         else
         {

@@ -30,4 +30,14 @@
       <_ContentIncludedByDefault Remove="Components\Dialogs\ErrorMessageDialog.razor" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Pages\CharacterExporter\Body\" />
+      <Folder Include="Pages\CharacterExporter\Inventory\" />
+      <Folder Include="Pages\CharacterExporter\Spells\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="BasePages\BaseSaveEditorPage.razor" />
+    </ItemGroup>
+
 </Project>

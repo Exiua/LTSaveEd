@@ -3,7 +3,7 @@ using LTSaveEd.Models;
 using LTSaveEd.Models.ModEditor;
 using Microsoft.AspNetCore.Components;
 
-namespace LTSaveEd.Layout;
+namespace LTSaveEd.BasePages;
 
 public abstract class BaseModEditorPage : ComponentBase
 {
