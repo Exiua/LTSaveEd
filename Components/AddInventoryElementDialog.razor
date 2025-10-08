@@ -4,6 +4,8 @@
 @typeparam TEnum where TEnum : Enum
 @typeparam TElement where TElement : InventoryElementData
 
+@*Generic dialog page for adding items, clothing, or weapons to a character's inventory*@
+
 <MudDialog>
     <DialogContent>
         <MudSelect T="ValueDisplayPair<TEnum>" @bind-Value="@SelectedType" Label="Type" AnchorOrigin="Origin.BottomCenter">

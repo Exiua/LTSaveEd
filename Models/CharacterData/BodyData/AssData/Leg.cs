@@ -32,7 +32,7 @@ public class Leg
             _legType = value;
             Type.Value = _legType.Value;
 
-            // Check if leg configurations, foot structures, or genital arrangements are valid for the new leg type.
+            // Check if current leg configurations, foot structures, and genital arrangements are valid for the new leg type.
             ValueDisplayPair<string>? newLegConfiguration = null;
             ValueDisplayPair<string>? newFootStructure = null;
             ValueDisplayPair<string>? newGenitalArrangement = null;

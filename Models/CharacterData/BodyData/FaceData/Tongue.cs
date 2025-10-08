@@ -36,6 +36,7 @@ public class Tongue
         Strong = new BodyComponentModifier(tongueNode, "STRONG");
         Tapered = new BodyComponentModifier(tongueNode, "TAPERED");
 
+        // Done this way as modifiers are not guaranteed to exist
         var modifiers = tongueNode.Elements();
         foreach (var modifier in modifiers)
         {

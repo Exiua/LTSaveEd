@@ -45,6 +45,7 @@ public class Mouth
         Tentacled = new BodyComponentModifier(mouthNode, "TENTACLED");
         InternallyMuscled = new BodyComponentModifier(mouthNode, "MUSCLE_CONTROL");
 
+        // Done this way as modifiers are not guaranteed to exist
         var modifiers = mouthNode.Elements();
         foreach (var modifier in modifiers)
         {

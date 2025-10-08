@@ -8,26 +8,6 @@ namespace LTSaveEd.ExtensionMethods;
 public static class XDocumentExtensionMethods
 {
     /// <summary>
-    ///     Get the child element's attribute value. Only use if child and attribute are guaranteed to exist.
-    /// </summary>
-    /// <param name="element">Element to get child of</param>
-    /// <param name="childName">Name of child element to get</param>
-    /// <param name="attributeName">Name of attribute of child element to get value of</param>
-    /// <returns>Value of specified attribute</returns>
-    public static T GetChildsAttribute<T>(this XContainer element, string childName, string attributeName = "value")
-    {
-        var childElement = element.Element(childName) ?? throw new InvalidOperationException($"Child element not found: {childName}");
-        var value = childElement.Attribute(attributeName)?.Value ?? throw new InvalidOperationException($"Attribute not found: {attributeName}");
-
-        if (typeof(T) == typeof(string))
-        {
-            return (T)(object)value; // Cast string to object, then to T
-        }
-        
-        return (T)Convert.ChangeType(value, typeof(T));
-    }
-    
-    /// <summary>
     ///    Get the child element's attribute node. Only use if child and attribute are guaranteed to exist.
     /// </summary>
     /// <param name="element">Element to get child of</param>
@@ -88,6 +68,11 @@ public static class XDocumentExtensionMethods
         return current.Attribute(childNames[^1]) ?? throw new Exception($"Attribute not found: {childNames[^1]}");
     }
 
+    /// <summary>
+    ///     Get an element's CData section.
+    /// </summary>
+    /// <param name="element">Element to get CData section of</param>
+    /// <returns>XCData section of the element</returns>
     public static XCData GetCData(this XElement element)
     {
         return (XCData)element.FirstNode!;

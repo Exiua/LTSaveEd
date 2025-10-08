@@ -14,11 +14,17 @@ public abstract class BaseModEditorPage : ComponentBase
     
     protected override void OnInitialized()
     {
+        // Set the application state location and handlers
         ApplicationState.UpdateLocation(NavigationManager);
         ApplicationState.SaveModDataHandler = SaveModData;
         ApplicationState.LoadModDataHandler = LoadModDataHandler;
+        // It's fine not to redirect to home as each page is independent (e.g., each handles its own mod type)
     }
 
+    /// <summary>
+    ///     Serialize the current mod data xml to a MemoryStream.
+    /// </summary>
+    /// <returns>A MemoryStream containing the serialized XML data.</returns>
     private async Task<MemoryStream> SaveModData()
     {
         var mod = GetMod();
@@ -29,7 +35,16 @@ public abstract class BaseModEditorPage : ComponentBase
         return memoryStream;
     }
 
+    /// <summary>
+    ///     Load mod data from the provided XDocument.
+    /// </summary>
+    /// <param name="doc">The XDocument containing the xml mod data to load.</param>
+    /// <returns>>True if loading was successful, false otherwise.</returns>
     protected abstract bool LoadModDataHandler(XDocument doc);
     
+    /// <summary>
+    ///     Get the current mod instance (ColorMod, ClothingMod, etc.).
+    /// </summary>
+    /// <returns>The current mod instance.</returns>
     protected abstract Mod GetMod();
 }
