@@ -4,6 +4,7 @@
 @using LTSaveEd.Models.Enums
 @using LTSaveEd.Models.JSWrappers
 @using LTSaveEd.Components
+@using LTSaveEd.Models.CharacterExporter
 
 @inherits LayoutComponentBase
 
@@ -71,18 +72,50 @@
                 break;
             case ApplicationStateLocation.ModEditorHome:
                 break;
+            case ApplicationStateLocation.CharacterExporter:
+                <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"/>
+                <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadExport">
+                    <ActivatorContent>
+                        <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary">
+                            LOAD
+                        </MudButton>
+                    </ActivatorContent>
+                </MudFileUpload>
+                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveExport" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+                    @if (_currentState == EditorState.Saving)
+                    {
+                        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                        <MudText Class="ms-2">Processing</MudText>
+                    }
+                    else
+                    {
+                        <div>Save</div>
+                    }
+                </MudButton>
+                break;
             default:
                 Console.WriteLine("Unknown ApplicationStateLocation: " + ApplicationState.Location);
                 break;
         }
         <MudMenu Icon="@Icons.Material.Filled.MoreVert" AriaLabel="Open menu">
-            @if (ApplicationState.Location == ApplicationStateLocation.SaveEditor)
+            @switch (ApplicationState.Location)
             {
-                <MudMenuItem Label="Switch to Mod Editor" OnClick="SwitchToModEditor"/>
-            }
-            else
-            {
-                <MudMenuItem Label="Switch to Save Editor" OnClick="SwitchToSaveEditor"/>
+                case ApplicationStateLocation.SaveEditor:
+                    <MudMenuItem Label="Switch to Mod Editor" OnClick="SwitchToModEditor"/>
+                    <MudMenuItem Label="Switch to Export Editor" OnClick="SwitchToModEditor"/>
+                    break;
+                case ApplicationStateLocation.ModEditor:
+                case ApplicationStateLocation.ModEditorHome:
+                    <MudMenuItem Label="Switch to Save Editor" OnClick="SwitchToSaveEditor"/>
+                    <MudMenuItem Label="Switch to Export Editor" OnClick="SwitchToModEditor"/>
+                    break;
+                case ApplicationStateLocation.CharacterExporter:
+                    <MudMenuItem Label="Switch to Save Editor" OnClick="SwitchToSaveEditor"/>
+                    <MudMenuItem Label="Switch to Mod Editor" OnClick="SwitchToModEditor"/>
+                    break;
+                default:
+                    Console.WriteLine("Unknown ApplicationStateLocation: " + ApplicationState.Location);
+                    break;
             }
         </MudMenu>
     </MudAppBar>
@@ -199,6 +232,7 @@
 
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;
+    private ApplicationStateLocation _prevLocation = ApplicationStateLocation.SaveEditor;
 
     private readonly MudTheme _theme = null!;
     private string Filename { get; set; } = "";
@@ -209,11 +243,13 @@
     }
 
     private SaveData SaveData => ApplicationState.SaveData;
+    private ExportEditor ExportEditor => ApplicationState.ExportEditor;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        ApplicationState.LocationChanged += StateHasChanged;
+        _prevLocation = ApplicationState.Location;
+        ApplicationState.LocationChanged += OnStateChanged;
     }
 
     /// <summary>
@@ -350,12 +386,82 @@
         }
     }
 
+    private async Task LoadExport(IBrowserFile? file)
+    {
+        if (file == null)
+        {
+            return;
+        }
+        
+        _currentState = EditorState.Loading;
+        await Task.Delay(100);
+        var oldName = Filename;
+        Filename = file.Name;
+        await using var stream = file.OpenReadStream(file.Size + 1);
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+        var success = await ExportEditor.Load(stream);
+        stopwatch.Stop();
+        Console.WriteLine($"Loaded Export in {stopwatch.ElapsedMilliseconds} ms");
+        StateHasChanged();
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
+        if(success)
+        {
+            Snackbar.Add("Exported Character Loaded!", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("Failed to Load Exported Character!", Severity.Error);
+            Filename = oldName;
+        }
+
+        _currentState = EditorState.Idle;
+    }
+    
+    private async Task SaveExport()
+    {
+        _currentState = EditorState.Saving;
+        await Task.Delay(250);
+
+        try
+        {
+            var memoryStream = new MemoryStream();
+            await ExportEditor.ExportedCharacterXml.SaveAsync(memoryStream, SaveOptions.None, CancellationToken.None);
+
+            var byteArray = memoryStream.ToArray();
+
+            await FileHandler.DownloadFileFromByteArrayAsync(byteArray, Filename);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving file: {ex.Message}");
+        }
+        finally
+        {
+            _currentState = EditorState.Idle;
+        }
+    }
+
     /// <summary>
     ///   Toggles the theme between light and dark
     /// </summary>
     private void ToggleTheme()
     {
         IsDarkMode = !IsDarkMode;
+        StateHasChanged();
+    }
+
+    private void OnStateChanged()
+    {
+        var currentLocation = ApplicationState.Location;
+        if (currentLocation != _prevLocation 
+            && (currentLocation is not (ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome)
+        && _prevLocation is not (ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome)))
+        { // Moving from mod editor to mod editor home or vice versa does not close the drawer
+            _drawerOpen = false;
+        }
+        
         StateHasChanged();
     }
 
@@ -374,5 +480,10 @@
     private void SwitchToSaveEditor()
     {
         NavigationManager.NavigateTo("home");
+    }
+    
+    private void SwitchToExportEditor()
+    {
+        NavigationManager.NavigateTo("character-exporter");
     }
 }

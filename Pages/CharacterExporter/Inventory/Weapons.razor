@@ -1,4 +1,4 @@
-﻿@page "/inventory/weapons"
+﻿@page "/character-exporter/inventory/weapons"
                         
 @using LTSaveEd.Models
 @using LTSaveEd.Models.CharacterData
@@ -6,7 +6,7 @@
 @using LTSaveEd.Components
 @using LTSaveEd.Models.CharacterData.InventoryData.Weapons
 
-@inherits LTSaveEd.BasePages.BaseSaveEditorPage
+@inherits LTSaveEd.BasePages.BaseExportEditorPage
 
 @inject ApplicationState ApplicationState
 @inject ISnackbar Snackbar
@@ -38,7 +38,7 @@
 </MudCard>
 
 @code {
-    private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
+    private Inventory Inventory => ExportEditor.Character.Inventory;
     
     private async Task Add()
     {
@@ -76,5 +76,4 @@
             weapon.CoreEnchantment.Value = $"RESISTANCE_{newValue.Value}";
         }
     }
-
 }

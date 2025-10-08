@@ -1,0 +1,15 @@
+﻿@page "/character-exporter/body/breasts"
+
+@using LTSaveEd.Models
+
+@inherits LTSaveEd.BasePages.BaseExportEditorPage
+
+@inject ApplicationState ApplicationState
+
+<h3>Breasts</h3>
+
+<BreastsLayout Breasts="@BreastsData"/>
+
+@code {
+    private Models.CharacterData.BodyData.Breasts BreastsData => ExportEditor.Character.Body.Breasts;
+}

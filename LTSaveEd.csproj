@@ -24,6 +24,10 @@
       <EmbeddedResource Include="Resources\white.xml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </EmbeddedResource>
+      <None Remove="Resources\angel.xml" />
+      <EmbeddedResource Include="Resources\angel.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -31,13 +35,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Pages\CharacterExporter\Body\" />
-      <Folder Include="Pages\CharacterExporter\Inventory\" />
-      <Folder Include="Pages\CharacterExporter\Spells\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="BasePages\BaseSaveEditorPage.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Ass.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Breasts.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\BreastsCrotch.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Face.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Penis.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Torso.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Vagina.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Inventory\Clothing.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Inventory\Items.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Spells\Fire.razor" />
     </ItemGroup>
 
 </Project>
