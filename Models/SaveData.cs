@@ -34,17 +34,33 @@ public class SaveData
     private Dictionary<string, XElement> IdCharacterLookup { get; } = new();
     
     
-    public async Task<bool> Initialize(Stream data)
+    public async Task<ErrorMessage?> Initialize(Stream data)
     {
         Initialized = false;
         SaveDataXml = await XDocument.LoadAsync(data, LoadOptions.None, CancellationToken.None);
-        var coreInfoNode = SaveDataXml.Descendants("coreInfo").First();
-        var dialogueFlagsNode = SaveDataXml.Descendants("dialogueFlags").First();
+        var coreInfoNode = SaveDataXml.Descendants("coreInfo").FirstOrDefault();
+        if (coreInfoNode is null)
+        {
+            return "Invalid save data: Missing coreInfo node";
+        }
+        
+        var dialogueFlagsNode = SaveDataXml.Descendants("dialogueFlags").FirstOrDefault();
+        if (dialogueFlagsNode is null)
+        {
+            return "Invalid save data: Missing dialogueFlags node";
+        }
+        
         WorldData = new World(coreInfoNode, dialogueFlagsNode);
         Offsprings = new Offsprings(SaveDataXml.Descendants("OffspringSeed"), GetCharacterNode);
         PopulateCharacterIds();
-        Initialized = LoadCharacter(CharacterIds[0]);
-        return Initialized;
+        var errorMessage = LoadCharacter(CharacterIds[0]);
+        if (errorMessage is not null)
+        {
+            return errorMessage;
+        }
+
+        Initialized = true;
+        return null;
     }
 
     private void ResetCaches()
@@ -76,6 +92,7 @@ public class SaveData
                 <= 60 => nameElement.Attribute("nameAndrogynous")!.Value,
                 > 60 => nameElement.Attribute("nameFeminine")!.Value
             };
+            
             var idValue = id.Value;
             CharacterIds.Add(new ValueDisplayPair<string>(name, idValue));
             IdNameLookup.Add(idValue, name);
@@ -99,13 +116,13 @@ public class SaveData
         return new CharacterShortData(characterNode);
     }
     
-    public bool LoadCharacter(ValueDisplayPair<string> characterIdPair)
+    public ErrorMessage? LoadCharacter(ValueDisplayPair<string> characterIdPair)
     {
         var characterId = characterIdPair.Value;
         if (CharacterCache.TryGetValue(characterId, out var character))
         {
             CurrentCharacter = character;
-            return true;
+            return null;
         }
 
         // ReSharper disable once RedundantAssignment
@@ -116,7 +133,7 @@ public class SaveData
             CurrentCharacter = new Character(characterNode, IdNameLookup);
             CurrentCharacterIdNamePair = characterIdPair;
             CharacterCache.Add(characterId, CurrentCharacter);
-            return true;
+            return null;
         }
         catch (Exception e)
         {
@@ -126,7 +143,7 @@ public class SaveData
             #else
             Console.WriteLine(e);
             CurrentCharacter = previousCharacter;
-            return false;
+            return e.Message;
             #endif
         }
     }
@@ -142,7 +159,7 @@ public class SaveData
         IdNameLookup.Remove(deletedCharacterId);
         IdCharacterLookup.Remove(deletedCharacterId);
         var success = LoadCharacter(CharacterIds[--characterIndex]); // Decrement index first, then retrieve
-        while (!success)
+        while (success is not null)
         {
             characterIndex--;
             if (characterIndex < 0) // Should never happen since player should always be loadable or save is modded

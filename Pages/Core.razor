@@ -130,7 +130,7 @@
     private void ChangeSelectedCharacter(ValueDisplayPair<string> newCharacter)
     {
         var success = SaveData.LoadCharacter(newCharacter);
-        if (success)
+        if (success is null)
         {
             _selectedCharacter = newCharacter;
         }
