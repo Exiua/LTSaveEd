@@ -1,0 +1,33 @@
+﻿@page "/character-exporter"
+
+@using LTSaveEd.Models
+
+@inherits LTSaveEd.BasePages.BaseExportEditorPage
+
+@inject ApplicationState ApplicationState
+@inject NavigationManager NavigationManager
+
+<PageTitle>Character Exporter</PageTitle>
+
+<h1>Welcome</h1>
+
+@*The image is only used to track number of visitors (in this case, hits to this page), no other data is collected*@
+<div style="display: none;"><img src="https://visitor-badge.laobi.icu/badge?page_id=Exiua.LTSaveEd&format=true" alt="visitor badge"/></div>
+<div>Load an exported character file to get started. Once you load your exported character, you will need to wait for the character loaded 
+    notification. Once the character has been loaded, click the three horizontal bars in the top-left corner to access the 
+    character editor menu which shows the various components of the character that can be edited.</div>
+<br/>
+<div>If you would like to add something to the character editor or would like to request something to be added, you can 
+    create a pull request or open an issue on the main repo: <a href="https://github.com/Exiua/LTSaveEd">https://github.com/Exiua/LTSaveEd</a></div>
+
+@code
+{
+    protected override void OnInitialized()
+    {
+        // Do not call base.OnInitialized() here, as it will cause an infinite redirect loop to the home page
+        //base.OnInitialized();
+        ExportEditor.LoadDefault();
+        ApplicationState.UpdateLocation(NavigationManager);
+        StateHasChanged();
+    }
+}

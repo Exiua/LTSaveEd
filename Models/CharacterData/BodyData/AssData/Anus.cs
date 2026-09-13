@@ -46,6 +46,7 @@ public class Anus
         Tentacled = new BodyComponentModifier(anusNode, "TENTACLED");
         InternallyMuscled = new BodyComponentModifier(anusNode, "MUSCLE_CONTROL");
         
+        // Done this way as modifier nodes are not guaranteed to exist
         var modifiers = anusNode.Elements();
         foreach (var modifier in modifiers)
         {

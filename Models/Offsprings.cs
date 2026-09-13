@@ -1,10 +1,14 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models;
 
 public class Offsprings
 {
+    private static readonly ILogger Logger = Log.ForContext<Offsprings>();
+    
     public List<Offspring> OffspringsList { get; } = [];
     private List<XElement> OffspringNodes { get; } = [];
     private readonly Func<string, XElement> _getCharacterNode;
@@ -59,7 +63,7 @@ public class Offsprings
             return;
         }
         var pregnancyNode = characterNode.Element("pregnancy")!;
-        string[] litterNodeNames = {"pregnantLitter", "birthedLitters", "littersFathered"};
+        string[] litterNodeNames = ["pregnantLitter", "birthedLitters", "littersFathered"];
         foreach (var nodeName in litterNodeNames)
         {
             var littersNode = pregnancyNode.Element(nodeName);
@@ -72,7 +76,7 @@ public class Offsprings
             }
         }
 
-        Console.WriteLine($"Offspring {{{offspringId}}} not found under character {{{characterId}}}");
+        Logger.Warning("Offspring {{{OffspringId}}} not found under character {{{CharacterId}}}", offspringId, characterId);
     }
 
     private static bool RemoveOffspringNodeFromLittersNode(XElement littersNode, string offspringId){

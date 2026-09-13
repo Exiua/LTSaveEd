@@ -1,18 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <!-- Make sure to update /Layout/MainLayout.razor with correct version -->
-        <Version>2.8.1</Version>
+        <Version>2.10.0</Version>
         <UseBlazorWebAssembly>true</UseBlazorWebAssembly>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.5" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.5" PrivateAssets="all" />
-        <PackageReference Include="MudBlazor" Version="8.6.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.12" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.12" PrivateAssets="all" />
+        <PackageReference Include="MudBlazor" Version="9.9.0" />
+        <PackageReference Include="Serilog" Version="4.4.0" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
+        <PackageReference Include="Serilog.Sinks.BrowserConsole" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,10 +27,28 @@
       <EmbeddedResource Include="Resources\white.xml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </EmbeddedResource>
+      <None Remove="Resources\angel.xml" />
+      <EmbeddedResource Include="Resources\angel.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Components\Dialogs\ErrorMessageDialog.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="BasePages\BaseSaveEditorPage.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Ass.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Breasts.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\BreastsCrotch.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Face.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Penis.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Torso.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Body\Vagina.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Inventory\Clothing.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Inventory\Items.razor" />
+      <AdditionalFiles Include="Pages\CharacterExporter\Spells\Fire.razor" />
     </ItemGroup>
 
 </Project>

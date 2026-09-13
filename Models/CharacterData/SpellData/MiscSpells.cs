@@ -1,10 +1,14 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models.CharacterData.SpellData;
 
 public class MiscSpells : ElementalSpells
 {
+    private static readonly ILogger Logger = Log.ForContext<MiscSpells>();
+    
     public NullableSpell WitchsSeal { get; }
     public NullableSpell WitchsCharm { get; }
     public NullableSpell SirensCall { get; }
@@ -51,7 +55,7 @@ public class MiscSpells : ElementalSpells
                     LightningSuperbolt.Initialize(spell);
                     break;
                 default:
-                    Console.WriteLine($"Unknown Misc Spell Encountered: {spellType}");
+                    Logger.Warning("Unknown Misc Spell Encountered: {SpellType}", spellType);
                     break;
             }
         }

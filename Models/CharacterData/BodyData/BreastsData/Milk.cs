@@ -40,6 +40,7 @@ public class Milk
         Addictive = new BodyComponentModifier(milkNode, "ADDICTIVE");
         Psychoactive = new BodyComponentModifier(milkNode, "HALLUCINOGENIC");
 
+        // Done this way as modifiers are not guaranteed to exist
         var modifiers = milkNode.Attributes();
         foreach (var modifier in modifiers)
         {

@@ -17,6 +17,11 @@ public static class GeneralExtensionMethods
         return $"[{output}]";
     }
 
+    /// <summary>
+    ///     Remove the last item from a list
+    /// </summary>
+    /// <param name="list">The list to remove the last item from</param>
+    /// <typeparam name="T">Type of the elements</typeparam>
     public static void Pop<T>(this List<T> list)
     {
         list.RemoveAt(list.Count - 1);

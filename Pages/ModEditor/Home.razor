@@ -3,15 +3,19 @@
 @using System.Xml.Linq
 @using LTSaveEd.Models.ModEditor
 
-@inherits BaseModEditorPage
+@inherits LTSaveEd.BasePages.BaseModEditorPage
 
 <PageTitle>Mod Editor</PageTitle>
 
 <h1>Welcome</h1>
 
-@* <div style="display: none;"><img src="https://visitor-badge.laobi.icu/badge?page_id=Exiua.LTSaveEd&format=true" alt="visitor badge"/></div> *@
+@*The image is only used to track number of visitors (in this case, hits to this page), no other data is collected*@
+<div style="display: none;"><img src="https://visitor-badge.laobi.icu/badge?page_id=Exiua.LTSaveEd&format=true" alt="visitor badge"/></div>
 <div>Click the three horizontal bars in the top-left corner to access the 
     mod editor menu which shows the various mods that can be created or edited.</div>
+<br/>
+<div>If you would like to add something to the character editor or would like to request something to be added, you can 
+    create a pull request or open an issue on the main repo: <a href="https://github.com/Exiua/LTSaveEd">https://github.com/Exiua/LTSaveEd</a></div>
 
 @code {
     protected override void OnInitialized()

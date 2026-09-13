@@ -6,7 +6,7 @@
 @using LTSaveEd.Components
 @using LTSaveEd.Models.CharacterData.InventoryData.Weapons
 
-@inherits BaseSaveEditorPage
+@inherits LTSaveEd.BasePages.BaseSaveEditorPage
 
 @inject ApplicationState ApplicationState
 @inject ISnackbar Snackbar
@@ -40,7 +40,7 @@
 @code {
     private Inventory Inventory => SaveData.CurrentCharacter.Inventory;
     
-    private async void Add()
+    private async Task Add()
     {
         if (Inventory.Full)
         {

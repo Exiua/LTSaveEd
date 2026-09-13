@@ -5,4 +5,5 @@ public enum ApplicationStateLocation
     SaveEditor,
     ModEditor,
     ModEditorHome,
+    CharacterExporter,
 }

@@ -1,9 +1,13 @@
 ﻿using System.Xml.Linq;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models.CharacterData;
 
 public class Fetishes
 {
+    private static readonly ILogger Logger = Log.ForContext<Fetishes>();
+    
     public Fetish Dominant { get; } = null!;
     public Fetish Submissive { get; } = null!;
     public Fetish Vaginal { get; } = null!;
@@ -263,7 +267,7 @@ public class Fetishes
                     LustyMaiden = new Fetish(fetish, true);
                     break;
                 default:
-                    Console.WriteLine($"Unknown Fetish: {fetish.Value}");
+                    Logger.Error("Unknown Fetish: {FetishValue}", fetish.Value);
                     break;
             }
         }

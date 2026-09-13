@@ -1,9 +1,13 @@
 ﻿using LTSaveEd.Models.JSWrappers;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models;
 
 public class Settings
 {
+    private static readonly ILogger Logger = Log.ForContext<Settings>();
+    
     private LocalStorageAccessor _localStorageAccessor = null!;
     private bool _darkMode;
 
@@ -33,7 +37,7 @@ public class Settings
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error saving setting {keyString}: {ex}");
+            Logger.Error(ex, "Error saving setting {SettingKey}", keyString);
         }
     }
 

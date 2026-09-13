@@ -4,6 +4,7 @@
 @using LTSaveEd.Models.Enums
 @using LTSaveEd.Models.JSWrappers
 @using LTSaveEd.Components
+@using LTSaveEd.Models.CharacterExporter
 
 @inherits LayoutComponentBase
 
@@ -21,23 +22,30 @@
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+                       OnClick="@(_ => DrawerToggle())"/>
         <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd @Version</MudText>
-        <MudIconButton Icon="@(IsDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
+        <MudIconButton Icon="@(IsDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)"
                        Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
-        <MudSpacer />
+        <MudSpacer/>
         @switch (ApplicationState.Location)
         {
             case ApplicationStateLocation.SaveEditor:
                 <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"/>
                 <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
-                    <ActivatorContent>
-                        <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary">
+                    <CustomContent>
+                        <MudButton 
+                            Variant="Variant.Filled" 
+                            Color="Color.Secondary"
+                            OnClick="@context.OpenFilePickerAsync"
+                            StartIcon="@Icons.Material.Filled.CloudUpload">
                             LOAD
                         </MudButton>
-                    </ActivatorContent>
+                    </CustomContent>
+                    <SelectedTemplate />
                 </MudFileUpload>
-                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveFile" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+                <MudButton Disabled="@(_currentState == EditorState.Saving || !SaveData.Initialized)" OnClick="@SaveFile"
+                           Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
                     @if (_currentState == EditorState.Saving)
                     {
                         <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
@@ -51,13 +59,14 @@
                 break;
             case ApplicationStateLocation.ModEditor:
                 <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadMod">
-                    <ActivatorContent>
-                        <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary">
+                    <CustomContent>
+                        <MudButton Variant="Variant.Filled" Color="Color.Secondary">
                             LOAD
                         </MudButton>
-                    </ActivatorContent>
+                    </CustomContent>
                 </MudFileUpload>
-                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveMod" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveMod" Variant="Variant.Filled"
+                           Color="Color.Secondary" Style="margin-top: 5px;">
                     @if (_currentState == EditorState.Saving)
                     {
                         <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
@@ -71,65 +80,136 @@
                 break;
             case ApplicationStateLocation.ModEditorHome:
                 break;
+            case ApplicationStateLocation.CharacterExporter:
+                <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"/>
+                <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadExport">
+                    <CustomContent>
+                        <MudButton Variant="Variant.Filled" Color="Color.Secondary">
+                            LOAD
+                        </MudButton>
+                    </CustomContent>
+                </MudFileUpload>
+                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveExport"
+                           Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+                    @if (_currentState == EditorState.Saving)
+                    {
+                        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                        <MudText Class="ms-2">Processing</MudText>
+                    }
+                    else
+                    {
+                        <div>Save</div>
+                    }
+                </MudButton>
+                break;
             default:
                 Console.WriteLine("Unknown ApplicationStateLocation: " + ApplicationState.Location);
                 break;
         }
         <MudMenu Icon="@Icons.Material.Filled.MoreVert" AriaLabel="Open menu">
-            @if (ApplicationState.Location == ApplicationStateLocation.SaveEditor)
+            @switch (ApplicationState.Location)
             {
-                <MudMenuItem Label="Switch to Mod Editor" OnClick="SwitchToModEditor"/>
-            }
-            else
-            {
-                <MudMenuItem Label="Switch to Save Editor" OnClick="SwitchToSaveEditor"/>
+                case ApplicationStateLocation.SaveEditor:
+                    <MudMenuItem Label="Switch to Mod Editor" OnClick="SwitchToModEditor"/>
+                    <MudMenuItem Label="Switch to Export Editor" OnClick="SwitchToModEditor"/>
+                    break;
+                case ApplicationStateLocation.ModEditor:
+                case ApplicationStateLocation.ModEditorHome:
+                    <MudMenuItem Label="Switch to Save Editor" OnClick="SwitchToSaveEditor"/>
+                    <MudMenuItem Label="Switch to Export Editor" OnClick="SwitchToModEditor"/>
+                    break;
+                case ApplicationStateLocation.CharacterExporter:
+                    <MudMenuItem Label="Switch to Save Editor" OnClick="SwitchToSaveEditor"/>
+                    <MudMenuItem Label="Switch to Mod Editor" OnClick="SwitchToModEditor"/>
+                    break;
+                default:
+                    Console.WriteLine("Unknown ApplicationStateLocation: " + ApplicationState.Location);
+                    break;
             }
         </MudMenu>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <MudPaper Width="250px" Elevation="0" Class="py-3">
             <MudNavMenu Bordered="true">
-                @if (ApplicationState.Location == ApplicationStateLocation.SaveEditor)
+                @switch (ApplicationState.Location)
                 {
-                    <MudNavLink Href="core">Core</MudNavLink>
-                    <MudNavLink Href="attributes">Attributes</MudNavLink>
-                    <MudNavGroup Title="Body">
-                        <MudNavLink Href="body/bodycore">Body Core</MudNavLink>
-                        <MudNavLink Href="body/head">Head</MudNavLink>
-                        <MudNavLink Href="body/face">Face</MudNavLink>
-                        <MudNavLink Href="body/breasts">Breasts</MudNavLink>
-                        <MudNavLink Href="body/breastscrotch">Breasts Crotch</MudNavLink>
-                        <MudNavLink Href="body/torso">Torso</MudNavLink>
-                        <MudNavLink Href="body/penis">Penis</MudNavLink>
-                        <MudNavLink Href="body/vagina">Vagina</MudNavLink>
-                        <MudNavLink Href="body/ass">Ass</MudNavLink>
-                    </MudNavGroup>
-                    <MudNavLink Href="fetishes">Fetishes</MudNavLink>
-                    <MudNavLink Href="perks">Perks</MudNavLink>
-                    <MudNavGroup Title="Spells">
-                        <MudNavLink Href="spells/earth">Earth</MudNavLink>
-                        <MudNavLink Href="spells/water">Water</MudNavLink>
-                        <MudNavLink Href="spells/fire">Fire</MudNavLink>
-                        <MudNavLink Href="spells/air">Air</MudNavLink>
-                        <MudNavLink Href="spells/arcane">Arcane</MudNavLink>
-                        <MudNavLink Href="spells/misc">Misc</MudNavLink>
-                    </MudNavGroup>
-                    <MudNavGroup Title="Inventory">
-                        <MudNavLink Href="inventory/items">Items</MudNavLink>
-                        <MudNavLink Href="inventory/clothing">Clothing</MudNavLink>
-                        <MudNavLink Href="inventory/weapons">Weapons</MudNavLink>
-                        <MudNavLink Href="inventory/equipped" Disabled="true">Equipped</MudNavLink>
-                    </MudNavGroup>
-                    <MudNavLink Href="relationships">Relationships</MudNavLink>
-                    <MudNavLink Href="family">Family</MudNavLink>
-                    <MudNavLink Href="offsprings">Offsprings</MudNavLink>
-                    <MudNavLink Href="world">World</MudNavLink>
-                    <MudNavLink Href="extra">Extra</MudNavLink>
-                }
-                else
-                {
-                    <MudNavLink Href="mod-editor/color">Color</MudNavLink>
-                    <MudNavLink Href="mod-editor/clothing">Clothing</MudNavLink>
+                    case ApplicationStateLocation.SaveEditor:
+                        <MudNavLink Href="core">Core</MudNavLink>
+                        <MudNavLink Href="attributes">Attributes</MudNavLink>
+                        <MudNavGroup Title="Body">
+                            <MudNavLink Href="body/bodycore">Body Core</MudNavLink>
+                            <MudNavLink Href="body/head">Head</MudNavLink>
+                            <MudNavLink Href="body/face">Face</MudNavLink>
+                            <MudNavLink Href="body/breasts">Breasts</MudNavLink>
+                            <MudNavLink Href="body/breastscrotch">Breasts Crotch</MudNavLink>
+                            <MudNavLink Href="body/torso">Torso</MudNavLink>
+                            <MudNavLink Href="body/penis">Penis</MudNavLink>
+                            <MudNavLink Href="body/vagina">Vagina</MudNavLink>
+                            <MudNavLink Href="body/ass">Ass</MudNavLink>
+                        </MudNavGroup>
+                        <MudNavLink Href="fetishes">Fetishes</MudNavLink>
+                        <MudNavLink Href="perks">Perks</MudNavLink>
+                        <MudNavGroup Title="Spells">
+                            <MudNavLink Href="spells/earth">Earth</MudNavLink>
+                            <MudNavLink Href="spells/water">Water</MudNavLink>
+                            <MudNavLink Href="spells/fire">Fire</MudNavLink>
+                            <MudNavLink Href="spells/air">Air</MudNavLink>
+                            <MudNavLink Href="spells/arcane">Arcane</MudNavLink>
+                            <MudNavLink Href="spells/misc">Misc</MudNavLink>
+                        </MudNavGroup>
+                        <MudNavGroup Title="Inventory">
+                            <MudNavLink Href="inventory/items">Items</MudNavLink>
+                            <MudNavLink Href="inventory/clothing">Clothing</MudNavLink>
+                            <MudNavLink Href="inventory/weapons">Weapons</MudNavLink>
+                            <MudNavLink Href="inventory/equipped" Disabled="true">Equipped</MudNavLink>
+                        </MudNavGroup>
+                        <MudNavLink Href="relationships">Relationships</MudNavLink>
+                        <MudNavLink Href="family">Family</MudNavLink>
+                        <MudNavLink Href="offsprings">Offsprings</MudNavLink>
+                        <MudNavLink Href="world">World</MudNavLink>
+                        <MudNavLink Href="extra">Extra</MudNavLink>
+                        break;
+                    case ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome:
+                        <MudNavLink Href="mod-editor/color">Color</MudNavLink>
+                        <MudNavLink Href="mod-editor/clothing">Clothing</MudNavLink>
+                        break;
+                    case ApplicationStateLocation.CharacterExporter:
+                        <MudNavLink Href="character-exporter/core">Core</MudNavLink>
+                        <MudNavLink Href="character-exporter/attributes">Attributes</MudNavLink>
+                        <MudNavGroup Title="Body">
+                            <MudNavLink Href="character-exporter/body/bodycore">Body Core</MudNavLink>
+                            <MudNavLink Href="character-exporter/body/head">Head</MudNavLink>
+                            <MudNavLink Href="character-exporter/body/face">Face</MudNavLink>
+                            <MudNavLink Href="character-exporter/body/breasts">Breasts</MudNavLink>
+                            <MudNavLink Href="character-exporter/body/breastscrotch">Breasts Crotch</MudNavLink>
+                            <MudNavLink Href="character-exporter/body/torso">Torso</MudNavLink>
+                            <MudNavLink Href="character-exporter/body/penis">Penis</MudNavLink>
+                            <MudNavLink Href="character-exporter/body/vagina">Vagina</MudNavLink>
+                            <MudNavLink Href="character-exporter/body/ass">Ass</MudNavLink>
+                        </MudNavGroup>
+                        <MudNavLink Href="character-exporter/fetishes">Fetishes</MudNavLink>
+                        <MudNavLink Href="character-exporter/perks">Perks</MudNavLink>
+                        <MudNavGroup Title="Spells">
+                            <MudNavLink Href="character-exporter/spells/earth">Earth</MudNavLink>
+                            <MudNavLink Href="character-exporter/spells/water">Water</MudNavLink>
+                            <MudNavLink Href="character-exporter/spells/fire">Fire</MudNavLink>
+                            <MudNavLink Href="character-exporter/spells/air">Air</MudNavLink>
+                            <MudNavLink Href="character-exporter/spells/arcane">Arcane</MudNavLink>
+                            <MudNavLink Href="character-exporter/spells/misc">Misc</MudNavLink>
+                        </MudNavGroup>
+                        <MudNavGroup Title="Inventory">
+                            <MudNavLink Href="character-exporter/inventory/items">Items</MudNavLink>
+                            <MudNavLink Href="character-exporter/inventory/clothing">Clothing</MudNavLink>
+                            <MudNavLink Href="character-exporter/inventory/weapons">Weapons</MudNavLink>
+                            <MudNavLink Href="character-exporter/inventory/equipped" Disabled="true">Equipped
+                            </MudNavLink>
+                        </MudNavGroup>
+                        @* <MudNavLink Href="character-exporter/relationships">Relationships</MudNavLink> *@
+                        <MudNavLink Href="character-exporter/family">Family</MudNavLink>
+                        break;
+                    default:
+                        Console.WriteLine("Unknown ApplicationStateLocation: " + ApplicationState.Location);
+                        break;
                 }
             </MudNavMenu>
         </MudPaper>
@@ -157,14 +237,17 @@
 </MudLayout>
 
 @code {
+
     // Make sure to also update .csproj file with the correct version
-    private const string Version = "v2.8.1";
+    private const string Version = "v2.10.0";
 
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;
+    private ApplicationStateLocation _prevLocation = ApplicationStateLocation.SaveEditor;
 
     private readonly MudTheme _theme = null!;
     private string Filename { get; set; } = "";
+
     private bool IsDarkMode
     {
         get => Settings.DarkMode;
@@ -172,11 +255,13 @@
     }
 
     private SaveData SaveData => ApplicationState.SaveData;
+    private ExportEditor ExportEditor => ApplicationState.ExportEditor;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        ApplicationState.LocationChanged += StateHasChanged;
+        _prevLocation = ApplicationState.Location;
+        ApplicationState.LocationChanged += OnStateChanged;
     }
 
     /// <summary>
@@ -189,11 +274,11 @@
         {
             return;
         }
-        
+
         _drawerOpen = !_drawerOpen;
         StateHasChanged();
     }
-    
+
     /// <summary>
     ///    Loads the save data from the file
     /// </summary>
@@ -203,7 +288,7 @@
         {
             return;
         }
-        
+
         _currentState = EditorState.Loading;
         await Task.Delay(100);
         var oldName = Filename;
@@ -211,25 +296,25 @@
         await using var stream = file.OpenReadStream(file.Size + 1);
         var stopwatch = new Stopwatch();
         stopwatch.Start();
-        var success = await SaveData.Initialize(stream);
+        var errorMessage = await SaveData.Initialize(stream);
         stopwatch.Stop();
         Console.WriteLine($"Loaded Save in {stopwatch.ElapsedMilliseconds} ms");
         StateHasChanged();
         Snackbar.Clear();
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
-        if(success)
+        if (errorMessage is null)
         {
             Snackbar.Add("Save Data Loaded!", Severity.Success);
         }
         else
         {
-            Snackbar.Add("Failed to Load Data!", Severity.Error);
+            Snackbar.Add($"Failed to Load Data! Reason: {errorMessage}", Severity.Error);
             Filename = oldName;
         }
 
         _currentState = EditorState.Idle;
     }
-    
+
     /// <summary>
     ///    Saves the save data to a file
     /// </summary>
@@ -256,14 +341,14 @@
             _currentState = EditorState.Idle;
         }
     }
-    
+
     private async Task LoadMod(IBrowserFile? file)
     {
         if (file == null)
         {
             return;
         }
-        
+
         // Changing the view to show loading icon reloads the page's state, so we don't change _currentState here otherwise
         // it causes the page to lose the loaded mod data
         //_currentState = EditorState.Loading;
@@ -279,7 +364,7 @@
         StateHasChanged();
         Snackbar.Clear();
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
-        if(success)
+        if (success)
         {
             Snackbar.Add("Mod Data Loaded!", Severity.Success);
         }
@@ -291,7 +376,7 @@
 
         _currentState = EditorState.Idle;
     }
-    
+
     private async Task SaveMod()
     {
         _currentState = EditorState.Saving;
@@ -313,12 +398,83 @@
         }
     }
 
+    private async Task LoadExport(IBrowserFile? file)
+    {
+        if (file == null)
+        {
+            return;
+        }
+
+        _currentState = EditorState.Loading;
+        await Task.Delay(100);
+        var oldName = Filename;
+        Filename = file.Name;
+        await using var stream = file.OpenReadStream(file.Size + 1);
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+        var success = await ExportEditor.Load(stream);
+        stopwatch.Stop();
+        Console.WriteLine($"Loaded Export in {stopwatch.ElapsedMilliseconds} ms");
+        StateHasChanged();
+        Snackbar.Clear();
+        Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
+        if (success)
+        {
+            Snackbar.Add("Exported Character Loaded!", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("Failed to Load Exported Character!", Severity.Error);
+            Filename = oldName;
+        }
+
+        _currentState = EditorState.Idle;
+    }
+
+    private async Task SaveExport()
+    {
+        _currentState = EditorState.Saving;
+        await Task.Delay(250);
+
+        try
+        {
+            var memoryStream = new MemoryStream();
+            await ExportEditor.ExportedCharacterXml.SaveAsync(memoryStream, SaveOptions.None, CancellationToken.None);
+
+            var byteArray = memoryStream.ToArray();
+
+            await FileHandler.DownloadFileFromByteArrayAsync(byteArray, Filename);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving file: {ex.Message}");
+        }
+        finally
+        {
+            _currentState = EditorState.Idle;
+        }
+    }
+
     /// <summary>
     ///   Toggles the theme between light and dark
     /// </summary>
     private void ToggleTheme()
     {
         IsDarkMode = !IsDarkMode;
+        StateHasChanged();
+    }
+
+    private void OnStateChanged()
+    {
+        var currentLocation = ApplicationState.Location;
+        if (currentLocation != _prevLocation
+            && (currentLocation is not (ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome)
+                && _prevLocation is not (ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome)))
+        {
+            // Moving from mod editor to mod editor home or vice versa does not close the drawer
+            _drawerOpen = false;
+        }
+
         StateHasChanged();
     }
 
@@ -338,4 +494,10 @@
     {
         NavigationManager.NavigateTo("home");
     }
+
+    private void SwitchToExportEditor()
+    {
+        NavigationManager.NavigateTo("character-exporter");
+    }
+
 }

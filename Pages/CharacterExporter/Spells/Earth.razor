@@ -1,0 +1,35 @@
+﻿@page "/character-exporter/spells/earth"
+
+@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData.SpellData
+@using LTSaveEd.Components
+
+@inherits LTSaveEd.BasePages.BaseExportEditorPage
+
+@inject ApplicationState ApplicationState;
+
+<h3>Earth</h3>
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.Slam" Label="Slam"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.TelekineticShower" Label="Telekinetic Shower"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.StoneShell" Label="Stone Shell"/>
+        </MudItem>
+        <MudItem xs="3">
+            <SpellSelect Spell="Spells.EarthElemental" Label="Earth Elemental"/>
+        </MudItem>
+        <MudItem xs="3">
+            <IntField Attribute="@Spells.UpgradePoints" Label="Spell Points"/>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private EarthSpells Spells => ExportEditor.Character.Spells.Earth;
+}

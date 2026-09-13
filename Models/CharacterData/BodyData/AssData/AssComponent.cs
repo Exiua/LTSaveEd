@@ -8,28 +8,42 @@ namespace LTSaveEd.Models.CharacterData.BodyData.AssData;
 /// </summary>
 public class AssComponent
 {
+    // Need to update this list when updates introduce new species
     public ValueDisplayPair<string>[] AssTypes { get; } =
     [
-        new("Alligator", "ALLIGATOR_MORPH"), new("Angel", "ANGEL"),
-        new("Badger", "innoxia_badger_ass"), new("Bat", "BAT_MORPH"),
+        new("Alligator", "ALLIGATOR_MORPH"),
+        new("Angel", "ANGEL"),
+        new("Badger", "innoxia_badger_ass"),
+        new("Bat", "BAT_MORPH"),
         new("Bear", "dsg_bear_ass"),
         new("Capybara", "NoStepOnSnek_capybara_ass"),
-        new("Cat", "CAT_MORPH"), new("Cow", "COW_MORPH"),
-        new("Demonic", "DEMON_COMMON"), new("Dog", "DOG_MORPH"),
-        new("Dragon", "dsg_dragon_ass"), new("Ferret", "dsg_ferret_ass"),
-        new("Fox", "FOX_MORPH"), new("Goat", "innoxia_goat_ass"),
-        new("Gryphon", "dsg_gryphon_ass"), new("Harpy", "HARPY"),
-        new("Horse", "HORSE_MORPH"), new("Human", "HUMAN"),
+        new("Cat", "CAT_MORPH"),
+        new("Cow", "COW_MORPH"),
+        new("Demonic", "DEMON_COMMON"),
+        new("Dog", "DOG_MORPH"),
+        new("Dragon", "dsg_dragon_ass"),
+        new("Ferret", "dsg_ferret_ass"),
+        new("Fox", "FOX_MORPH"),
+        new("Goat", "innoxia_goat_ass"),
+        new("Gryphon", "dsg_gryphon_ass"),
+        new("Harpy", "HARPY"),
+        new("Horse", "HORSE_MORPH"),
+        new("Human", "HUMAN"),
         new("Hyena", "innoxia_hyena_ass"),
         new("Octopus", "NoStepOnSnek_octopus_ass"),
-        new("Otter", "dsg_otter_ass"), new("Panther", "innoxia_panther_ass"),
-        new("Pig", "innoxia_pig_ass"), new("Rabbit", "RABBIT_MORPH"),
-        new("Racoon", "dsg_raccoon_ass"), new("Rat", "RAT_MORPH"),
-        new("Reindeer", "REINDEER_MORPH"), new("Shark", "dsg_shark_ass"),
+        new("Otter", "dsg_otter_ass"),
+        new("Panther", "innoxia_panther_ass"),
+        new("Pig", "innoxia_pig_ass"),
+        new("Rabbit", "RABBIT_MORPH"),
+        new("Racoon", "dsg_raccoon_ass"),
+        new("Rat", "RAT_MORPH"),
+        new("Reindeer", "REINDEER_MORPH"),
+        new("Shark", "dsg_shark_ass"),
         new("Sheep", "innoxia_sheep_ass"),
         new("Snake", "NoStepOnSnek_snake_ass"),
         new("Spider", "charisma_spider_ass"),
-        new("Squirrel", "SQUIRREL_MORPH"), new("Wolf", "WOLF_MORPH")
+        new("Squirrel", "SQUIRREL_MORPH"),
+        new("Wolf", "WOLF_MORPH")
     ];
 
     public LabeledXmlAttribute<int> AssSize { get; }
@@ -43,6 +57,11 @@ public class AssComponent
         Type = new XmlAttribute<string>(assNode.Attribute("type")!);
     }
 
+    /// <summary>
+    ///     Get the ass size label
+    /// </summary>
+    /// <param name="value">Ass size int value</param>
+    /// <returns>Ass size label</returns>
     private static string GetAssSizeLabel(int value)
     {
         return value switch
@@ -58,6 +77,11 @@ public class AssComponent
         };
     }
 
+    /// <summary>
+    ///     Get the hip size label
+    /// </summary>
+    /// <param name="value">Hip size int value</param>
+    /// <returns>Hip size label</returns>
     private static string GetHipSizeLabel(int value)
     {
         return value switch

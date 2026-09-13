@@ -1,10 +1,14 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models.CharacterData.SpellData;
 
 public class WaterSpells : ElementalSpells
 {
+    private static readonly ILogger Logger = Log.ForContext<WaterSpells>();
+    
     private SpellTier[] IceShardSpellTiers { get; } =
     [
         new("Unowned", "ICE_SHARD_UNOWNED"), new("Base", "ICE_SHARD"),
@@ -74,7 +78,7 @@ public class WaterSpells : ElementalSpells
                     DeepClean.Initialize(spell);
                     break;
                 default:
-                    Console.WriteLine($"Unknown Cleaning Spell Encountered: {spellType}");
+                    Logger.Warning("Unknown Cleaning Spell Encountered: {SpellType}", spellType);
                     break;
             }
         }

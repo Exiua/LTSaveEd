@@ -2,7 +2,7 @@
 
 @using LTSaveEd.Models
 
-@inherits BaseSaveEditorPage
+@inherits LTSaveEd.BasePages.BaseSaveEditorPage
 
 @inject ApplicationState ApplicationState
 @inject NavigationManager NavigationManager
@@ -11,10 +11,14 @@
 
 <h1>Welcome</h1>
 
+@*The image is only used to track number of visitors (in this case, hits to this page), no other data is collected*@
 <div style="display: none;"><img src="https://visitor-badge.laobi.icu/badge?page_id=Exiua.LTSaveEd&format=true" alt="visitor badge"/></div>
 <div>Load a save file to get started. Once you load your save file, you will need to wait for the save loaded 
     notification. Once the save has been loaded, click the three horizontal bars in the top-left corner to access the 
     save editor menu which shows the various components of the save that can be edited.</div>
+<br/>
+<div>If you would like to add something to the save editor or would like to request something to be added, you can 
+    create a pull request or open an issue on the main repo: <a href="https://github.com/Exiua/LTSaveEd">https://github.com/Exiua/LTSaveEd</a></div>
 
 @code
 {

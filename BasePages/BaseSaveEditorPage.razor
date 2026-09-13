@@ -8,7 +8,9 @@
     
     protected override void OnInitialized()
     {
+        // Initialize current location in the application state
         ApplicationState.UpdateLocation(NavigationManager);
+        // Redirect to home if a save file has not been loaded (other pages will break otherwise)
         if (!SaveData.Initialized)
         {
             NavigationManager.NavigateTo("home", replace: true);

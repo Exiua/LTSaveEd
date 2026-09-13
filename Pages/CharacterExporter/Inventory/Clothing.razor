@@ -1,0 +1,67 @@
+﻿@page "/character-exporter/inventory/clothing"
+                        
+@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterData
+@using LTSaveEd.Models.CharacterData.InventoryData
+@using LTSaveEd.Components
+@using LTSaveEd.Models.CharacterData.InventoryData.Clothes
+
+@inherits LTSaveEd.BasePages.BaseExportEditorPage
+
+@inject ApplicationState ApplicationState
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+
+<h3>Clothing</h3>
+
+<MudCard>
+    <MudForm>
+        <MudCardContent>
+            @for (var i = 0; i < Inventory.Clothes.Count; i++)
+            {
+                var localIndex = i;
+                var clothing = Inventory.Clothes[localIndex];
+                <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
+                    <MudTextField @bind-Value="@clothing.Id.Value" ReadOnly="true" Label="Id"/>
+                    <MudTextField @bind-Value="@clothing.Name.Value" Label="Name"/>
+                    <IntField Attribute="@clothing.Count" Label="Count"/>
+                    <MudCheckBox @bind-Value="@clothing.EnchantmentKnown.Value" Label="Enchantment Known"
+                                 LabelPlacement="Placement.Start"/>
+                    <MudCheckBox @bind-Value="@clothing.IsDirty.Value" Label="Is Dirty"
+                                 LabelPlacement="Placement.Start"/>
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary"
+                               OnClick="@(() => Inventory.Delete(localIndex, InventoryElementType.Clothing))">Delete</MudButton>
+                </MudPaper>
+            }
+            <MudButton Color="Color.Tertiary" Variant="Variant.Filled" OnClick="@Add">Add</MudButton>
+        </MudCardContent>
+    </MudForm>
+</MudCard>
+
+@code {
+    private Inventory Inventory => ExportEditor.Character.Inventory;
+
+    private async Task Add()
+    {
+        if (Inventory.Full)
+        {
+            Snackbar.Add("Inventory Full", Severity.Error);
+            return;
+        }
+        
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        var parameters = new DialogParameters
+        {
+            ["Types"] = Collections.ClothingTypes,
+            ["TypeMap"] = Collections.ClothingMap
+        };
+        
+        var dialog = await DialogService.ShowAsync<AddInventoryElementDialog<ClothingType, ClothingData>>("Add Clothing", options: options, parameters: parameters);
+        var result = await dialog.Result;
+        if (!result!.Canceled)
+        {
+            Inventory.Add((ClothingData)result.Data!);
+            StateHasChanged();
+        }
+    }
+}

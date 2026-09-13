@@ -458,3 +458,4 @@ venv/
 
 # Custom Files
 global.json
+*.txt

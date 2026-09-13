@@ -60,6 +60,7 @@ public class Nipples
         Tentacled = new BodyComponentModifier(nipplesNode, "TENTACLED");
         InternallyMuscled = new BodyComponentModifier(nipplesNode, "MUSCLE_CONTROL");
 
+        // Done this way as modifiers are not guaranteed to exist
         var modifiers = nipplesNode.Elements();
         foreach (var modifier in modifiers)
         {

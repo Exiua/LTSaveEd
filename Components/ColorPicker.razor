@@ -25,14 +25,15 @@
     {
         if (string.IsNullOrEmpty(Value))
         {
-            Value = "594ae2"; // Default color
+            Value = "594ae2"; // Default color (arbitrary choice)
         }
         
-        Color = MudColor.Parse($"#" + Value);
+        Color = MudColor.Parse("#" + Value);
     }
     
     protected override void OnParametersSet()
     {
+        // Required for when the Value parameter has changed externally
         if (MudColor.TryParse("#" + Value, out var parsedColor))
         {
             _color = parsedColor;

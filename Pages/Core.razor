@@ -4,7 +4,7 @@
 @using LTSaveEd.Models.CharacterData
 @using LTSaveEd.Components
 
-@inherits BaseSaveEditorPage
+@inherits LTSaveEd.BasePages.BaseSaveEditorPage
 
 @inject ApplicationState ApplicationState
 
@@ -27,7 +27,7 @@
                 <MudTextField @bind-Value="@CoreData.Name.Surname.Value" Label="Surname"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
-                <MudTextField @bind-Value="@CoreData.Description.Value" Label="Description" AutoGrow MaxLines="3"/>
+                <MudTextField @bind-Value="@CoreData.Description.Value" Label="Description" Sizing="InputSizing.Auto" MaxLines="3"/>
             </MudPaper>
             <MudPaper Class="d-flex mr-10 pa-4" Elevation="0">
                 <IntField Attribute="@CoreData.Level" Label="Level"/>
@@ -130,7 +130,7 @@
     private void ChangeSelectedCharacter(ValueDisplayPair<string> newCharacter)
     {
         var success = SaveData.LoadCharacter(newCharacter);
-        if (success)
+        if (success is null)
         {
             _selectedCharacter = newCharacter;
         }

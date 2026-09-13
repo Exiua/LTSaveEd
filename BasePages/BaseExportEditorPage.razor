@@ -1,0 +1,20 @@
+﻿@using LTSaveEd.Models
+@using LTSaveEd.Models.CharacterExporter
+
+@inject NavigationManager NavigationManager
+@inject ApplicationState ApplicationState
+
+@code {
+    protected ExportEditor ExportEditor => ApplicationState.ExportEditor;
+    
+    protected override void OnInitialized()
+    {
+        // Initialize current location in the application state
+        ApplicationState.UpdateLocation(NavigationManager);
+        // Redirect to home if an exported character has not been loaded (other pages will break otherwise)
+        if (!ExportEditor.Initialized)
+        {
+            NavigationManager.NavigateTo("character-exporter/home", replace: true);
+        }
+    }
+}

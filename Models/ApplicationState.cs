@@ -1,12 +1,18 @@
 ﻿using System.Xml.Linq;
+using LTSaveEd.Models.CharacterExporter;
 using LTSaveEd.Models.Enums;
 using Microsoft.AspNetCore.Components;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models;
 
 public class ApplicationState
 {
+    private static readonly ILogger Logger = Log.ForContext<ApplicationState>();
+    
     public SaveData SaveData { get; set; } = new();
+    public ExportEditor ExportEditor { get; set; } = new(); 
     public ApplicationStateLocation Location { get; set; } = ApplicationStateLocation.SaveEditor;
     public Func<Task<MemoryStream>>? SaveModDataHandler { get; set; }
     public Func<XDocument, bool>? LoadModDataHandler { get; set; }
@@ -23,6 +29,10 @@ public class ApplicationState
         else if (path.EndsWith("/mod-editor"))
         {
             Location = ApplicationStateLocation.ModEditorHome;
+        }
+        else if (path.Contains("/character-exporter"))
+        {
+            Location = ApplicationStateLocation.CharacterExporter;
         }
         else
         {
@@ -60,7 +70,7 @@ public class ApplicationState
         catch (Exception e)
         {
             #if DEBUG
-            Console.WriteLine(e);
+            Logger.Error(e, "Error loading mod data");
             #endif
             return false;
         }
