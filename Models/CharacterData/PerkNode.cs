@@ -1,11 +1,15 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.Models.XmlData;
 using LTSaveEd.Utility;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models.CharacterData;
 
 public class PerkNode : NullableXmlObject
 {
+    private static readonly ILogger Logger = Log.ForContext<PerkNode>();
+    
     public static event Action? OnActivenessChanged;
 
     public string DisplayName { get; }
@@ -52,7 +56,7 @@ public class PerkNode : NullableXmlObject
         var selfRow = TypeHelper.ParseInt(row);
         if (parentRow != selfRow && parentRow != selfRow - 1)
         {
-            Console.WriteLine($"Incorrect hierarchy detected: {row} {type} {displayName}");
+            Logger.Warning("Incorrect hierarchy detected: {Row} {Type} {DisplayName}", row, type, displayName);
         } 
 
         #endif
@@ -72,7 +76,7 @@ public class PerkNode : NullableXmlObject
         var selfRow = TypeHelper.ParseInt(row);
         if ((parentLeftRow != selfRow && parentLeftRow != selfRow - 1) || (parentRightRow != selfRow && parentRightRow != selfRow - 1))
         {
-            Console.WriteLine($"Incorrect hierarchy detected: {row} {type} {displayName}");
+            Logger.Warning("Incorrect hierarchy detected: {Row} {Type} {DisplayName}", row, type, displayName);
         }
         
         #endif

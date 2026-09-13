@@ -2,11 +2,15 @@
 using LTSaveEd.ExtensionMethods;
 using LTSaveEd.Models.ModEditor.Xml;
 using LTSaveEd.Models.XmlData;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models.ModEditor;
 
 public class ColorMod : Mod
 {
+    private static readonly ILogger Logger = Log.ForContext<ColorMod>();
+    
     public XmlElement<bool> Metallic { get; }
     public XmlCData<string> Name { get; }
     public XmlElement<string> Colour { get; }
@@ -89,13 +93,13 @@ public class ColorMod : Mod
                                              .ToList();
         
         #if DEBUG
-        Console.WriteLine("Metallic: " + Metallic.Value);
-        Console.WriteLine("Name: " + Name.Value);
-        Console.WriteLine("Colour: " + Colour.Value);
-        Console.WriteLine("LightColour: " + LightColour.Value);
-        Console.WriteLine("CoveringIconColour: " + CoveringIconColour.Value);
-        Console.WriteLine("FormattingNames: " + FormattingNames.Select(fn => fn.Value).ToFormattedString());
-        Console.WriteLine("ColorTags: " + ColorTags);
+        Logger.Debug("Metallic: {Metallic}", Metallic.Value);
+        Logger.Debug("Name: {Name}", Name.Value);
+        Logger.Debug("Colour: {Colour}", Colour.Value);
+        Logger.Debug("LightColour: {LightColour}", LightColour.Value);
+        Logger.Debug("CoveringIconColour: {CoveringIconColour}", CoveringIconColour.Value);
+        Logger.Debug("FormattingNames: {FormattingNames}", FormattingNames.Select(fn => fn.Value).ToFormattedString());
+        Logger.Debug("ColorTags: {ColorTags}", ColorTags);
         #endif
     }
 

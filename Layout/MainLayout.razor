@@ -22,23 +22,30 @@
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@(_ => DrawerToggle())" />
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+                       OnClick="@(_ => DrawerToggle())"/>
         <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd @Version</MudText>
-        <MudIconButton Icon="@(IsDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
+        <MudIconButton Icon="@(IsDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)"
                        Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
-        <MudSpacer />
+        <MudSpacer/>
         @switch (ApplicationState.Location)
         {
             case ApplicationStateLocation.SaveEditor:
                 <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"/>
                 <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
-                    <ActivatorContent>
-                        <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary">
+                    <CustomContent>
+                        <MudButton 
+                            Variant="Variant.Filled" 
+                            Color="Color.Secondary"
+                            OnClick="@context.OpenFilePickerAsync"
+                            StartIcon="@Icons.Material.Filled.CloudUpload">
                             LOAD
                         </MudButton>
-                    </ActivatorContent>
+                    </CustomContent>
+                    <SelectedTemplate />
                 </MudFileUpload>
-                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveFile" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+                <MudButton Disabled="@(_currentState == EditorState.Saving || !SaveData.Initialized)" OnClick="@SaveFile"
+                           Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
                     @if (_currentState == EditorState.Saving)
                     {
                         <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
@@ -52,13 +59,14 @@
                 break;
             case ApplicationStateLocation.ModEditor:
                 <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadMod">
-                    <ActivatorContent>
-                        <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary">
+                    <CustomContent>
+                        <MudButton Variant="Variant.Filled" Color="Color.Secondary">
                             LOAD
                         </MudButton>
-                    </ActivatorContent>
+                    </CustomContent>
                 </MudFileUpload>
-                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveMod" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveMod" Variant="Variant.Filled"
+                           Color="Color.Secondary" Style="margin-top: 5px;">
                     @if (_currentState == EditorState.Saving)
                     {
                         <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
@@ -75,13 +83,14 @@
             case ApplicationStateLocation.CharacterExporter:
                 <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"/>
                 <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadExport">
-                    <ActivatorContent>
-                        <MudButton HtmlTag="label" Variant="Variant.Filled" Color="Color.Secondary">
+                    <CustomContent>
+                        <MudButton Variant="Variant.Filled" Color="Color.Secondary">
                             LOAD
                         </MudButton>
-                    </ActivatorContent>
+                    </CustomContent>
                 </MudFileUpload>
-                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveExport" Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
+                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveExport"
+                           Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
                     @if (_currentState == EditorState.Saving)
                     {
                         <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
@@ -192,7 +201,8 @@
                             <MudNavLink Href="character-exporter/inventory/items">Items</MudNavLink>
                             <MudNavLink Href="character-exporter/inventory/clothing">Clothing</MudNavLink>
                             <MudNavLink Href="character-exporter/inventory/weapons">Weapons</MudNavLink>
-                            <MudNavLink Href="character-exporter/inventory/equipped" Disabled="true">Equipped</MudNavLink>
+                            <MudNavLink Href="character-exporter/inventory/equipped" Disabled="true">Equipped
+                            </MudNavLink>
                         </MudNavGroup>
                         @* <MudNavLink Href="character-exporter/relationships">Relationships</MudNavLink> *@
                         <MudNavLink Href="character-exporter/family">Family</MudNavLink>
@@ -227,8 +237,9 @@
 </MudLayout>
 
 @code {
+
     // Make sure to also update .csproj file with the correct version
-    private const string Version = "v2.9.0";
+    private const string Version = "v2.10.0";
 
     private bool _drawerOpen;
     private EditorState _currentState = EditorState.Idle;
@@ -236,6 +247,7 @@
 
     private readonly MudTheme _theme = null!;
     private string Filename { get; set; } = "";
+
     private bool IsDarkMode
     {
         get => Settings.DarkMode;
@@ -262,11 +274,11 @@
         {
             return;
         }
-        
+
         _drawerOpen = !_drawerOpen;
         StateHasChanged();
     }
-    
+
     /// <summary>
     ///    Loads the save data from the file
     /// </summary>
@@ -276,7 +288,7 @@
         {
             return;
         }
-        
+
         _currentState = EditorState.Loading;
         await Task.Delay(100);
         var oldName = Filename;
@@ -290,7 +302,7 @@
         StateHasChanged();
         Snackbar.Clear();
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
-        if(errorMessage is null)
+        if (errorMessage is null)
         {
             Snackbar.Add("Save Data Loaded!", Severity.Success);
         }
@@ -302,7 +314,7 @@
 
         _currentState = EditorState.Idle;
     }
-    
+
     /// <summary>
     ///    Saves the save data to a file
     /// </summary>
@@ -329,14 +341,14 @@
             _currentState = EditorState.Idle;
         }
     }
-    
+
     private async Task LoadMod(IBrowserFile? file)
     {
         if (file == null)
         {
             return;
         }
-        
+
         // Changing the view to show loading icon reloads the page's state, so we don't change _currentState here otherwise
         // it causes the page to lose the loaded mod data
         //_currentState = EditorState.Loading;
@@ -352,7 +364,7 @@
         StateHasChanged();
         Snackbar.Clear();
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
-        if(success)
+        if (success)
         {
             Snackbar.Add("Mod Data Loaded!", Severity.Success);
         }
@@ -364,7 +376,7 @@
 
         _currentState = EditorState.Idle;
     }
-    
+
     private async Task SaveMod()
     {
         _currentState = EditorState.Saving;
@@ -392,7 +404,7 @@
         {
             return;
         }
-        
+
         _currentState = EditorState.Loading;
         await Task.Delay(100);
         var oldName = Filename;
@@ -406,7 +418,7 @@
         StateHasChanged();
         Snackbar.Clear();
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopRight;
-        if(success)
+        if (success)
         {
             Snackbar.Add("Exported Character Loaded!", Severity.Success);
         }
@@ -418,7 +430,7 @@
 
         _currentState = EditorState.Idle;
     }
-    
+
     private async Task SaveExport()
     {
         _currentState = EditorState.Saving;
@@ -455,13 +467,14 @@
     private void OnStateChanged()
     {
         var currentLocation = ApplicationState.Location;
-        if (currentLocation != _prevLocation 
+        if (currentLocation != _prevLocation
             && (currentLocation is not (ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome)
-        && _prevLocation is not (ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome)))
-        { // Moving from mod editor to mod editor home or vice versa does not close the drawer
+                && _prevLocation is not (ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome)))
+        {
+            // Moving from mod editor to mod editor home or vice versa does not close the drawer
             _drawerOpen = false;
         }
-        
+
         StateHasChanged();
     }
 
@@ -481,9 +494,10 @@
     {
         NavigationManager.NavigateTo("home");
     }
-    
+
     private void SwitchToExportEditor()
     {
         NavigationManager.NavigateTo("character-exporter");
     }
+
 }

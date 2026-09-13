@@ -1,10 +1,14 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.Models.XmlData;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models.CharacterData.BodyData.VaginaData;
 
 public class VaginaComponent
 {
+    private static readonly ILogger Logger = Log.ForContext<VaginaComponent>();
+    
     public ValueDisplayPair<string>[] VaginaTypes { get; } =
     [
         new("None", "NONE"), new("Alligator", "ALLIGATOR_MORPH"),
@@ -240,7 +244,7 @@ public class VaginaComponent
                     Ovipositor.Initialize(modifier);
                     break;
                 default:
-                    Console.Error.WriteLine($"Unknown modifier: {modifier.Name.LocalName} : {modifier.Value}");
+                    Logger.Error("Unknown modifier: {ModifierName} : {ModifierValue}", modifier.Name.LocalName, modifier.Value);
                     break;
             }
         }

@@ -1,11 +1,15 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.ExtensionMethods;
 using LTSaveEd.Utility;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models;
 
 public class SaveData
 {
+    private static readonly ILogger Logger = Log.ForContext<SaveData>();
+    
     private bool _initialized;
 
     public bool Initialized
@@ -138,10 +142,10 @@ public class SaveData
         catch (Exception e)
         {
             #if DEBUG
-            Console.WriteLine(e);
+            Logger.Error(e, "Failed to load character {CharacterId}", characterId);
             throw;
             #else
-            Console.WriteLine(e);
+            Logger.Error(e, "Failed to load character {CharacterId}", characterId);
             CurrentCharacter = previousCharacter;
             return e.Message;
             #endif
