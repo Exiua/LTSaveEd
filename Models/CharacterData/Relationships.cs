@@ -15,7 +15,13 @@ public class Relationships
         var relationships = relationshipsNode.Elements();
         foreach (var relationshipElement in relationships)
         {
-            var relationship = new Relationship(relationshipElement, idNameLookup);
+            var relationship = Relationship.Lookup(relationshipElement, idNameLookup);
+            // If the character ID in the relationship node does not exist in the idNameLookup, skip this relationship
+            if (relationship is null)
+            {
+                continue;
+            }
+            
             RelationshipsData.Add(relationship);
             _relationshipNodes.Add(relationshipElement);
         }
@@ -36,7 +42,7 @@ public class Relationships
         }
         
         var relationshipElement = new XElement("relationship", new XAttribute("character", characterId), new XAttribute("value", 0));
-        var relationship = new Relationship(relationshipElement, characterName);
+        var relationship = Relationship.CreateNew(relationshipElement, characterName);
         _relationshipsNode.Add(relationshipElement);
         RelationshipsData.Add(relationship);
         _relationshipNodes.Add(relationshipElement);

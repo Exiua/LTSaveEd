@@ -1,27 +1,53 @@
 ﻿using System.Xml.Linq;
 using LTSaveEd.Models.XmlData;
+using Serilog;
+using ILogger = Serilog.ILogger;
 
 namespace LTSaveEd.Models.CharacterData;
 
 public class Relationship
 {
+    private static readonly ILogger Logger = Log.ForContext<Relationship>();
+    
     public string CharacterName { get; set; }
-    public XmlAttribute<string> CharacterId { get; }
-    public XmlAttribute<float> Value { get; }
+    public XmlAttribute<string> CharacterId { get; private init; }
+    public XmlAttribute<float> Value { get; private init; }
+
+    private Relationship()
+    {
+        // This constructor should only be called by the Lookup and CreateNew static methods which will set the properties after creation.
+        CharacterName = null!;
+        CharacterId = null!;
+        Value = null!;
+    }
     
-    
-    public Relationship(XElement relationshipNode, Dictionary<string, string> idNameLookup)
+    public static Relationship? Lookup(XElement relationshipNode, Dictionary<string, string> idNameLookup)
     {
         var idAttribute = relationshipNode.Attribute("character")!;
-        CharacterName = idNameLookup[idAttribute.Value];
-        CharacterId = new XmlAttribute<string>(idAttribute);
-        Value = new XmlAttribute<float>(relationshipNode.Attribute("value")!);
+        var characterName = idNameLookup.GetValueOrDefault(idAttribute.Value);
+        if (characterName is null)
+        {
+            Logger.Warning("Character ID {CharacterId} not found in idNameLookup. Skipping relationship.", idAttribute.Value);
+            return null;
+        }
+        
+        return new Relationship
+        {
+            CharacterName = characterName,
+            CharacterId = new XmlAttribute<string>(idAttribute),
+            Value = new XmlAttribute<float>(relationshipNode.Attribute("value")!)
+        };
     }
-
-    public Relationship(XElement relationshipNode, string characterName)
+    
+    public static Relationship CreateNew(XElement relationshipNode, string characterName)
     {
-        CharacterName = characterName;
-        CharacterId = new XmlAttribute<string>(relationshipNode.Attribute("character")!);
-        Value = new XmlAttribute<float>(relationshipNode.Attribute("value")!);
+        var newRelationship = new Relationship
+        {
+            CharacterName = characterName,
+            CharacterId = new XmlAttribute<string>(relationshipNode.Attribute("character")!),
+            Value = new XmlAttribute<float>(relationshipNode.Attribute("value")!),
+        };
+        
+        return newRelationship;
     }
 }
