@@ -4,6 +4,7 @@ using LTSaveEd;
 using LTSaveEd.Models;
 using LTSaveEd.Models.JSWrappers;
 using Microsoft.Extensions.Logging;
+using MudBlazor;
 using MudBlazor.Services;
 using Serilog;
 using Serilog.Events;
@@ -24,7 +25,12 @@ builder.Services.AddScoped(_ => new HttpClient
 {
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 });
-builder.Services.AddMudServices();
+builder.Services.AddMudServices(c =>
+{
+    c.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopRight;
+    c.SnackbarConfiguration.ShowCloseIcon = true;
+    c.SnackbarConfiguration.VisibleStateDuration = 3000;
+});
 builder.Services.AddSingleton<ApplicationState>();
 builder.Services.AddSingleton<Settings>();
 builder.Services.AddScoped<LocalStorageAccessor>();

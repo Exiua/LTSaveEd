@@ -1,4 +1,4 @@
-﻿@using LTSaveEd.Models
+@using LTSaveEd.Models
 @using System.Diagnostics
 @using System.Xml.Linq
 @using LTSaveEd.Models.Enums
@@ -21,106 +21,53 @@
 <MudPopoverProvider/>
 
 <MudLayout>
-    <MudAppBar Elevation="1">
+    <MudAppBar Elevation="0" Class="app-bar">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
                        OnClick="@(_ => DrawerToggle())"/>
-        <MudText Typo="Typo.h5" Class="ml-3">LTSaveEd @Version</MudText>
+        <MudStack Row="true" AlignItems="AlignItems.Baseline" Spacing="2" Class="ml-2">
+            <MudText Typo="Typo.h6" Class="app-title">LTSaveEd</MudText>
+            <MudText Typo="Typo.caption" Class="app-version">@Version</MudText>
+        </MudStack>
         <MudIconButton Icon="@(IsDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)"
-                       Color="Color.Inherit" Edge="Edge.End" OnClick="@ToggleTheme"/>
+                       Color="Color.Inherit" Class="ml-2" OnClick="@ToggleTheme"/>
         <MudSpacer/>
         @switch (ApplicationState.Location)
         {
             case ApplicationStateLocation.SaveEditor:
-                <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"/>
-                <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadSave">
-                    <CustomContent>
-                        <MudButton 
-                            Variant="Variant.Filled" 
-                            Color="Color.Secondary"
-                            OnClick="@context.OpenFilePickerAsync"
-                            StartIcon="@Icons.Material.Filled.CloudUpload">
-                            LOAD
-                        </MudButton>
-                    </CustomContent>
-                    <SelectedTemplate />
-                </MudFileUpload>
-                <MudButton Disabled="@(_currentState == EditorState.Saving || !SaveData.Initialized)" OnClick="@SaveFile"
-                           Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
-                    @if (_currentState == EditorState.Saving)
-                    {
-                        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
-                        <MudText Class="ms-2">Processing</MudText>
-                    }
-                    else
-                    {
-                        <div>Save</div>
-                    }
-                </MudButton>
+                @FilenameField()
+                @LoadButton(LoadSave)
+                @SaveButton(SaveFile, _currentState == EditorState.Saving || !SaveData.Initialized)
                 break;
             case ApplicationStateLocation.ModEditor:
-                <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadMod">
-                    <CustomContent>
-                        <MudButton Variant="Variant.Filled" Color="Color.Secondary">
-                            LOAD
-                        </MudButton>
-                    </CustomContent>
-                </MudFileUpload>
-                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveMod" Variant="Variant.Filled"
-                           Color="Color.Secondary" Style="margin-top: 5px;">
-                    @if (_currentState == EditorState.Saving)
-                    {
-                        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
-                        <MudText Class="ms-2">Processing</MudText>
-                    }
-                    else
-                    {
-                        <div>Save</div>
-                    }
-                </MudButton>
+                @LoadButton(LoadMod)
+                @SaveButton(SaveMod, _currentState == EditorState.Saving)
                 break;
             case ApplicationStateLocation.ModEditorHome:
                 break;
             case ApplicationStateLocation.CharacterExporter:
-                <MudTextField @bind-Value="@Filename" ReadOnly="true" Variant="Variant.Outlined"/>
-                <MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@LoadExport">
-                    <CustomContent>
-                        <MudButton Variant="Variant.Filled" Color="Color.Secondary">
-                            LOAD
-                        </MudButton>
-                    </CustomContent>
-                </MudFileUpload>
-                <MudButton Disabled="@(_currentState == EditorState.Saving)" OnClick="@SaveExport"
-                           Variant="Variant.Filled" Color="Color.Secondary" Style="margin-top: 5px;">
-                    @if (_currentState == EditorState.Saving)
-                    {
-                        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
-                        <MudText Class="ms-2">Processing</MudText>
-                    }
-                    else
-                    {
-                        <div>Save</div>
-                    }
-                </MudButton>
+                @FilenameField()
+                @LoadButton(LoadExport)
+                @SaveButton(SaveExport, _currentState == EditorState.Saving)
                 break;
             default:
                 Console.WriteLine("Unknown ApplicationStateLocation: " + ApplicationState.Location);
                 break;
         }
-        <MudMenu Icon="@Icons.Material.Filled.MoreVert" AriaLabel="Open menu">
+        <MudMenu Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" AriaLabel="Open menu" Class="ml-2">
             @switch (ApplicationState.Location)
             {
                 case ApplicationStateLocation.SaveEditor:
-                    <MudMenuItem Label="Switch to Mod Editor" OnClick="SwitchToModEditor"/>
-                    <MudMenuItem Label="Switch to Export Editor" OnClick="SwitchToModEditor"/>
+                    <MudMenuItem Label="Switch to Mod Editor" Icon="@Icons.Material.Outlined.Palette" OnClick="SwitchToModEditor"/>
+                    <MudMenuItem Label="Switch to Export Editor" Icon="@Icons.Material.Outlined.IosShare" OnClick="SwitchToExportEditor"/>
                     break;
                 case ApplicationStateLocation.ModEditor:
                 case ApplicationStateLocation.ModEditorHome:
-                    <MudMenuItem Label="Switch to Save Editor" OnClick="SwitchToSaveEditor"/>
-                    <MudMenuItem Label="Switch to Export Editor" OnClick="SwitchToModEditor"/>
+                    <MudMenuItem Label="Switch to Save Editor" Icon="@Icons.Material.Outlined.Save" OnClick="SwitchToSaveEditor"/>
+                    <MudMenuItem Label="Switch to Export Editor" Icon="@Icons.Material.Outlined.IosShare" OnClick="SwitchToExportEditor"/>
                     break;
                 case ApplicationStateLocation.CharacterExporter:
-                    <MudMenuItem Label="Switch to Save Editor" OnClick="SwitchToSaveEditor"/>
-                    <MudMenuItem Label="Switch to Mod Editor" OnClick="SwitchToModEditor"/>
+                    <MudMenuItem Label="Switch to Save Editor" Icon="@Icons.Material.Outlined.Save" OnClick="SwitchToSaveEditor"/>
+                    <MudMenuItem Label="Switch to Mod Editor" Icon="@Icons.Material.Outlined.Palette" OnClick="SwitchToModEditor"/>
                     break;
                 default:
                     Console.WriteLine("Unknown ApplicationStateLocation: " + ApplicationState.Location);
@@ -128,15 +75,15 @@
             }
         </MudMenu>
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <MudPaper Width="250px" Elevation="0" Class="py-3">
-            <MudNavMenu Bordered="true">
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="0" Class="app-drawer">
+        <MudPaper Width="100%" Elevation="0" Class="py-3 px-2" Style="background: transparent;">
+            <MudNavMenu Color="Color.Primary" Rounded="true" Margin="Margin.Dense">
                 @switch (ApplicationState.Location)
                 {
                     case ApplicationStateLocation.SaveEditor:
-                        <MudNavLink Href="core">Core</MudNavLink>
-                        <MudNavLink Href="attributes">Attributes</MudNavLink>
-                        <MudNavGroup Title="Body">
+                        <MudNavLink Href="core" Icon="@Icons.Material.Outlined.Person">Core</MudNavLink>
+                        <MudNavLink Href="attributes" Icon="@Icons.Material.Outlined.Tune">Attributes</MudNavLink>
+                        <MudNavGroup Title="Body" Icon="@Icons.Material.Outlined.Accessibility">
                             <MudNavLink Href="body/bodycore">Body Core</MudNavLink>
                             <MudNavLink Href="body/head">Head</MudNavLink>
                             <MudNavLink Href="body/face">Face</MudNavLink>
@@ -147,9 +94,9 @@
                             <MudNavLink Href="body/vagina">Vagina</MudNavLink>
                             <MudNavLink Href="body/ass">Ass</MudNavLink>
                         </MudNavGroup>
-                        <MudNavLink Href="fetishes">Fetishes</MudNavLink>
-                        <MudNavLink Href="perks">Perks</MudNavLink>
-                        <MudNavGroup Title="Spells">
+                        <MudNavLink Href="fetishes" Icon="@Icons.Material.Outlined.FavoriteBorder">Fetishes</MudNavLink>
+                        <MudNavLink Href="perks" Icon="@Icons.Material.Outlined.StarBorder">Perks</MudNavLink>
+                        <MudNavGroup Title="Spells" Icon="@Icons.Material.Outlined.AutoFixHigh">
                             <MudNavLink Href="spells/earth">Earth</MudNavLink>
                             <MudNavLink Href="spells/water">Water</MudNavLink>
                             <MudNavLink Href="spells/fire">Fire</MudNavLink>
@@ -157,26 +104,26 @@
                             <MudNavLink Href="spells/arcane">Arcane</MudNavLink>
                             <MudNavLink Href="spells/misc">Misc</MudNavLink>
                         </MudNavGroup>
-                        <MudNavGroup Title="Inventory">
+                        <MudNavGroup Title="Inventory" Icon="@Icons.Material.Outlined.Inventory2">
                             <MudNavLink Href="inventory/items">Items</MudNavLink>
                             <MudNavLink Href="inventory/clothing">Clothing</MudNavLink>
                             <MudNavLink Href="inventory/weapons">Weapons</MudNavLink>
                             <MudNavLink Href="inventory/equipped" Disabled="true">Equipped</MudNavLink>
                         </MudNavGroup>
-                        <MudNavLink Href="relationships">Relationships</MudNavLink>
-                        <MudNavLink Href="family">Family</MudNavLink>
-                        <MudNavLink Href="offsprings">Offsprings</MudNavLink>
-                        <MudNavLink Href="world">World</MudNavLink>
-                        <MudNavLink Href="extra">Extra</MudNavLink>
+                        <MudNavLink Href="relationships" Icon="@Icons.Material.Outlined.People">Relationships</MudNavLink>
+                        <MudNavLink Href="family" Icon="@Icons.Material.Outlined.FamilyRestroom">Family</MudNavLink>
+                        <MudNavLink Href="offsprings" Icon="@Icons.Material.Outlined.ChildCare">Offsprings</MudNavLink>
+                        <MudNavLink Href="world" Icon="@Icons.Material.Outlined.Public">World</MudNavLink>
+                        <MudNavLink Href="extra" Icon="@Icons.Material.Outlined.MoreHoriz">Extra</MudNavLink>
                         break;
                     case ApplicationStateLocation.ModEditor or ApplicationStateLocation.ModEditorHome:
-                        <MudNavLink Href="mod-editor/color">Color</MudNavLink>
-                        <MudNavLink Href="mod-editor/clothing">Clothing</MudNavLink>
+                        <MudNavLink Href="mod-editor/color" Icon="@Icons.Material.Outlined.Palette">Color</MudNavLink>
+                        <MudNavLink Href="mod-editor/clothing" Icon="@Icons.Material.Outlined.Checkroom">Clothing</MudNavLink>
                         break;
                     case ApplicationStateLocation.CharacterExporter:
-                        <MudNavLink Href="character-exporter/core">Core</MudNavLink>
-                        <MudNavLink Href="character-exporter/attributes">Attributes</MudNavLink>
-                        <MudNavGroup Title="Body">
+                        <MudNavLink Href="character-exporter/core" Icon="@Icons.Material.Outlined.Person">Core</MudNavLink>
+                        <MudNavLink Href="character-exporter/attributes" Icon="@Icons.Material.Outlined.Tune">Attributes</MudNavLink>
+                        <MudNavGroup Title="Body" Icon="@Icons.Material.Outlined.Accessibility">
                             <MudNavLink Href="character-exporter/body/bodycore">Body Core</MudNavLink>
                             <MudNavLink Href="character-exporter/body/head">Head</MudNavLink>
                             <MudNavLink Href="character-exporter/body/face">Face</MudNavLink>
@@ -187,9 +134,9 @@
                             <MudNavLink Href="character-exporter/body/vagina">Vagina</MudNavLink>
                             <MudNavLink Href="character-exporter/body/ass">Ass</MudNavLink>
                         </MudNavGroup>
-                        <MudNavLink Href="character-exporter/fetishes">Fetishes</MudNavLink>
-                        <MudNavLink Href="character-exporter/perks">Perks</MudNavLink>
-                        <MudNavGroup Title="Spells">
+                        <MudNavLink Href="character-exporter/fetishes" Icon="@Icons.Material.Outlined.FavoriteBorder">Fetishes</MudNavLink>
+                        <MudNavLink Href="character-exporter/perks" Icon="@Icons.Material.Outlined.StarBorder">Perks</MudNavLink>
+                        <MudNavGroup Title="Spells" Icon="@Icons.Material.Outlined.AutoFixHigh">
                             <MudNavLink Href="character-exporter/spells/earth">Earth</MudNavLink>
                             <MudNavLink Href="character-exporter/spells/water">Water</MudNavLink>
                             <MudNavLink Href="character-exporter/spells/fire">Fire</MudNavLink>
@@ -197,15 +144,14 @@
                             <MudNavLink Href="character-exporter/spells/arcane">Arcane</MudNavLink>
                             <MudNavLink Href="character-exporter/spells/misc">Misc</MudNavLink>
                         </MudNavGroup>
-                        <MudNavGroup Title="Inventory">
+                        <MudNavGroup Title="Inventory" Icon="@Icons.Material.Outlined.Inventory2">
                             <MudNavLink Href="character-exporter/inventory/items">Items</MudNavLink>
                             <MudNavLink Href="character-exporter/inventory/clothing">Clothing</MudNavLink>
                             <MudNavLink Href="character-exporter/inventory/weapons">Weapons</MudNavLink>
-                            <MudNavLink Href="character-exporter/inventory/equipped" Disabled="true">Equipped
-                            </MudNavLink>
+                            <MudNavLink Href="character-exporter/inventory/equipped" Disabled="true">Equipped</MudNavLink>
                         </MudNavGroup>
                         @* <MudNavLink Href="character-exporter/relationships">Relationships</MudNavLink> *@
-                        <MudNavLink Href="character-exporter/family">Family</MudNavLink>
+                        <MudNavLink Href="character-exporter/family" Icon="@Icons.Material.Outlined.FamilyRestroom">Family</MudNavLink>
                         break;
                     default:
                         Console.WriteLine("Unknown ApplicationStateLocation: " + ApplicationState.Location);
@@ -215,11 +161,13 @@
         </MudPaper>
     </MudDrawer>
     <MudMainContent>
-        <MudContainer Style="margin-left: 10px;">
+        <MudContainer MaxWidth="MaxWidth.False" Class="app-content">
             @if (_currentState == EditorState.Loading)
             {
-                <MudProgressCircular Class="ms-n1" Size="Size.Medium" Indeterminate="true"/>
-                <MudText Class="ms-2">Loading Save...</MudText>
+                <MudStack AlignItems="AlignItems.Center" Spacing="3" Class="mt-16">
+                    <MudProgressCircular Size="Size.Large" Indeterminate="true"/>
+                    <MudText Typo="Typo.subtitle1" Color="Color.Default">Loading file...</MudText>
+                </MudStack>
             }
             else
             {
@@ -245,7 +193,7 @@
     private EditorState _currentState = EditorState.Idle;
     private ApplicationStateLocation _prevLocation = ApplicationStateLocation.SaveEditor;
 
-    private readonly MudTheme _theme = null!;
+    private readonly MudTheme _theme = AppTheme.Theme;
     private string Filename { get; set; } = "";
 
     private bool IsDarkMode
@@ -256,6 +204,40 @@
 
     private SaveData SaveData => ApplicationState.SaveData;
     private ExportEditor ExportEditor => ApplicationState.ExportEditor;
+
+    // ---------- Shared app bar fragments (previously copy-pasted per location) ----------
+
+    private RenderFragment FilenameField() => @<MudTextField @bind-Value="@Filename" ReadOnly="true"
+                                                            Variant="Variant.Outlined" Margin="Margin.Dense"
+                                                            Placeholder="No file loaded" Adornment="Adornment.Start"
+                                                            AdornmentIcon="@Icons.Material.Outlined.Description"
+                                                            Class="filename-field mr-3"/>;
+
+    private RenderFragment LoadButton(Func<IBrowserFile?, Task> onFileChosen) =>
+        @<MudFileUpload T="IBrowserFile" Accept=".xml" FilesChanged="@(file => onFileChosen(file))">
+            <CustomContent>
+                <MudButton Variant="Variant.Outlined" Color="Color.Secondary"
+                           OnClick="@context.OpenFilePickerAsync"
+                           StartIcon="@Icons.Material.Filled.CloudUpload">
+                    Load
+                </MudButton>
+            </CustomContent>
+            <SelectedTemplate/>
+        </MudFileUpload>;
+
+    private RenderFragment SaveButton(Func<Task> onSave, bool disabled) =>
+        @<MudButton Disabled="@disabled" OnClick="@(() => onSave())" Variant="Variant.Filled" Color="Color.Secondary"
+                    StartIcon="@(_currentState == EditorState.Saving ? null : Icons.Material.Filled.Save)" Class="ml-2">
+            @if (_currentState == EditorState.Saving)
+            {
+                <MudProgressCircular Class="mr-2" Size="Size.Small" Indeterminate="true"/>
+                <span>Processing</span>
+            }
+            else
+            {
+                <span>Save</span>
+            }
+        </MudButton>;
 
     protected override void OnInitialized()
     {
